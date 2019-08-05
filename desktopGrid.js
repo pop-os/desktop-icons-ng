@@ -48,47 +48,62 @@ class Placeholder extends Gtk.Bin {
     }
 }
 
-var elementSpacing = 8;
+var elementSpacing = 4;
 
 var DesktopGrid = class {
 
-    constructor(x, y, width, height, scaleFactor) {
+    constructor(container, x, y, width, height, scaleFactor) {
 
         this._x = x;
         this._y = y;
         this._width = width;
         this._height = height;
-        this._maxColumns = Math.floor(this._width / (Prefs.get_desired_width(scaleFactor) + elementSpacing));
-        this._maxRows =  Math.floor(this._height / (Prefs.get_desired_height(scaleFactor) + elementSpacing));
+        this._container = container;
+        this._maxColumns = Math.floor(this._width / (Prefs.get_desired_width(scaleFactor) + 2 * elementSpacing));
+        this._maxRows =  Math.floor(this._height / (Prefs.get_desired_height(scaleFactor) + 2 * elementSpacing));
+        this._elementWidth = Math.floor(this._width / this._maxColumns);
+        this._elementHeight = Math.floor(this._height / this._maxRows);
+        this._elementMarginH = this._elementWidth - Prefs.get_desired_width(scaleFactor) - elementSpacing;
+        this._elementMarginV = this._elementHeight - Prefs.get_desired_height(scaleFactor) - elementSpacing;
 
         this._fileItemHandlers = new Map();
         this._fileItems = [];
 
-        this.actor = new Gtk.EventBox({ visible: true });
-
-        this._grid = new Gtk.Grid({
-            column_homogeneous: true,
-            row_homogeneous: true
-        });
-        this._grid.set_size_request(width, height);
-        this._grid.set_row_spacing(elementSpacing);
-        this._grid.set_column_spacing(elementSpacing);
-
-        this.actor.add(this._grid);
-
-        this.actor.connect('destroy', () => this._onDestroy());
-
         this._addDesktopBackgroundMenu();
 
         this._gridStatus = {};
-        this.actor.connect('button-press-event', (actor, event) => this._onPressButton(actor, event));
-        this.actor.connect('key-press-event', this._onKeyPress.bind(this));
+        /*this.actor.connect('button-press-event', (actor, event) => this._onPressButton(actor, event));
+        this.actor.connect('key-press-event', this._onKeyPress.bind(this));*/
         for (let y=0; y<this._maxRows; y++) {
             for (let x=0; x<this._maxColumns; x++) {
                 this._setGridUse(x, y, false);
             }
         }
-        //this.actor.connect('allocation-changed', () => Extension.desktopManager.scheduleReLayoutChildren());
+    }
+
+    getDistance(x, y) {
+        /**
+         * Checks if these coordinates belong to this grid.
+         *
+         * @Returns: -1 if there is no free space for new icons;
+         *            0 if the coordinates are inside this grid;
+         *            the distance to the middle point, if none of the previous
+         */
+
+         let isFree = false;
+         for (let element in this._gridStatus) {
+             if (this._gridStatus[element] == false) {
+                 isFree = true;
+                 break;
+             }
+         }
+         if (!isFree) {
+             return -1;
+         }
+         if ((x >= this._x) && (x < (this._x + this._width)) && (y >= this._y) && (y < (this._y + this._height))) {
+             return 0;
+         }
+         return Math.pow(x - (this._x + this._width / 2), 2) + Math.pow(x - (this._y + this._height / 2), 2);
     }
 
     _onKeyPress(actor, event) {
@@ -216,7 +231,10 @@ var DesktopGrid = class {
     }
 
     _addFileItemTo(fileItem, column, row, coordinatesAction) {
-        this._grid.attach(fileItem.actor, column, row, 1, 1);
+
+        let x = this._x + this._elementWidth * column + this._elementMarginH;
+        let y = this._y + this._elementHeight * row + this._elementMarginV;
+        this._container.put(fileItem.actor, x, y);
         this._setGridUse(column, row, true);
         this._fileItems.push(fileItem);
         let selectedId = fileItem.connect('selected', this._onFileItemSelected.bind(this));
@@ -247,9 +265,6 @@ var DesktopGrid = class {
 
     _setGridUse(x, y, inUse) {
         this._gridStatus[y * this._maxColumns + x] = inUse;
-        if (!inUse) {
-            this._grid.attach(new Gtk.Label(), x, y, 1, 1);
-        }
     }
 
     _getEmptyPlaceClosestTo(x, y, coordinatesAction) {
@@ -342,7 +357,7 @@ var DesktopGrid = class {
     }
 
     _addDesktopBackgroundMenu() {
-        this.actor._desktopBackgroundMenu = this._createDesktopBackgroundMenu();
+        //this.actor._desktopBackgroundMenu = this._createDesktopBackgroundMenu();
     }
 
     acceptDrop(source, actor, x, y, time) {

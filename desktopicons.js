@@ -35,5 +35,5 @@ const DesktopManager = imports.desktopManager;
 DBusUtils.init();
 Prefs.init(extensionPath);
 
-Extension.desktopManager = new DesktopManager.DesktopManager([], 1.0);
+Extension.desktopManager = new DesktopManager.DesktopManager([{x:0, y:0, w: 800, h: 1050}, {x:810, y:0, w: 810, h: 600}], 1.0);
 Extension.desktopManager.run();

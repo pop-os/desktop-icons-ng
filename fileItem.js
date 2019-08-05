@@ -67,7 +67,6 @@ var FileItem = class {
         this.actor = new Gtk.EventBox({ visible: true });
         //TODO
         //let scaleFactor = St.ThemeContext.get_for_stage(global.stage).scale_factor;
-        this.actor._delegate = this;
         this.actor.connect('destroy', () => this._onDestroy());
 
         this._container = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL });
