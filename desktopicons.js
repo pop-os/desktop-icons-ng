@@ -69,7 +69,7 @@ let grid = new DesktopGrid.DesktopGrid(0, 0, 1920, 1080, 1.0);
 contenedor.put(grid.actor, 0, 0);
 
 for (let f of files) {
-    let icon = new Fileitem.FileItem(Extension, fileList.get_child(f), f, Prefs.FileType.NONE);
+    let icon = new Fileitem.FileItem(Extension, fileList.get_child(f), f, Prefs.FileType.NONE, 1.0);
     let itemX = 0;
     let itemY = 0;
     let coordinatesAction = DesktopGrid.StoredCoordinates.ASSIGN;
@@ -77,7 +77,6 @@ for (let f of files) {
         [itemX, itemY] = icon.savedCoordinates;
         coordinatesAction = DesktopGrid.StoredCoordinates.PRESERVE;
     }
-    print(icon.file.get_uri());
     grid.addFileItemCloseTo(icon, itemX, itemY, coordinatesAction);
 }
 

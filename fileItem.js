@@ -43,12 +43,11 @@ var State = {
     GONE: 1,
 };
 
-var scaleFactor = 1.0;
-
 var FileItem = class {
 
-    constructor(extension, file, fileInfo, fileExtra) {
+    constructor(extension, file, fileInfo, fileExtra, scaleFactor) {
         Extension = extension;
+        this._scaleFactor = scaleFactor;
         this._fileExtra = fileExtra;
         this._loadThumbnailDataCancellable = null;
         this._thumbnailScriptWatch = 0;
@@ -72,12 +71,14 @@ var FileItem = class {
         this.actor.connect('destroy', () => this._onDestroy());
 
         this._container = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL });
-        this._container.set_size_request(Prefs.get_desired_height(scaleFactor), Prefs.get_desired_width(scaleFactor));
+        this._container.set_size_request(Prefs.get_desired_width(this._scaleFactor), Prefs.get_desired_height(this._scaleFactor));
         this.actor.add(this._container);
+
         this._icon = new Gtk.Image();
-
-
-        this._container.pack_start(this._icon,true, false, 0);
+        let iconContainer = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL});
+        this._container.pack_start(iconContainer, false, false, 0);
+        iconContainer.set_size_request(Prefs.get_desired_width(this._scaleFactor), Prefs.get_icon_size(this._scaleFactor));
+        iconContainer.pack_start(this._icon, true, true, 0);
 
         this._label = new Gtk.Label({label: this._file.get_basename()});
 
@@ -86,6 +87,7 @@ var FileItem = class {
         this._label.set_line_wrap(true);
         this._label.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
         this._label.set_yalign(0.0);
+        this._label.set_lines(-1);
 
         this.actor.set_events(Gdk.EventMask.BUTTON_MOTION_MASK | Gdk.EventMask.BUTTON_PRESS_MASK | Gdk.EventMask.BUTTON_RELEASE_MASK | Gdk.EventMask.LEAVE_NOTIFY_MASK | Gdk.EventMask.POINTER_MOTION_MASK);
         this.actor.connect('button-press-event', (actor, event) => this._onPressButton(actor, event));
@@ -130,7 +132,7 @@ var FileItem = class {
             if (!this._isValidDesktopFile)
                 return;
             this._refreshMetadataAsync(true);
-        });
+        });*/
     }
 
     onAttributeChanged() {
@@ -296,8 +298,8 @@ var FileItem = class {
                             let thumbnailPixbuf = GdkPixbuf.Pixbuf.new_from_stream(thumbnailStream, null);
 
                             if (thumbnailPixbuf != null) {
-                                let width = Prefs.get_desired_width(scaleFactor);
-                                let height = Prefs.get_icon_size() * scaleFactor;
+                                let width = Prefs.get_desired_width(this._scaleFactor);
+                                let height = Prefs.get_icon_size() * this._scaleFactor;
                                 let aspectRatio = thumbnailPixbuf.width / thumbnailPixbuf.height;
                                 if ((width / height) > aspectRatio)
                                     width = height * aspectRatio;
@@ -371,9 +373,9 @@ var FileItem = class {
 
         let itemIcon = null;
         try {
-            itemIcon = theme.lookup_by_gicon(icon, Prefs.get_icon_size() * scaleFactor, Gtk.IconLookupFlags.FORCE_SIZE).load_icon();
+            itemIcon = theme.lookup_by_gicon(icon, Prefs.get_icon_size() * this._scaleFactor, Gtk.IconLookupFlags.FORCE_SIZE).load_icon();
         } catch (e) {
-            itemIcon = theme.load_icon("text-x-generic", Prefs.get_icon_size() * scaleFactor, Gtk.IconLookupFlags.FORCE_SIZE);
+            itemIcon = theme.load_icon("text-x-generic", Prefs.get_icon_size() * this._scaleFactor, Gtk.IconLookupFlags.FORCE_SIZE);
         }
 
         let emblem = null;
@@ -387,7 +389,7 @@ var FileItem = class {
         }
 
         if (emblem != null) {
-            let finalSize = (Prefs.get_icon_size() * scaleFactor) / 3;
+            let finalSize = (Prefs.get_icon_size() * this._scaleFactor) / 3;
             let emblemIcon = theme.lookup_by_gicon(emblem, finalSize, Gtk.IconLookupFlags.FORCE_SIZE).load_icon();
             emblemIcon.copy_area(0, 0, finalSize, finalSize, itemIcon, 0, 0);
         }

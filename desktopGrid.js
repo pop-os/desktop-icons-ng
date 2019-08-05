@@ -24,9 +24,6 @@ const Prefs = imports.prefs;
 const DesktopIconsUtil = imports.desktopIconsUtil;
 const Signals = imports.signals;
 
-/*const Clipboard = St.Clipboard.get_default();
-const CLIPBOARD_TYPE = St.ClipboardType.CLIPBOARD;*/
-
 const Gettext = imports.gettext.domain('desktop-icons');
 
 const _ = Gettext.gettext;
