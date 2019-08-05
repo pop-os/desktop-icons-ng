@@ -127,6 +127,7 @@ var FileItem = class {
                 }
             });
         }
+        this.actor.show_all();
         // TODO
         /*this._writebleByOthersId = Extension.desktopManager.connect('notify::writable-by-others', () => {
             if (!this._isValidDesktopFile)
@@ -153,12 +154,6 @@ var FileItem = class {
             GLib.source_remove(this._thumbnailScriptWatch);
         if (this._loadThumbnailDataCancellable)
             this._loadThumbnailDataCancellable.cancel();
-
-        /* Desktop file */
-        if (this._monitorDesktopFileId) {
-            this._monitorDesktopFile.disconnect(this._monitorDesktopFileId);
-            this._monitorDesktopFile.cancel();
-        }
 
         /* Trash */
         if (this._monitorTrashDir) {
@@ -192,7 +187,8 @@ var FileItem = class {
                     if (!error.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED))
                         global.log("Error getting the file info: " + error);
                 }
-            });
+            }
+        );
     }
 
     _updateMetadataFromFileInfo(fileInfo) {
@@ -232,7 +228,7 @@ var FileItem = class {
         this._isSpecial = this._fileExtra != Prefs.FileType.NONE;
         this._isHidden = fileInfo.get_is_hidden() | fileInfo.get_is_backup();
         this._isSymlink = fileInfo.get_is_symlink();
-        this._modifiedTime = this._fileInfo.get_attribute_uint64("time::modified");
+        this._modifiedTime = fileInfo.get_attribute_uint64("time::modified");
         /*
          * This is a glib trick to detect broken symlinks. If a file is a symlink, the filetype
          * points to the final file, unless it is broken; thus if the file type is SYMBOLIC_LINK,
@@ -249,10 +245,7 @@ var FileItem = class {
 
     _updateIcon() {
         if (this._fileExtra == Prefs.FileType.USER_DIRECTORY_TRASH) {
-            print("1");
             this._icon.set_from_pixbuf(this._createEmblemedIcon(this._fileInfo.get_icon(), null));
-            this._icon.set_icon_size(Prefs.get_icon_size());
-            print("1b");
             return;
         }
 
@@ -265,7 +258,7 @@ var FileItem = class {
                 if (!thumbnailFactory.has_valid_failed_thumbnail(this._file.get_uri(),
                                                                  this._modifiedTime)) {
                     let argv = [];
-                    argv.push(GLib.build_filenamev([Prefs.extensionPath, 'createThumbnail.js']));
+                    argv.push(GLib.build_filenamev(['.', 'createThumbnail.js']));
                     argv.push(this._file.get_path());
                     let [success, pid] = GLib.spawn_async(null, argv, null,
                                                           GLib.SpawnFlags.SEARCH_PATH | GLib.SpawnFlags.DO_NOT_REAP_CHILD, null);
@@ -407,7 +400,6 @@ var FileItem = class {
     }
 
     doOpen() {
-        print("Abro");
         if (this._isBrokenSymlink) {
             log(`Error: Can’t open ${this.file.get_uri()} because it is a broken symlink.`);
             return;
@@ -665,7 +657,6 @@ var FileItem = class {
 
     _onReleaseButton(actor, event) {
         let button = event.get_button()[1];
-        print("Soltado " + button);
         if (button == 1) {
             // primaryButtonPressed is TRUE only if the user has pressed the button
             // over an icon, and if (s)he has not started a drag&drop operation

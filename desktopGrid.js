@@ -70,7 +70,6 @@ var DesktopGrid = class {
             column_homogeneous: true,
             row_homogeneous: true
         });
-        this.actor._delegate = this;
         this._grid.set_size_request(width, height);
         this._grid.set_row_spacing(elementSpacing);
         this._grid.set_column_spacing(elementSpacing);
@@ -309,22 +308,6 @@ var DesktopGrid = class {
         this._fileItemHandlers.delete(fileItem);
     }
 
-    _fillPlaceholders() {
-        for (let column = 0; column < this._maxColumns; column++) {
-            for (let row = 0; row < this._maxRows; row++) {
-                this.layout.attach(new Placeholder(), column, row, 1, 1);
-            }
-        }
-    }
-
-    reset() {
-        let tmpFileItemsCopy = this._fileItems.slice();
-        for (let fileItem of tmpFileItemsCopy)
-            this.removeFileItem(fileItem);
-        this._grid.remove_all_children();
-
-        this._fillPlaceholders();
-    }
 
     _onStageMotion(actor, event) {
         if (this._drawingRubberBand) {

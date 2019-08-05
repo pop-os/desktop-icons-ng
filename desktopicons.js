@@ -20,66 +20,20 @@
 
 // this allows to import files from the current folder
 
-var imported = false;
+imports.gi.versions.Gtk = '3.0';
 
 var extensionPath = '.';
-
 imports.searchPath.unshift(extensionPath);
 
-imports.gi.versions.Gtk = '3.0';
-imports.gi.versions.Cogl = '2.0';
-
-const Gtk = imports.gi.Gtk;
-const Gdk = imports.gi.Gdk;
-const Gio = imports.gi.Gio;
-
 const Prefs = imports.prefs;
-const Fileitem = imports.fileItem;
-const DesktopGrid = imports.desktopGrid;
 const DBusUtils = imports.dbusUtils;
-const DesktopIconsUtil = imports.desktopIconsUtil;
 
 var Extension = {};
 
-const TmpDM = imports.tmpDesktopManager;
-Extension.desktopManager = new TmpDM.DesktopManager();
-
-Gtk.init(null);
+const DesktopManager = imports.desktopManager;
 
 DBusUtils.init();
 Prefs.init(extensionPath);
 
-let desktopDir = DesktopIconsUtil.getDesktopDir();
-let fileList = desktopDir.enumerate_children(DesktopIconsUtil.DEFAULT_ATTRIBUTES, Gio.FileQueryInfoFlags.NONE, null);
-let files = [];
-let info = null;
-while ((info = fileList.next_file(null))) {
-    files.push(info);
-}
-
-let ventana = new Gtk.Window();
-let escroll = Gtk.ScrolledWindow.new(null, null);
-ventana.add(escroll);
-let contenedor = new Gtk.Fixed();
-
-escroll.add(contenedor);
-
-let grid = new DesktopGrid.DesktopGrid(0, 0, 1920, 1080, 1.0);
-
-contenedor.put(grid.actor, 0, 0);
-
-for (let f of files) {
-    let icon = new Fileitem.FileItem(Extension, fileList.get_child(f), f, Prefs.FileType.NONE, 1.0);
-    let itemX = 0;
-    let itemY = 0;
-    let coordinatesAction = DesktopGrid.StoredCoordinates.ASSIGN;
-    if (icon.savedCoordinates != null) {
-        [itemX, itemY] = icon.savedCoordinates;
-        coordinatesAction = DesktopGrid.StoredCoordinates.PRESERVE;
-    }
-    grid.addFileItemCloseTo(icon, itemX, itemY, coordinatesAction);
-}
-
-ventana.show_all();
-
-Gtk.main();
+Extension.desktopManager = new DesktopManager.DesktopManager([], 1.0);
+Extension.desktopManager.run();
