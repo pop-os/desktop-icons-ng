@@ -51,16 +51,17 @@ class Placeholder extends Gtk.Bin {
     }
 }
 
-var scaleFactor = 1.0;
-
 var DesktopGrid = class {
 
-    constructor(x, y, width, height) {
+    constructor(x, y, width, height, scaleFactor) {
 
         this._x = x;
         this._y = y;
         this._width = width;
         this._height = height;
+        this._maxColumns = Math.floor(this._width / Prefs.get_desired_width(scaleFactor));
+        this._maxRows =  Math.floor(this._height / Prefs.get_desired_height(scaleFactor));
+
         this._fileItemHandlers = new Map();
         this._fileItems = [];
 
@@ -79,8 +80,14 @@ var DesktopGrid = class {
 
         this._addDesktopBackgroundMenu();
 
+        this._gridStatus = {};
         this.actor.connect('button-press-event', (actor, event) => this._onPressButton(actor, event));
         this.actor.connect('key-press-event', this._onKeyPress.bind(this));
+        for (let y=0; y<this._maxRows; y++) {
+            for (let x=0; x<this._maxColumns; x++) {
+                this._setGridUse(x, y, false);
+            }
+        }
         //this.actor.connect('allocation-changed', () => Extension.desktopManager.scheduleReLayoutChildren());
     }
 
@@ -117,112 +124,14 @@ var DesktopGrid = class {
         }
         else if (symbol == Clutter.Delete) {
             Extension.desktopManager.doTrash();
-            return true;
-        } else if (symbol == Clutter.F2) {
-            // Support renaming other grids file items.
-            Extension.desktopManager.doRename();
-            return true;
+                return true;
+            } else if (symbol == Clutter.F2) {
+                // Support renaming other grids file items.
+                Extension.desktopManager.doRename();
+                return true;
+            }
+            return false;
         }
-
-        return false;
-    }
-
-    _onNewFolderClicked() {
-
-        let dialog = new CreateFolderDialog.CreateFolderDialog();
-
-        dialog.connect('response', (dialog, name) => {
-            let dir = DesktopIconsUtil.getDesktopDir().get_child(name);
-            DBusUtils.NautilusFileOperationsProxy.CreateFolderRemote(dir.get_uri(),
-                (result, error) => {
-                    if (error)
-                        throw new Error('Error creating new folder: ' + error.message);
-                }
-            );
-        });
-
-        dialog.open();
-    }
-
-    _parseClipboardText(text) {
-        if (text === null)
-            return [false, false, null];
-
-        let lines = text.split('\n');
-        let [mime, action, ...files] = lines;
-
-        if (mime != 'x-special/nautilus-clipboard')
-            return [false, false, null];
-
-        if (!(['copy', 'cut'].includes(action)))
-            return [false, false, null];
-        let isCut = action == 'cut';
-
-        /* Last line is empty due to the split */
-        if (files.length <= 1)
-            return [false, false, null];
-        /* Remove last line */
-        files.pop();
-
-        return [true, isCut, files];
-    }
-
-    _doPaste() {
-        Clipboard.get_text(CLIPBOARD_TYPE,
-            (clipboard, text) => {
-                let [valid, is_cut, files] = this._parseClipboardText(text);
-                if (!valid)
-                    return;
-
-                let desktopDir = `${DesktopIconsUtil.getDesktopDir().get_uri()}`;
-                if (is_cut) {
-                    DBusUtils.NautilusFileOperationsProxy.MoveURIsRemote(files, desktopDir,
-                        (result, error) => {
-                            if (error)
-                                throw new Error('Error moving files: ' + error.message);
-                        }
-                    );
-                } else {
-                    DBusUtils.NautilusFileOperationsProxy.CopyURIsRemote(files, desktopDir,
-                        (result, error) => {
-                            if (error)
-                                throw new Error('Error copying files: ' + error.message);
-                        }
-                    );
-                }
-            }
-        );
-    }
-
-    _onPasteClicked() {
-        this._doPaste();
-    }
-
-    _doUndo() {
-        DBusUtils.NautilusFileOperationsProxy.UndoRemote(
-            (result, error) => {
-                if (error)
-                    throw new Error('Error performing undo: ' + error.message);
-            }
-        );
-    }
-
-    _onUndoClicked() {
-        this._doUndo();
-    }
-
-    _doRedo() {
-        DBusUtils.NautilusFileOperationsProxy.RedoRemote(
-            (result, error) => {
-                if (error)
-                    throw new Error('Error performing redo: ' + error.message);
-            }
-        );
-    }
-
-    _onRedoClicked() {
-        this._doRedo();
-    }
 
     _onOpenDesktopInFilesClicked() {
         Gio.AppInfo.launch_default_for_uri_async(DesktopIconsUtil.getDesktopDir().get_uri(),
@@ -307,7 +216,8 @@ var DesktopGrid = class {
     }
 
     _addFileItemTo(fileItem, column, row, coordinatesAction) {
-        let placeholder = this._grid.attach(fileItem.actor, column, row, 1, 1);
+        this._grid.attach(fileItem.actor, column, row, 1, 1);
+        this._setGridUse(column, row, true);
         this._fileItems.push(fileItem);
         let selectedId = fileItem.connect('selected', this._onFileItemSelected.bind(this));
         let renameId = fileItem.connect('rename-clicked', this.doRename.bind(this));
@@ -320,10 +230,8 @@ var DesktopGrid = class {
          * and not triggered by a screen change.
          */
         if ((fileItem.savedCoordinates == null) || (coordinatesAction == StoredCoordinates.OVERWRITE)) {
-            let maxColumns = this._getMaxColumns();
-            let maxRows = this._getMaxRows();
-            let fileX = this._x + Math.round((column * this._width) / maxColumns);
-            let fileY = this._y + Math.round((row * this._height) / maxRows);
+            let fileX = this._x + Math.round((column * this._width) / this._maxColumns);
+            let fileY = this._y + Math.round((row * this._height) / this._maxRows);
             fileItem.savedCoordinates = [fileX, fileY];
         }
     }
@@ -333,29 +241,39 @@ var DesktopGrid = class {
         this._addFileItemTo(fileItem, column, row, coordinatesAction);
     }
 
+    _isEmptyAt(x,y) {
+        return !this._gridStatus[y * this._maxColumns + x];
+    }
+
+    _setGridUse(x, y, inUse) {
+        this._gridStatus[y * this._maxColumns + x] = inUse;
+        if (!inUse) {
+            this._grid.attach(new Gtk.Label(), x, y, 1, 1);
+        }
+    }
+
     _getEmptyPlaceClosestTo(x, y, coordinatesAction) {
-        let maxColumns = this._getMaxColumns();
-        let maxRows = this._getMaxRows();
 
-        let placeX = Math.round((x - this._x) * maxColumns / this._width);
-        let placeY = Math.round((y - this._y) * maxRows / this._height);
+        let placeX = Math.round((x - this._x) * this._maxColumns / this._width);
+        let placeY = Math.round((y - this._y) * this._maxRows / this._height);
 
-        placeX = DesktopIconsUtil.clamp(placeX, 0, maxColumns - 1);
-        placeY = DesktopIconsUtil.clamp(placeY, 0, maxRows - 1);
-        if (this._grid.get_child_at(placeX, placeY) == null)
+        placeX = DesktopIconsUtil.clamp(placeX, 0, this._maxColumns - 1);
+        placeY = DesktopIconsUtil.clamp(placeY, 0, this._maxRows - 1);
+        if (this._isEmptyAt(placeX, placeY)) {
             return [placeX, placeY];
+        }
         let found = false;
         let resColumn = null;
         let resRow = null;
         let minDistance = Infinity;
-        for (let column = 0; column < maxColumns; column++) {
-            for (let row = 0; row < maxRows; row++) {
-                let placeholder = this._grid.get_child_at(column, row);
-                if (placeholder != null)
+        for (let column = 0; column < this._maxColumns; column++) {
+            for (let row = 0; row < this._maxRows; row++) {
+                if (!this._isEmptyAt(column, row)) {
                     continue;
+                }
 
-                let proposedX = this._x + Math.round((column * this._width) / maxColumns);
-                let proposedY = this._y + Math.round((row * this._height) / maxRows);
+                let proposedX = this._x + Math.round((column * this._width) / this._maxColumns);
+                let proposedY = this._y + Math.round((row * this._height) / this._maxRows);
                 if (coordinatesAction == StoredCoordinates.ASSIGN)
                     return [column, row];
                 let distance = DesktopIconsUtil.distanceBetweenPoints(proposedX, proposedY, x, y);
@@ -391,8 +309,8 @@ var DesktopGrid = class {
     }
 
     _fillPlaceholders() {
-        for (let column = 0; column < this._getMaxColumns(); column++) {
-            for (let row = 0; row < this._getMaxRows(); row++) {
+        for (let column = 0; column < this._maxColumns; column++) {
+            for (let row = 0; row < this._maxRows; row++) {
                 this.layout.attach(new Placeholder(), column, row, 1, 1);
             }
         }
@@ -443,14 +361,6 @@ var DesktopGrid = class {
         this.actor._desktopBackgroundMenu = this._createDesktopBackgroundMenu();
     }
 
-    _getMaxColumns() {
-        return Math.floor(this._width / Prefs.get_desired_width(scaleFactor));
-    }
-
-    _getMaxRows() {
-        return Math.floor(this._height / Prefs.get_desired_height(scaleFactor));
-    }
-
     acceptDrop(source, actor, x, y, time) {
         /* Coordinates are relative to the grid, we want to transform them to
          * absolute coordinates to work across monitors */
@@ -464,12 +374,10 @@ var DesktopGrid = class {
             throw new Error('Error at _getPosOfFileItem: child cannot be null');
 
         let found = false;
-        let maxColumns = this._getMaxColumns();
-        let maxRows = this._getMaxRows();
         let column = 0;
         let row = 0;
-        for (column = 0; column < maxColumns; column++) {
-            for (row = 0; row < maxRows; row++) {
+        for (column = 0; column < this._maxColumns; column++) {
+            for (row = 0; row < this._maxRows; row++) {
                 let item = this.layout.get_child_at(column, row);
                 if (item.child && item.child._delegate.file.equal(itemToFind.file)) {
                     found = true;
