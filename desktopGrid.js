@@ -86,53 +86,45 @@ var DesktopGrid = class {
 
     _onKeyPress(actor, event) {
         if (global.stage.get_key_focus() != actor)
-            return Clutter.EVENT_PROPAGATE;
+            return false;
 
         let symbol = event.get_key_symbol();
         let isCtrl = (event.get_state() & Clutter.ModifierType.CONTROL_MASK) != 0;
         let isShift = (event.get_state() & Clutter.ModifierType.SHIFT_MASK) != 0;
         if (isCtrl && isShift && [Clutter.Z, Clutter.z].indexOf(symbol) > -1) {
             this._doRedo();
-            return Clutter.EVENT_STOP;
+            return true;
         }
         else if (isCtrl && [Clutter.Z, Clutter.z].indexOf(symbol) > -1) {
             this._doUndo();
-            return Clutter.EVENT_STOP;
+            return true;
         }
         else if (isCtrl && [Clutter.C, Clutter.c].indexOf(symbol) > -1) {
             Extension.desktopManager.doCopy();
-            return Clutter.EVENT_STOP;
+            return true;
         }
         else if (isCtrl && [Clutter.X, Clutter.x].indexOf(symbol) > -1) {
             Extension.desktopManager.doCut();
-            return Clutter.EVENT_STOP;
+            return true;
         }
         else if (isCtrl && [Clutter.V, Clutter.v].indexOf(symbol) > -1) {
             this._doPaste();
-            return Clutter.EVENT_STOP;
+            return true;
         }
         else if (symbol == Clutter.Return) {
             Extension.desktopManager.doOpen();
-            return Clutter.EVENT_STOP;
+            return true;
         }
         else if (symbol == Clutter.Delete) {
             Extension.desktopManager.doTrash();
-            return Clutter.EVENT_STOP;
+            return true;
         } else if (symbol == Clutter.F2) {
             // Support renaming other grids file items.
             Extension.desktopManager.doRename();
-            return Clutter.EVENT_STOP;
+            return true;
         }
 
-        return Clutter.EVENT_PROPAGATE;
-    }
-
-    _backgroundDestroyed() {
-        this._bgDestroyedId = 0;
-    }
-
-    _onDestroy() {
-        this._bgDestroyedId = 0;
+        return false;
     }
 
     _onNewFolderClicked() {
@@ -421,14 +413,12 @@ var DesktopGrid = class {
             this._updateRubberBand(x, y);
             this._selectFromRubberband(x, y);
         }
-        return Clutter.EVENT_PROPAGATE;
+        return false;
     }
 
     _onPressButton(actor, event) {
         let button = event.get_button();
         let [x, y] = event.get_coords();
-
-        this._grid.grab_key_focus();
 
         if (button == 1) {
             let shiftPressed = !!(event.get_state() & Clutter.ModifierType.SHIFT_MASK);
@@ -437,16 +427,16 @@ var DesktopGrid = class {
                 Extension.desktopManager.clearSelection();
             let [gridX, gridY] = this._grid.get_transformed_position();
             Extension.desktopManager.startRubberBand(x, y, gridX, gridY);
-            return Clutter.EVENT_STOP;
+            return true;
         }
 
         if (button == 3) {
             this._openMenu(x, y);
 
-            return Clutter.EVENT_STOP;
+            return true;
         }
 
-        return Clutter.EVENT_PROPAGATE;
+        return false;
     }
 
     _addDesktopBackgroundMenu() {
@@ -498,7 +488,6 @@ var DesktopGrid = class {
     }
 
     _onFileItemSelected(fileItem, keepCurrentSelection, addToSelection) {
-        this._grid.grab_key_focus();
     }
 
     doRename(fileItem) {
@@ -551,47 +540,14 @@ var RenamePopup = class {
         this.actor.visible = false;
         this._boxPointer.bin.set_child(renameContent);
 
-        this._grabHelper = new GrabHelper.GrabHelper(grid.actor, { actionMode: Shell.ActionMode.POPUP });
-        this._grabHelper.addActor(this.actor);
     }
 
     _popup() {
-        if (this._isOpen)
-            return;
-
-        this._isOpen = this._grabHelper.grab({ actor: this.actor,
-                                               onUngrab: this._popdown.bind(this) });
-
-        if (!this._isOpen) {
-            this._grabHelper.ungrab({ actor: this.actor });
-            return;
-        }
-
-        this._boxPointer.setPosition(this._source.actor, 0.5);
-        if (ExtensionUtils.versionCheck(['3.28', '3.30'], Config.PACKAGE_VERSION))
-            this._boxPointer.show(BoxPointer.PopupAnimation.FADE |
-                                  BoxPointer.PopupAnimation.SLIDE);
-        else
-            this._boxPointer.open(BoxPointer.PopupAnimation.FADE |
-                                  BoxPointer.PopupAnimation.SLIDE);
 
         this.emit('open-state-changed', true);
     }
 
     _popdown() {
-        if (!this._isOpen)
-            return;
-
-        this._grabHelper.ungrab({ actor: this.actor });
-
-        if (ExtensionUtils.versionCheck(['3.28', '3.30'], Config.PACKAGE_VERSION))
-            this._boxPointer.hide(BoxPointer.PopupAnimation.FADE |
-                                   BoxPointer.PopupAnimation.SLIDE);
-        else
-            this._boxPointer.close(BoxPointer.PopupAnimation.FADE |
-                                  BoxPointer.PopupAnimation.SLIDE);
-
-        this._isOpen = false;
         this.emit('open-state-changed', false);
     }
 
@@ -601,7 +557,6 @@ var RenamePopup = class {
         this._renameEntry.text = fileItem.displayName;
 
         this._popup();
-        this._renameEntry.grab_key_focus();
         this._renameEntry.navigate_focus(null, Gtk.DirectionType.TAB_FORWARD, false);
         let extensionOffset = DesktopIconsUtil.getFileExtensionOffset(fileItem.displayName, fileItem.isDirectory);
         this._renameEntry.clutter_text.set_selection(0, extensionOffset);

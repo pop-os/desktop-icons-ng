@@ -64,7 +64,7 @@ let contenedor = new Gtk.Fixed();
 
 escroll.add(contenedor);
 
-let grid = new DesktopGrid.DesktopGrid(0, 0, 900, 800);
+let grid = new DesktopGrid.DesktopGrid(0, 0, 1920, 1080);
 
 contenedor.put(grid.actor, 0, 0);
 

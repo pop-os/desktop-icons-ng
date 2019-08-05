@@ -22,7 +22,6 @@ const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
 const Pango = imports.gi.Pango;
 const GdkPixbuf = imports.gi.GdkPixbuf;
-const Cogl = imports.gi.Cogl;
 const GnomeDesktop = imports.gi.GnomeDesktop;
 
 const Prefs = imports.prefs;
@@ -33,8 +32,6 @@ const Signals = imports.signals;
 const Gettext = imports.gettext.domain('desktop-icons');
 
 const _ = Gettext.gettext;
-
-const DRAG_TRESHOLD = 8;
 
 var Extension;
 
@@ -149,8 +146,6 @@ var FileItem = class {
         if (this._queryFileInfoCancellable)
             this._queryFileInfoCancellable.cancel();
 
-        Extension.desktopManager.disconnect(this._writebleByOthersId);
-
         /* Thumbnailing */
         if (this._thumbnailScriptWatch)
             GLib.source_remove(this._thumbnailScriptWatch);
@@ -172,11 +167,6 @@ var FileItem = class {
             this._queryTrashInfoCancellable.cancel();
         if (this._scheduleTrashRefreshId)
             GLib.source_remove(this._scheduleTrashRefreshId);
-
-        /* Menu */
-        this._menuManager.removeMenu(this._menu);
-        Main.layoutManager.uiGroup.remove_child(this._menu.actor);
-        this._menu.destroy();
     }
 
     _refreshMetadataAsync(rebuild) {
@@ -557,7 +547,7 @@ var FileItem = class {
     }
 
     _createMenu() {
-        this._menu = new Gtk.Menu();
+        /*this._menu = new Gtk.Menu();
         let open = new Gtk.MenuItem({label:_('Open')});
         open.connect('activate', () => this.doOpen());
         this._menu.add(open);
@@ -605,7 +595,7 @@ var FileItem = class {
             openInTerminal.connect('activate', () => this._onOpenTerminalClicked());
             this._menu.add(openInTerminal);
         }
-        this._menu.show_all();
+        this._menu.show_all();*/
     }
 
     _onOpenTerminalClicked () {
@@ -614,7 +604,6 @@ var FileItem = class {
 
     _onPressButton(actor, event) {
         let button = event.get_button()[1];
-        print("Pulsado " + button);
         if (button == 3) {
             if (!this.isSelected)
                 this.emit('selected', false, false, true);
@@ -780,7 +769,6 @@ var FileItem = class {
         return this._isValidDesktopFile &&
                this._attributeCanExecute &&
                this.metadataTrusted &&
-               !Extension.desktopManager.writableByOthers &&
                !this._writableByOthers;
     }
 
