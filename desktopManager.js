@@ -6,6 +6,7 @@
 const GLib = imports.gi.GLib;
 const GObject = imports.gi.GObject;
 const Gtk = imports.gi.Gtk;
+const Gdk = imports.gi.Gdk;
 const Gio = imports.gi.Gio;
 const FileItem = imports.fileItem;
 
@@ -41,6 +42,13 @@ var DesktopManager = GObject.registerClass({
         this._container = new Gtk.Fixed();
         this._window.add(this._eventBox);
         this._eventBox.add(this._container);
+        this._window.set_app_paintable(true);
+        let screen = this._window.get_screen();
+        let visual = screen.get_rgba_visual();
+        if (visual && screen.is_composited()) {
+            this._window.set_visual(visual);
+        }
+        this._window.connect('draw', (widget, context) => this.exposeDraw(widget, context) );
 
         this._desktops = [];
         let x1, y1, x2, y2;
@@ -71,6 +79,14 @@ var DesktopManager = GObject.registerClass({
 
     run() {
         Gtk.main();
+    }
+
+    exposeDraw(window, cr) {
+
+        Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: 0.0, green: 0.0, blue: 0.0, alpha:0.0}));
+        cr.paint();
+
+        return false;
     }
 
     _readFileList() {
