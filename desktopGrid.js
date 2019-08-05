@@ -48,6 +48,8 @@ class Placeholder extends Gtk.Bin {
     }
 }
 
+var elementSpacing = 8;
+
 var DesktopGrid = class {
 
     constructor(x, y, width, height, scaleFactor) {
@@ -56,8 +58,8 @@ var DesktopGrid = class {
         this._y = y;
         this._width = width;
         this._height = height;
-        this._maxColumns = Math.floor(this._width / Prefs.get_desired_width(scaleFactor));
-        this._maxRows =  Math.floor(this._height / Prefs.get_desired_height(scaleFactor));
+        this._maxColumns = Math.floor(this._width / (Prefs.get_desired_width(scaleFactor) + elementSpacing));
+        this._maxRows =  Math.floor(this._height / (Prefs.get_desired_height(scaleFactor) + elementSpacing));
 
         this._fileItemHandlers = new Map();
         this._fileItems = [];
@@ -70,6 +72,8 @@ var DesktopGrid = class {
         });
         this.actor._delegate = this;
         this._grid.set_size_request(width, height);
+        this._grid.set_row_spacing(elementSpacing);
+        this._grid.set_column_spacing(elementSpacing);
 
         this.actor.add(this._grid);
 

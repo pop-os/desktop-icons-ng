@@ -32,8 +32,8 @@ const SCHEMA_GTK = 'org.gtk.Settings.FileChooser';
 const SCHEMA = 'org.gnome.shell.extensions.desktop-icons';
 
 const ICON_SIZE = { 'small': 48, 'standard': 64, 'large': 96 };
-const ICON_WIDTH = { 'small': 120, 'standard': 128, 'large': 128 };
-const ICON_HEIGHT = { 'small': 98, 'standard': 114, 'large': 146 };
+const ICON_WIDTH = { 'small': 112, 'standard': 120, 'large': 120 };
+const ICON_HEIGHT = { 'small': 90, 'standard': 106, 'large': 138 };
 
 var FileType = {
     NONE: null,
