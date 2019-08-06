@@ -38,6 +38,13 @@ var DesktopManager = GObject.registerClass({
         this._monitorDesktopDir.connect('changed', (obj, file, otherFile, eventType) => this._updateDesktopIfChanged(file, otherFile, eventType));
 
         this._window = new Gtk.Window();
+        this._window.set_resizable(false);
+        this._window.set_keep_below(true);
+        this._window.set_decorated(false);
+        this._window.set_deletable(false);
+        this._window.set_skip_pager_hint(true);
+        this._window.set_skip_taskbar_hint(true);
+        this._window.set_type_hint(Gdk.WindowTypeHint.DESKTOP);
         this._eventBox = new Gtk.EventBox({visible: true});
         this._container = new Gtk.Fixed();
         this._window.add(this._eventBox);
