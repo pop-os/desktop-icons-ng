@@ -184,7 +184,7 @@ var FileItem = class {
                     }
                 } catch(error) {
                     if (!error.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED))
-                        global.log("Error getting the file info: " + error);
+                        print("Error getting the file info: " + error);
                 }
             }
         );
@@ -270,7 +270,7 @@ var FileItem = class {
                             if (exitCode == 0)
                                 this._updateIcon();
                             else
-                                global.log('Failed to generate thumbnail for ' + this._filePath);
+                                print('Failed to generate thumbnail for ' + this._filePath);
                             GLib.spawn_close_pid(pid);
                             return false;
                         }
@@ -297,7 +297,7 @@ var FileItem = class {
                                     width = height * aspectRatio;
                                 else
                                     height = width / aspectRatio;
-                                this._icon.set_from_pixbuf(thumbnailPixbuf.scale_simple(width, height, GdkPixbuf.InterpType.BILINEAR));
+                                this._icon.set_from_pixbuf(thumbnailPixbuf.scale_simple(Math.floor(width), Math.floor(height), GdkPixbuf.InterpType.BILINEAR));
                             }
                         } catch (error) {
                             if (!error.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED)) {
@@ -336,7 +336,7 @@ var FileItem = class {
                     this._updateIcon();
                 } catch(error) {
                     if (!error.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED))
-                        global.log('Error getting the number of files in the trash: ' + error);
+                        print('Error getting the number of files in the trash: ' + error);
                 }
             });
 
@@ -385,7 +385,6 @@ var FileItem = class {
             let emblemIcon = theme.lookup_by_gicon(emblem, finalSize, Gtk.IconLookupFlags.FORCE_SIZE).load_icon();
             emblemIcon.copy_area(0, 0, finalSize, finalSize, itemIcon, 0, 0);
         }
-
         return itemIcon;
     }
 

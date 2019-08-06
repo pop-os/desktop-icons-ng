@@ -132,10 +132,7 @@ function doKillAllOldDesktopProcesses() {
         }
         let path = "/usr/bin/gjs " + GLib.build_filenamev([ExtensionUtils.getCurrentExtension().path, 'desktopiconsng.js']);
         if (("" + contents).startsWith(path)) {
-            global.log("Mato a " + filename.toString());
-            let lista = ['/bin/kill', filename];
-            global.log(lista);
-            let proc = new Gio.Subprocess({argv: lista});
+            let proc = new Gio.Subprocess({argv: ['/bin/kill', filename]});
             proc.init(null);
             proc.wait(null);
         }
