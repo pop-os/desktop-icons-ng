@@ -22,7 +22,45 @@
 
 imports.gi.versions.Gtk = '3.0';
 
-var extensionPath = '.';
+let desktops = [];
+let lastCommand = null;
+let codePath = '.';
+let error = false;
+let zoom = 1.0;
+for(let arg of ARGV) {
+    if (lastCommand == null) {
+        switch(arg) {
+        case '-P':
+        case '-D':
+        case '-Z':
+            lastCommand = arg;
+            break;
+        default:
+            print("Parameter not recognized. Aborting.");
+            error = true;
+            break;
+        }
+        continue;
+    }
+    if (error) {
+        break;
+    }
+    switch(lastCommand) {
+    case '-P':
+        codePath = arg;
+        break;
+    case '-D':
+        let data = arg.split(";");
+        desktops.push({x:parseInt(data[0]), y:parseInt(data[1]), w:parseInt(data[2]), h:parseInt(data[3])});
+        break;
+    case '-Z':
+        zoom = parseFloat(arg);
+        break;
+    }
+    lastCommand = null;
+}
+
+var extensionPath = codePath;
 imports.searchPath.unshift(extensionPath);
 
 const Prefs = imports.prefs;
@@ -35,5 +73,5 @@ const DesktopManager = imports.desktopManager;
 DBusUtils.init();
 Prefs.init(extensionPath);
 
-Extension.desktopManager = new DesktopManager.DesktopManager([{x:0, y:0, w: 800, h: 1050}, {x:810, y:0, w: 810, h: 600}], 1.0);
+Extension.desktopManager = new DesktopManager.DesktopManager(desktops, zoom);
 Extension.desktopManager.run();

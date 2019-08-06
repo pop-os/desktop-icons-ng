@@ -31,7 +31,7 @@ var _ = Gettext.domain('desktop-icons').gettext;
 
 const SCHEMA_NAUTILUS = 'org.gnome.nautilus.preferences';
 const SCHEMA_GTK = 'org.gtk.Settings.FileChooser';
-const SCHEMA = 'org.gnome.shell.extensions.desktop-icons';
+const SCHEMA = 'org.gnome.shell.extensions.desktopiconsng';
 
 const ICON_SIZE = { 'small': 48, 'standard': 64, 'large': 96 };
 const ICON_WIDTH = { 'small': 112, 'standard': 120, 'large': 120 };
@@ -86,14 +86,15 @@ function get_schema(schema) {
     // in the standard folders)
     let schemaDir = Gio.File.new_for_path(extensionPath + '/schemas');
     let schemaSource;
-    if (schemaDir.query_exists(null))
+    if (schemaDir.query_exists(null)) {
         schemaSource = GioSSS.new_from_directory(schemaDir.get_path(), GioSSS.get_default(), false);
-    else
+    } else {
         schemaSource = GioSSS.get_default();
+    }
 
     let schemaObj = schemaSource.lookup(schema, true);
     if (!schemaObj)
-        throw new Error('Schema ' + schema + ' could not be found for extension ' + extension.metadata.uuid + '. Please check your installation.');
+        throw new Error('Schema ' + schema + ' could not be found for extension ' + '. Please check your installation.');
 
     return new Gio.Settings({ settings_schema: schemaObj });
 }

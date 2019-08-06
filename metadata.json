@@ -1,0 +1,11 @@
+{
+    "description": "A new version of Desktop Icons", 
+    "name": "Desktop Icons NG", 
+    "shell-version": [
+      "3.28", 
+      "3.30", 
+      "3.32"
+    ],
+    "uuid": "desktopiconsng@rastersoft", 
+    "version": 1
+  }
