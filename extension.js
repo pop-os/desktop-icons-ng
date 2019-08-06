@@ -71,6 +71,8 @@ function innerEnable(disconnectSignal) {
             let pid = window.get_pid();
             if (pid == appPid) {
                 global.log("Es el PID buscado " + pid);
+                window.move_resize_frame(false, minx, miny, maxx - minx, maxy - miny);
+                window.stick();
             }
         }
     });
@@ -92,10 +94,12 @@ function killCurrentProcess() {
 
     if (_launchDesktopId) {
         GLib.source_remove(_launchDesktopId);
-        _launchDesktopId = Mainloop.timeout_add(1000, () => {
-            _launchDesktopId = 0;
-            launchDesktop();
-        });
+        if (isEnabled) {
+            _launchDesktopId = Mainloop.timeout_add(1000, () => {
+                _launchDesktopId = 0;
+                launchDesktop();
+            });
+        }
     }
 
     if (_currentProcess) {
@@ -170,10 +174,10 @@ function launchDesktop() {
 
     let launcher = new Gio.SubprocessLauncher();
     launcher.set_cwd(ExtensionUtils.getCurrentExtension().path);
-    currentProcess = launcher.spawnv(argv);
-    appPid = Number(currentProcess.get_identifier());
-    currentProcess.wait_async(null, () => {
-        currentProcess = null;
+    _currentProcess = launcher.spawnv(argv);
+    appPid = Number(_currentProcess.get_identifier());
+    _currentProcess.wait_async(null, () => {
+        _currentProcess = null;
         appPid = 0;
         if (isEnabled) {
             if (_launchDesktopId) {
