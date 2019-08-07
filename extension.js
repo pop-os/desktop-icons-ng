@@ -28,6 +28,7 @@ const Main = imports.ui.main;
 const Mainloop = imports.mainloop;
 
 let appPid;
+let appUUID;
 let minx;
 let miny;
 let maxx;
@@ -42,6 +43,9 @@ let _thumbnailScriptWatch;
 let _launchDesktopId;
 let _killAllInstancesId;
 let _currentProcess;
+let _windowUpdated = false;
+let _metawindow = null;
+let _restackedId;
 
 const appSys = Shell.AppSystem.get_default();
 
@@ -50,6 +54,7 @@ function init() {
     _thumbnailScriptWatch = 0;
     _launchDesktopId = 0;
     _killAllInstancesId = 0;
+    _restackedId = 0;
     _currentProcess = null;
     // Ensure that there aren't "rogue" processes
     doKillAllOldDesktopProcesses();
@@ -65,15 +70,29 @@ function enable() {
 function innerEnable(disconnectSignal) {
     if (disconnectSignal)
         Main.layoutManager.disconnect(_startupPreparedId);
-    idMap = global.window_manager.connect('map', (ev1, ev2, ev3) => {
-        for(let windowActor of global.get_window_actors()) {
-            let window = windowActor.get_meta_window();
-            let pid = window.get_pid();
-            if (pid == appPid) {
-                global.log("Es el PID buscado " + pid);
-                window.move_resize_frame(false, minx, miny, maxx - minx, maxy - miny);
-                window.stick();
+
+    appUUID = GLib.uuid_string_random();
+    idMap = global.window_manager.connect('map', () => {
+        if (!_windowUpdated) {
+            for(let windowActor of global.get_window_actors()) {
+                let window = windowActor.get_meta_window();
+                let title = window.get_title();
+                if (title == appUUID) {
+                    //global.log("Es el PID buscado " + pid + " y el UUID: " + appUUID);
+                    //global.log("Resoluciones: " + minx + ";" + miny + " " + maxx + ";" + maxy);
+                    window.move_resize_frame(false, minx, miny, maxx - minx, maxy - miny);
+                    window.stick();
+                    window.lower();
+                    _metawindow = window;
+                    _windowUpdated = true;
+                }
             }
+        }
+    });
+
+    _restackedId = global.display.connect("restacked", () => {
+        if (_metawindow) {
+            _metawindow.lower();
         }
     });
     _monitorsChangedId = Main.layoutManager.connect('monitors-changed', () => {
@@ -88,20 +107,21 @@ function disable() {
     killCurrentProcess();
     global.window_manager.disconnect(idMap);
     Main.layoutManager.disconnect(_monitorsChangedId);
+    global.display.disconnect(_restackedId);
 }
 
 function killCurrentProcess() {
-
     if (_launchDesktopId) {
         GLib.source_remove(_launchDesktopId);
         if (isEnabled) {
-            _launchDesktopId = Mainloop.timeout_add(1000, () => {
+            _launchDesktopId = Mainloop.timeout_add(2000, () => {
                 _launchDesktopId = 0;
                 launchDesktop();
             });
         }
     }
 
+    _metawindow = null;
     if (_currentProcess) {
         _currentProcess.force_exit();
         _currentProcess = null;
@@ -113,6 +133,8 @@ function doKillAllOldDesktopProcesses() {
      * This function checks all the processes in the system and kills those
      * that are a desktop manager. This allows to avoid having several ones in
      * case gnome shell resets, or other cases.
+     *
+     * It requires the /proc virtual filesystem
      */
 
     let procFolder = Gio.File.new_for_path("/proc");
@@ -163,27 +185,31 @@ function launchDesktop() {
         if (first || (area.y < miny)) {
             miny = area.y;
         }
-        if (first || ((area.x + area.width) < maxx)) {
+        if (first || ((area.x + area.width) > maxx)) {
             maxx = area.x + area.width;
         }
-        if (first || ((area.y + area.height) < maxy)) {
+        if (first || ((area.y + area.height) > maxy)) {
             maxy = area.y + area.height;
         }
         first = false;
     }
 
-    let launcher = new Gio.SubprocessLauncher();
+    _windowUpdated = false;
+    let launcher = new Gio.SubprocessLauncher({flags: Gio.SubprocessFlags.STDIN_PIPE});
     launcher.set_cwd(ExtensionUtils.getCurrentExtension().path);
     _currentProcess = launcher.spawnv(argv);
+    _currentProcess.communicate_async(GLib.Bytes.new(appUUID + "\n"), null, () => {});
+    global.log(appUUID);
     appPid = Number(_currentProcess.get_identifier());
     _currentProcess.wait_async(null, () => {
         _currentProcess = null;
         appPid = 0;
+        _metawindow = null;
         if (isEnabled) {
             if (_launchDesktopId) {
                 GLib.source_remove(_launchDesktopId);
             }
-            _launchDesktopId = Mainloop.timeout_add(1000, () => {
+            _launchDesktopId = Mainloop.timeout_add(2000, () => {
                 _launchDesktopId = 0;
                 launchDesktop();
             });

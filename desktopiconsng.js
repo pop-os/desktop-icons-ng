@@ -21,6 +21,14 @@
 // this allows to import files from the current folder
 
 imports.gi.versions.Gtk = '3.0';
+const Gio = imports.gi.Gio;
+
+let stdin = new Gio.DataInputStream({
+    base_stream: new Gio.UnixInputStream({ fd: 0 })
+});
+
+let appUuid = stdin.read_line(null)[0].toString();
+print("UUid:" + appUuid);
 
 let desktops = [];
 let lastCommand = null;
@@ -73,5 +81,5 @@ const DesktopManager = imports.desktopManager;
 DBusUtils.init();
 Prefs.init(extensionPath);
 
-Extension.desktopManager = new DesktopManager.DesktopManager(desktops, zoom);
+Extension.desktopManager = new DesktopManager.DesktopManager(appUuid, desktops, zoom);
 Extension.desktopManager.run();
