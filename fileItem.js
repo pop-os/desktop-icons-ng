@@ -45,8 +45,8 @@ var State = {
 
 var FileItem = class {
 
-    constructor(extension, file, fileInfo, fileExtra, scaleFactor) {
-        Extension = extension;
+    constructor(desktopManager, file, fileInfo, fileExtra, scaleFactor) {
+        this._desktopManager = desktopManager;
         this._scaleFactor = scaleFactor;
         this._fileExtra = fileExtra;
         this._loadThumbnailDataCancellable = null;
@@ -128,7 +128,7 @@ var FileItem = class {
         }
         this.actor.show_all();
         // TODO
-        /*this._writebleByOthersId = Extension.desktopManager.connect('notify::writable-by-others', () => {
+        /*this._writebleByOthersId = this._desktopManager.connect('notify::writable-by-others', () => {
             if (!this._isValidDesktopFile)
                 return;
             this._refreshMetadataAsync(true);
@@ -427,11 +427,11 @@ var FileItem = class {
     }
 
     _onCopyClicked() {
-        Extension.desktopManager.doCopy();
+        this._desktopManager.doCopy();
     }
 
     _onCutClicked() {
-        Extension.desktopManager.doCut();
+        this._desktopManager.doCut();
     }
 
     _onShowInFilesClicked() {
@@ -455,11 +455,11 @@ var FileItem = class {
     }
 
     _onMoveToTrashClicked() {
-        Extension.desktopManager.doTrash();
+        this._desktopManager.doTrash();
     }
 
     _onEmptyTrashClicked() {
-        Extension.desktopManager.doEmptyTrash();
+        this._desktopManager.doEmptyTrash();
     }
 
     get _allowLaunchingText() {
@@ -539,7 +539,7 @@ var FileItem = class {
     }
 
     _createMenu() {
-        /*this._menu = new Gtk.Menu();
+        this._menu = new Gtk.Menu();
         let open = new Gtk.MenuItem({label:_('Open')});
         open.connect('activate', () => this.doOpen());
         this._menu.add(open);
@@ -552,24 +552,33 @@ var FileItem = class {
             } else {
                 this._actionOpenWith = null;
             }
-            this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-            this._actionCut = this._menu.addAction(_('Cut'), () => this._onCutClicked());
-            this._actionCopy = this._menu.addAction(_('Copy'), () => this._onCopyClicked());
-            if (this.canRename())
-                this._menu.addAction(_('Rename…'), () => this.doRename());
-            this._actionTrash = this._menu.addAction(_('Move to Trash'), () => this._onMoveToTrashClicked());
-            if (this._isValidDesktopFile && !Extension.desktopManager.writableByOthers && !this._writableByOthers) {
-                this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-                this._allowLaunchingMenuItem = this._menu.addAction(this._allowLaunchingText,
-                                                                    () => this._onAllowDisallowLaunchingClicked());
-
+            this._menu.add(new Gtk.SeparatorMenuItem());
+            this._actionCut = new Gtk.MenuItem({label:_('Cut')});
+            this._actionCut.connect('activate', () => this._onCutClicked());
+            this._menu.add(this._actionCut);
+            this._actionCopy = new Gtk.MenuItem({label:_('Copy')});
+            this._actionCopy.connect('activate', () => this._onCopyClicked());
+            this._menu.add(this._actionCopy);
+            if (this.canRename()) {
+                let rename = new Gtk.MenuItem({label:_('Rename…')});
+                rename.connect('activate', () => this.doRename());
+                this._menu.add(rename);
+            }
+            this._actionTrash = new Gtk.MenuItem({label:_('Move to Trash')});
+            this._actionTrash.connect('activate', () => this._onMoveToTrashClicked());
+            this._menu.add(this._actionTrash);
+            if (this._isValidDesktopFile && !this._desktopManager.writableByOthers && !this._writableByOthers) {
+                this._menu.add(new Gtk.SeparatorMenuItem());
+                this._allowLaunchingMenuItem = new Gtk.MenuItem({label: this._allowLaunchingText});
+                this._allowLaunchingMenuItem.connect('activate', () => this._onAllowDisallowLaunchingClicked());
+                this._menu.add(this._allowLaunchingMenuItem);
             }
             break;
         case Prefs.FileType.USER_DIRECTORY_TRASH:
             this._menu.add(new Gtk.SeparatorMenuItem());
             let trashItem = new Gtk.MenuItem({label: _('Empty Trash')});
             trashItem.connect('activate', () => this._onEmptyTrashClicked());
-            this._menu.add(this.trashItem);
+            this._menu.add(trashItem);
             break;
         default:
             break;
@@ -587,7 +596,7 @@ var FileItem = class {
             openInTerminal.connect('activate', () => this._onOpenTerminalClicked());
             this._menu.add(openInTerminal);
         }
-        this._menu.show_all();*/
+        this._menu.show_all();
     }
 
     _onOpenTerminalClicked () {
@@ -601,10 +610,10 @@ var FileItem = class {
                 this.emit('selected', false, false, true);
             this._menu.popup_at_pointer(event);
             if (this._actionOpenWith) {
-                let allowOpenWith = (Extension.desktopManager.getNumberOfSelectedItems() == 1);
+                let allowOpenWith = (this._desktopManager.getNumberOfSelectedItems() == 1);
                 this._actionOpenWith.set_sensitive(allowOpenWith);
             }
-            let specialFilesSelected = Extension.desktopManager.checkIfSpecialFilesAreSelected();
+            let specialFilesSelected = this._desktopManager.checkIfSpecialFilesAreSelected();
             if (this._actionCut)
                 this._actionCut.set_sensitive(!specialFilesSelected);
             if (this._actionCopy)
@@ -646,7 +655,7 @@ var FileItem = class {
                 this._primaryButtonPressed = false;
                 let event = Clutter.get_current_event();
                 let [x, y] = event.get_coords();
-                Extension.desktopManager.dragStart();
+                this._desktopManager.dragStart();
             }
         }
 
@@ -775,7 +784,7 @@ var FileItem = class {
     }
 
     acceptDrop() {
-        return Extension.desktopManager.selectionDropOnFileItem(this);
+        return this._desktopManager.selectionDropOnFileItem(this);
     }
 };
 Signals.addSignalMethods(FileItem.prototype);
