@@ -18,8 +18,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// this allows to import files from the current folder
-
 imports.gi.versions.Gtk = '3.0';
 const Gio = imports.gi.Gio;
 
@@ -67,8 +65,9 @@ for(let arg of ARGV) {
     lastCommand = null;
 }
 
-var extensionPath = codePath;
-imports.searchPath.unshift(extensionPath);
+// this allows to import files from the current folder
+
+imports.searchPath.unshift(codePath);
 
 const Prefs = imports.prefs;
 const DBusUtils = imports.dbusUtils;
@@ -78,7 +77,7 @@ var Extension = {};
 const DesktopManager = imports.desktopManager;
 
 DBusUtils.init();
-Prefs.init(extensionPath);
+Prefs.init(codePath);
 
 Extension.desktopManager = new DesktopManager.DesktopManager(appUuid, desktops, zoom);
 Extension.desktopManager.run();

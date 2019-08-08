@@ -8,8 +8,8 @@ const GObject = imports.gi.GObject;
 const Gtk = imports.gi.Gtk;
 const Gdk = imports.gi.Gdk;
 const Gio = imports.gi.Gio;
-const FileItem = imports.fileItem;
 
+const FileItem = imports.fileItem;
 const DesktopGrid = imports.desktopGrid;
 const DesktopIconsUtil = imports.desktopIconsUtil;
 const Prefs = imports.prefs;
@@ -37,6 +37,14 @@ var DesktopManager = GObject.registerClass({
         this._monitorDesktopDir = desktopDir.monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, null);
         this._monitorDesktopDir.set_rate_limit(1000);
         this._monitorDesktopDir.connect('changed', (obj, file, otherFile, eventType) => this._updateDesktopIfChanged(file, otherFile, eventType));
+        this._settingsId = Prefs.settings.connect('changed', () => {
+            Gtk.main_quit(); // will be reloaded automagically
+        });
+        this._gtkSettingsId = Prefs.gtkSettings.connect('changed', (obj, key) => {
+            if (key == 'show-hidden') {
+                Gtk.main_quit(); // will be reloaded automagically
+            }
+        });
 
         this._window = new Gtk.Window();
         this._window.set_title(appUuid);

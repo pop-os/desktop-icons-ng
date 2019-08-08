@@ -23,9 +23,8 @@ const Gtk = imports.gi.Gtk;
 const GObject = imports.gi.GObject;
 const Gio = imports.gi.Gio;
 const GioSSS = Gio.SettingsSchemaSource;
-const Gettext = imports.gettext;
 
-const tmp = imports.fileItem;
+const Gettext = imports.gettext;
 
 var _ = Gettext.domain('adieu').gettext;
 
@@ -52,7 +51,7 @@ var settings;
 var CLICK_POLICY_SINGLE = false;
 
 function initTranslations() {
-    let extension = ExtensionUtils.getCurrentExtension();
+    let extension = imports.misc.extensionUtils.getCurrentExtension();
 
     let localedir = extension.dir.get_child('locale');
     if (localedir.query_exists(null))
