@@ -70,7 +70,9 @@ var FileItem = class {
         //let scaleFactor = St.ThemeContext.get_for_stage(global.stage).scale_factor;
         this.actor.connect('destroy', () => this._onDestroy());
 
-        this._container = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL });
+        this._container = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL});
+        let context = this._container.get_style_context();
+        context.add_class('file-item');
         this._container.set_size_request(Prefs.get_desired_width(this._scaleFactor), Prefs.get_desired_height(this._scaleFactor));
         this.actor.add(this._container);
 

@@ -20,12 +20,13 @@
 
 imports.gi.versions.Gtk = '3.0';
 const Gio = imports.gi.Gio;
+const GLib = imports.gi.GLib;
 
 let stdin = new Gio.DataInputStream({
     base_stream: new Gio.UnixInputStream({ fd: 0 })
 });
 
-let appUuid = stdin.read_line(null)[0].toString();
+let appUuid = GLib.ByteArray.toString(stdin.read_line(null)[0]);
 
 let desktops = [];
 let lastCommand = null;
@@ -80,5 +81,5 @@ const DesktopManager = imports.desktopManager;
 
 Prefs.init(codePath);
 
-Extension.desktopManager = new DesktopManager.DesktopManager(appUuid, desktops, zoom);
+Extension.desktopManager = new DesktopManager.DesktopManager(appUuid, desktops, zoom, codePath);
 Extension.desktopManager.run();

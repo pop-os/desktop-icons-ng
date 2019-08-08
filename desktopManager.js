@@ -26,7 +26,7 @@ var DesktopManager = GObject.registerClass({
         )
     }
 }, class DesktopManager extends GObject.Object {
-    _init(appUuid, desktopList, scale) {
+    _init(appUuid, desktopList, scale, codePath) {
         super._init();
 
         Gtk.init(null);
@@ -48,6 +48,9 @@ var DesktopManager = GObject.registerClass({
             }
         });
 
+        this._cssProvider = new Gtk.CssProvider();
+        this._cssProvider.load_from_file(Gio.File.new_for_path(GLib.build_filenamev([codePath, "stylesheet.css"])));
+        Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), this._cssProvider, 0);
         this._window = new Gtk.Window();
         this._window.set_title(appUuid);
         this._window.set_resizable(false);
