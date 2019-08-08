@@ -46,6 +46,7 @@ let _currentProcess;
 let _windowUpdated = false;
 let _metawindow = null;
 let _restackedId;
+let _reloadTime;
 
 const appSys = Shell.AppSystem.get_default();
 
@@ -56,6 +57,7 @@ function init() {
     _killAllInstancesId = 0;
     _restackedId = 0;
     _currentProcess = null;
+    let _reloadTime = 100;
     // Ensure that there aren't "rogue" processes
     doKillAllOldDesktopProcesses();
 }
@@ -96,6 +98,7 @@ function innerEnable(disconnectSignal) {
         }
     });
     _monitorsChangedId = Main.layoutManager.connect('monitors-changed', () => {
+        _reloadTime = 2000; // give more time in this case, to ensure that everything has changed
         killCurrentProcess();
     });
     isEnabled = true;
@@ -114,7 +117,7 @@ function killCurrentProcess() {
     if (_launchDesktopId) {
         GLib.source_remove(_launchDesktopId);
         if (isEnabled) {
-            _launchDesktopId = Mainloop.timeout_add(2000, () => {
+            _launchDesktopId = Mainloop.timeout_add(_reloadTime, () => {
                 _launchDesktopId = 0;
                 launchDesktop();
             });
@@ -167,6 +170,7 @@ function doKillAllOldDesktopProcesses() {
 
 function launchDesktop() {
 
+    _reloadTime = 100;
     let argv = [];
     argv.push(GLib.build_filenamev([ExtensionUtils.getCurrentExtension().path, 'adieu.js']));
     argv.push("-P");
@@ -209,7 +213,7 @@ function launchDesktop() {
             if (_launchDesktopId) {
                 GLib.source_remove(_launchDesktopId);
             }
-            _launchDesktopId = Mainloop.timeout_add(2000, () => {
+            _launchDesktopId = Mainloop.timeout_add(_reloadTime, () => {
                 _launchDesktopId = 0;
                 launchDesktop();
             });
