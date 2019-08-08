@@ -24,7 +24,7 @@ const Prefs = imports.prefs;
 const DesktopIconsUtil = imports.desktopIconsUtil;
 const Signals = imports.signals;
 
-const Gettext = imports.gettext.domain('desktop-icons');
+const Gettext = imports.gettext.domain('adieu');
 
 const _ = Gettext.gettext;
 

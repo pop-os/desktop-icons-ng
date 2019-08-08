@@ -1,0 +1,195 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Sergio Costas <rastersoft@gmail.com>, 2018.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2018-2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-08 21:06+0200\n"
+"PO-Revision-Date: 2019-05-13 15:13+0200\n"
+"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
+"Language-Team: es <gnome-es-list@gnome.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Gtranslator 3.32.0\n"
+
+#: ../prefs.js:106
+msgid "Size for the desktop icons"
+msgstr "Tamaño de los iconos del escritorio"
+
+#: ../prefs.js:106
+msgid "Small"
+msgstr "Pequeño"
+
+#: ../prefs.js:106
+msgid "Standard"
+msgstr "Estándar"
+
+#: ../prefs.js:106
+msgid "Large"
+msgstr "Grande"
+
+#: ../prefs.js:107
+msgid "Show the personal folder in the desktop"
+msgstr "Mostrar la carpeta personal en el escritorio"
+
+#: ../prefs.js:108
+msgid "Show the trash icon in the desktop"
+msgstr "Mostrar la papelera en el escritorio"
+
+#: ../desktopGrid.js:411
+msgid "Enter file name…"
+msgstr "Introduzca el nombre del archivo…"
+
+#: ../desktopGrid.js:415
+msgid "OK"
+msgstr "Aceptar"
+
+#: ../desktopGrid.js:421
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: ../desktopIconsUtil.js:59
+msgid "Command not found"
+msgstr "Comando no encontrado"
+
+#: ../fileItem.js:467
+msgid "Don’t Allow Launching"
+msgstr "No permitir lanzar"
+
+#: ../fileItem.js:469
+msgid "Allow Launching"
+msgstr "Permitir lanzar"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
+msgid "Icon size"
+msgstr "Tamaño de los iconos"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:2
+msgid "Set the size for the desktop icons."
+msgstr "Establece el tamaño de los iconos del escritorio."
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:3
+msgid "Show personal folder"
+msgstr "Mostrar la carpeta personal"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:4
+msgid "Show the personal folder in the desktop."
+msgstr "Mostrar la carpeta personal en el escritorio."
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:5
+msgid "Show trash icon"
+msgstr "Mostrar la papelera"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:6
+msgid "Show the trash icon in the desktop."
+msgstr "Mostrar la papelera en el escritorio."
+
+#~ msgid "New folder name"
+#~ msgstr "Nombre de la nueva carpeta"
+
+#~ msgid "Create"
+#~ msgstr "Crear"
+
+#~ msgid "Folder names cannot contain “/”."
+#~ msgstr "Los nombres de carpetas no pueden contener «/»."
+
+#~ msgid "A folder cannot be called “.”."
+#~ msgstr "Una carpeta no se puede llamar «.»."
+
+#~ msgid "A folder cannot be called “..”."
+#~ msgstr "Una carpeta no se puede llamar «..»."
+
+#~ msgid "Folders with “.” at the beginning of their name are hidden."
+#~ msgstr "Las carpetas cuyo nombre empieza por «.» están ocultas."
+
+#~ msgid "There is already a file or folder with that name."
+#~ msgstr "Ya hay un archivo o carpeta con ese nombre."
+
+#~ msgid "New Folder"
+#~ msgstr "Nueva carpeta"
+
+#~ msgid "Paste"
+#~ msgstr "Pegar"
+
+#~ msgid "Undo"
+#~ msgstr "Deshacer"
+
+#~ msgid "Redo"
+#~ msgstr "Rehacer"
+
+#~ msgid "Show Desktop in Files"
+#~ msgstr "Mostrar el escritorio en Archivos"
+
+#~ msgid "Open in Terminal"
+#~ msgstr "Abrir en una terminal"
+
+#~ msgid "Change Background…"
+#~ msgstr "Cambiar el fondo..."
+
+#~ msgid "Display Settings"
+#~ msgstr "Configuración de pantalla"
+
+#~ msgid "Settings"
+#~ msgstr "Configuración"
+
+#~ msgid "Open"
+#~ msgstr "Abrir"
+
+#~ msgid "Open With Other Application"
+#~ msgstr "Abrir con otra aplicación"
+
+#~ msgid "Cut"
+#~ msgstr "Cortar"
+
+#~ msgid "Copy"
+#~ msgstr "Copiar"
+
+#~ msgid "Rename…"
+#~ msgstr "Renombrar…"
+
+#~ msgid "Move to Trash"
+#~ msgstr "Mover a la papelera"
+
+#~ msgid "Empty Trash"
+#~ msgstr "Vaciar la papelera"
+
+#~ msgid "Properties"
+#~ msgstr "Propiedades"
+
+#~ msgid "Show in Files"
+#~ msgstr "Mostrar en Files"
+
+#~ msgid "Huge"
+#~ msgstr "Inmenso"
+
+#~ msgid "Ok"
+#~ msgstr "Aceptar"
+
+#~ msgid "huge"
+#~ msgstr "inmenso"
+
+#~ msgid "Maximum width for the icons and filename."
+#~ msgstr "Ancho máximo de los iconos y el nombre de fichero."
+
+#~ msgid "Shows the Documents folder in the desktop."
+#~ msgstr "Muestra la carpeta Documentos en el escritorio."
+
+#~ msgid "Shows the Downloads folder in the desktop."
+#~ msgstr "Muestra la carpeta Descargas en el escritorio."
+
+#~ msgid "Shows the Music folder in the desktop."
+#~ msgstr "Muestra la carpeta Música en el escritorio."
+
+#~ msgid "Shows the Pictures folder in the desktop."
+#~ msgstr "Muestra la carpeta Imágenes en el escritorio."
+
+#~ msgid "Shows the Videos folder in the desktop."
+#~ msgstr "Muestra la carpeta Vídeos en el escritorio."

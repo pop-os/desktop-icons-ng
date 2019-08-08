@@ -1,0 +1,175 @@
+# Swedish translation for desktop-icons.
+# Copyright © 2018, 2019 desktop-icons's COPYRIGHT HOLDER
+# This file is distributed under the same license as the desktop-icons package.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2018, 2019.
+# Josef Andersson <l10nl18nsweja@gmail.com>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: desktop-icons master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-08 21:08+0200\n"
+"PO-Revision-Date: 2019-03-11 21:50+0100\n"
+"Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
+"Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.2.1\n"
+
+#: ../prefs.js:106
+msgid "Size for the desktop icons"
+msgstr "Storlek för skrivbordsikonerna"
+
+#: ../prefs.js:106
+msgid "Small"
+msgstr "Liten"
+
+#: ../prefs.js:106
+msgid "Standard"
+msgstr "Standard"
+
+#: ../prefs.js:106
+msgid "Large"
+msgstr "Stor"
+
+# TODO: *ON* the desktop?
+#: ../prefs.js:107
+msgid "Show the personal folder in the desktop"
+msgstr "Visa den personliga mappen på skrivbordet"
+
+# TODO: *ON* the desktop?
+#: ../prefs.js:108
+msgid "Show the trash icon in the desktop"
+msgstr "Visa papperskorgsikonen på skrivbordet"
+
+#: ../desktopGrid.js:411
+msgid "Enter file name…"
+msgstr "Ange filnamn…"
+
+#: ../desktopGrid.js:415
+msgid "OK"
+msgstr "OK"
+
+#: ../desktopGrid.js:421
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: ../desktopIconsUtil.js:59
+msgid "Command not found"
+msgstr ""
+
+#: ../fileItem.js:467
+msgid "Don’t Allow Launching"
+msgstr "Tillåt ej programstart"
+
+#: ../fileItem.js:469
+msgid "Allow Launching"
+msgstr "Tillåt programstart"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
+msgid "Icon size"
+msgstr "Ikonstorlek"
+
+# TODO: *ON* the desktop?
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:2
+msgid "Set the size for the desktop icons."
+msgstr "Ställ in storleken för skrivbordsikonerna."
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:3
+msgid "Show personal folder"
+msgstr "Visa personlig mapp"
+
+# TODO: *ON* the desktop?
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:4
+msgid "Show the personal folder in the desktop."
+msgstr "Visa den personliga mappen på skrivbordet."
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:5
+msgid "Show trash icon"
+msgstr "Visa papperskorgsikon"
+
+# TODO: *ON* the desktop?
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:6
+msgid "Show the trash icon in the desktop."
+msgstr "Visa papperskorgsikonen på skrivbordet."
+
+#~ msgid "New folder name"
+#~ msgstr "Nytt mappnamn"
+
+#~ msgid "Create"
+#~ msgstr "Skapa"
+
+#~ msgid "Folder names cannot contain “/”."
+#~ msgstr "Mappnamn kan inte innehålla ”/”."
+
+#~ msgid "A folder cannot be called “.”."
+#~ msgstr "En mapp kan inte kallas ”.”."
+
+#~ msgid "A folder cannot be called “..”."
+#~ msgstr "En mapp kan inte kallas ”..”."
+
+#~ msgid "Folders with “.” at the beginning of their name are hidden."
+#~ msgstr "Mappar med ”.” i början på sitt namn är dolda."
+
+#~ msgid "There is already a file or folder with that name."
+#~ msgstr "Det finns redan en fil eller mapp med det namnet"
+
+#~ msgid "New Folder"
+#~ msgstr "Ny mapp"
+
+#~ msgid "Paste"
+#~ msgstr "Klistra in"
+
+#~ msgid "Undo"
+#~ msgstr "Ångra"
+
+#~ msgid "Redo"
+#~ msgstr "Gör om"
+
+#~ msgid "Show Desktop in Files"
+#~ msgstr "Visa skrivbord i Filer"
+
+#~ msgid "Open in Terminal"
+#~ msgstr "Öppna i terminal"
+
+#~ msgid "Change Background…"
+#~ msgstr "Ändra bakgrund…"
+
+#~ msgid "Display Settings"
+#~ msgstr "Visningsinställningar"
+
+#~ msgid "Settings"
+#~ msgstr "Inställningar"
+
+#~ msgid "Open"
+#~ msgstr "Öppna"
+
+#~ msgid "Open With Other Application"
+#~ msgstr "Öppna med annat program"
+
+#~ msgid "Cut"
+#~ msgstr "Klipp ut"
+
+#~ msgid "Copy"
+#~ msgstr "Kopiera"
+
+#~ msgid "Rename…"
+#~ msgstr "Byt namn…"
+
+#~ msgid "Move to Trash"
+#~ msgstr "Flytta till papperskorgen"
+
+#~ msgid "Empty Trash"
+#~ msgstr "Töm papperskorgen"
+
+#~ msgid "Properties"
+#~ msgstr "Egenskaper"
+
+#~ msgid "Show in Files"
+#~ msgstr "Visa i Filer"
+
+#~ msgid "Huge"
+#~ msgstr "Enorm"

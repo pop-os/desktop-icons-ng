@@ -1,0 +1,165 @@
+# Friulian translation for desktop-icons.
+# Copyright (C) 2019 desktop-icons's COPYRIGHT HOLDER
+# This file is distributed under the same license as the desktop-icons package.
+# Fabio Tomat <f.t.public@gmail.com>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: desktop-icons master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-08 21:07+0200\n"
+"PO-Revision-Date: 2019-03-05 22:20+0100\n"
+"Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
+"Language-Team: Friulian <fur@li.org>\n"
+"Language: fur\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.1\n"
+
+#: ../prefs.js:106
+msgid "Size for the desktop icons"
+msgstr "Dimension pes iconis dal scritori"
+
+#: ../prefs.js:106
+msgid "Small"
+msgstr "Piçule"
+
+#: ../prefs.js:106
+msgid "Standard"
+msgstr "Standard"
+
+#: ../prefs.js:106
+msgid "Large"
+msgstr "Largje"
+
+#: ../prefs.js:107
+msgid "Show the personal folder in the desktop"
+msgstr "Mostre la cartele personâl intal scritori"
+
+#: ../prefs.js:108
+msgid "Show the trash icon in the desktop"
+msgstr "Mostre la icone de scovacere intal scritori"
+
+#: ../desktopGrid.js:411
+msgid "Enter file name…"
+msgstr "Inserìs il non dal file…"
+
+#: ../desktopGrid.js:415
+msgid "OK"
+msgstr "Va ben"
+
+#: ../desktopGrid.js:421
+msgid "Cancel"
+msgstr "Anule"
+
+#: ../desktopIconsUtil.js:59
+msgid "Command not found"
+msgstr ""
+
+#: ../fileItem.js:467
+msgid "Don’t Allow Launching"
+msgstr "No sta permeti inviament"
+
+#: ../fileItem.js:469
+msgid "Allow Launching"
+msgstr "Permet inviament"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
+msgid "Icon size"
+msgstr "Dimension icone"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:2
+msgid "Set the size for the desktop icons."
+msgstr "Stabilìs la dimension pes iconis dal scritori."
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:3
+msgid "Show personal folder"
+msgstr "Mostre cartele personâl"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:4
+msgid "Show the personal folder in the desktop."
+msgstr "Mostre la cartele personâl intal scritori."
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:5
+msgid "Show trash icon"
+msgstr "Mostre la icone de scovacere"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:6
+msgid "Show the trash icon in the desktop."
+msgstr "Mostre la icone de scovacere intal scritori."
+
+#~ msgid "New folder name"
+#~ msgstr "Gnûf non de cartele"
+
+#~ msgid "Create"
+#~ msgstr "Cree"
+
+#~ msgid "Folder names cannot contain “/”."
+#~ msgstr "I nons des cartelis no puedin contignî il caratar “/”"
+
+#~ msgid "A folder cannot be called “.”."
+#~ msgstr "Une cartele no pues jessi clamade “.”."
+
+#~ msgid "A folder cannot be called “..”."
+#~ msgstr "Une cartele no pues jessi clamade “..”."
+
+#~ msgid "Folders with “.” at the beginning of their name are hidden."
+#~ msgstr "Lis cartelis cul “.” al inizi dal lôr non a son platadis."
+
+#~ msgid "There is already a file or folder with that name."
+#~ msgstr "Un file o une cartele cul stes non e esist za."
+
+#~ msgid "New Folder"
+#~ msgstr "Gnove cartele"
+
+#~ msgid "Paste"
+#~ msgstr "Tache"
+
+#~ msgid "Undo"
+#~ msgstr "Anule"
+
+#~ msgid "Redo"
+#~ msgstr "Torne fâ"
+
+#~ msgid "Show Desktop in Files"
+#~ msgstr "Mostre Scritori in File"
+
+#~ msgid "Open in Terminal"
+#~ msgstr "Vierç in Terminâl"
+
+#~ msgid "Change Background…"
+#~ msgstr "Cambie sfont…"
+
+#~ msgid "Display Settings"
+#~ msgstr "Impostazions visôr"
+
+#~ msgid "Settings"
+#~ msgstr "Impostazions"
+
+#~ msgid "Open"
+#~ msgstr "Vierç"
+
+#~ msgid "Open With Other Application"
+#~ msgstr "Vierç cuntune altre aplicazion"
+
+#~ msgid "Cut"
+#~ msgstr "Taie"
+
+#~ msgid "Copy"
+#~ msgstr "Copie"
+
+#~ msgid "Rename…"
+#~ msgstr "Cambie non..."
+
+#~ msgid "Move to Trash"
+#~ msgstr "Sposte te scovacere"
+
+#~ msgid "Empty Trash"
+#~ msgstr "Disvuede scovacere"
+
+#~ msgid "Properties"
+#~ msgstr "Propietâts"
+
+#~ msgid "Show in Files"
+#~ msgstr "Mostre in File"

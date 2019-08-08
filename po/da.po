@@ -1,0 +1,169 @@
+# Danish translation for desktop-icons.
+# Copyright (C) 2018 desktop-icons's COPYRIGHT HOLDER
+# This file is distributed under the same license as the desktop-icons package.
+# Alan Mortensen <alanmortensen.am@gmail.com>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: desktop-icons master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-08 21:07+0200\n"
+"PO-Revision-Date: 2019-03-04 14:55+0200\n"
+"Last-Translator: scootergrisen\n"
+"Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../prefs.js:106
+msgid "Size for the desktop icons"
+msgstr "Størrelsen på skrivebordsikoner"
+
+#: ../prefs.js:106
+msgid "Small"
+msgstr "Små"
+
+#: ../prefs.js:106
+msgid "Standard"
+msgstr "Standard"
+
+#: ../prefs.js:106
+msgid "Large"
+msgstr "Store"
+
+#: ../prefs.js:107
+msgid "Show the personal folder in the desktop"
+msgstr "Vis den personlige mappe på skrivebordet"
+
+#: ../prefs.js:108
+msgid "Show the trash icon in the desktop"
+msgstr "Vis papirkurvsikonet på skrivebordet"
+
+#: ../desktopGrid.js:411
+msgid "Enter file name…"
+msgstr "Indtast filnavn …"
+
+#: ../desktopGrid.js:415
+msgid "OK"
+msgstr "OK"
+
+#: ../desktopGrid.js:421
+msgid "Cancel"
+msgstr "Annullér"
+
+#: ../desktopIconsUtil.js:59
+msgid "Command not found"
+msgstr ""
+
+#: ../fileItem.js:467
+msgid "Don’t Allow Launching"
+msgstr "Tillad ikke opstart"
+
+#: ../fileItem.js:469
+msgid "Allow Launching"
+msgstr "Tillad opstart"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
+msgid "Icon size"
+msgstr "Ikonstørrelse"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:2
+msgid "Set the size for the desktop icons."
+msgstr "Angiv størrelsen på skrivebordsikoner."
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:3
+msgid "Show personal folder"
+msgstr "Vis personlig mappe"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:4
+msgid "Show the personal folder in the desktop."
+msgstr "Vis den personlige mappe på skrivebordet."
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:5
+msgid "Show trash icon"
+msgstr "Vis papirkurvsikon"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:6
+msgid "Show the trash icon in the desktop."
+msgstr "Vis papirkurvsikonet på skrivebordet."
+
+#~| msgid "New Folder"
+#~ msgid "New folder name"
+#~ msgstr "Nyt mappenavn"
+
+#~ msgid "Create"
+#~ msgstr "Opret"
+
+#~ msgid "Folder names cannot contain “/”."
+#~ msgstr "Mappenavne må ikke indeholde “/”."
+
+#~ msgid "A folder cannot be called “.”."
+#~ msgstr "En mappe må ikke kaldes “.”."
+
+#~ msgid "A folder cannot be called “..”."
+#~ msgstr "En mappe må ikke kaldes “..”."
+
+#~ msgid "Folders with “.” at the beginning of their name are hidden."
+#~ msgstr "Mapper med “.” i begyndelsen af deres navn er skjulte."
+
+#~ msgid "There is already a file or folder with that name."
+#~ msgstr "Der findes allerede en fil eller mappe med det navn."
+
+#~ msgid "New Folder"
+#~ msgstr "Ny mappe"
+
+#~ msgid "Paste"
+#~ msgstr "Indsæt"
+
+#~ msgid "Undo"
+#~ msgstr "Fortryd"
+
+#~ msgid "Redo"
+#~ msgstr "Omgør"
+
+#~ msgid "Show Desktop in Files"
+#~ msgstr "Vis skrivebordet i Filer"
+
+#~ msgid "Open in Terminal"
+#~ msgstr "Åbn i terminal"
+
+#~ msgid "Change Background…"
+#~ msgstr "Skift baggrund …"
+
+#~ msgid "Display Settings"
+#~ msgstr "Skærmindstillinger"
+
+#~ msgid "Settings"
+#~ msgstr "Indstillinger"
+
+#~ msgid "Open"
+#~ msgstr "Åbn"
+
+#~ msgid "Open With Other Application"
+#~ msgstr "Åbn med et andet program"
+
+#~ msgid "Cut"
+#~ msgstr "Klip"
+
+#~ msgid "Copy"
+#~ msgstr "Kopiér"
+
+#~ msgid "Rename…"
+#~ msgstr "Omdøb …"
+
+#~ msgid "Move to Trash"
+#~ msgstr "Flyt til papirkurven"
+
+#~ msgid "Empty Trash"
+#~ msgstr "Tøm papirkurven"
+
+#~ msgid "Properties"
+#~ msgstr "Egenskaber"
+
+#~ msgid "Show in Files"
+#~ msgstr "Vis i Filer"
+
+#~ msgid "Huge"
+#~ msgstr "Enorme"

@@ -156,7 +156,7 @@ function doKillAllOldDesktopProcesses() {
                 contents += String.fromCharCode(data[i]);
             }
         }
-        let path = "/usr/bin/gjs " + GLib.build_filenamev([ExtensionUtils.getCurrentExtension().path, 'desktopiconsng.js']);
+        let path = "/usr/bin/gjs " + GLib.build_filenamev([ExtensionUtils.getCurrentExtension().path, 'adieu.js']);
         if (("" + contents).startsWith(path)) {
             let proc = new Gio.Subprocess({argv: ['/bin/kill', filename]});
             proc.init(null);
@@ -168,7 +168,7 @@ function doKillAllOldDesktopProcesses() {
 function launchDesktop() {
 
     let argv = [];
-    argv.push(GLib.build_filenamev([ExtensionUtils.getCurrentExtension().path, 'desktopiconsng.js']));
+    argv.push(GLib.build_filenamev([ExtensionUtils.getCurrentExtension().path, 'adieu.js']));
     argv.push("-P");
     argv.push(ExtensionUtils.getCurrentExtension().path);
 

@@ -1,0 +1,167 @@
+# Polish translation for desktop-icons.
+# Copyright © 2018-2019 the desktop-icons authors.
+# This file is distributed under the same license as the desktop-icons package.
+# Piotr Drąg <piotrdrag@gmail.com>, 2018-2019.
+# Aviary.pl <community-poland@mozilla.org>, 2018-2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: desktop-icons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-08 21:07+0200\n"
+"PO-Revision-Date: 2019-05-01 13:03+0200\n"
+"Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
+"Language-Team: Polish <community-poland@mozilla.org>\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+
+#: ../prefs.js:106
+msgid "Size for the desktop icons"
+msgstr "Rozmiar ikon na pulpicie"
+
+#: ../prefs.js:106
+msgid "Small"
+msgstr "Mały"
+
+#: ../prefs.js:106
+msgid "Standard"
+msgstr "Standardowy"
+
+#: ../prefs.js:106
+msgid "Large"
+msgstr "Duży"
+
+#: ../prefs.js:107
+msgid "Show the personal folder in the desktop"
+msgstr "Katalog domowy na pulpicie"
+
+#: ../prefs.js:108
+msgid "Show the trash icon in the desktop"
+msgstr "Kosz na pulpicie"
+
+#: ../desktopGrid.js:411
+msgid "Enter file name…"
+msgstr "Nazwa pliku…"
+
+#: ../desktopGrid.js:415
+msgid "OK"
+msgstr "OK"
+
+#: ../desktopGrid.js:421
+msgid "Cancel"
+msgstr "Anuluj"
+
+#: ../desktopIconsUtil.js:59
+msgid "Command not found"
+msgstr "Nie odnaleziono polecenia"
+
+#: ../fileItem.js:467
+msgid "Don’t Allow Launching"
+msgstr "Nie zezwalaj na uruchamianie"
+
+#: ../fileItem.js:469
+msgid "Allow Launching"
+msgstr "Zezwól na uruchamianie"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
+msgid "Icon size"
+msgstr "Rozmiar ikon"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:2
+msgid "Set the size for the desktop icons."
+msgstr "Ustawia rozmiar ikon na pulpicie."
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:3
+msgid "Show personal folder"
+msgstr "Katalog domowy"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:4
+msgid "Show the personal folder in the desktop."
+msgstr "Wyświetla katalog domowy na pulpicie."
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:5
+msgid "Show trash icon"
+msgstr "Kosz"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:6
+msgid "Show the trash icon in the desktop."
+msgstr "Wyświetla kosz na pulpicie."
+
+#~ msgid "New folder name"
+#~ msgstr "Nazwa nowego katalogu"
+
+#~ msgid "Create"
+#~ msgstr "Utwórz"
+
+#~ msgid "Folder names cannot contain “/”."
+#~ msgstr "Nazwy katalogów nie mogą zawierać znaku „/”."
+
+#~ msgid "A folder cannot be called “.”."
+#~ msgstr "Katalog nie może mieć nazwy „.”."
+
+#~ msgid "A folder cannot be called “..”."
+#~ msgstr "Katalog nie może mieć nazwy „..”."
+
+#~ msgid "Folders with “.” at the beginning of their name are hidden."
+#~ msgstr "Katalogi z „.” na początku nazwy są ukryte."
+
+#~ msgid "There is already a file or folder with that name."
+#~ msgstr "Plik lub katalog o tej nazwie już istnieje."
+
+#~ msgid "New Folder"
+#~ msgstr "Nowy katalog"
+
+#~ msgid "Paste"
+#~ msgstr "Wklej"
+
+#~ msgid "Undo"
+#~ msgstr "Cofnij"
+
+#~ msgid "Redo"
+#~ msgstr "Ponów"
+
+#~ msgid "Show Desktop in Files"
+#~ msgstr "Wyświetl pulpit w menedżerze plików"
+
+#~ msgid "Open in Terminal"
+#~ msgstr "Otwórz w terminalu"
+
+#~ msgid "Change Background…"
+#~ msgstr "Zmień tło…"
+
+#~ msgid "Display Settings"
+#~ msgstr "Ustawienia ekranu"
+
+#~ msgid "Settings"
+#~ msgstr "Ustawienia"
+
+#~ msgid "Open"
+#~ msgstr "Otwórz"
+
+#~ msgid "Open With Other Application"
+#~ msgstr "Otwórz za pomocą innego programu"
+
+#~ msgid "Cut"
+#~ msgstr "Wytnij"
+
+#~ msgid "Copy"
+#~ msgstr "Skopiuj"
+
+#~ msgid "Rename…"
+#~ msgstr "Zmień nazwę…"
+
+#~ msgid "Move to Trash"
+#~ msgstr "Przenieś do kosza"
+
+#~ msgid "Empty Trash"
+#~ msgstr "Opróżnij kosz"
+
+#~ msgid "Properties"
+#~ msgstr "Właściwości"
+
+#~ msgid "Show in Files"
+#~ msgstr "Wyświetl w menedżerze plików"

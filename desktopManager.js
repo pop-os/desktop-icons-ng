@@ -43,6 +43,8 @@ var DesktopManager = GObject.registerClass({
         this._window.set_resizable(false);
         this._window.set_decorated(false);
         this._window.set_deletable(false);
+
+        // this only works on X11, so... let's keep uniformity :-)
         //this._window.set_keep_below(true);
         //this._window.set_skip_pager_hint(true);
         //this._window.set_skip_taskbar_hint(true);
@@ -51,13 +53,19 @@ var DesktopManager = GObject.registerClass({
         this._container = new Gtk.Fixed();
         this._window.add(this._eventBox);
         this._eventBox.add(this._container);
+
+        // Transparent background
         this._window.set_app_paintable(true);
         let screen = this._window.get_screen();
         let visual = screen.get_rgba_visual();
         if (visual && screen.is_composited()) {
             this._window.set_visual(visual);
+            this._window.connect('draw', (widget, cr) => {
+                Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: 0.0, green: 0.0, blue: 0.0, alpha:0.0}));
+                cr.paint();
+                return false;
+            });
         }
-        this._window.connect('draw', (widget, context) => this.exposeDraw(widget, context) );
 
         this._desktops = [];
         let x1, y1, x2, y2;
@@ -88,14 +96,6 @@ var DesktopManager = GObject.registerClass({
 
     run() {
         Gtk.main();
-    }
-
-    exposeDraw(window, cr) {
-
-        Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: 0.0, green: 0.0, blue: 0.0, alpha:0.0}));
-        cr.paint();
-
-        return false;
     }
 
     _readFileList() {

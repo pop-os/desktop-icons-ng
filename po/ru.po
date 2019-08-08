@@ -1,0 +1,149 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Eaglers <eaglersdeveloper@gmail.com>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-08 21:07+0200\n"
+"PO-Revision-Date: 2018-11-22 22:02+0300\n"
+"Last-Translator: Stas Solovey <whats_up@tut.by>\n"
+"Language-Team: Russian <gnome-cyr@gnome.org>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 2.2\n"
+
+#: ../prefs.js:106
+msgid "Size for the desktop icons"
+msgstr "Размер значков"
+
+#: ../prefs.js:106
+msgid "Small"
+msgstr "Маленький"
+
+#: ../prefs.js:106
+msgid "Standard"
+msgstr "Стандартный"
+
+#: ../prefs.js:106
+msgid "Large"
+msgstr "Большой"
+
+#: ../prefs.js:107
+msgid "Show the personal folder in the desktop"
+msgstr "Показывать домашнюю папку на рабочем столе"
+
+#: ../prefs.js:108
+msgid "Show the trash icon in the desktop"
+msgstr "Показывать «Корзину» на рабочем столе"
+
+#: ../desktopGrid.js:411
+msgid "Enter file name…"
+msgstr "Ввести имя файла…"
+
+#: ../desktopGrid.js:415
+msgid "OK"
+msgstr ""
+
+#: ../desktopGrid.js:421
+msgid "Cancel"
+msgstr "Отмена"
+
+#: ../desktopIconsUtil.js:59
+msgid "Command not found"
+msgstr ""
+
+#: ../fileItem.js:467
+msgid "Don’t Allow Launching"
+msgstr ""
+
+#: ../fileItem.js:469
+msgid "Allow Launching"
+msgstr ""
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
+msgid "Icon size"
+msgstr "Размер значков"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:2
+msgid "Set the size for the desktop icons."
+msgstr "Установить размер значков на рабочем столе."
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:3
+msgid "Show personal folder"
+msgstr "Показывать домашнюю папку"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:4
+msgid "Show the personal folder in the desktop."
+msgstr "Показывать значок домашней папки на рабочем столе."
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:5
+msgid "Show trash icon"
+msgstr "Показывать значок корзины"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:6
+msgid "Show the trash icon in the desktop."
+msgstr "Показывать значок корзины на рабочем столе."
+
+#~ msgid "Huge"
+#~ msgstr "Огромный"
+
+#~ msgid "New Folder"
+#~ msgstr "Создать папку"
+
+#~ msgid "Paste"
+#~ msgstr "Вставить"
+
+#~ msgid "Undo"
+#~ msgstr "Отменить"
+
+#~ msgid "Redo"
+#~ msgstr "Повторить"
+
+#~ msgid "Open Desktop in Files"
+#~ msgstr "Открыть «Рабочий стол» в «Файлах»"
+
+#~ msgid "Open Terminal"
+#~ msgstr "Открыть терминал"
+
+#~ msgid "Change Background…"
+#~ msgstr "Изменить фон…"
+
+#~ msgid "Display Settings"
+#~ msgstr "Настройки дисплея"
+
+#~ msgid "Settings"
+#~ msgstr "Параметры"
+
+#~ msgid "Ok"
+#~ msgstr "ОК"
+
+#~ msgid "Open"
+#~ msgstr "Открыть"
+
+#~ msgid "Cut"
+#~ msgstr "Вырезать"
+
+#~ msgid "Copy"
+#~ msgstr "Вставить"
+
+#~ msgid "Rename"
+#~ msgstr "Переименовать"
+
+#~ msgid "Move to Trash"
+#~ msgstr "Переместить в корзину"
+
+#~ msgid "Empty trash"
+#~ msgstr "Очистить корзину"
+
+#~ msgid "Properties"
+#~ msgstr "Свойства"
+
+#~ msgid "Show in Files"
+#~ msgstr "Показать в «Файлах»"

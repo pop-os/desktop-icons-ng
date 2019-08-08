@@ -1,0 +1,169 @@
+# Finnish translation for desktop-icons.
+# Copyright (C) 2018 desktop-icons's COPYRIGHT HOLDER
+# This file is distributed under the same license as the desktop-icons package.
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: desktop-icons master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-08 21:07+0200\n"
+"PO-Revision-Date: 2019-06-02 15:23+0300\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
+"Language-Team: Finnish <lokalisointi-lista@googlegroups.com>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.0.6\n"
+
+#: ../prefs.js:106
+msgid "Size for the desktop icons"
+msgstr "Työpöytäkuvakkeiden koko"
+
+#: ../prefs.js:106
+msgid "Small"
+msgstr "Pieni"
+
+#: ../prefs.js:106
+msgid "Standard"
+msgstr "Normaali"
+
+#: ../prefs.js:106
+msgid "Large"
+msgstr "Suuri"
+
+#: ../prefs.js:107
+msgid "Show the personal folder in the desktop"
+msgstr "Näytä kotikansio työpöydällä"
+
+#: ../prefs.js:108
+msgid "Show the trash icon in the desktop"
+msgstr "Näytä roskakorin kuvake työpöydällä"
+
+#: ../desktopGrid.js:411
+msgid "Enter file name…"
+msgstr "Anna tiedostonimi…"
+
+#: ../desktopGrid.js:415
+msgid "OK"
+msgstr "OK"
+
+#: ../desktopGrid.js:421
+msgid "Cancel"
+msgstr "Peru"
+
+#: ../desktopIconsUtil.js:59
+msgid "Command not found"
+msgstr "Komentoa ei löydy"
+
+#: ../fileItem.js:467
+msgid "Don’t Allow Launching"
+msgstr "Älä salli käynnistämistä"
+
+#: ../fileItem.js:469
+msgid "Allow Launching"
+msgstr "Salli käynnistäminen"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
+msgid "Icon size"
+msgstr "Kuvakekoko"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:2
+msgid "Set the size for the desktop icons."
+msgstr "Aseta työpöytäkuvakkeiden koko."
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:3
+msgid "Show personal folder"
+msgstr "Näytä kotikansio"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:4
+msgid "Show the personal folder in the desktop."
+msgstr "Näytä kotikansio työpöydällä."
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:5
+msgid "Show trash icon"
+msgstr "Näytä roskakorin kuvake"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:6
+msgid "Show the trash icon in the desktop."
+msgstr "Näytä roskakorin kuvake työpöydällä."
+
+#~ msgid "New folder name"
+#~ msgstr "Uusi kansion nimi"
+
+#~ msgid "Create"
+#~ msgstr "Luo"
+
+#~ msgid "Folder names cannot contain “/”."
+#~ msgstr "Kansion nimi ei voi sisältää merkkiä “/”."
+
+#~ msgid "A folder cannot be called “.”."
+#~ msgstr "Kansion nimi ei voi olla “.”."
+
+#~ msgid "A folder cannot be called “..”."
+#~ msgstr "Kansion nimi ei voi olla “..”."
+
+#~ msgid "Folders with “.” at the beginning of their name are hidden."
+#~ msgstr "Kansiot, joiden nimi alkaa merkillä “.”, ovat piilotettuja."
+
+#~ msgid "There is already a file or folder with that name."
+#~ msgstr "Nimi on jo toisen tiedoston tai kansion käytössä."
+
+#~ msgid "New Folder"
+#~ msgstr "Uusi kansio"
+
+#~ msgid "Paste"
+#~ msgstr "Liitä"
+
+#~ msgid "Undo"
+#~ msgstr "Kumoa"
+
+#~ msgid "Redo"
+#~ msgstr "Tee uudeleen"
+
+#~ msgid "Show Desktop in Files"
+#~ msgstr "Näytä työpöytä tiedostonhallinnassa"
+
+#~ msgid "Open in Terminal"
+#~ msgstr "Avaa päätteessä"
+
+#~ msgid "Change Background…"
+#~ msgstr "Vaihda taustakuvaa…"
+
+#~ msgid "Display Settings"
+#~ msgstr "Näytön asetukset"
+
+#~ msgid "Settings"
+#~ msgstr "Asetukset"
+
+#~ msgid "Open"
+#~ msgstr "Avaa"
+
+#~ msgid "Open With Other Application"
+#~ msgstr "Avaa toisella sovelluksella"
+
+#~ msgid "Cut"
+#~ msgstr "Leikkaa"
+
+#~ msgid "Copy"
+#~ msgstr "Kopioi"
+
+#~ msgid "Rename…"
+#~ msgstr "Nimeä uudelleen…"
+
+#~ msgid "Move to Trash"
+#~ msgstr "Siirrä roskakoriin"
+
+#~ msgid "Empty Trash"
+#~ msgstr "Tyhjennä roskakori"
+
+#~ msgid "Properties"
+#~ msgstr "Ominaisuudet"
+
+#~ msgid "Show in Files"
+#~ msgstr "Näytä tiedostonhallinnassa"
+
+#~ msgid "Huge"
+#~ msgstr "Valtava"

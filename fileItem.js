@@ -29,7 +29,7 @@ const DBusUtils = imports.dbusUtils;
 
 const Mainloop = imports.mainloop;
 const Signals = imports.signals;
-const Gettext = imports.gettext.domain('desktop-icons');
+const Gettext = imports.gettext.domain('adieu');
 
 const _ = Gettext.gettext;
 

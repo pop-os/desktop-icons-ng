@@ -1,0 +1,8 @@
+#createFolderDialog.js
+extension.js
+prefs.js
+desktopGrid.js
+desktopIconsUtil.js
+fileItem.js
+adieu.js
+schemas/org.gnome.shell.extensions.adieu.gschema.xml

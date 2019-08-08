@@ -1,0 +1,166 @@
+# Croatian translation for gnome-shell-extension-desktop-icons
+# Copyright (c) 2019 Rosetta Contributors and Canonical Ltd 2019
+# This file is distributed under the same license as the gnome-shell-extension-desktop-icons package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-shell-extension-desktop-icons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-08 21:07+0200\n"
+"PO-Revision-Date: 2019-06-22 18:52+0200\n"
+"Last-Translator: gogo <trebelnik2@gmail.com>\n"
+"Language-Team: Croatian <hr@li.org>\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2019-03-27 09:36+0000\n"
+"X-Generator: Poedit 2.2.1\n"
+
+#: ../prefs.js:106
+msgid "Size for the desktop icons"
+msgstr "Veličina ikona radne površine"
+
+#: ../prefs.js:106
+msgid "Small"
+msgstr "Male"
+
+#: ../prefs.js:106
+msgid "Standard"
+msgstr "Standardne"
+
+#: ../prefs.js:106
+msgid "Large"
+msgstr "Velike"
+
+#: ../prefs.js:107
+msgid "Show the personal folder in the desktop"
+msgstr "Prikaži osobnu mapu na radnoj površini"
+
+#: ../prefs.js:108
+msgid "Show the trash icon in the desktop"
+msgstr "Prikaži mapu smeća na radnoj površini"
+
+#: ../desktopGrid.js:411
+msgid "Enter file name…"
+msgstr "Upiši naziv datoteke…"
+
+#: ../desktopGrid.js:415
+msgid "OK"
+msgstr "U redu"
+
+#: ../desktopGrid.js:421
+msgid "Cancel"
+msgstr "Odustani"
+
+#: ../desktopIconsUtil.js:59
+msgid "Command not found"
+msgstr "Naredba nije pronađena"
+
+#: ../fileItem.js:467
+msgid "Don’t Allow Launching"
+msgstr "Ne dopuštaj pokretanje"
+
+#: ../fileItem.js:469
+msgid "Allow Launching"
+msgstr "Dopusti pokretanje"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
+msgid "Icon size"
+msgstr "Veličina ikona"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:2
+msgid "Set the size for the desktop icons."
+msgstr "Postavi veličinu ikona radne površine."
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:3
+msgid "Show personal folder"
+msgstr "Prikaži osobnu mapu"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:4
+msgid "Show the personal folder in the desktop."
+msgstr "Prikaži osobnu mapu na radnoj površini."
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:5
+msgid "Show trash icon"
+msgstr "Prikaži ikonu smeća"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:6
+msgid "Show the trash icon in the desktop."
+msgstr "Prikaži ikonu smeća na radnoj površini."
+
+#~ msgid "New folder name"
+#~ msgstr "Novi naziv mape"
+
+#~ msgid "Create"
+#~ msgstr "Stvori"
+
+#~ msgid "Folder names cannot contain “/”."
+#~ msgstr "Naziv mape ne može sadržavati “/”."
+
+#~ msgid "A folder cannot be called “.”."
+#~ msgstr "Mapa se ne može nazvati “.”."
+
+#~ msgid "A folder cannot be called “..”."
+#~ msgstr "Mapa se ne može nazvati “..”."
+
+#~ msgid "Folders with “.” at the beginning of their name are hidden."
+#~ msgstr "Mape sa “.” na početku njihovih naziva su skrivene."
+
+#~ msgid "There is already a file or folder with that name."
+#~ msgstr "Već postoji datoteka ili mapa s tim nazivom."
+
+#~ msgid "New Folder"
+#~ msgstr "Nova mapa"
+
+#~ msgid "Paste"
+#~ msgstr "Zalijepi"
+
+#~ msgid "Undo"
+#~ msgstr "Poništi"
+
+#~ msgid "Redo"
+#~ msgstr "Ponovi"
+
+#~ msgid "Show Desktop in Files"
+#~ msgstr "Prikaži radnu površinu u Datotekama"
+
+#~ msgid "Open in Terminal"
+#~ msgstr "Otvori u Terminalu"
+
+#~ msgid "Change Background…"
+#~ msgstr "Promijeni pozadinu…"
+
+#~ msgid "Display Settings"
+#~ msgstr "Postavke zaslona"
+
+#~ msgid "Settings"
+#~ msgstr "Postavke"
+
+#~ msgid "Open"
+#~ msgstr "Otvori"
+
+#~ msgid "Open With Other Application"
+#~ msgstr "Otvori s drugom aplikacijom"
+
+#~ msgid "Cut"
+#~ msgstr "Izreži"
+
+#~ msgid "Copy"
+#~ msgstr "Kopiraj"
+
+#~ msgid "Rename…"
+#~ msgstr "Preimenuj…"
+
+#~ msgid "Move to Trash"
+#~ msgstr "Premjesti u smeće"
+
+#~ msgid "Empty Trash"
+#~ msgstr "Isprazni smeće"
+
+#~ msgid "Properties"
+#~ msgstr "Svojstva"
+
+#~ msgid "Show in Files"
+#~ msgstr "Prikaži u Datotekama"

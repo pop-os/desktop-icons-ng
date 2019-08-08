@@ -27,11 +27,11 @@ const Gettext = imports.gettext;
 
 const tmp = imports.fileItem;
 
-var _ = Gettext.domain('desktop-icons').gettext;
+var _ = Gettext.domain('adieu').gettext;
 
 const SCHEMA_NAUTILUS = 'org.gnome.nautilus.preferences';
 const SCHEMA_GTK = 'org.gtk.Settings.FileChooser';
-const SCHEMA = 'org.gnome.shell.extensions.desktopiconsng';
+const SCHEMA = 'org.gnome.shell.extensions.adieu';
 
 const ICON_SIZE = { 'small': 48, 'standard': 64, 'large': 96 };
 const ICON_WIDTH = { 'small': 112, 'standard': 120, 'large': 120 };
@@ -52,13 +52,13 @@ var settings;
 var CLICK_POLICY_SINGLE = false;
 
 function initTranslations() {
-/*    let extension = ExtensionUtils.getCurrentExtension();
+    let extension = ExtensionUtils.getCurrentExtension();
 
     let localedir = extension.dir.get_child('locale');
     if (localedir.query_exists(null))
-        Gettext.bindtextdomain('desktop-icons', localedir.get_path());
+        Gettext.bindtextdomain('adieu', localedir.get_path());
     else
-        Gettext.bindtextdomain('desktop-icons', Config.LOCALEDIR);*/
+        Gettext.bindtextdomain('adieu', Config.LOCALEDIR);
 }
 
 function init(path) {

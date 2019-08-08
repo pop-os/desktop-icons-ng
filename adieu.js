@@ -28,7 +28,6 @@ let stdin = new Gio.DataInputStream({
 });
 
 let appUuid = stdin.read_line(null)[0].toString();
-print("UUid:" + appUuid);
 
 let desktops = [];
 let lastCommand = null;
