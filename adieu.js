@@ -70,13 +70,11 @@ for(let arg of ARGV) {
 imports.searchPath.unshift(codePath);
 
 const Prefs = imports.prefs;
-const DBusUtils = imports.dbusUtils;
 
 var Extension = {};
 
 const DesktopManager = imports.desktopManager;
 
-DBusUtils.init();
 Prefs.init(codePath);
 
 Extension.desktopManager = new DesktopManager.DesktopManager(appUuid, desktops, zoom);

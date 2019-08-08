@@ -23,6 +23,7 @@ const GLib = imports.gi.GLib;
 const Pango = imports.gi.Pango;
 const GdkPixbuf = imports.gi.GdkPixbuf;
 const GnomeDesktop = imports.gi.GnomeDesktop;
+const DesktopIconsUtil = imports.desktopIconsUtil;
 
 const Prefs = imports.prefs;
 const DBusUtils = imports.dbusUtils;

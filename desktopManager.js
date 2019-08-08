@@ -13,6 +13,7 @@ const FileItem = imports.fileItem;
 const DesktopGrid = imports.desktopGrid;
 const DesktopIconsUtil = imports.desktopIconsUtil;
 const Prefs = imports.prefs;
+const DBusUtils = imports.dbusUtils;
 
 var DesktopManager = GObject.registerClass({
     Properties: {
@@ -29,6 +30,7 @@ var DesktopManager = GObject.registerClass({
         super._init();
 
         Gtk.init(null);
+        DBusUtils.init();
         this._appUuid = appUuid;
         this._scale = scale;
         this._desktopFilesChanged = false;
@@ -216,7 +218,10 @@ var DesktopManager = GObject.registerClass({
     }
 
     doEmptyTrash() {
-        print("Do empty trash");
+        DBusUtils.NautilusFileOperationsProxy.EmptyTrashRemote( (source, error) => {
+            if (error)
+                throw new Error('Error trashing files on the desktop: ' + error.message);
+        });
     }
 
     checkIfSpecialFilesAreSelected() {
