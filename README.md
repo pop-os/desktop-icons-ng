@@ -11,7 +11,6 @@ Another Desktop Icons Extension for GNOME Shell.
 
 ## TO-DO
 
-* Fix double-click (using single-click to launch works)
 * Click selection
 * Rubberband selection
 * Cut, Copy and Paste options in menu

@@ -623,9 +623,9 @@ var FileItem = class {
                 this._actionCopy.set_sensitive(!specialFilesSelected);
             if (this._actionTrash)
                 this._actionTrash.set_sensitive(!specialFilesSelected);
-            return false;
+            return true;
         } else if (button == 1) {
-            if (event.get_click_count()[1] == 1) {
+            if (event.get_event_type() == Gdk.EventType.BUTTON_PRESS) {
                 let [x, y] = event.get_coords();
                 this._primaryButtonPressed = true;
                 this._buttonPressInitialX = x;
@@ -636,10 +636,12 @@ var FileItem = class {
                     this.emit('selected', shiftPressed || controlPressed, false, true);
                 }
             }
-            return false;
+            if ((event.get_event_type() == Gdk.EventType.DOUBLE_BUTTON_PRESS) && !Prefs.CLICK_POLICY_SINGLE)
+                this.doOpen();
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     _onLeave(actor, event) {
@@ -661,8 +663,7 @@ var FileItem = class {
                 this._desktopManager.dragStart();
             }
         }
-
-        return true;
+        return false;
     }
 
     _onReleaseButton(actor, event) {
@@ -674,15 +675,13 @@ var FileItem = class {
                 this._primaryButtonPressed = false;
                 let shiftPressed = !!(event.get_state()[1] & Gdk.ModifierType.SHIFT_MASK);
                 let controlPressed = !!(event.get_state()[1] & Gdk.ModifierType.CONTROL_MASK);
-                if ((event.get_click_count()[1] == 1) && Prefs.CLICK_POLICY_SINGLE && !shiftPressed && !controlPressed)
+                if (Prefs.CLICK_POLICY_SINGLE && !shiftPressed && !controlPressed)
                     this.doOpen();
                 this.emit('selected', shiftPressed || controlPressed, false, true);
-                return false;
+                return true;
             }
-            if ((event.get_click_count()[1] == 2) && (!Prefs.CLICK_POLICY_SINGLE))
-                this.doOpen();
         }
-        return true;
+        return false;
     }
 
     get savedCoordinates() {
