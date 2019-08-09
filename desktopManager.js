@@ -48,9 +48,22 @@ var DesktopManager = GObject.registerClass({
             }
         });
 
-        this._cssProvider = new Gtk.CssProvider();
-        this._cssProvider.load_from_file(Gio.File.new_for_path(GLib.build_filenamev([codePath, "stylesheet.css"])));
-        Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), this._cssProvider, 0);
+        let cssProvider = new Gtk.CssProvider();
+        cssProvider.load_from_file(Gio.File.new_for_path(GLib.build_filenamev([codePath, "stylesheet.css"])));
+        Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), cssProvider, 600);
+
+        let rgba = DesktopIconsUtil.getGtkClassBackgroundColor('view', Gtk.StateFlags.SELECTED);
+        let background_color =
+            'rgba(' + rgba.red * 255 + ', ' + rgba.green * 255 + ', ' + rgba.blue * 255 + ', 0.6)';
+        let border_color =
+            'rgba(' + rgba.red * 255 + ', ' + rgba.green * 255 + ', ' + rgba.blue * 255 + ', 0.8)';
+
+        let cssProviderSelection = new Gtk.CssProvider();
+        let style = '.diselected {\n    background-color: rgba(' + rgba.red * 255 + ', ' + rgba.green * 255 + ', ' + rgba.blue * 255 + ', 0.6);\n}';
+        print(style);
+        cssProviderSelection.load_from_data(style);
+        Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), cssProviderSelection, 600);
+
         this._window = new Gtk.Window();
         this._window.set_title(appUuid);
         this._window.set_resizable(false);

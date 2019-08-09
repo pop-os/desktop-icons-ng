@@ -57,7 +57,6 @@ var FileItem = class {
             this._savedCoordinates = savedCoordinates.split(',').map(x => Number(x));
 
         this.actor = new Gtk.EventBox({ visible: true });
-        //TODO
         this.actor.connect('destroy', () => this._onDestroy());
 
         this._container = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL});
@@ -73,6 +72,8 @@ var FileItem = class {
         iconContainer.pack_start(this._icon, false, true, 0);
 
         this._label = new Gtk.Label({label: this._file.get_basename()});
+        let labelStyleContext = this._label.get_style_context();
+        labelStyleContext.add_class('file-label');
 
         this._container.pack_start(this._label, true, true, 0);
         this._label.set_ellipsize(Pango.EllipsizeMode.END);
@@ -84,6 +85,7 @@ var FileItem = class {
         this.actor.set_events(Gdk.EventMask.BUTTON_MOTION_MASK | Gdk.EventMask.BUTTON_PRESS_MASK | Gdk.EventMask.BUTTON_RELEASE_MASK | Gdk.EventMask.LEAVE_NOTIFY_MASK | Gdk.EventMask.POINTER_MOTION_MASK);
         this.actor.connect('button-press-event', (actor, event) => this._onPressButton(actor, event));
         this.actor.connect('motion-notify-event', (actor, event) => this._onMotion(actor, event));
+        this.actor.connect('enter-notify-event', (actor, event) => this._onEnter(actor, event));
         this.actor.connect('leave-notify-event', (actor, event) => this._onLeave(actor, event));
         this.actor.connect('button-release-event', (actor, event) => this._onReleaseButton(actor, event));
 
@@ -94,6 +96,7 @@ var FileItem = class {
         this._updateIcon();
         this._isSelected = false;
         this._primaryButtonPressed = false;
+
         if (this._attributeCanExecute && !this._isValidDesktopFile)
             this._execLine = this.file.get_path();
         if (fileExtra == Prefs.FileType.USER_DIRECTORY_TRASH) {
@@ -520,17 +523,6 @@ var FileItem = class {
         DBusUtils.openFileWithOtherApplication(this.file.get_path());
     }
 
-    _getSelectionStyle() {
-        let rgba = DesktopIconsUtil.getGtkClassBackgroundColor('view', Gtk.StateFlags.SELECTED);
-        let background_color =
-            'rgba(' + rgba.red * 255 + ', ' + rgba.green * 255 + ', ' + rgba.blue * 255 + ', 0.6)';
-        let border_color =
-            'rgba(' + rgba.red * 255 + ', ' + rgba.green * 255 + ', ' + rgba.blue * 255 + ', 0.8)';
-
-        return 'background-color: ' + background_color + ';' +
-               'border-color: ' + border_color + ';'
-    }
-
     _createMenu() {
         this._menu = new Gtk.Menu();
         let open = new Gtk.MenuItem({label:_('Open')});
@@ -600,7 +592,7 @@ var FileItem = class {
         let button = event.get_button()[1];
         if (button == 3) {
             if (!this.isSelected)
-                this.emit('selected', false, false, true);
+                this._setSelected(true, true);
             this._menu.popup_at_pointer(event);
             if (this._actionOpenWith) {
                 let allowOpenWith = (this._desktopManager.getNumberOfSelectedItems() == 1);
@@ -622,8 +614,10 @@ var FileItem = class {
                 this._buttonPressInitialY = y;
                 let shiftPressed = !!(event.get_state()[1] & Gdk.ModifierType.SHIFT_MASK);
                 let controlPressed = !!(event.get_state()[1] & Gdk.ModifierType.CONTROL_MASK);
-                if (!this.isSelected) {
-                    this.emit('selected', shiftPressed || controlPressed, false, true);
+                if (shiftPressed || controlPressed) {
+                    this._setSelected(!this.isSelected, true);
+                } else {
+                    this._setSelected(true, false);
                 }
             }
             if ((event.get_event_type() == Gdk.EventType.DOUBLE_BUTTON_PRESS) && !Prefs.CLICK_POLICY_SINGLE)
@@ -634,26 +628,23 @@ var FileItem = class {
         return false;
     }
 
-    _onLeave(actor, event) {
-        this._primaryButtonPressed = false;
+    _setSelected(selected, keepOld) {
+        this._isSelected = selected;
+        this.emit('selected', selected, keepOld);
+        this._setSelectedStatus();
     }
 
-    _onMotion(actor, event) {
-        let [x, y] = event.get_coords();
-        if (this._primaryButtonPressed) {
-            let xDiff = x - this._buttonPressInitialX;
-            let yDiff = y - this._buttonPressInitialY;
-            let distance = Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2));
-            if (distance > DRAG_TRESHOLD) {
-                // Don't need to track anymore this if we start drag, and also
-                // avoids reentrance here
-                this._primaryButtonPressed = false;
-                let event = Clutter.get_current_event();
-                let [x, y] = event.get_coords();
-                this._desktopManager.dragStart();
-            }
+    _setSelectedStatus() {
+        if (this._isSelected) {
+            this._styleContext.add_class('diselected');
+        } else {
+            this._styleContext.remove_class('diselected');
         }
-        return false;
+    }
+
+    setSelected(selected) {
+        this._isSelected = selected;
+        this._setSelectedStatus();
     }
 
     _onReleaseButton(actor, event) {
@@ -669,6 +660,33 @@ var FileItem = class {
                     this.doOpen();
                 this.emit('selected', shiftPressed || controlPressed, false, true);
                 return true;
+            }
+        }
+        return false;
+    }
+
+    _onEnter(actor, event) {
+        this._styleContext.add_class('file-item-hover');
+    }
+
+    _onLeave(actor, event) {
+        this._primaryButtonPressed = false;
+        this._styleContext.remove_class('file-item-hover');
+    }
+
+    _onMotion(actor, event) {
+        let [x, y] = event.get_coords();
+        if (this._primaryButtonPressed) {
+            let xDiff = x - this._buttonPressInitialX;
+            let yDiff = y - this._buttonPressInitialY;
+            let distance = Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2));
+            if (distance > DRAG_TRESHOLD) {
+                // Don't need to track anymore this if we start drag, and also
+                // avoids reentrance here
+                this._primaryButtonPressed = false;
+                let event = Clutter.get_current_event();
+                let [x, y] = event.get_coords();
+                this._desktopManager.dragStart();
             }
         }
         return false;
