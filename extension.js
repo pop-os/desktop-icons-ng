@@ -57,7 +57,7 @@ function init() {
     _killAllInstancesId = 0;
     _restackedId = 0;
     _currentProcess = null;
-    let _reloadTime = 100;
+    _reloadTime = 100;
     // Ensure that there aren't "rogue" processes
     doKillAllOldDesktopProcesses();
 }
