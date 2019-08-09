@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-08 21:06+0200\n"
+"POT-Creation-Date: 2019-08-09 17:26+0200\n"
 "PO-Revision-Date: 2019-05-13 15:13+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: es <gnome-es-list@gnome.org>\n"
@@ -20,77 +20,116 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Gtranslator 3.32.0\n"
 
-#: ../prefs.js:106
+#: prefs.js:105
 msgid "Size for the desktop icons"
 msgstr "Tamaño de los iconos del escritorio"
 
-#: ../prefs.js:106
+#: prefs.js:105
 msgid "Small"
 msgstr "Pequeño"
 
-#: ../prefs.js:106
+#: prefs.js:105
 msgid "Standard"
 msgstr "Estándar"
 
-#: ../prefs.js:106
+#: prefs.js:105
 msgid "Large"
 msgstr "Grande"
 
-#: ../prefs.js:107
+#: prefs.js:106
 msgid "Show the personal folder in the desktop"
 msgstr "Mostrar la carpeta personal en el escritorio"
 
-#: ../prefs.js:108
+#: prefs.js:107
 msgid "Show the trash icon in the desktop"
 msgstr "Mostrar la papelera en el escritorio"
 
-#: ../desktopGrid.js:411
+#: desktopGrid.js:411
 msgid "Enter file name…"
 msgstr "Introduzca el nombre del archivo…"
 
-#: ../desktopGrid.js:415
+#: desktopGrid.js:415
 msgid "OK"
 msgstr "Aceptar"
 
-#: ../desktopGrid.js:421
+#: desktopGrid.js:421
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../desktopIconsUtil.js:59
-msgid "Command not found"
-msgstr "Comando no encontrado"
-
-#: ../fileItem.js:467
+#: fileItem.js:470
 msgid "Don’t Allow Launching"
 msgstr "No permitir lanzar"
 
-#: ../fileItem.js:469
+#: fileItem.js:472
 msgid "Allow Launching"
 msgstr "Permitir lanzar"
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
+#: fileItem.js:546
+msgid "Open"
+msgstr "Abrir"
+
+#: fileItem.js:552
+msgid "Open With Other Application"
+msgstr "Abrir con otra aplicación"
+
+#: fileItem.js:559
+msgid "Cut"
+msgstr "Cortar"
+
+#: fileItem.js:562
+msgid "Copy"
+msgstr "Copiar"
+
+#: fileItem.js:566
+msgid "Rename…"
+msgstr "Renombrar…"
+
+#: fileItem.js:570
+msgid "Move to Trash"
+msgstr "Mover a la papelera"
+
+#: fileItem.js:582
+msgid "Empty Trash"
+msgstr "Vaciar la papelera"
+
+#: fileItem.js:590
+msgid "Properties"
+msgstr "Propiedades"
+
+#: fileItem.js:594
+msgid "Show in Files"
+msgstr "Mostrar en Files"
+
+#: fileItem.js:598
+msgid "Open in Terminal"
+msgstr "Abrir en una terminal"
+
+#: schemas/org.gnome.shell.extensions.adieu.gschema.xml:11
 msgid "Icon size"
 msgstr "Tamaño de los iconos"
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:2
+#: schemas/org.gnome.shell.extensions.adieu.gschema.xml:12
 msgid "Set the size for the desktop icons."
 msgstr "Establece el tamaño de los iconos del escritorio."
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:3
+#: schemas/org.gnome.shell.extensions.adieu.gschema.xml:16
 msgid "Show personal folder"
 msgstr "Mostrar la carpeta personal"
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:4
+#: schemas/org.gnome.shell.extensions.adieu.gschema.xml:17
 msgid "Show the personal folder in the desktop."
 msgstr "Mostrar la carpeta personal en el escritorio."
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:5
+#: schemas/org.gnome.shell.extensions.adieu.gschema.xml:21
 msgid "Show trash icon"
 msgstr "Mostrar la papelera"
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:6
+#: schemas/org.gnome.shell.extensions.adieu.gschema.xml:22
 msgid "Show the trash icon in the desktop."
 msgstr "Mostrar la papelera en el escritorio."
+
+#~ msgid "Command not found"
+#~ msgstr "Comando no encontrado"
 
 #~ msgid "New folder name"
 #~ msgstr "Nombre de la nueva carpeta"
@@ -128,9 +167,6 @@ msgstr "Mostrar la papelera en el escritorio."
 #~ msgid "Show Desktop in Files"
 #~ msgstr "Mostrar el escritorio en Archivos"
 
-#~ msgid "Open in Terminal"
-#~ msgstr "Abrir en una terminal"
-
 #~ msgid "Change Background…"
 #~ msgstr "Cambiar el fondo..."
 
@@ -139,33 +175,6 @@ msgstr "Mostrar la papelera en el escritorio."
 
 #~ msgid "Settings"
 #~ msgstr "Configuración"
-
-#~ msgid "Open"
-#~ msgstr "Abrir"
-
-#~ msgid "Open With Other Application"
-#~ msgstr "Abrir con otra aplicación"
-
-#~ msgid "Cut"
-#~ msgstr "Cortar"
-
-#~ msgid "Copy"
-#~ msgstr "Copiar"
-
-#~ msgid "Rename…"
-#~ msgstr "Renombrar…"
-
-#~ msgid "Move to Trash"
-#~ msgstr "Mover a la papelera"
-
-#~ msgid "Empty Trash"
-#~ msgstr "Vaciar la papelera"
-
-#~ msgid "Properties"
-#~ msgstr "Propiedades"
-
-#~ msgid "Show in Files"
-#~ msgstr "Mostrar en Files"
 
 #~ msgid "Huge"
 #~ msgstr "Inmenso"

@@ -112,100 +112,98 @@ var DesktopManager = GObject.registerClass({
     }
 
     _readFileList() {
-        this._desktopFilesChanged = false;
         this._readingDesktopFiles = true;
         this._fileList = [];
         let desktopDir = DesktopIconsUtil.getDesktopDir();
-        desktopDir.enumerate_children_async(DesktopIconsUtil.DEFAULT_ATTRIBUTES,
-            Gio.FileQueryInfoFlags.NONE,
-            GLib.PRIORITY_DEFAULT,
-            null,
-            (source, result) => {
-                try {
-                    let fileEnum = source.enumerate_children_finish(result);
-                    if (this._desktopFilesChanged) {
-                        print("Files changed while being read. Retrying.");
-                        this._readFileList();
-                    } else {
-                        for (let [newFolder, extras] of DesktopIconsUtil.getExtraFolders()) {
-                            this._fileList.push(new FileItem.FileItem(this,
-                                                                    newFolder,
-                                                                    newFolder.query_info(DesktopIconsUtil.DEFAULT_ATTRIBUTES, Gio.FileQueryInfoFlags.NONE, null),
-                                                                    extras,
-                                                                    this._scale));
-                        }
-                        let info;
-                        while ((info = fileEnum.next_file(null))) {
-                            this._fileList.push(new FileItem.FileItem(this,
-                                                                    fileEnum.get_child(info),
-                                                                    info,
-                                                                    Prefs.FileType.NONE,
-                                                                    this._scale));
-                        }
-                        let outOfDesktops = [];
-                        let notAssignedYet = [];
-                        // First, add those icons that fit in the current desktops
-                        for(let icon of this._fileList) {
-                            if (icon.savedCoordinates == null) {
-                                notAssignedYet.push(icon);
-                                continue;
-                            }
-                            let [itemX, itemY] = icon.savedCoordinates;
-                            let addedToDesktop = false;
-                            for(let desktop of this._desktops) {
-                                if (desktop.getDistance(itemX, itemY) == 0) {
-                                    addedToDesktop = true;
-                                    desktop.addFileItemCloseTo(icon, itemX, itemY, DesktopGrid.StoredCoordinates.PRESERVE);
-                                    break;
-                                }
-                            }
-                            if (!addedToDesktop) {
-                                outOfDesktops.push(icon);
-                            }
-                        }
-                        // Now, assign those icons that are outside the current desktops,
-                        // but have assigned coordinates
-                        for(let icon of outOfDesktops) {
-                            let minDistance = -1;
-                            let [itemX, itemY] = icon.savedCoordinates;
-                            let newDesktop = null;
-                            for (let desktop of this._desktops) {
-                                let distance = desktop.getDistance(itemX, itemY);
-                                if (distance == -1) {
-                                    continue;
-                                }
-                                if ((minDistance == -1) || (distance < minDistance)) {
-                                    minDistance = distance;
-                                    newDesktop = desktop;
-                                }
-                            }
-                            if (newDesktop == null) {
-                                print("Not enough space to add icons");
-                                break;
-                            } else {
-                                newDesktop.addFileItemCloseTo(icon, itemX, itemY, DesktopGrid.StoredCoordinates.PRESERVE);
-                            }
-                        }
-                        // Finally, assign those icons that still don't have coordinates
-                        for (let icon of notAssignedYet) {
-                            for (let desktop of this._desktops) {
-                                let distance = desktop.getDistance(0, 0);
-                                if (distance != -1) {
-                                    desktop.addFileItemCloseTo(icon, 0, 0, DesktopGrid.StoredCoordinates.ASSIGN);
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                } catch (e) {
-                    print("Error reading the desktop files. Retrying. " + e);
-                    this._readFileList();
+        let fileEnum;
+        do {
+            this._desktopFilesChanged = false;
+            fileEnum = desktopDir.enumerate_children(DesktopIconsUtil.DEFAULT_ATTRIBUTES,
+                                                     Gio.FileQueryInfoFlags.NONE,
+                                                     null);
+        } while(this._desktopFilesChanged);
+        this._readingDesktopFiles = false;
+
+        for (let [newFolder, extras] of DesktopIconsUtil.getExtraFolders()) {
+            this._fileList.push(new FileItem.FileItem(this,
+                                                      newFolder,
+                                                      newFolder.query_info(DesktopIconsUtil.DEFAULT_ATTRIBUTES, Gio.FileQueryInfoFlags.NONE, null),
+                                                      extras,
+                                                      this._scale));
+        }
+        let info;
+        while ((info = fileEnum.next_file(null))) {
+            this._fileList.push(new FileItem.FileItem(this,
+                                                      fileEnum.get_child(info),
+                                                      info,
+                                                      Prefs.FileType.NONE,
+                                                      this._scale));
+        }
+        let outOfDesktops = [];
+        let notAssignedYet = [];
+        // First, add those icons that fit in the current desktops
+        for(let icon of this._fileList) {
+            if (icon.savedCoordinates == null) {
+                notAssignedYet.push(icon);
+                continue;
+            }
+            let [itemX, itemY] = icon.savedCoordinates;
+            let addedToDesktop = false;
+            for(let desktop of this._desktops) {
+                if (desktop.getDistance(itemX, itemY) == 0) {
+                    addedToDesktop = true;
+                    desktop.addFileItemCloseTo(icon, itemX, itemY, DesktopGrid.StoredCoordinates.PRESERVE);
+                    break;
                 }
-            });
+            }
+            if (!addedToDesktop) {
+                outOfDesktops.push(icon);
+            }
+        }
+        // Now, assign those icons that are outside the current desktops,
+        // but have assigned coordinates
+        for(let icon of outOfDesktops) {
+            let minDistance = -1;
+            let [itemX, itemY] = icon.savedCoordinates;
+            let newDesktop = null;
+            for (let desktop of this._desktops) {
+                let distance = desktop.getDistance(itemX, itemY);
+                if (distance == -1) {
+                    continue;
+                }
+                if ((minDistance == -1) || (distance < minDistance)) {
+                    minDistance = distance;
+                    newDesktop = desktop;
+                }
+            }
+            if (newDesktop == null) {
+                print("Not enough space to add icons");
+                break;
+            } else {
+                newDesktop.addFileItemCloseTo(icon, itemX, itemY, DesktopGrid.StoredCoordinates.PRESERVE);
+            }
+        }
+        // Finally, assign those icons that still don't have coordinates
+        for (let icon of notAssignedYet) {
+            for (let desktop of this._desktops) {
+                let distance = desktop.getDistance(0, 0);
+                if (distance != -1) {
+                    desktop.addFileItemCloseTo(icon, 0, 0, DesktopGrid.StoredCoordinates.ASSIGN);
+                    break;
+                }
+            }
+        }
     }
 
     _updateDesktopIfChanged(file, otherFile, eventType) {
-        this._desktopFilesChanged = true;
+        if(this._readingDesktopFiles) {
+            // just notify that the files changed while being read from the disk.
+            this._desktopFilesChanged = true;
+            return;
+        }
+        // For now, while I'm implementing things like all the menu options, and selection
+        // just exit to make the extension reload it again and refresh the desktop
+        Gtk.main_quit();
     }
 
     doCopy() {

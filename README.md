@@ -1,14 +1,25 @@
-# Desktop Icons
+# ADIEU
 
 ## What  is it
 
-A GNOME Shell extension for providing desktop icons.
+Another Desktop Icons Extension for GNOME Shell.
 
 ## Requirements
 
 * GNOME Shell >= 3.30
 * Nautilus >= 3.30.4
-* xdg-desktop-portal-gtk
+
+## TO-DO
+
+* Click selection
+* Rubberband selection
+* Cut, Copy and Paste options in menu
+* Move to trash
+* Rename file
+* Open with using native GTK widget
+* Use file events instead of reloading the whole program
+* Drag'n'Drop
+
 
 ## How to contribute
 
@@ -28,12 +39,12 @@ For a regular use and local development these are the steps to build the
 project and install it:
 
 ```bash
-meson --prefix=$HOME/.local/ --localedir=share/gnome-shell/extensions/desktop-icons@csoriano/locale .build
+meson --prefix=$HOME/.local/ --localedir=share/gnome-shell/extensions/adieu@rastersoft.com/locale .build
 ninja -C .build install
 ```
 
 It is strongly recommended to delete the destination folder
-($HOME/.local/share/gnome-shell/extensions/desktop-icons@csoriano) before doing this, to ensure that no old
+($HOME/.local/share/gnome-shell/extensions/adieu@rastersoft.com) before doing this, to ensure that no old
 data is kept.
 
 ## Export extension ZIP file for extensions.gnome.org
@@ -44,5 +55,4 @@ To create a ZIP file with the extension, just run:
 ./export-zip.sh
 ```
 
-This will create the file `desktop-icons@csoriano.zip` with the extension, following the rules for publishing
-at extensions.gnome.org.
+This will create the file `adieu@rastersoft.com.zip` with the extension, following the rules for publishing at extensions.gnome.org.

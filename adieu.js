@@ -75,7 +75,7 @@ imports.searchPath.unshift(codePath);
 const Prefs = imports.prefs;
 const Gettext = imports.gettext;
 
-Gettext.bindtextdomain("adieu", codePath+"/locale");
+Gettext.bindtextdomain("adieu", GLib.build_filenamev([codePath, "locale"]));
 
 var Extension = {};
 
