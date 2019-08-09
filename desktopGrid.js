@@ -52,10 +52,12 @@ var elementSpacing = 4;
 
 var DesktopGrid = class {
 
-    constructor(container, x, y, width, height, scaleFactor) {
+    constructor(container, x, y, width, height, minx, miny, scaleFactor) {
 
         this._x = x;
         this._y = y;
+        this._minx = minx;
+        this._miny = miny;
         this._width = width;
         this._height = height;
         this._container = container;
@@ -232,8 +234,8 @@ var DesktopGrid = class {
 
     _addFileItemTo(fileItem, column, row, coordinatesAction) {
 
-        let x = this._x + this._elementWidth * column + this._elementMarginH;
-        let y = this._y + this._elementHeight * row + this._elementMarginV;
+        let x = this._x + this._elementWidth * column + this._elementMarginH - this._minx;
+        let y = this._y + this._elementHeight * row + this._elementMarginV - this._miny;
         this._container.put(fileItem.actor, x, y);
         this._setGridUse(column, row, true);
         this._fileItems.push(fileItem);

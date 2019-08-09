@@ -100,7 +100,6 @@ var DesktopManager = GObject.registerClass({
         y1 = desktopList[0].y;
         y2 = desktopList[0].y + desktopList[0].h;
         for(let desktop of desktopList) {
-            this._desktops.push(new DesktopGrid.DesktopGrid(this._container, desktop.x, desktop.y, desktop.w, desktop.h, scale));
             if (x1 > desktop.x) {
                 x1 = desktop.x;
             }
@@ -113,6 +112,9 @@ var DesktopManager = GObject.registerClass({
             if (y2 < (desktop.y + desktop.h)) {
                 y2 = desktop.y + desktop.h;
             }
+        }
+        for(let desktop of desktopList) {
+            this._desktops.push(new DesktopGrid.DesktopGrid(this._container, desktop.x, desktop.y, desktop.w, desktop.h, x1, y1, scale));
         }
         this._window.set_default_size(x2 - x1, y2 - y1);
         this._window.show_all();
