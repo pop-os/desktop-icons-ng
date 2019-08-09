@@ -34,15 +34,8 @@ const Gettext = imports.gettext.domain('adieu');
 
 const _ = Gettext.gettext;
 
-var Extension;
-
 var S_IXUSR = 0o00100;
 var S_IWOTH = 0o00002;
-
-var State = {
-    NORMAL: 0,
-    GONE: 1,
-};
 
 var FileItem = class {
 
@@ -63,16 +56,13 @@ var FileItem = class {
         if (savedCoordinates != null)
             this._savedCoordinates = savedCoordinates.split(',').map(x => Number(x));
 
-        this._state = State.NORMAL;
-
         this.actor = new Gtk.EventBox({ visible: true });
         //TODO
-        //let scaleFactor = St.ThemeContext.get_for_stage(global.stage).scale_factor;
         this.actor.connect('destroy', () => this._onDestroy());
 
         this._container = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL});
-        let context = this._container.get_style_context();
-        context.add_class('file-item');
+        this._styleContext = this._container.get_style_context();
+        this._styleContext.add_class('file-item');
         this._container.set_size_request(Prefs.get_desired_width(this._scaleFactor), Prefs.get_desired_height(this._scaleFactor));
         this.actor.add(this._container);
 
@@ -80,7 +70,7 @@ var FileItem = class {
         let iconContainer = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL});
         this._container.pack_start(iconContainer, false, false, 0);
         iconContainer.set_size_request(Prefs.get_desired_width(this._scaleFactor), Prefs.get_icon_size(this._scaleFactor));
-        iconContainer.pack_start(this._icon, true, true, 0);
+        iconContainer.pack_start(this._icon, false, true, 0);
 
         this._label = new Gtk.Label({label: this._file.get_basename()});
 
