@@ -9,6 +9,18 @@ Another Desktop Icons Extension for GNOME Shell.
 * GNOME Shell >= 3.30
 * Nautilus >= 3.30.4
 
+## TO-DO
+
+* Fix double-click (using single-click to launch works)
+* Click selection
+* Rubberband selection
+* Cut, Copy and Paste options in menu
+* Move to trash
+* Rename file
+* Open with using native GTK widget
+* Use file events instead of reloading the whole program
+* Drag'n'Drop
+
 
 ## How to contribute
 
