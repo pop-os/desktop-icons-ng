@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-08 21:08+0200\n"
+"POT-Creation-Date: 2019-08-09 17:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,74 +17,110 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../prefs.js:106
+#: prefs.js:105
 msgid "Size for the desktop icons"
 msgstr ""
 
-#: ../prefs.js:106
+#: prefs.js:105
 msgid "Small"
 msgstr ""
 
-#: ../prefs.js:106
+#: prefs.js:105
 msgid "Standard"
 msgstr ""
 
-#: ../prefs.js:106
+#: prefs.js:105
 msgid "Large"
 msgstr ""
 
-#: ../prefs.js:107
+#: prefs.js:106
 msgid "Show the personal folder in the desktop"
 msgstr ""
 
-#: ../prefs.js:108
+#: prefs.js:107
 msgid "Show the trash icon in the desktop"
 msgstr ""
 
-#: ../desktopGrid.js:411
+#: desktopGrid.js:411
 msgid "Enter file name…"
 msgstr ""
 
-#: ../desktopGrid.js:415
+#: desktopGrid.js:415
 msgid "OK"
 msgstr ""
 
-#: ../desktopGrid.js:421
+#: desktopGrid.js:421
 msgid "Cancel"
 msgstr ""
 
-#: ../desktopIconsUtil.js:59
-msgid "Command not found"
-msgstr ""
-
-#: ../fileItem.js:467
+#: fileItem.js:470
 msgid "Don’t Allow Launching"
 msgstr ""
 
-#: ../fileItem.js:469
+#: fileItem.js:472
 msgid "Allow Launching"
 msgstr ""
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
+#: fileItem.js:546
+msgid "Open"
+msgstr ""
+
+#: fileItem.js:552
+msgid "Open With Other Application"
+msgstr ""
+
+#: fileItem.js:559
+msgid "Cut"
+msgstr ""
+
+#: fileItem.js:562
+msgid "Copy"
+msgstr ""
+
+#: fileItem.js:566
+msgid "Rename…"
+msgstr ""
+
+#: fileItem.js:570
+msgid "Move to Trash"
+msgstr ""
+
+#: fileItem.js:582
+msgid "Empty Trash"
+msgstr ""
+
+#: fileItem.js:590
+msgid "Properties"
+msgstr ""
+
+#: fileItem.js:594
+msgid "Show in Files"
+msgstr ""
+
+#: fileItem.js:598
+msgid "Open in Terminal"
+msgstr ""
+
+#: schemas/org.gnome.shell.extensions.adieu.gschema.xml:11
 msgid "Icon size"
 msgstr ""
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:2
+#: schemas/org.gnome.shell.extensions.adieu.gschema.xml:12
 msgid "Set the size for the desktop icons."
 msgstr ""
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:3
+#: schemas/org.gnome.shell.extensions.adieu.gschema.xml:16
 msgid "Show personal folder"
 msgstr ""
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:4
+#: schemas/org.gnome.shell.extensions.adieu.gschema.xml:17
 msgid "Show the personal folder in the desktop."
 msgstr ""
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:5
+#: schemas/org.gnome.shell.extensions.adieu.gschema.xml:21
 msgid "Show trash icon"
 msgstr ""
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:6
+#: schemas/org.gnome.shell.extensions.adieu.gschema.xml:22
 msgid "Show the trash icon in the desktop."
 msgstr ""
