@@ -24,23 +24,15 @@ const GObject = imports.gi.GObject;
 const Gio = imports.gi.Gio;
 const GioSSS = Gio.SettingsSchemaSource;
 
-const Gettext = imports.gettext;
-
-var _ = Gettext.domain('adieu').gettext;
+const Enums = imports.enums;
 
 const SCHEMA_NAUTILUS = 'org.gnome.nautilus.preferences';
 const SCHEMA_GTK = 'org.gtk.Settings.FileChooser';
 const SCHEMA = 'org.gnome.shell.extensions.adieu';
 
-const ICON_SIZE = { 'small': 48, 'standard': 64, 'large': 96 };
-const ICON_WIDTH = { 'small': 112, 'standard': 120, 'large': 120 };
-const ICON_HEIGHT = { 'small': 90, 'standard': 106, 'large': 138 };
+const Gettext = imports.gettext;
 
-var FileType = {
-    NONE: null,
-    USER_DIRECTORY_HOME: 'show-home',
-    USER_DIRECTORY_TRASH: 'show-trash',
-}
+var _ = Gettext.domain('adieu').gettext;
 
 var extensionPath;
 
@@ -150,13 +142,13 @@ function _onNautilusSettingsChanged() {
 
 function get_icon_size() {
     // this one doesn't need scaling because Gnome Shell automagically scales the icons
-    return ICON_SIZE[settings.get_string('icon-size')];
+    return Enums.ICON_SIZE[settings.get_string('icon-size')];
 }
 
 function get_desired_width(scale_factor) {
-    return ICON_WIDTH[settings.get_string('icon-size')] * scale_factor;
+    return Enums.ICON_WIDTH[settings.get_string('icon-size')] * scale_factor;
 }
 
 function get_desired_height(scale_factor) {
-    return ICON_HEIGHT[settings.get_string('icon-size')] * scale_factor;
+    return Enums.ICON_HEIGHT[settings.get_string('icon-size')] * scale_factor;
 }

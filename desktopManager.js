@@ -13,6 +13,7 @@ const FileItem = imports.fileItem;
 const DesktopGrid = imports.desktopGrid;
 const DesktopIconsUtil = imports.desktopIconsUtil;
 const Prefs = imports.prefs;
+const Enums = imports.enums;
 const DBusUtils = imports.dbusUtils;
 
 var DesktopManager = GObject.registerClass({
@@ -151,7 +152,7 @@ var DesktopManager = GObject.registerClass({
             this._fileList.push(new FileItem.FileItem(this,
                                                       fileEnum.get_child(info),
                                                       info,
-                                                      Prefs.FileType.NONE,
+                                                      Enums.FileType.NONE,
                                                       this._scale));
         }
         let outOfDesktops = [];

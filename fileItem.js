@@ -26,6 +26,7 @@ const GnomeDesktop = imports.gi.GnomeDesktop;
 const DesktopIconsUtil = imports.desktopIconsUtil;
 
 const Prefs = imports.prefs;
+const Enums = imports.enums;
 const DBusUtils = imports.dbusUtils;
 
 const Mainloop = imports.mainloop;
@@ -47,7 +48,7 @@ var FileItem = class {
         this._thumbnailScriptWatch = 0;
         this._setMetadataCancellable = null;
         this._queryFileInfoCancellable = null;
-        this._isSpecial = this._fileExtra != Prefs.FileType.NONE;
+        this._isSpecial = this._fileExtra != Enums.FileType.NONE;
 
         this._file = file;
 
@@ -99,7 +100,7 @@ var FileItem = class {
 
         if (this._attributeCanExecute && !this._isValidDesktopFile)
             this._execLine = this.file.get_path();
-        if (fileExtra == Prefs.FileType.USER_DIRECTORY_TRASH) {
+        if (fileExtra == Enums.FileType.USER_DIRECTORY_TRASH) {
             // if this icon is the trash, monitor the state of the directory to update the icon
             this._trashChanged = false;
             this._queryTrashInfoCancellable = null;
@@ -220,7 +221,7 @@ var FileItem = class {
 
         this._fileType = fileInfo.get_file_type();
         this._isDirectory = this._fileType == Gio.FileType.DIRECTORY;
-        this._isSpecial = this._fileExtra != Prefs.FileType.NONE;
+        this._isSpecial = this._fileExtra != Enums.FileType.NONE;
         this._isHidden = fileInfo.get_is_hidden() | fileInfo.get_is_backup();
         this._isSymlink = fileInfo.get_is_symlink();
         this._modifiedTime = fileInfo.get_attribute_uint64("time::modified");
@@ -239,7 +240,7 @@ var FileItem = class {
     }
 
     _updateIcon() {
-        if (this._fileExtra == Prefs.FileType.USER_DIRECTORY_TRASH) {
+        if (this._fileExtra == Enums.FileType.USER_DIRECTORY_TRASH) {
             this._icon.set_from_pixbuf(this._createEmblemedIcon(this._fileInfo.get_icon(), null));
             return;
         }
@@ -516,7 +517,7 @@ var FileItem = class {
     }
 
     canRename() {
-        return !this.trustedDesktopFile && this._fileExtra == Prefs.FileType.NONE;
+        return !this.trustedDesktopFile && this._fileExtra == Enums.FileType.NONE;
     }
 
     _doOpenWith() {
@@ -529,7 +530,7 @@ var FileItem = class {
         open.connect('activate', () => this.doOpen());
         this._menu.add(open);
         switch (this._fileExtra) {
-        case Prefs.FileType.NONE:
+        case Enums.FileType.NONE:
             if (!this._isDirectory) {
                 this._actionOpenWith = new Gtk.MenuItem({label: _('Open With Other Application')});
                 this._actionOpenWith.connect('activate', () => this._doOpenWith());
@@ -559,7 +560,7 @@ var FileItem = class {
                 this._menu.add(this._allowLaunchingMenuItem);
             }
             break;
-        case Prefs.FileType.USER_DIRECTORY_TRASH:
+        case Enums.FileType.USER_DIRECTORY_TRASH:
             this._menu.add(new Gtk.SeparatorMenuItem());
             let trashItem = new Gtk.MenuItem({label: _('Empty Trash')});
             trashItem.connect('activate', () => this._onEmptyTrashClicked());
