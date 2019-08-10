@@ -13,6 +13,7 @@ const FileItem = imports.fileItem;
 const DesktopGrid = imports.desktopGrid;
 const DesktopIconsUtil = imports.desktopIconsUtil;
 const Prefs = imports.prefs;
+const Enums = imports.enums;
 const DBusUtils = imports.dbusUtils;
 
 var DesktopManager = GObject.registerClass({
@@ -48,18 +49,19 @@ var DesktopManager = GObject.registerClass({
             }
         });
 
+        this._rubberband = false;
+
         let cssProvider = new Gtk.CssProvider();
         cssProvider.load_from_file(Gio.File.new_for_path(GLib.build_filenamev([codePath, "stylesheet.css"])));
         Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), cssProvider, 600);
 
-        let rgba = DesktopIconsUtil.getGtkClassBackgroundColor('view', Gtk.StateFlags.SELECTED);
-        let background_color =
-            'rgba(' + rgba.red * 255 + ', ' + rgba.green * 255 + ', ' + rgba.blue * 255 + ', 0.6)';
-        let border_color =
-            'rgba(' + rgba.red * 255 + ', ' + rgba.green * 255 + ', ' + rgba.blue * 255 + ', 0.8)';
+        this._selectColor = DesktopIconsUtil.getGtkClassBackgroundColor('view', Gtk.StateFlags.SELECTED);
 
         let cssProviderSelection = new Gtk.CssProvider();
-        let style = '.diselected {\n    background-color: rgba(' + rgba.red * 255 + ', ' + rgba.green * 255 + ', ' + rgba.blue * 255 + ', 0.6);\n}';
+        let style = '.diselected {\n    background-color: rgba(' +
+                    this._selectColor.red * 255 + ', ' +
+                    this._selectColor.green * 255 + ', ' +
+                    this._selectColor.blue * 255 + ', 0.6);\n}';
         print(style);
         cssProviderSelection.load_from_data(style);
         Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), cssProviderSelection, 600);
@@ -86,11 +88,7 @@ var DesktopManager = GObject.registerClass({
         let visual = screen.get_rgba_visual();
         if (visual && screen.is_composited()) {
             this._window.set_visual(visual);
-            this._window.connect('draw', (widget, cr) => {
-                Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: 0.0, green: 0.0, blue: 0.0, alpha:0.0}));
-                cr.paint();
-                return false;
-            });
+            this._window.connect('draw', (widget, cr) => this._doDraw(cr));
         }
 
         this._desktops = [];
@@ -114,16 +112,121 @@ var DesktopManager = GObject.registerClass({
             }
         }
         for(let desktop of desktopList) {
-            this._desktops.push(new DesktopGrid.DesktopGrid(this._container, desktop.x, desktop.y, desktop.w, desktop.h, x1, y1, scale));
+            this._desktops.push(new DesktopGrid.DesktopGrid(this, this._container, desktop.x, desktop.y, desktop.w, desktop.h, x1, y1, scale));
         }
         this._window.set_default_size(x2 - x1, y2 - y1);
         this._window.show_all();
+        this._eventBox.connect('button-press-event', (actor, event) => this._onPressButton(actor, event));
+        this._eventBox.connect('motion-notify-event', (actor, event) => this._onMotion(actor, event));
+        this._eventBox.connect('button-release-event', (actor, event) => this._onReleaseButton(actor, event));
         this._fileList = [];
         this._readFileList();
     }
 
-    run() {
-        Gtk.main();
+    _onPressButton(actor, event) {
+        let button = event.get_button()[1];
+        let [a, x, y] = event.get_coords();
+        let state = event.get_state()[1];
+
+        if (button == 1) {
+            let shiftPressed = !!(state & Gdk.ModifierType.SHIFT_MASK);
+            let controlPressed = !!(state & Gdk.ModifierType.CONTROL_MASK);
+            if (!shiftPressed && !controlPressed) {
+                // clear selection
+                for(let item of this._fileList) {
+                    item.unsetSelected();
+                }
+            }
+            this._startRubberband(x, y);
+        }
+
+        if (button == 3) {
+            this._openMenu(x, y);
+        }
+
+        return false;
+    }
+
+    _onMotion(actor, event) {
+        if (this._rubberband) {
+            let [a, x, y] = event.get_coords();
+            this._mouseX = x;
+            this._mouseY = y;
+            this._window.queue_draw();
+            let x1 = Math.min(x, this._rubberbandInitX);
+            let x2 = Math.max(x, this._rubberbandInitX);
+            let y1 = Math.min(y, this._rubberbandInitY);
+            let y2 = Math.max(y, this._rubberbandInitY);
+            for(let item of this._fileList) {
+                item.updateRubberband(x1, y1, x2, y2);
+            }
+        }
+        return false;
+    }
+
+    _onReleaseButton(actor, event) {
+        if (this._rubberband) {
+            this._rubberband = false;
+            for(let item of this._fileList) {
+                item.endRubberband();
+            }
+        }
+        this._window.queue_draw();
+        return false;
+    }
+
+    _startRubberband(x, y) {
+        this._rubberbandInitX = x;
+        this._rubberbandInitY = y;
+        this._mouseX = x;
+        this._mouseY = y;
+        this._rubberband = true;
+        for(let item of this._fileList) {
+            item.startRubberband(x, y);
+        }
+    }
+
+    selected(fileItem, action) {
+        switch(action) {
+        case Enums.Selection.ALONE:
+            for(let item of this._fileList) {
+                if (item === fileItem) {
+                    item.setSelected();
+                } else {
+                    item.unsetSelected();
+                }
+            }
+            break;
+        case Enums.Selection.WITH_SHIFT:
+            fileItem.toggleSelected();
+            break;
+        case Enums.Selection.RIGHT_BUTTON:
+            fileItem.setSelected();
+            break;
+        case Enums.Selection.ENTER:
+            if (this._rubberband) {
+                fileItem.setSelected();
+            }
+            break;
+        }
+    }
+
+    _doDraw(cr) {
+        Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0}));
+        cr.paint();
+        if (this._rubberband) {
+            cr.rectangle(this._rubberbandInitX,
+                         this._rubberbandInitY,
+                         this._mouseX - this._rubberbandInitX,
+                         this._mouseY - this._rubberbandInitY);
+            Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({
+                                                        red: this._selectColor.red,
+                                                        green: this._selectColor.green,
+                                                        blue: this._selectColor.blue,
+                                                        alpha: 0.6}));
+            cr.fill();
+        }
+        return false;
     }
 
     _readFileList() {
@@ -133,7 +236,7 @@ var DesktopManager = GObject.registerClass({
         let fileEnum;
         do {
             this._desktopFilesChanged = false;
-            fileEnum = desktopDir.enumerate_children(DesktopIconsUtil.DEFAULT_ATTRIBUTES,
+            fileEnum = desktopDir.enumerate_children(Enums.DEFAULT_ATTRIBUTES,
                                                      Gio.FileQueryInfoFlags.NONE,
                                                      null);
         } while(this._desktopFilesChanged);
@@ -142,7 +245,7 @@ var DesktopManager = GObject.registerClass({
         for (let [newFolder, extras] of DesktopIconsUtil.getExtraFolders()) {
             this._fileList.push(new FileItem.FileItem(this,
                                                       newFolder,
-                                                      newFolder.query_info(DesktopIconsUtil.DEFAULT_ATTRIBUTES, Gio.FileQueryInfoFlags.NONE, null),
+                                                      newFolder.query_info(Enums.DEFAULT_ATTRIBUTES, Gio.FileQueryInfoFlags.NONE, null),
                                                       extras,
                                                       this._scale));
         }
@@ -151,7 +254,7 @@ var DesktopManager = GObject.registerClass({
             this._fileList.push(new FileItem.FileItem(this,
                                                       fileEnum.get_child(info),
                                                       info,
-                                                      Prefs.FileType.NONE,
+                                                      Enums.FileType.NONE,
                                                       this._scale));
         }
         let outOfDesktops = [];
@@ -167,7 +270,7 @@ var DesktopManager = GObject.registerClass({
             for(let desktop of this._desktops) {
                 if (desktop.getDistance(itemX, itemY) == 0) {
                     addedToDesktop = true;
-                    desktop.addFileItemCloseTo(icon, itemX, itemY, DesktopGrid.StoredCoordinates.PRESERVE);
+                    desktop.addFileItemCloseTo(icon, itemX, itemY, Enums.StoredCoordinates.PRESERVE);
                     break;
                 }
             }
@@ -195,7 +298,7 @@ var DesktopManager = GObject.registerClass({
                 print("Not enough space to add icons");
                 break;
             } else {
-                newDesktop.addFileItemCloseTo(icon, itemX, itemY, DesktopGrid.StoredCoordinates.PRESERVE);
+                newDesktop.addFileItemCloseTo(icon, itemX, itemY, Enums.StoredCoordinates.PRESERVE);
             }
         }
         // Finally, assign those icons that still don't have coordinates
@@ -203,7 +306,7 @@ var DesktopManager = GObject.registerClass({
             for (let desktop of this._desktops) {
                 let distance = desktop.getDistance(0, 0);
                 if (distance != -1) {
-                    desktop.addFileItemCloseTo(icon, 0, 0, DesktopGrid.StoredCoordinates.ASSIGN);
+                    desktop.addFileItemCloseTo(icon, 0, 0, Enums.StoredCoordinates.ASSIGN);
                     break;
                 }
             }
@@ -241,10 +344,21 @@ var DesktopManager = GObject.registerClass({
     }
 
     checkIfSpecialFilesAreSelected() {
-        return true;
+        for(let item of this._fileList) {
+            if (item.isSelected && item.isSpecial) {
+                return true;
+            }
+        }
+        return false;
     }
 
     getNumberOfSelectedItems() {
-        return 1;
+        let count = 0;
+        for(let item of this._fileList) {
+            if (item.isSelected) {
+                count++;
+            }
+        }
+        return count;
     }
 });

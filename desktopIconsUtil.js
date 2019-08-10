@@ -20,11 +20,7 @@ const Gtk = imports.gi.Gtk;
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
 const Prefs = imports.prefs;
-
-const TERMINAL_SCHEMA = 'org.gnome.desktop.default-applications.terminal';
-const EXEC_KEY = 'exec';
-
-var DEFAULT_ATTRIBUTES = 'metadata::*,standard::*,access::*,time::modified,unix::mode';
+const Enums = imports.enums;
 
 function getDesktopDir() {
     let desktopPath = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DESKTOP);
@@ -36,8 +32,8 @@ function clamp(value, min, max) {
 };
 
 function launchTerminal(workdir) {
-    let terminalSettings = new Gio.Settings({ schema_id: TERMINAL_SCHEMA });
-    let exec = terminalSettings.get_string(EXEC_KEY);
+    let terminalSettings = new Gio.Settings({ schema_id: Enums.TERMINAL_SCHEMA });
+    let exec = terminalSettings.get_string(Enums.EXEC_KEY);
     let argv = [exec, `--working-directory=${workdir}`];
 
     /* The following code has been extracted from GNOME Shell's
@@ -83,10 +79,10 @@ function distanceBetweenPoints(x, y, x2, y2) {
 function getExtraFolders() {
     let extraFolders = new Array();
     if (Prefs.settings.get_boolean('show-home')) {
-        extraFolders.push([Gio.File.new_for_commandline_arg(GLib.get_home_dir()), Prefs.FileType.USER_DIRECTORY_HOME]);
+        extraFolders.push([Gio.File.new_for_commandline_arg(GLib.get_home_dir()), Enums.FileType.USER_DIRECTORY_HOME]);
     }
     if (Prefs.settings.get_boolean('show-trash')) {
-        extraFolders.push([Gio.File.new_for_uri('trash:///'), Prefs.FileType.USER_DIRECTORY_TRASH]);
+        extraFolders.push([Gio.File.new_for_uri('trash:///'), Enums.FileType.USER_DIRECTORY_TRASH]);
     }
     return extraFolders;
 }

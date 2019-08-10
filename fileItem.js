@@ -26,6 +26,7 @@ const GnomeDesktop = imports.gi.GnomeDesktop;
 const DesktopIconsUtil = imports.desktopIconsUtil;
 
 const Prefs = imports.prefs;
+const Enums = imports.enums;
 const DBusUtils = imports.dbusUtils;
 
 const Mainloop = imports.mainloop;
@@ -33,9 +34,6 @@ const Signals = imports.signals;
 const Gettext = imports.gettext.domain('adieu');
 
 const _ = Gettext.gettext;
-
-var S_IXUSR = 0o00100;
-var S_IWOTH = 0o00002;
 
 var FileItem = class {
 
@@ -47,7 +45,7 @@ var FileItem = class {
         this._thumbnailScriptWatch = 0;
         this._setMetadataCancellable = null;
         this._queryFileInfoCancellable = null;
-        this._isSpecial = this._fileExtra != Prefs.FileType.NONE;
+        this._isSpecial = this._fileExtra != Enums.FileType.NONE;
 
         this._file = file;
 
@@ -99,7 +97,7 @@ var FileItem = class {
 
         if (this._attributeCanExecute && !this._isValidDesktopFile)
             this._execLine = this.file.get_path();
-        if (fileExtra == Prefs.FileType.USER_DIRECTORY_TRASH) {
+        if (fileExtra == Enums.FileType.USER_DIRECTORY_TRASH) {
             // if this icon is the trash, monitor the state of the directory to update the icon
             this._trashChanged = false;
             this._queryTrashInfoCancellable = null;
@@ -137,6 +135,14 @@ var FileItem = class {
         }
     }
 
+    setCoordinates(x, y, width, height, grid) {
+        this._x1 = x;
+        this._y1 = y;
+        this._x2 = x + width - 1;
+        this._y2 = y + height - 1;
+        this._grid = grid;
+    }
+
     _onDestroy() {
         /* Regular file data */
         if (this._setMetadataCancellable)
@@ -165,7 +171,7 @@ var FileItem = class {
         if (this._queryFileInfoCancellable)
             this._queryFileInfoCancellable.cancel();
         this._queryFileInfoCancellable = new Gio.Cancellable();
-        this._file.query_info_async(DesktopIconsUtil.DEFAULT_ATTRIBUTES,
+        this._file.query_info_async(Enums.DEFAULT_ATTRIBUTES,
                                     Gio.FileQueryInfoFlags.NONE,
                                     GLib.PRIORITY_DEFAULT,
                                     this._queryFileInfoCancellable,
@@ -194,7 +200,7 @@ var FileItem = class {
         this._displayName = fileInfo.get_attribute_as_string('standard::display-name');
         this._attributeCanExecute = fileInfo.get_attribute_boolean('access::can-execute');
         this._unixmode = fileInfo.get_attribute_uint32('unix::mode')
-        this._writableByOthers = (this._unixmode & S_IWOTH) != 0;
+        this._writableByOthers = (this._unixmode & Enums.S_IWOTH) != 0;
         this._trusted = fileInfo.get_attribute_as_string('metadata::trusted') == 'true';
         this._attributeContentType = fileInfo.get_content_type();
         this._isDesktopFile = this._attributeContentType == 'application/x-desktop';
@@ -220,7 +226,7 @@ var FileItem = class {
 
         this._fileType = fileInfo.get_file_type();
         this._isDirectory = this._fileType == Gio.FileType.DIRECTORY;
-        this._isSpecial = this._fileExtra != Prefs.FileType.NONE;
+        this._isSpecial = this._fileExtra != Enums.FileType.NONE;
         this._isHidden = fileInfo.get_is_hidden() | fileInfo.get_is_backup();
         this._isSymlink = fileInfo.get_is_symlink();
         this._modifiedTime = fileInfo.get_attribute_uint64("time::modified");
@@ -239,7 +245,7 @@ var FileItem = class {
     }
 
     _updateIcon() {
-        if (this._fileExtra == Prefs.FileType.USER_DIRECTORY_TRASH) {
+        if (this._fileExtra == Enums.FileType.USER_DIRECTORY_TRASH) {
             this._icon.set_from_pixbuf(this._createEmblemedIcon(this._fileInfo.get_icon(), null));
             return;
         }
@@ -321,7 +327,7 @@ var FileItem = class {
             this._queryTrashInfoCancellable.cancel();
         this._queryTrashInfoCancellable = new Gio.Cancellable();
 
-        this._file.query_info_async(DesktopIconsUtil.DEFAULT_ATTRIBUTES,
+        this._file.query_info_async(Enums.DEFAULT_ATTRIBUTES,
                                     Gio.FileQueryInfoFlags.NONE,
                                     GLib.PRIORITY_DEFAULT,
                                     this._queryTrashInfoCancellable,
@@ -499,7 +505,7 @@ var FileItem = class {
          */
         if (this.metadataTrusted && !this._attributeCanExecute) {
             let info = new Gio.FileInfo();
-            let newUnixMode = this._unixmode | S_IXUSR;
+            let newUnixMode = this._unixmode | Enums.S_IXUSR;
             info.set_attribute_uint32(Gio.FILE_ATTRIBUTE_UNIX_MODE, newUnixMode);
             this._file.set_attributes_async(info,
                                             Gio.FileQueryInfoFlags.NONE,
@@ -516,7 +522,7 @@ var FileItem = class {
     }
 
     canRename() {
-        return !this.trustedDesktopFile && this._fileExtra == Prefs.FileType.NONE;
+        return !this.trustedDesktopFile && this._fileExtra == Enums.FileType.NONE;
     }
 
     _doOpenWith() {
@@ -529,7 +535,7 @@ var FileItem = class {
         open.connect('activate', () => this.doOpen());
         this._menu.add(open);
         switch (this._fileExtra) {
-        case Prefs.FileType.NONE:
+        case Enums.FileType.NONE:
             if (!this._isDirectory) {
                 this._actionOpenWith = new Gtk.MenuItem({label: _('Open With Other Application')});
                 this._actionOpenWith.connect('activate', () => this._doOpenWith());
@@ -559,7 +565,7 @@ var FileItem = class {
                 this._menu.add(this._allowLaunchingMenuItem);
             }
             break;
-        case Prefs.FileType.USER_DIRECTORY_TRASH:
+        case Enums.FileType.USER_DIRECTORY_TRASH:
             this._menu.add(new Gtk.SeparatorMenuItem());
             let trashItem = new Gtk.MenuItem({label: _('Empty Trash')});
             trashItem.connect('activate', () => this._onEmptyTrashClicked());
@@ -591,8 +597,9 @@ var FileItem = class {
     _onPressButton(actor, event) {
         let button = event.get_button()[1];
         if (button == 3) {
-            if (!this.isSelected)
-                this._setSelected(true, true);
+            if (!this.isSelected) {
+                this._desktopManager.selected(this, Enums.Selection.RIGHT_BUTTON);
+            }
             this._menu.popup_at_pointer(event);
             if (this._actionOpenWith) {
                 let allowOpenWith = (this._desktopManager.getNumberOfSelectedItems() == 1);
@@ -608,16 +615,17 @@ var FileItem = class {
             return true;
         } else if (button == 1) {
             if (event.get_event_type() == Gdk.EventType.BUTTON_PRESS) {
-                let [x, y] = event.get_coords();
+                let [a, x, y] = event.get_coords();
+                let state = event.get_state()[1];
                 this._primaryButtonPressed = true;
                 this._buttonPressInitialX = x;
                 this._buttonPressInitialY = y;
-                let shiftPressed = !!(event.get_state()[1] & Gdk.ModifierType.SHIFT_MASK);
-                let controlPressed = !!(event.get_state()[1] & Gdk.ModifierType.CONTROL_MASK);
+                let shiftPressed = !!(state & Gdk.ModifierType.SHIFT_MASK);
+                let controlPressed = !!(state & Gdk.ModifierType.CONTROL_MASK);
                 if (shiftPressed || controlPressed) {
-                    this._setSelected(!this.isSelected, true);
+                    this._desktopManager.selected(this, Enums.Selection.WITH_SHIFT);
                 } else {
-                    this._setSelected(true, false);
+                    this._desktopManager.selected(this, Enums.Selection.ALONE);
                 }
             }
             if ((event.get_event_type() == Gdk.EventType.DOUBLE_BUTTON_PRESS) && !Prefs.CLICK_POLICY_SINGLE)
@@ -628,12 +636,6 @@ var FileItem = class {
         return false;
     }
 
-    _setSelected(selected, keepOld) {
-        this._isSelected = selected;
-        this.emit('selected', selected, keepOld);
-        this._setSelectedStatus();
-    }
-
     _setSelectedStatus() {
         if (this._isSelected) {
             this._styleContext.add_class('diselected');
@@ -642,9 +644,23 @@ var FileItem = class {
         }
     }
 
-    setSelected(selected) {
-        this._isSelected = selected;
+    setSelected() {
+        this._isSelected = true;
         this._setSelectedStatus();
+    }
+
+    unsetSelected() {
+        this._isSelected = false;
+        this._setSelectedStatus();
+    }
+
+    toggleSelected() {
+        this._isSelected = !this._isSelected;
+        this._setSelectedStatus();
+    }
+
+    get isSelected() {
+        return this._isSelected;
     }
 
     _onReleaseButton(actor, event) {
@@ -658,7 +674,6 @@ var FileItem = class {
                 let controlPressed = !!(event.get_state()[1] & Gdk.ModifierType.CONTROL_MASK);
                 if (Prefs.CLICK_POLICY_SINGLE && !shiftPressed && !controlPressed)
                     this.doOpen();
-                this.emit('selected', shiftPressed || controlPressed, false, true);
                 return true;
             }
         }
@@ -667,11 +682,13 @@ var FileItem = class {
 
     _onEnter(actor, event) {
         this._styleContext.add_class('file-item-hover');
+        return false;
     }
 
     _onLeave(actor, event) {
         this._primaryButtonPressed = false;
         this._styleContext.remove_class('file-item-hover');
+        return false;
     }
 
     _onMotion(actor, event) {
@@ -690,6 +707,26 @@ var FileItem = class {
             }
         }
         return false;
+    }
+
+    startRubberband() {
+        this._rubberband = true;
+        this._touchedByRubberband = false;
+    }
+
+    endRubberband() {
+        this._rubberband = false;
+    }
+
+    updateRubberband(x1, y1, x2, y2) {
+        if ((x2 < this._x1) || (x1 > this._x2) || (y2 < this._y1) || (y1 > this._y2)) {
+            if (this._touchedByRubberband) {
+                this.unsetSelected();
+            }
+        } else {
+            this.setSelected();
+            this._touchedByRubberband = true;
+        }
     }
 
     get savedCoordinates() {

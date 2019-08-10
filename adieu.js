@@ -19,6 +19,7 @@
  */
 
 imports.gi.versions.Gtk = '3.0';
+const Gtk = imports.gi.Gtk;
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
 
@@ -84,4 +85,4 @@ const DesktopManager = imports.desktopManager;
 Prefs.init(codePath);
 
 Extension.desktopManager = new DesktopManager.DesktopManager(appUuid, desktops, zoom, codePath);
-Extension.desktopManager.run();
+Gtk.main();
