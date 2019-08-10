@@ -14,7 +14,7 @@ Another Desktop Icons Extension for GNOME Shell.
 * Cut, Copy and Paste options in menu
 * Move to trash
 * Rename file
-* Open with using native GTK widget
+* "Open with" using native GTK widget
 * Use file events instead of reloading the whole program
 * Drag'n'Drop
 
