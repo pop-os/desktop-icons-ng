@@ -47,8 +47,9 @@ var elementSpacing = 4;
 
 var DesktopGrid = class {
 
-    constructor(container, x, y, width, height, minx, miny, scaleFactor) {
+    constructor(desktopManager, container, x, y, width, height, minx, miny, scaleFactor) {
 
+        this._desktopManager = desktopManager;
         this._x = x;
         this._y = y;
         this._minx = minx;
@@ -63,14 +64,9 @@ var DesktopGrid = class {
         this._elementMarginH = this._elementWidth - Prefs.get_desired_width(scaleFactor) - elementSpacing;
         this._elementMarginV = this._elementHeight - Prefs.get_desired_height(scaleFactor) - elementSpacing;
 
-        this._fileItemHandlers = new Map();
         this._fileItems = [];
 
-        this._addDesktopBackgroundMenu();
-
         this._gridStatus = {};
-        /*this.actor.connect('button-press-event', (actor, event) => this._onPressButton(actor, event));
-        this.actor.connect('key-press-event', this._onKeyPress.bind(this));*/
         for (let y=0; y<this._maxRows; y++) {
             for (let x=0; x<this._maxColumns; x++) {
                 this._setGridUse(x, y, false);
@@ -119,11 +115,11 @@ var DesktopGrid = class {
             return true;
         }
         else if (isCtrl && [Clutter.C, Clutter.c].indexOf(symbol) > -1) {
-            Extension.desktopManager.doCopy();
+            this._desktopManager.doCopy();
             return true;
         }
         else if (isCtrl && [Clutter.X, Clutter.x].indexOf(symbol) > -1) {
-            Extension.desktopManager.doCut();
+            this._desktopManager.doCut();
             return true;
         }
         else if (isCtrl && [Clutter.V, Clutter.v].indexOf(symbol) > -1) {
@@ -131,19 +127,19 @@ var DesktopGrid = class {
             return true;
         }
         else if (symbol == Clutter.Return) {
-            Extension.desktopManager.doOpen();
+            this._desktopManager.doOpen();
             return true;
         }
         else if (symbol == Clutter.Delete) {
-            Extension.desktopManager.doTrash();
-                return true;
-            } else if (symbol == Clutter.F2) {
-                // Support renaming other grids file items.
-                Extension.desktopManager.doRename();
-                return true;
-            }
-            return false;
+            this._desktopManager.doTrash();
+            return true;
+        } else if (symbol == Clutter.F2) {
+            // Support renaming other grids file items.
+            this._desktopManager.doRename();
+            return true;
         }
+        return false;
+    }
 
     _onOpenDesktopInFilesClicked() {
         Gio.AppInfo.launch_default_for_uri_async(DesktopIconsUtil.getDesktopDir().get_uri(),
@@ -218,15 +214,6 @@ var DesktopGrid = class {
         return menu;*/
     }
 
-    _openMenu(x, y) {
-        Main.layoutManager.setDummyCursorGeometry(x, y, 0, 0);
-        this.actor._desktopBackgroundMenu.open(BoxPointer.PopupAnimation.NONE);
-        /* Since the handler is in the press event it needs to ignore the release event
-         * to not immediately close the menu on release
-         */
-        this.actor._desktopBackgroundManager.ignoreRelease();
-    }
-
     _addFileItemTo(fileItem, column, row, coordinatesAction) {
 
         let x = this._x + this._elementWidth * column + this._elementMarginH - this._minx;
@@ -234,9 +221,12 @@ var DesktopGrid = class {
         this._container.put(fileItem.actor, x, y);
         this._setGridUse(column, row, true);
         this._fileItems.push(fileItem);
-        let selectedId = fileItem.connect('selected', this._onFileItemSelected.bind(this));
-        let renameId = fileItem.connect('rename-clicked', this.doRename.bind(this));
-        this._fileItemHandlers.set(fileItem, [selectedId, renameId]);
+        fileItem.setCoordinates(x,
+                                y,
+                                this._elementWidth - 2 * this._elementMarginH,
+                                this._elementHeight - 2 * this._elementMarginV,
+                                this);
+        //let renameId = fileItem.connect('rename-clicked', this.doRename.bind(this));
 
         /* If this file is new in the Desktop and hasn't yet
          * fixed coordinates, store the new possition to ensure
@@ -304,32 +294,6 @@ var DesktopGrid = class {
         return [resColumn, resRow];
     }
 
-    removeFileItem(fileItem) {
-        let index = this._fileItems.indexOf(fileItem);
-        if (index > -1)
-            this._fileItems.splice(index, 1);
-        else
-            throw new Error('Error removing children from container');
-
-        let [column, row] = this._getPosOfFileItem(fileItem);
-        let placeholder = this.layout.get_child_at(column, row);
-        placeholder.child = null;
-        let [selectedId, renameId] = this._fileItemHandlers.get(fileItem);
-        fileItem.disconnect(selectedId);
-        fileItem.disconnect(renameId);
-        this._fileItemHandlers.delete(fileItem);
-    }
-
-
-    _onStageMotion(actor, event) {
-        if (this._drawingRubberBand) {
-            let [x, y] = event.get_coords();
-            this._updateRubberBand(x, y);
-            this._selectFromRubberband(x, y);
-        }
-        return false;
-    }
-
     _onPressButton(actor, event) {
         let button = event.get_button();
         let [x, y] = event.get_coords();
@@ -338,9 +302,9 @@ var DesktopGrid = class {
             let shiftPressed = !!(event.get_state() & Clutter.ModifierType.SHIFT_MASK);
             let controlPressed = !!(event.get_state() & Clutter.ModifierType.CONTROL_MASK);
             if (!shiftPressed && !controlPressed)
-                Extension.desktopManager.clearSelection();
+                this._desktopManager.clearSelection();
             let [gridX, gridY] = this._grid.get_transformed_position();
-            Extension.desktopManager.startRubberBand(x, y, gridX, gridY);
+            this._desktopManager.startRubberBand(x, y, gridX, gridY);
             return true;
         }
 
@@ -351,51 +315,6 @@ var DesktopGrid = class {
         }
 
         return false;
-    }
-
-    _addDesktopBackgroundMenu() {
-        //this.actor._desktopBackgroundMenu = this._createDesktopBackgroundMenu();
-    }
-
-    acceptDrop(source, actor, x, y, time) {
-        /* Coordinates are relative to the grid, we want to transform them to
-         * absolute coordinates to work across monitors */
-        let [gridX, gridY] = this.actor.get_transformed_position();
-        let [absoluteX, absoluteY] = [x + gridX, y + gridY];
-        return Extension.desktopManager.acceptDrop(absoluteX, absoluteY);
-    }
-
-    _getPosOfFileItem(itemToFind) {
-        if (itemToFind == null)
-            throw new Error('Error at _getPosOfFileItem: child cannot be null');
-
-        let found = false;
-        let column = 0;
-        let row = 0;
-        for (column = 0; column < this._maxColumns; column++) {
-            for (row = 0; row < this._maxRows; row++) {
-                let item = this.layout.get_child_at(column, row);
-                if (item.child && item.child._delegate.file.equal(itemToFind.file)) {
-                    found = true;
-                    break;
-                }
-            }
-
-            if (found)
-                break;
-        }
-
-        if (!found)
-            throw new Error('Position of file item was not found');
-
-        return [column, row];
-    }
-
-    _onFileItemSelected(fileItem, keepCurrentSelection, addToSelection) {
-    }
-
-    doRename(fileItem) {
-        this._renamePopup.onFileItemRenameClicked(fileItem);
     }
 };
 

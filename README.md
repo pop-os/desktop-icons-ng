@@ -11,9 +11,6 @@ Another Desktop Icons Extension for GNOME Shell.
 
 ## TO-DO
 
-* Fix vertical displacement of the icons
-* Click selection
-* Rubberband selection
 * Cut, Copy and Paste options in menu
 * Move to trash
 * Rename file

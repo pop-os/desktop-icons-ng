@@ -135,6 +135,14 @@ var FileItem = class {
         }
     }
 
+    setCoordinates(x, y, width, height, grid) {
+        this._x1 = x;
+        this._y1 = y;
+        this._x2 = x + width - 1;
+        this._y2 = y + height - 1;
+        this._grid = grid;
+    }
+
     _onDestroy() {
         /* Regular file data */
         if (this._setMetadataCancellable)
@@ -589,8 +597,9 @@ var FileItem = class {
     _onPressButton(actor, event) {
         let button = event.get_button()[1];
         if (button == 3) {
-            if (!this.isSelected)
-                this._setSelected(true, true);
+            if (!this.isSelected) {
+                this._desktopManager.selected(this, Enums.Selection.RIGHT_BUTTON);
+            }
             this._menu.popup_at_pointer(event);
             if (this._actionOpenWith) {
                 let allowOpenWith = (this._desktopManager.getNumberOfSelectedItems() == 1);
@@ -606,16 +615,17 @@ var FileItem = class {
             return true;
         } else if (button == 1) {
             if (event.get_event_type() == Gdk.EventType.BUTTON_PRESS) {
-                let [x, y] = event.get_coords();
+                let [a, x, y] = event.get_coords();
+                let state = event.get_state()[1];
                 this._primaryButtonPressed = true;
                 this._buttonPressInitialX = x;
                 this._buttonPressInitialY = y;
-                let shiftPressed = !!(event.get_state()[1] & Gdk.ModifierType.SHIFT_MASK);
-                let controlPressed = !!(event.get_state()[1] & Gdk.ModifierType.CONTROL_MASK);
+                let shiftPressed = !!(state & Gdk.ModifierType.SHIFT_MASK);
+                let controlPressed = !!(state & Gdk.ModifierType.CONTROL_MASK);
                 if (shiftPressed || controlPressed) {
-                    this._setSelected(!this.isSelected, true);
+                    this._desktopManager.selected(this, Enums.Selection.WITH_SHIFT);
                 } else {
-                    this._setSelected(true, false);
+                    this._desktopManager.selected(this, Enums.Selection.ALONE);
                 }
             }
             if ((event.get_event_type() == Gdk.EventType.DOUBLE_BUTTON_PRESS) && !Prefs.CLICK_POLICY_SINGLE)
@@ -626,12 +636,6 @@ var FileItem = class {
         return false;
     }
 
-    _setSelected(selected, keepOld) {
-        this._isSelected = selected;
-        this.emit('selected', selected, keepOld);
-        this._setSelectedStatus();
-    }
-
     _setSelectedStatus() {
         if (this._isSelected) {
             this._styleContext.add_class('diselected');
@@ -640,9 +644,23 @@ var FileItem = class {
         }
     }
 
-    setSelected(selected) {
-        this._isSelected = selected;
+    setSelected() {
+        this._isSelected = true;
         this._setSelectedStatus();
+    }
+
+    unsetSelected() {
+        this._isSelected = false;
+        this._setSelectedStatus();
+    }
+
+    toggleSelected() {
+        this._isSelected = !this._isSelected;
+        this._setSelectedStatus();
+    }
+
+    get isSelected() {
+        return this._isSelected;
     }
 
     _onReleaseButton(actor, event) {
@@ -656,7 +674,6 @@ var FileItem = class {
                 let controlPressed = !!(event.get_state()[1] & Gdk.ModifierType.CONTROL_MASK);
                 if (Prefs.CLICK_POLICY_SINGLE && !shiftPressed && !controlPressed)
                     this.doOpen();
-                this.emit('selected', shiftPressed || controlPressed, false, true);
                 return true;
             }
         }
@@ -665,11 +682,13 @@ var FileItem = class {
 
     _onEnter(actor, event) {
         this._styleContext.add_class('file-item-hover');
+        return false;
     }
 
     _onLeave(actor, event) {
         this._primaryButtonPressed = false;
         this._styleContext.remove_class('file-item-hover');
+        return false;
     }
 
     _onMotion(actor, event) {
@@ -688,6 +707,26 @@ var FileItem = class {
             }
         }
         return false;
+    }
+
+    startRubberband() {
+        this._rubberband = true;
+        this._touchedByRubberband = false;
+    }
+
+    endRubberband() {
+        this._rubberband = false;
+    }
+
+    updateRubberband(x1, y1, x2, y2) {
+        if ((x2 < this._x1) || (x1 > this._x2) || (y2 < this._y1) || (y1 > this._y2)) {
+            if (this._touchedByRubberband) {
+                this.unsetSelected();
+            }
+        } else {
+            this.setSelected();
+            this._touchedByRubberband = true;
+        }
     }
 
     get savedCoordinates() {

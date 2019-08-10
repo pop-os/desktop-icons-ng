@@ -33,6 +33,14 @@ var StoredCoordinates = {
     ASSIGN:2,
 };
 
+var Selection = {
+    ALONE: 0,
+    WITH_SHIFT: 1,
+    RIGHT_BUTTON: 2,
+    ENTER: 3,
+    LEAVE: 4
+};
+
 var DEFAULT_ATTRIBUTES = 'metadata::*,standard::*,access::*,time::modified,unix::mode';
 var TERMINAL_SCHEMA = 'org.gnome.desktop.default-applications.terminal';
 var SCHEMA_NAUTILUS = 'org.gnome.nautilus.preferences';
