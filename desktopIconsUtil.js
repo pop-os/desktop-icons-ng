@@ -22,11 +22,6 @@ const GLib = imports.gi.GLib;
 const Prefs = imports.prefs;
 const Enums = imports.enums;
 
-const TERMINAL_SCHEMA = 'org.gnome.desktop.default-applications.terminal';
-const EXEC_KEY = 'exec';
-
-var DEFAULT_ATTRIBUTES = 'metadata::*,standard::*,access::*,time::modified,unix::mode';
-
 function getDesktopDir() {
     let desktopPath = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DESKTOP);
     return Gio.File.new_for_commandline_arg(desktopPath);
@@ -37,8 +32,8 @@ function clamp(value, min, max) {
 };
 
 function launchTerminal(workdir) {
-    let terminalSettings = new Gio.Settings({ schema_id: TERMINAL_SCHEMA });
-    let exec = terminalSettings.get_string(EXEC_KEY);
+    let terminalSettings = new Gio.Settings({ schema_id: Enums.TERMINAL_SCHEMA });
+    let exec = terminalSettings.get_string(Enums.EXEC_KEY);
     let argv = [exec, `--working-directory=${workdir}`];
 
     /* The following code has been extracted from GNOME Shell's

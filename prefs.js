@@ -26,10 +26,6 @@ const GioSSS = Gio.SettingsSchemaSource;
 
 const Enums = imports.enums;
 
-const SCHEMA_NAUTILUS = 'org.gnome.nautilus.preferences';
-const SCHEMA_GTK = 'org.gtk.Settings.FileChooser';
-const SCHEMA = 'org.gnome.shell.extensions.adieu';
-
 const Gettext = imports.gettext;
 
 var _ = Gettext.domain('adieu').gettext;
@@ -55,9 +51,9 @@ function initTranslations() {
 function init(path) {
     extensionPath = path;
     let schemaSource = GioSSS.get_default();
-    let schemaGtk = schemaSource.lookup(SCHEMA_GTK, true);
+    let schemaGtk = schemaSource.lookup(Enums.SCHEMA_GTK, true);
     gtkSettings = new Gio.Settings({ settings_schema: schemaGtk });
-    let schemaObj = schemaSource.lookup(SCHEMA_NAUTILUS, true);
+    let schemaObj = schemaSource.lookup(Enums.SCHEMA_NAUTILUS, true);
     if (!schemaObj) {
         nautilusSettings = null;
     } else {
@@ -65,7 +61,7 @@ function init(path) {
         nautilusSettings.connect('changed', _onNautilusSettingsChanged);
         _onNautilusSettingsChanged();
     }
-    settings = get_schema(SCHEMA);
+    settings = get_schema(Enums.SCHEMA);
 }
 
 function get_schema(schema) {

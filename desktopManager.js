@@ -134,7 +134,7 @@ var DesktopManager = GObject.registerClass({
         let fileEnum;
         do {
             this._desktopFilesChanged = false;
-            fileEnum = desktopDir.enumerate_children(DesktopIconsUtil.DEFAULT_ATTRIBUTES,
+            fileEnum = desktopDir.enumerate_children(Enums.DEFAULT_ATTRIBUTES,
                                                      Gio.FileQueryInfoFlags.NONE,
                                                      null);
         } while(this._desktopFilesChanged);
@@ -143,7 +143,7 @@ var DesktopManager = GObject.registerClass({
         for (let [newFolder, extras] of DesktopIconsUtil.getExtraFolders()) {
             this._fileList.push(new FileItem.FileItem(this,
                                                       newFolder,
-                                                      newFolder.query_info(DesktopIconsUtil.DEFAULT_ATTRIBUTES, Gio.FileQueryInfoFlags.NONE, null),
+                                                      newFolder.query_info(Enums.DEFAULT_ATTRIBUTES, Gio.FileQueryInfoFlags.NONE, null),
                                                       extras,
                                                       this._scale));
         }
@@ -168,7 +168,7 @@ var DesktopManager = GObject.registerClass({
             for(let desktop of this._desktops) {
                 if (desktop.getDistance(itemX, itemY) == 0) {
                     addedToDesktop = true;
-                    desktop.addFileItemCloseTo(icon, itemX, itemY, DesktopGrid.StoredCoordinates.PRESERVE);
+                    desktop.addFileItemCloseTo(icon, itemX, itemY, Enums.StoredCoordinates.PRESERVE);
                     break;
                 }
             }
@@ -196,7 +196,7 @@ var DesktopManager = GObject.registerClass({
                 print("Not enough space to add icons");
                 break;
             } else {
-                newDesktop.addFileItemCloseTo(icon, itemX, itemY, DesktopGrid.StoredCoordinates.PRESERVE);
+                newDesktop.addFileItemCloseTo(icon, itemX, itemY, Enums.StoredCoordinates.PRESERVE);
             }
         }
         // Finally, assign those icons that still don't have coordinates
@@ -204,7 +204,7 @@ var DesktopManager = GObject.registerClass({
             for (let desktop of this._desktops) {
                 let distance = desktop.getDistance(0, 0);
                 if (distance != -1) {
-                    desktop.addFileItemCloseTo(icon, 0, 0, DesktopGrid.StoredCoordinates.ASSIGN);
+                    desktop.addFileItemCloseTo(icon, 0, 0, Enums.StoredCoordinates.ASSIGN);
                     break;
                 }
             }

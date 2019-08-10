@@ -21,6 +21,7 @@ const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
 
 const Prefs = imports.prefs;
+const Enums = imports.enums;
 const DesktopIconsUtil = imports.desktopIconsUtil;
 const Signals = imports.signals;
 
@@ -34,12 +35,6 @@ var UndoStatus = {
     NONE: 0,
     UNDO: 1,
     REDO: 2,
-};
-
-var StoredCoordinates = {
-    PRESERVE: 0,
-    OVERWRITE:1,
-    ASSIGN:2,
 };
 
 class Placeholder extends Gtk.Bin {
@@ -249,7 +244,7 @@ var DesktopGrid = class {
          * Also store the new possition if it has been moved by the user,
          * and not triggered by a screen change.
          */
-        if ((fileItem.savedCoordinates == null) || (coordinatesAction == StoredCoordinates.OVERWRITE)) {
+        if ((fileItem.savedCoordinates == null) || (coordinatesAction == Enums.StoredCoordinates.OVERWRITE)) {
             let fileX = this._x + Math.round((column * this._width) / this._maxColumns);
             let fileY = this._y + Math.round((row * this._height) / this._maxRows);
             fileItem.savedCoordinates = [fileX, fileY];
@@ -291,7 +286,7 @@ var DesktopGrid = class {
 
                 let proposedX = this._x + Math.round((column * this._width) / this._maxColumns);
                 let proposedY = this._y + Math.round((row * this._height) / this._maxRows);
-                if (coordinatesAction == StoredCoordinates.ASSIGN)
+                if (coordinatesAction == Enums.StoredCoordinates.ASSIGN)
                     return [column, row];
                 let distance = DesktopIconsUtil.distanceBetweenPoints(proposedX, proposedY, x, y);
                 if (distance < minDistance) {
