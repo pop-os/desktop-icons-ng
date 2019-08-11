@@ -58,10 +58,9 @@ var DesktopManager = GObject.registerClass({
         this._selectColor = DesktopIconsUtil.getGtkClassBackgroundColor('view', Gtk.StateFlags.SELECTED);
 
         let cssProviderSelection = new Gtk.CssProvider();
-        let style = '.diselected {\n    background-color: rgba(' +
-                    this._selectColor.red * 255 + ', ' +
-                    this._selectColor.green * 255 + ', ' +
-                    this._selectColor.blue * 255 + ', 0.6);\n}';
+        let style = `.desktop-icons-selected {
+    background-color: rgba(${this._selectColor.red * 255},${this._selectColor.green * 255}, ${this._selectColor.blue * 255}, 0.6);
+}`;
         cssProviderSelection.load_from_data(style);
         Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), cssProviderSelection, 600);
 

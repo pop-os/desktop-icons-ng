@@ -622,9 +622,9 @@ var FileItem = class {
 
     _setSelectedStatus() {
         if (this._isSelected) {
-            this._styleContext.add_class('diselected');
+            this._styleContext.add_class('desktop-icons-selected');
         } else {
-            this._styleContext.remove_class('diselected');
+            this._styleContext.remove_class('desktop-icons-selected');
         }
     }
 
