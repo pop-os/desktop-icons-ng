@@ -87,24 +87,6 @@ var DesktopGrid = class {
          return Math.pow(x - (this._x + this._width / 2), 2) + Math.pow(x - (this._y + this._height / 2), 2);
     }
 
-    _onOpenDesktopInFilesClicked() {
-        Gio.AppInfo.launch_default_for_uri_async(DesktopIconsUtil.getDesktopDir().get_uri(),
-            null, null,
-            (source, result) => {
-                try {
-                    Gio.AppInfo.launch_default_for_uri_finish(result);
-                } catch (e) {
-                   log('Error opening Desktop in Files: ' + e.message);
-                }
-            }
-        );
-    }
-
-    _onOpenTerminalClicked() {
-        let desktopPath = DesktopIconsUtil.getDesktopDir().get_path();
-        DesktopIconsUtil.launchTerminal(desktopPath);
-    }
-
     _addFileItemTo(fileItem, column, row, coordinatesAction) {
 
         let x = this._x + this._elementWidth * column + this._elementMarginH - this._minx;

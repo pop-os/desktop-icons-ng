@@ -176,16 +176,19 @@ var DesktopManager = GObject.registerClass({
     }
 
     _syncUndoRedo() {
-        print(DBusUtils.NautilusFileOperationsProxy.UndoStatus);
-        if (DBusUtils.NautilusFileOperationsProxy.UndoStatus == Enums.UndoStatus.UNDO) {
-            this._undoMenuItem.show();
-        } else {
-            this._undoMenuItem.hide();
-        }
-        if (DBusUtils.NautilusFileOperationsProxy.UndoStatus == Enums.UndoStatus.REDO) {
-            this._redoMenuItem.show();
-        } else {
-            this._redoMenuItem.hide();
+        switch (DBusUtils.NautilusFileOperationsProxy.UndoStatus) {
+            case Enums.UndoStatus.UNDO:
+                this._undoMenuItem.show();
+                this._redoMenuItem.hide();
+                break;
+            case Enums.UndoStatus.REDO:
+                this._undoMenuItem.hide();
+                this._redoMenuItem.show();
+                break;
+            default:
+                this._undoMenuItem.hide();
+                this._redoMenuItem.hide();
+                break;
         }
     }
 
@@ -194,6 +197,23 @@ var DesktopManager = GObject.registerClass({
             this._syncUndoRedo();
     }
 
+    _doUndo() {
+        DBusUtils.NautilusFileOperationsProxy.UndoRemote(
+            (result, error) => {
+                if (error)
+                    throw new Error('Error performing undo: ' + error.message);
+            }
+        );
+    }
+
+    _doRedo() {
+        DBusUtils.NautilusFileOperationsProxy.RedoRemote(
+            (result, error) => {
+                if (error)
+                    throw new Error('Error performing redo: ' + error.message);
+            }
+        );
+    }
 
     _onKeyPress(actor, event) {
         if (global.stage.get_key_focus() != actor)
@@ -250,11 +270,11 @@ var DesktopManager = GObject.registerClass({
         this._menu.add(this._pasteMenuItem);
 
         this._undoMenuItem = new Gtk.MenuItem({label: _("Undo")});
-        this._undoMenuItem.connect("activate", () => this._onUndoClicked());
+        this._undoMenuItem.connect("activate", () => this._doUndo());
         this._menu.add(this._undoMenuItem);
 
         this._redoMenuItem = new Gtk.MenuItem({label: _("Redo")});
-        this._redoMenuItem.connect("activate", () => this._onRedoClicked());
+        this._redoMenuItem.connect("activate", () => this._doRedo());
         this._menu.add(this._redoMenuItem);
 
         this._menu.add(new Gtk.SeparatorMenuItem());
@@ -284,6 +304,24 @@ var DesktopManager = GObject.registerClass({
         this._settingsMenuItem.connect("activate", () => this._Clicked());
         this._menu.add(this._MenuItem);*/
 
+    }
+
+    _onOpenDesktopInFilesClicked() {
+        Gio.AppInfo.launch_default_for_uri_async(DesktopIconsUtil.getDesktopDir().get_uri(),
+            null, null,
+            (source, result) => {
+                try {
+                    Gio.AppInfo.launch_default_for_uri_finish(result);
+                } catch (e) {
+                   log('Error opening Desktop in Files: ' + e.message);
+                }
+            }
+        );
+    }
+
+    _onOpenTerminalClicked() {
+        let desktopPath = DesktopIconsUtil.getDesktopDir().get_path();
+        DesktopIconsUtil.launchTerminal(desktopPath);
     }
 
     _doPaste() {
