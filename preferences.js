@@ -79,7 +79,9 @@ function get_schema(schema) {
 
 function showPreferences() {
 
-    let window = new Gtk.Dialog({use_header_bar: true, deletable: false});
+    let window = new Gtk.Dialog({use_header_bar: true,
+                                 deletable: false,
+                                 window_position: Gtk.WindowPosition.CENTER});
     window.add_button(_("OK"), Gtk.ResponseType.OK);
     window.set_title(_("Settings"));
     let frame = window.get_content_area();

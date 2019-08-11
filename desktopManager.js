@@ -569,11 +569,15 @@ var DesktopManager = GObject.registerClass({
         Gtk.main_quit();
     }
 
-    _getCurrentSelection() {
+    _getCurrentSelection(getUri) {
         let listToTrash = [];
         for(let fileItem of this._fileList) {
             if (fileItem.isSelected) {
-                listToTrash.push(fileItem.file.get_uri());
+                if (getUri) {
+                    listToTrash.push(fileItem.file.get_uri());
+                } else {
+                    listToTrash.push(fileItem);
+                }
             }
         }
         if (listToTrash.length != 0) {
@@ -584,7 +588,7 @@ var DesktopManager = GObject.registerClass({
     }
 
     _getClipboardText(isCopy) {
-        let selection = this._getCurrentSelection();
+        let selection = this._getCurrentSelection(true);
         if (selection) {
             let atom = Gdk.Atom.intern('CLIPBOARD', false);
             let clipboard = Gtk.Clipboard.get(atom);
@@ -605,7 +609,7 @@ var DesktopManager = GObject.registerClass({
     }
 
     doTrash() {
-        let selection = this._getCurrentSelection();
+        let selection = this._getCurrentSelection(true);
         if (selection) {
             DBusUtils.NautilusFileOperationsProxy.TrashFilesRemote(selection,
                 (source, error) => {
@@ -653,6 +657,30 @@ var DesktopManager = GObject.registerClass({
                         throw new Error('Error renaming file: ' + error.message);
                 }
             );
+        }
+    }
+
+    doOpenWith() {
+        let fileItems = this._getCurrentSelection(false);
+        if (fileItems) {
+            let mimetype = Gio.content_type_guess(fileItems[0].fileName, null)[0];
+            let chooser = Gtk.AppChooserDialog.new_for_content_type(this._window,
+                                                                    Gtk.DialogFlags.MODAL + Gtk.DialogFlags.USE_HEADER_BAR,
+                                                                    mimetype);
+            chooser.show_all();
+            let retval = chooser.run();
+            chooser.hide();
+            if (retval == Gtk.ResponseType.OK) {
+                let appInfo = chooser.get_app_info();
+                if (appInfo) {
+                    let fileList = [];
+                    for (let item of fileItems) {
+                        fileList.push(item.file);
+                    }
+                    appInfo.launch(fileList, null);
+                }
+            }
+
         }
     }
 

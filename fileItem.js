@@ -509,9 +509,6 @@ var FileItem = class {
         return !this.trustedDesktopFile && this._fileExtra == Enums.FileType.NONE;
     }
 
-    _doOpenWith() {
-        DBusUtils.openFileWithOtherApplication(this.file.get_path());
-    }
 
     _createMenu() {
         this._menu = new Gtk.Menu();
@@ -522,7 +519,7 @@ var FileItem = class {
         case Enums.FileType.NONE:
             if (!this._isDirectory) {
                 this._actionOpenWith = new Gtk.MenuItem({label: _('Open With Other Application')});
-                this._actionOpenWith.connect('activate', () => this._doOpenWith());
+                this._actionOpenWith.connect('activate', () => this._desktopManager.doOpenWith());
                 this._menu.add(this._actionOpenWith);
             } else {
                 this._actionOpenWith = null;
@@ -586,7 +583,7 @@ var FileItem = class {
             }
             this._menu.popup_at_pointer(event);
             if (this._actionOpenWith) {
-                let allowOpenWith = (this._desktopManager.getNumberOfSelectedItems() == 1);
+                let allowOpenWith = (this._desktopManager.getNumberOfSelectedItems() > 0);
                 this._actionOpenWith.set_sensitive(allowOpenWith);
             }
             let allowCutCopyTrash = this._desktopManager.checkIfSpecialFilesAreSelected();
