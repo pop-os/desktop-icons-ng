@@ -1,4 +1,4 @@
-/* Desktop Icons GNOME Shell extension
+/* ADIEU: Another Desktop Icons Extension for GNOME Shell
  *
  * Copyright (C) 2019 Sergio Costas (rastersoft@gmail.com)
  * Based on code original (C) Carlos Soriano

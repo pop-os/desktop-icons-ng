@@ -1,6 +1,7 @@
-/* Desktop Icons GNOME Shell extension
+/* ADIEU: Another Desktop Icons Extension for GNOME Shell
  *
- * Copyright (C) 2017 Carlos Soriano <csoriano@redhat.com>
+ * Copyright (C) 2019 Sergio Costas (rastersoft@gmail.com)
+ * Based on code original (C) Carlos Soriano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -317,87 +318,3 @@ var DesktopGrid = class {
         return false;
     }
 };
-
-var RenamePopup = class {
-
-    constructor(grid) {
-        this._source = null;
-        this._isOpen = false;
-
-        this._renameEntry = new St.Entry({ hint_text: _("Enter file name…"),
-                                           can_focus: true,
-                                           x_expand: true });
-        this._renameEntry.clutter_text.connect('activate', this._onRenameAccepted.bind(this));
-        this._renameOkButton= new St.Button({ label: _("OK"),
-                                              style_class: 'app-view-control button',
-                                              button_mask: St.ButtonMask.ONE | St.ButtonMask.THREE,
-                                              reactive: true,
-                                              can_focus: true,
-                                              x_expand: true });
-        this._renameCancelButton = new St.Button({ label: _("Cancel"),
-                                                   style_class: 'app-view-control button',
-                                                   button_mask: St.ButtonMask.ONE | St.ButtonMask.THREE,
-                                                   reactive: true,
-                                                   can_focus: true,
-                                                   x_expand: true });
-        this._renameCancelButton.connect('clicked', () => { this._onRenameCanceled(); });
-        this._renameOkButton.connect('clicked', () => { this._onRenameAccepted(); });
-        let renameButtonsBoxLayout = new Clutter.BoxLayout({ homogeneous: true });
-        let renameButtonsBox = new St.Widget({ layout_manager: renameButtonsBoxLayout,
-                                               x_expand: true });
-        renameButtonsBox.add_child(this._renameCancelButton);
-        renameButtonsBox.add_child(this._renameOkButton);
-
-        let renameContentLayout = new Clutter.BoxLayout({ spacing: 6,
-                                                          orientation: Clutter.Orientation.VERTICAL });
-        let renameContent = new St.Widget({ style_class: 'rename-popup',
-                                            layout_manager: renameContentLayout,
-                                            x_expand: true });
-        renameContent.add_child(this._renameEntry);
-        renameContent.add_child(renameButtonsBox);
-
-        this._boxPointer = new BoxPointer.BoxPointer(St.Side.TOP, { can_focus: false, x_expand: false });
-        this.actor = this._boxPointer.actor;
-        this.actor.style_class = 'popup-menu-boxpointer';
-        this.actor.add_style_class_name('popup-menu');
-        this.actor.visible = false;
-        this._boxPointer.bin.set_child(renameContent);
-
-    }
-
-    _popup() {
-
-        this.emit('open-state-changed', true);
-    }
-
-    _popdown() {
-        this.emit('open-state-changed', false);
-    }
-
-    onFileItemRenameClicked(fileItem) {
-        this._source = fileItem;
-
-        this._renameEntry.text = fileItem.displayName;
-
-        this._popup();
-        this._renameEntry.navigate_focus(null, Gtk.DirectionType.TAB_FORWARD, false);
-        let extensionOffset = DesktopIconsUtil.getFileExtensionOffset(fileItem.displayName, fileItem.isDirectory);
-        this._renameEntry.clutter_text.set_selection(0, extensionOffset);
-    }
-
-    _onRenameAccepted() {
-        this._popdown();
-        DBusUtils.NautilusFileOperationsProxy.RenameFileRemote(this._source.file.get_uri(),
-                                                               this._renameEntry.get_text(),
-            (result, error) => {
-                if (error)
-                    throw new Error('Error renaming file: ' + error.message);
-            }
-        );
-    }
-
-    _onRenameCanceled() {
-        this._popdown();
-    }
-};
-Signals.addSignalMethods(RenamePopup.prototype);
