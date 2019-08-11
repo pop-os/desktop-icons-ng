@@ -39,16 +39,6 @@ var settings;
 // This is already in Nautilus settings, so it should not be made tweakable here
 var CLICK_POLICY_SINGLE = false;
 
-function initTranslations() {
-    let extension = imports.misc.extensionUtils.getCurrentExtension();
-
-    let localedir = extension.dir.get_child('locale');
-    if (localedir.query_exists(null))
-        Gettext.bindtextdomain('adieu', localedir.get_path());
-    else
-        Gettext.bindtextdomain('adieu', Config.LOCALEDIR);
-}
-
 function init(path) {
     extensionPath = path;
     let schemaSource = GioSSS.get_default();
@@ -87,15 +77,22 @@ function get_schema(schema) {
     return new Gio.Settings({ settings_schema: schemaObj });
 }
 
-function buildPrefsWidget() {
-    initTranslations();
-    let frame = new Gtk.Box({ orientation: Gtk.Orientation.VERTICAL, border_width: 10, spacing: 10 });
+function showPreferences() {
+
+    let window = new Gtk.Dialog({use_header_bar: true, deletable: false});
+    window.add_button(_("OK"), Gtk.ResponseType.OK);
+    window.set_title(_("Settings"));
+    let frame = window.get_content_area();
+    frame.set_spacing(10);
+    frame.set_border_width(10);
 
     frame.add(buildSelector('icon-size', _("Size for the desktop icons"), { 'small': _("Small"), 'standard': _("Standard"), 'large': _("Large") }));
     frame.add(buildSwitcher('show-home', _("Show the personal folder in the desktop")));
     frame.add(buildSwitcher('show-trash', _("Show the trash icon in the desktop")));
-    frame.show_all();
-    return frame;
+    window.show_all();
+    window.run();
+    window.hide();
+    window.destroy();
 }
 
 function buildSwitcher(key, labelText) {

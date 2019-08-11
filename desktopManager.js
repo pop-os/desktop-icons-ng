@@ -26,7 +26,7 @@ const Gio = imports.gi.Gio;
 const FileItem = imports.fileItem;
 const DesktopGrid = imports.desktopGrid;
 const DesktopIconsUtil = imports.desktopIconsUtil;
-const Prefs = imports.prefs;
+const Prefs = imports.preferences;
 const Enums = imports.enums;
 const DBusUtils = imports.dbusUtils;
 const AskNamePopup = imports.askNamePopup;
@@ -286,24 +286,23 @@ var DesktopManager = GObject.registerClass({
         this._openTerminalMenuItem = new Gtk.MenuItem({label: _("Open in Terminal")});
         this._openTerminalMenuItem.connect("activate", () => this._onOpenTerminalClicked());
         this._menu.add(this._openTerminalMenuItem);
-        this._menu.show_all();
-
-        /*this._menu.add(new Gtk.SeparatorMenuItem());
-
-        this._changeBackgroundMenuItem = new Gtk.MenuItem({label: _("Change Background…")});
-        this._changeBackgroundMenuItem.connect("activate", () => 'gnome-background-panel.desktop');
-        this._menu.add(this._changeBackgroundMenuItem);
 
         this._menu.add(new Gtk.SeparatorMenuItem());
 
+        /*this._changeBackgroundMenuItem = new Gtk.MenuItem({label: _("Change Background…")});
+        this._changeBackgroundMenuItem.connect("activate", () => {'gnome-background-panel.desktop'});
+        this._menu.add(this._changeBackgroundMenuItem);*/
+
+        /*this._menu.add(new Gtk.SeparatorMenuItem());
+
         this._displaySettingsMenuItem = new Gtk.MenuItem({label: _("Display Settings")});
         this._displaySettingsMenuItem.connect("activate", () => 'gnome-display-panel.desktop');
-        this._menu.add(this._displaySettingsMenuItem);
+        this._menu.add(this._displaySettingsMenuItem);*/
 
         this._settingsMenuItem = new Gtk.MenuItem({label: _("Settings")});
-        this._settingsMenuItem.connect("activate", () => this._Clicked());
-        this._menu.add(this._MenuItem);*/
-
+        this._settingsMenuItem.connect("activate", () => Prefs.showPreferences());
+        this._menu.add(this._settingsMenuItem);
+        this._menu.show_all();
     }
 
     _onOpenDesktopInFilesClicked() {

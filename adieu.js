@@ -74,7 +74,7 @@ for(let arg of ARGV) {
 
 imports.searchPath.unshift(codePath);
 
-const Prefs = imports.prefs;
+const Prefs = imports.preferences;
 const Gettext = imports.gettext;
 
 Gettext.bindtextdomain("adieu", GLib.build_filenamev([codePath, "locale"]));

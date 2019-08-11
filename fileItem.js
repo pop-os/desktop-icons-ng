@@ -26,7 +26,7 @@ const GdkPixbuf = imports.gi.GdkPixbuf;
 const GnomeDesktop = imports.gi.GnomeDesktop;
 const DesktopIconsUtil = imports.desktopIconsUtil;
 
-const Prefs = imports.prefs;
+const Prefs = imports.preferences;
 const Enums = imports.enums;
 const DBusUtils = imports.dbusUtils;
 

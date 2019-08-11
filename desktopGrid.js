@@ -21,7 +21,7 @@ const Gtk = imports.gi.Gtk;
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
 
-const Prefs = imports.prefs;
+const Prefs = imports.preferences;
 const Enums = imports.enums;
 const DesktopIconsUtil = imports.desktopIconsUtil;
 const Signals = imports.signals;
