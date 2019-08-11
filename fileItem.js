@@ -67,7 +67,8 @@ var FileItem = class {
         let iconContainer = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL});
         this._container.pack_start(iconContainer, false, false, 0);
         iconContainer.set_size_request(Prefs.get_desired_width(this._scaleFactor), Prefs.get_icon_size(this._scaleFactor));
-        iconContainer.pack_start(this._icon, false, true, 0);
+        iconContainer.pack_start(this._icon, true, true, 0);
+        iconContainer.set_baseline_position(Gtk.BaselinePosition.CENTER);
 
         this._label = new Gtk.Label({label: fileInfo.get_display_name()});
         let labelStyleContext = this._label.get_style_context();
