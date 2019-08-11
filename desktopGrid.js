@@ -31,13 +31,6 @@ const Gettext = imports.gettext.domain('adieu');
 const _ = Gettext.gettext;
 
 
-/* From NautilusFileUndoManagerState */
-var UndoStatus = {
-    NONE: 0,
-    UNDO: 1,
-    REDO: 2,
-};
-
 var elementSpacing = 4;
 
 var DesktopGrid = class {
@@ -75,7 +68,7 @@ var DesktopGrid = class {
          *
          * @Returns: -1 if there is no free space for new icons;
          *            0 if the coordinates are inside this grid;
-         *            the distance to the middle point, if none of the previous
+         *            or the distance to the middle point, if none of the previous
          */
 
          let isFree = false;
@@ -94,48 +87,6 @@ var DesktopGrid = class {
          return Math.pow(x - (this._x + this._width / 2), 2) + Math.pow(x - (this._y + this._height / 2), 2);
     }
 
-    _onKeyPress(actor, event) {
-        if (global.stage.get_key_focus() != actor)
-            return false;
-
-        let symbol = event.get_key_symbol();
-        let isCtrl = (event.get_state() & Clutter.ModifierType.CONTROL_MASK) != 0;
-        let isShift = (event.get_state() & Clutter.ModifierType.SHIFT_MASK) != 0;
-        if (isCtrl && isShift && [Clutter.Z, Clutter.z].indexOf(symbol) > -1) {
-            this._doRedo();
-            return true;
-        }
-        else if (isCtrl && [Clutter.Z, Clutter.z].indexOf(symbol) > -1) {
-            this._doUndo();
-            return true;
-        }
-        else if (isCtrl && [Clutter.C, Clutter.c].indexOf(symbol) > -1) {
-            this._desktopManager.doCopy();
-            return true;
-        }
-        else if (isCtrl && [Clutter.X, Clutter.x].indexOf(symbol) > -1) {
-            this._desktopManager.doCut();
-            return true;
-        }
-        else if (isCtrl && [Clutter.V, Clutter.v].indexOf(symbol) > -1) {
-            this._doPaste();
-            return true;
-        }
-        else if (symbol == Clutter.Return) {
-            this._desktopManager.doOpen();
-            return true;
-        }
-        else if (symbol == Clutter.Delete) {
-            this._desktopManager.doTrash();
-            return true;
-        } else if (symbol == Clutter.F2) {
-            // Support renaming other grids file items.
-            this._desktopManager.doRename();
-            return true;
-        }
-        return false;
-    }
-
     _onOpenDesktopInFilesClicked() {
         Gio.AppInfo.launch_default_for_uri_async(DesktopIconsUtil.getDesktopDir().get_uri(),
             null, null,
@@ -152,61 +103,6 @@ var DesktopGrid = class {
     _onOpenTerminalClicked() {
         let desktopPath = DesktopIconsUtil.getDesktopDir().get_path();
         DesktopIconsUtil.launchTerminal(desktopPath);
-    }
-
-    _syncUndoRedo() {
-        this._undoMenuItem.actor.visible = DBusUtils.NautilusFileOperationsProxy.UndoStatus == UndoStatus.UNDO;
-        this._redoMenuItem.actor.visible = DBusUtils.NautilusFileOperationsProxy.UndoStatus == UndoStatus.REDO;
-    }
-
-    _undoStatusChanged(proxy, properties, test) {
-        if ('UndoStatus' in properties.deep_unpack())
-            this._syncUndoRedo();
-    }
-
-    _createDesktopBackgroundMenu() {
-        /*let menu = new PopupMenu.PopupMenu(Main.layoutManager.dummyCursor,
-                                           0, St.Side.TOP);
-        menu.addAction(_("New Folder"), () => this._onNewFolderClicked());
-        menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-        this._pasteMenuItem = menu.addAction(_("Paste"), () => this._onPasteClicked());
-        this._undoMenuItem = menu.addAction(_("Undo"), () => this._onUndoClicked());
-        this._redoMenuItem = menu.addAction(_("Redo"), () => this._onRedoClicked());
-        menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-        menu.addAction(_("Show Desktop in Files"), () => this._onOpenDesktopInFilesClicked());
-        menu.addAction(_("Open in Terminal"), () => this._onOpenTerminalClicked());
-        menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-        menu.addSettingsAction(_("Change Background…"), 'gnome-background-panel.desktop');
-        menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-        menu.addSettingsAction(_("Display Settings"), 'gnome-display-panel.desktop');
-        menu.addSettingsAction(_("Settings"), 'gnome-control-center.desktop');
-
-        menu.actor.add_style_class_name('background-menu');
-
-        Main.layoutManager.uiGroup.add_child(menu.actor);
-        menu.actor.hide();
-
-        menu._propertiesChangedId = DBusUtils.NautilusFileOperationsProxy.connect('g-properties-changed',
-            this._undoStatusChanged.bind(this));
-        this._syncUndoRedo();
-
-        menu.connect('destroy',
-            () => DBusUtils.NautilusFileOperationsProxy.disconnect(menu._propertiesChangedId));
-        menu.connect('open-state-changed',
-            (popupm, isOpen) => {
-                if (isOpen) {
-                    Clipboard.get_text(CLIPBOARD_TYPE,
-                        (clipBoard, text) => {
-                            let [valid, is_cut, files] = this._parseClipboardText(text);
-                            this._pasteMenuItem.setSensitive(valid);
-                        }
-                    );
-                }
-            }
-        );
-        this._pasteMenuItem.setSensitive(false);
-
-        return menu;*/
     }
 
     _addFileItemTo(fileItem, column, row, coordinatesAction) {

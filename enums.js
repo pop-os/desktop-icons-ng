@@ -41,6 +41,13 @@ var Selection = {
     LEAVE: 4
 };
 
+/* From NautilusFileUndoManagerState */
+var UndoStatus = {
+    NONE: 0,
+    UNDO: 1,
+    REDO: 2,
+};
+
 var DEFAULT_ATTRIBUTES = 'metadata::*,standard::*,access::*,time::modified,unix::mode';
 var TERMINAL_SCHEMA = 'org.gnome.desktop.default-applications.terminal';
 var SCHEMA_NAUTILUS = 'org.gnome.nautilus.preferences';

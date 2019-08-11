@@ -138,6 +138,8 @@ var DesktopManager = GObject.registerClass({
         this._eventBox.connect('button-press-event', (actor, event) => this._onPressButton(actor, event));
         this._eventBox.connect('motion-notify-event', (actor, event) => this._onMotion(actor, event));
         this._eventBox.connect('button-release-event', (actor, event) => this._onReleaseButton(actor, event));
+        this._createDesktopBackgroundMenu();
+        DBusUtils.NautilusFileOperationsProxy.connect('g-properties-changed', this._undoStatusChanged.bind(this));
         this._fileList = [];
         this._readFileList();
     }
@@ -160,10 +162,179 @@ var DesktopManager = GObject.registerClass({
         }
 
         if (button == 3) {
-            this._openMenu(x, y);
+            this._menu.popup_at_pointer(event);
+            this._syncUndoRedo();
+            let atom = Gdk.Atom.intern('CLIPBOARD', false);
+            let clipboard = Gtk.Clipboard.get(atom);
+            clipboard.request_text((clipboard, text) => {
+                let [valid, is_cut, files] = this._parseClipboardText(text);
+                this._pasteMenuItem.set_sensitive(valid);
+            });
         }
 
         return false;
+    }
+
+    _syncUndoRedo() {
+        print(DBusUtils.NautilusFileOperationsProxy.UndoStatus);
+        if (DBusUtils.NautilusFileOperationsProxy.UndoStatus == Enums.UndoStatus.UNDO) {
+            this._undoMenuItem.show();
+        } else {
+            this._undoMenuItem.hide();
+        }
+        if (DBusUtils.NautilusFileOperationsProxy.UndoStatus == Enums.UndoStatus.REDO) {
+            this._redoMenuItem.show();
+        } else {
+            this._redoMenuItem.hide();
+        }
+    }
+
+    _undoStatusChanged(proxy, properties, test) {
+        if ('UndoStatus' in properties.deep_unpack())
+            this._syncUndoRedo();
+    }
+
+
+    _onKeyPress(actor, event) {
+        if (global.stage.get_key_focus() != actor)
+            return false;
+
+        let symbol = event.get_key_symbol();
+        let isCtrl = (event.get_state() & Clutter.ModifierType.CONTROL_MASK) != 0;
+        let isShift = (event.get_state() & Clutter.ModifierType.SHIFT_MASK) != 0;
+        if (isCtrl && isShift && [Clutter.Z, Clutter.z].indexOf(symbol) > -1) {
+            this._doRedo();
+            return true;
+        }
+        else if (isCtrl && [Clutter.Z, Clutter.z].indexOf(symbol) > -1) {
+            this._doUndo();
+            return true;
+        }
+        else if (isCtrl && [Clutter.C, Clutter.c].indexOf(symbol) > -1) {
+            this._desktopManager.doCopy();
+            return true;
+        }
+        else if (isCtrl && [Clutter.X, Clutter.x].indexOf(symbol) > -1) {
+            this._desktopManager.doCut();
+            return true;
+        }
+        else if (isCtrl && [Clutter.V, Clutter.v].indexOf(symbol) > -1) {
+            this._doPaste();
+            return true;
+        }
+        else if (symbol == Clutter.Return) {
+            this._desktopManager.doOpen();
+            return true;
+        }
+        else if (symbol == Clutter.Delete) {
+            this._desktopManager.doTrash();
+            return true;
+        } else if (symbol == Clutter.F2) {
+            // Support renaming other grids file items.
+            this._desktopManager.doRename();
+            return true;
+        }
+        return false;
+    }
+
+    _createDesktopBackgroundMenu() {
+        this._menu = new Gtk.Menu();
+        let newFolder = new Gtk.MenuItem({label: _("New Folder")});
+        newFolder.connect("activate", () => this._newFolder());
+        this._menu.add(newFolder);
+
+        this._menu.add(new Gtk.SeparatorMenuItem());
+
+        this._pasteMenuItem = new Gtk.MenuItem({label: _("Paste")});
+        this._pasteMenuItem.connect("activate", () => this._doPaste());
+        this._menu.add(this._pasteMenuItem);
+
+        this._undoMenuItem = new Gtk.MenuItem({label: _("Undo")});
+        this._undoMenuItem.connect("activate", () => this._onUndoClicked());
+        this._menu.add(this._undoMenuItem);
+
+        this._redoMenuItem = new Gtk.MenuItem({label: _("Redo")});
+        this._redoMenuItem.connect("activate", () => this._onRedoClicked());
+        this._menu.add(this._redoMenuItem);
+
+        this._menu.add(new Gtk.SeparatorMenuItem());
+
+        this._showDesktopInFilesMenuItem = new Gtk.MenuItem({label: _("Show Desktop in Files")});
+        this._showDesktopInFilesMenuItem.connect("activate", () => this._onOpenDesktopInFilesClicked());
+        this._menu.add(this._showDesktopInFilesMenuItem);
+
+        this._openTerminalMenuItem = new Gtk.MenuItem({label: _("Open in Terminal")});
+        this._openTerminalMenuItem.connect("activate", () => this._onOpenTerminalClicked());
+        this._menu.add(this._openTerminalMenuItem);
+        this._menu.show_all();
+
+        /*this._menu.add(new Gtk.SeparatorMenuItem());
+
+        this._changeBackgroundMenuItem = new Gtk.MenuItem({label: _("Change Background…")});
+        this._changeBackgroundMenuItem.connect("activate", () => 'gnome-background-panel.desktop');
+        this._menu.add(this._changeBackgroundMenuItem);
+
+        this._menu.add(new Gtk.SeparatorMenuItem());
+
+        this._displaySettingsMenuItem = new Gtk.MenuItem({label: _("Display Settings")});
+        this._displaySettingsMenuItem.connect("activate", () => 'gnome-display-panel.desktop');
+        this._menu.add(this._displaySettingsMenuItem);
+
+        this._settingsMenuItem = new Gtk.MenuItem({label: _("Settings")});
+        this._settingsMenuItem.connect("activate", () => this._Clicked());
+        this._menu.add(this._MenuItem);*/
+
+    }
+
+    _doPaste() {
+        let atom = Gdk.Atom.intern('CLIPBOARD', false);
+        let clipboard = Gtk.Clipboard.get(atom);
+        clipboard.request_text((clipboard, text) => {
+            let [valid, is_cut, files] = this._parseClipboardText(text);
+            if (!valid) {
+                return;
+            }
+
+            let desktopDir = DesktopIconsUtil.getDesktopDir().get_uri();
+            if (is_cut) {
+                DBusUtils.NautilusFileOperationsProxy.MoveURIsRemote(files, desktopDir,
+                    (result, error) => {
+                        if (error)
+                            throw new Error('Error moving files: ' + error.message);
+                    }
+                );
+            } else {
+                DBusUtils.NautilusFileOperationsProxy.CopyURIsRemote(files, desktopDir,
+                    (result, error) => {
+                        if (error)
+                            throw new Error('Error copying files: ' + error.message);
+                    }
+                );
+            }
+        });
+    }
+
+    _parseClipboardText(text) {
+        if (text === null)
+            return [false, false, null];
+
+        let lines = text.split('\n');
+        let [mime, action, ...files] = lines;
+
+        if (mime != 'x-special/nautilus-clipboard')
+            return [false, false, null];
+
+        if (!(['copy', 'cut'].includes(action)))
+            return [false, false, null];
+        let isCut = action == 'cut';
+
+        /* Last line is empty due to the split */
+        if (files.length <= 1)
+            return [false, false, null];
+        /* Remove last line */
+        files.pop();
+
+        return [true, isCut, files];
     }
 
     _onMotion(actor, event) {
