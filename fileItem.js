@@ -69,7 +69,7 @@ var FileItem = class {
         iconContainer.set_size_request(Prefs.get_desired_width(this._scaleFactor), Prefs.get_icon_size(this._scaleFactor));
         iconContainer.pack_start(this._icon, false, true, 0);
 
-        this._label = new Gtk.Label({label: this._file.get_basename()});
+        this._label = new Gtk.Label({label: fileInfo.get_display_name()});
         let labelStyleContext = this._label.get_style_context();
         labelStyleContext.add_class('file-label');
 
