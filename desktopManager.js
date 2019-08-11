@@ -69,6 +69,8 @@ var DesktopManager = GObject.registerClass({
         this._window.set_resizable(false);
         this._window.set_decorated(false);
         this._window.set_deletable(false);
+        // Do not destroy window when closing
+        this._window.connect('delete-event', () => {return true;});
 
         // this only works on X11, so... let's keep uniformity :-)
         //this._window.set_keep_below(true);
