@@ -589,13 +589,13 @@ var FileItem = class {
                 let allowOpenWith = (this._desktopManager.getNumberOfSelectedItems() == 1);
                 this._actionOpenWith.set_sensitive(allowOpenWith);
             }
-            let specialFilesSelected = this._desktopManager.checkIfSpecialFilesAreSelected();
+            let allowCutCopyTrash = this._desktopManager.checkIfSpecialFilesAreSelected();
             if (this._actionCut)
-                this._actionCut.set_sensitive(!specialFilesSelected);
+                this._actionCut.set_sensitive(!allowCutCopyTrash);
             if (this._actionCopy)
-                this._actionCopy.set_sensitive(!specialFilesSelected);
+                this._actionCopy.set_sensitive(!allowCutCopyTrash);
             if (this._actionTrash)
-                this._actionTrash.set_sensitive(!specialFilesSelected);
+                this._actionTrash.set_sensitive(!allowCutCopyTrash);
             return true;
         } else if (button == 1) {
             if (event.get_event_type() == Gdk.EventType.BUTTON_PRESS) {

@@ -201,7 +201,15 @@ var DesktopManager = GObject.registerClass({
             fileItem.toggleSelected();
             break;
         case Enums.Selection.RIGHT_BUTTON:
-            fileItem.setSelected();
+            if (!fileItem.isSelected) {
+                for(let item of this._fileList) {
+                    if (item === fileItem) {
+                        item.setSelected();
+                    } else {
+                        item.unsetSelected();
+                    }
+                }
+            }
             break;
         case Enums.Selection.ENTER:
             if (this._rubberband) {
