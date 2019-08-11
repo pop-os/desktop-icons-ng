@@ -62,7 +62,7 @@ function get_schema(schema) {
     // otherwise assume that extension has been installed in the
     // same prefix as gnome-shell (and therefore schemas are available
     // in the standard folders)
-    let schemaDir = Gio.File.new_for_path(extensionPath + '/schemas');
+    let schemaDir = Gio.File.new_for_path(GLib.build_filenamev([extensionPath, '../../../glib-2.0/schemas']));
     let schemaSource;
     if (schemaDir.query_exists(null)) {
         schemaSource = GioSSS.new_from_directory(schemaDir.get_path(), GioSSS.get_default(), false);

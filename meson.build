@@ -23,7 +23,7 @@ install_data([
     'extension.js',
     'fileItem.js',
     'metadata.json',
-    'prefs.js',
+    'preferences.js',
     'stylesheet.css'
   ],
   install_dir: extensions_dir

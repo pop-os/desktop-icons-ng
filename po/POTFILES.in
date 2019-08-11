@@ -1,6 +1,6 @@
 #createFolderDialog.js
 extension.js
-prefs.js
+preferences.js
 desktopGrid.js
 desktopIconsUtil.js
 fileItem.js
