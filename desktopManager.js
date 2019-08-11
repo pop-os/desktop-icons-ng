@@ -29,6 +29,11 @@ const DesktopIconsUtil = imports.desktopIconsUtil;
 const Prefs = imports.prefs;
 const Enums = imports.enums;
 const DBusUtils = imports.dbusUtils;
+const AskNamePopup = imports.askNamePopup;
+
+const Gettext = imports.gettext.domain('adieu');
+
+const _ = Gettext.gettext;
 
 var DesktopManager = GObject.registerClass({
     Properties: {
@@ -417,5 +422,19 @@ var DesktopManager = GObject.registerClass({
             }
         }
         return count;
+    }
+
+    doRename(fileitem) {
+        let renameWindow = new AskNamePopup.AskNamePopup(fileitem.fileName, _("Rename"), this._window);
+        let newName = renameWindow.run();
+        if (newName) {
+            DBusUtils.NautilusFileOperationsProxy.RenameFileRemote(fileitem.file.get_uri(),
+                                                                   newName,
+            (result, error) => {
+                if (error)
+                    throw new Error('Error renaming file: ' + error.message);
+            }
+        );
+        }
     }
 });

@@ -397,7 +397,7 @@ var FileItem = class {
             return;
         }
 
-        this.emit('rename-clicked');
+        this._desktopManager.doRename(this);
     }
 
     doOpen() {
