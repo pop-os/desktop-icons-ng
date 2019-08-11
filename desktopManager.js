@@ -603,7 +603,7 @@ var DesktopManager = GObject.registerClass({
     doTrash() {
         let selection = this._getCurrentSelection();
         if (selection) {
-            DBusUtils.NautilusFileOperationsProxy.TrashFilesRemote(listToTrash,
+            DBusUtils.NautilusFileOperationsProxy.TrashFilesRemote(selection,
                 (source, error) => {
                     if (error)
                         throw new Error('Error trashing files on the desktop: ' + error.message);
@@ -644,11 +644,25 @@ var DesktopManager = GObject.registerClass({
         if (newName) {
             DBusUtils.NautilusFileOperationsProxy.RenameFileRemote(fileitem.file.get_uri(),
                                                                    newName,
-            (result, error) => {
-                if (error)
-                    throw new Error('Error renaming file: ' + error.message);
-            }
-        );
+                (result, error) => {
+                    if (error)
+                        throw new Error('Error renaming file: ' + error.message);
+                }
+            );
+        }
+    }
+
+    _newFolder() {
+        let newFolderWindow = new AskNamePopup.AskNamePopup(null, _("New folder"), this._window);
+        let newName = newFolderWindow.run();
+        if (newName) {
+            let dir = DesktopIconsUtil.getDesktopDir().get_child(newName);
+            DBusUtils.NautilusFileOperationsProxy.CreateFolderRemote(dir.get_uri(),
+                (result, error) => {
+                    if (error)
+                        throw new Error('Error creating new folder: ' + error.message);
+                }
+            );
         }
     }
 });
