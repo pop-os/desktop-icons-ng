@@ -500,8 +500,12 @@ var DesktopManager = GObject.registerClass({
         }
         let outOfDesktops = [];
         let notAssignedYet = [];
+        let showHidden = Prefs.gtkSettings.get_boolean('show-hidden');
         // First, add those icons that fit in the current desktops
         for(let icon of this._fileList) {
+            if (icon.isHidden && !showHidden) {
+                continue;
+            }
             if (icon.savedCoordinates == null) {
                 notAssignedYet.push(icon);
                 continue;
