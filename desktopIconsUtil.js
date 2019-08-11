@@ -1,6 +1,7 @@
-/* Desktop Icons GNOME Shell extension
+/* ADIEU: Another Desktop Icons Extension for GNOME Shell
  *
- * Copyright (C) 2017 Carlos Soriano <csoriano@redhat.com>
+ * Copyright (C) 2019 Sergio Costas (rastersoft@gmail.com)
+ * Based on code original (C) Carlos Soriano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +20,7 @@
 const Gtk = imports.gi.Gtk;
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
-const Prefs = imports.prefs;
+const Prefs = imports.preferences;
 const Enums = imports.enums;
 
 function getDesktopDir() {

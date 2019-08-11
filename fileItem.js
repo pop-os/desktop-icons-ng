@@ -1,6 +1,7 @@
-/* Desktop Icons GNOME Shell extension
+/* ADIEU: Another Desktop Icons Extension for GNOME Shell
  *
- * Copyright (C) 2017 Carlos Soriano <csoriano@redhat.com>
+ * Copyright (C) 2019 Sergio Costas (rastersoft@gmail.com)
+ * Based on code original (C) Carlos Soriano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +26,7 @@ const GdkPixbuf = imports.gi.GdkPixbuf;
 const GnomeDesktop = imports.gi.GnomeDesktop;
 const DesktopIconsUtil = imports.desktopIconsUtil;
 
-const Prefs = imports.prefs;
+const Prefs = imports.preferences;
 const Enums = imports.enums;
 const DBusUtils = imports.dbusUtils;
 
@@ -59,7 +60,6 @@ var FileItem = class {
 
         this._container = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL});
         this._styleContext = this._container.get_style_context();
-        this._styleContext.add_class('file-item');
         this._container.set_size_request(Prefs.get_desired_width(this._scaleFactor), Prefs.get_desired_height(this._scaleFactor));
         this.actor.add(this._container);
 
@@ -69,7 +69,7 @@ var FileItem = class {
         iconContainer.set_size_request(Prefs.get_desired_width(this._scaleFactor), Prefs.get_icon_size(this._scaleFactor));
         iconContainer.pack_start(this._icon, false, true, 0);
 
-        this._label = new Gtk.Label({label: this._file.get_basename()});
+        this._label = new Gtk.Label({label: fileInfo.get_display_name()});
         let labelStyleContext = this._label.get_style_context();
         labelStyleContext.add_class('file-label');
 
@@ -396,7 +396,7 @@ var FileItem = class {
             return;
         }
 
-        this.emit('rename-clicked');
+        this._desktopManager.doRename(this);
     }
 
     doOpen() {
@@ -509,9 +509,6 @@ var FileItem = class {
         return !this.trustedDesktopFile && this._fileExtra == Enums.FileType.NONE;
     }
 
-    _doOpenWith() {
-        DBusUtils.openFileWithOtherApplication(this.file.get_path());
-    }
 
     _createMenu() {
         this._menu = new Gtk.Menu();
@@ -522,7 +519,7 @@ var FileItem = class {
         case Enums.FileType.NONE:
             if (!this._isDirectory) {
                 this._actionOpenWith = new Gtk.MenuItem({label: _('Open With Other Application')});
-                this._actionOpenWith.connect('activate', () => this._doOpenWith());
+                this._actionOpenWith.connect('activate', () => this._desktopManager.doOpenWith());
                 this._menu.add(this._actionOpenWith);
             } else {
                 this._actionOpenWith = null;
@@ -586,16 +583,16 @@ var FileItem = class {
             }
             this._menu.popup_at_pointer(event);
             if (this._actionOpenWith) {
-                let allowOpenWith = (this._desktopManager.getNumberOfSelectedItems() == 1);
+                let allowOpenWith = (this._desktopManager.getNumberOfSelectedItems() > 0);
                 this._actionOpenWith.set_sensitive(allowOpenWith);
             }
-            let specialFilesSelected = this._desktopManager.checkIfSpecialFilesAreSelected();
+            let allowCutCopyTrash = this._desktopManager.checkIfSpecialFilesAreSelected();
             if (this._actionCut)
-                this._actionCut.set_sensitive(!specialFilesSelected);
+                this._actionCut.set_sensitive(!allowCutCopyTrash);
             if (this._actionCopy)
-                this._actionCopy.set_sensitive(!specialFilesSelected);
+                this._actionCopy.set_sensitive(!allowCutCopyTrash);
             if (this._actionTrash)
-                this._actionTrash.set_sensitive(!specialFilesSelected);
+                this._actionTrash.set_sensitive(!allowCutCopyTrash);
             return true;
         } else if (button == 1) {
             if (event.get_event_type() == Gdk.EventType.BUTTON_PRESS) {

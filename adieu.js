@@ -1,8 +1,9 @@
 #!/usr/bin/gjs
 
-/* Desktop Icons GNOME Shell extension
+/* ADIEU: Another Desktop Icons Extension for GNOME Shell
  *
- * Copyright (C) 2017 Carlos Soriano <csoriano@redhat.com>
+ * Copyright (C) 2019 Sergio Costas (rastersoft@gmail.com)
+ * Based on code original (C) Carlos Soriano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -73,7 +74,7 @@ for(let arg of ARGV) {
 
 imports.searchPath.unshift(codePath);
 
-const Prefs = imports.prefs;
+const Prefs = imports.preferences;
 const Gettext = imports.gettext;
 
 Gettext.bindtextdomain("adieu", GLib.build_filenamev([codePath, "locale"]));

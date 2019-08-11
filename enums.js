@@ -1,4 +1,4 @@
-/* Desktop Icons GNOME Shell extension
+/* ADIEU: Another Desktop Icons Extension for GNOME Shell
  *
  * Copyright (C) 2019 Sergio Costas (rastersoft@gmail.com)
  * Based on code original (C) Carlos Soriano
@@ -39,6 +39,13 @@ var Selection = {
     RIGHT_BUTTON: 2,
     ENTER: 3,
     LEAVE: 4
+};
+
+/* From NautilusFileUndoManagerState */
+var UndoStatus = {
+    NONE: 0,
+    UNDO: 1,
+    REDO: 2,
 };
 
 var DEFAULT_ATTRIBUTES = 'metadata::*,standard::*,access::*,time::modified,unix::mode';

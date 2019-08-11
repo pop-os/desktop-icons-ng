@@ -1,6 +1,7 @@
-/* Desktop Icons GNOME Shell extension
+/* ADIEU: Another Desktop Icons Extension for GNOME Shell
  *
- * Copyright (C) 2017 Carlos Soriano <csoriano@redhat.com>
+ * Copyright (C) 2019 Sergio Costas (rastersoft@gmail.com)
+ * Based on code original (C) Carlos Soriano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +21,7 @@ const Gtk = imports.gi.Gtk;
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
 
-const Prefs = imports.prefs;
+const Prefs = imports.preferences;
 const Enums = imports.enums;
 const DesktopIconsUtil = imports.desktopIconsUtil;
 const Signals = imports.signals;
@@ -29,19 +30,6 @@ const Gettext = imports.gettext.domain('adieu');
 
 const _ = Gettext.gettext;
 
-
-/* From NautilusFileUndoManagerState */
-var UndoStatus = {
-    NONE: 0,
-    UNDO: 1,
-    REDO: 2,
-};
-
-class Placeholder extends Gtk.Bin {
-    constructor() {
-        super();
-    }
-}
 
 var elementSpacing = 4;
 
@@ -80,7 +68,7 @@ var DesktopGrid = class {
          *
          * @Returns: -1 if there is no free space for new icons;
          *            0 if the coordinates are inside this grid;
-         *            the distance to the middle point, if none of the previous
+         *            or the distance to the middle point, if none of the previous
          */
 
          let isFree = false;
@@ -97,121 +85,6 @@ var DesktopGrid = class {
              return 0;
          }
          return Math.pow(x - (this._x + this._width / 2), 2) + Math.pow(x - (this._y + this._height / 2), 2);
-    }
-
-    _onKeyPress(actor, event) {
-        if (global.stage.get_key_focus() != actor)
-            return false;
-
-        let symbol = event.get_key_symbol();
-        let isCtrl = (event.get_state() & Clutter.ModifierType.CONTROL_MASK) != 0;
-        let isShift = (event.get_state() & Clutter.ModifierType.SHIFT_MASK) != 0;
-        if (isCtrl && isShift && [Clutter.Z, Clutter.z].indexOf(symbol) > -1) {
-            this._doRedo();
-            return true;
-        }
-        else if (isCtrl && [Clutter.Z, Clutter.z].indexOf(symbol) > -1) {
-            this._doUndo();
-            return true;
-        }
-        else if (isCtrl && [Clutter.C, Clutter.c].indexOf(symbol) > -1) {
-            this._desktopManager.doCopy();
-            return true;
-        }
-        else if (isCtrl && [Clutter.X, Clutter.x].indexOf(symbol) > -1) {
-            this._desktopManager.doCut();
-            return true;
-        }
-        else if (isCtrl && [Clutter.V, Clutter.v].indexOf(symbol) > -1) {
-            this._doPaste();
-            return true;
-        }
-        else if (symbol == Clutter.Return) {
-            this._desktopManager.doOpen();
-            return true;
-        }
-        else if (symbol == Clutter.Delete) {
-            this._desktopManager.doTrash();
-            return true;
-        } else if (symbol == Clutter.F2) {
-            // Support renaming other grids file items.
-            this._desktopManager.doRename();
-            return true;
-        }
-        return false;
-    }
-
-    _onOpenDesktopInFilesClicked() {
-        Gio.AppInfo.launch_default_for_uri_async(DesktopIconsUtil.getDesktopDir().get_uri(),
-            null, null,
-            (source, result) => {
-                try {
-                    Gio.AppInfo.launch_default_for_uri_finish(result);
-                } catch (e) {
-                   log('Error opening Desktop in Files: ' + e.message);
-                }
-            }
-        );
-    }
-
-    _onOpenTerminalClicked() {
-        let desktopPath = DesktopIconsUtil.getDesktopDir().get_path();
-        DesktopIconsUtil.launchTerminal(desktopPath);
-    }
-
-    _syncUndoRedo() {
-        this._undoMenuItem.actor.visible = DBusUtils.NautilusFileOperationsProxy.UndoStatus == UndoStatus.UNDO;
-        this._redoMenuItem.actor.visible = DBusUtils.NautilusFileOperationsProxy.UndoStatus == UndoStatus.REDO;
-    }
-
-    _undoStatusChanged(proxy, properties, test) {
-        if ('UndoStatus' in properties.deep_unpack())
-            this._syncUndoRedo();
-    }
-
-    _createDesktopBackgroundMenu() {
-        /*let menu = new PopupMenu.PopupMenu(Main.layoutManager.dummyCursor,
-                                           0, St.Side.TOP);
-        menu.addAction(_("New Folder"), () => this._onNewFolderClicked());
-        menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-        this._pasteMenuItem = menu.addAction(_("Paste"), () => this._onPasteClicked());
-        this._undoMenuItem = menu.addAction(_("Undo"), () => this._onUndoClicked());
-        this._redoMenuItem = menu.addAction(_("Redo"), () => this._onRedoClicked());
-        menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-        menu.addAction(_("Show Desktop in Files"), () => this._onOpenDesktopInFilesClicked());
-        menu.addAction(_("Open in Terminal"), () => this._onOpenTerminalClicked());
-        menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-        menu.addSettingsAction(_("Change Background…"), 'gnome-background-panel.desktop');
-        menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-        menu.addSettingsAction(_("Display Settings"), 'gnome-display-panel.desktop');
-        menu.addSettingsAction(_("Settings"), 'gnome-control-center.desktop');
-
-        menu.actor.add_style_class_name('background-menu');
-
-        Main.layoutManager.uiGroup.add_child(menu.actor);
-        menu.actor.hide();
-
-        menu._propertiesChangedId = DBusUtils.NautilusFileOperationsProxy.connect('g-properties-changed',
-            this._undoStatusChanged.bind(this));
-        this._syncUndoRedo();
-
-        menu.connect('destroy',
-            () => DBusUtils.NautilusFileOperationsProxy.disconnect(menu._propertiesChangedId));
-        menu.connect('open-state-changed',
-            (popupm, isOpen) => {
-                if (isOpen) {
-                    Clipboard.get_text(CLIPBOARD_TYPE,
-                        (clipBoard, text) => {
-                            let [valid, is_cut, files] = this._parseClipboardText(text);
-                            this._pasteMenuItem.setSensitive(valid);
-                        }
-                    );
-                }
-            }
-        );
-        this._pasteMenuItem.setSensitive(false);
-
-        return menu;*/
     }
 
     _addFileItemTo(fileItem, column, row, coordinatesAction) {
@@ -317,87 +190,3 @@ var DesktopGrid = class {
         return false;
     }
 };
-
-var RenamePopup = class {
-
-    constructor(grid) {
-        this._source = null;
-        this._isOpen = false;
-
-        this._renameEntry = new St.Entry({ hint_text: _("Enter file name…"),
-                                           can_focus: true,
-                                           x_expand: true });
-        this._renameEntry.clutter_text.connect('activate', this._onRenameAccepted.bind(this));
-        this._renameOkButton= new St.Button({ label: _("OK"),
-                                              style_class: 'app-view-control button',
-                                              button_mask: St.ButtonMask.ONE | St.ButtonMask.THREE,
-                                              reactive: true,
-                                              can_focus: true,
-                                              x_expand: true });
-        this._renameCancelButton = new St.Button({ label: _("Cancel"),
-                                                   style_class: 'app-view-control button',
-                                                   button_mask: St.ButtonMask.ONE | St.ButtonMask.THREE,
-                                                   reactive: true,
-                                                   can_focus: true,
-                                                   x_expand: true });
-        this._renameCancelButton.connect('clicked', () => { this._onRenameCanceled(); });
-        this._renameOkButton.connect('clicked', () => { this._onRenameAccepted(); });
-        let renameButtonsBoxLayout = new Clutter.BoxLayout({ homogeneous: true });
-        let renameButtonsBox = new St.Widget({ layout_manager: renameButtonsBoxLayout,
-                                               x_expand: true });
-        renameButtonsBox.add_child(this._renameCancelButton);
-        renameButtonsBox.add_child(this._renameOkButton);
-
-        let renameContentLayout = new Clutter.BoxLayout({ spacing: 6,
-                                                          orientation: Clutter.Orientation.VERTICAL });
-        let renameContent = new St.Widget({ style_class: 'rename-popup',
-                                            layout_manager: renameContentLayout,
-                                            x_expand: true });
-        renameContent.add_child(this._renameEntry);
-        renameContent.add_child(renameButtonsBox);
-
-        this._boxPointer = new BoxPointer.BoxPointer(St.Side.TOP, { can_focus: false, x_expand: false });
-        this.actor = this._boxPointer.actor;
-        this.actor.style_class = 'popup-menu-boxpointer';
-        this.actor.add_style_class_name('popup-menu');
-        this.actor.visible = false;
-        this._boxPointer.bin.set_child(renameContent);
-
-    }
-
-    _popup() {
-
-        this.emit('open-state-changed', true);
-    }
-
-    _popdown() {
-        this.emit('open-state-changed', false);
-    }
-
-    onFileItemRenameClicked(fileItem) {
-        this._source = fileItem;
-
-        this._renameEntry.text = fileItem.displayName;
-
-        this._popup();
-        this._renameEntry.navigate_focus(null, Gtk.DirectionType.TAB_FORWARD, false);
-        let extensionOffset = DesktopIconsUtil.getFileExtensionOffset(fileItem.displayName, fileItem.isDirectory);
-        this._renameEntry.clutter_text.set_selection(0, extensionOffset);
-    }
-
-    _onRenameAccepted() {
-        this._popdown();
-        DBusUtils.NautilusFileOperationsProxy.RenameFileRemote(this._source.file.get_uri(),
-                                                               this._renameEntry.get_text(),
-            (result, error) => {
-                if (error)
-                    throw new Error('Error renaming file: ' + error.message);
-            }
-        );
-    }
-
-    _onRenameCanceled() {
-        this._popdown();
-    }
-};
-Signals.addSignalMethods(RenamePopup.prototype);

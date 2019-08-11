@@ -1,9 +1,3 @@
-.file-item {
-    padding: 4px;
-    border: 1px;
-    margin: 1px;
-}
-
 .file-label {
     text-shadow: 1px 1px black;
     color: white;
@@ -16,8 +10,4 @@ label.file-label:backdrop {
 
 .file-item-hover {
    background-color: rgba(238, 238, 238, 0.2);
-}
-
-.draggable {
-    background-color: red;
 }
