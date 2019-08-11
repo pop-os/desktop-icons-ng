@@ -62,7 +62,6 @@ var DesktopManager = GObject.registerClass({
                     this._selectColor.red * 255 + ', ' +
                     this._selectColor.green * 255 + ', ' +
                     this._selectColor.blue * 255 + ', 0.6);\n}';
-        print(style);
         cssProviderSelection.load_from_data(style);
         Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), cssProviderSelection, 600);
 
@@ -324,15 +323,7 @@ var DesktopManager = GObject.registerClass({
         Gtk.main_quit();
     }
 
-    doCopy() {
-        print("Do copy");
-    }
-
-    doCut() {
-        print("Do cut");
-    }
-
-    doTrash() {
+    _getCurrentSelection() {
         let listToTrash = [];
         for(let fileItem of this._fileList) {
             if (fileItem.isSelected) {
@@ -340,6 +331,36 @@ var DesktopManager = GObject.registerClass({
             }
         }
         if (listToTrash.length != 0) {
+            return listToTrash;
+        } else {
+            return null;
+        }
+    }
+
+    _getClipboardText(isCopy) {
+        let selection = this._getCurrentSelection();
+        if (selection) {
+            let atom = Gdk.Atom.intern('CLIPBOARD', false);
+            let clipboard = Gtk.Clipboard.get(atom);
+            let text = 'x-special/nautilus-clipboard\n' + (isCopy ? 'copy' : 'cut') + '\n';
+            for (let item of selection) {
+                text += item + '\n';
+            }
+            clipboard.set_text(text, -1);
+        }
+    }
+
+    doCopy() {
+        this._getClipboardText(true);
+    }
+
+    doCut() {
+        this._getClipboardText(false);
+    }
+
+    doTrash() {
+        let selection = this._getCurrentSelection();
+        if (selection) {
             DBusUtils.NautilusFileOperationsProxy.TrashFilesRemote(listToTrash,
                 (source, error) => {
                     if (error)

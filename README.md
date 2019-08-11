@@ -11,8 +11,7 @@ Another Desktop Icons Extension for GNOME Shell.
 
 ## TO-DO
 
-* Cut, Copy and Paste options in menu
-* Move to trash
+* Paste options in menu
 * Rename file
 * "Open with" using native GTK widget
 * Use file events instead of reloading the whole program

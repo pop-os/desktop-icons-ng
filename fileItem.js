@@ -529,7 +529,7 @@ var FileItem = class {
             }
             this._menu.add(new Gtk.SeparatorMenuItem());
             this._actionCut = new Gtk.MenuItem({label:_('Cut')});
-            this._actionCut.connect('activate', () => {this._desktopManager.doCopy();});
+            this._actionCut.connect('activate', () => {this._desktopManager.doCut();});
             this._menu.add(this._actionCut);
             this._actionCopy = new Gtk.MenuItem({label:_('Copy')});
             this._actionCopy.connect('activate', () => {this._desktopManager.doCopy();});
