@@ -333,7 +333,20 @@ var DesktopManager = GObject.registerClass({
     }
 
     doTrash() {
-        print("Do trash");
+        let listToTrash = [];
+        for(let fileItem of this._fileList) {
+            if (fileItem.isSelected) {
+                listToTrash.push(fileItem.file.get_uri());
+            }
+        }
+        if (listToTrash.length != 0) {
+            DBusUtils.NautilusFileOperationsProxy.TrashFilesRemote(listToTrash,
+                (source, error) => {
+                    if (error)
+                        throw new Error('Error trashing files on the desktop: ' + error.message);
+                }
+            );
+        }
     }
 
     doEmptyTrash() {

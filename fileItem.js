@@ -428,14 +428,6 @@ var FileItem = class {
         );
     }
 
-    _onCopyClicked() {
-        this._desktopManager.doCopy();
-    }
-
-    _onCutClicked() {
-        this._desktopManager.doCut();
-    }
-
     _onShowInFilesClicked() {
 
         DBusUtils.FreeDesktopFileManagerProxy.ShowItemsRemote([this.file.get_uri()], '',
@@ -454,14 +446,6 @@ var FileItem = class {
                     log('Error showing properties: ' + error.message);
             }
         );
-    }
-
-    _onMoveToTrashClicked() {
-        this._desktopManager.doTrash();
-    }
-
-    _onEmptyTrashClicked() {
-        this._desktopManager.doEmptyTrash();
     }
 
     get _allowLaunchingText() {
@@ -545,10 +529,10 @@ var FileItem = class {
             }
             this._menu.add(new Gtk.SeparatorMenuItem());
             this._actionCut = new Gtk.MenuItem({label:_('Cut')});
-            this._actionCut.connect('activate', () => this._onCutClicked());
+            this._actionCut.connect('activate', () => {this._desktopManager.doCopy();});
             this._menu.add(this._actionCut);
             this._actionCopy = new Gtk.MenuItem({label:_('Copy')});
-            this._actionCopy.connect('activate', () => this._onCopyClicked());
+            this._actionCopy.connect('activate', () => {this._desktopManager.doCopy();});
             this._menu.add(this._actionCopy);
             if (this.canRename()) {
                 let rename = new Gtk.MenuItem({label:_('Rename…')});
@@ -556,7 +540,7 @@ var FileItem = class {
                 this._menu.add(rename);
             }
             this._actionTrash = new Gtk.MenuItem({label:_('Move to Trash')});
-            this._actionTrash.connect('activate', () => this._onMoveToTrashClicked());
+            this._actionTrash.connect('activate', () => {this._desktopManager.doTrash();});
             this._menu.add(this._actionTrash);
             if (this._isValidDesktopFile && !this._desktopManager.writableByOthers && !this._writableByOthers) {
                 this._menu.add(new Gtk.SeparatorMenuItem());
@@ -568,7 +552,7 @@ var FileItem = class {
         case Enums.FileType.USER_DIRECTORY_TRASH:
             this._menu.add(new Gtk.SeparatorMenuItem());
             let trashItem = new Gtk.MenuItem({label: _('Empty Trash')});
-            trashItem.connect('activate', () => this._onEmptyTrashClicked());
+            trashItem.connect('activate', () => {this._desktopManager.doEmptyTrash();});
             this._menu.add(trashItem);
             break;
         default:
