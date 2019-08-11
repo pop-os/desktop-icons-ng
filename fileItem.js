@@ -60,7 +60,6 @@ var FileItem = class {
 
         this._container = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL});
         this._styleContext = this._container.get_style_context();
-        this._styleContext.add_class('file-item');
         this._container.set_size_request(Prefs.get_desired_width(this._scaleFactor), Prefs.get_desired_height(this._scaleFactor));
         this.actor.add(this._container);
 

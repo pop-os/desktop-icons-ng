@@ -38,12 +38,6 @@ var UndoStatus = {
     REDO: 2,
 };
 
-class Placeholder extends Gtk.Bin {
-    constructor() {
-        super();
-    }
-}
-
 var elementSpacing = 4;
 
 var DesktopGrid = class {
