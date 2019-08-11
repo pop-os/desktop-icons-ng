@@ -289,15 +289,21 @@ var DesktopManager = GObject.registerClass({
 
         this._menu.add(new Gtk.SeparatorMenuItem());
 
-        /*this._changeBackgroundMenuItem = new Gtk.MenuItem({label: _("Change Background…")});
-        this._changeBackgroundMenuItem.connect("activate", () => {'gnome-background-panel.desktop'});
-        this._menu.add(this._changeBackgroundMenuItem);*/
+        this._changeBackgroundMenuItem = new Gtk.MenuItem({label: _("Change Background…")});
+        this._changeBackgroundMenuItem.connect("activate", () => {
+            let desktopFile = Gio.DesktopAppInfo.new('gnome-background-panel.desktop');
+            desktopFile.launch([], null);
+        });
+        this._menu.add(this._changeBackgroundMenuItem);
 
-        /*this._menu.add(new Gtk.SeparatorMenuItem());
+        this._menu.add(new Gtk.SeparatorMenuItem());
 
         this._displaySettingsMenuItem = new Gtk.MenuItem({label: _("Display Settings")});
-        this._displaySettingsMenuItem.connect("activate", () => 'gnome-display-panel.desktop');
-        this._menu.add(this._displaySettingsMenuItem);*/
+        this._displaySettingsMenuItem.connect("activate", () => {
+            let desktopFile = Gio.DesktopAppInfo.new('gnome-display-panel.desktop');
+            desktopFile.launch([], null);
+        });
+        this._menu.add(this._displaySettingsMenuItem);
 
         this._settingsMenuItem = new Gtk.MenuItem({label: _("Settings")});
         this._settingsMenuItem.connect("activate", () => Prefs.showPreferences());
