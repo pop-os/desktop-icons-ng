@@ -145,14 +145,24 @@ var FileItem = class {
                     if (info == 0) {
                         let fileList = DesktopIconsUtil.getFilesFromNautilusDnD(selection);
                         if (fileList.length != 0) {
-                            DBusUtils.NautilusFileOperationsProxy.MoveURIsRemote(
-                                fileList,
-                                this._file.get_uri(),
-                                (result, error) => {
-                                    if (error)
-                                        throw new Error('Error moving files: ' + error.message);
-                                    }
-                            );
+                            if (this._fileExtra != Enums.FileType.USER_DIRECTORY_TRASH) {
+                                DBusUtils.NautilusFileOperationsProxy.MoveURIsRemote(
+                                    fileList,
+                                    this._file.get_uri(),
+                                    (result, error) => {
+                                        if (error)
+                                            throw new Error('Error moving files: ' + error.message);
+                                        }
+                                );
+                            } else {
+                                DBusUtils.NautilusFileOperationsProxy.TrashFilesRemote(
+                                    fileList,
+                                    (result, error) => {
+                                        if (error)
+                                            throw new Error('Error moving files: ' + error.message);
+                                        }
+                                );
+                            }
                         }
                     }
                 });
