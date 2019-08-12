@@ -101,6 +101,8 @@ var DesktopManager = GObject.registerClass({
         this._window.add(this._eventBox);
         this._eventBox.add(this._container);
 
+        this.setDropDestination(this._window);
+
         // Transparent background
         this._window.set_app_paintable(true);
         let screen = this._window.get_screen();
@@ -142,6 +144,115 @@ var DesktopManager = GObject.registerClass({
         DBusUtils.NautilusFileOperationsProxy.connect('g-properties-changed', this._undoStatusChanged.bind(this));
         this._fileList = [];
         this._readFileList();
+    }
+
+    setDropDestination(dragDestination) {
+
+        dragDestination.drag_dest_set(Gtk.DestDefaults.ALL, null, Gdk.DragAction.MOVE);
+        this.entries = [new Gtk.TargetEntry(Gdk.atom_intern('x-special/gnome-icon-list', false), 0, 0),
+                        new Gtk.TargetEntry(Gdk.atom_intern('text/uri-list', false), 0, 1)];
+        let targets = new Gtk.TargetList(null);
+        targets.add(Gdk.atom_intern('x-special/gnome-icon-list', false), 0, 0);
+        targets.add(Gdk.atom_intern('text/uri-list', false), 0, 1);
+        dragDestination.drag_dest_set_target_list(targets);
+        dragDestination.connect('drag-data-received', (widget, context, x, y, selection, info, time) => {
+            if (info == 0) {
+                this.acceptGnomeIconList(selection,
+                                            GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DESKTOP));
+            }
+        });
+    }
+
+    /**
+     * Accepts a Drop operation of the type x-special/gnome-icon-list from an external folder
+     *
+     * @param {The DnD selection element} selection
+     * @param {The destination folder} destinationFolder
+     */
+    acceptGnomeIconList(selection, destinationFolder) {
+
+        let data = String.fromCharCode.apply(null, selection.get_data());
+        let elements = data.split('\n');
+        let repeatAction = Enums.FileExistOperation.ASK;
+        let moveFlags;
+        for(let item of elements) {
+            if (item.length == 0) {
+                continue;
+            }
+            let origin = Gio.File.new_for_uri(item.split('\r')[0]);
+            let destination = Gio.File.new_for_commandline_arg(GLib.build_filenamev([destinationFolder, origin.get_basename()]));
+            moveFlags = Gio.FileCopyFlags.ALL_METADATA;
+            if (destination.query_exists(null)) {
+                if (repeatAction == Enums.FileExistOperation.SKIP) {
+                    continue;
+                }
+                if (repeatAction == Enums.FileExistOperation.OVERWRITE) {
+                    moveFlags += Gio.FileCopyFlags.OVERWRITE;
+                }
+                if (repeatAction == Enums.FileExistOperation.ASK) {
+                    let window = new Gtk.Dialog({use_header_bar:true,
+                                                window_position: Gtk.WindowPosition.CENTER_ON_PARENT,
+                                                transient_for: this._window});
+                    window.add_button(_("Skip"), 1);
+                    window.add_button(_("Overwrite"), 2);
+                    window.add_button(_("Cancel"), Gtk.ResponseType.CANCEL);
+                    window.set_modal(true);
+                    window.set_title(_("File already exists"));
+                    let contentArea = window.get_content_area();
+                    let label = new Gtk.Label();
+                    label.set_text(_(`Trying to copy the file
+
+<b>${origin.get_parse_name()}</b>
+
+which already exists in the destination.
+
+Please, choose an action.`));
+                    label.use_markup = true;
+                    label.justify = Gtk.Justification.CENTER;
+                    contentArea.pack_start(label, true, true, 5);
+                    let doTheSame = new Gtk.CheckButton();
+                    doTheSame.label = _("Do this for all conflicts");
+                    contentArea.pack_end(doTheSame, false, true, 5);
+                    window.show_all();
+                    let retval = window.run();
+                    window.hide();
+                    if (retval == 1) {
+                        // skip
+                        if (doTheSame.active) {
+                            repeatAction = Enums.FileExistOperation.SKIP;
+                        }
+                        continue;
+                    } else if (retval == 2) {
+                        // overwrite
+                        if (doTheSame.active) {
+                            repeatAction = Enums.FileExistOperation.OVERWRITE;
+                        }
+                        moveFlags += Gio.FileCopyFlags.OVERWRITE;
+                    } else {
+                        break;
+                    }
+                }
+            }
+            try {
+                origin.move(destination, moveFlags, null, null);
+            } catch (e) {
+                let window = new Gtk.Dialog({use_header_bar:true,
+                                            window_position: Gtk.WindowPosition.CENTER_ON_PARENT,
+                                            transient_for: this._window});
+                window.add_button(_("Ok"), 0);
+                window.set_modal(true);
+                window.set_title(_("Error while moving files"));
+                let contentArea = window.get_content_area();
+                let label = new Gtk.Label();
+                label.set_text(_("There was an error while moving the files.\nAborting."));
+                label.justify = Gtk.Justification.CENTER;
+                contentArea.pack_start(label, true, true, 5);
+                window.show_all();
+                window.run();
+                window.hide();
+                break;
+            }
+        }
     }
 
     _onPressButton(actor, event) {

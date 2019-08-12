@@ -48,6 +48,13 @@ var UndoStatus = {
     REDO: 2,
 };
 
+var FileExistOperation = {
+    ASK: 0,
+    OVERWRITE: 1,
+    RENAME: 2,
+    SKIP: 3
+};
+
 var DEFAULT_ATTRIBUTES = 'metadata::*,standard::*,access::*,time::modified,unix::mode';
 var TERMINAL_SCHEMA = 'org.gnome.desktop.default-applications.terminal';
 var SCHEMA_NAUTILUS = 'org.gnome.nautilus.preferences';
