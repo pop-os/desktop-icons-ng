@@ -84,7 +84,7 @@ var FileItem = class {
         this._label.set_yalign(0.0);
         this._label.set_lines(-1);
 
-        /* We need to allow the "button-press" and "button-release" events to pass through the callbacks, to allow the DnD to work
+        /* We need to allow the "button-press" event to pass through the callbacks, to allow the DnD to work
          * But we must avoid them to reach the main window.
          * The solution is to allow them to pass in a EventBox, used both for detecting the events and the DnD, and block them
          * in a second EventBox, located outside.
@@ -163,7 +163,7 @@ var FileItem = class {
             let fileList = this._desktopManager.getCurrentSelection(true);
             switch(info) {
                 case 0: // x-special/adieu-icon-list
-                    this._desktopManager.doDragAndDrop(this, this._xOrigin, this._yOrigin);
+                    this._desktopManager.doDragAndDrop(this, this._x1 + this._xOrigin, this._y1 + this._yOrigin);
                     break;
                 case 1: // x-special/gnome-icon-list
                 break;
@@ -379,6 +379,8 @@ var FileItem = class {
                                     width = height * aspectRatio;
                                 else
                                     height = width / aspectRatio;
+                                this._xOrigin = Math.floor((Prefs.get_desired_width(this._scaleFactor) - width) / 2);
+                                this._yOrigin = Math.floor(((Prefs.get_icon_size() * this._scaleFactor) - height) / 2);
                                 let pixbuf = thumbnailPixbuf.scale_simple(Math.floor(width), Math.floor(height), GdkPixbuf.InterpType.BILINEAR);
                                 this._icon.set_from_pixbuf(pixbuf);
                                 this._dragSource.drag_source_set_icon_pixbuf(pixbuf);
@@ -394,21 +396,18 @@ var FileItem = class {
             }
         }
 
+        let pixbuf;
         if (this._isBrokenSymlink) {
-            let pixbuf = this._createEmblemedIcon(null, 'text-x-generic');
-            this._icon.set_from_pixbuf(pixbuf);
-            this._dragSource.drag_source_set_icon_pixbuf(pixbuf);
+            pixbuf = this._createEmblemedIcon(null, 'text-x-generic');
         } else {
             if (this.trustedDesktopFile && this._desktopFile.has_key('Icon')) {
-                let pixbuf = this._createEmblemedIcon(null, this._desktopFile.get_string('Icon'));
-                this._icon.set_from_pixbuf(pixbuf);
-                this._dragSource.drag_source_set_icon_pixbuf(pixbuf);
+                pixbuf = this._createEmblemedIcon(null, this._desktopFile.get_string('Icon'));
             } else {
-                let pixbuf = this._createEmblemedIcon(this._fileInfo.get_icon(), null);
-                this._icon.set_from_pixbuf(pixbuf);
-                this._dragSource.drag_source_set_icon_pixbuf(pixbuf);
+                pixbuf = this._createEmblemedIcon(this._fileInfo.get_icon(), null);
             }
         }
+        this._icon.set_from_pixbuf(pixbuf);
+        this._dragSource.drag_source_set_icon_pixbuf(pixbuf);
     }
 
     _refreshTrashIcon() {
@@ -476,6 +475,8 @@ var FileItem = class {
             let emblemIcon = theme.lookup_by_gicon(emblem, finalSize, Gtk.IconLookupFlags.FORCE_SIZE).load_icon();
             emblemIcon.copy_area(0, 0, finalSize, finalSize, itemIcon, 0, 0);
         }
+        this._xOrigin = Math.floor((Prefs.get_desired_width(this._scaleFactor) - (Prefs.get_icon_size() * this._scaleFactor)) / 2);
+        this._yOrigin = 0;
         return itemIcon;
     }
 
@@ -685,8 +686,6 @@ var FileItem = class {
         } else if (button == 1) {
             if (event.get_event_type() == Gdk.EventType.BUTTON_PRESS) {
                 let [a, x, y] = event.get_coords();
-                this._xOrigin = x + this._x1;
-                this._yOrigin = y + this._y1;
                 let state = event.get_state()[1];
                 this._primaryButtonPressed = true;
                 this._buttonPressInitialX = x;

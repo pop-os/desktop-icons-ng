@@ -562,7 +562,7 @@ var DesktopManager = GObject.registerClass({
                         this._readFileList();
                     }
                 } catch(e) {
-                    print("Error reading the desktop. Retrying...");
+                    print("Error reading the desktop. Retrying..." + e);
                     Gtk.main_quit();
                 }
             }
