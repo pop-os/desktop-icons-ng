@@ -413,7 +413,7 @@ var FileItem = class {
 
         if (this._attributeCanExecute && !this._isDirectory && !this._isValidDesktopFile) {
             if (this._execLine)
-                Util.spawnCommandLine(this._execLine);
+                DesktopIconsUtil.spawnCommandLine(this._execLine);
             return;
         }
 

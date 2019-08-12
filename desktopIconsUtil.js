@@ -32,11 +32,23 @@ function clamp(value, min, max) {
     return Math.max(Math.min(value, max), min);
 };
 
+function spawnCommandLine(command_line) {
+    try {
+        let [success, argv] = GLib.shell_parse_argv(command_line);
+        trySpawn(null, argv);
+    } catch (err) {
+        _handleSpawnError(command_line, err);
+    }
+}
+
 function launchTerminal(workdir) {
     let terminalSettings = new Gio.Settings({ schema_id: Enums.TERMINAL_SCHEMA });
     let exec = terminalSettings.get_string(Enums.EXEC_KEY);
     let argv = [exec, `--working-directory=${workdir}`];
+    trySpawn(workdir, argv);
+}
 
+function trySpawn(workdir, argv) {
     /* The following code has been extracted from GNOME Shell's
      * source code in Misc.Util.trySpawn function and modified to
      * set the working directory.
