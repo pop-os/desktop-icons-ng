@@ -744,8 +744,11 @@ var FileItem = class {
                 this._primaryButtonPressed = false;
                 let shiftPressed = !!(event.get_state()[1] & Gdk.ModifierType.SHIFT_MASK);
                 let controlPressed = !!(event.get_state()[1] & Gdk.ModifierType.CONTROL_MASK);
-                if (Prefs.CLICK_POLICY_SINGLE && !shiftPressed && !controlPressed) {
-                    this.doOpen();
+                if (!shiftPressed && !controlPressed) {
+                    this._desktopManager.selected(this, Enums.Selection.RELEASE);
+                    if (Prefs.CLICK_POLICY_SINGLE) {
+                        this.doOpen();
+                    }
                 }
             }
         }

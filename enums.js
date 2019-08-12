@@ -38,7 +38,8 @@ var Selection = {
     WITH_SHIFT: 1,
     RIGHT_BUTTON: 2,
     ENTER: 3,
-    LEAVE: 4
+    LEAVE: 4,
+    RELEASE: 5
 };
 
 /* From NautilusFileUndoManagerState */

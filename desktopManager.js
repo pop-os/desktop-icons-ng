@@ -450,11 +450,13 @@ var DesktopManager = GObject.registerClass({
     selected(fileItem, action) {
         switch(action) {
         case Enums.Selection.ALONE:
-            for(let item of this._fileList) {
-                if (item === fileItem) {
-                    item.setSelected();
-                } else {
-                    item.unsetSelected();
+            if (!fileItem.isSelected) {
+                for(let item of this._fileList) {
+                    if (item === fileItem) {
+                        item.setSelected();
+                    } else {
+                        item.unsetSelected();
+                    }
                 }
             }
             break;
@@ -475,6 +477,15 @@ var DesktopManager = GObject.registerClass({
         case Enums.Selection.ENTER:
             if (this._rubberband) {
                 fileItem.setSelected();
+            }
+            break;
+        case Enums.Selection.RELEASE:
+            for(let item of this._fileList) {
+                if (item === fileItem) {
+                    item.setSelected();
+                } else {
+                    item.unsetSelected();
+                }
             }
             break;
         }
@@ -682,7 +693,7 @@ var DesktopManager = GObject.registerClass({
                 fileItems.push(item);
                 item.removeFromGrid();
                 [x, y, a, b, c] = item.getCoordinates();
-                item.savedCoordinates([x + deltaX, y + deltaY]);
+                item.savedCoordinates = [x + deltaX, y + deltaY];
             }
         }
         // force to store the new coordinates
