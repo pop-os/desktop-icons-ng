@@ -129,7 +129,7 @@ function getGtkClassBackgroundColor(classname, state) {
     return context.get_background_color(state);
 }
 
-function getFilesFromNautilusDnD(selection) {
+function getFilesFromNautilusDnD(selection, type) {
     let data = String.fromCharCode.apply(null, selection.get_data());
     let retval = [];
     let elements = data.split('\n');
@@ -137,8 +137,16 @@ function getFilesFromNautilusDnD(selection) {
         if (item.length == 0) {
             continue;
         }
-        retval.push(item.split('\r')[0]);
+        if (type == 1) {
+            // x-special/gnome-icon-list
+            retval.push(item.split('\r')[0]);
+        } else {
+            // text/uri-list
+            if (item[0] == '#') {
+                continue;
+            }
+            retval.push(item);
+        }
     }
-    print(retval);
     return retval;
 }

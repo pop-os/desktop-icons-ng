@@ -64,11 +64,11 @@ var FileItem = class {
         this.actor.add(this._container);
 
         this._icon = new Gtk.Image();
-        let iconContainer = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL});
-        this._container.pack_start(iconContainer, false, false, 0);
-        iconContainer.set_size_request(Prefs.get_desired_width(this._scaleFactor), Prefs.get_icon_size(this._scaleFactor));
-        iconContainer.pack_start(this._icon, true, true, 0);
-        iconContainer.set_baseline_position(Gtk.BaselinePosition.CENTER);
+        this._iconContainer = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL});
+        this._container.pack_start(this._iconContainer, false, false, 0);
+        this._iconContainer.set_size_request(Prefs.get_desired_width(this._scaleFactor), Prefs.get_icon_size(this._scaleFactor));
+        this._iconContainer.pack_start(this._icon, true, true, 0);
+        this._iconContainer.set_baseline_position(Gtk.BaselinePosition.CENTER);
 
         this._label = new Gtk.Label({label: fileInfo.get_display_name()});
         let labelStyleContext = this._label.get_style_context();
@@ -81,9 +81,9 @@ var FileItem = class {
         this._label.set_yalign(0.0);
         this._label.set_lines(-1);
 
-        this.actor.set_events(Gdk.EventMask.BUTTON_MOTION_MASK | Gdk.EventMask.BUTTON_PRESS_MASK | Gdk.EventMask.BUTTON_RELEASE_MASK | Gdk.EventMask.LEAVE_NOTIFY_MASK | Gdk.EventMask.POINTER_MOTION_MASK);
+        this.actor.set_events(Gdk.EventMask.BUTTON_PRESS_MASK | Gdk.EventMask.BUTTON_RELEASE_MASK | Gdk.EventMask.LEAVE_NOTIFY_MASK | Gdk.EventMask.ENTER_NOTIFY_MASK);
         this.actor.connect('button-press-event', (actor, event) => this._onPressButton(actor, event));
-        this.actor.connect('motion-notify-event', (actor, event) => this._onMotion(actor, event));
+        //this.actor.connect('motion-notify-event', (actor, event) => this._onMotion(actor, event));
         this.actor.connect('enter-notify-event', (actor, event) => this._onEnter(actor, event));
         this.actor.connect('leave-notify-event', (actor, event) => this._onLeave(actor, event));
         this.actor.connect('button-release-event', (actor, event) => this._onReleaseButton(actor, event));
@@ -91,6 +91,9 @@ var FileItem = class {
         /* Set the metadata and update relevant UI */
         this._updateMetadataFromFileInfo(fileInfo);
 
+        this._dragSource = this.actor;
+        this._setDragSource(this._dragSource);
+        this._setDropDestination(this.actor);
         this._createMenu();
         this._updateIcon();
         this._isSelected = false;
@@ -123,7 +126,6 @@ var FileItem = class {
             });
         }
         this.actor.show_all();
-        this._setDropDestination(this.actor);
         // TODO
         /*this._writebleByOthersId = this._desktopManager.connect('notify::writable-by-others', () => {
             if (!this._isValidDesktopFile)
@@ -132,31 +134,58 @@ var FileItem = class {
         });*/
     }
 
+    _setDragSource(dragSource) {
+        dragSource.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, null, Gdk.DragAction.MOVE || Gdk.DragAction.COPY);
+        let targets = new Gtk.TargetList(null);
+        targets.add(Gdk.atom_intern('x-special/adieu-icon-list', false), Gtk.TargetFlags.SAME_APP, 0);
+        /*if ((this._fileExtra != Enums.FileType.USER_DIRECTORY_TRASH) &&
+            (this._fileExtra != Enums.FileType.USER_DIRECTORY_HOME)) {*/
+                targets.add(Gdk.atom_intern('x-special/gnome-icon-list', false), 0, 1);
+                targets.add(Gdk.atom_intern('text/uri-list', false), 0, 2);
+        //}
+        dragSource.drag_source_set_target_list(targets);
+        dragSource.connect('drag-begin', (widget, context) => {
+            print("Drag begin");
+            print(widget);
+            print(context);
+        });
+        dragSource.connect('drag-data-get', (widget, context, data, info, time) => {
+            print("Drag data get");
+            print(widget);
+            print(context);
+            print(data);
+            print(info);
+            print(time);
+        });
+        dragSource.connect('drag-end', (widget, context) => {
+            print("Drag end");
+            print(widget);
+            print(context);
+        });
+    }
+
     _setDropDestination(dropDestination) {
         dropDestination.drag_dest_set(Gtk.DestDefaults.ALL, null, Gdk.DragAction.MOVE);
         if ((this._fileExtra == Enums.FileType.USER_DIRECTORY_TRASH) ||
             (this._fileExtra == Enums.FileType.USER_DIRECTORY_HOME) ||
             (this._isDirectory)) {
                 let targets = new Gtk.TargetList(null);
-                targets.add(Gdk.atom_intern('x-special/gnome-icon-list', false), 0, 0);
-                targets.add(Gdk.atom_intern('text/uri-list', false), 0, 1);
+                targets.add(Gdk.atom_intern('x-special/gnome-icon-list', false), 0, 1);
+                targets.add(Gdk.atom_intern('text/uri-list', false), 0, 2);
                 dropDestination.drag_dest_set_target_list(targets);
                 dropDestination.connect('drag-data-received', (widget, context, x, y, selection, info, time) => {
-                    if (info == 0) {
-                        let fileList = DesktopIconsUtil.getFilesFromNautilusDnD(selection);
+                    if ((info == 1) || (info == 2)) {
+                        let fileList = DesktopIconsUtil.getFilesFromNautilusDnD(selection, info);
                         if (fileList.length != 0) {
                             if (this._fileExtra != Enums.FileType.USER_DIRECTORY_TRASH) {
-                                DBusUtils.NautilusFileOperationsProxy.MoveURIsRemote(
-                                    fileList,
-                                    this._file.get_uri(),
+                                DBusUtils.NautilusFileOperationsProxy.MoveURIsRemote(fileList, this._file.get_uri(),
                                     (result, error) => {
                                         if (error)
                                             throw new Error('Error moving files: ' + error.message);
                                         }
                                 );
                             } else {
-                                DBusUtils.NautilusFileOperationsProxy.TrashFilesRemote(
-                                    fileList,
+                                DBusUtils.NautilusFileOperationsProxy.TrashFilesRemote(fileList,
                                     (result, error) => {
                                         if (error)
                                             throw new Error('Error moving files: ' + error.message);
@@ -286,7 +315,9 @@ var FileItem = class {
 
     _updateIcon() {
         if (this._fileExtra == Enums.FileType.USER_DIRECTORY_TRASH) {
-            this._icon.set_from_pixbuf(this._createEmblemedIcon(this._fileInfo.get_icon(), null));
+            let pixbuf = this._createEmblemedIcon(this._fileInfo.get_icon(), null);
+            this._icon.set_from_pixbuf(pixbuf);
+            this._dragSource.drag_source_set_icon_pixbuf(pixbuf);
             return;
         }
 
@@ -339,7 +370,9 @@ var FileItem = class {
                                     width = height * aspectRatio;
                                 else
                                     height = width / aspectRatio;
-                                this._icon.set_from_pixbuf(thumbnailPixbuf.scale_simple(Math.floor(width), Math.floor(height), GdkPixbuf.InterpType.BILINEAR));
+                                let pixbuf = thumbnailPixbuf.scale_simple(Math.floor(width), Math.floor(height), GdkPixbuf.InterpType.BILINEAR);
+                                this._icon.set_from_pixbuf(pixbuf);
+                                this._dragSource.drag_source_set_icon_pixbuf(pixbuf);
                             }
                         } catch (error) {
                             if (!error.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED)) {
@@ -353,12 +386,19 @@ var FileItem = class {
         }
 
         if (this._isBrokenSymlink) {
-            this._icon.set_from_pixbuf(this._createEmblemedIcon(null, 'text-x-generic'));
+            let pixbuf = this._createEmblemedIcon(null, 'text-x-generic');
+            this._icon.set_from_pixbuf(pixbuf);
+            this._dragSource.drag_source_set_icon_pixbuf(pixbuf);
         } else {
-            if (this.trustedDesktopFile && this._desktopFile.has_key('Icon'))
-                this._icon.set_from_pixbuf(this._createEmblemedIcon(null, this._desktopFile.get_string('Icon')));
-            else
-                this._icon.set_from_pixbuf(this._createEmblemedIcon(this._fileInfo.get_icon(), null));
+            if (this.trustedDesktopFile && this._desktopFile.has_key('Icon')) {
+                let pixbuf = this._createEmblemedIcon(null, this._desktopFile.get_string('Icon'));
+                this._icon.set_from_pixbuf(pixbuf);
+                this._dragSource.drag_source_set_icon_pixbuf(pixbuf);
+            } else {
+                let pixbuf = this._createEmblemedIcon(this._fileInfo.get_icon(), null);
+                this._icon.set_from_pixbuf(pixbuf);
+                this._dragSource.drag_source_set_icon_pixbuf(pixbuf);
+            }
         }
     }
 
@@ -713,7 +753,7 @@ var FileItem = class {
     }
 
     _onMotion(actor, event) {
-        let [x, y] = event.get_coords();
+        /*let [x, y] = event.get_coords();
         if (this._primaryButtonPressed) {
             let xDiff = x - this._buttonPressInitialX;
             let yDiff = y - this._buttonPressInitialY;
@@ -726,7 +766,7 @@ var FileItem = class {
                 let [x, y] = event.get_coords();
                 this._desktopManager.dragStart();
             }
-        }
+        }*/
         return false;
     }
 

@@ -149,12 +149,13 @@ var DesktopManager = GObject.registerClass({
     setDropDestination(dropDestination) {
         dropDestination.drag_dest_set(Gtk.DestDefaults.ALL, null, Gdk.DragAction.MOVE);
         let targets = new Gtk.TargetList(null);
-        targets.add(Gdk.atom_intern('x-special/gnome-icon-list', false), 0, 0);
-        targets.add(Gdk.atom_intern('text/uri-list', false), 0, 1);
+        targets.add(Gdk.atom_intern('x-special/adieu-icon-list', false), Gtk.TargetFlags.SAME_APP, 0);
+        targets.add(Gdk.atom_intern('x-special/gnome-icon-list', false), 0, 1);
+        targets.add(Gdk.atom_intern('text/uri-list', false), 0, 2);
         dropDestination.drag_dest_set_target_list(targets);
         dropDestination.connect('drag-data-received', (widget, context, x, y, selection, info, time) => {
-            if (info == 0) {
-                let fileList = DesktopIconsUtil.getFilesFromNautilusDnD(selection);
+            if ((info == 1) || (info == 2)) {
+                let fileList = DesktopIconsUtil.getFilesFromNautilusDnD(selection, info);
                 if (fileList.length != 0) {
                     DBusUtils.NautilusFileOperationsProxy.MoveURIsRemote(
                         fileList,
