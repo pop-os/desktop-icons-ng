@@ -138,6 +138,10 @@ var DesktopManager = GObject.registerClass({
         this._window.connect('button-press-event', (actor, event) => this._onPressButton(actor, event));
         this._window.connect('motion-notify-event', (actor, event) => this._onMotion(actor, event));
         this._window.connect('button-release-event', (actor, event) => this._onReleaseButton(actor, event));
+        this._window.connect('drag-motion', (widget, context, x, y) => {
+            this._xDestination = x;
+            this._yDestination = y;
+        });
         this._createDesktopBackgroundMenu();
         DBusUtils.NautilusFileOperationsProxy.connect('g-properties-changed', this._undoStatusChanged.bind(this));
         this._fileList = [];
@@ -496,62 +500,95 @@ var DesktopManager = GObject.registerClass({
 
     _readFileList() {
         this._readingDesktopFiles = true;
+        for(let fileItem of this._fileList) {
+            fileItem.removeFromGrid();
+        }
         this._fileList = [];
         let desktopDir = DesktopIconsUtil.getDesktopDir();
-        let fileEnum;
-        do {
-            this._desktopFilesChanged = false;
-            fileEnum = desktopDir.enumerate_children(Enums.DEFAULT_ATTRIBUTES,
-                                                     Gio.FileQueryInfoFlags.NONE,
-                                                     null);
-        } while(this._desktopFilesChanged);
-        this._readingDesktopFiles = false;
 
-        for (let [newFolder, extras] of DesktopIconsUtil.getExtraFolders()) {
-            this._fileList.push(new FileItem.FileItem(this,
-                                                      newFolder,
-                                                      newFolder.query_info(Enums.DEFAULT_ATTRIBUTES, Gio.FileQueryInfoFlags.NONE, null),
-                                                      extras,
-                                                      this._scale));
-        }
-        let info;
-        while ((info = fileEnum.next_file(null))) {
-            this._fileList.push(new FileItem.FileItem(this,
-                                                      fileEnum.get_child(info),
-                                                      info,
-                                                      Enums.FileType.NONE,
-                                                      this._scale));
-        }
+        this._desktopFilesChanged = false;
+        if (this._desktopEnumerateCancellable)
+            this._desktopEnumerateCancellable.cancel();
+
+        this._desktopEnumerateCancellable = new Gio.Cancellable();
+        desktopDir.enumerate_children_async(
+            Enums.DEFAULT_ATTRIBUTES,
+            Gio.FileQueryInfoFlags.NONE,
+            GLib.PRIORITY_DEFAULT,
+            this._desktopEnumerateCancellable,
+            (source, result) => {
+                try {
+                    let fileEnum = source.enumerate_children_finish(result);
+                    if (!this._desktopFilesChanged) {
+                        // if no file changed while reading the desktop folder, the fileItems list if right
+                        this._readingDesktopFiles = false;
+                        for (let [newFolder, extras] of DesktopIconsUtil.getExtraFolders()) {
+                            this._fileList.push(
+                                new FileItem.FileItem(
+                                    this,
+                                    newFolder,
+                                    newFolder.query_info(Enums.DEFAULT_ATTRIBUTES, Gio.FileQueryInfoFlags.NONE, null),
+                                    extras,
+                                    this._scale
+                                )
+                            );
+                        }
+                        let info;
+                        while ((info = fileEnum.next_file(null))) {
+                            this._fileList.push(
+                                new FileItem.FileItem(
+                                    this,
+                                    fileEnum.get_child(info),
+                                    info,
+                                    Enums.FileType.NONE,
+                                    this._scale
+                                )
+                            );
+                        }
+                        this._addFilesToDesktop(this._fileList, Enums.StoredCoordinates.PRESERVE);
+                    } else {
+                        // But if there was a file change, we must re-read it to be sure that the list is complete
+                        this._readFileList();
+                    }
+                } catch(e) {
+                    print("Error reading the desktop. Retrying...");
+                    Gtk.main_quit();
+                }
+            }
+        );
+    }
+
+    _addFilesToDesktop(fileList, storeMode) {
         let outOfDesktops = [];
         let notAssignedYet = [];
         let showHidden = Prefs.gtkSettings.get_boolean('show-hidden');
         // First, add those icons that fit in the current desktops
-        for(let icon of this._fileList) {
-            if (icon.isHidden && !showHidden) {
+        for(let fileItem of fileList) {
+            if (fileItem.isHidden && !showHidden) {
                 continue;
             }
-            if (icon.savedCoordinates == null) {
-                notAssignedYet.push(icon);
+            if (fileItem.savedCoordinates == null) {
+                notAssignedYet.push(fileItem);
                 continue;
             }
-            let [itemX, itemY] = icon.savedCoordinates;
+            let [itemX, itemY] = fileItem.savedCoordinates;
             let addedToDesktop = false;
             for(let desktop of this._desktops) {
                 if (desktop.getDistance(itemX, itemY) == 0) {
                     addedToDesktop = true;
-                    desktop.addFileItemCloseTo(icon, itemX, itemY, Enums.StoredCoordinates.PRESERVE);
+                    desktop.addFileItemCloseTo(fileItem, itemX, itemY, storeMode);
                     break;
                 }
             }
             if (!addedToDesktop) {
-                outOfDesktops.push(icon);
+                outOfDesktops.push(fileItem);
             }
         }
         // Now, assign those icons that are outside the current desktops,
         // but have assigned coordinates
-        for(let icon of outOfDesktops) {
+        for(let fileItem of outOfDesktops) {
             let minDistance = -1;
-            let [itemX, itemY] = icon.savedCoordinates;
+            let [itemX, itemY] = fileItem.savedCoordinates;
             let newDesktop = null;
             for (let desktop of this._desktops) {
                 let distance = desktop.getDistance(itemX, itemY);
@@ -567,15 +604,15 @@ var DesktopManager = GObject.registerClass({
                 print("Not enough space to add icons");
                 break;
             } else {
-                newDesktop.addFileItemCloseTo(icon, itemX, itemY, Enums.StoredCoordinates.PRESERVE);
+                newDesktop.addFileItemCloseTo(fileItem, itemX, itemY, storeMode);
             }
         }
         // Finally, assign those icons that still don't have coordinates
-        for (let icon of notAssignedYet) {
+        for (let fileItem of notAssignedYet) {
             for (let desktop of this._desktops) {
                 let distance = desktop.getDistance(0, 0);
                 if (distance != -1) {
-                    desktop.addFileItemCloseTo(icon, 0, 0, Enums.StoredCoordinates.ASSIGN);
+                    desktop.addFileItemCloseTo(fileItem, 0, 0, Enums.StoredCoordinates.ASSIGN);
                     break;
                 }
             }
@@ -583,36 +620,18 @@ var DesktopManager = GObject.registerClass({
     }
 
     _updateDesktopIfChanged(file, otherFile, eventType) {
-        if(this._readingDesktopFiles) {
+        if (this._readingDesktopFiles) {
             // just notify that the files changed while being read from the disk.
             this._desktopFilesChanged = true;
             return;
         }
         // For now, while I'm implementing things like all the menu options, and selection
         // just exit to make the extension reload it again and refresh the desktop
-        Gtk.main_quit();
-    }
-
-    _getCurrentSelection(getUri) {
-        let listToTrash = [];
-        for(let fileItem of this._fileList) {
-            if (fileItem.isSelected) {
-                if (getUri) {
-                    listToTrash.push(fileItem.file.get_uri());
-                } else {
-                    listToTrash.push(fileItem);
-                }
-            }
-        }
-        if (listToTrash.length != 0) {
-            return listToTrash;
-        } else {
-            return null;
-        }
+        this._readFileList();
     }
 
     _getClipboardText(isCopy) {
-        let selection = this._getCurrentSelection(true);
+        let selection = this.getCurrentSelection(true);
         if (selection) {
             let atom = Gdk.Atom.intern('CLIPBOARD', false);
             let clipboard = Gtk.Clipboard.get(atom);
@@ -633,7 +652,7 @@ var DesktopManager = GObject.registerClass({
     }
 
     doTrash() {
-        let selection = this._getCurrentSelection(true);
+        let selection = this.getCurrentSelection(true);
         if (selection) {
             DBusUtils.NautilusFileOperationsProxy.TrashFilesRemote(selection,
                 (source, error) => {
@@ -651,6 +670,25 @@ var DesktopManager = GObject.registerClass({
         });
     }
 
+    doDragAndDrop(fileItem, xOrigin, yOrigin) {
+        let deltaX = this._xDestination - xOrigin;
+        let deltaY = this._yDestination - yOrigin;
+        let fileItems = [fileItem];
+        fileItem.removeFromGrid();
+        let [x, y, a, b, c] = fileItem.getCoordinates();
+        fileItem.savedCoordinates = [x + deltaX, y + deltaY];
+        for(let item of this._fileList) {
+            if (item.isSelected && (item != fileItem)) {
+                fileItems.push(item);
+                item.removeFromGrid();
+                [x, y, a, b, c] = item.getCoordinates();
+                item.savedCoordinates([x + deltaX, y + deltaY]);
+            }
+        }
+        // force to store the new coordinates
+        this._addFilesToDesktop(fileItems, Enums.StoredCoordinates.ASSIGN);
+    }
+
     checkIfSpecialFilesAreSelected() {
         for(let item of this._fileList) {
             if (item.isSelected && item.isSpecial) {
@@ -658,6 +696,24 @@ var DesktopManager = GObject.registerClass({
             }
         }
         return false;
+    }
+
+    getCurrentSelection(getUri) {
+        let listToTrash = [];
+        for(let fileItem of this._fileList) {
+            if (fileItem.isSelected) {
+                if (getUri) {
+                    listToTrash.push(fileItem.file.get_uri());
+                } else {
+                    listToTrash.push(fileItem);
+                }
+            }
+        }
+        if (listToTrash.length != 0) {
+            return listToTrash;
+        } else {
+            return null;
+        }
     }
 
     getNumberOfSelectedItems() {
@@ -670,11 +726,11 @@ var DesktopManager = GObject.registerClass({
         return count;
     }
 
-    doRename(fileitem) {
-        let renameWindow = new AskNamePopup.AskNamePopup(fileitem.fileName, _("Rename"), this._window);
+    doRename(fileItem) {
+        let renameWindow = new AskNamePopup.AskNamePopup(fileItem.fileName, _("Rename"), this._window);
         let newName = renameWindow.run();
         if (newName) {
-            DBusUtils.NautilusFileOperationsProxy.RenameFileRemote(fileitem.file.get_uri(),
+            DBusUtils.NautilusFileOperationsProxy.RenameFileRemote(fileItem.file.get_uri(),
                                                                    newName,
                 (result, error) => {
                     if (error)
@@ -685,7 +741,7 @@ var DesktopManager = GObject.registerClass({
     }
 
     doOpenWith() {
-        let fileItems = this._getCurrentSelection(false);
+        let fileItems = this.getCurrentSelection(false);
         if (fileItems) {
             let mimetype = Gio.content_type_guess(fileItems[0].fileName, null)[0];
             let chooser = Gtk.AppChooserDialog.new_for_content_type(this._window,

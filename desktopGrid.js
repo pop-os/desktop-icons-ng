@@ -52,7 +52,7 @@ var DesktopGrid = class {
         this._elementMarginH = this._elementWidth - Prefs.get_desired_width(scaleFactor) - elementSpacing;
         this._elementMarginV = this._elementHeight - Prefs.get_desired_height(scaleFactor) - elementSpacing;
 
-        this._fileItems = [];
+        this._fileItems = {};
 
         this._gridStatus = {};
         for (let y=0; y<this._maxRows; y++) {
@@ -73,7 +73,7 @@ var DesktopGrid = class {
 
          let isFree = false;
          for (let element in this._gridStatus) {
-             if (this._gridStatus[element] == false) {
+             if (!this._gridStatus[element]) {
                  isFree = true;
                  break;
              }
@@ -93,13 +93,12 @@ var DesktopGrid = class {
         let y = this._y + this._elementHeight * row + this._elementMarginV - this._miny;
         this._container.put(fileItem.actor, x, y);
         this._setGridUse(column, row, true);
-        this._fileItems.push(fileItem);
+        this._fileItems[fileItem.uri] = [column, row, fileItem];
         fileItem.setCoordinates(x,
                                 y,
                                 this._elementWidth - 2 * this._elementMarginH,
                                 this._elementHeight - 2 * this._elementMarginV,
                                 this);
-        //let renameId = fileItem.connect('rename-clicked', this.doRename.bind(this));
 
         /* If this file is new in the Desktop and hasn't yet
          * fixed coordinates, store the new possition to ensure
@@ -111,6 +110,15 @@ var DesktopGrid = class {
             let fileX = this._x + Math.round((column * this._width) / this._maxColumns);
             let fileY = this._y + Math.round((row * this._height) / this._maxRows);
             fileItem.savedCoordinates = [fileX, fileY];
+        }
+    }
+
+    removeItem(fileItem) {
+        if (fileItem.uri in this._fileItems) {
+            let [column, row, tmp] = this._fileItems[fileItem.uri];
+            this._setGridUse(column, row, false);
+            this._container.remove(fileItem.actor);
+            delete this._fileItems[fileItem.uri];
         }
     }
 
@@ -161,8 +169,9 @@ var DesktopGrid = class {
             }
         }
 
-        if (!found)
+        if (!found) {
             throw new Error(`Not enough place at monitor`);
+        }
 
         return [resColumn, resRow];
     }

@@ -11,7 +11,7 @@ Another Desktop Icons Extension for GNOME Shell.
 
 ## TO-DO
 
-* Use file events instead of reloading the whole program
+* Use file events instead of refreshing the whole desktop
 * Drag'n'Drop
 
 

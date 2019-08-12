@@ -44,9 +44,9 @@ var FileItem = class {
         this._fileExtra = fileExtra;
         this._loadThumbnailDataCancellable = null;
         this._thumbnailScriptWatch = 0;
-        this._setMetadataCancellable = null;
         this._queryFileInfoCancellable = null;
         this._isSpecial = this._fileExtra != Enums.FileType.NONE;
+        this._grid = null;
 
         this._file = file;
 
@@ -55,13 +55,16 @@ var FileItem = class {
         if (savedCoordinates != null)
             this._savedCoordinates = savedCoordinates.split(',').map(x => Number(x));
 
-        this.actor = new Gtk.EventBox({ visible: true });
+        this.actor = new Gtk.EventBox({visible: true});
         this.actor.connect('destroy', () => this._onDestroy());
+
+        this._eventBox = new Gtk.EventBox({visible: true});
+        this.actor.add(this._eventBox);
 
         this._container = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL});
         this._styleContext = this._container.get_style_context();
         this._container.set_size_request(Prefs.get_desired_width(this._scaleFactor), Prefs.get_desired_height(this._scaleFactor));
-        this.actor.add(this._container);
+        this._eventBox.add(this._container);
 
         this._icon = new Gtk.Image();
         this._iconContainer = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL});
@@ -81,19 +84,24 @@ var FileItem = class {
         this._label.set_yalign(0.0);
         this._label.set_lines(-1);
 
-        this.actor.set_events(Gdk.EventMask.BUTTON_PRESS_MASK | Gdk.EventMask.BUTTON_RELEASE_MASK | Gdk.EventMask.LEAVE_NOTIFY_MASK | Gdk.EventMask.ENTER_NOTIFY_MASK);
-        this.actor.connect('button-press-event', (actor, event) => this._onPressButton(actor, event));
-        //this.actor.connect('motion-notify-event', (actor, event) => this._onMotion(actor, event));
-        this.actor.connect('enter-notify-event', (actor, event) => this._onEnter(actor, event));
-        this.actor.connect('leave-notify-event', (actor, event) => this._onLeave(actor, event));
-        this.actor.connect('button-release-event', (actor, event) => this._onReleaseButton(actor, event));
+        /* We need to allow the "button-press" and "button-release" events to pass through the callbacks, to allow the DnD to work
+         * But we must avoid them to reach the main window.
+         * The solution is to allow them to pass in a EventBox, used both for detecting the events and the DnD, and block them
+         * in a second EventBox, located outside.
+         */
+
+        this.actor.connect('button-press-event', (actor, event) => {return true;});
+        this._eventBox.connect('button-press-event', (actor, event) => this._onPressButton(actor, event));
+        this._eventBox.connect('enter-notify-event', (actor, event) => this._onEnter(actor, event));
+        this._eventBox.connect('leave-notify-event', (actor, event) => this._onLeave(actor, event));
+        this._eventBox.connect('button-release-event', (actor, event) => this._onReleaseButton(actor, event));
 
         /* Set the metadata and update relevant UI */
         this._updateMetadataFromFileInfo(fileInfo);
 
-        this._dragSource = this.actor;
+        this._setDropDestination(this._eventBox);
+        this._dragSource = this._eventBox;
         this._setDragSource(this._dragSource);
-        this._setDropDestination(this.actor);
         this._createMenu();
         this._updateIcon();
         this._isSelected = false;
@@ -134,33 +142,32 @@ var FileItem = class {
         });*/
     }
 
-    _setDragSource(dragSource) {
-        dragSource.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, null, Gdk.DragAction.MOVE || Gdk.DragAction.COPY);
+    removeFromGrid() {
+        if (this._grid) {
+            this._grid.removeItem(this);
+            this._grid = null;
+        }
+    }
+
+    _setDragSource() {
+        this._dragSource.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, null, Gdk.DragAction.MOVE || Gdk.DragAction.COPY);
         let targets = new Gtk.TargetList(null);
         targets.add(Gdk.atom_intern('x-special/adieu-icon-list', false), Gtk.TargetFlags.SAME_APP, 0);
-        /*if ((this._fileExtra != Enums.FileType.USER_DIRECTORY_TRASH) &&
-            (this._fileExtra != Enums.FileType.USER_DIRECTORY_HOME)) {*/
+        if ((this._fileExtra != Enums.FileType.USER_DIRECTORY_TRASH) &&
+            (this._fileExtra != Enums.FileType.USER_DIRECTORY_HOME)) {
                 targets.add(Gdk.atom_intern('x-special/gnome-icon-list', false), 0, 1);
                 targets.add(Gdk.atom_intern('text/uri-list', false), 0, 2);
-        //}
-        dragSource.drag_source_set_target_list(targets);
-        dragSource.connect('drag-begin', (widget, context) => {
-            print("Drag begin");
-            print(widget);
-            print(context);
-        });
-        dragSource.connect('drag-data-get', (widget, context, data, info, time) => {
-            print("Drag data get");
-            print(widget);
-            print(context);
-            print(data);
-            print(info);
-            print(time);
-        });
-        dragSource.connect('drag-end', (widget, context) => {
-            print("Drag end");
-            print(widget);
-            print(context);
+        }
+        this._dragSource.drag_source_set_target_list(targets);
+        this._dragSource.connect('drag-data-get', (widget, context, data, info, time) => {
+            let fileList = this._desktopManager.getCurrentSelection(true);
+            switch(info) {
+                case 0: // x-special/adieu-icon-list
+                    this._desktopManager.doDragAndDrop(this, this._xOrigin, this._yOrigin);
+                    break;
+                case 1: // x-special/gnome-icon-list
+                break;
+            }
         });
     }
 
@@ -212,10 +219,12 @@ var FileItem = class {
         this._grid = grid;
     }
 
+    getCoordinates() {
+        return [this._x1, this._y1, this._x2, this._y2, this._grid];
+    }
+
     _onDestroy() {
         /* Regular file data */
-        if (this._setMetadataCancellable)
-            this._setMetadataCancellable.cancel();
         if (this._queryFileInfoCancellable)
             this._queryFileInfoCancellable.cancel();
 
@@ -658,7 +667,7 @@ var FileItem = class {
     _onPressButton(actor, event) {
         let button = event.get_button()[1];
         if (button == 3) {
-            if (!this.isSelected) {
+            if (!this._isSelected) {
                 this._desktopManager.selected(this, Enums.Selection.RIGHT_BUTTON);
             }
             this._menu.popup_at_pointer(event);
@@ -673,10 +682,11 @@ var FileItem = class {
                 this._actionCopy.set_sensitive(!allowCutCopyTrash);
             if (this._actionTrash)
                 this._actionTrash.set_sensitive(!allowCutCopyTrash);
-            return true;
         } else if (button == 1) {
             if (event.get_event_type() == Gdk.EventType.BUTTON_PRESS) {
                 let [a, x, y] = event.get_coords();
+                this._xOrigin = x + this._x1;
+                this._yOrigin = y + this._y1;
                 let state = event.get_state()[1];
                 this._primaryButtonPressed = true;
                 this._buttonPressInitialX = x;
@@ -689,18 +699,19 @@ var FileItem = class {
                     this._desktopManager.selected(this, Enums.Selection.ALONE);
                 }
             }
-            if ((event.get_event_type() == Gdk.EventType.DOUBLE_BUTTON_PRESS) && !Prefs.CLICK_POLICY_SINGLE)
+            if ((event.get_event_type() == Gdk.EventType.DOUBLE_BUTTON_PRESS) && !Prefs.CLICK_POLICY_SINGLE) {
                 this.doOpen();
-            return true;
+            }
         }
 
         return false;
     }
 
     _setSelectedStatus() {
-        if (this._isSelected) {
+        if (this._isSelected && !this._styleContext.has_class('desktop-icons-selected')) {
             this._styleContext.add_class('desktop-icons-selected');
-        } else {
+        }
+        if (!this._isSelected && this._styleContext.has_class('desktop-icons-selected')) {
             this._styleContext.remove_class('desktop-icons-selected');
         }
     }
@@ -733,40 +744,26 @@ var FileItem = class {
                 this._primaryButtonPressed = false;
                 let shiftPressed = !!(event.get_state()[1] & Gdk.ModifierType.SHIFT_MASK);
                 let controlPressed = !!(event.get_state()[1] & Gdk.ModifierType.CONTROL_MASK);
-                if (Prefs.CLICK_POLICY_SINGLE && !shiftPressed && !controlPressed)
+                if (Prefs.CLICK_POLICY_SINGLE && !shiftPressed && !controlPressed) {
                     this.doOpen();
-                return true;
+                }
             }
         }
         return false;
     }
 
     _onEnter(actor, event) {
-        this._styleContext.add_class('file-item-hover');
+        if (!this._styleContext.has_class('file-item-hover')) {
+            this._styleContext.add_class('file-item-hover');
+        }
         return false;
     }
 
     _onLeave(actor, event) {
         this._primaryButtonPressed = false;
-        this._styleContext.remove_class('file-item-hover');
-        return false;
-    }
-
-    _onMotion(actor, event) {
-        /*let [x, y] = event.get_coords();
-        if (this._primaryButtonPressed) {
-            let xDiff = x - this._buttonPressInitialX;
-            let yDiff = y - this._buttonPressInitialY;
-            let distance = Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2));
-            if (distance > DRAG_TRESHOLD) {
-                // Don't need to track anymore this if we start drag, and also
-                // avoids reentrance here
-                this._primaryButtonPressed = false;
-                let event = Clutter.get_current_event();
-                let [x, y] = event.get_coords();
-                this._desktopManager.dragStart();
-            }
-        }*/
+        if (this._styleContext.has_class('file-item-hover')) {
+            this._styleContext.remove_class('file-item-hover');
+        }
         return false;
     }
 
@@ -804,54 +801,11 @@ var FileItem = class {
     }
 
     set savedCoordinates(pos) {
-        if (this._setMetadataCancellable)
-            this._setMetadataCancellable.cancel();
-
-        this._setMetadataCancellable = new Gio.Cancellable();
         this._savedCoordinates = [pos[0], pos[1]];
         let info = new Gio.FileInfo();
         info.set_attribute_string('metadata::nautilus-icon-position',
                                   `${pos[0]},${pos[1]}`);
-        this.file.set_attributes_async(info,
-                                       Gio.FileQueryInfoFlags.NONE,
-                                       GLib.PRIORITY_DEFAULT,
-                                       this._setMetadataCancellable,
-            (source, result) => {
-                this._setMetadataCancellable = null;
-                this._onSetMetadataFileFinished(source, result);
-            }
-        );
-    }
-
-    intersectsWith(argX, argY, argWidth, argHeight) {
-        let rect = new Meta.Rectangle({ x: argX, y: argY, width: argWidth, height: argHeight });
-        let [containerX, containerY] = this._container.get_transformed_position();
-        let boundingBox = new Meta.Rectangle({ x: containerX,
-                                               y: containerY,
-                                               width: this._container.allocation.x2 - this._container.allocation.x1,
-                                               height: this._container.allocation.y2 - this._container.allocation.y1 });
-        let [intersects, _] = rect.intersect(boundingBox);
-
-        return intersects;
-    }
-
-    set isSelected(isSelected) {
-        isSelected = !!isSelected;
-        if (isSelected == this._isSelected)
-            return;
-
-        if (isSelected) {
-            this._container.set_style(this._getSelectionStyle());
-        } else {
-            this._container.set_style('background-color: transparent');
-            this._container.set_style('border-color: transparent');
-        }
-
-        this._isSelected = isSelected;
-    }
-
-    get isSelected() {
-        return this._isSelected;
+        this.file.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
     }
 
     get isSpecial() {
@@ -884,6 +838,10 @@ var FileItem = class {
         return this._fileInfo.get_name();
     }
 
+    get uri() {
+        return this._file.get_uri();
+    }
+
     get displayName() {
         if (this.trustedDesktopFile)
             return this._desktopFile.get_name();
@@ -891,8 +849,5 @@ var FileItem = class {
         return this._displayName || null;
     }
 
-    acceptDrop() {
-        return this._desktopManager.selectionDropOnFileItem(this);
-    }
 };
 Signals.addSignalMethods(FileItem.prototype);
