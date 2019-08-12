@@ -172,6 +172,35 @@ var DesktopManager = GObject.registerClass({
         });
     }
 
+    fillDragDataGet(info) {
+        let fileList = this.getCurrentSelection(false);
+        if (fileList == null) {
+            return null;
+        }
+        let atom;
+        switch(info) {
+            case 1:
+                atom = Gdk.atom_intern('x-special/gnome-icon-list', false);
+            break;
+            case 2:
+                atom = Gdk.atom_intern('text/uri-list', false);
+            break;
+        }
+        let data = "";
+        for (let fileItem of fileList) {
+            data += fileItem.uri;
+            if (info == 1) {
+                let coordinates = fileItem.getCoordinates();
+                if (coordinates != null) {
+                    data += `\r${coordinates[0]}:${coordinates[1]}:${coordinates[2] - coordinates[0] + 1}:${coordinates[3] - coordinates[1] + 1}`
+                }
+            }
+            data += '\n';
+            fileItem.savedCoordinates = null;
+        }
+        return [atom, data];
+    }
+
     _onPressButton(actor, event) {
         let button = event.get_button()[1];
         let [a, x, y] = event.get_coords();
@@ -681,7 +710,7 @@ var DesktopManager = GObject.registerClass({
         });
     }
 
-    doDragAndDrop(fileItem, xOrigin, yOrigin) {
+    doMoveWithDragAndDrop(fileItem, xOrigin, yOrigin) {
         let deltaX = this._xDestination - xOrigin;
         let deltaY = this._yDestination - yOrigin;
         let fileItems = [fileItem];

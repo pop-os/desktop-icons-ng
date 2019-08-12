@@ -30,6 +30,7 @@ const Prefs = imports.preferences;
 const Enums = imports.enums;
 const DBusUtils = imports.dbusUtils;
 
+const ByteArray = imports.byteArray;
 const Mainloop = imports.mainloop;
 const Signals = imports.signals;
 const Gettext = imports.gettext.domain('adieu');
@@ -52,8 +53,14 @@ var FileItem = class {
 
         this._savedCoordinates = null;
         let savedCoordinates = fileInfo.get_attribute_as_string('metadata::nautilus-icon-position');
-        if (savedCoordinates != null)
-            this._savedCoordinates = savedCoordinates.split(',').map(x => Number(x));
+        if ((savedCoordinates != null) && (savedCoordinates != '')) {
+            savedCoordinates = savedCoordinates.split(',');
+            if (savedCoordinates.length >= 2) {
+                if (!isNaN(savedCoordinates[0]) && !isNaN(savedCoordinates[1])) {
+                    this._savedCoordinates = [Number(savedCoordinates[0]), Number(savedCoordinates[1])];
+                }
+            }
+        }
 
         this.actor = new Gtk.EventBox({visible: true});
         this.actor.connect('destroy', () => this._onDestroy());
@@ -160,12 +167,17 @@ var FileItem = class {
         }
         this._dragSource.drag_source_set_target_list(targets);
         this._dragSource.connect('drag-data-get', (widget, context, data, info, time) => {
-            let fileList = this._desktopManager.getCurrentSelection(true);
             switch(info) {
                 case 0: // x-special/adieu-icon-list
-                    this._desktopManager.doDragAndDrop(this, this._x1 + this._xOrigin, this._y1 + this._yOrigin);
+                    this._desktopManager.doMoveWithDragAndDrop(this, this._x1 + this._xOrigin, this._y1 + this._yOrigin);
                     break;
                 case 1: // x-special/gnome-icon-list
+                case 2: //
+                    let dragData = this._desktopManager.fillDragDataGet(info);
+                    if (dragData != null) {
+                        let list = ByteArray.fromString(dragData[1]);
+                        data.set(dragData[0], 8, list);
+                    }
                 break;
             }
         });
@@ -803,10 +815,14 @@ var FileItem = class {
     }
 
     set savedCoordinates(pos) {
-        this._savedCoordinates = [pos[0], pos[1]];
         let info = new Gio.FileInfo();
-        info.set_attribute_string('metadata::nautilus-icon-position',
-                                  `${pos[0]},${pos[1]}`);
+        if (pos != null) {
+            this._savedCoordinates = [pos[0], pos[1]];
+            info.set_attribute_string('metadata::nautilus-icon-position', `${pos[0]},${pos[1]}`);
+        } else {
+            this._savedCoordinates = null;
+            info.set_attribute_string('metadata::nautilus-icon-position', '');
+        }
         this.file.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
     }
 
