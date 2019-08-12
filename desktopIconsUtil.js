@@ -128,3 +128,17 @@ function getGtkClassBackgroundColor(classname, state) {
     context.add_class(classname);
     return context.get_background_color(state);
 }
+
+function getFilesFromNautilusDnD(selection) {
+    let data = String.fromCharCode.apply(null, selection.get_data());
+    let retval = [];
+    let elements = data.split('\n');
+    for(let item of elements) {
+        if (item.length == 0) {
+            continue;
+        }
+        retval.push(item.split('\r')[0]);
+    }
+    print(retval);
+    return retval;
+}

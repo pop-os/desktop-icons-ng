@@ -96,8 +96,9 @@ var FileItem = class {
         this._isSelected = false;
         this._primaryButtonPressed = false;
 
-        if (this._attributeCanExecute && !this._isValidDesktopFile)
+        if (this._attributeCanExecute && !this._isValidDesktopFile) {
             this._execLine = this.file.get_path();
+        }
         if (fileExtra == Enums.FileType.USER_DIRECTORY_TRASH) {
             // if this icon is the trash, monitor the state of the directory to update the icon
             this._trashChanged = false;
@@ -122,12 +123,50 @@ var FileItem = class {
             });
         }
         this.actor.show_all();
+        this._setDropDestination(this.actor);
         // TODO
         /*this._writebleByOthersId = this._desktopManager.connect('notify::writable-by-others', () => {
             if (!this._isValidDesktopFile)
                 return;
             this._refreshMetadataAsync(true);
         });*/
+    }
+
+    _setDropDestination(dropDestination) {
+        dropDestination.drag_dest_set(Gtk.DestDefaults.ALL, null, Gdk.DragAction.MOVE);
+        if ((this._fileExtra == Enums.FileType.USER_DIRECTORY_TRASH) ||
+            (this._fileExtra == Enums.FileType.USER_DIRECTORY_HOME) ||
+            (this._isDirectory)) {
+                let targets = new Gtk.TargetList(null);
+                targets.add(Gdk.atom_intern('x-special/gnome-icon-list', false), 0, 0);
+                targets.add(Gdk.atom_intern('text/uri-list', false), 0, 1);
+                dropDestination.drag_dest_set_target_list(targets);
+                dropDestination.connect('drag-data-received', (widget, context, x, y, selection, info, time) => {
+                    if (info == 0) {
+                        let fileList = DesktopIconsUtil.getFilesFromNautilusDnD(selection);
+                        if (fileList.length != 0) {
+                            if (this._fileExtra != Enums.FileType.USER_DIRECTORY_TRASH) {
+                                DBusUtils.NautilusFileOperationsProxy.MoveURIsRemote(
+                                    fileList,
+                                    this._file.get_uri(),
+                                    (result, error) => {
+                                        if (error)
+                                            throw new Error('Error moving files: ' + error.message);
+                                        }
+                                );
+                            } else {
+                                DBusUtils.NautilusFileOperationsProxy.TrashFilesRemote(
+                                    fileList,
+                                    (result, error) => {
+                                        if (error)
+                                            throw new Error('Error moving files: ' + error.message);
+                                        }
+                                );
+                            }
+                        }
+                    }
+                });
+        }
     }
 
     onAttributeChanged() {
