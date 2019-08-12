@@ -96,10 +96,8 @@ var DesktopManager = GObject.registerClass({
         //this._window.set_skip_pager_hint(true);
         //this._window.set_skip_taskbar_hint(true);
         //this._window.set_type_hint(Gdk.WindowTypeHint.DESKTOP);
-        this._eventBox = new Gtk.EventBox({visible: true});
         this._container = new Gtk.Fixed();
-        this._window.add(this._eventBox);
-        this._eventBox.add(this._container);
+        this._window.add(this._container);
 
         this.setDropDestination(this._window);
 
@@ -137,9 +135,9 @@ var DesktopManager = GObject.registerClass({
         }
         this._window.set_default_size(x2 - x1, y2 - y1);
         this._window.show_all();
-        this._eventBox.connect('button-press-event', (actor, event) => this._onPressButton(actor, event));
-        this._eventBox.connect('motion-notify-event', (actor, event) => this._onMotion(actor, event));
-        this._eventBox.connect('button-release-event', (actor, event) => this._onReleaseButton(actor, event));
+        this._window.connect('button-press-event', (actor, event) => this._onPressButton(actor, event));
+        this._window.connect('motion-notify-event', (actor, event) => this._onMotion(actor, event));
+        this._window.connect('button-release-event', (actor, event) => this._onReleaseButton(actor, event));
         this._createDesktopBackgroundMenu();
         DBusUtils.NautilusFileOperationsProxy.connect('g-properties-changed', this._undoStatusChanged.bind(this));
         this._fileList = [];
