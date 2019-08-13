@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-08 21:08+0200\n"
+"POT-Creation-Date: 2019-08-13 10:04+0200\n"
 "PO-Revision-Date: 2019-04-29 17:35-0300\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
@@ -19,53 +19,127 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 "X-Generator: Gtranslator 3.32.0\n"
 
-#: ../prefs.js:106
-msgid "Size for the desktop icons"
-msgstr "Tamanho para os ícones da área de trabalho"
-
-#: ../prefs.js:106
-msgid "Small"
-msgstr "Pequeno"
-
-#: ../prefs.js:106
-msgid "Standard"
-msgstr "Padrão"
-
-#: ../prefs.js:106
-msgid "Large"
-msgstr "Grande"
-
-#: ../prefs.js:107
-msgid "Show the personal folder in the desktop"
-msgstr "Mostrar a pasta pessoal na área de trabalho"
-
-#: ../prefs.js:108
-msgid "Show the trash icon in the desktop"
-msgstr "Mostrar o ícone da lixeira na área de trabalho"
-
-#: ../desktopGrid.js:411
-msgid "Enter file name…"
-msgstr "Insira um nome de arquivo…"
-
-#: ../desktopGrid.js:415
+#: ../preferences.js:85
 msgid "OK"
 msgstr "OK"
 
-#: ../desktopGrid.js:421
-msgid "Cancel"
-msgstr "Cancelar"
+#: ../preferences.js:86 ../desktopManager.js:365
+msgid "Settings"
+msgstr "Configurações"
 
-#: ../desktopIconsUtil.js:59
+#: ../preferences.js:91
+msgid "Size for the desktop icons"
+msgstr "Tamanho para os ícones da área de trabalho"
+
+#: ../preferences.js:91
+msgid "Small"
+msgstr "Pequeno"
+
+#: ../preferences.js:91
+msgid "Standard"
+msgstr "Padrão"
+
+#: ../preferences.js:91
+msgid "Large"
+msgstr "Grande"
+
+#: ../preferences.js:92
+msgid "Show the personal folder in the desktop"
+msgstr "Mostrar a pasta pessoal na área de trabalho"
+
+#: ../preferences.js:93
+msgid "Show the trash icon in the desktop"
+msgstr "Mostrar o ícone da lixeira na área de trabalho"
+
+#: ../desktopIconsUtil.js:68
 msgid "Command not found"
 msgstr "Comando não encontrado"
 
-#: ../fileItem.js:467
+#: ../fileItem.js:555
 msgid "Don’t Allow Launching"
 msgstr "Não permitir iniciar"
 
-#: ../fileItem.js:469
+#: ../fileItem.js:557
 msgid "Allow Launching"
 msgstr "Permitir iniciar"
+
+#: ../fileItem.js:617
+msgid "Open"
+msgstr "Abrir"
+
+#: ../fileItem.js:623
+msgid "Open With Other Application"
+msgstr "Abrir com outro aplicativo"
+
+#: ../fileItem.js:630
+msgid "Cut"
+msgstr "Recortar"
+
+#: ../fileItem.js:633
+msgid "Copy"
+msgstr "Copiar"
+
+#: ../fileItem.js:637
+msgid "Rename…"
+msgstr "Renomear…"
+
+#: ../fileItem.js:641
+msgid "Move to Trash"
+msgstr "Mover para a lixeira"
+
+#: ../fileItem.js:653
+msgid "Empty Trash"
+msgstr "Esvaziar lixeira"
+
+#: ../fileItem.js:661
+msgid "Properties"
+msgstr "Propriedades"
+
+#: ../fileItem.js:665
+msgid "Show in Files"
+msgstr "Mostrar no Arquivos"
+
+#: ../fileItem.js:669 ../desktopManager.js:343
+msgid "Open in Terminal"
+msgstr "Abrir no terminal"
+
+#: ../desktopManager.js:319
+msgid "New Folder"
+msgstr "Nova pasta"
+
+#: ../desktopManager.js:325
+msgid "Paste"
+msgstr "Colar"
+
+#: ../desktopManager.js:329
+msgid "Undo"
+msgstr "Desfazer"
+
+#: ../desktopManager.js:333
+msgid "Redo"
+msgstr "Refazer"
+
+#: ../desktopManager.js:339
+msgid "Show Desktop in Files"
+msgstr "Mostrar a área de trabalho no Arquivos"
+
+#: ../desktopManager.js:349
+msgid "Change Background…"
+msgstr "Alterar plano de fundo…"
+
+#: ../desktopManager.js:358
+msgid "Display Settings"
+msgstr "Configurações de exibição"
+
+#: ../desktopManager.js:770
+#, fuzzy
+msgid "Rename"
+msgstr "Renomear…"
+
+#: ../desktopManager.js:808
+#, fuzzy
+msgid "New folder"
+msgstr "Nova pasta"
 
 #: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
 msgid "Icon size"
@@ -91,6 +165,12 @@ msgstr "Mostrar ícone da lixeira"
 msgid "Show the trash icon in the desktop."
 msgstr "Mostra o ícone da lixeira na área de trabalho."
 
+#~ msgid "Enter file name…"
+#~ msgstr "Insira um nome de arquivo…"
+
+#~ msgid "Cancel"
+#~ msgstr "Cancelar"
+
 #~ msgid "New folder name"
 #~ msgstr "Nome da nova pasta"
 
@@ -111,60 +191,6 @@ msgstr "Mostra o ícone da lixeira na área de trabalho."
 
 #~ msgid "There is already a file or folder with that name."
 #~ msgstr "Já existe um arquivo ou uma pasta com esse nome."
-
-#~ msgid "New Folder"
-#~ msgstr "Nova pasta"
-
-#~ msgid "Paste"
-#~ msgstr "Colar"
-
-#~ msgid "Undo"
-#~ msgstr "Desfazer"
-
-#~ msgid "Redo"
-#~ msgstr "Refazer"
-
-#~ msgid "Show Desktop in Files"
-#~ msgstr "Mostrar a área de trabalho no Arquivos"
-
-#~ msgid "Open in Terminal"
-#~ msgstr "Abrir no terminal"
-
-#~ msgid "Change Background…"
-#~ msgstr "Alterar plano de fundo…"
-
-#~ msgid "Display Settings"
-#~ msgstr "Configurações de exibição"
-
-#~ msgid "Settings"
-#~ msgstr "Configurações"
-
-#~ msgid "Open"
-#~ msgstr "Abrir"
-
-#~ msgid "Open With Other Application"
-#~ msgstr "Abrir com outro aplicativo"
-
-#~ msgid "Cut"
-#~ msgstr "Recortar"
-
-#~ msgid "Copy"
-#~ msgstr "Copiar"
-
-#~ msgid "Rename…"
-#~ msgstr "Renomear…"
-
-#~ msgid "Move to Trash"
-#~ msgstr "Mover para a lixeira"
-
-#~ msgid "Empty Trash"
-#~ msgstr "Esvaziar lixeira"
-
-#~ msgid "Properties"
-#~ msgstr "Propriedades"
-
-#~ msgid "Show in Files"
-#~ msgstr "Mostrar no Arquivos"
 
 #~ msgid "Huge"
 #~ msgstr "Enorme"

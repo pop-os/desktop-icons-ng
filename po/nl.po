@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-08 21:07+0200\n"
+"POT-Creation-Date: 2019-08-13 10:04+0200\n"
 "PO-Revision-Date: 2019-03-04 19:46+0100\n"
 "Last-Translator: Nathan Follens <nthn@unseen.is>\n"
 "Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
@@ -18,53 +18,127 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: ../prefs.js:106
-msgid "Size for the desktop icons"
-msgstr "Grootte van bureaubladpictogrammen"
-
-#: ../prefs.js:106
-msgid "Small"
-msgstr "Klein"
-
-#: ../prefs.js:106
-msgid "Standard"
-msgstr "Standaard"
-
-#: ../prefs.js:106
-msgid "Large"
-msgstr "Groot"
-
-#: ../prefs.js:107
-msgid "Show the personal folder in the desktop"
-msgstr "Toon de persoonlijke map op het bureaublad"
-
-#: ../prefs.js:108
-msgid "Show the trash icon in the desktop"
-msgstr "Toon het prullenbakpictogram op het bureaublad"
-
-#: ../desktopGrid.js:411
-msgid "Enter file name…"
-msgstr "Voer bestandsnaam in…"
-
-#: ../desktopGrid.js:415
+#: ../preferences.js:85
 msgid "OK"
 msgstr "Oké"
 
-#: ../desktopGrid.js:421
-msgid "Cancel"
-msgstr "Annuleren"
+#: ../preferences.js:86 ../desktopManager.js:365
+msgid "Settings"
+msgstr "Instellingen"
 
-#: ../desktopIconsUtil.js:59
+#: ../preferences.js:91
+msgid "Size for the desktop icons"
+msgstr "Grootte van bureaubladpictogrammen"
+
+#: ../preferences.js:91
+msgid "Small"
+msgstr "Klein"
+
+#: ../preferences.js:91
+msgid "Standard"
+msgstr "Standaard"
+
+#: ../preferences.js:91
+msgid "Large"
+msgstr "Groot"
+
+#: ../preferences.js:92
+msgid "Show the personal folder in the desktop"
+msgstr "Toon de persoonlijke map op het bureaublad"
+
+#: ../preferences.js:93
+msgid "Show the trash icon in the desktop"
+msgstr "Toon het prullenbakpictogram op het bureaublad"
+
+#: ../desktopIconsUtil.js:68
 msgid "Command not found"
 msgstr ""
 
-#: ../fileItem.js:467
+#: ../fileItem.js:555
 msgid "Don’t Allow Launching"
 msgstr "Toepassingen starten niet toestaan"
 
-#: ../fileItem.js:469
+#: ../fileItem.js:557
 msgid "Allow Launching"
 msgstr "Toepassingen starten toestaan"
+
+#: ../fileItem.js:617
+msgid "Open"
+msgstr "Openen"
+
+#: ../fileItem.js:623
+msgid "Open With Other Application"
+msgstr "Met andere toepassing openen"
+
+#: ../fileItem.js:630
+msgid "Cut"
+msgstr "Knippen"
+
+#: ../fileItem.js:633
+msgid "Copy"
+msgstr "Kopiëren"
+
+#: ../fileItem.js:637
+msgid "Rename…"
+msgstr "Hernoemen…"
+
+#: ../fileItem.js:641
+msgid "Move to Trash"
+msgstr "Verplaatsen naar prullenbak"
+
+#: ../fileItem.js:653
+msgid "Empty Trash"
+msgstr "Prullenbak legen"
+
+#: ../fileItem.js:661
+msgid "Properties"
+msgstr "Eigenschappen"
+
+#: ../fileItem.js:665
+msgid "Show in Files"
+msgstr "Tonen in Bestanden"
+
+#: ../fileItem.js:669 ../desktopManager.js:343
+msgid "Open in Terminal"
+msgstr "Openen in terminalvenster"
+
+#: ../desktopManager.js:319
+msgid "New Folder"
+msgstr "Nieuwe map"
+
+#: ../desktopManager.js:325
+msgid "Paste"
+msgstr "Plakken"
+
+#: ../desktopManager.js:329
+msgid "Undo"
+msgstr "Ongedaan maken"
+
+#: ../desktopManager.js:333
+msgid "Redo"
+msgstr "Opnieuw"
+
+#: ../desktopManager.js:339
+msgid "Show Desktop in Files"
+msgstr "Bureaublad tonen in Bestanden"
+
+#: ../desktopManager.js:349
+msgid "Change Background…"
+msgstr "Achtergrond aanpassen…"
+
+#: ../desktopManager.js:358
+msgid "Display Settings"
+msgstr "Scherminstellingen"
+
+#: ../desktopManager.js:770
+#, fuzzy
+msgid "Rename"
+msgstr "Hernoemen…"
+
+#: ../desktopManager.js:808
+#, fuzzy
+msgid "New folder"
+msgstr "Nieuwe map"
 
 #: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
 msgid "Icon size"
@@ -90,6 +164,12 @@ msgstr "Prullenbakpictogram tonen"
 msgid "Show the trash icon in the desktop."
 msgstr "Toon het prullenbakpictogram op het bureaublad."
 
+#~ msgid "Enter file name…"
+#~ msgstr "Voer bestandsnaam in…"
+
+#~ msgid "Cancel"
+#~ msgstr "Annuleren"
+
 #~ msgid "New folder name"
 #~ msgstr "Nieuwe mapnaam"
 
@@ -110,57 +190,3 @@ msgstr "Toon het prullenbakpictogram op het bureaublad."
 
 #~ msgid "There is already a file or folder with that name."
 #~ msgstr "Er bestaat al een bestand of map met die naam."
-
-#~ msgid "New Folder"
-#~ msgstr "Nieuwe map"
-
-#~ msgid "Paste"
-#~ msgstr "Plakken"
-
-#~ msgid "Undo"
-#~ msgstr "Ongedaan maken"
-
-#~ msgid "Redo"
-#~ msgstr "Opnieuw"
-
-#~ msgid "Show Desktop in Files"
-#~ msgstr "Bureaublad tonen in Bestanden"
-
-#~ msgid "Open in Terminal"
-#~ msgstr "Openen in terminalvenster"
-
-#~ msgid "Change Background…"
-#~ msgstr "Achtergrond aanpassen…"
-
-#~ msgid "Display Settings"
-#~ msgstr "Scherminstellingen"
-
-#~ msgid "Settings"
-#~ msgstr "Instellingen"
-
-#~ msgid "Open"
-#~ msgstr "Openen"
-
-#~ msgid "Open With Other Application"
-#~ msgstr "Met andere toepassing openen"
-
-#~ msgid "Cut"
-#~ msgstr "Knippen"
-
-#~ msgid "Copy"
-#~ msgstr "Kopiëren"
-
-#~ msgid "Rename…"
-#~ msgstr "Hernoemen…"
-
-#~ msgid "Move to Trash"
-#~ msgstr "Verplaatsen naar prullenbak"
-
-#~ msgid "Empty Trash"
-#~ msgstr "Prullenbak legen"
-
-#~ msgid "Properties"
-#~ msgstr "Eigenschappen"
-
-#~ msgid "Show in Files"
-#~ msgstr "Tonen in Bestanden"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-08 21:07+0200\n"
+"POT-Creation-Date: 2019-08-13 10:04+0200\n"
 "PO-Revision-Date: 2019-03-15 06:30+0000\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -17,53 +17,127 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../prefs.js:106
-msgid "Size for the desktop icons"
-msgstr "デスクトップアイコンのサイズ"
-
-#: ../prefs.js:106
-msgid "Small"
-msgstr "小さい"
-
-#: ../prefs.js:106
-msgid "Standard"
-msgstr "標準"
-
-#: ../prefs.js:106
-msgid "Large"
-msgstr "大きい"
-
-#: ../prefs.js:107
-msgid "Show the personal folder in the desktop"
-msgstr "デスクトップにホームフォルダーを表示する"
-
-#: ../prefs.js:108
-msgid "Show the trash icon in the desktop"
-msgstr "デスクトップにゴミ箱を表示する"
-
-#: ../desktopGrid.js:411
-msgid "Enter file name…"
-msgstr "ファイル名を入力してください…"
-
-#: ../desktopGrid.js:415
+#: ../preferences.js:85
 msgid "OK"
 msgstr "OK"
 
-#: ../desktopGrid.js:421
-msgid "Cancel"
-msgstr "キャンセル"
+#: ../preferences.js:86 ../desktopManager.js:365
+msgid "Settings"
+msgstr "設定"
 
-#: ../desktopIconsUtil.js:59
+#: ../preferences.js:91
+msgid "Size for the desktop icons"
+msgstr "デスクトップアイコンのサイズ"
+
+#: ../preferences.js:91
+msgid "Small"
+msgstr "小さい"
+
+#: ../preferences.js:91
+msgid "Standard"
+msgstr "標準"
+
+#: ../preferences.js:91
+msgid "Large"
+msgstr "大きい"
+
+#: ../preferences.js:92
+msgid "Show the personal folder in the desktop"
+msgstr "デスクトップにホームフォルダーを表示する"
+
+#: ../preferences.js:93
+msgid "Show the trash icon in the desktop"
+msgstr "デスクトップにゴミ箱を表示する"
+
+#: ../desktopIconsUtil.js:68
 msgid "Command not found"
 msgstr ""
 
-#: ../fileItem.js:467
+#: ../fileItem.js:555
 msgid "Don’t Allow Launching"
 msgstr "起動を許可しない"
 
-#: ../fileItem.js:469
+#: ../fileItem.js:557
 msgid "Allow Launching"
 msgstr "起動を許可する"
+
+#: ../fileItem.js:617
+msgid "Open"
+msgstr "開く"
+
+#: ../fileItem.js:623
+msgid "Open With Other Application"
+msgstr "別のアプリケーションで開く"
+
+#: ../fileItem.js:630
+msgid "Cut"
+msgstr "切り取り"
+
+#: ../fileItem.js:633
+msgid "Copy"
+msgstr "コピー"
+
+#: ../fileItem.js:637
+msgid "Rename…"
+msgstr "名前の変更…"
+
+#: ../fileItem.js:641
+msgid "Move to Trash"
+msgstr "ゴミ箱へ移動する"
+
+#: ../fileItem.js:653
+msgid "Empty Trash"
+msgstr "ゴミ箱を空にする"
+
+#: ../fileItem.js:661
+msgid "Properties"
+msgstr "プロパティ"
+
+#: ../fileItem.js:665
+msgid "Show in Files"
+msgstr "“ファイル”で表示する"
+
+#: ../fileItem.js:669 ../desktopManager.js:343
+msgid "Open in Terminal"
+msgstr "端末を開く"
+
+#: ../desktopManager.js:319
+msgid "New Folder"
+msgstr "新しいフォルダー"
+
+#: ../desktopManager.js:325
+msgid "Paste"
+msgstr "貼り付け"
+
+#: ../desktopManager.js:329
+msgid "Undo"
+msgstr "元に戻す"
+
+#: ../desktopManager.js:333
+msgid "Redo"
+msgstr "やり直す"
+
+#: ../desktopManager.js:339
+msgid "Show Desktop in Files"
+msgstr "“ファイル”でデスクトップを表示する"
+
+#: ../desktopManager.js:349
+msgid "Change Background…"
+msgstr "背景を変更する…"
+
+#: ../desktopManager.js:358
+msgid "Display Settings"
+msgstr "ディスプレイの設定"
+
+#: ../desktopManager.js:770
+#, fuzzy
+msgid "Rename"
+msgstr "名前の変更…"
+
+#: ../desktopManager.js:808
+#, fuzzy
+msgid "New folder"
+msgstr "新しいフォルダー"
 
 #: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
 msgid "Icon size"
@@ -89,6 +163,12 @@ msgstr "ゴミ箱アイコンを表示する"
 msgid "Show the trash icon in the desktop."
 msgstr "デスクトップにゴミ箱のアイコンを表示します。"
 
+#~ msgid "Enter file name…"
+#~ msgstr "ファイル名を入力してください…"
+
+#~ msgid "Cancel"
+#~ msgstr "キャンセル"
+
 #~ msgid "New folder name"
 #~ msgstr "新しいフォルダー名"
 
@@ -109,57 +189,3 @@ msgstr "デスクトップにゴミ箱のアイコンを表示します。"
 
 #~ msgid "There is already a file or folder with that name."
 #~ msgstr "その名前のファイルかフォルダーがすでに存在します。"
-
-#~ msgid "New Folder"
-#~ msgstr "新しいフォルダー"
-
-#~ msgid "Paste"
-#~ msgstr "貼り付け"
-
-#~ msgid "Undo"
-#~ msgstr "元に戻す"
-
-#~ msgid "Redo"
-#~ msgstr "やり直す"
-
-#~ msgid "Show Desktop in Files"
-#~ msgstr "“ファイル”でデスクトップを表示する"
-
-#~ msgid "Open in Terminal"
-#~ msgstr "端末を開く"
-
-#~ msgid "Change Background…"
-#~ msgstr "背景を変更する…"
-
-#~ msgid "Display Settings"
-#~ msgstr "ディスプレイの設定"
-
-#~ msgid "Settings"
-#~ msgstr "設定"
-
-#~ msgid "Open"
-#~ msgstr "開く"
-
-#~ msgid "Open With Other Application"
-#~ msgstr "別のアプリケーションで開く"
-
-#~ msgid "Cut"
-#~ msgstr "切り取り"
-
-#~ msgid "Copy"
-#~ msgstr "コピー"
-
-#~ msgid "Rename…"
-#~ msgstr "名前の変更…"
-
-#~ msgid "Move to Trash"
-#~ msgstr "ゴミ箱へ移動する"
-
-#~ msgid "Empty Trash"
-#~ msgstr "ゴミ箱を空にする"
-
-#~ msgid "Properties"
-#~ msgstr "プロパティ"
-
-#~ msgid "Show in Files"
-#~ msgstr "“ファイル”で表示する"

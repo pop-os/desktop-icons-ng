@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-08 21:06+0200\n"
+"POT-Creation-Date: 2019-08-13 10:04+0200\n"
 "PO-Revision-Date: 2019-07-22 10:24+0200\n"
 "Last-Translator: Jordi Mas <jmas@softcatala.org>\n"
 "Language-Team: Catalan <info@softcatala.org>\n"
@@ -16,53 +16,127 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: ../prefs.js:106
-msgid "Size for the desktop icons"
-msgstr "Mida de les icones d'escriptori"
-
-#: ../prefs.js:106
-msgid "Small"
-msgstr "Petita"
-
-#: ../prefs.js:106
-msgid "Standard"
-msgstr "Estàndard"
-
-#: ../prefs.js:106
-msgid "Large"
-msgstr "Gran"
-
-#: ../prefs.js:107
-msgid "Show the personal folder in the desktop"
-msgstr "Mostra la carpeta personal a l'escriptori"
-
-#: ../prefs.js:108
-msgid "Show the trash icon in the desktop"
-msgstr "Mostra la icona de la paperera a l'escriptori"
-
-#: ../desktopGrid.js:411
-msgid "Enter file name…"
-msgstr "Introduïu un nom de fitxer…"
-
-#: ../desktopGrid.js:415
+#: ../preferences.js:85
 msgid "OK"
 msgstr "D'acord"
 
-#: ../desktopGrid.js:421
-msgid "Cancel"
-msgstr "Cancel·la"
+#: ../preferences.js:86 ../desktopManager.js:365
+msgid "Settings"
+msgstr "Paràmetres"
 
-#: ../desktopIconsUtil.js:59
+#: ../preferences.js:91
+msgid "Size for the desktop icons"
+msgstr "Mida de les icones d'escriptori"
+
+#: ../preferences.js:91
+msgid "Small"
+msgstr "Petita"
+
+#: ../preferences.js:91
+msgid "Standard"
+msgstr "Estàndard"
+
+#: ../preferences.js:91
+msgid "Large"
+msgstr "Gran"
+
+#: ../preferences.js:92
+msgid "Show the personal folder in the desktop"
+msgstr "Mostra la carpeta personal a l'escriptori"
+
+#: ../preferences.js:93
+msgid "Show the trash icon in the desktop"
+msgstr "Mostra la icona de la paperera a l'escriptori"
+
+#: ../desktopIconsUtil.js:68
 msgid "Command not found"
 msgstr "\tNo s'ha trobat l'ordre"
 
-#: ../fileItem.js:467
+#: ../fileItem.js:555
 msgid "Don’t Allow Launching"
 msgstr "No permetis que s'iniciï"
 
-#: ../fileItem.js:469
+#: ../fileItem.js:557
 msgid "Allow Launching"
 msgstr "Permet que s'iniciï"
+
+#: ../fileItem.js:617
+msgid "Open"
+msgstr "Obre"
+
+#: ../fileItem.js:623
+msgid "Open With Other Application"
+msgstr "Obre amb una altra aplicació..."
+
+#: ../fileItem.js:630
+msgid "Cut"
+msgstr "Retalla"
+
+#: ../fileItem.js:633
+msgid "Copy"
+msgstr "Copia"
+
+#: ../fileItem.js:637
+msgid "Rename…"
+msgstr "Canvia el nom…"
+
+#: ../fileItem.js:641
+msgid "Move to Trash"
+msgstr "Mou a la paperera"
+
+#: ../fileItem.js:653
+msgid "Empty Trash"
+msgstr "Buida la paperera"
+
+#: ../fileItem.js:661
+msgid "Properties"
+msgstr "Propietats"
+
+#: ../fileItem.js:665
+msgid "Show in Files"
+msgstr "Mostra al Fitxers"
+
+#: ../fileItem.js:669 ../desktopManager.js:343
+msgid "Open in Terminal"
+msgstr "Obre al Terminal"
+
+#: ../desktopManager.js:319
+msgid "New Folder"
+msgstr "Carpeta nova"
+
+#: ../desktopManager.js:325
+msgid "Paste"
+msgstr "Enganxa"
+
+#: ../desktopManager.js:329
+msgid "Undo"
+msgstr "Desfés"
+
+#: ../desktopManager.js:333
+msgid "Redo"
+msgstr "Refés"
+
+#: ../desktopManager.js:339
+msgid "Show Desktop in Files"
+msgstr "Mostra l'escriptori al Fitxers"
+
+#: ../desktopManager.js:349
+msgid "Change Background…"
+msgstr "Canvia el fons de l'escriptori…"
+
+#: ../desktopManager.js:358
+msgid "Display Settings"
+msgstr "Paràmetres de la pantalla"
+
+#: ../desktopManager.js:770
+#, fuzzy
+msgid "Rename"
+msgstr "Canvia el nom…"
+
+#: ../desktopManager.js:808
+#, fuzzy
+msgid "New folder"
+msgstr "Carpeta nova"
 
 #: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
 msgid "Icon size"
@@ -88,6 +162,12 @@ msgstr "Mostra la icona de la paperera"
 msgid "Show the trash icon in the desktop."
 msgstr "Mostra la icona de la paperera a l'escriptori."
 
+#~ msgid "Enter file name…"
+#~ msgstr "Introduïu un nom de fitxer…"
+
+#~ msgid "Cancel"
+#~ msgstr "Cancel·la"
+
 #~ msgid "New folder name"
 #~ msgstr "Nom de la carpeta nou"
 
@@ -108,57 +188,3 @@ msgstr "Mostra la icona de la paperera a l'escriptori."
 
 #~ msgid "There is already a file or folder with that name."
 #~ msgstr "Ja existeix un fitxer o carpeta amb aquest nom."
-
-#~ msgid "New Folder"
-#~ msgstr "Carpeta nova"
-
-#~ msgid "Paste"
-#~ msgstr "Enganxa"
-
-#~ msgid "Undo"
-#~ msgstr "Desfés"
-
-#~ msgid "Redo"
-#~ msgstr "Refés"
-
-#~ msgid "Show Desktop in Files"
-#~ msgstr "Mostra l'escriptori al Fitxers"
-
-#~ msgid "Open in Terminal"
-#~ msgstr "Obre al Terminal"
-
-#~ msgid "Change Background…"
-#~ msgstr "Canvia el fons de l'escriptori…"
-
-#~ msgid "Display Settings"
-#~ msgstr "Paràmetres de la pantalla"
-
-#~ msgid "Settings"
-#~ msgstr "Paràmetres"
-
-#~ msgid "Open"
-#~ msgstr "Obre"
-
-#~ msgid "Open With Other Application"
-#~ msgstr "Obre amb una altra aplicació..."
-
-#~ msgid "Cut"
-#~ msgstr "Retalla"
-
-#~ msgid "Copy"
-#~ msgstr "Copia"
-
-#~ msgid "Rename…"
-#~ msgstr "Canvia el nom…"
-
-#~ msgid "Move to Trash"
-#~ msgstr "Mou a la paperera"
-
-#~ msgid "Empty Trash"
-#~ msgstr "Buida la paperera"
-
-#~ msgid "Properties"
-#~ msgstr "Propietats"
-
-#~ msgid "Show in Files"
-#~ msgstr "Mostra al Fitxers"

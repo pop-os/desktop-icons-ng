@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-08 21:07+0200\n"
+"POT-Creation-Date: 2019-08-13 10:04+0200\n"
 "PO-Revision-Date: 2019-03-02 18:02+0100\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: Czech <zeten30@gmail.com>\n"
@@ -19,53 +19,127 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: ../prefs.js:106
-msgid "Size for the desktop icons"
-msgstr "Velikost ikon na pracovní ploše"
-
-#: ../prefs.js:106
-msgid "Small"
-msgstr "malé"
-
-#: ../prefs.js:106
-msgid "Standard"
-msgstr "standardní"
-
-#: ../prefs.js:106
-msgid "Large"
-msgstr "velké"
-
-#: ../prefs.js:107
-msgid "Show the personal folder in the desktop"
-msgstr "Zobrazovat osobní složku na pracovní ploše"
-
-#: ../prefs.js:108
-msgid "Show the trash icon in the desktop"
-msgstr "Zobrazovat ikonu koše na pracovní ploše"
-
-#: ../desktopGrid.js:411
-msgid "Enter file name…"
-msgstr "Zadejte název souboru…"
-
-#: ../desktopGrid.js:415
+#: ../preferences.js:85
 msgid "OK"
 msgstr "Budiž"
 
-#: ../desktopGrid.js:421
-msgid "Cancel"
-msgstr "Zrušit"
+#: ../preferences.js:86 ../desktopManager.js:365
+msgid "Settings"
+msgstr "Nastavení"
 
-#: ../desktopIconsUtil.js:59
+#: ../preferences.js:91
+msgid "Size for the desktop icons"
+msgstr "Velikost ikon na pracovní ploše"
+
+#: ../preferences.js:91
+msgid "Small"
+msgstr "malé"
+
+#: ../preferences.js:91
+msgid "Standard"
+msgstr "standardní"
+
+#: ../preferences.js:91
+msgid "Large"
+msgstr "velké"
+
+#: ../preferences.js:92
+msgid "Show the personal folder in the desktop"
+msgstr "Zobrazovat osobní složku na pracovní ploše"
+
+#: ../preferences.js:93
+msgid "Show the trash icon in the desktop"
+msgstr "Zobrazovat ikonu koše na pracovní ploše"
+
+#: ../desktopIconsUtil.js:68
 msgid "Command not found"
 msgstr ""
 
-#: ../fileItem.js:467
+#: ../fileItem.js:555
 msgid "Don’t Allow Launching"
 msgstr "Nepovolit spouštění"
 
-#: ../fileItem.js:469
+#: ../fileItem.js:557
 msgid "Allow Launching"
 msgstr "Povolit spouštění"
+
+#: ../fileItem.js:617
+msgid "Open"
+msgstr "Otevřít"
+
+#: ../fileItem.js:623
+msgid "Open With Other Application"
+msgstr "Otevřít pomocí jiné aplikace"
+
+#: ../fileItem.js:630
+msgid "Cut"
+msgstr "Vyjmout"
+
+#: ../fileItem.js:633
+msgid "Copy"
+msgstr "Kopírovat"
+
+#: ../fileItem.js:637
+msgid "Rename…"
+msgstr "Přejmenovat…"
+
+#: ../fileItem.js:641
+msgid "Move to Trash"
+msgstr "Přesunout do koše"
+
+#: ../fileItem.js:653
+msgid "Empty Trash"
+msgstr "Vyprázdnit koš"
+
+#: ../fileItem.js:661
+msgid "Properties"
+msgstr "Vlastnosti"
+
+#: ../fileItem.js:665
+msgid "Show in Files"
+msgstr "Zobrazit v Souborech"
+
+#: ../fileItem.js:669 ../desktopManager.js:343
+msgid "Open in Terminal"
+msgstr "Otevřít v terminálu"
+
+#: ../desktopManager.js:319
+msgid "New Folder"
+msgstr "Nová složka"
+
+#: ../desktopManager.js:325
+msgid "Paste"
+msgstr "Vložit"
+
+#: ../desktopManager.js:329
+msgid "Undo"
+msgstr "Zpět"
+
+#: ../desktopManager.js:333
+msgid "Redo"
+msgstr "Znovu"
+
+#: ../desktopManager.js:339
+msgid "Show Desktop in Files"
+msgstr "Zobrazit plochu v Souborech"
+
+#: ../desktopManager.js:349
+msgid "Change Background…"
+msgstr "Změnit pozadí…"
+
+#: ../desktopManager.js:358
+msgid "Display Settings"
+msgstr "Zobrazit nastavení"
+
+#: ../desktopManager.js:770
+#, fuzzy
+msgid "Rename"
+msgstr "Přejmenovat…"
+
+#: ../desktopManager.js:808
+#, fuzzy
+msgid "New folder"
+msgstr "Nová složka"
 
 #: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
 msgid "Icon size"
@@ -91,6 +165,12 @@ msgstr "Zobrazovat koš"
 msgid "Show the trash icon in the desktop."
 msgstr "Zobrazovat ikonu koše na pracovní ploše."
 
+#~ msgid "Enter file name…"
+#~ msgstr "Zadejte název souboru…"
+
+#~ msgid "Cancel"
+#~ msgstr "Zrušit"
+
 #~ msgid "New folder name"
 #~ msgstr "Název nové složky"
 
@@ -111,60 +191,6 @@ msgstr "Zobrazovat ikonu koše na pracovní ploše."
 
 #~ msgid "There is already a file or folder with that name."
 #~ msgstr "Soubor nebo složka s tímto názvem již existuje."
-
-#~ msgid "New Folder"
-#~ msgstr "Nová složka"
-
-#~ msgid "Paste"
-#~ msgstr "Vložit"
-
-#~ msgid "Undo"
-#~ msgstr "Zpět"
-
-#~ msgid "Redo"
-#~ msgstr "Znovu"
-
-#~ msgid "Show Desktop in Files"
-#~ msgstr "Zobrazit plochu v Souborech"
-
-#~ msgid "Open in Terminal"
-#~ msgstr "Otevřít v terminálu"
-
-#~ msgid "Change Background…"
-#~ msgstr "Změnit pozadí…"
-
-#~ msgid "Display Settings"
-#~ msgstr "Zobrazit nastavení"
-
-#~ msgid "Settings"
-#~ msgstr "Nastavení"
-
-#~ msgid "Open"
-#~ msgstr "Otevřít"
-
-#~ msgid "Open With Other Application"
-#~ msgstr "Otevřít pomocí jiné aplikace"
-
-#~ msgid "Cut"
-#~ msgstr "Vyjmout"
-
-#~ msgid "Copy"
-#~ msgstr "Kopírovat"
-
-#~ msgid "Rename…"
-#~ msgstr "Přejmenovat…"
-
-#~ msgid "Move to Trash"
-#~ msgstr "Přesunout do koše"
-
-#~ msgid "Empty Trash"
-#~ msgstr "Vyprázdnit koš"
-
-#~ msgid "Properties"
-#~ msgstr "Vlastnosti"
-
-#~ msgid "Show in Files"
-#~ msgstr "Zobrazit v Souborech"
 
 #~ msgid "Huge"
 #~ msgstr "obrovské"

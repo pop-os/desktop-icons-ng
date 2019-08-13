@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-08 21:07+0200\n"
+"POT-Creation-Date: 2019-08-13 10:04+0200\n"
 "PO-Revision-Date: 2019-07-11 13:57+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
@@ -17,53 +17,127 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.2.3\n"
 
-#: ../prefs.js:106
-msgid "Size for the desktop icons"
-msgstr "Ukuran untuk ikon destop"
-
-#: ../prefs.js:106
-msgid "Small"
-msgstr "Kecil"
-
-#: ../prefs.js:106
-msgid "Standard"
-msgstr "Standar"
-
-#: ../prefs.js:106
-msgid "Large"
-msgstr "Besar"
-
-#: ../prefs.js:107
-msgid "Show the personal folder in the desktop"
-msgstr "Tampilkan folder pribadi di destop"
-
-#: ../prefs.js:108
-msgid "Show the trash icon in the desktop"
-msgstr "Tampilkan ikon tong sampah di destop"
-
-#: ../desktopGrid.js:411
-msgid "Enter file name…"
-msgstr "Masukkan nama berkas…"
-
-#: ../desktopGrid.js:415
+#: ../preferences.js:85
 msgid "OK"
 msgstr "OK"
 
-#: ../desktopGrid.js:421
-msgid "Cancel"
-msgstr "Batal"
+#: ../preferences.js:86 ../desktopManager.js:365
+msgid "Settings"
+msgstr "Pengaturan"
 
-#: ../desktopIconsUtil.js:59
+#: ../preferences.js:91
+msgid "Size for the desktop icons"
+msgstr "Ukuran untuk ikon destop"
+
+#: ../preferences.js:91
+msgid "Small"
+msgstr "Kecil"
+
+#: ../preferences.js:91
+msgid "Standard"
+msgstr "Standar"
+
+#: ../preferences.js:91
+msgid "Large"
+msgstr "Besar"
+
+#: ../preferences.js:92
+msgid "Show the personal folder in the desktop"
+msgstr "Tampilkan folder pribadi di destop"
+
+#: ../preferences.js:93
+msgid "Show the trash icon in the desktop"
+msgstr "Tampilkan ikon tong sampah di destop"
+
+#: ../desktopIconsUtil.js:68
 msgid "Command not found"
 msgstr "Perintah tidak ditemukan"
 
-#: ../fileItem.js:467
+#: ../fileItem.js:555
 msgid "Don’t Allow Launching"
 msgstr "Jangan Izinkan Peluncuran"
 
-#: ../fileItem.js:469
+#: ../fileItem.js:557
 msgid "Allow Launching"
 msgstr "Izinkan Peluncuran"
+
+#: ../fileItem.js:617
+msgid "Open"
+msgstr "Buka"
+
+#: ../fileItem.js:623
+msgid "Open With Other Application"
+msgstr "Buka Dengan Aplikasi Lain"
+
+#: ../fileItem.js:630
+msgid "Cut"
+msgstr "Potong"
+
+#: ../fileItem.js:633
+msgid "Copy"
+msgstr "Salin"
+
+#: ../fileItem.js:637
+msgid "Rename…"
+msgstr "Ganti Nama…"
+
+#: ../fileItem.js:641
+msgid "Move to Trash"
+msgstr "Pindahkan ke Tong Sampah"
+
+#: ../fileItem.js:653
+msgid "Empty Trash"
+msgstr "Kosongkan Tong Sampah"
+
+#: ../fileItem.js:661
+msgid "Properties"
+msgstr "Properti"
+
+#: ../fileItem.js:665
+msgid "Show in Files"
+msgstr "Tampilkan pada Berkas"
+
+#: ../fileItem.js:669 ../desktopManager.js:343
+msgid "Open in Terminal"
+msgstr "Buka dalam Terminal"
+
+#: ../desktopManager.js:319
+msgid "New Folder"
+msgstr "Folder Baru"
+
+#: ../desktopManager.js:325
+msgid "Paste"
+msgstr "Tempel"
+
+#: ../desktopManager.js:329
+msgid "Undo"
+msgstr "Tak Jadi"
+
+#: ../desktopManager.js:333
+msgid "Redo"
+msgstr "Jadi Lagi"
+
+#: ../desktopManager.js:339
+msgid "Show Desktop in Files"
+msgstr "Tampilkan Destop pada Berkas"
+
+#: ../desktopManager.js:349
+msgid "Change Background…"
+msgstr "Ubah Latar Belakang…"
+
+#: ../desktopManager.js:358
+msgid "Display Settings"
+msgstr "Pengaturan Tampilan"
+
+#: ../desktopManager.js:770
+#, fuzzy
+msgid "Rename"
+msgstr "Ganti Nama…"
+
+#: ../desktopManager.js:808
+#, fuzzy
+msgid "New folder"
+msgstr "Folder Baru"
 
 #: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
 msgid "Icon size"
@@ -89,6 +163,12 @@ msgstr "Tampilkan ikon tong sampah"
 msgid "Show the trash icon in the desktop."
 msgstr "Tampilkan ikon tong sampah di destop."
 
+#~ msgid "Enter file name…"
+#~ msgstr "Masukkan nama berkas…"
+
+#~ msgid "Cancel"
+#~ msgstr "Batal"
+
 #~ msgid "New folder name"
 #~ msgstr "Nama folder baru"
 
@@ -109,60 +189,6 @@ msgstr "Tampilkan ikon tong sampah di destop."
 
 #~ msgid "There is already a file or folder with that name."
 #~ msgstr "Folder dengan nama itu sudah ada."
-
-#~ msgid "New Folder"
-#~ msgstr "Folder Baru"
-
-#~ msgid "Paste"
-#~ msgstr "Tempel"
-
-#~ msgid "Undo"
-#~ msgstr "Tak Jadi"
-
-#~ msgid "Redo"
-#~ msgstr "Jadi Lagi"
-
-#~ msgid "Show Desktop in Files"
-#~ msgstr "Tampilkan Destop pada Berkas"
-
-#~ msgid "Open in Terminal"
-#~ msgstr "Buka dalam Terminal"
-
-#~ msgid "Change Background…"
-#~ msgstr "Ubah Latar Belakang…"
-
-#~ msgid "Display Settings"
-#~ msgstr "Pengaturan Tampilan"
-
-#~ msgid "Settings"
-#~ msgstr "Pengaturan"
-
-#~ msgid "Open"
-#~ msgstr "Buka"
-
-#~ msgid "Open With Other Application"
-#~ msgstr "Buka Dengan Aplikasi Lain"
-
-#~ msgid "Cut"
-#~ msgstr "Potong"
-
-#~ msgid "Copy"
-#~ msgstr "Salin"
-
-#~ msgid "Rename…"
-#~ msgstr "Ganti Nama…"
-
-#~ msgid "Move to Trash"
-#~ msgstr "Pindahkan ke Tong Sampah"
-
-#~ msgid "Empty Trash"
-#~ msgstr "Kosongkan Tong Sampah"
-
-#~ msgid "Properties"
-#~ msgstr "Properti"
-
-#~ msgid "Show in Files"
-#~ msgstr "Tampilkan pada Berkas"
 
 #~ msgid "Huge"
 #~ msgstr "Sangat besar"

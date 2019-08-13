@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-08 21:07+0200\n"
+"POT-Creation-Date: 2019-08-13 10:04+0200\n"
 "PO-Revision-Date: 2018-12-16 17:47+0100\n"
 "Last-Translator: Charles Monzat <charles.monzat@numericable.fr>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
@@ -19,53 +19,129 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 "X-Generator: Gtranslator 3.30.0\n"
 
-#: ../prefs.js:106
-msgid "Size for the desktop icons"
-msgstr "Taille des icônes du bureau"
-
-#: ../prefs.js:106
-msgid "Small"
-msgstr "Petite"
-
-#: ../prefs.js:106
-msgid "Standard"
-msgstr "Normale"
-
-#: ../prefs.js:106
-msgid "Large"
-msgstr "Grande"
-
-#: ../prefs.js:107
-msgid "Show the personal folder in the desktop"
-msgstr "Montrer le dossier personnel sur le bureau"
-
-#: ../prefs.js:108
-msgid "Show the trash icon in the desktop"
-msgstr "Montrer la corbeille sur le bureau"
-
-#: ../desktopGrid.js:411
-msgid "Enter file name…"
-msgstr "Saisir un nom de fichier…"
-
-#: ../desktopGrid.js:415
+#: ../preferences.js:85
 msgid "OK"
 msgstr "Valider"
 
-#: ../desktopGrid.js:421
-msgid "Cancel"
-msgstr "Annuler"
+#: ../preferences.js:86 ../desktopManager.js:365
+msgid "Settings"
+msgstr "Paramètres"
 
-#: ../desktopIconsUtil.js:59
+#: ../preferences.js:91
+msgid "Size for the desktop icons"
+msgstr "Taille des icônes du bureau"
+
+#: ../preferences.js:91
+msgid "Small"
+msgstr "Petite"
+
+#: ../preferences.js:91
+msgid "Standard"
+msgstr "Normale"
+
+#: ../preferences.js:91
+msgid "Large"
+msgstr "Grande"
+
+#: ../preferences.js:92
+msgid "Show the personal folder in the desktop"
+msgstr "Montrer le dossier personnel sur le bureau"
+
+#: ../preferences.js:93
+msgid "Show the trash icon in the desktop"
+msgstr "Montrer la corbeille sur le bureau"
+
+#: ../desktopIconsUtil.js:68
 msgid "Command not found"
 msgstr ""
 
-#: ../fileItem.js:467
+#: ../fileItem.js:555
 msgid "Don’t Allow Launching"
 msgstr "Ne pas autoriser le lancement"
 
-#: ../fileItem.js:469
+#: ../fileItem.js:557
 msgid "Allow Launching"
 msgstr "Autoriser le lancement"
+
+#: ../fileItem.js:617
+msgid "Open"
+msgstr "Ouvrir"
+
+#: ../fileItem.js:623
+msgid "Open With Other Application"
+msgstr ""
+
+#: ../fileItem.js:630
+msgid "Cut"
+msgstr "Couper"
+
+#: ../fileItem.js:633
+msgid "Copy"
+msgstr "Copier"
+
+#: ../fileItem.js:637
+#, fuzzy
+msgid "Rename…"
+msgstr "Renommer"
+
+#: ../fileItem.js:641
+msgid "Move to Trash"
+msgstr "Mettre à la corbeille"
+
+#: ../fileItem.js:653
+msgid "Empty Trash"
+msgstr "Vider la corbeille"
+
+#: ../fileItem.js:661
+msgid "Properties"
+msgstr "Propriétés"
+
+#: ../fileItem.js:665
+msgid "Show in Files"
+msgstr "Montrer dans Fichiers"
+
+#: ../fileItem.js:669 ../desktopManager.js:343
+#, fuzzy
+msgid "Open in Terminal"
+msgstr "Ouvrir un terminal"
+
+#: ../desktopManager.js:319
+msgid "New Folder"
+msgstr "Nouveau dossier"
+
+#: ../desktopManager.js:325
+msgid "Paste"
+msgstr "Coller"
+
+#: ../desktopManager.js:329
+msgid "Undo"
+msgstr "Annuler"
+
+#: ../desktopManager.js:333
+msgid "Redo"
+msgstr "Refaire"
+
+#: ../desktopManager.js:339
+#, fuzzy
+msgid "Show Desktop in Files"
+msgstr "Ouvrir le bureau dans Fichiers"
+
+#: ../desktopManager.js:349
+msgid "Change Background…"
+msgstr "Changer l’arrière-plan…"
+
+#: ../desktopManager.js:358
+msgid "Display Settings"
+msgstr "Configuration d’affichage"
+
+#: ../desktopManager.js:770
+msgid "Rename"
+msgstr "Renommer"
+
+#: ../desktopManager.js:808
+#, fuzzy
+msgid "New folder"
+msgstr "Nouveau dossier"
 
 #: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
 msgid "Icon size"
@@ -91,59 +167,14 @@ msgstr "Montrer l’icône de la corbeille"
 msgid "Show the trash icon in the desktop."
 msgstr "Montrer la corbeille sur le bureau."
 
-#~ msgid "Huge"
-#~ msgstr "Immense"
+#~ msgid "Enter file name…"
+#~ msgstr "Saisir un nom de fichier…"
 
-#~ msgid "New Folder"
-#~ msgstr "Nouveau dossier"
-
-#~ msgid "Paste"
-#~ msgstr "Coller"
-
-#~ msgid "Undo"
+#~ msgid "Cancel"
 #~ msgstr "Annuler"
 
-#~ msgid "Redo"
-#~ msgstr "Refaire"
-
-#~ msgid "Open Desktop in Files"
-#~ msgstr "Ouvrir le bureau dans Fichiers"
-
-#~ msgid "Open Terminal"
-#~ msgstr "Ouvrir un terminal"
-
-#~ msgid "Change Background…"
-#~ msgstr "Changer l’arrière-plan…"
-
-#~ msgid "Display Settings"
-#~ msgstr "Configuration d’affichage"
-
-#~ msgid "Settings"
-#~ msgstr "Paramètres"
-
-#~ msgid "Open"
-#~ msgstr "Ouvrir"
-
-#~ msgid "Cut"
-#~ msgstr "Couper"
-
-#~ msgid "Copy"
-#~ msgstr "Copier"
-
-#~ msgid "Rename"
-#~ msgstr "Renommer"
-
-#~ msgid "Move to Trash"
-#~ msgstr "Mettre à la corbeille"
-
-#~ msgid "Empty Trash"
-#~ msgstr "Vider la corbeille"
-
-#~ msgid "Properties"
-#~ msgstr "Propriétés"
-
-#~ msgid "Show in Files"
-#~ msgstr "Montrer dans Fichiers"
+#~ msgid "Huge"
+#~ msgstr "Immense"
 
 #~ msgid "Ok"
 #~ msgstr "Valider"

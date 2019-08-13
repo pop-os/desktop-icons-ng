@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-08 21:07+0200\n"
+"POT-Creation-Date: 2019-08-13 10:04+0200\n"
 "PO-Revision-Date: 2018-11-22 22:02+0300\n"
 "Last-Translator: Stas Solovey <whats_up@tut.by>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
@@ -19,53 +19,130 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 2.2\n"
 
-#: ../prefs.js:106
-msgid "Size for the desktop icons"
-msgstr "Размер значков"
-
-#: ../prefs.js:106
-msgid "Small"
-msgstr "Маленький"
-
-#: ../prefs.js:106
-msgid "Standard"
-msgstr "Стандартный"
-
-#: ../prefs.js:106
-msgid "Large"
-msgstr "Большой"
-
-#: ../prefs.js:107
-msgid "Show the personal folder in the desktop"
-msgstr "Показывать домашнюю папку на рабочем столе"
-
-#: ../prefs.js:108
-msgid "Show the trash icon in the desktop"
-msgstr "Показывать «Корзину» на рабочем столе"
-
-#: ../desktopGrid.js:411
-msgid "Enter file name…"
-msgstr "Ввести имя файла…"
-
-#: ../desktopGrid.js:415
+#: ../preferences.js:85
 msgid "OK"
 msgstr ""
 
-#: ../desktopGrid.js:421
-msgid "Cancel"
-msgstr "Отмена"
+#: ../preferences.js:86 ../desktopManager.js:365
+msgid "Settings"
+msgstr "Параметры"
 
-#: ../desktopIconsUtil.js:59
+#: ../preferences.js:91
+msgid "Size for the desktop icons"
+msgstr "Размер значков"
+
+#: ../preferences.js:91
+msgid "Small"
+msgstr "Маленький"
+
+#: ../preferences.js:91
+msgid "Standard"
+msgstr "Стандартный"
+
+#: ../preferences.js:91
+msgid "Large"
+msgstr "Большой"
+
+#: ../preferences.js:92
+msgid "Show the personal folder in the desktop"
+msgstr "Показывать домашнюю папку на рабочем столе"
+
+#: ../preferences.js:93
+msgid "Show the trash icon in the desktop"
+msgstr "Показывать «Корзину» на рабочем столе"
+
+#: ../desktopIconsUtil.js:68
 msgid "Command not found"
 msgstr ""
 
-#: ../fileItem.js:467
+#: ../fileItem.js:555
 msgid "Don’t Allow Launching"
 msgstr ""
 
-#: ../fileItem.js:469
+#: ../fileItem.js:557
 msgid "Allow Launching"
 msgstr ""
+
+#: ../fileItem.js:617
+msgid "Open"
+msgstr "Открыть"
+
+#: ../fileItem.js:623
+msgid "Open With Other Application"
+msgstr ""
+
+#: ../fileItem.js:630
+msgid "Cut"
+msgstr "Вырезать"
+
+#: ../fileItem.js:633
+msgid "Copy"
+msgstr "Вставить"
+
+#: ../fileItem.js:637
+#, fuzzy
+msgid "Rename…"
+msgstr "Переименовать"
+
+#: ../fileItem.js:641
+msgid "Move to Trash"
+msgstr "Переместить в корзину"
+
+#: ../fileItem.js:653
+#, fuzzy
+msgid "Empty Trash"
+msgstr "Очистить корзину"
+
+#: ../fileItem.js:661
+msgid "Properties"
+msgstr "Свойства"
+
+#: ../fileItem.js:665
+msgid "Show in Files"
+msgstr "Показать в «Файлах»"
+
+#: ../fileItem.js:669 ../desktopManager.js:343
+#, fuzzy
+msgid "Open in Terminal"
+msgstr "Открыть терминал"
+
+#: ../desktopManager.js:319
+msgid "New Folder"
+msgstr "Создать папку"
+
+#: ../desktopManager.js:325
+msgid "Paste"
+msgstr "Вставить"
+
+#: ../desktopManager.js:329
+msgid "Undo"
+msgstr "Отменить"
+
+#: ../desktopManager.js:333
+msgid "Redo"
+msgstr "Повторить"
+
+#: ../desktopManager.js:339
+#, fuzzy
+msgid "Show Desktop in Files"
+msgstr "Открыть «Рабочий стол» в «Файлах»"
+
+#: ../desktopManager.js:349
+msgid "Change Background…"
+msgstr "Изменить фон…"
+
+#: ../desktopManager.js:358
+msgid "Display Settings"
+msgstr "Настройки дисплея"
+
+#: ../desktopManager.js:770
+msgid "Rename"
+msgstr "Переименовать"
+
+#: ../desktopManager.js:808
+#, fuzzy
+msgid "New folder"
+msgstr "Создать папку"
 
 #: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
 msgid "Icon size"
@@ -91,59 +168,14 @@ msgstr "Показывать значок корзины"
 msgid "Show the trash icon in the desktop."
 msgstr "Показывать значок корзины на рабочем столе."
 
+#~ msgid "Enter file name…"
+#~ msgstr "Ввести имя файла…"
+
+#~ msgid "Cancel"
+#~ msgstr "Отмена"
+
 #~ msgid "Huge"
 #~ msgstr "Огромный"
 
-#~ msgid "New Folder"
-#~ msgstr "Создать папку"
-
-#~ msgid "Paste"
-#~ msgstr "Вставить"
-
-#~ msgid "Undo"
-#~ msgstr "Отменить"
-
-#~ msgid "Redo"
-#~ msgstr "Повторить"
-
-#~ msgid "Open Desktop in Files"
-#~ msgstr "Открыть «Рабочий стол» в «Файлах»"
-
-#~ msgid "Open Terminal"
-#~ msgstr "Открыть терминал"
-
-#~ msgid "Change Background…"
-#~ msgstr "Изменить фон…"
-
-#~ msgid "Display Settings"
-#~ msgstr "Настройки дисплея"
-
-#~ msgid "Settings"
-#~ msgstr "Параметры"
-
 #~ msgid "Ok"
 #~ msgstr "ОК"
-
-#~ msgid "Open"
-#~ msgstr "Открыть"
-
-#~ msgid "Cut"
-#~ msgstr "Вырезать"
-
-#~ msgid "Copy"
-#~ msgstr "Вставить"
-
-#~ msgid "Rename"
-#~ msgstr "Переименовать"
-
-#~ msgid "Move to Trash"
-#~ msgstr "Переместить в корзину"
-
-#~ msgid "Empty trash"
-#~ msgstr "Очистить корзину"
-
-#~ msgid "Properties"
-#~ msgstr "Свойства"
-
-#~ msgid "Show in Files"
-#~ msgstr "Показать в «Файлах»"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-08 21:08+0200\n"
+"POT-Creation-Date: 2019-08-13 10:05+0200\n"
 "PO-Revision-Date: 2018-10-24 21:31+0800\n"
 "Last-Translator: pan93412 <pan93412@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) <chinese-l10n@googlegroups.com>\n"
@@ -17,53 +17,129 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.2\n"
 
-#: ../prefs.js:106
-msgid "Size for the desktop icons"
-msgstr "桌面圖示的大小"
-
-#: ../prefs.js:106
-msgid "Small"
-msgstr "小圖示"
-
-#: ../prefs.js:106
-msgid "Standard"
-msgstr "標準大小圖示"
-
-#: ../prefs.js:106
-msgid "Large"
-msgstr "大圖示"
-
-#: ../prefs.js:107
-msgid "Show the personal folder in the desktop"
-msgstr "在桌面顯示個人資料夾"
-
-#: ../prefs.js:108
-msgid "Show the trash icon in the desktop"
-msgstr "在桌面顯示垃圾桶圖示"
-
-#: ../desktopGrid.js:411
-msgid "Enter file name…"
-msgstr ""
-
-#: ../desktopGrid.js:415
+#: ../preferences.js:85
 msgid "OK"
 msgstr ""
 
-#: ../desktopGrid.js:421
-msgid "Cancel"
-msgstr ""
+#: ../preferences.js:86 ../desktopManager.js:365
+msgid "Settings"
+msgstr "設定"
 
-#: ../desktopIconsUtil.js:59
+#: ../preferences.js:91
+msgid "Size for the desktop icons"
+msgstr "桌面圖示的大小"
+
+#: ../preferences.js:91
+msgid "Small"
+msgstr "小圖示"
+
+#: ../preferences.js:91
+msgid "Standard"
+msgstr "標準大小圖示"
+
+#: ../preferences.js:91
+msgid "Large"
+msgstr "大圖示"
+
+#: ../preferences.js:92
+msgid "Show the personal folder in the desktop"
+msgstr "在桌面顯示個人資料夾"
+
+#: ../preferences.js:93
+msgid "Show the trash icon in the desktop"
+msgstr "在桌面顯示垃圾桶圖示"
+
+#: ../desktopIconsUtil.js:68
 msgid "Command not found"
 msgstr ""
 
-#: ../fileItem.js:467
+#: ../fileItem.js:555
 msgid "Don’t Allow Launching"
 msgstr ""
 
-#: ../fileItem.js:469
+#: ../fileItem.js:557
 msgid "Allow Launching"
 msgstr ""
+
+#: ../fileItem.js:617
+msgid "Open"
+msgstr "開啟"
+
+#: ../fileItem.js:623
+msgid "Open With Other Application"
+msgstr ""
+
+#: ../fileItem.js:630
+msgid "Cut"
+msgstr "剪下"
+
+#: ../fileItem.js:633
+msgid "Copy"
+msgstr "複製"
+
+#: ../fileItem.js:637
+msgid "Rename…"
+msgstr ""
+
+#: ../fileItem.js:641
+msgid "Move to Trash"
+msgstr "移動到垃圾桶"
+
+#: ../fileItem.js:653
+#, fuzzy
+msgid "Empty Trash"
+msgstr "清空回收桶"
+
+#: ../fileItem.js:661
+msgid "Properties"
+msgstr "屬性"
+
+#: ../fileItem.js:665
+msgid "Show in Files"
+msgstr "在《檔案》中顯示"
+
+#: ../fileItem.js:669 ../desktopManager.js:343
+#, fuzzy
+msgid "Open in Terminal"
+msgstr "開啟終端器"
+
+#: ../desktopManager.js:319
+msgid "New Folder"
+msgstr "新增資料夾"
+
+#: ../desktopManager.js:325
+msgid "Paste"
+msgstr "貼上"
+
+#: ../desktopManager.js:329
+msgid "Undo"
+msgstr "復原"
+
+#: ../desktopManager.js:333
+msgid "Redo"
+msgstr "重做"
+
+#: ../desktopManager.js:339
+#, fuzzy
+msgid "Show Desktop in Files"
+msgstr "在《檔案》中開啟桌面"
+
+#: ../desktopManager.js:349
+msgid "Change Background…"
+msgstr "變更背景圖片…"
+
+#: ../desktopManager.js:358
+msgid "Display Settings"
+msgstr "顯示設定"
+
+#: ../desktopManager.js:770
+msgid "Rename"
+msgstr ""
+
+#: ../desktopManager.js:808
+#, fuzzy
+msgid "New folder"
+msgstr "新增資料夾"
 
 #: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
 msgid "Icon size"
@@ -91,51 +167,3 @@ msgstr "在桌面顯示垃圾桶圖示。"
 
 #~ msgid "Huge"
 #~ msgstr "巨大圖示"
-
-#~ msgid "New Folder"
-#~ msgstr "新增資料夾"
-
-#~ msgid "Paste"
-#~ msgstr "貼上"
-
-#~ msgid "Undo"
-#~ msgstr "復原"
-
-#~ msgid "Redo"
-#~ msgstr "重做"
-
-#~ msgid "Open Desktop in Files"
-#~ msgstr "在《檔案》中開啟桌面"
-
-#~ msgid "Open Terminal"
-#~ msgstr "開啟終端器"
-
-#~ msgid "Change Background…"
-#~ msgstr "變更背景圖片…"
-
-#~ msgid "Display Settings"
-#~ msgstr "顯示設定"
-
-#~ msgid "Settings"
-#~ msgstr "設定"
-
-#~ msgid "Open"
-#~ msgstr "開啟"
-
-#~ msgid "Cut"
-#~ msgstr "剪下"
-
-#~ msgid "Copy"
-#~ msgstr "複製"
-
-#~ msgid "Move to Trash"
-#~ msgstr "移動到垃圾桶"
-
-#~ msgid "Empty trash"
-#~ msgstr "清空回收桶"
-
-#~ msgid "Properties"
-#~ msgstr "屬性"
-
-#~ msgid "Show in Files"
-#~ msgstr "在《檔案》中顯示"

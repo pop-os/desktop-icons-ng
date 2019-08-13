@@ -2,134 +2,173 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Sergio Costas <rastersoft@gmail.com>, 2018.
 # Daniel Mustieles <daniel.mustieles@gmail.com>, 2018-2019.
+# Sergio Costas <rastersoft@gmail.com>, 2018-2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-09 17:26+0200\n"
-"PO-Revision-Date: 2019-05-13 15:13+0200\n"
-"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: es <gnome-es-list@gnome.org>\n"
+"POT-Creation-Date: 2019-08-13 10:02+0200\n"
+"PO-Revision-Date: 2019-08-13 10:02+0200\n"
+"Last-Translator: Sergio Costas <rastersoft@gmail.com>\n"
+"Language-Team: Español; Castellano <rastersoft@gmail.com>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 3.32.0\n"
+"X-Generator: Gtranslator 3.30.1\n"
 
-#: prefs.js:105
-msgid "Size for the desktop icons"
-msgstr "Tamaño de los iconos del escritorio"
-
-#: prefs.js:105
-msgid "Small"
-msgstr "Pequeño"
-
-#: prefs.js:105
-msgid "Standard"
-msgstr "Estándar"
-
-#: prefs.js:105
-msgid "Large"
-msgstr "Grande"
-
-#: prefs.js:106
-msgid "Show the personal folder in the desktop"
-msgstr "Mostrar la carpeta personal en el escritorio"
-
-#: prefs.js:107
-msgid "Show the trash icon in the desktop"
-msgstr "Mostrar la papelera en el escritorio"
-
-#: desktopGrid.js:411
-msgid "Enter file name…"
-msgstr "Introduzca el nombre del archivo…"
-
-#: desktopGrid.js:415
+#: ../preferences.js:85
 msgid "OK"
 msgstr "Aceptar"
 
-#: desktopGrid.js:421
-msgid "Cancel"
-msgstr "Cancelar"
+#: ../preferences.js:86 ../desktopManager.js:365
+msgid "Settings"
+msgstr "Configuración"
 
-#: fileItem.js:470
+#: ../preferences.js:91
+msgid "Size for the desktop icons"
+msgstr "Tamaño de los iconos del escritorio"
+
+#: ../preferences.js:91
+msgid "Small"
+msgstr "Pequeño"
+
+#: ../preferences.js:91
+msgid "Standard"
+msgstr "Estándar"
+
+#: ../preferences.js:91
+msgid "Large"
+msgstr "Grande"
+
+#: ../preferences.js:92
+msgid "Show the personal folder in the desktop"
+msgstr "Mostrar la carpeta personal en el escritorio"
+
+#: ../preferences.js:93
+msgid "Show the trash icon in the desktop"
+msgstr "Mostrar la papelera en el escritorio"
+
+#: ../desktopIconsUtil.js:68
+msgid "Command not found"
+msgstr "Comando no encontrado"
+
+#: ../fileItem.js:555
 msgid "Don’t Allow Launching"
 msgstr "No permitir lanzar"
 
-#: fileItem.js:472
+#: ../fileItem.js:557
 msgid "Allow Launching"
 msgstr "Permitir lanzar"
 
-#: fileItem.js:546
+#: ../fileItem.js:617
 msgid "Open"
 msgstr "Abrir"
 
-#: fileItem.js:552
+#: ../fileItem.js:623
 msgid "Open With Other Application"
 msgstr "Abrir con otra aplicación"
 
-#: fileItem.js:559
+#: ../fileItem.js:630
 msgid "Cut"
 msgstr "Cortar"
 
-#: fileItem.js:562
+#: ../fileItem.js:633
 msgid "Copy"
 msgstr "Copiar"
 
-#: fileItem.js:566
+#: ../fileItem.js:637
 msgid "Rename…"
 msgstr "Renombrar…"
 
-#: fileItem.js:570
+#: ../fileItem.js:641
 msgid "Move to Trash"
 msgstr "Mover a la papelera"
 
-#: fileItem.js:582
+#: ../fileItem.js:653
 msgid "Empty Trash"
 msgstr "Vaciar la papelera"
 
-#: fileItem.js:590
+#: ../fileItem.js:661
 msgid "Properties"
 msgstr "Propiedades"
 
-#: fileItem.js:594
+#: ../fileItem.js:665
 msgid "Show in Files"
 msgstr "Mostrar en Files"
 
-#: fileItem.js:598
+#: ../fileItem.js:669 ../desktopManager.js:343
 msgid "Open in Terminal"
 msgstr "Abrir en una terminal"
 
-#: schemas/org.gnome.shell.extensions.adieu.gschema.xml:11
+#: ../desktopManager.js:319
+msgid "New Folder"
+msgstr "Nueva carpeta"
+
+#: ../desktopManager.js:325
+msgid "Paste"
+msgstr "Pegar"
+
+#: ../desktopManager.js:329
+msgid "Undo"
+msgstr "Deshacer"
+
+#: ../desktopManager.js:333
+msgid "Redo"
+msgstr "Rehacer"
+
+#: ../desktopManager.js:339
+msgid "Show Desktop in Files"
+msgstr "Mostrar el escritorio en Archivos"
+
+#: ../desktopManager.js:349
+msgid "Change Background…"
+msgstr "Cambiar el fondo..."
+
+#: ../desktopManager.js:358
+msgid "Display Settings"
+msgstr "Configuración de pantalla"
+
+#: ../desktopManager.js:770
+msgid "Rename"
+msgstr "Renombrar…"
+
+#: ../desktopManager.js:808
+msgid "New folder"
+msgstr "Nueva carpeta"
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
 msgid "Icon size"
 msgstr "Tamaño de los iconos"
 
-#: schemas/org.gnome.shell.extensions.adieu.gschema.xml:12
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:2
 msgid "Set the size for the desktop icons."
 msgstr "Establece el tamaño de los iconos del escritorio."
 
-#: schemas/org.gnome.shell.extensions.adieu.gschema.xml:16
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:3
 msgid "Show personal folder"
 msgstr "Mostrar la carpeta personal"
 
-#: schemas/org.gnome.shell.extensions.adieu.gschema.xml:17
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:4
 msgid "Show the personal folder in the desktop."
 msgstr "Mostrar la carpeta personal en el escritorio."
 
-#: schemas/org.gnome.shell.extensions.adieu.gschema.xml:21
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:5
 msgid "Show trash icon"
 msgstr "Mostrar la papelera"
 
-#: schemas/org.gnome.shell.extensions.adieu.gschema.xml:22
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:6
 msgid "Show the trash icon in the desktop."
 msgstr "Mostrar la papelera en el escritorio."
 
-#~ msgid "Command not found"
-#~ msgstr "Comando no encontrado"
+#~ msgid "Enter file name…"
+#~ msgstr "Introduzca el nombre del archivo…"
+
+#~ msgid "Cancel"
+#~ msgstr "Cancelar"
 
 #~ msgid "New folder name"
 #~ msgstr "Nombre de la nueva carpeta"
@@ -151,30 +190,6 @@ msgstr "Mostrar la papelera en el escritorio."
 
 #~ msgid "There is already a file or folder with that name."
 #~ msgstr "Ya hay un archivo o carpeta con ese nombre."
-
-#~ msgid "New Folder"
-#~ msgstr "Nueva carpeta"
-
-#~ msgid "Paste"
-#~ msgstr "Pegar"
-
-#~ msgid "Undo"
-#~ msgstr "Deshacer"
-
-#~ msgid "Redo"
-#~ msgstr "Rehacer"
-
-#~ msgid "Show Desktop in Files"
-#~ msgstr "Mostrar el escritorio en Archivos"
-
-#~ msgid "Change Background…"
-#~ msgstr "Cambiar el fondo..."
-
-#~ msgid "Display Settings"
-#~ msgstr "Configuración de pantalla"
-
-#~ msgid "Settings"
-#~ msgstr "Configuración"
 
 #~ msgid "Huge"
 #~ msgstr "Inmenso"

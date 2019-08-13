@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-shell-extension-desktop-icons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-08 21:07+0200\n"
+"POT-Creation-Date: 2019-08-13 10:04+0200\n"
 "PO-Revision-Date: 2019-06-22 18:52+0200\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
@@ -18,53 +18,127 @@ msgstr ""
 "X-Launchpad-Export-Date: 2019-03-27 09:36+0000\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: ../prefs.js:106
-msgid "Size for the desktop icons"
-msgstr "Veličina ikona radne površine"
-
-#: ../prefs.js:106
-msgid "Small"
-msgstr "Male"
-
-#: ../prefs.js:106
-msgid "Standard"
-msgstr "Standardne"
-
-#: ../prefs.js:106
-msgid "Large"
-msgstr "Velike"
-
-#: ../prefs.js:107
-msgid "Show the personal folder in the desktop"
-msgstr "Prikaži osobnu mapu na radnoj površini"
-
-#: ../prefs.js:108
-msgid "Show the trash icon in the desktop"
-msgstr "Prikaži mapu smeća na radnoj površini"
-
-#: ../desktopGrid.js:411
-msgid "Enter file name…"
-msgstr "Upiši naziv datoteke…"
-
-#: ../desktopGrid.js:415
+#: ../preferences.js:85
 msgid "OK"
 msgstr "U redu"
 
-#: ../desktopGrid.js:421
-msgid "Cancel"
-msgstr "Odustani"
+#: ../preferences.js:86 ../desktopManager.js:365
+msgid "Settings"
+msgstr "Postavke"
 
-#: ../desktopIconsUtil.js:59
+#: ../preferences.js:91
+msgid "Size for the desktop icons"
+msgstr "Veličina ikona radne površine"
+
+#: ../preferences.js:91
+msgid "Small"
+msgstr "Male"
+
+#: ../preferences.js:91
+msgid "Standard"
+msgstr "Standardne"
+
+#: ../preferences.js:91
+msgid "Large"
+msgstr "Velike"
+
+#: ../preferences.js:92
+msgid "Show the personal folder in the desktop"
+msgstr "Prikaži osobnu mapu na radnoj površini"
+
+#: ../preferences.js:93
+msgid "Show the trash icon in the desktop"
+msgstr "Prikaži mapu smeća na radnoj površini"
+
+#: ../desktopIconsUtil.js:68
 msgid "Command not found"
 msgstr "Naredba nije pronađena"
 
-#: ../fileItem.js:467
+#: ../fileItem.js:555
 msgid "Don’t Allow Launching"
 msgstr "Ne dopuštaj pokretanje"
 
-#: ../fileItem.js:469
+#: ../fileItem.js:557
 msgid "Allow Launching"
 msgstr "Dopusti pokretanje"
+
+#: ../fileItem.js:617
+msgid "Open"
+msgstr "Otvori"
+
+#: ../fileItem.js:623
+msgid "Open With Other Application"
+msgstr "Otvori s drugom aplikacijom"
+
+#: ../fileItem.js:630
+msgid "Cut"
+msgstr "Izreži"
+
+#: ../fileItem.js:633
+msgid "Copy"
+msgstr "Kopiraj"
+
+#: ../fileItem.js:637
+msgid "Rename…"
+msgstr "Preimenuj…"
+
+#: ../fileItem.js:641
+msgid "Move to Trash"
+msgstr "Premjesti u smeće"
+
+#: ../fileItem.js:653
+msgid "Empty Trash"
+msgstr "Isprazni smeće"
+
+#: ../fileItem.js:661
+msgid "Properties"
+msgstr "Svojstva"
+
+#: ../fileItem.js:665
+msgid "Show in Files"
+msgstr "Prikaži u Datotekama"
+
+#: ../fileItem.js:669 ../desktopManager.js:343
+msgid "Open in Terminal"
+msgstr "Otvori u Terminalu"
+
+#: ../desktopManager.js:319
+msgid "New Folder"
+msgstr "Nova mapa"
+
+#: ../desktopManager.js:325
+msgid "Paste"
+msgstr "Zalijepi"
+
+#: ../desktopManager.js:329
+msgid "Undo"
+msgstr "Poništi"
+
+#: ../desktopManager.js:333
+msgid "Redo"
+msgstr "Ponovi"
+
+#: ../desktopManager.js:339
+msgid "Show Desktop in Files"
+msgstr "Prikaži radnu površinu u Datotekama"
+
+#: ../desktopManager.js:349
+msgid "Change Background…"
+msgstr "Promijeni pozadinu…"
+
+#: ../desktopManager.js:358
+msgid "Display Settings"
+msgstr "Postavke zaslona"
+
+#: ../desktopManager.js:770
+#, fuzzy
+msgid "Rename"
+msgstr "Preimenuj…"
+
+#: ../desktopManager.js:808
+#, fuzzy
+msgid "New folder"
+msgstr "Nova mapa"
 
 #: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
 msgid "Icon size"
@@ -90,6 +164,12 @@ msgstr "Prikaži ikonu smeća"
 msgid "Show the trash icon in the desktop."
 msgstr "Prikaži ikonu smeća na radnoj površini."
 
+#~ msgid "Enter file name…"
+#~ msgstr "Upiši naziv datoteke…"
+
+#~ msgid "Cancel"
+#~ msgstr "Odustani"
+
 #~ msgid "New folder name"
 #~ msgstr "Novi naziv mape"
 
@@ -110,57 +190,3 @@ msgstr "Prikaži ikonu smeća na radnoj površini."
 
 #~ msgid "There is already a file or folder with that name."
 #~ msgstr "Već postoji datoteka ili mapa s tim nazivom."
-
-#~ msgid "New Folder"
-#~ msgstr "Nova mapa"
-
-#~ msgid "Paste"
-#~ msgstr "Zalijepi"
-
-#~ msgid "Undo"
-#~ msgstr "Poništi"
-
-#~ msgid "Redo"
-#~ msgstr "Ponovi"
-
-#~ msgid "Show Desktop in Files"
-#~ msgstr "Prikaži radnu površinu u Datotekama"
-
-#~ msgid "Open in Terminal"
-#~ msgstr "Otvori u Terminalu"
-
-#~ msgid "Change Background…"
-#~ msgstr "Promijeni pozadinu…"
-
-#~ msgid "Display Settings"
-#~ msgstr "Postavke zaslona"
-
-#~ msgid "Settings"
-#~ msgstr "Postavke"
-
-#~ msgid "Open"
-#~ msgstr "Otvori"
-
-#~ msgid "Open With Other Application"
-#~ msgstr "Otvori s drugom aplikacijom"
-
-#~ msgid "Cut"
-#~ msgstr "Izreži"
-
-#~ msgid "Copy"
-#~ msgstr "Kopiraj"
-
-#~ msgid "Rename…"
-#~ msgstr "Preimenuj…"
-
-#~ msgid "Move to Trash"
-#~ msgstr "Premjesti u smeće"
-
-#~ msgid "Empty Trash"
-#~ msgstr "Isprazni smeće"
-
-#~ msgid "Properties"
-#~ msgstr "Svojstva"
-
-#~ msgid "Show in Files"
-#~ msgstr "Prikaži u Datotekama"

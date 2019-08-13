@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-08 21:07+0200\n"
+"POT-Creation-Date: 2019-08-13 10:04+0200\n"
 "PO-Revision-Date: 2019-03-05 22:20+0100\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <fur@li.org>\n"
@@ -17,53 +17,127 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: ../prefs.js:106
-msgid "Size for the desktop icons"
-msgstr "Dimension pes iconis dal scritori"
-
-#: ../prefs.js:106
-msgid "Small"
-msgstr "Piçule"
-
-#: ../prefs.js:106
-msgid "Standard"
-msgstr "Standard"
-
-#: ../prefs.js:106
-msgid "Large"
-msgstr "Largje"
-
-#: ../prefs.js:107
-msgid "Show the personal folder in the desktop"
-msgstr "Mostre la cartele personâl intal scritori"
-
-#: ../prefs.js:108
-msgid "Show the trash icon in the desktop"
-msgstr "Mostre la icone de scovacere intal scritori"
-
-#: ../desktopGrid.js:411
-msgid "Enter file name…"
-msgstr "Inserìs il non dal file…"
-
-#: ../desktopGrid.js:415
+#: ../preferences.js:85
 msgid "OK"
 msgstr "Va ben"
 
-#: ../desktopGrid.js:421
-msgid "Cancel"
-msgstr "Anule"
+#: ../preferences.js:86 ../desktopManager.js:365
+msgid "Settings"
+msgstr "Impostazions"
 
-#: ../desktopIconsUtil.js:59
+#: ../preferences.js:91
+msgid "Size for the desktop icons"
+msgstr "Dimension pes iconis dal scritori"
+
+#: ../preferences.js:91
+msgid "Small"
+msgstr "Piçule"
+
+#: ../preferences.js:91
+msgid "Standard"
+msgstr "Standard"
+
+#: ../preferences.js:91
+msgid "Large"
+msgstr "Largje"
+
+#: ../preferences.js:92
+msgid "Show the personal folder in the desktop"
+msgstr "Mostre la cartele personâl intal scritori"
+
+#: ../preferences.js:93
+msgid "Show the trash icon in the desktop"
+msgstr "Mostre la icone de scovacere intal scritori"
+
+#: ../desktopIconsUtil.js:68
 msgid "Command not found"
 msgstr ""
 
-#: ../fileItem.js:467
+#: ../fileItem.js:555
 msgid "Don’t Allow Launching"
 msgstr "No sta permeti inviament"
 
-#: ../fileItem.js:469
+#: ../fileItem.js:557
 msgid "Allow Launching"
 msgstr "Permet inviament"
+
+#: ../fileItem.js:617
+msgid "Open"
+msgstr "Vierç"
+
+#: ../fileItem.js:623
+msgid "Open With Other Application"
+msgstr "Vierç cuntune altre aplicazion"
+
+#: ../fileItem.js:630
+msgid "Cut"
+msgstr "Taie"
+
+#: ../fileItem.js:633
+msgid "Copy"
+msgstr "Copie"
+
+#: ../fileItem.js:637
+msgid "Rename…"
+msgstr "Cambie non..."
+
+#: ../fileItem.js:641
+msgid "Move to Trash"
+msgstr "Sposte te scovacere"
+
+#: ../fileItem.js:653
+msgid "Empty Trash"
+msgstr "Disvuede scovacere"
+
+#: ../fileItem.js:661
+msgid "Properties"
+msgstr "Propietâts"
+
+#: ../fileItem.js:665
+msgid "Show in Files"
+msgstr "Mostre in File"
+
+#: ../fileItem.js:669 ../desktopManager.js:343
+msgid "Open in Terminal"
+msgstr "Vierç in Terminâl"
+
+#: ../desktopManager.js:319
+msgid "New Folder"
+msgstr "Gnove cartele"
+
+#: ../desktopManager.js:325
+msgid "Paste"
+msgstr "Tache"
+
+#: ../desktopManager.js:329
+msgid "Undo"
+msgstr "Anule"
+
+#: ../desktopManager.js:333
+msgid "Redo"
+msgstr "Torne fâ"
+
+#: ../desktopManager.js:339
+msgid "Show Desktop in Files"
+msgstr "Mostre Scritori in File"
+
+#: ../desktopManager.js:349
+msgid "Change Background…"
+msgstr "Cambie sfont…"
+
+#: ../desktopManager.js:358
+msgid "Display Settings"
+msgstr "Impostazions visôr"
+
+#: ../desktopManager.js:770
+#, fuzzy
+msgid "Rename"
+msgstr "Cambie non..."
+
+#: ../desktopManager.js:808
+#, fuzzy
+msgid "New folder"
+msgstr "Gnove cartele"
 
 #: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
 msgid "Icon size"
@@ -89,6 +163,12 @@ msgstr "Mostre la icone de scovacere"
 msgid "Show the trash icon in the desktop."
 msgstr "Mostre la icone de scovacere intal scritori."
 
+#~ msgid "Enter file name…"
+#~ msgstr "Inserìs il non dal file…"
+
+#~ msgid "Cancel"
+#~ msgstr "Anule"
+
 #~ msgid "New folder name"
 #~ msgstr "Gnûf non de cartele"
 
@@ -109,57 +189,3 @@ msgstr "Mostre la icone de scovacere intal scritori."
 
 #~ msgid "There is already a file or folder with that name."
 #~ msgstr "Un file o une cartele cul stes non e esist za."
-
-#~ msgid "New Folder"
-#~ msgstr "Gnove cartele"
-
-#~ msgid "Paste"
-#~ msgstr "Tache"
-
-#~ msgid "Undo"
-#~ msgstr "Anule"
-
-#~ msgid "Redo"
-#~ msgstr "Torne fâ"
-
-#~ msgid "Show Desktop in Files"
-#~ msgstr "Mostre Scritori in File"
-
-#~ msgid "Open in Terminal"
-#~ msgstr "Vierç in Terminâl"
-
-#~ msgid "Change Background…"
-#~ msgstr "Cambie sfont…"
-
-#~ msgid "Display Settings"
-#~ msgstr "Impostazions visôr"
-
-#~ msgid "Settings"
-#~ msgstr "Impostazions"
-
-#~ msgid "Open"
-#~ msgstr "Vierç"
-
-#~ msgid "Open With Other Application"
-#~ msgstr "Vierç cuntune altre aplicazion"
-
-#~ msgid "Cut"
-#~ msgstr "Taie"
-
-#~ msgid "Copy"
-#~ msgstr "Copie"
-
-#~ msgid "Rename…"
-#~ msgstr "Cambie non..."
-
-#~ msgid "Move to Trash"
-#~ msgstr "Sposte te scovacere"
-
-#~ msgid "Empty Trash"
-#~ msgstr "Disvuede scovacere"
-
-#~ msgid "Properties"
-#~ msgstr "Propietâts"
-
-#~ msgid "Show in Files"
-#~ msgstr "Mostre in File"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-08 21:07+0200\n"
+"POT-Creation-Date: 2019-08-13 10:04+0200\n"
 "PO-Revision-Date: 2019-03-12 09:51+0100\n"
 "Last-Translator: Milo Casagrande <milo@milo.name>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
@@ -19,53 +19,127 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: ../prefs.js:106
-msgid "Size for the desktop icons"
-msgstr "Dimensione delle icone della scrivania"
-
-#: ../prefs.js:106
-msgid "Small"
-msgstr "Piccola"
-
-#: ../prefs.js:106
-msgid "Standard"
-msgstr "Normale"
-
-#: ../prefs.js:106
-msgid "Large"
-msgstr "Grande"
-
-#: ../prefs.js:107
-msgid "Show the personal folder in the desktop"
-msgstr "Mostra la cartella personale sulla scrivania"
-
-#: ../prefs.js:108
-msgid "Show the trash icon in the desktop"
-msgstr "Mostra il cestino sulla scrivania"
-
-#: ../desktopGrid.js:411
-msgid "Enter file name…"
-msgstr "Indicare un nome per il file…"
-
-#: ../desktopGrid.js:415
+#: ../preferences.js:85
 msgid "OK"
 msgstr "Ok"
 
-#: ../desktopGrid.js:421
-msgid "Cancel"
-msgstr "Annulla"
+#: ../preferences.js:86 ../desktopManager.js:365
+msgid "Settings"
+msgstr "Impostazioni"
 
-#: ../desktopIconsUtil.js:59
+#: ../preferences.js:91
+msgid "Size for the desktop icons"
+msgstr "Dimensione delle icone della scrivania"
+
+#: ../preferences.js:91
+msgid "Small"
+msgstr "Piccola"
+
+#: ../preferences.js:91
+msgid "Standard"
+msgstr "Normale"
+
+#: ../preferences.js:91
+msgid "Large"
+msgstr "Grande"
+
+#: ../preferences.js:92
+msgid "Show the personal folder in the desktop"
+msgstr "Mostra la cartella personale sulla scrivania"
+
+#: ../preferences.js:93
+msgid "Show the trash icon in the desktop"
+msgstr "Mostra il cestino sulla scrivania"
+
+#: ../desktopIconsUtil.js:68
 msgid "Command not found"
 msgstr ""
 
-#: ../fileItem.js:467
+#: ../fileItem.js:555
 msgid "Don’t Allow Launching"
 msgstr "Non permettere l'esecuzione"
 
-#: ../fileItem.js:469
+#: ../fileItem.js:557
 msgid "Allow Launching"
 msgstr "Permetti l'esecuzione"
+
+#: ../fileItem.js:617
+msgid "Open"
+msgstr "Apri"
+
+#: ../fileItem.js:623
+msgid "Open With Other Application"
+msgstr "Apri con altra applicazione"
+
+#: ../fileItem.js:630
+msgid "Cut"
+msgstr "Taglia"
+
+#: ../fileItem.js:633
+msgid "Copy"
+msgstr "Copia"
+
+#: ../fileItem.js:637
+msgid "Rename…"
+msgstr "Rinomina…"
+
+#: ../fileItem.js:641
+msgid "Move to Trash"
+msgstr "Sposta nel cestino"
+
+#: ../fileItem.js:653
+msgid "Empty Trash"
+msgstr "Svuota il cestino"
+
+#: ../fileItem.js:661
+msgid "Properties"
+msgstr "Proprietà"
+
+#: ../fileItem.js:665
+msgid "Show in Files"
+msgstr "Mostra in File"
+
+#: ../fileItem.js:669 ../desktopManager.js:343
+msgid "Open in Terminal"
+msgstr "Apri in Terminale"
+
+#: ../desktopManager.js:319
+msgid "New Folder"
+msgstr "Nuova cartella"
+
+#: ../desktopManager.js:325
+msgid "Paste"
+msgstr "Incolla"
+
+#: ../desktopManager.js:329
+msgid "Undo"
+msgstr "Annulla"
+
+#: ../desktopManager.js:333
+msgid "Redo"
+msgstr "Ripeti"
+
+#: ../desktopManager.js:339
+msgid "Show Desktop in Files"
+msgstr "Mostra la scrivania in File"
+
+#: ../desktopManager.js:349
+msgid "Change Background…"
+msgstr "Cambia lo sfondo…"
+
+#: ../desktopManager.js:358
+msgid "Display Settings"
+msgstr "Impostazioni dello schermo"
+
+#: ../desktopManager.js:770
+#, fuzzy
+msgid "Rename"
+msgstr "Rinomina…"
+
+#: ../desktopManager.js:808
+#, fuzzy
+msgid "New folder"
+msgstr "Nuova cartella"
 
 #: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
 msgid "Icon size"
@@ -91,6 +165,12 @@ msgstr "Mostra il cestino"
 msgid "Show the trash icon in the desktop."
 msgstr "Mostra il cestino sulla scrivania."
 
+#~ msgid "Enter file name…"
+#~ msgstr "Indicare un nome per il file…"
+
+#~ msgid "Cancel"
+#~ msgstr "Annulla"
+
 #~ msgid "New folder name"
 #~ msgstr "Nuova cartella"
 
@@ -111,57 +191,3 @@ msgstr "Mostra il cestino sulla scrivania."
 
 #~ msgid "There is already a file or folder with that name."
 #~ msgstr "Esiste già un file o una cartella con quel nome."
-
-#~ msgid "New Folder"
-#~ msgstr "Nuova cartella"
-
-#~ msgid "Paste"
-#~ msgstr "Incolla"
-
-#~ msgid "Undo"
-#~ msgstr "Annulla"
-
-#~ msgid "Redo"
-#~ msgstr "Ripeti"
-
-#~ msgid "Show Desktop in Files"
-#~ msgstr "Mostra la scrivania in File"
-
-#~ msgid "Open in Terminal"
-#~ msgstr "Apri in Terminale"
-
-#~ msgid "Change Background…"
-#~ msgstr "Cambia lo sfondo…"
-
-#~ msgid "Display Settings"
-#~ msgstr "Impostazioni dello schermo"
-
-#~ msgid "Settings"
-#~ msgstr "Impostazioni"
-
-#~ msgid "Open"
-#~ msgstr "Apri"
-
-#~ msgid "Open With Other Application"
-#~ msgstr "Apri con altra applicazione"
-
-#~ msgid "Cut"
-#~ msgstr "Taglia"
-
-#~ msgid "Copy"
-#~ msgstr "Copia"
-
-#~ msgid "Rename…"
-#~ msgstr "Rinomina…"
-
-#~ msgid "Move to Trash"
-#~ msgstr "Sposta nel cestino"
-
-#~ msgid "Empty Trash"
-#~ msgstr "Svuota il cestino"
-
-#~ msgid "Properties"
-#~ msgstr "Proprietà"
-
-#~ msgid "Show in Files"
-#~ msgstr "Mostra in File"

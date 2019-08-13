@@ -2,7 +2,13 @@
 
 ## What  is it
 
-Another Desktop Icons Extension for GNOME Shell.
+Another Desktop Icons Extension for GNOME Shell. It has some advantages over the current one, like
+implementing Drag'n'Drop, or being faster refreshing the desktop. But it is still an alpha
+development, so it probably still have a lot of bugs. Use with care.
+
+## Current version
+
+Version 0.1.0 alpha.
 
 ## Requirements
 

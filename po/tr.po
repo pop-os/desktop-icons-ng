@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-08 21:08+0200\n"
+"POT-Creation-Date: 2019-08-13 10:05+0200\n"
 "PO-Revision-Date: 2019-03-13 13:43+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
@@ -21,53 +21,127 @@ msgstr ""
 "X-Generator: Gtranslator 3.30.1\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../prefs.js:106
-msgid "Size for the desktop icons"
-msgstr "Masaüstü simgeleri boyutu"
-
-#: ../prefs.js:106
-msgid "Small"
-msgstr "Küçük"
-
-#: ../prefs.js:106
-msgid "Standard"
-msgstr "Standart"
-
-#: ../prefs.js:106
-msgid "Large"
-msgstr "Büyük"
-
-#: ../prefs.js:107
-msgid "Show the personal folder in the desktop"
-msgstr "Kişisel klasörü masaüstünde göster"
-
-#: ../prefs.js:108
-msgid "Show the trash icon in the desktop"
-msgstr "Çöp kutusunu masaüstünde göster"
-
-#: ../desktopGrid.js:411
-msgid "Enter file name…"
-msgstr "Dosya adını gir…"
-
-#: ../desktopGrid.js:415
+#: ../preferences.js:85
 msgid "OK"
 msgstr "Tamam"
 
-#: ../desktopGrid.js:421
-msgid "Cancel"
-msgstr "İptal"
+#: ../preferences.js:86 ../desktopManager.js:365
+msgid "Settings"
+msgstr "Ayarlar"
 
-#: ../desktopIconsUtil.js:59
+#: ../preferences.js:91
+msgid "Size for the desktop icons"
+msgstr "Masaüstü simgeleri boyutu"
+
+#: ../preferences.js:91
+msgid "Small"
+msgstr "Küçük"
+
+#: ../preferences.js:91
+msgid "Standard"
+msgstr "Standart"
+
+#: ../preferences.js:91
+msgid "Large"
+msgstr "Büyük"
+
+#: ../preferences.js:92
+msgid "Show the personal folder in the desktop"
+msgstr "Kişisel klasörü masaüstünde göster"
+
+#: ../preferences.js:93
+msgid "Show the trash icon in the desktop"
+msgstr "Çöp kutusunu masaüstünde göster"
+
+#: ../desktopIconsUtil.js:68
 msgid "Command not found"
 msgstr ""
 
-#: ../fileItem.js:467
+#: ../fileItem.js:555
 msgid "Don’t Allow Launching"
 msgstr "Başlatmaya İzin Verme"
 
-#: ../fileItem.js:469
+#: ../fileItem.js:557
 msgid "Allow Launching"
 msgstr "Başlatmaya İzin Ver"
+
+#: ../fileItem.js:617
+msgid "Open"
+msgstr "Aç"
+
+#: ../fileItem.js:623
+msgid "Open With Other Application"
+msgstr "Başka Uygulamayla Aç"
+
+#: ../fileItem.js:630
+msgid "Cut"
+msgstr "Kes"
+
+#: ../fileItem.js:633
+msgid "Copy"
+msgstr "Kopyala"
+
+#: ../fileItem.js:637
+msgid "Rename…"
+msgstr "Yeniden Adlandır…"
+
+#: ../fileItem.js:641
+msgid "Move to Trash"
+msgstr "Çöpe Taşı"
+
+#: ../fileItem.js:653
+msgid "Empty Trash"
+msgstr "Çöpü Boşalt"
+
+#: ../fileItem.js:661
+msgid "Properties"
+msgstr "Özellikler"
+
+#: ../fileItem.js:665
+msgid "Show in Files"
+msgstr "Dosyalarʼda Göster"
+
+#: ../fileItem.js:669 ../desktopManager.js:343
+msgid "Open in Terminal"
+msgstr "Uçbirimde Aç"
+
+#: ../desktopManager.js:319
+msgid "New Folder"
+msgstr "Yeni Klasör"
+
+#: ../desktopManager.js:325
+msgid "Paste"
+msgstr "Yapıştır"
+
+#: ../desktopManager.js:329
+msgid "Undo"
+msgstr "Geri Al"
+
+#: ../desktopManager.js:333
+msgid "Redo"
+msgstr "Yinele"
+
+#: ../desktopManager.js:339
+msgid "Show Desktop in Files"
+msgstr "Masaüstünü Dosyalarʼda Göster"
+
+#: ../desktopManager.js:349
+msgid "Change Background…"
+msgstr "Arka Planı Değiştir…"
+
+#: ../desktopManager.js:358
+msgid "Display Settings"
+msgstr "Görüntü Ayarları"
+
+#: ../desktopManager.js:770
+#, fuzzy
+msgid "Rename"
+msgstr "Yeniden Adlandır…"
+
+#: ../desktopManager.js:808
+#, fuzzy
+msgid "New folder"
+msgstr "Yeni Klasör"
 
 #: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
 msgid "Icon size"
@@ -93,6 +167,12 @@ msgstr "Çöp kutusunu göster"
 msgid "Show the trash icon in the desktop."
 msgstr "Çöp kutusu simgesini masaüstünde göster."
 
+#~ msgid "Enter file name…"
+#~ msgstr "Dosya adını gir…"
+
+#~ msgid "Cancel"
+#~ msgstr "İptal"
+
 #~ msgid "New folder name"
 #~ msgstr "Yeni klasör adı"
 
@@ -113,57 +193,3 @@ msgstr "Çöp kutusu simgesini masaüstünde göster."
 
 #~ msgid "There is already a file or folder with that name."
 #~ msgstr "Zaten bu adda bir dosya veya klasör var."
-
-#~ msgid "New Folder"
-#~ msgstr "Yeni Klasör"
-
-#~ msgid "Paste"
-#~ msgstr "Yapıştır"
-
-#~ msgid "Undo"
-#~ msgstr "Geri Al"
-
-#~ msgid "Redo"
-#~ msgstr "Yinele"
-
-#~ msgid "Show Desktop in Files"
-#~ msgstr "Masaüstünü Dosyalarʼda Göster"
-
-#~ msgid "Open in Terminal"
-#~ msgstr "Uçbirimde Aç"
-
-#~ msgid "Change Background…"
-#~ msgstr "Arka Planı Değiştir…"
-
-#~ msgid "Display Settings"
-#~ msgstr "Görüntü Ayarları"
-
-#~ msgid "Settings"
-#~ msgstr "Ayarlar"
-
-#~ msgid "Open"
-#~ msgstr "Aç"
-
-#~ msgid "Open With Other Application"
-#~ msgstr "Başka Uygulamayla Aç"
-
-#~ msgid "Cut"
-#~ msgstr "Kes"
-
-#~ msgid "Copy"
-#~ msgstr "Kopyala"
-
-#~ msgid "Rename…"
-#~ msgstr "Yeniden Adlandır…"
-
-#~ msgid "Move to Trash"
-#~ msgstr "Çöpe Taşı"
-
-#~ msgid "Empty Trash"
-#~ msgstr "Çöpü Boşalt"
-
-#~ msgid "Properties"
-#~ msgstr "Özellikler"
-
-#~ msgid "Show in Files"
-#~ msgstr "Dosyalarʼda Göster"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-09 17:26+0200\n"
+"POT-Creation-Date: 2019-08-13 10:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,110 +17,146 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: prefs.js:105
-msgid "Size for the desktop icons"
-msgstr ""
-
-#: prefs.js:105
-msgid "Small"
-msgstr ""
-
-#: prefs.js:105
-msgid "Standard"
-msgstr ""
-
-#: prefs.js:105
-msgid "Large"
-msgstr ""
-
-#: prefs.js:106
-msgid "Show the personal folder in the desktop"
-msgstr ""
-
-#: prefs.js:107
-msgid "Show the trash icon in the desktop"
-msgstr ""
-
-#: desktopGrid.js:411
-msgid "Enter file name…"
-msgstr ""
-
-#: desktopGrid.js:415
+#: ../preferences.js:85
 msgid "OK"
 msgstr ""
 
-#: desktopGrid.js:421
-msgid "Cancel"
+#: ../preferences.js:86 ../desktopManager.js:365
+msgid "Settings"
 msgstr ""
 
-#: fileItem.js:470
+#: ../preferences.js:91
+msgid "Size for the desktop icons"
+msgstr ""
+
+#: ../preferences.js:91
+msgid "Small"
+msgstr ""
+
+#: ../preferences.js:91
+msgid "Standard"
+msgstr ""
+
+#: ../preferences.js:91
+msgid "Large"
+msgstr ""
+
+#: ../preferences.js:92
+msgid "Show the personal folder in the desktop"
+msgstr ""
+
+#: ../preferences.js:93
+msgid "Show the trash icon in the desktop"
+msgstr ""
+
+#: ../desktopIconsUtil.js:68
+msgid "Command not found"
+msgstr ""
+
+#: ../fileItem.js:555
 msgid "Don’t Allow Launching"
 msgstr ""
 
-#: fileItem.js:472
+#: ../fileItem.js:557
 msgid "Allow Launching"
 msgstr ""
 
-#: fileItem.js:546
+#: ../fileItem.js:617
 msgid "Open"
 msgstr ""
 
-#: fileItem.js:552
+#: ../fileItem.js:623
 msgid "Open With Other Application"
 msgstr ""
 
-#: fileItem.js:559
+#: ../fileItem.js:630
 msgid "Cut"
 msgstr ""
 
-#: fileItem.js:562
+#: ../fileItem.js:633
 msgid "Copy"
 msgstr ""
 
-#: fileItem.js:566
+#: ../fileItem.js:637
 msgid "Rename…"
 msgstr ""
 
-#: fileItem.js:570
+#: ../fileItem.js:641
 msgid "Move to Trash"
 msgstr ""
 
-#: fileItem.js:582
+#: ../fileItem.js:653
 msgid "Empty Trash"
 msgstr ""
 
-#: fileItem.js:590
+#: ../fileItem.js:661
 msgid "Properties"
 msgstr ""
 
-#: fileItem.js:594
+#: ../fileItem.js:665
 msgid "Show in Files"
 msgstr ""
 
-#: fileItem.js:598
+#: ../fileItem.js:669 ../desktopManager.js:343
 msgid "Open in Terminal"
 msgstr ""
 
-#: schemas/org.gnome.shell.extensions.adieu.gschema.xml:11
+#: ../desktopManager.js:319
+msgid "New Folder"
+msgstr ""
+
+#: ../desktopManager.js:325
+msgid "Paste"
+msgstr ""
+
+#: ../desktopManager.js:329
+msgid "Undo"
+msgstr ""
+
+#: ../desktopManager.js:333
+msgid "Redo"
+msgstr ""
+
+#: ../desktopManager.js:339
+msgid "Show Desktop in Files"
+msgstr ""
+
+#: ../desktopManager.js:349
+msgid "Change Background…"
+msgstr ""
+
+#: ../desktopManager.js:358
+msgid "Display Settings"
+msgstr ""
+
+#: ../desktopManager.js:770
+msgid "Rename"
+msgstr ""
+
+#: ../desktopManager.js:808
+msgid "New folder"
+msgstr ""
+
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
 msgid "Icon size"
 msgstr ""
 
-#: schemas/org.gnome.shell.extensions.adieu.gschema.xml:12
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:2
 msgid "Set the size for the desktop icons."
 msgstr ""
 
-#: schemas/org.gnome.shell.extensions.adieu.gschema.xml:16
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:3
 msgid "Show personal folder"
 msgstr ""
 
-#: schemas/org.gnome.shell.extensions.adieu.gschema.xml:17
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:4
 msgid "Show the personal folder in the desktop."
 msgstr ""
 
-#: schemas/org.gnome.shell.extensions.adieu.gschema.xml:21
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:5
 msgid "Show trash icon"
 msgstr ""
 
-#: schemas/org.gnome.shell.extensions.adieu.gschema.xml:22
+#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:6
 msgid "Show the trash icon in the desktop."
 msgstr ""

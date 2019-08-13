@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-08 21:07+0200\n"
+"POT-Creation-Date: 2019-08-13 10:04+0200\n"
 "PO-Revision-Date: 2019-06-01 18:50+0200\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
@@ -18,53 +18,127 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 18.12.3\n"
 
-#: ../prefs.js:106
-msgid "Size for the desktop icons"
-msgstr "Az asztali ikonok mérete"
-
-#: ../prefs.js:106
-msgid "Small"
-msgstr "Kicsi"
-
-#: ../prefs.js:106
-msgid "Standard"
-msgstr "Szabványos"
-
-#: ../prefs.js:106
-msgid "Large"
-msgstr "Nagy"
-
-#: ../prefs.js:107
-msgid "Show the personal folder in the desktop"
-msgstr "A személyes mappa megjelenítése az asztalon"
-
-#: ../prefs.js:108
-msgid "Show the trash icon in the desktop"
-msgstr "A kuka ikon megjelenítése az asztalon"
-
-#: ../desktopGrid.js:411
-msgid "Enter file name…"
-msgstr "Adjon meg egy fájlnevet…"
-
-#: ../desktopGrid.js:415
+#: ../preferences.js:85
 msgid "OK"
 msgstr "Rendben"
 
-#: ../desktopGrid.js:421
-msgid "Cancel"
-msgstr "Mégse"
+#: ../preferences.js:86 ../desktopManager.js:365
+msgid "Settings"
+msgstr "Beállítások"
 
-#: ../desktopIconsUtil.js:59
+#: ../preferences.js:91
+msgid "Size for the desktop icons"
+msgstr "Az asztali ikonok mérete"
+
+#: ../preferences.js:91
+msgid "Small"
+msgstr "Kicsi"
+
+#: ../preferences.js:91
+msgid "Standard"
+msgstr "Szabványos"
+
+#: ../preferences.js:91
+msgid "Large"
+msgstr "Nagy"
+
+#: ../preferences.js:92
+msgid "Show the personal folder in the desktop"
+msgstr "A személyes mappa megjelenítése az asztalon"
+
+#: ../preferences.js:93
+msgid "Show the trash icon in the desktop"
+msgstr "A kuka ikon megjelenítése az asztalon"
+
+#: ../desktopIconsUtil.js:68
 msgid "Command not found"
 msgstr "A parancs nem található"
 
-#: ../fileItem.js:467
+#: ../fileItem.js:555
 msgid "Don’t Allow Launching"
 msgstr "Ne engedélyezzen indítást"
 
-#: ../fileItem.js:469
+#: ../fileItem.js:557
 msgid "Allow Launching"
 msgstr "Indítás engedélyezése"
+
+#: ../fileItem.js:617
+msgid "Open"
+msgstr "Megnyitás"
+
+#: ../fileItem.js:623
+msgid "Open With Other Application"
+msgstr "Megnyitás egyéb alkalmazással"
+
+#: ../fileItem.js:630
+msgid "Cut"
+msgstr "Kivágás"
+
+#: ../fileItem.js:633
+msgid "Copy"
+msgstr "Másolás"
+
+#: ../fileItem.js:637
+msgid "Rename…"
+msgstr "Átnevezés…"
+
+#: ../fileItem.js:641
+msgid "Move to Trash"
+msgstr "Áthelyezés a Kukába"
+
+#: ../fileItem.js:653
+msgid "Empty Trash"
+msgstr "Kuka ürítése"
+
+#: ../fileItem.js:661
+msgid "Properties"
+msgstr "Tulajdonságok"
+
+#: ../fileItem.js:665
+msgid "Show in Files"
+msgstr "Megjelenítés a Fájlokban"
+
+#: ../fileItem.js:669 ../desktopManager.js:343
+msgid "Open in Terminal"
+msgstr "Megnyitás terminálban"
+
+#: ../desktopManager.js:319
+msgid "New Folder"
+msgstr "Új mappa"
+
+#: ../desktopManager.js:325
+msgid "Paste"
+msgstr "Beillesztés"
+
+#: ../desktopManager.js:329
+msgid "Undo"
+msgstr "Visszavonás"
+
+#: ../desktopManager.js:333
+msgid "Redo"
+msgstr "Újra"
+
+#: ../desktopManager.js:339
+msgid "Show Desktop in Files"
+msgstr "Asztal megjelenítése a Fájlokban"
+
+#: ../desktopManager.js:349
+msgid "Change Background…"
+msgstr "Háttér megváltoztatása…"
+
+#: ../desktopManager.js:358
+msgid "Display Settings"
+msgstr "Megjelenítés beállításai"
+
+#: ../desktopManager.js:770
+#, fuzzy
+msgid "Rename"
+msgstr "Átnevezés…"
+
+#: ../desktopManager.js:808
+#, fuzzy
+msgid "New folder"
+msgstr "Új mappa"
 
 #: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
 msgid "Icon size"
@@ -90,6 +164,12 @@ msgstr "Kuka ikon megjelenítése"
 msgid "Show the trash icon in the desktop."
 msgstr "A kuka ikon megjelenítése az asztalon."
 
+#~ msgid "Enter file name…"
+#~ msgstr "Adjon meg egy fájlnevet…"
+
+#~ msgid "Cancel"
+#~ msgstr "Mégse"
+
 #~ msgid "New folder name"
 #~ msgstr "Új mappa neve"
 
@@ -110,57 +190,3 @@ msgstr "A kuka ikon megjelenítése az asztalon."
 
 #~ msgid "There is already a file or folder with that name."
 #~ msgstr "Már van egy fájl vagy mappa azzal a névvel."
-
-#~ msgid "New Folder"
-#~ msgstr "Új mappa"
-
-#~ msgid "Paste"
-#~ msgstr "Beillesztés"
-
-#~ msgid "Undo"
-#~ msgstr "Visszavonás"
-
-#~ msgid "Redo"
-#~ msgstr "Újra"
-
-#~ msgid "Show Desktop in Files"
-#~ msgstr "Asztal megjelenítése a Fájlokban"
-
-#~ msgid "Open in Terminal"
-#~ msgstr "Megnyitás terminálban"
-
-#~ msgid "Change Background…"
-#~ msgstr "Háttér megváltoztatása…"
-
-#~ msgid "Display Settings"
-#~ msgstr "Megjelenítés beállításai"
-
-#~ msgid "Settings"
-#~ msgstr "Beállítások"
-
-#~ msgid "Open"
-#~ msgstr "Megnyitás"
-
-#~ msgid "Open With Other Application"
-#~ msgstr "Megnyitás egyéb alkalmazással"
-
-#~ msgid "Cut"
-#~ msgstr "Kivágás"
-
-#~ msgid "Copy"
-#~ msgstr "Másolás"
-
-#~ msgid "Rename…"
-#~ msgstr "Átnevezés…"
-
-#~ msgid "Move to Trash"
-#~ msgstr "Áthelyezés a Kukába"
-
-#~ msgid "Empty Trash"
-#~ msgstr "Kuka ürítése"
-
-#~ msgid "Properties"
-#~ msgstr "Tulajdonságok"
-
-#~ msgid "Show in Files"
-#~ msgstr "Megjelenítés a Fájlokban"

@@ -5,4 +5,5 @@ desktopGrid.js
 desktopIconsUtil.js
 fileItem.js
 adieu.js
+desktopManager.js
 schemas/org.gnome.shell.extensions.adieu.gschema.xml

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-08 21:07+0200\n"
+"POT-Creation-Date: 2019-08-13 10:04+0200\n"
 "PO-Revision-Date: 2019-05-01 13:03+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
@@ -19,53 +19,127 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
-#: ../prefs.js:106
-msgid "Size for the desktop icons"
-msgstr "Rozmiar ikon na pulpicie"
-
-#: ../prefs.js:106
-msgid "Small"
-msgstr "Mały"
-
-#: ../prefs.js:106
-msgid "Standard"
-msgstr "Standardowy"
-
-#: ../prefs.js:106
-msgid "Large"
-msgstr "Duży"
-
-#: ../prefs.js:107
-msgid "Show the personal folder in the desktop"
-msgstr "Katalog domowy na pulpicie"
-
-#: ../prefs.js:108
-msgid "Show the trash icon in the desktop"
-msgstr "Kosz na pulpicie"
-
-#: ../desktopGrid.js:411
-msgid "Enter file name…"
-msgstr "Nazwa pliku…"
-
-#: ../desktopGrid.js:415
+#: ../preferences.js:85
 msgid "OK"
 msgstr "OK"
 
-#: ../desktopGrid.js:421
-msgid "Cancel"
-msgstr "Anuluj"
+#: ../preferences.js:86 ../desktopManager.js:365
+msgid "Settings"
+msgstr "Ustawienia"
 
-#: ../desktopIconsUtil.js:59
+#: ../preferences.js:91
+msgid "Size for the desktop icons"
+msgstr "Rozmiar ikon na pulpicie"
+
+#: ../preferences.js:91
+msgid "Small"
+msgstr "Mały"
+
+#: ../preferences.js:91
+msgid "Standard"
+msgstr "Standardowy"
+
+#: ../preferences.js:91
+msgid "Large"
+msgstr "Duży"
+
+#: ../preferences.js:92
+msgid "Show the personal folder in the desktop"
+msgstr "Katalog domowy na pulpicie"
+
+#: ../preferences.js:93
+msgid "Show the trash icon in the desktop"
+msgstr "Kosz na pulpicie"
+
+#: ../desktopIconsUtil.js:68
 msgid "Command not found"
 msgstr "Nie odnaleziono polecenia"
 
-#: ../fileItem.js:467
+#: ../fileItem.js:555
 msgid "Don’t Allow Launching"
 msgstr "Nie zezwalaj na uruchamianie"
 
-#: ../fileItem.js:469
+#: ../fileItem.js:557
 msgid "Allow Launching"
 msgstr "Zezwól na uruchamianie"
+
+#: ../fileItem.js:617
+msgid "Open"
+msgstr "Otwórz"
+
+#: ../fileItem.js:623
+msgid "Open With Other Application"
+msgstr "Otwórz za pomocą innego programu"
+
+#: ../fileItem.js:630
+msgid "Cut"
+msgstr "Wytnij"
+
+#: ../fileItem.js:633
+msgid "Copy"
+msgstr "Skopiuj"
+
+#: ../fileItem.js:637
+msgid "Rename…"
+msgstr "Zmień nazwę…"
+
+#: ../fileItem.js:641
+msgid "Move to Trash"
+msgstr "Przenieś do kosza"
+
+#: ../fileItem.js:653
+msgid "Empty Trash"
+msgstr "Opróżnij kosz"
+
+#: ../fileItem.js:661
+msgid "Properties"
+msgstr "Właściwości"
+
+#: ../fileItem.js:665
+msgid "Show in Files"
+msgstr "Wyświetl w menedżerze plików"
+
+#: ../fileItem.js:669 ../desktopManager.js:343
+msgid "Open in Terminal"
+msgstr "Otwórz w terminalu"
+
+#: ../desktopManager.js:319
+msgid "New Folder"
+msgstr "Nowy katalog"
+
+#: ../desktopManager.js:325
+msgid "Paste"
+msgstr "Wklej"
+
+#: ../desktopManager.js:329
+msgid "Undo"
+msgstr "Cofnij"
+
+#: ../desktopManager.js:333
+msgid "Redo"
+msgstr "Ponów"
+
+#: ../desktopManager.js:339
+msgid "Show Desktop in Files"
+msgstr "Wyświetl pulpit w menedżerze plików"
+
+#: ../desktopManager.js:349
+msgid "Change Background…"
+msgstr "Zmień tło…"
+
+#: ../desktopManager.js:358
+msgid "Display Settings"
+msgstr "Ustawienia ekranu"
+
+#: ../desktopManager.js:770
+#, fuzzy
+msgid "Rename"
+msgstr "Zmień nazwę…"
+
+#: ../desktopManager.js:808
+#, fuzzy
+msgid "New folder"
+msgstr "Nowy katalog"
 
 #: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
 msgid "Icon size"
@@ -91,6 +165,12 @@ msgstr "Kosz"
 msgid "Show the trash icon in the desktop."
 msgstr "Wyświetla kosz na pulpicie."
 
+#~ msgid "Enter file name…"
+#~ msgstr "Nazwa pliku…"
+
+#~ msgid "Cancel"
+#~ msgstr "Anuluj"
+
 #~ msgid "New folder name"
 #~ msgstr "Nazwa nowego katalogu"
 
@@ -111,57 +191,3 @@ msgstr "Wyświetla kosz na pulpicie."
 
 #~ msgid "There is already a file or folder with that name."
 #~ msgstr "Plik lub katalog o tej nazwie już istnieje."
-
-#~ msgid "New Folder"
-#~ msgstr "Nowy katalog"
-
-#~ msgid "Paste"
-#~ msgstr "Wklej"
-
-#~ msgid "Undo"
-#~ msgstr "Cofnij"
-
-#~ msgid "Redo"
-#~ msgstr "Ponów"
-
-#~ msgid "Show Desktop in Files"
-#~ msgstr "Wyświetl pulpit w menedżerze plików"
-
-#~ msgid "Open in Terminal"
-#~ msgstr "Otwórz w terminalu"
-
-#~ msgid "Change Background…"
-#~ msgstr "Zmień tło…"
-
-#~ msgid "Display Settings"
-#~ msgstr "Ustawienia ekranu"
-
-#~ msgid "Settings"
-#~ msgstr "Ustawienia"
-
-#~ msgid "Open"
-#~ msgstr "Otwórz"
-
-#~ msgid "Open With Other Application"
-#~ msgstr "Otwórz za pomocą innego programu"
-
-#~ msgid "Cut"
-#~ msgstr "Wytnij"
-
-#~ msgid "Copy"
-#~ msgstr "Skopiuj"
-
-#~ msgid "Rename…"
-#~ msgstr "Zmień nazwę…"
-
-#~ msgid "Move to Trash"
-#~ msgstr "Przenieś do kosza"
-
-#~ msgid "Empty Trash"
-#~ msgstr "Opróżnij kosz"
-
-#~ msgid "Properties"
-#~ msgstr "Właściwości"
-
-#~ msgid "Show in Files"
-#~ msgstr "Wyświetl w menedżerze plików"

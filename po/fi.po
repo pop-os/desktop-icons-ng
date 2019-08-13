@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-08 21:07+0200\n"
+"POT-Creation-Date: 2019-08-13 10:04+0200\n"
 "PO-Revision-Date: 2019-06-02 15:23+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: Finnish <lokalisointi-lista@googlegroups.com>\n"
@@ -18,53 +18,127 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: ../prefs.js:106
-msgid "Size for the desktop icons"
-msgstr "Työpöytäkuvakkeiden koko"
-
-#: ../prefs.js:106
-msgid "Small"
-msgstr "Pieni"
-
-#: ../prefs.js:106
-msgid "Standard"
-msgstr "Normaali"
-
-#: ../prefs.js:106
-msgid "Large"
-msgstr "Suuri"
-
-#: ../prefs.js:107
-msgid "Show the personal folder in the desktop"
-msgstr "Näytä kotikansio työpöydällä"
-
-#: ../prefs.js:108
-msgid "Show the trash icon in the desktop"
-msgstr "Näytä roskakorin kuvake työpöydällä"
-
-#: ../desktopGrid.js:411
-msgid "Enter file name…"
-msgstr "Anna tiedostonimi…"
-
-#: ../desktopGrid.js:415
+#: ../preferences.js:85
 msgid "OK"
 msgstr "OK"
 
-#: ../desktopGrid.js:421
-msgid "Cancel"
-msgstr "Peru"
+#: ../preferences.js:86 ../desktopManager.js:365
+msgid "Settings"
+msgstr "Asetukset"
 
-#: ../desktopIconsUtil.js:59
+#: ../preferences.js:91
+msgid "Size for the desktop icons"
+msgstr "Työpöytäkuvakkeiden koko"
+
+#: ../preferences.js:91
+msgid "Small"
+msgstr "Pieni"
+
+#: ../preferences.js:91
+msgid "Standard"
+msgstr "Normaali"
+
+#: ../preferences.js:91
+msgid "Large"
+msgstr "Suuri"
+
+#: ../preferences.js:92
+msgid "Show the personal folder in the desktop"
+msgstr "Näytä kotikansio työpöydällä"
+
+#: ../preferences.js:93
+msgid "Show the trash icon in the desktop"
+msgstr "Näytä roskakorin kuvake työpöydällä"
+
+#: ../desktopIconsUtil.js:68
 msgid "Command not found"
 msgstr "Komentoa ei löydy"
 
-#: ../fileItem.js:467
+#: ../fileItem.js:555
 msgid "Don’t Allow Launching"
 msgstr "Älä salli käynnistämistä"
 
-#: ../fileItem.js:469
+#: ../fileItem.js:557
 msgid "Allow Launching"
 msgstr "Salli käynnistäminen"
+
+#: ../fileItem.js:617
+msgid "Open"
+msgstr "Avaa"
+
+#: ../fileItem.js:623
+msgid "Open With Other Application"
+msgstr "Avaa toisella sovelluksella"
+
+#: ../fileItem.js:630
+msgid "Cut"
+msgstr "Leikkaa"
+
+#: ../fileItem.js:633
+msgid "Copy"
+msgstr "Kopioi"
+
+#: ../fileItem.js:637
+msgid "Rename…"
+msgstr "Nimeä uudelleen…"
+
+#: ../fileItem.js:641
+msgid "Move to Trash"
+msgstr "Siirrä roskakoriin"
+
+#: ../fileItem.js:653
+msgid "Empty Trash"
+msgstr "Tyhjennä roskakori"
+
+#: ../fileItem.js:661
+msgid "Properties"
+msgstr "Ominaisuudet"
+
+#: ../fileItem.js:665
+msgid "Show in Files"
+msgstr "Näytä tiedostonhallinnassa"
+
+#: ../fileItem.js:669 ../desktopManager.js:343
+msgid "Open in Terminal"
+msgstr "Avaa päätteessä"
+
+#: ../desktopManager.js:319
+msgid "New Folder"
+msgstr "Uusi kansio"
+
+#: ../desktopManager.js:325
+msgid "Paste"
+msgstr "Liitä"
+
+#: ../desktopManager.js:329
+msgid "Undo"
+msgstr "Kumoa"
+
+#: ../desktopManager.js:333
+msgid "Redo"
+msgstr "Tee uudeleen"
+
+#: ../desktopManager.js:339
+msgid "Show Desktop in Files"
+msgstr "Näytä työpöytä tiedostonhallinnassa"
+
+#: ../desktopManager.js:349
+msgid "Change Background…"
+msgstr "Vaihda taustakuvaa…"
+
+#: ../desktopManager.js:358
+msgid "Display Settings"
+msgstr "Näytön asetukset"
+
+#: ../desktopManager.js:770
+#, fuzzy
+msgid "Rename"
+msgstr "Nimeä uudelleen…"
+
+#: ../desktopManager.js:808
+#, fuzzy
+msgid "New folder"
+msgstr "Uusi kansio"
 
 #: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
 msgid "Icon size"
@@ -90,6 +164,12 @@ msgstr "Näytä roskakorin kuvake"
 msgid "Show the trash icon in the desktop."
 msgstr "Näytä roskakorin kuvake työpöydällä."
 
+#~ msgid "Enter file name…"
+#~ msgstr "Anna tiedostonimi…"
+
+#~ msgid "Cancel"
+#~ msgstr "Peru"
+
 #~ msgid "New folder name"
 #~ msgstr "Uusi kansion nimi"
 
@@ -110,60 +190,6 @@ msgstr "Näytä roskakorin kuvake työpöydällä."
 
 #~ msgid "There is already a file or folder with that name."
 #~ msgstr "Nimi on jo toisen tiedoston tai kansion käytössä."
-
-#~ msgid "New Folder"
-#~ msgstr "Uusi kansio"
-
-#~ msgid "Paste"
-#~ msgstr "Liitä"
-
-#~ msgid "Undo"
-#~ msgstr "Kumoa"
-
-#~ msgid "Redo"
-#~ msgstr "Tee uudeleen"
-
-#~ msgid "Show Desktop in Files"
-#~ msgstr "Näytä työpöytä tiedostonhallinnassa"
-
-#~ msgid "Open in Terminal"
-#~ msgstr "Avaa päätteessä"
-
-#~ msgid "Change Background…"
-#~ msgstr "Vaihda taustakuvaa…"
-
-#~ msgid "Display Settings"
-#~ msgstr "Näytön asetukset"
-
-#~ msgid "Settings"
-#~ msgstr "Asetukset"
-
-#~ msgid "Open"
-#~ msgstr "Avaa"
-
-#~ msgid "Open With Other Application"
-#~ msgstr "Avaa toisella sovelluksella"
-
-#~ msgid "Cut"
-#~ msgstr "Leikkaa"
-
-#~ msgid "Copy"
-#~ msgstr "Kopioi"
-
-#~ msgid "Rename…"
-#~ msgstr "Nimeä uudelleen…"
-
-#~ msgid "Move to Trash"
-#~ msgstr "Siirrä roskakoriin"
-
-#~ msgid "Empty Trash"
-#~ msgstr "Tyhjennä roskakori"
-
-#~ msgid "Properties"
-#~ msgstr "Ominaisuudet"
-
-#~ msgid "Show in Files"
-#~ msgstr "Näytä tiedostonhallinnassa"
 
 #~ msgid "Huge"
 #~ msgstr "Valtava"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-08 21:07+0200\n"
+"POT-Creation-Date: 2019-08-13 10:04+0200\n"
 "PO-Revision-Date: 2019-03-09 15:42+0100\n"
 "Last-Translator: Tim Sabsch <tim@sabsch.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
@@ -19,53 +19,127 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: ../prefs.js:106
-msgid "Size for the desktop icons"
-msgstr "Größe der Arbeitsflächensymbole"
-
-#: ../prefs.js:106
-msgid "Small"
-msgstr "Klein"
-
-#: ../prefs.js:106
-msgid "Standard"
-msgstr "Standard"
-
-#: ../prefs.js:106
-msgid "Large"
-msgstr "Groß"
-
-#: ../prefs.js:107
-msgid "Show the personal folder in the desktop"
-msgstr "Den persönlichen Ordner auf der Arbeitsfläche anzeigen"
-
-#: ../prefs.js:108
-msgid "Show the trash icon in the desktop"
-msgstr "Papierkorb-Symbol auf der Arbeitsfläche anzeigen"
-
-#: ../desktopGrid.js:411
-msgid "Enter file name…"
-msgstr "Dateinamen eingeben …"
-
-#: ../desktopGrid.js:415
+#: ../preferences.js:85
 msgid "OK"
 msgstr "OK"
 
-#: ../desktopGrid.js:421
-msgid "Cancel"
-msgstr "Abbrechen"
+#: ../preferences.js:86 ../desktopManager.js:365
+msgid "Settings"
+msgstr "Einstellungen"
 
-#: ../desktopIconsUtil.js:59
+#: ../preferences.js:91
+msgid "Size for the desktop icons"
+msgstr "Größe der Arbeitsflächensymbole"
+
+#: ../preferences.js:91
+msgid "Small"
+msgstr "Klein"
+
+#: ../preferences.js:91
+msgid "Standard"
+msgstr "Standard"
+
+#: ../preferences.js:91
+msgid "Large"
+msgstr "Groß"
+
+#: ../preferences.js:92
+msgid "Show the personal folder in the desktop"
+msgstr "Den persönlichen Ordner auf der Arbeitsfläche anzeigen"
+
+#: ../preferences.js:93
+msgid "Show the trash icon in the desktop"
+msgstr "Papierkorb-Symbol auf der Arbeitsfläche anzeigen"
+
+#: ../desktopIconsUtil.js:68
 msgid "Command not found"
 msgstr ""
 
-#: ../fileItem.js:467
+#: ../fileItem.js:555
 msgid "Don’t Allow Launching"
 msgstr "Start nicht erlauben"
 
-#: ../fileItem.js:469
+#: ../fileItem.js:557
 msgid "Allow Launching"
 msgstr "Start erlauben"
+
+#: ../fileItem.js:617
+msgid "Open"
+msgstr "Öffnen"
+
+#: ../fileItem.js:623
+msgid "Open With Other Application"
+msgstr "Mit anderer Anwendung öffnen"
+
+#: ../fileItem.js:630
+msgid "Cut"
+msgstr "Ausschneiden"
+
+#: ../fileItem.js:633
+msgid "Copy"
+msgstr "Kopieren"
+
+#: ../fileItem.js:637
+msgid "Rename…"
+msgstr "Umbenennen …"
+
+#: ../fileItem.js:641
+msgid "Move to Trash"
+msgstr "In den Papierkorb verschieben"
+
+#: ../fileItem.js:653
+msgid "Empty Trash"
+msgstr "Papierkorb leeren"
+
+#: ../fileItem.js:661
+msgid "Properties"
+msgstr "Eigenschaften"
+
+#: ../fileItem.js:665
+msgid "Show in Files"
+msgstr "In Dateiverwaltung anzeigen"
+
+#: ../fileItem.js:669 ../desktopManager.js:343
+msgid "Open in Terminal"
+msgstr "Im Terminal öffnen"
+
+#: ../desktopManager.js:319
+msgid "New Folder"
+msgstr "Neuer Ordner"
+
+#: ../desktopManager.js:325
+msgid "Paste"
+msgstr "Einfügen"
+
+#: ../desktopManager.js:329
+msgid "Undo"
+msgstr "Rückgängig"
+
+#: ../desktopManager.js:333
+msgid "Redo"
+msgstr "Wiederholen"
+
+#: ../desktopManager.js:339
+msgid "Show Desktop in Files"
+msgstr "Schreibtisch in Dateien anzeigen"
+
+#: ../desktopManager.js:349
+msgid "Change Background…"
+msgstr "Hintergrund ändern …"
+
+#: ../desktopManager.js:358
+msgid "Display Settings"
+msgstr "Anzeigeeinstellungen"
+
+#: ../desktopManager.js:770
+#, fuzzy
+msgid "Rename"
+msgstr "Umbenennen …"
+
+#: ../desktopManager.js:808
+#, fuzzy
+msgid "New folder"
+msgstr "Neuer Ordner"
 
 #: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
 msgid "Icon size"
@@ -91,6 +165,12 @@ msgstr "Papierkorb-Symbol anzeigen"
 msgid "Show the trash icon in the desktop."
 msgstr "Das Papierkorb-Symbol auf der Arbeitsfläche anzeigen."
 
+#~ msgid "Enter file name…"
+#~ msgstr "Dateinamen eingeben …"
+
+#~ msgid "Cancel"
+#~ msgstr "Abbrechen"
+
 #~ msgid "New folder name"
 #~ msgstr "Neuer Ordner"
 
@@ -111,60 +191,6 @@ msgstr "Das Papierkorb-Symbol auf der Arbeitsfläche anzeigen."
 
 #~ msgid "There is already a file or folder with that name."
 #~ msgstr "Es gibt bereits eine Datei oder einen Ordner mit diesem Namen."
-
-#~ msgid "New Folder"
-#~ msgstr "Neuer Ordner"
-
-#~ msgid "Paste"
-#~ msgstr "Einfügen"
-
-#~ msgid "Undo"
-#~ msgstr "Rückgängig"
-
-#~ msgid "Redo"
-#~ msgstr "Wiederholen"
-
-#~ msgid "Show Desktop in Files"
-#~ msgstr "Schreibtisch in Dateien anzeigen"
-
-#~ msgid "Open in Terminal"
-#~ msgstr "Im Terminal öffnen"
-
-#~ msgid "Change Background…"
-#~ msgstr "Hintergrund ändern …"
-
-#~ msgid "Display Settings"
-#~ msgstr "Anzeigeeinstellungen"
-
-#~ msgid "Settings"
-#~ msgstr "Einstellungen"
-
-#~ msgid "Open"
-#~ msgstr "Öffnen"
-
-#~ msgid "Open With Other Application"
-#~ msgstr "Mit anderer Anwendung öffnen"
-
-#~ msgid "Cut"
-#~ msgstr "Ausschneiden"
-
-#~ msgid "Copy"
-#~ msgstr "Kopieren"
-
-#~ msgid "Rename…"
-#~ msgstr "Umbenennen …"
-
-#~ msgid "Move to Trash"
-#~ msgstr "In den Papierkorb verschieben"
-
-#~ msgid "Empty Trash"
-#~ msgstr "Papierkorb leeren"
-
-#~ msgid "Properties"
-#~ msgstr "Eigenschaften"
-
-#~ msgid "Show in Files"
-#~ msgstr "In Dateiverwaltung anzeigen"
 
 #~ msgid "Huge"
 #~ msgstr "Riesig"
