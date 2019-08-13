@@ -91,7 +91,7 @@ function innerEnable(disconnectSignal) {
     });
 
     _monitorsChangedId = Main.layoutManager.connect_after('monitors-changed', () => {
-        _reloadTime = 2000; // give more time in this case, to ensure that everything has changed
+        _reloadTime = 1000; // give more time in this case, to ensure that everything has changed
         killCurrentProcess();
     });
     isEnabled = true;
@@ -118,7 +118,6 @@ function killCurrentProcess() {
 
     if (_currentProcess) {
         _currentProcess.force_exit();
-        _currentProcess = null;
     }
 }
 
@@ -202,7 +201,6 @@ function launchDesktop() {
     _currentProcess.wait_async(null, () => {
         if (_currentProcess.get_if_exited()) {
             let retval = _currentProcess.get_exit_status();
-            global.log("Retval: " + retval);
             if (retval != 0) {
                 _reloadTime = 1000;
             }
