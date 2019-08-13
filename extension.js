@@ -140,6 +140,9 @@ function doKillAllOldDesktopProcesses() {
      */
 
     let procFolder = Gio.File.new_for_path("/proc");
+    if (!procFolder.query_exists()) {
+        return;
+    }
     let fileEnum = procFolder.enumerate_children("", Gio.FileQueryInfoFlags.NONE, null);
     let info;
     while ((info = fileEnum.next_file(null))) {
