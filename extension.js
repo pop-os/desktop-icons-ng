@@ -43,8 +43,6 @@ let _launchDesktopId;
 let _killAllInstancesId;
 let _currentProcess;
 let _windowUpdated = false;
-let _metawindow = null;
-let _restackedId;
 let _reloadTime;
 
 const appSys = Shell.AppSystem.get_default();
@@ -54,7 +52,6 @@ function init() {
     _thumbnailScriptWatch = 0;
     _launchDesktopId = 0;
     _killAllInstancesId = 0;
-    _restackedId = 0;
     _currentProcess = null;
     _reloadTime = 100;
     // Ensure that there aren't "rogue" processes
@@ -79,23 +76,20 @@ function innerEnable(disconnectSignal) {
                 let window = windowActor.get_meta_window();
                 let title = window.get_title();
                 if (title == appUUID) {
-                    //global.log("Es el PID buscado " + pid + " y el UUID: " + appUUID);
-                    //global.log("Resoluciones: " + minx + ";" + miny + " " + maxx + ";" + maxy);
                     window.move_resize_frame(false, minx, miny, maxx - minx, maxy - miny);
                     window.stick();
                     window.lower();
-                    _metawindow = window;
                     _windowUpdated = true;
+                    // keep the window at the bottom
+                    window.connect_after('raised', () => {
+                        window.lower();
+                    });
+
                 }
             }
         }
     });
 
-    _restackedId = global.display.connect("restacked", () => {
-        if (_metawindow) {
-            _metawindow.lower();
-        }
-    });
     _monitorsChangedId = Main.layoutManager.connect('monitors-changed', () => {
         _reloadTime = 2000; // give more time in this case, to ensure that everything has changed
         killCurrentProcess();
@@ -109,7 +103,6 @@ function disable() {
     killCurrentProcess();
     global.window_manager.disconnect(idMap);
     Main.layoutManager.disconnect(_monitorsChangedId);
-    global.display.disconnect(_restackedId);
 }
 
 function killCurrentProcess() {
@@ -123,7 +116,6 @@ function killCurrentProcess() {
         }
     }
 
-    _metawindow = null;
     if (_currentProcess) {
         _currentProcess.force_exit();
         _currentProcess = null;
@@ -217,7 +209,6 @@ function launchDesktop() {
         }
         _currentProcess = null;
         appPid = 0;
-        _metawindow = null;
         if (isEnabled) {
             if (_launchDesktopId) {
                 GLib.source_remove(_launchDesktopId);
