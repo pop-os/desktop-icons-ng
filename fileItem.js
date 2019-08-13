@@ -721,9 +721,11 @@ var FileItem = class {
     _setSelectedStatus() {
         if (this._isSelected && !this._styleContext.has_class('desktop-icons-selected')) {
             this._styleContext.add_class('desktop-icons-selected');
+            this._label.set_lines(5); // should be enough
         }
         if (!this._isSelected && this._styleContext.has_class('desktop-icons-selected')) {
             this._styleContext.remove_class('desktop-icons-selected');
+            this._label.set_lines(-1);
         }
     }
 
