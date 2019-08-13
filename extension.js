@@ -108,6 +108,7 @@ function disable() {
 function killCurrentProcess() {
     if (_launchDesktopId) {
         GLib.source_remove(_launchDesktopId);
+        _launchDesktopId = 0;
         if (isEnabled) {
             _launchDesktopId = Mainloop.timeout_add(_reloadTime, () => {
                 _launchDesktopId = 0;
