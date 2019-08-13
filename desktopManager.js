@@ -74,14 +74,7 @@ var DesktopManager = GObject.registerClass({
         cssProvider.load_from_file(Gio.File.new_for_path(GLib.build_filenamev([codePath, "stylesheet.css"])));
         Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), cssProvider, 600);
 
-        this._selectColor = DesktopIconsUtil.getGtkClassBackgroundColor('view', Gtk.StateFlags.SELECTED);
-
-        let cssProviderSelection = new Gtk.CssProvider();
-        let style = `.desktop-icons-selected {
-    background-color: rgba(${this._selectColor.red * 255},${this._selectColor.green * 255}, ${this._selectColor.blue * 255}, 0.6);
-}`;
-        cssProviderSelection.load_from_data(style);
-        Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), cssProviderSelection, 600);
+        this._configureSelectionColor();
 
         this._window = new Gtk.Window();
         this._window.set_title(appUuid);
@@ -146,6 +139,30 @@ var DesktopManager = GObject.registerClass({
         DBusUtils.NautilusFileOperationsProxy.connect('g-properties-changed', this._undoStatusChanged.bind(this));
         this._fileList = [];
         this._readFileList();
+    }
+
+    _configureSelectionColor() {
+        this._contextWidget = new Gtk.WidgetPath();
+        this._contextWidget.append_type(Gtk.Widget);
+
+        this._styleContext = new Gtk.StyleContext();
+        this._styleContext.set_path(this._contextWidget);
+        this._styleContext.add_class('view');
+        this._cssProviderSelection = new Gtk.CssProvider();
+        this._styleContext.connect('changed', () => {
+            Gtk.StyleContext.remove_provider_for_screen(Gdk.Screen.get_default(), this._cssProviderSelection);
+            this._setSelectionColor();
+        });
+        this._setSelectionColor();
+    }
+
+    _setSelectionColor() {
+        this._selectColor = this._styleContext.get_background_color(Gtk.StateFlags.SELECTED);
+        let style = `.desktop-icons-selected {
+            background-color: rgba(${this._selectColor.red * 255},${this._selectColor.green * 255}, ${this._selectColor.blue * 255}, 0.6);
+        }`;
+        this._cssProviderSelection.load_from_data(style);
+        Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), this._cssProviderSelection, 600);
     }
 
     setDropDestination(dropDestination) {

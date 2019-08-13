@@ -119,16 +119,6 @@ function getFileExtensionOffset(filename, isDirectory) {
     return offset;
 }
 
-function getGtkClassBackgroundColor(classname, state) {
-    let widget = new Gtk.WidgetPath();
-    widget.append_type(Gtk.Widget);
-
-    let context = new Gtk.StyleContext();
-    context.set_path(widget);
-    context.add_class(classname);
-    return context.get_background_color(state);
-}
-
 function getFilesFromNautilusDnD(selection, type) {
     let data = String.fromCharCode.apply(null, selection.get_data());
     let retval = [];
