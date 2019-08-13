@@ -205,7 +205,7 @@ function launchDesktop() {
     global.log(appUUID);
     appPid = Number(_currentProcess.get_identifier());
     _currentProcess.wait_async(null, () => {
-        if (this._currentProcess.get_if_exited()) {
+        if (_currentProcess.get_if_exited()) {
             let retval = _currentProcess.get_exit_status();
             global.log("Retval: " + retval);
             if (retval != 0) {
