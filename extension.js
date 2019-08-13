@@ -90,7 +90,7 @@ function innerEnable(disconnectSignal) {
         }
     });
 
-    _monitorsChangedId = Main.layoutManager.connect('monitors-changed', () => {
+    _monitorsChangedId = Main.layoutManager.connect_after('monitors-changed', () => {
         _reloadTime = 2000; // give more time in this case, to ensure that everything has changed
         killCurrentProcess();
     });
