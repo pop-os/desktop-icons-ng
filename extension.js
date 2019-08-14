@@ -90,10 +90,18 @@ function innerEnable(disconnectSignal) {
         }
     });
 
-    _monitorsChangedId = Main.layoutManager.connect_after('monitors-changed', () => {
-        _reloadTime = 1000; // give more time in this case, to ensure that everything has changed
-        killCurrentProcess();
-    });
+    try {
+        _monitorsChangedId = Main.layoutManager.connect_after('monitors-changed', () => {
+            _reloadTime = 1000; // give more time in this case, to ensure that everything has changed
+            killCurrentProcess();
+        });
+    } catch(e) {
+        // compatibility with 3.30
+        _monitorsChangedId = Main.layoutManager.connect('monitors-changed', () => {
+            _reloadTime = 2000; // give more time in this case, to ensure that everything has changed
+            killCurrentProcess();
+        });
+    }
     isEnabled = true;
     launchDesktop();
 }
