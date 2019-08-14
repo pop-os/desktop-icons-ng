@@ -201,10 +201,19 @@ function launchDesktop() {
     }
 
     _windowUpdated = false;
-    let launcher = new Gio.SubprocessLauncher({flags: Gio.SubprocessFlags.STDIN_PIPE});
+    let launcher = new Gio.SubprocessLauncher({flags: Gio.SubprocessFlags.STDIN_PIPE | Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_MERGE});
     launcher.set_cwd(ExtensionUtils.getCurrentExtension().path);
     _currentProcess = launcher.spawnv(argv);
-    _currentProcess.communicate_async(GLib.Bytes.new(appUUID + "\n"), null, () => {});
+    _currentProcess.communicate_async(GLib.Bytes.new(appUUID + "\n"), null, (object, res) => {
+        try {
+            let [available, stdout, stderr] = object.communicate_finish(res);
+            if (stdout.length != 0) {
+                global.log("ADIEU: " + String.fromCharCode.apply(null, stdout.get_data()));
+            }
+        } catch(e) {
+            global.log("Error " + e);
+        }
+    });
     global.log(appUUID);
     appPid = Number(_currentProcess.get_identifier());
     _currentProcess.wait_async(null, () => {

@@ -28,9 +28,7 @@ let stdin = new Gio.DataInputStream({
     base_stream: new Gio.UnixInputStream({ fd: 0 })
 });
 
-
 let appUuid = String.fromCharCode.apply(null, stdin.read_line(null)[0]);
-print(appUuid);
 
 let desktops = [];
 let lastCommand = null;
