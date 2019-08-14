@@ -32,15 +32,61 @@ const Mainloop = imports.mainloop;
 
 let data = {};
 
+function replaceMethod(className, methodName, functionToCall, classId) {
+    if (classId) {
+        data["old_" + classId + "_" + methodName] = className.prototype[methodName];
+    } else {
+        data["old_" + methodName] = className.prototype[methodName];
+    }
+    className.prototype[methodName] = functionToCall;
+}
+
 function init() {
     data.isEnabled = false;
     data.launchDesktopId = 0;
     data.currentProcess = null;
     data.reloadTime = 100;
-    data.metaDisplay = global.get_display();
+    replaceMethod(Meta.Display, "get_tab_list", newGetTabList);
+    replaceMethod(Shell.Global, "get_window_actors", newGetWindowActors);
+    replaceMethod(Meta.Workspace, "list_windows", newListWindows);
     // Ensure that there aren't "rogue" processes
     doKillAllOldDesktopProcesses();
 }
+
+function removeDesktopWindowFromList(windowList, areActors) {
+
+    if (!data.isEnabled) {
+        return windowList;
+    }
+    let returnVal = [];
+    for(let window of windowList) {
+        let title;
+        if (areActors) {
+            title = window.get_meta_window().get_title();
+        } else {
+            title = window.get_title();
+        }
+        if (title != data.appUUID) {
+            returnVal.push(window);
+        }
+    }
+    return returnVal;
+}
+
+function newGetTabList(type, workspace) {
+    let windowList = data.old_get_tab_list.apply(this, [type, workspace]);
+    return removeDesktopWindowFromList(windowList, false);
+};
+
+function newGetWindowActors() {
+    let windowList = data.old_get_window_actors.apply(this, []);
+    return removeDesktopWindowFromList(windowList, true);
+}
+
+function newListWindows() {
+    let windowList = data.old_list_windows.apply(this, []);
+    return removeDesktopWindowFromList(windowList, false);
+};
 
 function enable() {
     if (Main.layoutManager._startingUp)
@@ -49,47 +95,8 @@ function enable() {
         innerEnable();
 }
 
-function getWindowActors() {
-    global.log("getWindowActors");
-    let retval = [];
-    let windowList = _oldGetWindowActors.bind(this)();
-    for (let windowActor of windowList) {
-        let window = windowActor.get_meta_window();
-        let title = window.get_title();
-        if (title == appUUID) {
-            _desktopWindow = window;
-            if (!windowActor._old_get_meta_window) {
-                windowActor._old_get_meta_window = windowActor.get_meta_window;
-                windowActor.get_meta_window = function() {
-                    global.log("Mi meta window");
-                    let window = this._old_get_meta_window.bind(this)();
-                    if (!window._old_get_property) {
-                        window._old_get_property = window.get_property;
-                        window.get_property = function(property_name, v2) {
-                            global.log("\n\n\n\nget property");
-                            global.log(property_name);
-                            global.log(v2);
-                            if (property_name == 'skip_taskbar') {
-                                let v = new GLib.Value();
-                                v.set_boolean(true);
-                                return v;
-                            } else {
-                                return window._old_get_property(property_name);
-                            }
-                        }
-                    }
-                    return window;
-                };
-            }
-        }
-        retval.push(windowActor);
-    }
-    return retval;
-}
-
-
-
 function innerEnable() {
+
     if (data.startupPreparedId) {
         Main.layoutManager.disconnect(data.startupPreparedId);
         data.startupPreparedId = 0;
@@ -239,7 +246,6 @@ function launchDesktop() {
             global.log("Error " + e);
         }
     });
-    global.log(data.appUUID);
     //appPid = Number(_currentProcess.get_identifier());
     data.currentProcess.wait_async(null, () => {
         if (data.currentProcess.get_if_exited()) {
