@@ -28,10 +28,23 @@ const Main = imports.ui.main;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Mainloop = imports.mainloop;
 
-//const appSys = Shell.AppSystem.get_default();
-
+// This object will contain all the global variables
 let data = {};
 
+/**
+ * Replaces a method in a class with out own method, and stores the original
+ * one in 'data' using 'old_XXXX' (being XXXX the name of the original method),
+ * or 'old_classId_XXXX' if 'classId' is defined. This is done this way for the
+ * case that two methods with the same name must be replaced in two different
+ * classes
+ *
+ * @param {class} className The class where to replace the method
+ * @param {string} methodName The method to replace
+ * @param {function} functionToCall The function to call as the replaced method
+ * @param {string} [classId] an extra ID to identify the stored method when two
+ *                           methods with the same name are replaced in
+ *                           two different classes
+ */
 function replaceMethod(className, methodName, functionToCall, classId) {
     if (classId) {
         data["old_" + classId + "_" + methodName] = className.prototype[methodName];
@@ -53,8 +66,26 @@ function init() {
     doKillAllOldDesktopProcesses();
 }
 
+/**
+ * Receives a list of metaWindow or metaWindowActor objects, and remove from it
+ * our desktop window
+ *
+ * @param {GList} windowList A list of metaWindow or metaWindowActor objects
+ * @param {boolean} areActors TRUE if the list contains metaWindowActor objects
+ * @returns {GList} The same list, but with the desktop window removed
+ */
 function removeDesktopWindowFromList(windowList, areActors) {
 
+    /*
+     * Although the Gnome documentation says that a replaced method must be
+     * restored when the extension is disabled, it is a very risky operation,
+     * because if another extension also replaces the same methods, when this
+     * extension is disabled the other one will fail.
+     *
+     * The secure way of doing a method replacement is to make it inalterable,
+     * and just return the value of the old method without altering it when the
+     * extension is disabled.
+     */
     if (!data.isEnabled) {
         return windowList;
     }
@@ -73,28 +104,49 @@ function removeDesktopWindowFromList(windowList, areActors) {
     return returnVal;
 }
 
+/**
+ * Method replacement for Meta.Display.get_tab_list
+ * It removes the desktop window from the list of windows in the switcher
+ *
+ * @param {*} type
+ * @param {*} workspace
+ */
 function newGetTabList(type, workspace) {
     let windowList = data.old_get_tab_list.apply(this, [type, workspace]);
     return removeDesktopWindowFromList(windowList, false);
 };
 
+/**
+ * Method replacement for Shell.Global.get_window_actors
+ * It removes the desktop window from the list of windows in the Activities mode
+ */
 function newGetWindowActors() {
     let windowList = data.old_get_window_actors.apply(this, []);
     return removeDesktopWindowFromList(windowList, true);
 }
 
+/**
+ * Method replacement for Meta.Workspace.list_windows
+ */
 function newListWindows() {
     let windowList = data.old_list_windows.apply(this, []);
     return removeDesktopWindowFromList(windowList, false);
 };
 
+/**
+ * Enables the extension
+ */
 function enable() {
+    // If the desktop is still starting up, we wait until it is ready
     if (Main.layoutManager._startingUp)
         data.startupPreparedId = Main.layoutManager.connect('startup-complete', () => innerEnable());
     else
         innerEnable();
 }
 
+/**
+ * The true code that configures everything and launches the desktop program
+ */
 function innerEnable() {
 
     if (data.startupPreparedId) {
@@ -105,11 +157,25 @@ function innerEnable() {
     data.idMap = global.window_manager.connect('map', (obj, windowActor) => {
         let window = windowActor.get_meta_window();
         if (!data.windowUpdated) {
+            /*
+             * the desktop window is big enough to cover all the monitors in the system,
+             * so the first thing to do is to move it to the minimum coordinate of the desktop
+             * and ensure that its size is the right one. This last step, really, isn't needed,
+             * because the desktop application receives all the coordinates of each monitor, so
+             * the window size is already the right one. But just in case.
+             *
+             * In theory, the minimum coordinates are always (0,0); but if there is only one
+             * monitor, the coordinates used are (0,27) because the top bar uses that size, and
+             * it makes no sense in having a piece of window always covered by the bar. Of
+             * course, that value isn't fixed, but calculated automatically each time the
+             * desktop geometry changes, so a bigger top bar will work fine.
+             */
             window.move_resize_frame(false, data.minx, data.miny, data.maxx - data.minx, data.maxy - data.miny);
+            // Show the window in all desktops, and send it to the bottom
             window.stick();
             window.lower();
             data.windowUpdated = true;
-            // keep the window at the bottom
+            // keep the window at the bottom when the user clicks on it
             window.connect_after('raised', () => {
                 window.lower();
             });
@@ -117,6 +183,11 @@ function innerEnable() {
         return false;
     });
 
+    /*
+     * If the desktop geometry changes (because a new monitor has been added, for example),
+     * we kill the desktop program. It will be relaunched automatically with the new geometry,
+     * thus adapting to it on-the-fly.
+     */
     try {
         data.monitorsChangedId = Main.layoutManager.connect_after('monitors-changed', () => {
             data.reloadTime = 1000; // give more time in this case, to ensure that everything has changed
@@ -133,6 +204,9 @@ function innerEnable() {
     launchDesktop();
 }
 
+/**
+ * Disables the extension
+ */
 function disable() {
     data.isEnabled = false;
     if (data.startupPreparedId)
@@ -144,7 +218,11 @@ function disable() {
     killCurrentProcess();
 }
 
+/**
+ * Kills the current desktop program
+ */
 function killCurrentProcess() {
+    // If a reload was pending, kill it and program a new reload
     if (data.launchDesktopId) {
         GLib.source_remove(data.launchDesktopId);
         data.launchDesktopId = 0;
@@ -161,19 +239,20 @@ function killCurrentProcess() {
     }
 }
 
+/**
+ * This function checks all the processes in the system and kills those
+ * that are a desktop manager. This allows to avoid having several ones in
+ * case gnome shell resets, or other odd cases. It requires the /proc virtual
+ * filesystem, but doesn't fail if it doesn't exist.
+ */
+
 function doKillAllOldDesktopProcesses() {
-    /**
-     * This function checks all the processes in the system and kills those
-     * that are a desktop manager. This allows to avoid having several ones in
-     * case gnome shell resets, or other cases.
-     *
-     * It requires the /proc virtual filesystem
-     */
 
     let procFolder = Gio.File.new_for_path("/proc");
     if (!procFolder.query_exists(null)) {
         return;
     }
+
     let fileEnum = procFolder.enumerate_children("", Gio.FileQueryInfoFlags.NONE, null);
     let info;
     while ((info = fileEnum.next_file(null))) {
@@ -201,11 +280,18 @@ function doKillAllOldDesktopProcesses() {
     }
 }
 
+/**
+ * Launches the desktop program, passing to it the current desktop geometry for each monitor
+ * and the path where it is stored. It also monitors it, to relaunch it in case it dies or is
+ * killed. Finally, it reads STDOUT and STDERR and redirects them to the journal, to help to
+ * debug it.
+ */
 function launchDesktop() {
 
     data.reloadTime = 100;
     let argv = [];
     argv.push(GLib.build_filenamev([ExtensionUtils.getCurrentExtension().path, 'adieu.js']));
+    // The path. Allows the program to find translations, settings and modules.
     argv.push("-P");
     argv.push(ExtensionUtils.getCurrentExtension().path);
 
@@ -214,6 +300,7 @@ function launchDesktop() {
     for(let monitorIndex = 0; monitorIndex < Main.layoutManager.monitors.length; monitorIndex++) {
         let ws = global.workspace_manager.get_workspace_by_index(0);
         let area = ws.get_work_area_for_monitor(monitorIndex);
+        // send the working area of each monitor in the desktop
         argv.push("-D");
         argv.push(area.x + ";" + area.y+";" + area.width + ";" + area.height);
         if (first || (area.x < data.minx)) {
@@ -232,10 +319,28 @@ function launchDesktop() {
     }
 
     data.windowUpdated = false;
+    /*
+     * Generate a random UUID to allow the extension to identify the window. It must be random
+     * to avoid other programs to cheat and put themselves as the desktop. This also means that
+     * launching the desktop program from the command line won't put that instance as the desktop,
+     * but will work like any other program. Of course, under X11 it doesn't matter, but it does
+     * under Wayland.
+     */
     data.appUUID = GLib.uuid_string_random();
-    let launcher = new Gio.SubprocessLauncher({flags: Gio.SubprocessFlags.STDIN_PIPE | Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_MERGE});
+    let launcher = new Gio.SubprocessLauncher({flags: Gio.SubprocessFlags.STDIN_PIPE |
+                                                      Gio.SubprocessFlags.STDOUT_PIPE |
+                                                      Gio.SubprocessFlags.STDERR_MERGE});
     launcher.set_cwd(ExtensionUtils.getCurrentExtension().path);
     data.currentProcess = launcher.spawnv(argv);
+    /*
+     * Send the UUID to the application using STDIN as a "secure channel". Sending it as a parameter
+     * would be insecure, because another program could read it and create a window before our desktop,
+     * and cheat the extension.
+     *
+     * It also reads STDOUT and STDERR and sends it to the journal using global.log(). This allows to
+     * have any error from the desktop app in the same journal than other extensions. Every line from
+     * the desktop program is prepended with "ADIEU: " (Another Desktop Icon Extension)
+     */
     data.currentProcess.communicate_async(GLib.Bytes.new(data.appUUID + "\n"), null, (object, res) => {
         try {
             let [available, stdout, stderr] = object.communicate_finish(res);
@@ -243,10 +348,15 @@ function launchDesktop() {
                 global.log("ADIEU: " + String.fromCharCode.apply(null, stdout.get_data()));
             }
         } catch(e) {
-            global.log("Error " + e);
+            global.log("ADIEU_Error " + e);
         }
     });
     //appPid = Number(_currentProcess.get_identifier());
+    /*
+     * If the desktop process dies, wait 100ms and relaunch it, unless the exit status is different than
+     * zero, in which case it will wait one second. This is done this way to avoid relaunching the desktop
+     * too fast if it has a bug that makes it fail continuously, avoiding filling the journal too fast.
+     */
     data.currentProcess.wait_async(null, () => {
         if (data.currentProcess.get_if_exited()) {
             let retval = data.currentProcess.get_exit_status();
