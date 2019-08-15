@@ -19,7 +19,6 @@ Version 0.1.0 alpha.
 
 * Use file events instead of refreshing the whole desktop
 * Don't try to execute files with +x if they aren't true executables
-* Use hotkeys for the desktop
 
 ## How to contribute
 

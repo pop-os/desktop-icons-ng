@@ -168,6 +168,7 @@ var DesktopManager = GObject.registerClass({
         this._window.connect('button-press-event', (actor, event) => this._onPressButton(actor, event));
         this._window.connect('motion-notify-event', (actor, event) => this._onMotion(actor, event));
         this._window.connect('button-release-event', (actor, event) => this._onReleaseButton(actor, event));
+        this._window.connect('key-release-event', (actor, event) => this._onKeyPress(actor, event));
         this._window.connect('drag-motion', (widget, context, x, y) => {
             this._xDestination = x;
             this._yDestination = y;
@@ -347,43 +348,40 @@ var DesktopManager = GObject.registerClass({
     }
 
     _onKeyPress(actor, event) {
-        if (global.stage.get_key_focus() != actor)
-            return false;
-
-        let symbol = event.get_key_symbol();
-        let isCtrl = (event.get_state() & Clutter.ModifierType.CONTROL_MASK) != 0;
-        let isShift = (event.get_state() & Clutter.ModifierType.SHIFT_MASK) != 0;
-        if (isCtrl && isShift && [Clutter.Z, Clutter.z].indexOf(symbol) > -1) {
+        let symbol = event.get_keyval()[1];
+        let isCtrl = (event.get_state()[1] & Gdk.ModifierType.CONTROL_MASK) != 0;
+        let isShift = (event.get_state()[1] & Gdk.ModifierType.SHIFT_MASK) != 0;
+        if (isCtrl && isShift && ((symbol == Gdk.KEY_Z) || (symbol == Gdk.KEY_z))) {
             this._doRedo();
             return true;
-        }
-        else if (isCtrl && [Clutter.Z, Clutter.z].indexOf(symbol) > -1) {
+        } else if (isCtrl && ((symbol == Gdk.KEY_Z) || (symbol == Gdk.KEY_z))) {
             this._doUndo();
             return true;
-        }
-        else if (isCtrl && [Clutter.C, Clutter.c].indexOf(symbol) > -1) {
-            this._desktopManager.doCopy();
+        } else if (isCtrl && ((symbol == Gdk.KEY_C) || (symbol == Gdk.KEY_c))) {
+            this.doCopy();
             return true;
-        }
-        else if (isCtrl && [Clutter.X, Clutter.x].indexOf(symbol) > -1) {
-            this._desktopManager.doCut();
+        } else if (isCtrl && ((symbol == Gdk.KEY_X) || (symbol == Gdk.KEY_x))) {
+            this.doCut();
             return true;
-        }
-        else if (isCtrl && [Clutter.V, Clutter.v].indexOf(symbol) > -1) {
+        } else if (isCtrl && ((symbol == Gdk.KEY_V) || (symbol == Gdk.KEY_v))) {
             this._doPaste();
             return true;
-        }
-        else if (symbol == Clutter.Return) {
-            this._desktopManager.doOpen();
+        } else if (symbol == Gdk.KEY_Return) {
+            let selection = this.getCurrentSelection(false);
+            if (selection && (selection.length == 1)) {
+                selection[0].doOpen();
+                return true;
+            }
+        } else if (symbol == Gdk.KEY_Delete) {
+            this.doTrash();
             return true;
-        }
-        else if (symbol == Clutter.Delete) {
-            this._desktopManager.doTrash();
-            return true;
-        } else if (symbol == Clutter.F2) {
-            // Support renaming other grids file items.
-            this._desktopManager.doRename();
-            return true;
+        } else if (symbol == Gdk.KEY_F2) {
+            let selection = this.getCurrentSelection(false);
+            if (selection && (selection.length == 1)) {
+                // Support renaming other grids file items.
+                this.doRename(selection[0]);
+                return true;
+            }
         }
         return false;
     }
