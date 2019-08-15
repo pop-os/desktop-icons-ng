@@ -338,6 +338,10 @@ function launchDesktop() {
         first = false;
     }
 
+    let scaleFactor = St.ThemeContext.get_for_stage(global.stage).scale_factor;
+    argv.push('-Z');
+    argv.push(scaleFactor.toString());
+
     data.windowUpdated = false;
     /*
      * Generate a random UUID to allow the extension to identify the window. It must be random
