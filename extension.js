@@ -233,6 +233,7 @@ function killCurrentProcess() {
         }
     }
 
+    // kill the desktop program. It will be reloaded automatically.
     if (data.currentProcess) {
         data.currentProcess.force_exit();
     }
@@ -252,11 +253,15 @@ function doKillAllOldDesktopProcesses() {
         return;
     }
 
-    let fileEnum = procFolder.enumerate_children('', Gio.FileQueryInfoFlags.NONE, null);
+    let fileEnum = procFolder.enumerate_children('standard::*', Gio.FileQueryInfoFlags.NONE, null);
     let info;
     while ((info = fileEnum.next_file(null))) {
         let filename = info.get_name();
-        let processUser = Gio.File.new_for_path('/proc/' + filename + '/cmdline');
+        if (!filename) {
+            break;
+        }
+        let processPath = GLib.build_filenamev(['/proc', filename, 'cmdline']);
+        let processUser = Gio.File.new_for_path(processPath);
         if (!processUser.query_exists(null)) {
             continue;
         }
