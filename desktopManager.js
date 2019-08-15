@@ -163,8 +163,9 @@ var DesktopManager = GObject.registerClass({
         for(let desktop of desktopList) {
             this._desktops.push(new DesktopGrid.DesktopGrid(this, this._container, desktop.x, desktop.y, desktop.w, desktop.h, x1, y1, scale));
         }
-        this._window.set_default_size(x2 - x1, y2 - y1);
         this._window.show_all();
+        this._window.set_size_request(x2 - x1, y2 - y1);
+        this._window.resize(x2 - x1, y2 - y1);
         this._window.connect('button-press-event', (actor, event) => this._onPressButton(actor, event));
         this._window.connect('motion-notify-event', (actor, event) => this._onMotion(actor, event));
         this._window.connect('button-release-event', (actor, event) => this._onReleaseButton(actor, event));
