@@ -71,10 +71,9 @@ function init() {
  * our desktop window
  *
  * @param {GList} windowList A list of metaWindow or metaWindowActor objects
- * @param {boolean} areActors TRUE if the list contains metaWindowActor objects
  * @returns {GList} The same list, but with the desktop window removed
  */
-function removeDesktopWindowFromList(windowList, areActors) {
+function removeDesktopWindowFromList(windowList) {
 
     /*
      * Although the Gnome documentation says that a replaced method must be
@@ -92,9 +91,9 @@ function removeDesktopWindowFromList(windowList, areActors) {
     let returnVal = [];
     for(let window of windowList) {
         let title;
-        if (areActors) {
+        if (window.get_meta_window) { // it is a MetaWindowActor
             title = window.get_meta_window().get_title();
-        } else {
+        } else { // it is a MetaWindow
             title = window.get_title();
         }
         if (title != data.appUUID) {
@@ -113,7 +112,7 @@ function removeDesktopWindowFromList(windowList, areActors) {
  */
 function newGetTabList(type, workspace) {
     let windowList = data.old_get_tab_list.apply(this, [type, workspace]);
-    return removeDesktopWindowFromList(windowList, false);
+    return removeDesktopWindowFromList(windowList);
 };
 
 /**
@@ -122,7 +121,7 @@ function newGetTabList(type, workspace) {
  */
 function newGetWindowActors() {
     let windowList = data.old_get_window_actors.apply(this, []);
-    return removeDesktopWindowFromList(windowList, true);
+    return removeDesktopWindowFromList(windowList);
 }
 
 /**
@@ -130,7 +129,7 @@ function newGetWindowActors() {
  */
 function newListWindows() {
     let windowList = data.old_list_windows.apply(this, []);
-    return removeDesktopWindowFromList(windowList, false);
+    return removeDesktopWindowFromList(windowList);
 };
 
 /**
