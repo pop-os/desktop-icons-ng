@@ -68,7 +68,7 @@ var DesktopManager = GObject.registerClass({
             }
         });
 
-        this._rubberband = false;
+        this._rubberBand = false;
 
         let cssProvider = new Gtk.CssProvider();
         cssProvider.load_from_file(Gio.File.new_for_path(GLib.build_filenamev([codePath, "stylesheet.css"])));
@@ -105,17 +105,6 @@ var DesktopManager = GObject.registerClass({
 
         this.setDropDestination(this._window);
 
-        // Transparent background, but only if this instance is working as desktop
-        if (this._appUuid) {
-            this._window.set_app_paintable(true);
-            let screen = this._window.get_screen();
-            let visual = screen.get_rgba_visual();
-            if (visual && screen.is_composited()) {
-                this._window.set_visual(visual);
-                this._window.connect('draw', (widget, cr) => this._doDraw(cr));
-            }
-        }
-
         this._desktops = [];
         let x1, y1, x2, y2;
         x1 = desktopList[0].x;
@@ -136,6 +125,41 @@ var DesktopManager = GObject.registerClass({
                 y2 = desktop.y + desktop.h;
             }
         }
+
+        this._window.set_app_paintable(true);
+        // Transparent background, but only if this instance is working as desktop
+        if (this._appUuid) {
+            let screen = this._window.get_screen();
+            let visual = screen.get_rgba_visual();
+            if (visual && screen.is_composited()) {
+                this._window.set_visual(visual);
+                this._window.connect('draw', (widget, cr) => {
+                    Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0}));
+                    cr.paint();
+                    this._doDrawRubberBand(cr);
+                    return false;
+                });
+            }
+        } else {
+            this._window.connect('draw', (widget, cr) => {
+                // paint each desktop with a different color
+                let colorNumber = 0;
+                for(let desktop of desktopList) {
+                    colorNumber++;
+                    if (colorNumber > 7) {
+                        colorNumber = 1; // avoid black
+                    }
+                    Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: (colorNumber&0x02) ? 1.0 : 0.0,
+                                                              green: (colorNumber&0x04) ? 1.0 : 0.0,
+                                                              blue: (colorNumber&0x01) ? 1.0 : 0.0,
+                                                              alpha: 1.0}));
+                    cr.rectangle(desktop.x - x1, desktop.y - y1, desktop.w, desktop.h);
+                    cr.fill();
+                }
+                this._doDrawStandalone(cr);
+            });
+        }
+
         for(let desktop of desktopList) {
             this._desktops.push(new DesktopGrid.DesktopGrid(this, this._container, desktop.x, desktop.y, desktop.w, desktop.h, x1, y1, scale));
         }
@@ -152,6 +176,26 @@ var DesktopManager = GObject.registerClass({
         DBusUtils.NautilusFileOperationsProxy.connect('g-properties-changed', this._undoStatusChanged.bind(this));
         this._fileList = [];
         this._readFileList();
+    }
+
+    _doDrawRubberBand(cr) {
+        if (this._rubberBand) {
+            cr.rectangle(this._rubberBandInitX,
+                         this._rubberBandInitY,
+                         this._mouseX - this._rubberBandInitX,
+                         this._mouseY - this._rubberBandInitY);
+            Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({
+                                                        red: this._selectColor.red,
+                                                        green: this._selectColor.green,
+                                                        blue: this._selectColor.blue,
+                                                        alpha: 0.6}));
+            cr.fill();
+        }
+    }
+
+    _doDrawStandalone(cr) {
+        this._doDrawRubberBand(cr);
+        return false;
     }
 
     _configureSelectionColor() {
@@ -468,15 +512,15 @@ var DesktopManager = GObject.registerClass({
     }
 
     _onMotion(actor, event) {
-        if (this._rubberband) {
+        if (this._rubberBand) {
             let [a, x, y] = event.get_coords();
             this._mouseX = x;
             this._mouseY = y;
             this._window.queue_draw();
-            let x1 = Math.min(x, this._rubberbandInitX);
-            let x2 = Math.max(x, this._rubberbandInitX);
-            let y1 = Math.min(y, this._rubberbandInitY);
-            let y2 = Math.max(y, this._rubberbandInitY);
+            let x1 = Math.min(x, this._rubberBandInitX);
+            let x2 = Math.max(x, this._rubberBandInitX);
+            let y1 = Math.min(y, this._rubberBandInitY);
+            let y2 = Math.max(y, this._rubberBandInitY);
             for(let item of this._fileList) {
                 item.updateRubberband(x1, y1, x2, y2);
             }
@@ -485,8 +529,8 @@ var DesktopManager = GObject.registerClass({
     }
 
     _onReleaseButton(actor, event) {
-        if (this._rubberband) {
-            this._rubberband = false;
+        if (this._rubberBand) {
+            this._rubberBand = false;
             for(let item of this._fileList) {
                 item.endRubberband();
             }
@@ -496,11 +540,11 @@ var DesktopManager = GObject.registerClass({
     }
 
     _startRubberband(x, y) {
-        this._rubberbandInitX = x;
-        this._rubberbandInitY = y;
+        this._rubberBandInitX = x;
+        this._rubberBandInitY = y;
         this._mouseX = x;
         this._mouseY = y;
-        this._rubberband = true;
+        this._rubberBand = true;
         for(let item of this._fileList) {
             item.startRubberband(x, y);
         }
@@ -534,7 +578,7 @@ var DesktopManager = GObject.registerClass({
             }
             break;
         case Enums.Selection.ENTER:
-            if (this._rubberband) {
+            if (this._rubberBand) {
                 fileItem.setSelected();
             }
             break;
@@ -548,24 +592,6 @@ var DesktopManager = GObject.registerClass({
             }
             break;
         }
-    }
-
-    _doDraw(cr) {
-        Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0}));
-        cr.paint();
-        if (this._rubberband) {
-            cr.rectangle(this._rubberbandInitX,
-                         this._rubberbandInitY,
-                         this._mouseX - this._rubberbandInitX,
-                         this._mouseY - this._rubberbandInitY);
-            Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({
-                                                        red: this._selectColor.red,
-                                                        green: this._selectColor.green,
-                                                        blue: this._selectColor.blue,
-                                                        alpha: 0.6}));
-            cr.fill();
-        }
-        return false;
     }
 
     _readFileList() {
