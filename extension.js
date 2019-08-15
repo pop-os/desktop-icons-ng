@@ -21,6 +21,7 @@ const GLib = imports.gi.GLib;
 const Gio = imports.gi.Gio;
 const Shell = imports.gi.Shell;
 const Meta = imports.gi.Meta;
+const St = imports.gi.St;
 
 const Layout = imports.ui.layout;
 const Main = imports.ui.main;
@@ -58,6 +59,7 @@ function init() {
     data.isEnabled = false;
     data.launchDesktopId = 0;
     data.currentProcess = null;
+    data.desktopWindow = null;
     data.reloadTime = 100;
     replaceMethod(Meta.Display, 'get_tab_list', newGetTabList);
     replaceMethod(Shell.Global, 'get_window_actors', newGetWindowActors);
@@ -158,10 +160,7 @@ function innerEnable() {
         if (!data.windowUpdated) {
             /*
              * the desktop window is big enough to cover all the monitors in the system,
-             * so the first thing to do is to move it to the minimum coordinate of the desktop
-             * and ensure that its size is the right one. This last step, really, isn't needed,
-             * because the desktop application receives all the coordinates of each monitor, so
-             * the window size is already the right one. But just in case.
+             * so the first thing to do is to move it to the minimum coordinate of the desktop.
              *
              * In theory, the minimum coordinates are always (0,0); but if there is only one
              * monitor, the coordinates used are (0,27) because the top bar uses that size, and
@@ -169,14 +168,21 @@ function innerEnable() {
              * course, that value isn't fixed, but calculated automatically each time the
              * desktop geometry changes, so a bigger top bar will work fine.
              */
-            window.move_resize_frame(false, data.minx, data.miny, data.maxx - data.minx, data.maxy - data.miny);
+            window.move_frame(false,
+                              data.minx,
+                              data.miny);
             // Show the window in all desktops, and send it to the bottom
             window.stick();
             window.lower();
             data.windowUpdated = true;
+            data.desktopWindow = window;
             // keep the window at the bottom when the user clicks on it
             window.connect_after('raised', () => {
                 window.lower();
+            });
+            window.connect('unmanaged', () => {
+                data.desktopWindow = null;
+                data.windowUpdated = false;
             });
         }
         return false;
@@ -199,6 +205,11 @@ function innerEnable() {
             killCurrentProcess();
         });
     }
+    data.switchWorkspaceId = global.window_manager.connect('switch-workspace', () => {
+        if (data.desktopWindow) {
+            data.desktopWindow.lower();
+        }
+    });
     data.isEnabled = true;
     launchDesktop();
 }
@@ -208,6 +219,8 @@ function innerEnable() {
  */
 function disable() {
     data.isEnabled = false;
+    if (data.switchWorkspaceId)
+        global.window_manager.disconnect(data.switchWorkspaceId);
     if (data.startupPreparedId)
         Main.layoutManager.disconnect(data.startupPreparedId);
     if (data.idMap)
@@ -234,6 +247,7 @@ function killCurrentProcess() {
     }
 
     // kill the desktop program. It will be reloaded automatically.
+    data.desktopWindow = null;
     if (data.currentProcess) {
         data.currentProcess.force_exit();
     }
@@ -370,6 +384,7 @@ function launchDesktop() {
                 data.reloadTime = 1000;
             }
         }
+        data.desktopWindow = null;
         data.currentProcess = null;
         if (data.isEnabled) {
             if (data.launchDesktopId) {
