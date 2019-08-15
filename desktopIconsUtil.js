@@ -140,3 +140,19 @@ function getFilesFromNautilusDnD(selection, type) {
     }
     return retval;
 }
+
+
+function isExecutable(mimetype) {
+    let executableMimetypes = ['application/x-sharedlib',
+                               'application/x-shellscript',
+                               'text/x-python3',
+                               'text/x-python',
+                               'application/x-python-bytecode',
+                               'application/x-perl.xml'];
+
+    if (-1 == executableMimetypes.indexOf(mimetype)) {
+        return false;
+    } else {
+        return true;
+    }
+}

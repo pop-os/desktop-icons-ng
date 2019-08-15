@@ -512,7 +512,7 @@ var FileItem = class {
             return;
         }
 
-        if (this._attributeCanExecute && !this._isDirectory && !this._isValidDesktopFile) {
+        if (this._attributeCanExecute && !this._isDirectory && !this._isValidDesktopFile && DesktopIconsUtil.isExecutable(this._attributeContentType)) {
             if (this._execLine)
                 DesktopIconsUtil.spawnCommandLine(this._execLine);
             return;
