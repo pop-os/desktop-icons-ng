@@ -17,6 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+const GObject = imports.gi.GObject;
 const Gtk = imports.gi.Gtk;
 const Gdk = imports.gi.Gdk;
 const Gio = imports.gi.Gio;
@@ -79,16 +80,9 @@ var FileItem = class {
         this._iconContainer.pack_start(this._icon, true, true, 0);
         this._iconContainer.set_baseline_position(Gtk.BaselinePosition.CENTER);
 
-        this._label = new Gtk.Label({label: fileInfo.get_display_name()});
-        let labelStyleContext = this._label.get_style_context();
-        labelStyleContext.add_class('file-label');
+        this._label = new MyLabel({label: fileInfo.get_display_name()});
 
-        this._container.pack_start(this._label, true, true, 0);
-        this._label.set_ellipsize(Pango.EllipsizeMode.END);
-        this._label.set_line_wrap(true);
-        this._label.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
-        this._label.set_yalign(0.0);
-        this._label.set_lines(-1);
+        this._container.pack_start(this._label, false, true, 0);
 
         /* We need to allow the "button-press" event to pass through the callbacks, to allow the DnD to work
          * But we must avoid them to reach the main window.
@@ -229,7 +223,7 @@ var FileItem = class {
         this._y2 = y + height - 1;
         this._grid = grid;
         this._container.set_size_request(width, height);
-        this._label.set_size_request(width, height - Prefs.get_icon_size(this._scaleFactor));
+        this._label.setMaximumHeight(height - Prefs.get_icon_size(this._scaleFactor));
     }
 
     getCoordinates() {
@@ -722,11 +716,11 @@ var FileItem = class {
     _setSelectedStatus() {
         if (this._isSelected && !this._styleContext.has_class('desktop-icons-selected')) {
             this._styleContext.add_class('desktop-icons-selected');
-            this._label.set_lines(5); // should be enough
+            this._label.set_lines(8); // should be enough
         }
         if (!this._isSelected && this._styleContext.has_class('desktop-icons-selected')) {
             this._styleContext.remove_class('desktop-icons-selected');
-            this._label.set_lines(-1);
+            this._label.restoreLines();
         }
     }
 
@@ -872,3 +866,82 @@ var FileItem = class {
 
 };
 Signals.addSignalMethods(FileItem.prototype);
+
+/**
+ * This class is a horrible trick to allow to specify a maximum size for
+ * a label, while having ellipsize, line wrap and multiple lines
+ */
+var MyLabel = GObject.registerClass({
+}, class MyLabel extends Gtk.Label {
+    _init(params) {
+        super._init(params);
+        this._numberOfLines = 1;
+        let labelStyleContext = this.get_style_context();
+        labelStyleContext.add_class('file-label');
+        this._currentHeight = null;
+        this._maximumHeight = null;
+        this.set_ellipsize(Pango.EllipsizeMode.END);
+        this.set_line_wrap(true);
+        this.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
+        this.set_yalign(0.0);
+        this.set_lines(this._numberOfLines);
+
+        this._drawId = this.connect_after('draw', () => {
+            if (this._maximumHeight) {
+                if (this._currentHeight == this.get_allocated_height()) {
+                    /*
+                     * if there is no change, even after incrementing the number of lines,
+                     * then that means that the text is smaller than the maximum that
+                     * fits in the allocated space
+                     */
+                    if (this._numberOfLines > 1) {
+                        this._numberOfLines--;
+                    }
+                    this.set_lines(this._numberOfLines);
+                    this.disconnect(this._drawId);
+                    this._drawId = 0;
+                    this.queue_draw();
+                    return false;
+                }
+                this._currentHeight = this.get_allocated_height();
+                this._checkSize();
+            }
+            return false;
+        });
+    }
+
+    _checkSize() {
+        /*
+         * Start with one line, and grow it until the allocated size is bigger than the
+         * maximum allowed, or until it doesn't grow more. In that point, reduce in one
+         * the number of lines to return to the right value, and end the loop.
+         */
+        if (!this._currentHeight) {
+            return false;
+        }
+        if (this._currentHeight > this._maximumHeight) {
+            if (this._numberOfLines > 1) {
+                this._numberOfLines --;
+            }
+            this.disconnect(this._drawId);
+            this._drawId = 0;
+        } else {
+            this._numberOfLines++;
+        }
+        this.set_lines(this._numberOfLines);
+        this.queue_draw();
+        return false;
+    }
+
+    setMaximumHeight(height) {
+        this._maximumHeight = height;
+        if (this._currentHeight) {
+            this._checkSize();
+        }
+    }
+
+    restoreLines() {
+        this.set_lines(this._numberOfLines);
+        this.queue_allocate();
+    }
+});
