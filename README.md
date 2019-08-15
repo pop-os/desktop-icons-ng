@@ -2,9 +2,15 @@
 
 ## What  is it
 
-Another Desktop Icons Extension for GNOME Shell. It has some advantages over the current one, like
-implementing Drag'n'Drop, or being faster refreshing the desktop. But it is still an alpha
-development, so it probably still have a lot of bugs. Use with care.
+Another Desktop Icons Extension for GNOME Shell. It offers the same than the official one,
+but also has these advantages:
+
+ * Drag'n'Drop, both inside the desktop, and between desktop and applications, and nautilus windows
+ * Allows to use "Open with..." option with several files
+ * Doesn't hang the compositor when there is too much activity in the desktop folder
+ * Faster
+
+But it is still an alpha development, so it probably still have a lot of bugs. Use with care.
 
 ## Current version
 
