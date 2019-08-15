@@ -70,7 +70,6 @@ var FileItem = class {
 
         this._container = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL});
         this._styleContext = this._container.get_style_context();
-        this._container.set_size_request(Prefs.get_desired_width(this._scaleFactor), Prefs.get_desired_height(this._scaleFactor));
         this._eventBox.add(this._container);
 
         this._icon = new Gtk.Image();
@@ -229,6 +228,8 @@ var FileItem = class {
         this._x2 = x + width - 1;
         this._y2 = y + height - 1;
         this._grid = grid;
+        this._container.set_size_request(width, height);
+        this._label.set_size_request(width, height - Prefs.get_icon_size(this._scaleFactor));
     }
 
     getCoordinates() {

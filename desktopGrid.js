@@ -96,8 +96,8 @@ var DesktopGrid = class {
         this._fileItems[fileItem.uri] = [column, row, fileItem];
         fileItem.setCoordinates(x,
                                 y,
-                                this._elementWidth - 2 * this._elementMarginH,
-                                this._elementHeight - 2 * this._elementMarginV,
+                                this._elementWidth - 2 * elementSpacing,
+                                this._elementHeight - 2 * elementSpacing,
                                 this);
 
         /* If this file is new in the Desktop and hasn't yet
