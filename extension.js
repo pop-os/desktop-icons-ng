@@ -47,9 +47,9 @@ let data = {};
  */
 function replaceMethod(className, methodName, functionToCall, classId) {
     if (classId) {
-        data["old_" + classId + "_" + methodName] = className.prototype[methodName];
+        data['old_' + classId + '_' + methodName] = className.prototype[methodName];
     } else {
-        data["old_" + methodName] = className.prototype[methodName];
+        data['old_' + methodName] = className.prototype[methodName];
     }
     className.prototype[methodName] = functionToCall;
 }
@@ -59,9 +59,9 @@ function init() {
     data.launchDesktopId = 0;
     data.currentProcess = null;
     data.reloadTime = 100;
-    replaceMethod(Meta.Display, "get_tab_list", newGetTabList);
-    replaceMethod(Shell.Global, "get_window_actors", newGetWindowActors);
-    replaceMethod(Meta.Workspace, "list_windows", newListWindows);
+    replaceMethod(Meta.Display, 'get_tab_list', newGetTabList);
+    replaceMethod(Shell.Global, 'get_window_actors', newGetWindowActors);
+    replaceMethod(Meta.Workspace, 'list_windows', newListWindows);
     // Ensure that there aren't "rogue" processes
     doKillAllOldDesktopProcesses();
 }
@@ -247,21 +247,21 @@ function killCurrentProcess() {
 
 function doKillAllOldDesktopProcesses() {
 
-    let procFolder = Gio.File.new_for_path("/proc");
+    let procFolder = Gio.File.new_for_path('/proc');
     if (!procFolder.query_exists(null)) {
         return;
     }
 
-    let fileEnum = procFolder.enumerate_children("", Gio.FileQueryInfoFlags.NONE, null);
+    let fileEnum = procFolder.enumerate_children('', Gio.FileQueryInfoFlags.NONE, null);
     let info;
     while ((info = fileEnum.next_file(null))) {
         let filename = info.get_name();
-        let processUser = Gio.File.new_for_path("/proc/" + filename + "/cmdline");
+        let processUser = Gio.File.new_for_path('/proc/' + filename + '/cmdline');
         if (!processUser.query_exists(null)) {
             continue;
         }
         let [data, etag] = processUser.load_bytes(null);
-        let contents = "";
+        let contents = '';
         data = data.get_data();
         for (let i = 0; i < data.length; i++) {
             if (data[i] < 32) {
@@ -270,8 +270,8 @@ function doKillAllOldDesktopProcesses() {
                 contents += String.fromCharCode(data[i]);
             }
         }
-        let path = "/usr/bin/gjs " + GLib.build_filenamev([ExtensionUtils.getCurrentExtension().path, 'adieu.js']);
-        if (("" + contents).startsWith(path)) {
+        let path = '/usr/bin/gjs ' + GLib.build_filenamev([ExtensionUtils.getCurrentExtension().path, 'adieu.js']);
+        if (('' + contents).startsWith(path)) {
             let proc = new Gio.Subprocess({argv: ['/bin/kill', filename]});
             proc.init(null);
             proc.wait(null);
@@ -291,7 +291,7 @@ function launchDesktop() {
     let argv = [];
     argv.push(GLib.build_filenamev([ExtensionUtils.getCurrentExtension().path, 'adieu.js']));
     // The path. Allows the program to find translations, settings and modules.
-    argv.push("-P");
+    argv.push('-P');
     argv.push(ExtensionUtils.getCurrentExtension().path);
 
     let first = true;
@@ -300,8 +300,8 @@ function launchDesktop() {
         let ws = global.workspace_manager.get_workspace_by_index(0);
         let area = ws.get_work_area_for_monitor(monitorIndex);
         // send the working area of each monitor in the desktop
-        argv.push("-D");
-        argv.push(area.x + ";" + area.y+";" + area.width + ";" + area.height);
+        argv.push('-D');
+        argv.push(area.x + ';' + area.y+';' + area.width + ';' + area.height);
         if (first || (area.x < data.minx)) {
             data.minx = area.x;
         }
@@ -340,14 +340,14 @@ function launchDesktop() {
      * have any error from the desktop app in the same journal than other extensions. Every line from
      * the desktop program is prepended with "ADIEU: " (Another Desktop Icon Extension)
      */
-    data.currentProcess.communicate_async(GLib.Bytes.new(data.appUUID + "\n"), null, (object, res) => {
+    data.currentProcess.communicate_async(GLib.Bytes.new(data.appUUID + '\n'), null, (object, res) => {
         try {
             let [available, stdout, stderr] = object.communicate_finish(res);
             if (stdout.length != 0) {
-                global.log("ADIEU: " + String.fromCharCode.apply(null, stdout.get_data()));
+                global.log('ADIEU: ' + String.fromCharCode.apply(null, stdout.get_data()));
             }
         } catch(e) {
-            global.log("ADIEU_Error " + e);
+            global.log('ADIEU_Error ' + e);
         }
     });
     //appPid = Number(_currentProcess.get_identifier());
