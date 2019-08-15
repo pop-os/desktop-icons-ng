@@ -71,6 +71,13 @@ for(let arg of ARGV) {
     lastCommand = null;
 }
 
+if (desktops.length == 0) {
+    /* if no desktop list is provided, like when launching the program in stand-alone mode,
+     * configure a 1280x720 desktop
+     */
+    desktops.push({x:0, y:0, w: 1280, h: 720});
+}
+
 // this allows to import files from the current folder
 
 imports.searchPath.unshift(codePath);
