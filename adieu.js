@@ -24,11 +24,7 @@ const Gtk = imports.gi.Gtk;
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
 
-let stdin = new Gio.DataInputStream({
-    base_stream: new Gio.UnixInputStream({ fd: 0 })
-});
-
-let appUuid = String.fromCharCode.apply(null, stdin.read_line(null)[0]);
+let appUuid = null;
 
 let desktops = [];
 let lastCommand = null;
@@ -38,6 +34,13 @@ let zoom = 1.0;
 for(let arg of ARGV) {
     if (lastCommand == null) {
         switch(arg) {
+        case '-U':
+            let stdin = new Gio.DataInputStream({
+                base_stream: new Gio.UnixInputStream({ fd: 0 })
+            });
+            appUuid = String.fromCharCode.apply(null, stdin.read_line(null)[0]);
+            stdin.close(null);
+            break;
         case '-P':
         case '-D':
         case '-Z':

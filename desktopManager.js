@@ -77,14 +77,25 @@ var DesktopManager = GObject.registerClass({
         this._configureSelectionColor();
 
         this._window = new Gtk.Window();
-        this._window.set_title(appUuid);
+        if (appUuid) {
+            this._window.set_title(appUuid);
+            this._window.set_decorated(false);
+            this._window.set_deletable(false);
+        } else {
+            this._window.set_title('Desktop Icons');
+        }
         this._window.set_resizable(false);
-        this._window.set_decorated(false);
-        this._window.set_deletable(false);
-        // Do not destroy window when closing
-        this._window.connect('delete-event', () => {return true;});
+        this._window.connect('delete-event', () => {
+            if (this._appUuid) {
+                // Do not destroy window when closing if the instance is working as desktop
+                return true;
+            } else {
+                // Exit if this instance is working as an stand-alone window
+                Gtk.main_quit();
+            }
+        });
 
-        // this only works on X11, so... let's keep uniformity :-)
+        // this only works on X11, so... let's keep uniformity and don't set them :-)
         //this._window.set_keep_below(true);
         //this._window.set_skip_pager_hint(true);
         //this._window.set_skip_taskbar_hint(true);
@@ -94,13 +105,15 @@ var DesktopManager = GObject.registerClass({
 
         this.setDropDestination(this._window);
 
-        // Transparent background
-        this._window.set_app_paintable(true);
-        let screen = this._window.get_screen();
-        let visual = screen.get_rgba_visual();
-        if (visual && screen.is_composited()) {
-            this._window.set_visual(visual);
-            this._window.connect('draw', (widget, cr) => this._doDraw(cr));
+        // Transparent background, but only if this instance is working as desktop
+        if (this._appUuid) {
+            this._window.set_app_paintable(true);
+            let screen = this._window.get_screen();
+            let visual = screen.get_rgba_visual();
+            if (visual && screen.is_composited()) {
+                this._window.set_visual(visual);
+                this._window.connect('draw', (widget, cr) => this._doDraw(cr));
+            }
         }
 
         this._desktops = [];

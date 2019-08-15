@@ -295,6 +295,8 @@ function launchDesktop() {
     data.reloadTime = 100;
     let argv = [];
     argv.push(GLib.build_filenamev([ExtensionUtils.getCurrentExtension().path, 'adieu.js']));
+    // Specify that we are going to pass an UUID through STDIN
+    argv.push('-U');
     // The path. Allows the program to find translations, settings and modules.
     argv.push('-P');
     argv.push(ExtensionUtils.getCurrentExtension().path);
