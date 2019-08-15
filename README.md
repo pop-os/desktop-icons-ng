@@ -18,7 +18,6 @@ Version 0.1.0 alpha.
 ## TO-DO
 
 * Use file events instead of refreshing the whole desktop
-* Remove the desktop window from the window list and the switcher
 * Don't try to execute files with +x if they aren't true executables
 * Use hotkeys for the desktop
 
