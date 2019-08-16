@@ -156,8 +156,11 @@ function innerEnable() {
     }
 
     data.idMap = global.window_manager.connect('map', (obj, windowActor) => {
+        if (data.windowUpdated || !data.appUUID) {
+            return false;
+        }
         let window = windowActor.get_meta_window();
-        if (!data.windowUpdated && (window.get_title() == data.appUUID)) {
+        if (window.get_title() == data.appUUID) {
             /*
              * the desktop window is big enough to cover all the monitors in the system,
              * so the first thing to do is to move it to the minimum coordinate of the desktop.
@@ -186,6 +189,7 @@ function innerEnable() {
                 data.miny);
             });
             window.connect('unmanaged', () => {
+                data.appUUID = null;
                 data.desktopWindow = null;
                 data.windowUpdated = false;
             });
@@ -253,6 +257,7 @@ function killCurrentProcess() {
 
     // kill the desktop program. It will be reloaded automatically.
     data.desktopWindow = null;
+    data.appUUID = null;
     if (data.currentProcess) {
         data.currentProcess.force_exit();
     }
@@ -395,6 +400,7 @@ function launchDesktop() {
         }
         data.desktopWindow = null;
         data.currentProcess = null;
+        data.appUUID = null;
         if (data.isEnabled) {
             if (data.launchDesktopId) {
                 GLib.source_remove(data.launchDesktopId);
