@@ -25,7 +25,8 @@ Version 0.1.0 alpha.
 ## TO-DO
 
 * Use file events instead of refreshing the whole desktop
-* Don't try to execute files with +x if they aren't true executables
+* Check is desktop folder has write permissions for everyone
+* Adjust label size to put the maximum possible number or lines
 
 ## How to contribute
 
