@@ -155,7 +155,10 @@ function innerEnable() {
         data.startupPreparedId = 0;
     }
 
-    data.idMap = global.window_manager.connect('map', (obj, windowActor) => {
+    data.idMap = global.window_manager.connect_after('map', (obj, windowActor) => {
+        if (data.desktopWindow) {
+            data.desktopWindow.lower();
+        }
         if (data.windowUpdated || !data.appUUID) {
             return false;
         }
@@ -183,11 +186,13 @@ function innerEnable() {
             window.connect_after('raised', () => {
                 window.lower();
             });
+            // Don't allow to move it with Alt+F7 or other special keys
             window.connect('position-changed', () => {
                 window.move_frame(false,
-                data.minx,
-                data.miny);
+                                  data.minx,
+                                  data.miny);
             });
+            // If the window disappears, prepare to launch a new process
             window.connect('unmanaged', () => {
                 data.appUUID = null;
                 data.desktopWindow = null;
