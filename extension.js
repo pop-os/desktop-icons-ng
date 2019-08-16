@@ -180,6 +180,11 @@ function innerEnable() {
             window.connect_after('raised', () => {
                 window.lower();
             });
+            window.connect('position-changed', () => {
+                window.move_frame(false,
+                data.minx,
+                data.miny);
+            });
             window.connect('unmanaged', () => {
                 data.desktopWindow = null;
                 data.windowUpdated = false;
