@@ -157,7 +157,7 @@ function innerEnable() {
 
     data.idMap = global.window_manager.connect('map', (obj, windowActor) => {
         let window = windowActor.get_meta_window();
-        if (!data.windowUpdated) {
+        if (!data.windowUpdated && (window.get_title() == data.appUUID)) {
             /*
              * the desktop window is big enough to cover all the monitors in the system,
              * so the first thing to do is to move it to the minimum coordinate of the desktop.
