@@ -7,6 +7,7 @@ but also has these advantages:
 
  * Drag'n'Drop, both inside the desktop, and between desktop and applications, and nautilus windows
  * Allows to use "Open with..." option with several files
+ * When clicking on an icon with a name too large to fit, it shows the full name
  * Doesn't hang the compositor when there is too much activity in the desktop folder
  * Faster
 
