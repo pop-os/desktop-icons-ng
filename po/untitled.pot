@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-13 10:05+0200\n"
+"POT-Creation-Date: 2019-08-17 21:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
-#: ../preferences.js:86 ../desktopManager.js:365
+#: ../preferences.js:86 ../desktopManager.js:428
 msgid "Settings"
 msgstr ""
 
@@ -53,110 +53,110 @@ msgstr ""
 msgid "Command not found"
 msgstr ""
 
-#: ../fileItem.js:555
+#: ../fileItem.js:549
 msgid "Don’t Allow Launching"
 msgstr ""
 
-#: ../fileItem.js:557
+#: ../fileItem.js:551
 msgid "Allow Launching"
 msgstr ""
 
-#: ../fileItem.js:617
+#: ../fileItem.js:603
 msgid "Open"
 msgstr ""
 
-#: ../fileItem.js:623
+#: ../fileItem.js:609
 msgid "Open With Other Application"
 msgstr ""
 
-#: ../fileItem.js:630
+#: ../fileItem.js:616
 msgid "Cut"
 msgstr ""
 
-#: ../fileItem.js:633
+#: ../fileItem.js:619
 msgid "Copy"
 msgstr ""
 
-#: ../fileItem.js:637
+#: ../fileItem.js:623
 msgid "Rename…"
 msgstr ""
 
-#: ../fileItem.js:641
+#: ../fileItem.js:627
 msgid "Move to Trash"
 msgstr ""
 
-#: ../fileItem.js:653
+#: ../fileItem.js:639
 msgid "Empty Trash"
 msgstr ""
 
-#: ../fileItem.js:661
+#: ../fileItem.js:647
 msgid "Properties"
 msgstr ""
 
-#: ../fileItem.js:665
+#: ../fileItem.js:651
 msgid "Show in Files"
 msgstr ""
 
-#: ../fileItem.js:669 ../desktopManager.js:343
+#: ../fileItem.js:655 ../desktopManager.js:406
 msgid "Open in Terminal"
 msgstr ""
 
-#: ../desktopManager.js:319
+#: ../desktopManager.js:382
 msgid "New Folder"
 msgstr ""
 
-#: ../desktopManager.js:325
+#: ../desktopManager.js:388
 msgid "Paste"
 msgstr ""
 
-#: ../desktopManager.js:329
+#: ../desktopManager.js:392
 msgid "Undo"
 msgstr ""
 
-#: ../desktopManager.js:333
+#: ../desktopManager.js:396
 msgid "Redo"
 msgstr ""
 
-#: ../desktopManager.js:339
+#: ../desktopManager.js:402
 msgid "Show Desktop in Files"
 msgstr ""
 
-#: ../desktopManager.js:349
+#: ../desktopManager.js:412
 msgid "Change Background…"
 msgstr ""
 
-#: ../desktopManager.js:358
+#: ../desktopManager.js:421
 msgid "Display Settings"
 msgstr ""
 
-#: ../desktopManager.js:770
+#: ../desktopManager.js:841
 msgid "Rename"
 msgstr ""
 
-#: ../desktopManager.js:808
+#: ../desktopManager.js:879
 msgid "New folder"
 msgstr ""
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:1
 msgid "Icon size"
 msgstr ""
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:2
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:2
 msgid "Set the size for the desktop icons."
 msgstr ""
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:3
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:3
 msgid "Show personal folder"
 msgstr ""
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:4
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:4
 msgid "Show the personal folder in the desktop."
 msgstr ""
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:5
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:5
 msgid "Show trash icon"
 msgstr ""
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:6
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:6
 msgid "Show the trash icon in the desktop."
 msgstr ""

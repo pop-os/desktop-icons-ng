@@ -4,6 +4,6 @@ preferences.js
 desktopGrid.js
 desktopIconsUtil.js
 fileItem.js
-adieu.js
+ding.js
 desktopManager.js
-schemas/org.gnome.shell.extensions.adieu.gschema.xml
+schemas/org.gnome.shell.extensions.ding.gschema.xml

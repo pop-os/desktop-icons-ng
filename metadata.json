@@ -1,10 +1,10 @@
 {
-    "description": "Adds icons to the desktop. Fork of the original Desktop Icons extension, with several enhacements.",
-    "name": "Another Desktop Icons Extension (ADIEU)",
+    "description": "Adds icons to the desktop. Fork of the original Desktop Icons extension, with several enhancements .",
+    "name": "Desktop Icons New Generation (DING)",
     "shell-version": [
       "3.30",
       "3.32"
     ],
-    "uuid": "adieu@rastersoft.com",
+    "uuid": "ding@rastersoft.com",
     "version": 1
   }

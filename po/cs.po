@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-13 10:04+0200\n"
+"POT-Creation-Date: 2019-08-17 21:43+0200\n"
 "PO-Revision-Date: 2019-03-02 18:02+0100\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: Czech <zeten30@gmail.com>\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "OK"
 msgstr "Budiž"
 
-#: ../preferences.js:86 ../desktopManager.js:365
+#: ../preferences.js:86 ../desktopManager.js:428
 msgid "Settings"
 msgstr "Nastavení"
 
@@ -55,113 +55,113 @@ msgstr "Zobrazovat ikonu koše na pracovní ploše"
 msgid "Command not found"
 msgstr ""
 
-#: ../fileItem.js:555
+#: ../fileItem.js:549
 msgid "Don’t Allow Launching"
 msgstr "Nepovolit spouštění"
 
-#: ../fileItem.js:557
+#: ../fileItem.js:551
 msgid "Allow Launching"
 msgstr "Povolit spouštění"
 
-#: ../fileItem.js:617
+#: ../fileItem.js:603
 msgid "Open"
 msgstr "Otevřít"
 
-#: ../fileItem.js:623
+#: ../fileItem.js:609
 msgid "Open With Other Application"
 msgstr "Otevřít pomocí jiné aplikace"
 
-#: ../fileItem.js:630
+#: ../fileItem.js:616
 msgid "Cut"
 msgstr "Vyjmout"
 
-#: ../fileItem.js:633
+#: ../fileItem.js:619
 msgid "Copy"
 msgstr "Kopírovat"
 
-#: ../fileItem.js:637
+#: ../fileItem.js:623
 msgid "Rename…"
 msgstr "Přejmenovat…"
 
-#: ../fileItem.js:641
+#: ../fileItem.js:627
 msgid "Move to Trash"
 msgstr "Přesunout do koše"
 
-#: ../fileItem.js:653
+#: ../fileItem.js:639
 msgid "Empty Trash"
 msgstr "Vyprázdnit koš"
 
-#: ../fileItem.js:661
+#: ../fileItem.js:647
 msgid "Properties"
 msgstr "Vlastnosti"
 
-#: ../fileItem.js:665
+#: ../fileItem.js:651
 msgid "Show in Files"
 msgstr "Zobrazit v Souborech"
 
-#: ../fileItem.js:669 ../desktopManager.js:343
+#: ../fileItem.js:655 ../desktopManager.js:406
 msgid "Open in Terminal"
 msgstr "Otevřít v terminálu"
 
-#: ../desktopManager.js:319
+#: ../desktopManager.js:382
 msgid "New Folder"
 msgstr "Nová složka"
 
-#: ../desktopManager.js:325
+#: ../desktopManager.js:388
 msgid "Paste"
 msgstr "Vložit"
 
-#: ../desktopManager.js:329
+#: ../desktopManager.js:392
 msgid "Undo"
 msgstr "Zpět"
 
-#: ../desktopManager.js:333
+#: ../desktopManager.js:396
 msgid "Redo"
 msgstr "Znovu"
 
-#: ../desktopManager.js:339
+#: ../desktopManager.js:402
 msgid "Show Desktop in Files"
 msgstr "Zobrazit plochu v Souborech"
 
-#: ../desktopManager.js:349
+#: ../desktopManager.js:412
 msgid "Change Background…"
 msgstr "Změnit pozadí…"
 
-#: ../desktopManager.js:358
+#: ../desktopManager.js:421
 msgid "Display Settings"
 msgstr "Zobrazit nastavení"
 
-#: ../desktopManager.js:770
+#: ../desktopManager.js:841
 #, fuzzy
 msgid "Rename"
 msgstr "Přejmenovat…"
 
-#: ../desktopManager.js:808
+#: ../desktopManager.js:879
 #, fuzzy
 msgid "New folder"
 msgstr "Nová složka"
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:1
 msgid "Icon size"
 msgstr "Velikost ikon"
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:2
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:2
 msgid "Set the size for the desktop icons."
 msgstr "Nastavit velikost pro ikony na pracovní ploše."
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:3
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:3
 msgid "Show personal folder"
 msgstr "Zobrazovat osobní složku"
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:4
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:4
 msgid "Show the personal folder in the desktop."
 msgstr "Zobrazovat osobní složku na pracovní ploše."
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:5
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:5
 msgid "Show trash icon"
 msgstr "Zobrazovat koš"
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:6
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:6
 msgid "Show the trash icon in the desktop."
 msgstr "Zobrazovat ikonu koše na pracovní ploše."
 

@@ -1,4 +1,4 @@
-/* ADIEU: Another Desktop Icons Extension for GNOME Shell
+/* DING: Desktop Icons New Generation for GNOME Shell
  *
  * Copyright (C) 2019 Sergio Costas (rastersoft@gmail.com)
  * Based on code original (C) Carlos Soriano
@@ -60,7 +60,7 @@ var DEFAULT_ATTRIBUTES = 'metadata::*,standard::*,access::*,time::modified,unix:
 var TERMINAL_SCHEMA = 'org.gnome.desktop.default-applications.terminal';
 var SCHEMA_NAUTILUS = 'org.gnome.nautilus.preferences';
 var SCHEMA_GTK = 'org.gtk.Settings.FileChooser';
-var SCHEMA = 'org.gnome.shell.extensions.adieu';
+var SCHEMA = 'org.gnome.shell.extensions.ding';
 var EXEC_KEY = 'exec';
 
 var S_IXUSR = 0o00100;

@@ -1,4 +1,4 @@
-/* ADIEU: Another Desktop Icons Extension for GNOME Shell
+/* DING: Desktop Icons New Generation for GNOME Shell
  *
  * Copyright (C) 2019 Sergio Costas (rastersoft@gmail.com)
  * Based on code original (C) Carlos Soriano
@@ -34,7 +34,7 @@ const DBusUtils = imports.dbusUtils;
 const ByteArray = imports.byteArray;
 const Mainloop = imports.mainloop;
 const Signals = imports.signals;
-const Gettext = imports.gettext.domain('adieu');
+const Gettext = imports.gettext.domain('ding');
 
 const _ = Gettext.gettext;
 
@@ -146,7 +146,7 @@ var FileItem = class {
     _setDragSource() {
         this._dragSource.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, null, Gdk.DragAction.MOVE || Gdk.DragAction.COPY);
         let targets = new Gtk.TargetList(null);
-        targets.add(Gdk.atom_intern('x-special/adieu-icon-list', false), Gtk.TargetFlags.SAME_APP, 0);
+        targets.add(Gdk.atom_intern('x-special/ding-icon-list', false), Gtk.TargetFlags.SAME_APP, 0);
         if ((this._fileExtra != Enums.FileType.USER_DIRECTORY_TRASH) &&
             (this._fileExtra != Enums.FileType.USER_DIRECTORY_HOME)) {
                 targets.add(Gdk.atom_intern('x-special/gnome-icon-list', false), 0, 1);
@@ -155,7 +155,7 @@ var FileItem = class {
         this._dragSource.drag_source_set_target_list(targets);
         this._dragSource.connect('drag-data-get', (widget, context, data, info, time) => {
             switch(info) {
-                case 0: // x-special/adieu-icon-list
+                case 0: // x-special/ding-icon-list
                     this._desktopManager.doMoveWithDragAndDrop(this, this._x1 + this._xOrigin, this._y1 + this._yOrigin);
                     break;
                 case 1: // x-special/gnome-icon-list

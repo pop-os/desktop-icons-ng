@@ -1,4 +1,4 @@
-/* ADIEU: Another Desktop Icons Extension for GNOME Shell
+/* DING: Desktop Icons New Generation for GNOME Shell
  *
  * Copyright (C) 2019 Sergio Costas (rastersoft@gmail.com)
  * Based on code original (C) Carlos Soriano
@@ -31,7 +31,7 @@ const Enums = imports.enums;
 const DBusUtils = imports.dbusUtils;
 const AskNamePopup = imports.askNamePopup;
 
-const Gettext = imports.gettext.domain('adieu');
+const Gettext = imports.gettext.domain('ding');
 
 const _ = Gettext.gettext;
 
@@ -217,7 +217,7 @@ var DesktopManager = class {
     setDropDestination(dropDestination) {
         dropDestination.drag_dest_set(Gtk.DestDefaults.ALL, null, Gdk.DragAction.MOVE);
         let targets = new Gtk.TargetList(null);
-        targets.add(Gdk.atom_intern('x-special/adieu-icon-list', false), Gtk.TargetFlags.SAME_APP, 0);
+        targets.add(Gdk.atom_intern('x-special/ding-icon-list', false), Gtk.TargetFlags.SAME_APP, 0);
         targets.add(Gdk.atom_intern('x-special/gnome-icon-list', false), 0, 1);
         targets.add(Gdk.atom_intern('text/uri-list', false), 0, 2);
         dropDestination.drag_dest_set_target_list(targets);

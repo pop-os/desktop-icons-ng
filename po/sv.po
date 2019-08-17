@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-13 10:05+0200\n"
+"POT-Creation-Date: 2019-08-17 21:43+0200\n"
 "PO-Revision-Date: 2019-03-11 21:50+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "OK"
 msgstr "OK"
 
-#: ../preferences.js:86 ../desktopManager.js:365
+#: ../preferences.js:86 ../desktopManager.js:428
 msgid "Settings"
 msgstr "Inställningar"
 
@@ -57,116 +57,116 @@ msgstr "Visa papperskorgsikonen på skrivbordet"
 msgid "Command not found"
 msgstr ""
 
-#: ../fileItem.js:555
+#: ../fileItem.js:549
 msgid "Don’t Allow Launching"
 msgstr "Tillåt ej programstart"
 
-#: ../fileItem.js:557
+#: ../fileItem.js:551
 msgid "Allow Launching"
 msgstr "Tillåt programstart"
 
-#: ../fileItem.js:617
+#: ../fileItem.js:603
 msgid "Open"
 msgstr "Öppna"
 
-#: ../fileItem.js:623
+#: ../fileItem.js:609
 msgid "Open With Other Application"
 msgstr "Öppna med annat program"
 
-#: ../fileItem.js:630
+#: ../fileItem.js:616
 msgid "Cut"
 msgstr "Klipp ut"
 
-#: ../fileItem.js:633
+#: ../fileItem.js:619
 msgid "Copy"
 msgstr "Kopiera"
 
-#: ../fileItem.js:637
+#: ../fileItem.js:623
 msgid "Rename…"
 msgstr "Byt namn…"
 
-#: ../fileItem.js:641
+#: ../fileItem.js:627
 msgid "Move to Trash"
 msgstr "Flytta till papperskorgen"
 
-#: ../fileItem.js:653
+#: ../fileItem.js:639
 msgid "Empty Trash"
 msgstr "Töm papperskorgen"
 
-#: ../fileItem.js:661
+#: ../fileItem.js:647
 msgid "Properties"
 msgstr "Egenskaper"
 
-#: ../fileItem.js:665
+#: ../fileItem.js:651
 msgid "Show in Files"
 msgstr "Visa i Filer"
 
-#: ../fileItem.js:669 ../desktopManager.js:343
+#: ../fileItem.js:655 ../desktopManager.js:406
 msgid "Open in Terminal"
 msgstr "Öppna i terminal"
 
-#: ../desktopManager.js:319
+#: ../desktopManager.js:382
 msgid "New Folder"
 msgstr "Ny mapp"
 
-#: ../desktopManager.js:325
+#: ../desktopManager.js:388
 msgid "Paste"
 msgstr "Klistra in"
 
-#: ../desktopManager.js:329
+#: ../desktopManager.js:392
 msgid "Undo"
 msgstr "Ångra"
 
-#: ../desktopManager.js:333
+#: ../desktopManager.js:396
 msgid "Redo"
 msgstr "Gör om"
 
-#: ../desktopManager.js:339
+#: ../desktopManager.js:402
 msgid "Show Desktop in Files"
 msgstr "Visa skrivbord i Filer"
 
-#: ../desktopManager.js:349
+#: ../desktopManager.js:412
 msgid "Change Background…"
 msgstr "Ändra bakgrund…"
 
-#: ../desktopManager.js:358
+#: ../desktopManager.js:421
 msgid "Display Settings"
 msgstr "Visningsinställningar"
 
-#: ../desktopManager.js:770
+#: ../desktopManager.js:841
 #, fuzzy
 msgid "Rename"
 msgstr "Byt namn…"
 
-#: ../desktopManager.js:808
+#: ../desktopManager.js:879
 #, fuzzy
 msgid "New folder"
 msgstr "Ny mapp"
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:1
 msgid "Icon size"
 msgstr "Ikonstorlek"
 
 # TODO: *ON* the desktop?
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:2
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:2
 msgid "Set the size for the desktop icons."
 msgstr "Ställ in storleken för skrivbordsikonerna."
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:3
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:3
 msgid "Show personal folder"
 msgstr "Visa personlig mapp"
 
 # TODO: *ON* the desktop?
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:4
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:4
 msgid "Show the personal folder in the desktop."
 msgstr "Visa den personliga mappen på skrivbordet."
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:5
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:5
 msgid "Show trash icon"
 msgstr "Visa papperskorgsikon"
 
 # TODO: *ON* the desktop?
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:6
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:6
 msgid "Show the trash icon in the desktop."
 msgstr "Visa papperskorgsikonen på skrivbordet."
 

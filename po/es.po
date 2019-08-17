@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-13 10:02+0200\n"
+"POT-Creation-Date: 2019-08-17 21:43+0200\n"
 "PO-Revision-Date: 2019-08-13 10:02+0200\n"
 "Last-Translator: Sergio Costas <rastersoft@gmail.com>\n"
 "Language-Team: Español; Castellano <rastersoft@gmail.com>\n"
@@ -24,7 +24,7 @@ msgstr ""
 msgid "OK"
 msgstr "Aceptar"
 
-#: ../preferences.js:86 ../desktopManager.js:365
+#: ../preferences.js:86 ../desktopManager.js:428
 msgid "Settings"
 msgstr "Configuración"
 
@@ -56,111 +56,111 @@ msgstr "Mostrar la papelera en el escritorio"
 msgid "Command not found"
 msgstr "Comando no encontrado"
 
-#: ../fileItem.js:555
+#: ../fileItem.js:549
 msgid "Don’t Allow Launching"
 msgstr "No permitir lanzar"
 
-#: ../fileItem.js:557
+#: ../fileItem.js:551
 msgid "Allow Launching"
 msgstr "Permitir lanzar"
 
-#: ../fileItem.js:617
+#: ../fileItem.js:603
 msgid "Open"
 msgstr "Abrir"
 
-#: ../fileItem.js:623
+#: ../fileItem.js:609
 msgid "Open With Other Application"
 msgstr "Abrir con otra aplicación"
 
-#: ../fileItem.js:630
+#: ../fileItem.js:616
 msgid "Cut"
 msgstr "Cortar"
 
-#: ../fileItem.js:633
+#: ../fileItem.js:619
 msgid "Copy"
 msgstr "Copiar"
 
-#: ../fileItem.js:637
+#: ../fileItem.js:623
 msgid "Rename…"
 msgstr "Renombrar…"
 
-#: ../fileItem.js:641
+#: ../fileItem.js:627
 msgid "Move to Trash"
 msgstr "Mover a la papelera"
 
-#: ../fileItem.js:653
+#: ../fileItem.js:639
 msgid "Empty Trash"
 msgstr "Vaciar la papelera"
 
-#: ../fileItem.js:661
+#: ../fileItem.js:647
 msgid "Properties"
 msgstr "Propiedades"
 
-#: ../fileItem.js:665
+#: ../fileItem.js:651
 msgid "Show in Files"
 msgstr "Mostrar en Files"
 
-#: ../fileItem.js:669 ../desktopManager.js:343
+#: ../fileItem.js:655 ../desktopManager.js:406
 msgid "Open in Terminal"
 msgstr "Abrir en una terminal"
 
-#: ../desktopManager.js:319
+#: ../desktopManager.js:382
 msgid "New Folder"
 msgstr "Nueva carpeta"
 
-#: ../desktopManager.js:325
+#: ../desktopManager.js:388
 msgid "Paste"
 msgstr "Pegar"
 
-#: ../desktopManager.js:329
+#: ../desktopManager.js:392
 msgid "Undo"
 msgstr "Deshacer"
 
-#: ../desktopManager.js:333
+#: ../desktopManager.js:396
 msgid "Redo"
 msgstr "Rehacer"
 
-#: ../desktopManager.js:339
+#: ../desktopManager.js:402
 msgid "Show Desktop in Files"
 msgstr "Mostrar el escritorio en Archivos"
 
-#: ../desktopManager.js:349
+#: ../desktopManager.js:412
 msgid "Change Background…"
 msgstr "Cambiar el fondo..."
 
-#: ../desktopManager.js:358
+#: ../desktopManager.js:421
 msgid "Display Settings"
 msgstr "Configuración de pantalla"
 
-#: ../desktopManager.js:770
+#: ../desktopManager.js:841
 msgid "Rename"
 msgstr "Renombrar…"
 
-#: ../desktopManager.js:808
+#: ../desktopManager.js:879
 msgid "New folder"
 msgstr "Nueva carpeta"
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:1
 msgid "Icon size"
 msgstr "Tamaño de los iconos"
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:2
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:2
 msgid "Set the size for the desktop icons."
 msgstr "Establece el tamaño de los iconos del escritorio."
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:3
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:3
 msgid "Show personal folder"
 msgstr "Mostrar la carpeta personal"
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:4
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:4
 msgid "Show the personal folder in the desktop."
 msgstr "Mostrar la carpeta personal en el escritorio."
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:5
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:5
 msgid "Show trash icon"
 msgstr "Mostrar la papelera"
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:6
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:6
 msgid "Show the trash icon in the desktop."
 msgstr "Mostrar la papelera en el escritorio."
 

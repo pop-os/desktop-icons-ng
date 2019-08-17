@@ -1,6 +1,6 @@
 #!/usr/bin/env gjs
 
-/* ADIEU: Another Desktop Icons Extension for GNOME Shell
+/* DING: Desktop Icons New Generation for GNOME Shell
  *
  * Copyright (C) 2019 Sergio Costas (rastersoft@gmail.com)
  * Based on code original (C) Carlos Soriano
@@ -85,7 +85,7 @@ imports.searchPath.unshift(codePath);
 const Prefs = imports.preferences;
 const Gettext = imports.gettext;
 
-Gettext.bindtextdomain("adieu", GLib.build_filenamev([codePath, "locale"]));
+Gettext.bindtextdomain("ding", GLib.build_filenamev([codePath, "locale"]));
 
 const DesktopManager = imports.desktopManager;
 

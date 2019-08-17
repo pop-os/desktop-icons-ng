@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schemalist gettext-domain="adieu">
-    <enum id="org.gnome.shell.extension.adieu.ZoomLevel">
+<schemalist gettext-domain="ding">
+    <enum id="org.gnome.shell.extension.ding.ZoomLevel">
         <value value="0" nick="small"/>
         <value value="1" nick="standard"/>
         <value value="2" nick="large"/>
     </enum>
-    <schema path="/org/gnome/shell/extensions/adieu/" id="org.gnome.shell.extensions.adieu">
-    <key name="icon-size" enum="org.gnome.shell.extension.adieu.ZoomLevel">
+    <schema path="/org/gnome/shell/extensions/ding/" id="org.gnome.shell.extensions.ding">
+    <key name="icon-size" enum="org.gnome.shell.extension.ding.ZoomLevel">
         <default>'standard'</default>
         <summary>Icon size</summary>
         <description>Set the size for the desktop icons.</description>

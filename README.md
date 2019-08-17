@@ -1,8 +1,8 @@
-# ADIEU Another Desktop Icons Extension
+# DING Desktop Icons New Generation
 
 ## What  is it
 
-Another Desktop Icons Extension for GNOME Shell. It offers the same than the official one,
+Desktop Icons NG for GNOME Shell. It offers the same than the official 'Desktop Icons' extension,
 but also has these advantages:
 
  * Drag'n'Drop, both inside the desktop, and between desktop and applications, and nautilus windows
@@ -44,12 +44,12 @@ For a regular use and local development these are the steps to build the
 project and install it:
 
 ```bash
-meson --prefix=$HOME/.local/ --localedir=share/gnome-shell/extensions/adieu@rastersoft.com/locale .build
+meson --prefix=$HOME/.local/ --localedir=share/gnome-shell/extensions/ding@rastersoft.com/locale .build
 ninja -C .build install
 ```
 
 It is strongly recommended to delete the destination folder
-($HOME/.local/share/gnome-shell/extensions/adieu@rastersoft.com) before doing this, to ensure that no old
+($HOME/.local/share/gnome-shell/extensions/ding@rastersoft.com) before doing this, to ensure that no old
 data is kept.
 
 ## Export extension ZIP file for extensions.gnome.org
@@ -60,4 +60,4 @@ To create a ZIP file with the extension, just run:
 ./export-zip.sh
 ```
 
-This will create the file `adieu@rastersoft.com.zip` with the extension, following the rules for publishing at extensions.gnome.org.
+This will create the file `ding@rastersoft.com.zip` with the extension, following the rules for publishing at extensions.gnome.org.

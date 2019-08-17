@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-13 10:04+0200\n"
+"POT-Creation-Date: 2019-08-17 21:43+0200\n"
 "PO-Revision-Date: 2019-06-01 18:50+0200\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "OK"
 msgstr "Rendben"
 
-#: ../preferences.js:86 ../desktopManager.js:365
+#: ../preferences.js:86 ../desktopManager.js:428
 msgid "Settings"
 msgstr "Beállítások"
 
@@ -54,113 +54,113 @@ msgstr "A kuka ikon megjelenítése az asztalon"
 msgid "Command not found"
 msgstr "A parancs nem található"
 
-#: ../fileItem.js:555
+#: ../fileItem.js:549
 msgid "Don’t Allow Launching"
 msgstr "Ne engedélyezzen indítást"
 
-#: ../fileItem.js:557
+#: ../fileItem.js:551
 msgid "Allow Launching"
 msgstr "Indítás engedélyezése"
 
-#: ../fileItem.js:617
+#: ../fileItem.js:603
 msgid "Open"
 msgstr "Megnyitás"
 
-#: ../fileItem.js:623
+#: ../fileItem.js:609
 msgid "Open With Other Application"
 msgstr "Megnyitás egyéb alkalmazással"
 
-#: ../fileItem.js:630
+#: ../fileItem.js:616
 msgid "Cut"
 msgstr "Kivágás"
 
-#: ../fileItem.js:633
+#: ../fileItem.js:619
 msgid "Copy"
 msgstr "Másolás"
 
-#: ../fileItem.js:637
+#: ../fileItem.js:623
 msgid "Rename…"
 msgstr "Átnevezés…"
 
-#: ../fileItem.js:641
+#: ../fileItem.js:627
 msgid "Move to Trash"
 msgstr "Áthelyezés a Kukába"
 
-#: ../fileItem.js:653
+#: ../fileItem.js:639
 msgid "Empty Trash"
 msgstr "Kuka ürítése"
 
-#: ../fileItem.js:661
+#: ../fileItem.js:647
 msgid "Properties"
 msgstr "Tulajdonságok"
 
-#: ../fileItem.js:665
+#: ../fileItem.js:651
 msgid "Show in Files"
 msgstr "Megjelenítés a Fájlokban"
 
-#: ../fileItem.js:669 ../desktopManager.js:343
+#: ../fileItem.js:655 ../desktopManager.js:406
 msgid "Open in Terminal"
 msgstr "Megnyitás terminálban"
 
-#: ../desktopManager.js:319
+#: ../desktopManager.js:382
 msgid "New Folder"
 msgstr "Új mappa"
 
-#: ../desktopManager.js:325
+#: ../desktopManager.js:388
 msgid "Paste"
 msgstr "Beillesztés"
 
-#: ../desktopManager.js:329
+#: ../desktopManager.js:392
 msgid "Undo"
 msgstr "Visszavonás"
 
-#: ../desktopManager.js:333
+#: ../desktopManager.js:396
 msgid "Redo"
 msgstr "Újra"
 
-#: ../desktopManager.js:339
+#: ../desktopManager.js:402
 msgid "Show Desktop in Files"
 msgstr "Asztal megjelenítése a Fájlokban"
 
-#: ../desktopManager.js:349
+#: ../desktopManager.js:412
 msgid "Change Background…"
 msgstr "Háttér megváltoztatása…"
 
-#: ../desktopManager.js:358
+#: ../desktopManager.js:421
 msgid "Display Settings"
 msgstr "Megjelenítés beállításai"
 
-#: ../desktopManager.js:770
+#: ../desktopManager.js:841
 #, fuzzy
 msgid "Rename"
 msgstr "Átnevezés…"
 
-#: ../desktopManager.js:808
+#: ../desktopManager.js:879
 #, fuzzy
 msgid "New folder"
 msgstr "Új mappa"
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:1
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:1
 msgid "Icon size"
 msgstr "Ikonméret"
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:2
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:2
 msgid "Set the size for the desktop icons."
 msgstr "Az asztali ikonok méretének beállítása."
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:3
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:3
 msgid "Show personal folder"
 msgstr "Személyes mappa megjelenítése"
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:4
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:4
 msgid "Show the personal folder in the desktop."
 msgstr "A személyes mappa megjelenítése az asztalon."
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:5
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:5
 msgid "Show trash icon"
 msgstr "Kuka ikon megjelenítése"
 
-#: ../schemas/org.gnome.shell.extensions.adieu.gschema.xml.h:6
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:6
 msgid "Show the trash icon in the desktop."
 msgstr "A kuka ikon megjelenítése az asztalon."
 

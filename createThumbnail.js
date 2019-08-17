@@ -1,6 +1,6 @@
 #!/usr/bin/gjs
 
-/* ADIEU: Another Desktop Icons Extension for GNOME Shell
+/* DING: Desktop Icons New Generation for GNOME Shell
  *
  * Copyright (C) 2019 Sergio Costas (rastersoft@gmail.com)
  * Based on code original (C) Carlos Soriano

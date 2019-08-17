@@ -1,4 +1,4 @@
-/* ADIEU: Another Desktop Icons Extension for GNOME Shell
+/* DING: Desktop Icons New Generation for GNOME Shell
  *
  * Copyright (C) 2019 Sergio Costas (rastersoft@gmail.com)
  * Based on code original (C) Carlos Soriano
@@ -318,7 +318,7 @@ function doKillAllOldDesktopProcesses() {
                 contents += String.fromCharCode(data[i]);
             }
         }
-        let path = '/usr/bin/gjs ' + GLib.build_filenamev([ExtensionUtils.getCurrentExtension().path, 'adieu.js']);
+        let path = '/usr/bin/gjs ' + GLib.build_filenamev([ExtensionUtils.getCurrentExtension().path, 'ding.js']);
         if (('' + contents).startsWith(path)) {
             let proc = new Gio.Subprocess({argv: ['/bin/kill', filename]});
             proc.init(null);
@@ -337,7 +337,7 @@ function launchDesktop() {
 
     data.reloadTime = 100;
     let argv = [];
-    argv.push(GLib.build_filenamev([ExtensionUtils.getCurrentExtension().path, 'adieu.js']));
+    argv.push(GLib.build_filenamev([ExtensionUtils.getCurrentExtension().path, 'ding.js']));
     // Specify that we are going to pass an UUID through STDIN
     argv.push('-U');
     // The path. Allows the program to find translations, settings and modules.
@@ -392,16 +392,16 @@ function launchDesktop() {
      *
      * It also reads STDOUT and STDERR and sends it to the journal using global.log(). This allows to
      * have any error from the desktop app in the same journal than other extensions. Every line from
-     * the desktop program is prepended with "ADIEU: " (Another Desktop Icon Extension)
+     * the desktop program is prepended with "DING: " (Desktop Icons New Generation)
      */
     data.currentProcess.communicate_async(GLib.Bytes.new(data.appUUID + '\n'), null, (object, res) => {
         try {
             let [available, stdout, stderr] = object.communicate_finish(res);
             if (stdout.length != 0) {
-                global.log('ADIEU: ' + String.fromCharCode.apply(null, stdout.get_data()));
+                global.log('DING: ' + String.fromCharCode.apply(null, stdout.get_data()));
             }
         } catch(e) {
-            global.log('ADIEU_Error ' + e);
+            global.log('DING_Error ' + e);
         }
     });
     //appPid = Number(_currentProcess.get_identifier());
