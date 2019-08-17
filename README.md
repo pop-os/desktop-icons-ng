@@ -1,4 +1,4 @@
-# ADIEU
+# ADIEU Another Desktop Icons Extension
 
 ## What  is it
 
@@ -24,8 +24,7 @@ Version 0.1.0 alpha.
 ## TO-DO
 
 * Use file events instead of refreshing the whole desktop
-* Check is desktop folder has write permissions for everyone
-* Add files being dragged into the desktop at the coordinates where it is being dragged
+* Add files being dragged into the desktop at the coordinates where they are being dragged
 
 ## How to contribute
 

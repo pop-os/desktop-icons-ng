@@ -1,11 +1,10 @@
 {
-    "description": "Another Desktop Icons Extension", 
-    "name": "Adieu", 
+    "description": "Adds icons to the desktop. Fork of the original Desktop Icons extension, with several enhacements.",
+    "name": "Another Desktop Icons Extension (ADIEU)",
     "shell-version": [
-      "3.28", 
-      "3.30", 
+      "3.30",
       "3.32"
     ],
-    "uuid": "adieu@rastersoft.com", 
+    "uuid": "adieu@rastersoft.com",
     "version": 1
   }
