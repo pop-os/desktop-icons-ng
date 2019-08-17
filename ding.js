@@ -53,7 +53,7 @@ for(let arg of ARGV) {
         }
         continue;
     }
-    if (error) {
+    if (errorFound) {
         break;
     }
     switch(lastCommand) {
