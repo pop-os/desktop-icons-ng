@@ -35,19 +35,8 @@ const Gettext = imports.gettext.domain('adieu');
 
 const _ = Gettext.gettext;
 
-var DesktopManager = GObject.registerClass({
-    Properties: {
-        'writable-by-others': GObject.ParamSpec.boolean(
-            'writable-by-others',
-            'WritableByOthers',
-            'Whether the desktop\'s directory can be written by others (o+w unix permission)',
-            GObject.ParamFlags.READABLE,
-            false
-        )
-    }
-}, class DesktopManager extends GObject.Object {
-    _init(appUuid, desktopList, scale, codePath) {
-        super._init();
+var DesktopManager = class {
+    constructor(appUuid, desktopList, scale, codePath) {
 
         Gtk.init(null);
         DBusUtils.init();
@@ -55,8 +44,8 @@ var DesktopManager = GObject.registerClass({
         this._scale = scale;
         this._desktopFilesChanged = false;
         this._readingDesktopFiles = true;
-        let desktopDir = DesktopIconsUtil.getDesktopDir();
-        this._monitorDesktopDir = desktopDir.monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, null);
+        this._desktopDir = DesktopIconsUtil.getDesktopDir();
+        this._monitorDesktopDir = this._desktopDir.monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, null);
         this._monitorDesktopDir.set_rate_limit(1000);
         this._monitorDesktopDir.connect('changed', (obj, file, otherFile, eventType) => this._updateDesktopIfChanged(file, otherFile, eventType));
         this._settingsId = Prefs.settings.connect('changed', () => {
@@ -442,7 +431,7 @@ var DesktopManager = GObject.registerClass({
     }
 
     _onOpenDesktopInFilesClicked() {
-        Gio.AppInfo.launch_default_for_uri_async(DesktopIconsUtil.getDesktopDir().get_uri(),
+        Gio.AppInfo.launch_default_for_uri_async(this._desktopDir.get_uri(),
             null, null,
             (source, result) => {
                 try {
@@ -455,7 +444,7 @@ var DesktopManager = GObject.registerClass({
     }
 
     _onOpenTerminalClicked() {
-        let desktopPath = DesktopIconsUtil.getDesktopDir().get_path();
+        let desktopPath = this._desktopDir.get_path();
         DesktopIconsUtil.launchTerminal(desktopPath);
     }
 
@@ -468,7 +457,7 @@ var DesktopManager = GObject.registerClass({
                 return;
             }
 
-            let desktopDir = DesktopIconsUtil.getDesktopDir().get_uri();
+            let desktopDir = this._desktopDir.get_uri();
             if (is_cut) {
                 DBusUtils.NautilusFileOperationsProxy.MoveURIsRemote(files, desktopDir,
                     (result, error) => {
@@ -599,14 +588,13 @@ var DesktopManager = GObject.registerClass({
             fileItem.removeFromGrid();
         }
         this._fileList = [];
-        let desktopDir = DesktopIconsUtil.getDesktopDir();
 
         this._desktopFilesChanged = false;
         if (this._desktopEnumerateCancellable)
             this._desktopEnumerateCancellable.cancel();
 
         this._desktopEnumerateCancellable = new Gio.Cancellable();
-        desktopDir.enumerate_children_async(
+        this._desktopDir.enumerate_children_async(
             Enums.DEFAULT_ATTRIBUTES,
             Gio.FileQueryInfoFlags.NONE,
             GLib.PRIORITY_DEFAULT,
@@ -872,4 +860,4 @@ var DesktopManager = GObject.registerClass({
             );
         }
     }
-});
+}

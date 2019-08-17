@@ -87,11 +87,9 @@ const Gettext = imports.gettext;
 
 Gettext.bindtextdomain("adieu", GLib.build_filenamev([codePath, "locale"]));
 
-var Extension = {};
-
 const DesktopManager = imports.desktopManager;
 
 Prefs.init(codePath);
 
-Extension.desktopManager = new DesktopManager.DesktopManager(appUuid, desktops, zoom, codePath);
+var desktopManager = new DesktopManager.DesktopManager(appUuid, desktops, zoom, codePath);
 Gtk.main();
