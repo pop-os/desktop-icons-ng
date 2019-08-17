@@ -1,6 +1,6 @@
 {
     "description": "Adds icons to the desktop. Fork of the original Desktop Icons extension, with several enhancements .",
-    "name": "Desktop Icons New Generation (DING)",
+    "name": "Desktop Icons NG (DING)",
     "shell-version": [
       "3.30",
       "3.32"
