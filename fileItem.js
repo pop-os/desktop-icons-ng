@@ -579,7 +579,7 @@ var FileItem = class {
         this.metadataTrusted = !this.trustedDesktopFile;
 
         /*
-         * we're marking as trusted, make the file executable too. note that we
+         * we're marking as trusted, make the file executable too. Note that we
          * do not ever remove the executable bit, since we don't know who set
          * it.
          */
@@ -587,17 +587,9 @@ var FileItem = class {
             let info = new Gio.FileInfo();
             let newUnixMode = this._unixmode | Enums.S_IXUSR;
             info.set_attribute_uint32(Gio.FILE_ATTRIBUTE_UNIX_MODE, newUnixMode);
-            this._file.set_attributes_async(info,
-                                            Gio.FileQueryInfoFlags.NONE,
-                                            GLib.PRIORITY_LOW,
-                                            null,
-                (source, result) => {
-                    try {
-                        source.set_attributes_finish (result);
-                    } catch(e) {
-                        log(`Failed to set unix mode: ${e.message}`);
-                    }
-            });
+            this._file.set_attributes(info,
+                                      Gio.FileQueryInfoFlags.NONE,
+                                      null);
         }
     }
 
