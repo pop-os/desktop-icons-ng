@@ -15,11 +15,13 @@ extensions_dir = join_paths(prefix, 'share', 'gnome-shell', 'extensions', 'adieu
 install_data([
 #    'createFolderDialog.js',
     'adieu.js',
+    'askNamePopup.js',
     'createThumbnail.js',
     'dbusUtils.js',
     'desktopGrid.js',
     'desktopIconsUtil.js',
     'desktopManager.js',
+    'enums.js',
     'extension.js',
     'fileItem.js',
     'metadata.json',
