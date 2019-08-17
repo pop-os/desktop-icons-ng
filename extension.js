@@ -33,7 +33,7 @@ const Mainloop = imports.mainloop;
 let data = {};
 
 /**
- * Replaces a method in a class with out own method, and stores the original
+ * Replaces a method in a class with our own method, and stores the original
  * one in 'data' using 'old_XXXX' (being XXXX the name of the original method),
  * or 'old_classId_XXXX' if 'classId' is defined. This is done this way for the
  * case that two methods with the same name must be replaced in two different
