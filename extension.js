@@ -139,10 +139,11 @@ function newListWindows() {
  */
 function enable() {
     // If the desktop is still starting up, we wait until it is ready
-    if (Main.layoutManager._startingUp)
+    if (Main.layoutManager._startingUp) {
         data.startupPreparedId = Main.layoutManager.connect('startup-complete', () => innerEnable());
-    else
+    } else {
         innerEnable();
+    }
 }
 
 /**
@@ -163,6 +164,10 @@ function innerEnable() {
             return false;
         }
         let window = windowActor.get_meta_window();
+        /*
+         * If the window title is the same than the UUID (which was passed through a secure
+         * channel), then this is the window of our process, so we manage it.
+         */
         if (window.get_title() == data.appUUID) {
             /*
              * the desktop window is big enough to cover all the monitors in the system,
@@ -220,6 +225,10 @@ function innerEnable() {
         });
     }
     data.switchWorkspaceId = global.window_manager.connect('switch-workspace', () => {
+        /*
+         * If the user switches to another workspace, ensure that the desktop window
+         * is sent to the bottom, thus giving the focus to any window that is there
+         */
         if (data.desktopWindow) {
             data.desktopWindow.lower();
         }
@@ -233,14 +242,18 @@ function innerEnable() {
  */
 function disable() {
     data.isEnabled = false;
-    if (data.switchWorkspaceId)
+    if (data.switchWorkspaceId) {
         global.window_manager.disconnect(data.switchWorkspaceId);
-    if (data.startupPreparedId)
+    }
+    if (data.startupPreparedId) {
         Main.layoutManager.disconnect(data.startupPreparedId);
-    if (data.idMap)
+    }
+    if (data.idMap) {
         global.window_manager.disconnect(data.idMap);
-    if (data.monitorsChangedId)
+    }
+    if (data.monitorsChangedId) {
         Main.layoutManager.disconnect(data.monitorsChangedId);
+    }
     killCurrentProcess();
 }
 
@@ -270,9 +283,10 @@ function killCurrentProcess() {
 
 /**
  * This function checks all the processes in the system and kills those
- * that are a desktop manager. This allows to avoid having several ones in
- * case gnome shell resets, or other odd cases. It requires the /proc virtual
- * filesystem, but doesn't fail if it doesn't exist.
+ * that are a desktop manager from the current user (but not others).
+ * This allows to avoid having several ones in case gnome shell resets,
+ * or other odd cases. It requires the /proc virtual filesystem, but
+ * doesn't fail if it doesn't exist.
  */
 
 function doKillAllOldDesktopProcesses() {
