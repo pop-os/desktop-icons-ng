@@ -25,6 +25,7 @@ Version 0.1.0 alpha.
 
 * Use file events instead of refreshing the whole desktop
 * Check is desktop folder has write permissions for everyone
+* Add files being dragged into the desktop at the coordinates where it is being dragged
 
 ## How to contribute
 
