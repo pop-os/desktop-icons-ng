@@ -134,12 +134,6 @@ var FileItem = class {
             });
         }
         this.actor.show_all();
-        // TODO
-        /*this._writebleByOthersId = this._desktopManager.connect('notify::writable-by-others', () => {
-            if (!this._isValidDesktopFile)
-                return;
-            this._refreshMetadataAsync(true);
-        });*/
     }
 
     removeFromGrid() {
@@ -232,24 +226,29 @@ var FileItem = class {
 
     _onDestroy() {
         /* Regular file data */
-        if (this._queryFileInfoCancellable)
+        if (this._queryFileInfoCancellable) {
             this._queryFileInfoCancellable.cancel();
+        }
 
         /* Thumbnailing */
-        if (this._thumbnailScriptWatch)
+        if (this._thumbnailScriptWatch) {
             GLib.source_remove(this._thumbnailScriptWatch);
-        if (this._loadThumbnailDataCancellable)
+        }
+        if (this._loadThumbnailDataCancellable) {
             this._loadThumbnailDataCancellable.cancel();
+        }
 
         /* Trash */
         if (this._monitorTrashDir) {
             this._monitorTrashDir.disconnect(this._monitorTrashId);
             this._monitorTrashDir.cancel();
         }
-        if (this._queryTrashInfoCancellable)
+        if (this._queryTrashInfoCancellable) {
             this._queryTrashInfoCancellable.cancel();
-        if (this._scheduleTrashRefreshId)
+        }
+        if (this._scheduleTrashRefreshId) {
             GLib.source_remove(this._scheduleTrashRefreshId);
+        }
     }
 
     _refreshMetadataAsync(rebuild) {
@@ -848,6 +847,7 @@ var FileItem = class {
         return this._isValidDesktopFile &&
                this._attributeCanExecute &&
                this.metadataTrusted &&
+               !this._desktopManager.writableByOthers &&
                !this._writableByOthers;
     }
 

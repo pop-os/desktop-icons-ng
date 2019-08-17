@@ -45,6 +45,7 @@ var DesktopManager = class {
         this._desktopFilesChanged = false;
         this._readingDesktopFiles = true;
         this._desktopDir = DesktopIconsUtil.getDesktopDir();
+        this._updateWritableByOthers();
         this._monitorDesktopDir = this._desktopDir.monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, null);
         this._monitorDesktopDir.set_rate_limit(1000);
         this._monitorDesktopDir.connect('changed', (obj, file, otherFile, eventType) => this._updateDesktopIfChanged(file, otherFile, eventType));
@@ -702,11 +703,38 @@ var DesktopManager = class {
         }
     }
 
+    _updateWritableByOthers() {
+        let info = this._desktopDir.query_info(Gio.FILE_ATTRIBUTE_UNIX_MODE,
+                                               Gio.FileQueryInfoFlags.NONE,
+                                               null);
+        this.unixMode = info.get_attribute_uint32(Gio.FILE_ATTRIBUTE_UNIX_MODE);
+        let writableByOthers = (this.unixMode & Enums.S_IWOTH) != 0;
+        if (writableByOthers != this.writableByOthers) {
+            this.writableByOthers = writableByOthers;
+            if (this.writableByOthers) {
+                print(`desktop-icons: Desktop is writable by others - will not allow launching any desktop files`);
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     _updateDesktopIfChanged(file, otherFile, eventType) {
         if (this._readingDesktopFiles) {
             // just notify that the files changed while being read from the disk.
             this._desktopFilesChanged = true;
             return;
+        }
+        switch(eventType) {
+            case Gio.FileMonitorEvent.ATTRIBUTE_CHANGED:
+                /* a file changed, rather than the desktop itself */
+                if (file.get_uri() == this._desktopDir.get_uri()) {
+                    if (this._updateWritableByOthers()) {
+                        this._readFileList();
+                    }
+                    return;
+                }
         }
         // For now, while I'm implementing things like all the menu options, and selection
         // just exit to make the extension reload it again and refresh the desktop
