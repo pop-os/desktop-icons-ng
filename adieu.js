@@ -1,4 +1,4 @@
-#!/usr/bin/gjs
+#!/usr/bin/env gjs
 
 /* ADIEU: Another Desktop Icons Extension for GNOME Shell
  *
