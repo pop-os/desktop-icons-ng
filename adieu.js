@@ -29,7 +29,7 @@ let appUuid = null;
 let desktops = [];
 let lastCommand = null;
 let codePath = '.';
-let error = false;
+let errorFound = false;
 let zoom = 1.0;
 for(let arg of ARGV) {
     if (lastCommand == null) {
@@ -47,8 +47,8 @@ for(let arg of ARGV) {
             lastCommand = arg;
             break;
         default:
-            print("Parameter not recognized. Aborting.");
-            error = true;
+            print(`Parameter ${arg} not recognized. Aborting.`);
+            errorFound = true;
             break;
         }
         continue;
@@ -89,7 +89,13 @@ Gettext.bindtextdomain("adieu", GLib.build_filenamev([codePath, "locale"]));
 
 const DesktopManager = imports.desktopManager;
 
-Prefs.init(codePath);
-
-var desktopManager = new DesktopManager.DesktopManager(appUuid, desktops, zoom, codePath);
-Gtk.main();
+if (!errorFound) {
+    Prefs.init(codePath);
+    var desktopManager = new DesktopManager.DesktopManager(appUuid, desktops, zoom, codePath);
+    Gtk.main();
+    // return value
+    0;
+} else {
+    // return value
+    1;
+}
