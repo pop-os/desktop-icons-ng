@@ -7,9 +7,8 @@ but also has these advantages:
 
  * Drag'n'Drop, both inside the desktop, and between desktop and applications, and nautilus windows
  * Allows to use "Open with..." option with several files
- * When clicking on an icon with a name too large to fit, it shows the full name
+ * When hovering or clicking on an icon with a name too large to fit, it shows the full name
  * Doesn't hang the compositor when there is too much activity in the desktop folder
- * Faster
 
 But it is still an alpha development, so it probably still have a lot of bugs. Use with care.
 
@@ -26,7 +25,6 @@ Version 0.1.0 alpha.
 
 * Use file events instead of refreshing the whole desktop
 * Check is desktop folder has write permissions for everyone
-* Adjust label size to put the maximum possible number or lines
 
 ## How to contribute
 

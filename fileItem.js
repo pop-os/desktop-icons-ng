@@ -716,7 +716,7 @@ var FileItem = class {
     _setSelectedStatus() {
         if (this._isSelected && !this._styleContext.has_class('desktop-icons-selected')) {
             this._styleContext.add_class('desktop-icons-selected');
-            this._label.set_lines(8); // should be enough
+            this._label.showAllLines();
         }
         if (!this._isSelected && this._styleContext.has_class('desktop-icons-selected')) {
             this._styleContext.remove_class('desktop-icons-selected');
@@ -766,6 +766,7 @@ var FileItem = class {
     _onEnter(actor, event) {
         if (!this._styleContext.has_class('file-item-hover')) {
             this._styleContext.add_class('file-item-hover');
+            this._label.showAllLines();
         }
         return false;
     }
@@ -774,6 +775,7 @@ var FileItem = class {
         this._primaryButtonPressed = false;
         if (this._styleContext.has_class('file-item-hover')) {
             this._styleContext.remove_class('file-item-hover');
+            this._label.restoreLines();
         }
         return false;
     }
@@ -940,8 +942,13 @@ var MyLabel = GObject.registerClass({
         }
     }
 
+    showAllLines() {
+        this.set_lines(8); // should be enough
+        this.queue_draw();
+    }
+
     restoreLines() {
         this.set_lines(this._numberOfLines);
-        this.queue_allocate();
+        this.queue_draw();
     }
 });
