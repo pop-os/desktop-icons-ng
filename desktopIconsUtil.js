@@ -91,10 +91,10 @@ function distanceBetweenPoints(x, y, x2, y2) {
 
 function getExtraFolders() {
     let extraFolders = new Array();
-    if (Prefs.settings.get_boolean('show-home')) {
+    if (Prefs.desktopSettings.get_boolean('show-home')) {
         extraFolders.push([Gio.File.new_for_commandline_arg(GLib.get_home_dir()), Enums.FileType.USER_DIRECTORY_HOME]);
     }
-    if (Prefs.settings.get_boolean('show-trash')) {
+    if (Prefs.desktopSettings.get_boolean('show-trash')) {
         extraFolders.push([Gio.File.new_for_uri('trash:///'), Enums.FileType.USER_DIRECTORY_TRASH]);
     }
     return extraFolders;

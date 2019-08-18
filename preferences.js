@@ -35,7 +35,7 @@ var extensionPath;
 
 var nautilusSettings;
 var gtkSettings;
-var settings;
+var desktopSettings;
 // This is already in Nautilus settings, so it should not be made tweakable here
 var CLICK_POLICY_SINGLE = false;
 
@@ -52,7 +52,7 @@ function init(path) {
         nautilusSettings.connect('changed', _onNautilusSettingsChanged);
         _onNautilusSettingsChanged();
     }
-    settings = get_schema(Enums.SCHEMA);
+    desktopSettings = get_schema(Enums.SCHEMA);
 }
 
 function get_schema(schema) {
@@ -88,16 +88,27 @@ function showPreferences() {
     frame.set_spacing(10);
     frame.set_border_width(10);
 
-    frame.add(buildSelector('icon-size', _("Size for the desktop icons"), { 'small': _("Small"), 'standard': _("Standard"), 'large': _("Large") }));
-    frame.add(buildSwitcher('show-home', _("Show the personal folder in the desktop")));
-    frame.add(buildSwitcher('show-trash', _("Show the trash icon in the desktop")));
+    frame.add(buildSelector(desktopSettings, 'icon-size', _("Size for the desktop icons"), { 'small': _("Small"), 'standard': _("Standard"), 'large': _("Large") }));
+    frame.add(buildSwitcher(desktopSettings, 'show-home', _("Show the personal folder in the desktop")));
+    frame.add(buildSwitcher(desktopSettings, 'show-trash', _("Show the trash icon in the desktop")));
+
+    frame.add(new Gtk.Separator({ orientation: Gtk.Orientation.HORIZONTAL }));
+
+    let nautilusFrame = new Gtk.Frame({ label: _("Settings shared with Nautilus"),
+                                        shadow_type: Gtk.ShadowType.ETCHED_IN });
+    let nautilusBox = new Gtk.Box({ orientation: Gtk.Orientation.VERTICAL, margin: 5, spacing: 10});
+    nautilusFrame.add(nautilusBox);
+    frame.add(nautilusFrame);
+
+    nautilusBox.add(buildSelector(nautilusSettings, 'click-policy', _("Click type for open files"), { 'single': _("Single click"), 'double': _("Double click"), }));
+    nautilusBox.add(buildSwitcher(gtkSettings, 'show-hidden', _("Show hidden files")));
     window.show_all();
     window.run();
     window.hide();
     window.destroy();
 }
 
-function buildSwitcher(key, labelText) {
+function buildSwitcher(settings, key, labelText) {
     let hbox = new Gtk.Box({ orientation: Gtk.Orientation.HORIZONTAL, spacing: 10 });
     let label = new Gtk.Label({ label: labelText, xalign: 0 });
     let switcher = new Gtk.Switch({ active: settings.get_boolean(key) });
@@ -107,7 +118,7 @@ function buildSwitcher(key, labelText) {
     return hbox;
 }
 
-function buildSelector(key, labelText, elements) {
+function buildSelector(settings, key, labelText, elements) {
     let listStore = new Gtk.ListStore();
     listStore.set_column_types ([GObject.TYPE_STRING, GObject.TYPE_STRING]);
     let schemaKey = settings.settings_schema.get_key(key);
@@ -138,13 +149,13 @@ function _onNautilusSettingsChanged() {
 
 function get_icon_size() {
     // this one doesn't need scaling because Gnome Shell automagically scales the icons
-    return Enums.ICON_SIZE[settings.get_string('icon-size')];
+    return Enums.ICON_SIZE[desktopSettings.get_string('icon-size')];
 }
 
 function get_desired_width(scale_factor) {
-    return Enums.ICON_WIDTH[settings.get_string('icon-size')] * scale_factor;
+    return Enums.ICON_WIDTH[desktopSettings.get_string('icon-size')] * scale_factor;
 }
 
 function get_desired_height(scale_factor) {
-    return Enums.ICON_HEIGHT[settings.get_string('icon-size')] * scale_factor;
+    return Enums.ICON_HEIGHT[desktopSettings.get_string('icon-size')] * scale_factor;
 }

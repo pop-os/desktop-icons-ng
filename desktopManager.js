@@ -40,6 +40,7 @@ var DesktopManager = class {
 
         Gtk.init(null);
         DBusUtils.init();
+        this._desktopList = desktopList;
         this._appUuid = appUuid;
         this._scale = scale;
         this._desktopFilesChanged = false;
@@ -49,12 +50,16 @@ var DesktopManager = class {
         this._monitorDesktopDir = this._desktopDir.monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, null);
         this._monitorDesktopDir.set_rate_limit(1000);
         this._monitorDesktopDir.connect('changed', (obj, file, otherFile, eventType) => this._updateDesktopIfChanged(file, otherFile, eventType));
-        this._settingsId = Prefs.settings.connect('changed', () => {
-            Gtk.main_quit(); // will be reloaded automagically
+        this._settingsId = Prefs.desktopSettings.connect('changed', (obj, key) => {
+            if (key == 'icon-size') {
+                this._removeAllFilesFromGrids();
+                this._createGrids();
+            }
+            this._updateDesktop();
         });
         this._gtkSettingsId = Prefs.gtkSettings.connect('changed', (obj, key) => {
             if (key == 'show-hidden') {
-                Gtk.main_quit(); // will be reloaded automagically
+                this._updateDesktop();
             }
         });
 
@@ -95,24 +100,22 @@ var DesktopManager = class {
 
         this.setDropDestination(this._window);
 
-        this._desktops = [];
-        let x1, y1, x2, y2;
-        x1 = desktopList[0].x;
-        x2 = desktopList[0].x + desktopList[0].w;
-        y1 = desktopList[0].y;
-        y2 = desktopList[0].y + desktopList[0].h;
+        this._x1 = desktopList[0].x;
+        this._x2 = desktopList[0].x + desktopList[0].w;
+        this._y1 = desktopList[0].y;
+        this._y2 = desktopList[0].y + desktopList[0].h;
         for(let desktop of desktopList) {
-            if (x1 > desktop.x) {
-                x1 = desktop.x;
+            if (this._x1 > desktop.x) {
+                this._x1 = desktop.x;
             }
-            if (y1 > desktop.y) {
-                y1 = desktop.y;
+            if (this._y1 > desktop.y) {
+                this._y1 = desktop.y;
             }
-            if (x2 < (desktop.x + desktop.w)) {
-                x2 = desktop.x + desktop.w;
+            if (this._x2 < (desktop.x + desktop.w)) {
+                this._x2 = desktop.x + desktop.w;
             }
-            if (y2 < (desktop.y + desktop.h)) {
-                y2 = desktop.y + desktop.h;
+            if (this._y2 < (desktop.y + desktop.h)) {
+                this._y2 = desktop.y + desktop.h;
             }
         }
 
@@ -143,19 +146,17 @@ var DesktopManager = class {
                                                               green: (colorNumber&0x04) ? 1.0 : 0.0,
                                                               blue: (colorNumber&0x01) ? 1.0 : 0.0,
                                                               alpha: 1.0}));
-                    cr.rectangle(desktop.x - x1, desktop.y - y1, desktop.w, desktop.h);
+                    cr.rectangle(desktop.x - this._x1, desktop.y - this._y1, desktop.w, desktop.h);
                     cr.fill();
                 }
                 this._doDrawStandalone(cr);
             });
         }
+        this._createGrids();
 
-        for(let desktop of desktopList) {
-            this._desktops.push(new DesktopGrid.DesktopGrid(this, this._container, desktop.x, desktop.y, desktop.w, desktop.h, x1, y1, scale));
-        }
         this._window.show_all();
-        this._window.set_size_request(x2 - x1, y2 - y1);
-        this._window.resize(x2 - x1, y2 - y1);
+        this._window.set_size_request(this._x2 - this._x1, this._y2 - this._y1);
+        this._window.resize(this._x2 - this._x1, this._y2 - this._y1);
         this._window.connect('button-press-event', (actor, event) => this._onPressButton(actor, event));
         this._window.connect('motion-notify-event', (actor, event) => this._onMotion(actor, event));
         this._window.connect('button-release-event', (actor, event) => this._onReleaseButton(actor, event));
@@ -168,6 +169,13 @@ var DesktopManager = class {
         DBusUtils.NautilusFileOperationsProxy.connect('g-properties-changed', this._undoStatusChanged.bind(this));
         this._fileList = [];
         this._readFileList();
+    }
+
+    _createGrids() {
+        this._desktops = [];
+        for(let desktop of this._desktopList) {
+            this._desktops.push(new DesktopGrid.DesktopGrid(this, this._container, desktop.x, desktop.y, desktop.w, desktop.h, this._x1, this._y1, this._scale));
+        }
     }
 
     _doDrawRubberBand(cr) {
@@ -583,12 +591,16 @@ var DesktopManager = class {
         }
     }
 
-    _readFileList() {
-        this._readingDesktopFiles = true;
+    _removeAllFilesFromGrids() {
         for(let fileItem of this._fileList) {
             fileItem.removeFromGrid();
         }
         this._fileList = [];
+    }
+
+    _readFileList() {
+        this._readingDesktopFiles = true;
+        this._removeAllFilesFromGrids();
 
         this._desktopFilesChanged = false;
         if (this._desktopEnumerateCancellable)
@@ -717,6 +729,15 @@ var DesktopManager = class {
             return true;
         } else {
             return false;
+        }
+    }
+
+    _updateDesktop() {
+        if (this._readingDesktopFiles) {
+            // just notify that the files changed while being read from the disk.
+            this._desktopFilesChanged = true;
+        } else {
+            this._readFileList();
         }
     }
 
