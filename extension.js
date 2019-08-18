@@ -87,7 +87,7 @@ function removeDesktopWindowFromList(windowList) {
      * and just return the value of the old method without altering it when the
      * extension is disabled.
      */
-    if (!data.isEnabled) {
+    if (!data.isEnabled || !data.appUUID) {
         return windowList;
     }
     let returnVal = [];
