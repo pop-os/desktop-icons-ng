@@ -76,7 +76,8 @@ this seems contrary to the Gnome Shell rules, which dictates that 'init()' is on
 variables, and any kind of replacement must be made inside 'enable()', and be unmade in 'disable()',
 the fact is that it is a risky operation, because if several extensions patches the same method,
 the only way of ensuring that the system is kept in the desired functional state when disabling
-extensions, they must be disabled in the reverse order than they were enabled.
+extensions, is to disable them exactly in the reverse order than they were enabled. Disabling
+them in any other order will break the system.
 
 This is why in this extension, the patching operation is done at 'init()', and the new function
 is responsible of checking whether the extension is enabled or not. If it is, then it does the
