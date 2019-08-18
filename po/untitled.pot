@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-17 21:43+0200\n"
+"POT-Creation-Date: 2019-08-18 20:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
-#: ../preferences.js:86 ../desktopManager.js:428
+#: ../preferences.js:86 ../desktopManager.js:436
 msgid "Settings"
 msgstr ""
 
@@ -47,6 +47,26 @@ msgstr ""
 
 #: ../preferences.js:93
 msgid "Show the trash icon in the desktop"
+msgstr ""
+
+#: ../preferences.js:97
+msgid "Settings shared with Nautilus"
+msgstr ""
+
+#: ../preferences.js:103
+msgid "Click type for open files"
+msgstr ""
+
+#: ../preferences.js:103
+msgid "Single click"
+msgstr ""
+
+#: ../preferences.js:103
+msgid "Double click"
+msgstr ""
+
+#: ../preferences.js:104
+msgid "Show hidden files"
 msgstr ""
 
 #: ../desktopIconsUtil.js:68
@@ -97,43 +117,43 @@ msgstr ""
 msgid "Show in Files"
 msgstr ""
 
-#: ../fileItem.js:655 ../desktopManager.js:406
+#: ../fileItem.js:655 ../desktopManager.js:414
 msgid "Open in Terminal"
 msgstr ""
 
-#: ../desktopManager.js:382
+#: ../desktopManager.js:390
 msgid "New Folder"
 msgstr ""
 
-#: ../desktopManager.js:388
+#: ../desktopManager.js:396
 msgid "Paste"
 msgstr ""
 
-#: ../desktopManager.js:392
+#: ../desktopManager.js:400
 msgid "Undo"
 msgstr ""
 
-#: ../desktopManager.js:396
+#: ../desktopManager.js:404
 msgid "Redo"
 msgstr ""
 
-#: ../desktopManager.js:402
+#: ../desktopManager.js:410
 msgid "Show Desktop in Files"
 msgstr ""
 
-#: ../desktopManager.js:412
+#: ../desktopManager.js:420
 msgid "Change Background…"
 msgstr ""
 
-#: ../desktopManager.js:421
+#: ../desktopManager.js:429
 msgid "Display Settings"
 msgstr ""
 
-#: ../desktopManager.js:841
+#: ../desktopManager.js:862
 msgid "Rename"
 msgstr ""
 
-#: ../desktopManager.js:879
+#: ../desktopManager.js:900
 msgid "New folder"
 msgstr ""
 

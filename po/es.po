@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-17 21:43+0200\n"
-"PO-Revision-Date: 2019-08-13 10:02+0200\n"
+"POT-Creation-Date: 2019-08-18 20:20+0200\n"
+"PO-Revision-Date: 2019-08-18 20:21+0200\n"
 "Last-Translator: Sergio Costas <rastersoft@gmail.com>\n"
 "Language-Team: Español; Castellano <rastersoft@gmail.com>\n"
 "Language: es\n"
@@ -24,7 +24,7 @@ msgstr ""
 msgid "OK"
 msgstr "Aceptar"
 
-#: ../preferences.js:86 ../desktopManager.js:428
+#: ../preferences.js:86 ../desktopManager.js:436
 msgid "Settings"
 msgstr "Configuración"
 
@@ -51,6 +51,26 @@ msgstr "Mostrar la carpeta personal en el escritorio"
 #: ../preferences.js:93
 msgid "Show the trash icon in the desktop"
 msgstr "Mostrar la papelera en el escritorio"
+
+#: ../preferences.js:97
+msgid "Settings shared with Nautilus"
+msgstr "Configuración compartida con Nautilus"
+
+#: ../preferences.js:103
+msgid "Click type for open files"
+msgstr "Tipo de click para abrir ficheros"
+
+#: ../preferences.js:103
+msgid "Single click"
+msgstr "Click simple"
+
+#: ../preferences.js:103
+msgid "Double click"
+msgstr "Click doble"
+
+#: ../preferences.js:104
+msgid "Show hidden files"
+msgstr "Mostrar archivos ocultos"
 
 #: ../desktopIconsUtil.js:68
 msgid "Command not found"
@@ -100,43 +120,43 @@ msgstr "Propiedades"
 msgid "Show in Files"
 msgstr "Mostrar en Files"
 
-#: ../fileItem.js:655 ../desktopManager.js:406
+#: ../fileItem.js:655 ../desktopManager.js:414
 msgid "Open in Terminal"
 msgstr "Abrir en una terminal"
 
-#: ../desktopManager.js:382
+#: ../desktopManager.js:390
 msgid "New Folder"
 msgstr "Nueva carpeta"
 
-#: ../desktopManager.js:388
+#: ../desktopManager.js:396
 msgid "Paste"
 msgstr "Pegar"
 
-#: ../desktopManager.js:392
+#: ../desktopManager.js:400
 msgid "Undo"
 msgstr "Deshacer"
 
-#: ../desktopManager.js:396
+#: ../desktopManager.js:404
 msgid "Redo"
 msgstr "Rehacer"
 
-#: ../desktopManager.js:402
+#: ../desktopManager.js:410
 msgid "Show Desktop in Files"
 msgstr "Mostrar el escritorio en Archivos"
 
-#: ../desktopManager.js:412
+#: ../desktopManager.js:420
 msgid "Change Background…"
 msgstr "Cambiar el fondo..."
 
-#: ../desktopManager.js:421
+#: ../desktopManager.js:429
 msgid "Display Settings"
 msgstr "Configuración de pantalla"
 
-#: ../desktopManager.js:841
+#: ../desktopManager.js:862
 msgid "Rename"
 msgstr "Renombrar…"
 
-#: ../desktopManager.js:879
+#: ../desktopManager.js:900
 msgid "New folder"
 msgstr "Nueva carpeta"
 
