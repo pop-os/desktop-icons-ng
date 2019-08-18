@@ -318,8 +318,8 @@ function doKillAllOldDesktopProcesses() {
                 contents += String.fromCharCode(data[i]);
             }
         }
-        let path = '/usr/bin/gjs ' + GLib.build_filenamev([ExtensionUtils.getCurrentExtension().path, 'ding.js']);
-        if (('' + contents).startsWith(path)) {
+        let path = 'gjs ' + GLib.build_filenamev([ExtensionUtils.getCurrentExtension().path, 'ding.js']);
+        if (contents.startsWith(path)) {
             let proc = new Gio.Subprocess({argv: ['/bin/kill', filename]});
             proc.init(null);
             proc.wait(null);
