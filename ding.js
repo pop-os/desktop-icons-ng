@@ -61,7 +61,7 @@ for(let arg of ARGV) {
         codePath = arg;
         break;
     case '-D':
-        let data = arg.split(";");
+        let data = arg.split(":");
         desktops.push({x:parseInt(data[0]), y:parseInt(data[1]), w:parseInt(data[2]), h:parseInt(data[3])});
         break;
     case '-Z':
