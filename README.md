@@ -14,7 +14,7 @@ But it is still an alpha development, so it probably still have a lot of bugs. U
 
 ## Current version
 
-Version 0.1.0 alpha.
+Version 0.2.0 alpha.
 
 ## Requirements
 
@@ -25,8 +25,6 @@ Version 0.1.0 alpha.
 
 * Use file events instead of refreshing the whole desktop
 * Add files being dragged into the desktop at the coordinates where they are being dragged
-* Adjust the settings in "real time"
-* Add to the settings also those shared with Nautilus
 
 ## Internal architecture
 
