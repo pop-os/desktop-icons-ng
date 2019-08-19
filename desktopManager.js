@@ -630,16 +630,19 @@ var DesktopManager = class {
                             );
                         }
                         let info;
+                        let showHidden = Prefs.gtkSettings.get_boolean('show-hidden');
                         while ((info = fileEnum.next_file(null))) {
-                            this._fileList.push(
-                                new FileItem.FileItem(
-                                    this,
-                                    fileEnum.get_child(info),
-                                    info,
-                                    Enums.FileType.NONE,
-                                    this._scale
-                                )
+                            let fileItem = new FileItem.FileItem(
+                                this,
+                                fileEnum.get_child(info),
+                                info,
+                                Enums.FileType.NONE,
+                                this._scale
                             );
+                            if (fileItem.isHidden && !showHidden) {
+                                continue;
+                            }
+                            this._fileList.push(fileItem);
                         }
                         this._addFilesToDesktop(this._fileList, Enums.StoredCoordinates.PRESERVE);
                     } else {
@@ -657,12 +660,8 @@ var DesktopManager = class {
     _addFilesToDesktop(fileList, storeMode) {
         let outOfDesktops = [];
         let notAssignedYet = [];
-        let showHidden = Prefs.gtkSettings.get_boolean('show-hidden');
         // First, add those icons that fit in the current desktops
         for(let fileItem of fileList) {
-            if (fileItem.isHidden && !showHidden) {
-                continue;
-            }
             if (fileItem.savedCoordinates == null) {
                 notAssignedYet.push(fileItem);
                 continue;
