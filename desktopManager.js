@@ -149,7 +149,8 @@ var DesktopManager = class {
                     cr.rectangle(desktop.x - this._x1, desktop.y - this._y1, desktop.w, desktop.h);
                     cr.fill();
                 }
-                this._doDrawStandalone(cr);
+                this._doDrawRubberBand(cr);
+                return false;
             });
         }
         this._createGrids();
@@ -191,11 +192,6 @@ var DesktopManager = class {
                                                         alpha: 0.6}));
             cr.fill();
         }
-    }
-
-    _doDrawStandalone(cr) {
-        this._doDrawRubberBand(cr);
-        return false;
     }
 
     _configureSelectionColor() {
