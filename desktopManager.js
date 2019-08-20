@@ -95,8 +95,10 @@ var DesktopManager = class {
         //this._window.set_skip_pager_hint(true);
         //this._window.set_skip_taskbar_hint(true);
         //this._window.set_type_hint(Gdk.WindowTypeHint.DESKTOP);
+        this._eventBox = new Gtk.EventBox({ visible: true });
+        this._window.add(this._eventBox);
         this._container = new Gtk.Fixed();
-        this._window.add(this._container);
+        this._eventBox.add(this._container);
 
         this.setDropDestination(this._window);
 
@@ -129,13 +131,12 @@ var DesktopManager = class {
                 this._window.connect('draw', (widget, cr) => {
                     Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0}));
                     cr.paint();
-                    this._doDrawRubberBand(cr);
                     return false;
                 });
             }
-        } else {
-            this._window.connect('draw', (widget, cr) => {
-                // paint each desktop with a different color
+        }
+        this._container.connect('draw', (widget, cr) => {
+            if (!this._appUuid) {
                 let colorNumber = 0;
                 for(let desktop of desktopList) {
                     colorNumber++;
@@ -143,26 +144,25 @@ var DesktopManager = class {
                         colorNumber = 1; // avoid black
                     }
                     Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: (colorNumber&0x02) ? 1.0 : 0.0,
-                                                              green: (colorNumber&0x04) ? 1.0 : 0.0,
-                                                              blue: (colorNumber&0x01) ? 1.0 : 0.0,
-                                                              alpha: 1.0}));
+                                                            green: (colorNumber&0x04) ? 1.0 : 0.0,
+                                                            blue: (colorNumber&0x01) ? 1.0 : 0.0,
+                                                            alpha: 1.0}));
                     cr.rectangle(desktop.x - this._x1, desktop.y - this._y1, desktop.w, desktop.h);
                     cr.fill();
                 }
-                this._doDrawRubberBand(cr);
-                return false;
-            });
-        }
+            }
+            this._doDrawRubberBand(cr);
+        });
         this._createGrids();
 
         this._window.show_all();
         this._window.set_size_request(this._x2 - this._x1, this._y2 - this._y1);
         this._window.resize(this._x2 - this._x1, this._y2 - this._y1);
-        this._window.connect('button-press-event', (actor, event) => this._onPressButton(actor, event));
-        this._window.connect('motion-notify-event', (actor, event) => this._onMotion(actor, event));
-        this._window.connect('button-release-event', (actor, event) => this._onReleaseButton(actor, event));
-        this._window.connect('key-release-event', (actor, event) => this._onKeyPress(actor, event));
-        this._window.connect('drag-motion', (widget, context, x, y) => {
+        this._eventBox.connect('button-press-event', (actor, event) => this._onPressButton(actor, event));
+        this._eventBox.connect('motion-notify-event', (actor, event) => this._onMotion(actor, event));
+        this._eventBox.connect('button-release-event', (actor, event) => this._onReleaseButton(actor, event));
+        this._eventBox.connect('key-release-event', (actor, event) => this._onKeyPress(actor, event));
+        this._eventBox.connect('drag-motion', (widget, context, x, y) => {
             this._xDestination = x;
             this._yDestination = y;
         });
