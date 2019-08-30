@@ -100,7 +100,7 @@ var DesktopManager = class {
         this._container = new Gtk.Fixed();
         this._eventBox.add(this._container);
 
-        this.setDropDestination(this._window);
+        this.setDropDestination(this._eventBox);
 
         this._x1 = desktopList[0].x;
         this._x2 = desktopList[0].x + desktopList[0].w;
@@ -158,6 +158,10 @@ var DesktopManager = class {
         this._window.show_all();
         this._window.set_size_request(this._x2 - this._x1, this._y2 - this._y1);
         this._window.resize(this._x2 - this._x1, this._y2 - this._y1);
+        this._eventBox.add_events(Gdk.EventMask.BUTTON_MOTION_MASK |
+                                  Gdk.EventMask.BUTTON_PRESS_MASK |
+                                  Gdk.EventMask.BUTTON_RELEASE_MASK |
+                                  Gdk.EventMask.KEY_RELEASE_MASK);
         this._eventBox.connect('button-press-event', (actor, event) => this._onPressButton(actor, event));
         this._eventBox.connect('motion-notify-event', (actor, event) => this._onMotion(actor, event));
         this._eventBox.connect('button-release-event', (actor, event) => this._onReleaseButton(actor, event));
