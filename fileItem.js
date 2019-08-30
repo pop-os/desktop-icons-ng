@@ -876,7 +876,7 @@ var MyLabel = GObject.registerClass({
         this._maximumHeight = null;
         this.set_ellipsize(Pango.EllipsizeMode.END);
         this.set_line_wrap(true);
-        this.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
+        this.set_line_wrap_mode(Pango.WrapMode.CHAR);
         this.set_yalign(0.0);
         this.set_lines(this._numberOfLines);
 
