@@ -68,20 +68,6 @@ The extension also intercepts three Gnome Shell system calls, in order to hide t
 from the tab switcher and the Activities mode. These are 'Meta.Display.get_tab_list()',
 'Shell.Global.get_window_actors()', and 'Meta.Workspace.list_windows()'.
 
-An important note about this is that the methods are modified in the classes prototypes. Also,
-they are replaced in the 'init()' method, instead of doing it in the 'enable()' method. Although
-this seems contrary to the Gnome Shell rules, which dictates that 'init()' is only to initialize
-variables, and any kind of replacement must be made inside 'enable()', and be unmade in 'disable()',
-the fact is that it is a risky operation, because if several extensions patches the same method,
-the only way of ensuring that the system is kept in the desired functional state when disabling
-extensions, is to disable them exactly in the reverse order than they were enabled. Disabling
-them in any other order will break the system.
-
-This is why in this extension, the patching operation is done at 'init()', and the new function
-is responsible of checking whether the extension is enabled or not. If it is, then it does the
-operation, but if it isn't, then it just calls the old method with the same parameters and returns
-the same value without alterations.
-
 ## Launching the Desktop Icons application stand-alone
 
 It is possible to launch the desktop icons application in stand-alone mode to do debugging and

@@ -31,10 +31,16 @@ let lastCommand = null;
 let codePath = '.';
 let errorFound = false;
 let zoom = 1.0;
+let asDesktop = false;
 for(let arg of ARGV) {
     if (lastCommand == null) {
         switch(arg) {
+        case '-E':
+            // run it as a true desktop (transparent window and so on)
+            asDesktop = true;
+            break;
         case '-U':
+            // wait for an UUID from STDIN
             let stdin = new Gio.DataInputStream({
                 base_stream: new Gio.UnixInputStream({ fd: 0 })
             });
@@ -91,7 +97,7 @@ const DesktopManager = imports.desktopManager;
 
 if (!errorFound) {
     Prefs.init(codePath);
-    var desktopManager = new DesktopManager.DesktopManager(appUuid, desktops, zoom, codePath);
+    var desktopManager = new DesktopManager.DesktopManager(appUuid, desktops, zoom, codePath, asDesktop);
     Gtk.main();
     // return value
     0;
