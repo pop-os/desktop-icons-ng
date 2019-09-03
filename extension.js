@@ -61,9 +61,6 @@ function init() {
     data.currentProcess = null;
     data.desktopWindow = null;
     data.reloadTime = 100;
-    replaceMethod(Meta.Display, 'get_tab_list', newGetTabList);
-    replaceMethod(Shell.Global, 'get_window_actors', newGetWindowActors);
-    replaceMethod(Meta.Workspace, 'list_windows', newListWindows);
     // Ensure that there aren't "rogue" processes
     doKillAllOldDesktopProcesses();
 }
@@ -150,6 +147,10 @@ function enable() {
  * The true code that configures everything and launches the desktop program
  */
 function innerEnable() {
+
+    replaceMethod(Meta.Display, 'get_tab_list', newGetTabList);
+    replaceMethod(Shell.Global, 'get_window_actors', newGetWindowActors);
+    replaceMethod(Meta.Workspace, 'list_windows', newListWindows);
 
     if (data.startupPreparedId) {
         Main.layoutManager.disconnect(data.startupPreparedId);
@@ -241,6 +242,10 @@ function innerEnable() {
  * Disables the extension
  */
 function disable() {
+    Meta.Display.prototype['get_tab_list'] = data.old_get_tab_list;
+    Shell.Global.prototype['get_window_actors'] = data.old_get_window_actors;
+    Meta.Workspace.prototype['list_windows'] = data.old_list_windows;
+
     data.isEnabled = false;
     if (data.switchWorkspaceId) {
         global.window_manager.disconnect(data.switchWorkspaceId);
