@@ -84,19 +84,23 @@ function removeDesktopWindowFromList(windowList) {
      * and just return the value of the old method without altering it when the
      * extension is disabled.
      */
-    if (!data.isEnabled || !data.appUUID) {
+    if (!data.currentProcess) {
         return windowList;
     }
     let returnVal = [];
-    for(let window of windowList) {
-        let title;
+    for(let element of windowList) {
+        let window = element;
         if (window.get_meta_window) { // it is a MetaWindowActor
-            title = window.get_meta_window().get_title();
-        } else { // it is a MetaWindow
-            title = window.get_title();
+            window = window.get_meta_window();
         }
-        if (title != data.appUUID) {
-            returnVal.push(window);
+        let belongs;
+        try {
+            belongs = data.currentProcess.query_window_belongs_to(window);
+        } catch(err) {
+            belongs = false;
+        }
+        if (!belongs) {
+            returnVal.push(element);
         }
     }
     return returnVal;
@@ -157,56 +161,77 @@ function innerEnable() {
         data.startupPreparedId = 0;
     }
 
-    data.idMap = global.window_manager.connect_after('map', (obj, windowActor) => {
-        if (data.desktopWindow) {
-            data.desktopWindow.lower();
-        }
-        if (data.windowUpdated || !data.appUUID) {
-            return false;
-        }
-        let window = windowActor.get_meta_window();
-        /*
-         * If the window title is the same than the UUID (which was passed through a secure
-         * channel), then this is the window of our process, so we manage it.
-         */
-        if (window.get_title() == data.appUUID) {
+    // under X11 we don't need to cheat, so only do all this under wayland
+    if (Meta.is_wayland_compositor()) {
+        replaceMethod(Meta.Display, 'get_tab_list', newGetTabList);
+        replaceMethod(Shell.Global, 'get_window_actors', newGetWindowActors);
+        replaceMethod(Meta.Workspace, 'list_windows', newListWindows);
+
+        data.idMap = global.window_manager.connect_after('map', (obj, windowActor) => {
+            if (data.desktopWindow) {
+                data.desktopWindow.lower();
+            }
+            if (data.windowUpdated || !data.currentProcess) {
+                return false;
+            }
+            let window = windowActor.get_meta_window();
             /*
-             * the desktop window is big enough to cover all the monitors in the system,
-             * so the first thing to do is to move it to the minimum coordinate of the desktop.
-             *
-             * In theory, the minimum coordinates are always (0,0); but if there is only one
-             * monitor, the coordinates used are (0,27) because the top bar uses that size, and
-             * it makes no sense in having a piece of window always covered by the bar. Of
-             * course, that value isn't fixed, but calculated automatically each time the
-             * desktop geometry changes, so a bigger top bar will work fine.
-             */
-            window.move_frame(false,
-                              data.minx,
-                              data.miny);
-            // Show the window in all desktops, and send it to the bottom
-            window.stick();
-            window.lower();
-            data.windowUpdated = true;
-            data.desktopWindow = window;
-            // keep the window at the bottom when the user clicks on it
-            window.connect_after('raised', () => {
-                window.lower();
-            });
-            // Don't allow to move it with Alt+F7 or other special keys
-            window.connect('position-changed', () => {
+            * If the window title is the same than the UUID (which was passed through a secure
+            * channel), then this is the window of our process, so we manage it.
+            */
+            let belongs;
+            try {
+                belongs = data.currentProcess.query_window_belongs_to(window);
+            } catch(err) {
+                belongs = false;
+            }
+            if (belongs) {
+                /*
+                * the desktop window is big enough to cover all the monitors in the system,
+                * so the first thing to do is to move it to the minimum coordinate of the desktop.
+                *
+                * In theory, the minimum coordinates are always (0,0); but if there is only one
+                * monitor, the coordinates used are (0,27) because the top bar uses that size, and
+                * it makes no sense in having a piece of window always covered by the bar. Of
+                * course, that value isn't fixed, but calculated automatically each time the
+                * desktop geometry changes, so a bigger top bar will work fine.
+                */
                 window.move_frame(false,
-                                  data.minx,
-                                  data.miny);
-            });
-            // If the window disappears, prepare to launch a new process
-            window.connect('unmanaged', () => {
-                data.appUUID = null;
-                data.desktopWindow = null;
-                data.windowUpdated = false;
-            });
-        }
-        return false;
-    });
+                                data.minx,
+                                data.miny);
+                // Show the window in all desktops, and send it to the bottom
+                window.stick();
+                window.lower();
+                data.windowUpdated = true;
+                data.desktopWindow = window;
+                // keep the window at the bottom when the user clicks on it
+                window.connect_after('raised', () => {
+                    window.lower();
+                });
+                // Don't allow to move it with Alt+F7 or other special keys
+                window.connect('position-changed', () => {
+                    window.move_frame(false,
+                                    data.minx,
+                                    data.miny);
+                });
+                // If the window disappears, prepare to launch a new process
+                window.connect('unmanaged', () => {
+                    data.desktopWindow = null;
+                    data.windowUpdated = false;
+                });
+            }
+            return false;
+        });
+        data.switchWorkspaceId = global.window_manager.connect('switch-workspace', () => {
+            /*
+             * If the user switches to another workspace, ensure that the desktop window
+             * is sent to the bottom, thus giving the focus to any window that is there
+             */
+            if (data.desktopWindow) {
+                data.desktopWindow.lower();
+            }
+        });
+    }
 
     /*
      * If the desktop geometry changes (because a new monitor has been added, for example),
@@ -225,15 +250,6 @@ function innerEnable() {
             killCurrentProcess();
         });
     }
-    data.switchWorkspaceId = global.window_manager.connect('switch-workspace', () => {
-        /*
-         * If the user switches to another workspace, ensure that the desktop window
-         * is sent to the bottom, thus giving the focus to any window that is there
-         */
-        if (data.desktopWindow) {
-            data.desktopWindow.lower();
-        }
-    });
     data.isEnabled = true;
     launchDesktop();
 }
@@ -242,11 +258,19 @@ function innerEnable() {
  * Disables the extension
  */
 function disable() {
-    Meta.Display.prototype['get_tab_list'] = data.old_get_tab_list;
-    Shell.Global.prototype['get_window_actors'] = data.old_get_window_actors;
-    Meta.Workspace.prototype['list_windows'] = data.old_list_windows;
 
     data.isEnabled = false;
+    // restore external methods only if have been intercepted
+    if (data.old_get_tab_list) {
+        Meta.Display.prototype['get_tab_list'] = data.old_get_tab_list;
+    }
+    if (data.old_get_window_actors) {
+        Shell.Global.prototype['get_window_actors'] = data.old_get_window_actors;
+    }
+    if (data.old_list_windows) {
+        Meta.Workspace.prototype['list_windows'] = data.old_list_windows;
+    }
+    // disconnect signals only if connected
     if (data.switchWorkspaceId) {
         global.window_manager.disconnect(data.switchWorkspaceId);
     }
@@ -281,8 +305,8 @@ function killCurrentProcess() {
     // kill the desktop program. It will be reloaded automatically.
     data.desktopWindow = null;
     data.appUUID = null;
-    if (data.currentProcess) {
-        data.currentProcess.force_exit();
+    if (data.currentProcess && data.currentProcess.subprocess) {
+        data.currentProcess.subprocess.force_exit();
     }
 }
 
@@ -343,8 +367,8 @@ function launchDesktop() {
     data.reloadTime = 100;
     let argv = [];
     argv.push(GLib.build_filenamev([ExtensionUtils.getCurrentExtension().path, 'ding.js']));
-    // Specify that we are going to pass an UUID through STDIN
-    argv.push('-U');
+    // Specify that it must work as true desktop
+    argv.push('-E');
     // The path. Allows the program to find translations, settings and modules.
     argv.push('-P');
     argv.push(ExtensionUtils.getCurrentExtension().path);
@@ -377,54 +401,26 @@ function launchDesktop() {
     argv.push(scaleFactor.toString());
 
     data.windowUpdated = false;
-    /*
-     * Generate a random UUID to allow the extension to identify the window. It must be random
-     * to avoid other programs to cheat and put themselves as the desktop. This also means that
-     * launching the desktop program from the command line won't put that instance as the desktop,
-     * but will work like any other program. Of course, under X11 it doesn't matter, but it does
-     * under Wayland.
-     */
-    data.appUUID = GLib.uuid_string_random();
-    let launcher = new Gio.SubprocessLauncher({flags: Gio.SubprocessFlags.STDIN_PIPE |
-                                                      Gio.SubprocessFlags.STDOUT_PIPE |
-                                                      Gio.SubprocessFlags.STDERR_MERGE});
-    launcher.set_cwd(ExtensionUtils.getCurrentExtension().path);
-    data.currentProcess = launcher.spawnv(argv);
-    /*
-     * Send the UUID to the application using STDIN as a "secure channel". Sending it as a parameter
-     * would be insecure, because another program could read it and create a window before our desktop,
-     * and cheat the extension.
-     *
-     * It also reads STDOUT and STDERR and sends it to the journal using global.log(). This allows to
-     * have any error from the desktop app in the same journal than other extensions. Every line from
-     * the desktop program is prepended with "DING: " (Desktop Icons New Generation)
-     */
-    data.currentProcess.communicate_async(GLib.Bytes.new(data.appUUID + '\n'), null, (object, res) => {
-        try {
-            let [available, stdout, stderr] = object.communicate_finish(res);
-            if (stdout.length != 0) {
-                global.log('DING: ' + String.fromCharCode.apply(null, stdout.get_data()));
-            }
-        } catch(e) {
-            global.log('DING_Error ' + e);
-        }
-    });
-    //appPid = Number(_currentProcess.get_identifier());
+    data.currentProcess = new LaunchSubprocess(0, "DING", "-U");
+    data.currentProcess.spawnv(argv);
+
+
     /*
      * If the desktop process dies, wait 100ms and relaunch it, unless the exit status is different than
      * zero, in which case it will wait one second. This is done this way to avoid relaunching the desktop
      * too fast if it has a bug that makes it fail continuously, avoiding filling the journal too fast.
      */
-    data.currentProcess.wait_async(null, () => {
-        if (data.currentProcess.get_if_exited()) {
-            let retval = data.currentProcess.get_exit_status();
+    data.currentProcess.subprocess.wait_async(null, () => {
+        if (data.currentProcess.subprocess.get_if_exited()) {
+            let retval = data.currentProcess.subprocess.get_exit_status();
             if (retval != 0) {
                 data.reloadTime = 1000;
             }
+        } else {
+            data.reloadTime = 1000;
         }
         data.desktopWindow = null;
         data.currentProcess = null;
-        data.appUUID = null;
         if (data.isEnabled) {
             if (data.launchDesktopId) {
                 GLib.source_remove(data.launchDesktopId);
@@ -435,4 +431,95 @@ function launchDesktop() {
             });
         }
     });
+}
+
+/**
+ * This class encapsulates the code to launch a subprocess that can detect whether a window belongs to it
+ * It only accepts to do it under Wayland, because under X11 there is no need to do these tricks
+ *
+ * It is compatible with https://gitlab.gnome.org/GNOME/mutter/merge_requests/754 to simplify the code
+ * 
+ * @param {int} flags Flags for the SubprocessLauncher class
+ * @param {string} process_id An string id for the debug output
+ * @param {string} cmd_parameter A command line parameter to pass when running. It will be passed only under Wayland,
+ *                          so, if this parameter isn't passed, the app can assume that it is running under X11.
+ */
+var LaunchSubprocess = class {
+
+    constructor(flags, process_id, cmd_parameter) {
+        this._process_id = process_id;
+        this._cmd_parameter = cmd_parameter;
+        this._UUID = null;
+        this._flags = flags | Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_MERGE;
+        if (Meta.is_wayland_compositor()) {
+            this._flags |= Gio.SubprocessFlags.STDIN_PIPE;
+        }
+        this._launcher = new Gio.SubprocessLauncher({flags: this._flags});
+        this.subprocess = null;
+        this.process_running = false;
+    }
+
+    spawnv(argv) {
+        let UUID_string = null;
+        if (Meta.is_wayland_compositor()) {
+            /*
+             * Generate a random UUID to allow the extension to identify the window. It must be random
+             * to avoid other programs to cheat and pose themselves as the true process. This also means that
+             * launching the program from the command line won't give "superpowers" to it,
+             * but will work like any other program. Of course, under X11 it doesn't matter, but it does
+             * under Wayland.
+             */
+            this._UUID = GLib.uuid_string_random();
+            UUID_string = this._UUID + '\n';
+            argv.push(this._cmd_parameter);
+        }
+        this.subprocess = this._launcher.spawnv(argv);
+        if (this.subprocess) {
+                /*
+                 * Send the UUID to the application using STDIN as a "secure channel". Sending it as a parameter
+                 * would be insecure, because another program could read it and create a window before our process,
+                 * and cheat the extension. This is done only in Wayland, because under X11 there is no need for it.
+                 *
+                 * It also reads STDOUT and STDERR and sends it to the journal using global.log(). This allows to
+                 * have any error from the desktop app in the same journal than other extensions. Every line from
+                 * the desktop program is prepended with the "process_id" parameter sent in the constructor.
+                 */
+            this.subprocess.communicate_utf8_async(UUID_string, null, (object, res) => {
+                try {
+                    let [d, stdout, stderr] = object.communicate_utf8_finish(res);
+                    if (stdout.length != 0) {
+                        global.log(`${this._process_id}: ${stdout}`);
+                    }
+                } catch(e) {
+                    global.log(`${this._process_id}_Error: ${e}`);
+                }
+            });
+            this.subprocess.wait_async(null, () => {
+                this.process_running = false;
+            });
+            this.process_running = true;
+        }
+        return this.subprocess;
+    }
+
+    set_cwd(cwd) {
+        this._launcher.set_cwd (cwd);
+    }
+
+    /**
+     * Queries whether the passed window belongs to the launched subprocess or not.
+     * @param {MetaWindow} window The window to check.
+     */
+    query_window_belongs_to (window) {
+        if (!Meta.is_wayland_compositor()) {
+            throw new Error ("Not in wayland");
+        }
+        if (this._UUID == null) {
+            throw new Error ("No process running");
+        }
+        if (!this.process_running) {
+            throw new Error ("No process running");
+        }
+        return (window.get_title() == this._UUID);
+    }
 }

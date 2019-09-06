@@ -36,10 +36,11 @@ const Gettext = imports.gettext.domain('ding');
 const _ = Gettext.gettext;
 
 var DesktopManager = class {
-    constructor(appUuid, desktopList, scale, codePath) {
+    constructor(appUuid, desktopList, scale, codePath, asDesktop) {
 
         Gtk.init(null);
         DBusUtils.init();
+        this._asDesktop = asDesktop;
         this._desktopList = desktopList;
         this._appUuid = appUuid;
         this._scale = scale;
@@ -71,37 +72,6 @@ var DesktopManager = class {
 
         this._configureSelectionColor();
 
-        this._window = new Gtk.Window();
-        if (appUuid) {
-            this._window.set_title(appUuid);
-            this._window.set_decorated(false);
-            this._window.set_deletable(false);
-        } else {
-            this._window.set_title('Desktop Icons');
-        }
-        this._window.set_resizable(false);
-        this._window.connect('delete-event', () => {
-            if (this._appUuid) {
-                // Do not destroy window when closing if the instance is working as desktop
-                return true;
-            } else {
-                // Exit if this instance is working as an stand-alone window
-                Gtk.main_quit();
-            }
-        });
-
-        // this only works on X11, so... let's keep uniformity and don't set them :-)
-        //this._window.set_keep_below(true);
-        //this._window.set_skip_pager_hint(true);
-        //this._window.set_skip_taskbar_hint(true);
-        //this._window.set_type_hint(Gdk.WindowTypeHint.DESKTOP);
-        this._eventBox = new Gtk.EventBox({ visible: true });
-        this._window.add(this._eventBox);
-        this._container = new Gtk.Fixed();
-        this._eventBox.add(this._container);
-
-        this.setDropDestination(this._eventBox);
-
         this._x1 = desktopList[0].x;
         this._x2 = desktopList[0].x + desktopList[0].w;
         this._y1 = desktopList[0].y;
@@ -121,9 +91,43 @@ var DesktopManager = class {
             }
         }
 
+        this._window = new Gtk.Window();
+        if (asDesktop) {
+            if (appUuid) {
+                this._window.set_title(appUuid);
+            }
+            this._window.set_decorated(false);
+            this._window.set_deletable(false);
+            // If we are under X11, manage everything from here
+            if (Gdk.Display.get_default().constructor.$gtype.name === 'GdkX11Display') {
+                this._window.set_type_hint(Gdk.WindowTypeHint.DESKTOP);
+                this._window.stick();
+                this._window.move(this._x1, this._y1);
+            }
+        } else {
+            this._window.set_title('Desktop Icons');
+        }
+        this._window.set_resizable(false);
+        this._window.connect('delete-event', () => {
+            if (this._asDesktop) {
+                // Do not destroy window when closing if the instance is working as desktop
+                return true;
+            } else {
+                // Exit if this instance is working as an stand-alone window
+                Gtk.main_quit();
+            }
+        });
+
+        this._eventBox = new Gtk.EventBox({ visible: true });
+        this._window.add(this._eventBox);
+        this._container = new Gtk.Fixed();
+        this._eventBox.add(this._container);
+
+        this.setDropDestination(this._eventBox);
+
         this._window.set_app_paintable(true);
         // Transparent background, but only if this instance is working as desktop
-        if (this._appUuid) {
+        if (asDesktop) {
             let screen = this._window.get_screen();
             let visual = screen.get_rgba_visual();
             if (visual && screen.is_composited()) {
@@ -136,7 +140,7 @@ var DesktopManager = class {
             }
         }
         this._container.connect('draw', (widget, cr) => {
-            if (!this._appUuid) {
+            if (!this._asDesktop) {
                 let colorNumber = 0;
                 for(let desktop of desktopList) {
                     colorNumber++;
