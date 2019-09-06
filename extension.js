@@ -152,10 +152,6 @@ function enable() {
  */
 function innerEnable() {
 
-    replaceMethod(Meta.Display, 'get_tab_list', newGetTabList);
-    replaceMethod(Shell.Global, 'get_window_actors', newGetWindowActors);
-    replaceMethod(Meta.Workspace, 'list_windows', newListWindows);
-
     if (data.startupPreparedId) {
         Main.layoutManager.disconnect(data.startupPreparedId);
         data.startupPreparedId = 0;
