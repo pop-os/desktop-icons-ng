@@ -398,6 +398,7 @@ function launchDesktop() {
 
     data.windowUpdated = false;
     data.currentProcess = new LaunchSubprocess(0, "DING", "-U");
+    data.currentProcess.set_cwd(ExtensionUtils.getCurrentExtension().path);
     data.currentProcess.spawnv(argv);
 
 
