@@ -644,6 +644,14 @@ var DesktopManager = class {
                                 this._scale
                             );
                             if (fileItem.isHidden && !showHidden) {
+                                /* if there are hidden files in the desktop and the user doesn't want to
+                                   show them, remove the coordinates. This ensures that if the user enables
+                                   showing them, they won't fight with other icons for the same place
+                                */
+                                if (fileItem.savedCoordinates) {
+                                    // only overwrite them if needed
+                                    fileItem.savedCoordinates = null;
+                                }
                                 continue;
                             }
                             this._fileList.push(fileItem);
@@ -751,17 +759,24 @@ var DesktopManager = class {
             return;
         }
         switch(eventType) {
+            case Gio.FileMonitorEvent.MOVED_IN:
+                /* Remove the coordinates that could exist to avoid conflicts between
+                   files that are already in the desktop and the new one
+                */
+                let info = new Gio.FileInfo();
+                info.set_attribute_string('metadata::nautilus-icon-position', '');
+                file.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
+                break;
             case Gio.FileMonitorEvent.ATTRIBUTE_CHANGED:
-                /* a file changed, rather than the desktop itself */
+                /* The desktop is what changed, and not a file inside it */
                 if (file.get_uri() == this._desktopDir.get_uri()) {
                     if (this._updateWritableByOthers()) {
                         this._readFileList();
                     }
                     return;
                 }
+                break;
         }
-        // For now, while I'm implementing things like all the menu options, and selection
-        // just exit to make the extension reload it again and refresh the desktop
         this._readFileList();
     }
 
