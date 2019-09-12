@@ -79,12 +79,11 @@ function get_schema(schema) {
 
 function showPreferences() {
 
-    let window = new Gtk.Dialog({use_header_bar: true,
-                                 deletable: false,
-                                 window_position: Gtk.WindowPosition.CENTER});
-    window.add_button(_("OK"), Gtk.ResponseType.OK);
+    let window = new Gtk.Window({ resizable: false,
+                                  window_position: Gtk.WindowPosition.CENTER });
     window.set_title(_("Settings"));
-    let frame = window.get_content_area();
+    let frame = new Gtk.Box({ orientation: Gtk.Orientation.VERTICAL });
+    window.add(frame);
     frame.set_spacing(10);
     frame.set_border_width(10);
 
@@ -103,9 +102,6 @@ function showPreferences() {
     nautilusBox.add(buildSelector(nautilusSettings, 'click-policy', _("Click type for open files"), { 'single': _("Single click"), 'double': _("Double click"), }));
     nautilusBox.add(buildSwitcher(gtkSettings, 'show-hidden', _("Show hidden files")));
     window.show_all();
-    window.run();
-    window.hide();
-    window.destroy();
 }
 
 function buildSwitcher(settings, key, labelText) {
