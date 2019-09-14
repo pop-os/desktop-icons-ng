@@ -237,6 +237,12 @@ var DesktopManager = class {
             if ((info == 1) || (info == 2)) {
                 let fileList = DesktopIconsUtil.getFilesFromNautilusDnD(selection, info);
                 if (fileList.length != 0) {
+                    for(let element of fileList) {
+                        let file = Gio.File.new_for_uri(element);
+                        let info = new Gio.FileInfo();
+                        info.set_attribute_string('metadata::nautilus-drop-position', `${x},${y}`);
+                        file.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
+                    }
                     DBusUtils.NautilusFileOperationsProxy.MoveURIsRemote(
                         fileList,
                         "file://" + GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DESKTOP),
@@ -677,6 +683,9 @@ var DesktopManager = class {
                 notAssignedYet.push(fileItem);
                 continue;
             }
+            if (fileItem.dropCoordinates != null) {
+                fileItem.dropCoordinates = null;
+            }
             let [itemX, itemY] = fileItem.savedCoordinates;
             let addedToDesktop = false;
             for(let desktop of this._desktops) {
@@ -715,10 +724,20 @@ var DesktopManager = class {
         }
         // Finally, assign those icons that still don't have coordinates
         for (let fileItem of notAssignedYet) {
+            let x, y;
+            if (fileItem.dropCoordinates == null) {
+                x = 0;
+                y = 0;
+                storeMode = Enums.StoredCoordinates.ASSIGN;
+            } else {
+                [x, y] = fileItem.dropCoordinates;
+                fileItem.dropCoordinates = null;
+                storeMode = Enums.StoredCoordinates.OVERWRITE;
+            }
             for (let desktop of this._desktops) {
-                let distance = desktop.getDistance(0, 0);
+                let distance = desktop.getDistance(x, y);
                 if (distance != -1) {
-                    desktop.addFileItemCloseTo(fileItem, 0, 0, Enums.StoredCoordinates.ASSIGN);
+                    desktop.addFileItemCloseTo(fileItem, x, y, storeMode);
                     break;
                 }
             }
@@ -835,7 +854,7 @@ var DesktopManager = class {
             }
         }
         // force to store the new coordinates
-        this._addFilesToDesktop(fileItems, Enums.StoredCoordinates.ASSIGN);
+        this._addFilesToDesktop(fileItems, Enums.StoredCoordinates.OVERWRITE);
     }
 
     checkIfSpecialFilesAreSelected() {

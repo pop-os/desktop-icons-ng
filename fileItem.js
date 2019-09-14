@@ -52,16 +52,8 @@ var FileItem = class {
 
         this._file = file;
 
-        this._savedCoordinates = null;
-        let savedCoordinates = fileInfo.get_attribute_as_string('metadata::nautilus-icon-position');
-        if ((savedCoordinates != null) && (savedCoordinates != '')) {
-            savedCoordinates = savedCoordinates.split(',');
-            if (savedCoordinates.length >= 2) {
-                if (!isNaN(savedCoordinates[0]) && !isNaN(savedCoordinates[1])) {
-                    this._savedCoordinates = [Number(savedCoordinates[0]), Number(savedCoordinates[1])];
-                }
-            }
-        }
+        this._savedCoordinates = this._readCoordinatesFromAttribute(fileInfo, 'metadata::nautilus-icon-position');
+        this._dropCoordinates = this._readCoordinatesFromAttribute(fileInfo, 'metadata::nautilus-drop-position');
 
         this.actor = new Gtk.EventBox({visible: true});
         this.actor.connect('destroy', () => this._onDestroy());
@@ -134,6 +126,19 @@ var FileItem = class {
             });
         }
         this.actor.show_all();
+    }
+
+    _readCoordinatesFromAttribute(fileInfo, attribute) {
+        let savedCoordinates = fileInfo.get_attribute_as_string(attribute);
+        if ((savedCoordinates != null) && (savedCoordinates != '')) {
+            savedCoordinates = savedCoordinates.split(',');
+            if (savedCoordinates.length >= 2) {
+                if (!isNaN(savedCoordinates[0]) && !isNaN(savedCoordinates[1])) {
+                    return [Number(savedCoordinates[0]), Number(savedCoordinates[1])];
+                }
+            }
+        }
+        return null;
     }
 
     removeFromGrid() {
@@ -812,6 +817,22 @@ var FileItem = class {
         } else {
             this._savedCoordinates = null;
             info.set_attribute_string('metadata::nautilus-icon-position', '');
+        }
+        this.file.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
+    }
+
+    get dropCoordinates() {
+        return this._dropCoordinates;
+    }
+
+    set dropCoordinates(pos) {
+        let info = new Gio.FileInfo();
+        if (pos != null) {
+            this._dropCoordinates = [pos[0], pos[1]];
+            info.set_attribute_string('metadata::nautilus-drop-position', `${pos[0]},${pos[1]}`);
+        } else {
+            this._dropCoordinates = null;
+            info.set_attribute_string('metadata::nautilus-drop-position', '');
         }
         this.file.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
     }
