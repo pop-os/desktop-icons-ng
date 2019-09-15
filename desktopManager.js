@@ -231,7 +231,7 @@ var DesktopManager = class {
         let targets = new Gtk.TargetList(null);
         targets.add(Gdk.atom_intern('x-special/ding-icon-list', false), Gtk.TargetFlags.SAME_APP, 0);
         targets.add(Gdk.atom_intern('x-special/gnome-icon-list', false), 0, 1);
-        targets.add(Gdk.atom_intern('text/uri-list', false), 0, 2);
+        //targets.add(Gdk.atom_intern('text/uri-list', false), 0, 2);
         dropDestination.drag_dest_set_target_list(targets);
         dropDestination.connect('drag-data-received', (widget, context, x, y, selection, info, time) => {
             if ((info == 1) || (info == 2)) {
@@ -267,9 +267,11 @@ var DesktopManager = class {
             case 1:
                 atom = Gdk.atom_intern('x-special/gnome-icon-list', false);
             break;
-            case 2:
+            /*case 2:
                 atom = Gdk.atom_intern('text/uri-list', false);
-            break;
+            break;*/
+            default:
+                return null;
         }
         let data = "";
         for (let fileItem of fileList) {

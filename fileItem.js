@@ -155,7 +155,7 @@ var FileItem = class {
         if ((this._fileExtra != Enums.FileType.USER_DIRECTORY_TRASH) &&
             (this._fileExtra != Enums.FileType.USER_DIRECTORY_HOME)) {
                 targets.add(Gdk.atom_intern('x-special/gnome-icon-list', false), 0, 1);
-                targets.add(Gdk.atom_intern('text/uri-list', false), 0, 2);
+                //targets.add(Gdk.atom_intern('text/uri-list', false), 0, 2);
         }
         this._dragSource.drag_source_set_target_list(targets);
         this._dragSource.connect('drag-data-get', (widget, context, data, info, time) => {
@@ -182,7 +182,7 @@ var FileItem = class {
             (this._isDirectory)) {
                 let targets = new Gtk.TargetList(null);
                 targets.add(Gdk.atom_intern('x-special/gnome-icon-list', false), 0, 1);
-                targets.add(Gdk.atom_intern('text/uri-list', false), 0, 2);
+                //targets.add(Gdk.atom_intern('text/uri-list', false), 0, 2);
                 dropDestination.drag_dest_set_target_list(targets);
                 dropDestination.connect('drag-data-received', (widget, context, x, y, selection, info, time) => {
                     if ((info == 1) || (info == 2)) {
