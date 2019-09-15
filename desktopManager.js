@@ -273,7 +273,7 @@ var DesktopManager = class {
                     data += `\r${coordinates[0]}:${coordinates[1]}:${coordinates[2] - coordinates[0] + 1}:${coordinates[3] - coordinates[1] + 1}`
                 }
             }
-            data += '\n';
+            data += '\r\n';
         }
         return [atom, data];
     }
