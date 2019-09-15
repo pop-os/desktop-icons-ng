@@ -226,24 +226,35 @@ var DesktopManager = class {
         Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), this._cssProviderSelection, 600);
     }
 
+    clearFileCoordinates(fileList, dropCoordinates) {
+        for(let element of fileList) {
+            let file = Gio.File.new_for_uri(element);
+            if (!file.is_native() || !file.query_exists(null)) {
+                continue;
+            }
+            let info = new Gio.FileInfo();
+            info.set_attribute_string('metadata::nautilus-icon-position', '');
+            if (dropCoordinates != null) {
+                info.set_attribute_string('metadata::nautilus-drop-position', dropCoordinates);
+            }
+            try {
+                file.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
+            } catch(e) {}
+        }
+    }
+
     setDropDestination(dropDestination) {
         dropDestination.drag_dest_set(Gtk.DestDefaults.ALL, null, Gdk.DragAction.MOVE);
         let targets = new Gtk.TargetList(null);
         targets.add(Gdk.atom_intern('x-special/ding-icon-list', false), Gtk.TargetFlags.SAME_APP, 0);
         targets.add(Gdk.atom_intern('x-special/gnome-icon-list', false), 0, 1);
-        //targets.add(Gdk.atom_intern('text/uri-list', false), 0, 2);
+        targets.add(Gdk.atom_intern('text/uri-list', false), 0, 2);
         dropDestination.drag_dest_set_target_list(targets);
         dropDestination.connect('drag-data-received', (widget, context, x, y, selection, info, time) => {
             if ((info == 1) || (info == 2)) {
                 let fileList = DesktopIconsUtil.getFilesFromNautilusDnD(selection, info);
                 if (fileList.length != 0) {
-                    for(let element of fileList) {
-                        let file = Gio.File.new_for_uri(element);
-                        let info = new Gio.FileInfo();
-                        info.set_attribute_string('metadata::nautilus-icon-position', '');
-                        info.set_attribute_string('metadata::nautilus-drop-position', `${x},${y}`);
-                        file.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
-                    }
+                    this.clearFileCoordinates(fileList, `${x},${y}`);
                     DBusUtils.NautilusFileOperationsProxy.MoveURIsRemote(
                         fileList,
                         "file://" + GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DESKTOP),
@@ -267,9 +278,9 @@ var DesktopManager = class {
             case 1:
                 atom = Gdk.atom_intern('x-special/gnome-icon-list', false);
             break;
-            /*case 2:
+            case 2:
                 atom = Gdk.atom_intern('text/uri-list', false);
-            break;*/
+            break;
             default:
                 return null;
         }

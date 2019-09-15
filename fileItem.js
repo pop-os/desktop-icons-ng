@@ -155,7 +155,7 @@ var FileItem = class {
         if ((this._fileExtra != Enums.FileType.USER_DIRECTORY_TRASH) &&
             (this._fileExtra != Enums.FileType.USER_DIRECTORY_HOME)) {
                 targets.add(Gdk.atom_intern('x-special/gnome-icon-list', false), 0, 1);
-                //targets.add(Gdk.atom_intern('text/uri-list', false), 0, 2);
+                targets.add(Gdk.atom_intern('text/uri-list', false), 0, 2);
         }
         this._dragSource.drag_source_set_target_list(targets);
         this._dragSource.connect('drag-data-get', (widget, context, data, info, time) => {
@@ -182,19 +182,14 @@ var FileItem = class {
             (this._isDirectory)) {
                 let targets = new Gtk.TargetList(null);
                 targets.add(Gdk.atom_intern('x-special/gnome-icon-list', false), 0, 1);
-                //targets.add(Gdk.atom_intern('text/uri-list', false), 0, 2);
+                targets.add(Gdk.atom_intern('text/uri-list', false), 0, 2);
                 dropDestination.drag_dest_set_target_list(targets);
                 dropDestination.connect('drag-data-received', (widget, context, x, y, selection, info, time) => {
                     if ((info == 1) || (info == 2)) {
                         let fileList = DesktopIconsUtil.getFilesFromNautilusDnD(selection, info);
                         if (fileList.length != 0) {
                             if (this._fileExtra != Enums.FileType.USER_DIRECTORY_TRASH) {
-                                for(let element of fileList) {
-                                    let file = Gio.File.new_for_uri(element);
-                                    let info = new Gio.FileInfo();
-                                    info.set_attribute_string('metadata::nautilus-icon-position', '');
-                                    file.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
-                                }
+                                this._desktopManager.clearFileCoordinates(fileList, null);
                                 DBusUtils.NautilusFileOperationsProxy.MoveURIsRemote(fileList, this._file.get_uri(),
                                     (result, error) => {
                                         if (error)
