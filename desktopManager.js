@@ -240,6 +240,7 @@ var DesktopManager = class {
                     for(let element of fileList) {
                         let file = Gio.File.new_for_uri(element);
                         let info = new Gio.FileInfo();
+                        info.set_attribute_string('metadata::nautilus-icon-position', '');
                         info.set_attribute_string('metadata::nautilus-drop-position', `${x},${y}`);
                         file.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
                     }

@@ -189,6 +189,12 @@ var FileItem = class {
                         let fileList = DesktopIconsUtil.getFilesFromNautilusDnD(selection, info);
                         if (fileList.length != 0) {
                             if (this._fileExtra != Enums.FileType.USER_DIRECTORY_TRASH) {
+                                for(let element of fileList) {
+                                    let file = Gio.File.new_for_uri(element);
+                                    let info = new Gio.FileInfo();
+                                    info.set_attribute_string('metadata::nautilus-icon-position', '');
+                                    file.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
+                                }
                                 DBusUtils.NautilusFileOperationsProxy.MoveURIsRemote(fileList, this._file.get_uri(),
                                     (result, error) => {
                                         if (error)
