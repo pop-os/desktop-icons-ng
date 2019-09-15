@@ -274,7 +274,6 @@ var DesktopManager = class {
                 }
             }
             data += '\n';
-            fileItem.savedCoordinates = null;
         }
         return [atom, data];
     }
