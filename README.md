@@ -24,7 +24,7 @@ Version 0.3.0 alpha.
 ## TO-DO
 
 * Use file events instead of refreshing the whole desktop
-* Add files being dragged into the desktop at the coordinates where they are being dragged
+* Add support for dropping text or browser URIs
 
 ## Internal architecture
 
