@@ -1,8 +1,9 @@
 # History of versions #
 
-* Version 0.1.0 (2019/08/13)
-    * First semi-working version version
-    * Has everything supported by Desktop Icons, plus Drag'n'Drop
+* Version 0.3.0 (2019/09/03)
+    * Separate Wayland and X11 paths
+    * When a file is dropped from another window, it is done at the cursor
+    * Fixed bug when dragging several files into a Nautilus window
 
 * Version 0.2.0 (2019/08/19)
     * Shows the full filename if selected
@@ -17,7 +18,6 @@
     * Now the settings window doesn't block the icons
     * Don't show hidden files
 
-* Version 0.3.0 (2019/09/03)
-    * Separate Wayland and X11 paths
-    * When a file is dropped from another window, it is done at the cursor
-    * Fixed bug when dragging several files into a Nautilus window
+* Version 0.1.0 (2019/08/13)
+    * First semi-working version version
+    * Has everything supported by Desktop Icons, plus Drag'n'Drop
