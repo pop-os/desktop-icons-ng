@@ -3,7 +3,8 @@
     "name": "Desktop Icons NG (DING)",
     "shell-version": [
       "3.30",
-      "3.32"
+      "3.32",
+      "3.34"
     ],
     "uuid": "ding@rastersoft.com",
     "url": "https://gitlab.com/rastersoft/desktop-icons-ng"
