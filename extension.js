@@ -154,7 +154,7 @@ function innerEnable() {
 
     if (data.startupPreparedId) {
         Main.layoutManager.disconnect(data.startupPreparedId);
-        data.startupPreparedId = 0;
+        data.startupPreparedId = null;
     }
 
     // under X11 we don't need to cheat, so only do all this under wayland
@@ -193,8 +193,8 @@ function innerEnable() {
                 * desktop geometry changes, so a bigger top bar will work fine.
                 */
                 window.move_frame(false,
-                                data.minx,
-                                data.miny);
+                                  data.minx,
+                                  data.miny);
                 // Show the window in all desktops, and send it to the bottom
                 window.stick();
                 window.lower();
@@ -435,7 +435,7 @@ function launchDesktop() {
  * It only accepts to do it under Wayland, because under X11 there is no need to do these tricks
  *
  * It is compatible with https://gitlab.gnome.org/GNOME/mutter/merge_requests/754 to simplify the code
- * 
+ *
  * @param {int} flags Flags for the SubprocessLauncher class
  * @param {string} process_id An string id for the debug output
  * @param {string} cmd_parameter A command line parameter to pass when running. It will be passed only under Wayland,
