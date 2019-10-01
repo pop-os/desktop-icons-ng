@@ -53,7 +53,7 @@ msgstr "Montrer la corbeille sur le bureau"
 
 #: ../desktopIconsUtil.js:68
 msgid "Command not found"
-msgstr ""
+msgstr "Commande non trouvée"
 
 #: ../fileItem.js:549
 msgid "Don’t Allow Launching"
@@ -69,7 +69,7 @@ msgstr "Ouvrir"
 
 #: ../fileItem.js:609
 msgid "Open With Other Application"
-msgstr ""
+msgstr "Ouvrir avec une autre application"
 
 #: ../fileItem.js:616
 msgid "Cut"
