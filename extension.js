@@ -401,15 +401,18 @@ function launchDesktop() {
     data.currentProcess.set_cwd(ExtensionUtils.getCurrentExtension().path);
     data.currentProcess.spawnv(argv);
 
-
     /*
      * If the desktop process dies, wait 100ms and relaunch it, unless the exit status is different than
      * zero, in which case it will wait one second. This is done this way to avoid relaunching the desktop
      * too fast if it has a bug that makes it fail continuously, avoiding filling the journal too fast.
      */
-    data.currentProcess.subprocess.wait_async(null, () => {
-        if (data.currentProcess.subprocess.get_if_exited()) {
-            let retval = data.currentProcess.subprocess.get_exit_status();
+    data.currentProcess.subprocess.wait_async(null, (obj, res) => {
+        let b = obj.wait_finish(res);
+        if (!data.isEnabled || !data.currentProcess || obj !== data.currentProcess.subprocess) {
+            return;
+        }
+        if (obj.get_if_exited()) {
+            let retval = obj.get_exit_status();
             if (retval != 0) {
                 data.reloadTime = 1000;
             }
