@@ -122,7 +122,7 @@ function getFileExtensionOffset(filename, isDirectory) {
 function getFilesFromNautilusDnD(selection, type) {
     let data = String.fromCharCode.apply(null, selection.get_data());
     let retval = [];
-    let elements = data.split('\n');
+    let elements = data.split('\r\n');
     for(let item of elements) {
         if (item.length == 0) {
             continue;
