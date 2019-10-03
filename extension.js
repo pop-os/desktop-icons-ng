@@ -247,7 +247,13 @@ function innerEnable() {
         });
     }
     data.isEnabled = true;
-    launchDesktop();
+    if (data.launchDesktopId) {
+        GLib.source_remove(data.launchDesktopId);
+    }
+    data.launchDesktopId = Mainloop.timeout_add(1000, () => {
+        data.launchDesktopId = 0;
+        launchDesktop();
+    });
 }
 
 /**
