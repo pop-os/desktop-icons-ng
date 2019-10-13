@@ -94,7 +94,7 @@ var FileItem = class {
         this._setDropDestination(this._eventBox);
         this._dragSource = this._eventBox;
         this._setDragSource(this._dragSource);
-        this._createMenu();
+        this._menu = null;
         this._updateIcon();
         this._isSelected = false;
         this._primaryButtonPressed = false;
@@ -271,7 +271,6 @@ var FileItem = class {
                     this._queryFileInfoCancellable = null;
                     this._updateMetadataFromFileInfo(newFileInfo);
                     if (rebuild) {
-                        this._createMenu();
                         this._updateIcon();
                     }
                 } catch(error) {
@@ -441,7 +440,6 @@ var FileItem = class {
                         print('Error getting the number of files in the trash: ' + error);
                 }
             });
-
         this._scheduleTrashRefreshId = 0;
         return false;
     }
@@ -606,6 +604,9 @@ var FileItem = class {
 
     _createMenu() {
         this._menu = new Gtk.Menu();
+        this._menu.connect('hide', () => {
+            this._menu = null;
+        });
         let open = new Gtk.MenuItem({label:_('Open')});
         open.connect('activate', () => this.doOpen());
         this._menu.add(open);
@@ -675,6 +676,7 @@ var FileItem = class {
             if (!this._isSelected) {
                 this._desktopManager.selected(this, Enums.Selection.RIGHT_BUTTON);
             }
+            this._createMenu();
             this._menu.popup_at_pointer(event);
             if (this._actionOpenWith) {
                 let allowOpenWith = (this._desktopManager.getNumberOfSelectedItems() > 0);
