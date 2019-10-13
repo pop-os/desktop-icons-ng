@@ -253,7 +253,7 @@ function innerEnable() {
     data.launchDesktopId = Mainloop.timeout_add(1000, () => {
         data.launchDesktopId = 0;
         launchDesktop();
-        return GLib.Source.REMOVE;
+        return false;
     });
 }
 
@@ -301,7 +301,7 @@ function killCurrentProcess() {
             data.launchDesktopId = Mainloop.timeout_add(data.reloadTime, () => {
                 data.launchDesktopId = 0;
                 launchDesktop();
-                return GLib.Source.REMOVE;
+                return false;
             });
         }
     }
@@ -436,7 +436,7 @@ function launchDesktop() {
             data.launchDesktopId = Mainloop.timeout_add(data.reloadTime, () => {
                 data.launchDesktopId = 0;
                 launchDesktop();
-                return GLib.Source.REMOVE;
+                return false;
             });
         }
     });
