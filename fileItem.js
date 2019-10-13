@@ -255,6 +255,9 @@ var FileItem = class {
         if (this._scheduleTrashRefreshId) {
             GLib.source_remove(this._scheduleTrashRefreshId);
         }
+        if (this._menuId) {
+            this._menu.disconnect(this._menuId);
+        }
     }
 
     _refreshMetadataAsync(rebuild) {
@@ -604,8 +607,10 @@ var FileItem = class {
 
     _createMenu() {
         this._menu = new Gtk.Menu();
-        this._menu.connect('hide', () => {
+        this._menuId = this._menu.connect('hide', () => {
+            this._menu.disconnect(this._menuId);
             this._menu = null;
+            this._menuId = null;
         });
         let open = new Gtk.MenuItem({label:_('Open')});
         open.connect('activate', () => this.doOpen());
