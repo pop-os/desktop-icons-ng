@@ -1,6 +1,14 @@
 # History of versions #
 
-* Version 0.3.0 (2019/09/03)
+* Version 0.5.0 (2019/10/15)
+      * Fix right-click menu in trash not showing sometimes
+
+* Version 0.4.0 (2019/10/04)
+      * Fix Drag'n'Drop in some special cases
+      * Don't relaunch the desktop process when disabling and enabling fast
+      * Temporary fix for X11 size
+
+* Version 0.3.0 (2019/09/17)
       * Separate Wayland and X11 paths
       * When a file is dropped from another window, it is done at the cursor
       * Fixed bug when dragging several files into a Nautilus window
