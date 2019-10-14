@@ -2,6 +2,7 @@
 
 * Version 0.5.0 (2019/10/15)
       * Fix right-click menu in trash not showing sometimes
+      * Fix opening a file during New folder operation
 
 * Version 0.4.0 (2019/10/04)
       * Fix Drag'n'Drop in some special cases
