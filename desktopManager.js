@@ -909,6 +909,9 @@ var DesktopManager = class {
     }
 
     doRename(fileItem) {
+        for(let fileItem2 of this._fileList) {
+            fileItem2.unsetSelected();
+        }
         let renameWindow = new AskNamePopup.AskNamePopup(fileItem.fileName, _("Rename"), this._window);
         let newName = renameWindow.run();
         if (newName) {
@@ -947,6 +950,9 @@ var DesktopManager = class {
     }
 
     _newFolder() {
+        for(let fileItem of this._fileList) {
+            fileItem.unsetSelected();
+        }
         let newFolderWindow = new AskNamePopup.AskNamePopup(null, _("New folder"), this._window);
         let newName = newFolderWindow.run();
         if (newName) {
