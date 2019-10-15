@@ -422,10 +422,6 @@ function launchDesktop() {
         first = false;
     }
 
-    let scaleFactor = St.ThemeContext.get_for_stage(global.stage).scale_factor;
-    argv.push('-Z');
-    argv.push(scaleFactor.toString());
-
     data.windowUpdated = false;
     data.currentProcess = new LaunchSubprocess(0, "DING", "-U");
     data.currentProcess.set_cwd(GLib.get_home_dir());

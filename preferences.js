@@ -158,14 +158,13 @@ function _onNautilusSettingsChanged() {
 }
 
 function get_icon_size() {
-    // this one doesn't need scaling because Gnome Shell automagically scales the icons
     return Enums.ICON_SIZE[desktopSettings.get_string('icon-size')];
 }
 
-function get_desired_width(scale_factor) {
-    return Enums.ICON_WIDTH[desktopSettings.get_string('icon-size')] * scale_factor;
+function get_desired_width() {
+    return Enums.ICON_WIDTH[desktopSettings.get_string('icon-size')];
 }
 
-function get_desired_height(scale_factor) {
-    return Enums.ICON_HEIGHT[desktopSettings.get_string('icon-size')] * scale_factor;
+function get_desired_height() {
+    return Enums.ICON_HEIGHT[desktopSettings.get_string('icon-size')];
 }

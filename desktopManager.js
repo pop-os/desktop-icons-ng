@@ -38,7 +38,7 @@ const Gettext = imports.gettext.domain('ding');
 const _ = Gettext.gettext;
 
 var DesktopManager = class {
-    constructor(appUuid, desktopList, scale, codePath, asDesktop) {
+    constructor(appUuid, desktopList, codePath, asDesktop) {
 
         Gtk.init(null);
         DBusUtils.init();
@@ -46,7 +46,6 @@ var DesktopManager = class {
         this._asDesktop = asDesktop;
         this._desktopList = desktopList;
         this._appUuid = appUuid;
-        this._scale = scale;
         this._desktopFilesChanged = false;
         this._readingDesktopFiles = true;
         this._toDelete = [];
@@ -205,7 +204,7 @@ var DesktopManager = class {
     _createGrids() {
         this._desktops = [];
         for(let desktop of this._desktopList) {
-            this._desktops.push(new DesktopGrid.DesktopGrid(this, this._container, desktop.x, desktop.y, desktop.w, desktop.h, this._x1, this._y1, this._scale));
+            this._desktops.push(new DesktopGrid.DesktopGrid(this, this._container, desktop.x, desktop.y, desktop.w, desktop.h, this._x1, this._y1));
         }
     }
 
@@ -674,7 +673,6 @@ var DesktopManager = class {
                                     newFolder,
                                     newFolder.query_info(Enums.DEFAULT_ATTRIBUTES, Gio.FileQueryInfoFlags.NONE, null),
                                     extras,
-                                    this._scale,
                                     this._codePath
                                 )
                             );
@@ -687,7 +685,6 @@ var DesktopManager = class {
                                 fileEnum.get_child(info),
                                 info,
                                 Enums.FileType.NONE,
-                                this._scale,
                                 this._codePath
                             );
                             if (fileItem.isHidden && !showHidden) {

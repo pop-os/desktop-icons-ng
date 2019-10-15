@@ -34,7 +34,7 @@ var elementSpacing = 2;
 
 var DesktopGrid = class {
 
-    constructor(desktopManager, container, x, y, width, height, minx, miny, scaleFactor) {
+    constructor(desktopManager, container, x, y, width, height, minx, miny) {
 
         this._desktopManager = desktopManager;
         this._x = x;
@@ -44,8 +44,8 @@ var DesktopGrid = class {
         this._width = width;
         this._height = height;
         this._container = container;
-        this._maxColumns = Math.floor(this._width / (Prefs.get_desired_width(scaleFactor) + 4 * elementSpacing));
-        this._maxRows =  Math.floor(this._height / (Prefs.get_desired_height(scaleFactor) + 4 * elementSpacing));
+        this._maxColumns = Math.floor(this._width / (Prefs.get_desired_width() + 4 * elementSpacing));
+        this._maxRows =  Math.floor(this._height / (Prefs.get_desired_height() + 4 * elementSpacing));
         this._elementWidth = Math.floor(this._width / this._maxColumns);
         this._elementHeight = Math.floor(this._height / this._maxRows);
 

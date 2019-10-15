@@ -29,7 +29,6 @@ let desktops = [];
 let lastCommand = null;
 let codePath = '.';
 let errorFound = false;
-let zoom = 1.0;
 let asDesktop = false;
 for(let arg of ARGV) {
     if (lastCommand == null) {
@@ -48,7 +47,6 @@ for(let arg of ARGV) {
             break;
         case '-P':
         case '-D':
-        case '-Z':
             lastCommand = arg;
             break;
         default:
@@ -68,9 +66,6 @@ for(let arg of ARGV) {
     case '-D':
         let data = arg.split(":");
         desktops.push({x:parseInt(data[0]), y:parseInt(data[1]), w:parseInt(data[2]), h:parseInt(data[3])});
-        break;
-    case '-Z':
-        zoom = parseFloat(arg);
         break;
     }
     lastCommand = null;
@@ -96,7 +91,7 @@ const DesktopManager = imports.desktopManager;
 
 if (!errorFound) {
     Prefs.init(codePath);
-    var desktopManager = new DesktopManager.DesktopManager(appUuid, desktops, zoom, codePath, asDesktop);
+    var desktopManager = new DesktopManager.DesktopManager(appUuid, desktops, codePath, asDesktop);
     Gtk.main();
     // return value
     0;
