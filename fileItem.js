@@ -226,6 +226,7 @@ var FileItem = class {
         }
     }
 
+
     setCoordinates(x, y, width, height, margin, grid) {
         this._x1 = x;
         this._y1 = y;
