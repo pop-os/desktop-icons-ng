@@ -125,6 +125,7 @@ var FileItem = class {
             });
         }
         this.actor.show_all();
+        this._updateName();
     }
 
     _readCoordinatesFromAttribute(fileInfo, attribute) {
@@ -279,6 +280,7 @@ var FileItem = class {
                     if (rebuild) {
                         this._updateIcon();
                     }
+                    this._updateName();
                 } catch(error) {
                     if (!error.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED))
                         print("Error getting the file info: " + error);
@@ -585,6 +587,14 @@ var FileItem = class {
         });
     }
 
+    _updateName() {
+        if (this._isValidDesktopFile && !this._desktopManager.writableByOthers && !this._writableByOthers && this.trustedDesktopFile) {
+            this._label.label = `${this._desktopFile.get_locale_string("Name")}.desktop`;
+        } else {
+            this._label.label = this._fileInfo.get_display_name();
+        }
+    }
+
     _onAllowDisallowLaunchingClicked() {
         this.metadataTrusted = !this.trustedDesktopFile;
 
@@ -601,6 +611,7 @@ var FileItem = class {
                                       Gio.FileQueryInfoFlags.NONE,
                                       null);
         }
+        this._updateName();
     }
 
     canRename() {
