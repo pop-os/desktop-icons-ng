@@ -29,6 +29,7 @@ const Prefs = imports.preferences;
 const Enums = imports.enums;
 const DBusUtils = imports.dbusUtils;
 const AskNamePopup = imports.askNamePopup;
+const AskConfirmPopup = imports.askConfirmPopup;
 
 const Gettext = imports.gettext.domain('ding');
 
@@ -45,6 +46,8 @@ var DesktopManager = class {
         this._scale = scale;
         this._desktopFilesChanged = false;
         this._readingDesktopFiles = true;
+        this._toDelete = [];
+        this._deletingFilesRecursively = false;
         this._desktopDir = DesktopIconsUtil.getDesktopDir();
         this._updateWritableByOthers();
         this._monitorDesktopDir = this._desktopDir.monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, null);
@@ -841,6 +844,73 @@ var DesktopManager = class {
                         throw new Error('Error trashing files on the desktop: ' + error.message);
                 }
             );
+        }
+    }
+
+    _deleteRecursively() {
+        if (this._deletingFilesRecursively || (this._toDelete.length == 0)) {
+            return;
+        }
+        this._deletingFilesRecursively = true;
+        let nextFileToDelete = this._toDelete.shift();
+        if (nextFileToDelete.query_file_type(Gio.FileQueryInfoFlags.NOFOLLOW_SYMLINKS, null) == Gio.FileType.DIRECTORY) {
+            nextFileToDelete.enumerate_children_async(Enums.DEFAULT_ATTRIBUTES, Gio.FileQueryInfoFlags.NOFOLLOW_SYMLINKS, GLib.PRIORITY_DEFAULT, null, (source, res) => {
+                let fileEnum = source.enumerate_children_finish(res);
+                // insert again the folder at the beginning
+                this._toDelete.unshift(source);
+                let info;
+                let hasChilds = false;
+                while ((info = fileEnum.next_file(null))) {
+                    let file = fileEnum.get_child(info);
+                    // insert the children to the beginning of the array, to be deleted first
+                    this._toDelete.unshift(file);
+                    hasChilds = true;
+                }
+                if (!hasChilds) {
+                    // the folder is empty, so it can be deleted
+                    this._toDelete.shift().delete_async(GLib.PRIORITY_DEFAULT, null, (source, res) => {
+                        try {
+                            source.delete_finish(res);
+                        } catch(e) {}
+                        // continue with the next file
+                        this._deletingFilesRecursively = false;
+                        this._deleteRecursively();
+                    }); // remove it from the list (yes, again)
+                }
+                // continue processing the list
+                this._deletingFilesRecursively = false;
+                this._deleteRecursively();
+            });
+        } else {
+            nextFileToDelete.delete_async(GLib.PRIORITY_DEFAULT, null, (source, res) => {
+                try {
+                    source.delete_finish(res);
+                } catch(e) {}
+                // continue with the next file
+                this._deletingFilesRecursively = false;
+                this._deleteRecursively();
+            });
+        }
+    }
+
+    doDeletePermanently() {
+        let filelist = "";
+        for(let fileItem of this._fileList) {
+            if (fileItem.isSelected) {
+                if (filelist != "") {
+                    filelist += ", "
+                }
+                filelist += `"${fileItem.fileName}"`;
+            }
+        }
+        let renameWindow = new AskConfirmPopup.AskConfirmPopup(_("Are you sure you want to permanently delete these items?"), `${_("If you delete an item, it will be permanently lost.")}\n\n${filelist}`, this._window);
+        if (renameWindow.run()) {
+            for(let fileItem of this._fileList) {
+                if (fileItem.isSelected) {
+                    this._toDelete.push(fileItem.file);
+                }
+            }
+            this._deleteRecursively();
         }
     }
 

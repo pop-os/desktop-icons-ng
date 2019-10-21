@@ -663,6 +663,11 @@ var FileItem = class {
             this._actionTrash = new Gtk.MenuItem({label:_('Move to Trash')});
             this._actionTrash.connect('activate', () => {this._desktopManager.doTrash();});
             this._menu.add(this._actionTrash);
+            if (Prefs.nautilusSettings.get_boolean('show-delete-permanently')) {
+                this._actionDelete = new Gtk.MenuItem({label:_('Delete permanently')});
+                this._actionDelete.connect('activate', () => {this._desktopManager.doDeletePermanently();});
+                this._menu.add(this._actionDelete);
+            }
             if (this._isValidDesktopFile && !this._desktopManager.writableByOthers && !this._writableByOthers) {
                 this._menu.add(new Gtk.SeparatorMenuItem());
                 this._allowLaunchingMenuItem = new Gtk.MenuItem({label: this._allowLaunchingText});
