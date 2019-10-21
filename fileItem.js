@@ -796,6 +796,12 @@ var FileItem = class {
             this._styleContext.add_class('file-item-hover');
             this._label.showAllLines();
         }
+        if (Prefs.CLICK_POLICY_SINGLE) {
+            let window = this._eventBox.get_window();
+            if (window) {
+                window.set_cursor(Gdk.Cursor.new_from_name(Gdk.Display.get_default(), "hand"));
+            }
+        }
         return false;
     }
 
@@ -804,6 +810,12 @@ var FileItem = class {
         if (this._styleContext.has_class('file-item-hover')) {
             this._styleContext.remove_class('file-item-hover');
             this._label.restoreLines();
+        }
+        if (Prefs.CLICK_POLICY_SINGLE) {
+            let window = this._eventBox.get_window();
+            if (window) {
+                window.set_cursor(Gdk.Cursor.new_from_name(Gdk.Display.get_default(), "default"));
+            }
         }
         return false;
     }
