@@ -30,7 +30,7 @@ const Gettext = imports.gettext.domain('ding');
 const _ = Gettext.gettext;
 
 
-var elementSpacing = 4;
+var elementSpacing = 2;
 
 var DesktopGrid = class {
 
@@ -44,12 +44,12 @@ var DesktopGrid = class {
         this._width = width;
         this._height = height;
         this._container = container;
-        this._maxColumns = Math.floor(this._width / (Prefs.get_desired_width(scaleFactor) + 2 * elementSpacing));
-        this._maxRows =  Math.floor(this._height / (Prefs.get_desired_height(scaleFactor) + 2 * elementSpacing));
+        this._maxColumns = Math.floor(this._width / (Prefs.get_desired_width(scaleFactor) + 4 * elementSpacing));
+        this._maxRows =  Math.floor(this._height / (Prefs.get_desired_height(scaleFactor) + 4 * elementSpacing));
         this._elementWidth = Math.floor(this._width / this._maxColumns);
         this._elementHeight = Math.floor(this._height / this._maxRows);
-        this._elementMarginH = this._elementWidth - Prefs.get_desired_width(scaleFactor) - elementSpacing;
-        this._elementMarginV = this._elementHeight - Prefs.get_desired_height(scaleFactor) - elementSpacing;
+        this._elementMarginH = Math.floor((this._elementWidth - Prefs.get_desired_width(scaleFactor) - 4 * elementSpacing) / 2);
+        this._elementMarginV = Math.floor((this._elementHeight - Prefs.get_desired_height(scaleFactor) - 4 * elementSpacing) / 2);
 
         this._fileItems = {};
 
@@ -90,13 +90,14 @@ var DesktopGrid = class {
 
         let x = this._x + this._elementWidth * column + this._elementMarginH - this._minx;
         let y = this._y + this._elementHeight * row + this._elementMarginV - this._miny;
-        this._container.put(fileItem.actor, x, y);
+        this._container.put(fileItem.actor, x + elementSpacing, y + elementSpacing);
         this._setGridUse(column, row, true);
         this._fileItems[fileItem.uri] = [column, row, fileItem];
-        fileItem.setCoordinates(x,
-                                y,
+        fileItem.setCoordinates(x + elementSpacing,
+                                y + elementSpacing,
                                 this._elementWidth - 2 * elementSpacing,
                                 this._elementHeight - 2 * elementSpacing,
+                                elementSpacing,
                                 this);
 
         /* If this file is new in the Desktop and hasn't yet

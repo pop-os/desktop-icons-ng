@@ -215,14 +215,18 @@ var FileItem = class {
         }
     }
 
-    setCoordinates(x, y, width, height, grid) {
+    setCoordinates(x, y, width, height, margin, grid) {
         this._x1 = x;
         this._y1 = y;
         this._x2 = x + width - 1;
         this._y2 = y + height - 1;
         this._grid = grid;
         this._container.set_size_request(width, height);
-        this._label.setMaximumHeight(height - Prefs.get_icon_size(this._scaleFactor));
+        this._label.margin_start = margin;
+        this._label.margin_end = margin;
+        this._label.margin_bottom = margin;
+        this._iconContainer.margin_top = margin;
+        this._label.setMaximumHeight(height - Prefs.get_icon_size(this._scaleFactor) - 2 * margin);
     }
 
     getCoordinates() {
