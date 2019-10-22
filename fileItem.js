@@ -71,7 +71,8 @@ var FileItem = class {
         this._iconContainer.pack_start(this._icon, true, true, 0);
         this._iconContainer.set_baseline_position(Gtk.BaselinePosition.CENTER);
 
-        this._label = new MyLabel({label: fileInfo.get_display_name()});
+        this._label = new MyLabel();
+        this._setFileName(fileInfo.get_display_name());
 
         this._container.pack_start(this._label, false, true, 0);
 
@@ -126,6 +127,14 @@ var FileItem = class {
         }
         this.actor.show_all();
         this._updateName();
+    }
+
+    _setFileName(text) {
+        this._currentFileName = text;
+        for (let character of ".,-_@:") {
+            text = text.split(character).join(character + '\u200B');
+        }
+        this._label.label = text;
     }
 
     _readCoordinatesFromAttribute(fileInfo, attribute) {
@@ -292,7 +301,7 @@ var FileItem = class {
     _updateMetadataFromFileInfo(fileInfo) {
         this._fileInfo = fileInfo;
 
-        let oldLabelText = this._label.text;
+        let oldLabelText = this._currentFileName;
 
         this._displayName = fileInfo.get_attribute_as_string('standard::display-name');
         this._attributeCanExecute = fileInfo.get_attribute_boolean('access::can-execute');
@@ -318,7 +327,7 @@ var FileItem = class {
         }
 
         if (this.displayName != oldLabelText) {
-            this._label.text = this.displayName;
+            this._setFileName(this.displayName);
         }
 
         this._fileType = fileInfo.get_file_type();
@@ -589,9 +598,9 @@ var FileItem = class {
 
     _updateName() {
         if (this._isValidDesktopFile && !this._desktopManager.writableByOthers && !this._writableByOthers && this.trustedDesktopFile) {
-            this._label.label = `${this._desktopFile.get_locale_string("Name")}.desktop`;
+            this._setFileName(`${this._desktopFile.get_locale_string("Name")}.desktop`);
         } else {
-            this._label.label = this._fileInfo.get_display_name();
+            this._setFileName(this._fileInfo.get_display_name());
         }
     }
 
@@ -919,7 +928,7 @@ var MyLabel = GObject.registerClass({
         this._maximumHeight = null;
         this.set_ellipsize(Pango.EllipsizeMode.END);
         this.set_line_wrap(true);
-        this.set_line_wrap_mode(Pango.WrapMode.CHAR);
+        this.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
         this.set_yalign(0.0);
         this.set_lines(this._numberOfLines);
 
