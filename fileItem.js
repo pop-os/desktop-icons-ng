@@ -131,6 +131,7 @@ var FileItem = class {
 
     _setFileName(text) {
         this._currentFileName = text;
+        this._eventBox.set_tooltip_text(text);
         for (let character of ".,-_@:") {
             text = text.split(character).join(character + '\u200B');
         }
