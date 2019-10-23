@@ -930,6 +930,7 @@ var MyLabel = GObject.registerClass({
         this.set_line_wrap(true);
         this.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
         this.set_yalign(0.0);
+        this.set_justify(Gtk.Justification.CENTER);
         this.set_lines(this._numberOfLines);
 
         this._drawId = this.connect_after('draw', () => {
