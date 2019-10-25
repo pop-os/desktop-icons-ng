@@ -227,11 +227,12 @@ var FileItem = class {
     }
 
 
-    setCoordinates(x, y, width, height, margin, grid) {
+    setCoordinates(x, y, width, height, margin, zoom, grid) {
         this._x1 = x;
         this._y1 = y;
-        this._x2 = x + width - 1;
-        this._y2 = y + height - 1;
+        this._zoom = zoom;
+        this._x2 = x + (width * zoom) - 1;
+        this._y2 = y + (height * zoom) - 1;
         this._grid = grid;
         this._container.set_size_request(width, height);
         this._label.margin_start = margin;

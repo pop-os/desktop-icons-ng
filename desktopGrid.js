@@ -219,6 +219,7 @@ var DesktopGrid = class {
                                 this._elementWidth - 2 * elementSpacing,
                                 this._elementHeight - 2 * elementSpacing,
                                 elementSpacing,
+                                this._zoom,
                                 this);
         /* If this file is new in the Desktop and hasn't yet
          * fixed coordinates, store the new possition to ensure
