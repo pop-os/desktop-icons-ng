@@ -73,16 +73,6 @@ function init() {
  */
 function removeDesktopWindowFromList(windowList) {
 
-    /*
-     * Although the Gnome documentation says that a replaced method must be
-     * restored when the extension is disabled, it is a very risky operation,
-     * because if another extension also replaces the same methods, when this
-     * extension is disabled the other one will fail.
-     *
-     * The secure way of doing a method replacement is to make it inalterable,
-     * and just return the value of the old method without altering it when the
-     * extension is disabled.
-     */
     if (!data.currentProcess) {
         return windowList;
     }
@@ -182,7 +172,9 @@ function innerEnable(removeId) {
 
         data.idMap = global.window_manager.connect_after('map', (obj, windowActor) => {
             for (let desktopWindow of data.desktopWindows) {
-                desktopWindow.lower();
+                try {
+                    desktopWindow.lower();
+                } catch {}
             }
             if (!data.currentProcess) {
                 return false;
@@ -229,10 +221,6 @@ function innerEnable(removeId) {
                                           data.desktopCoordinates[desktopNumber].x,
                                           data.desktopCoordinates[desktopNumber].y);
                     });
-                    // If the window disappears, prepare to launch a new process
-                    window.connect('unmanaged', () => {
-                        data.desktopWindows = [];
-                    });
                 } else {
                     global.log(`Desktop number not valid: ${desktopNumber}`);
                 }
@@ -245,7 +233,9 @@ function innerEnable(removeId) {
              * is sent to the bottom, thus giving the focus to any window that is there
              */
             for (let desktopWindow of data.desktopWindows) {
-                desktopWindow.lower();
+                try {
+                    desktopWindow.lower();
+                } catch {}
             }
         });
     }
@@ -256,7 +246,7 @@ function innerEnable(removeId) {
      * thus adapting to it on-the-fly.
      */
     data.monitorsChangedId = Main.layoutManager.connect('monitors-changed', () => {
-        data.reloadTime = 2000; // give more time in this case, to ensure that everything has changed
+        data.reloadTime = 3000; // give more time in this case, to ensure that everything has changed
         killCurrentProcess();
     });
 
