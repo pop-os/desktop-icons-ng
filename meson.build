@@ -16,6 +16,7 @@ install_data([
 #    'createFolderDialog.js',
     'ding.js',
     'askNamePopup.js',
+    'askConfirmPopup.js',
     'createThumbnail.js',
     'dbusUtils.js',
     'desktopGrid.js',

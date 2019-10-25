@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-18 20:20+0200\n"
-"PO-Revision-Date: 2019-08-18 20:21+0200\n"
+"POT-Creation-Date: 2019-10-24 23:03+0200\n"
+"PO-Revision-Date: 2019-10-24 23:04+0200\n"
 "Last-Translator: Sergio Costas <rastersoft@gmail.com>\n"
 "Language-Team: Español; Castellano <rastersoft@gmail.com>\n"
 "Language: es\n"
@@ -18,145 +18,157 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 3.30.1\n"
+"X-Generator: Gtranslator 3.34.0\n"
 
-#: ../preferences.js:85
-msgid "OK"
-msgstr "Aceptar"
-
-#: ../preferences.js:86 ../desktopManager.js:436
+#: ../preferences.js:83 ../desktopManager.js:461
 msgid "Settings"
 msgstr "Configuración"
 
-#: ../preferences.js:91
+#: ../preferences.js:89
 msgid "Size for the desktop icons"
 msgstr "Tamaño de los iconos del escritorio"
 
-#: ../preferences.js:91
+#: ../preferences.js:89
 msgid "Small"
 msgstr "Pequeño"
 
-#: ../preferences.js:91
+#: ../preferences.js:89
 msgid "Standard"
 msgstr "Estándar"
 
-#: ../preferences.js:91
+#: ../preferences.js:89
 msgid "Large"
 msgstr "Grande"
 
-#: ../preferences.js:92
+#: ../preferences.js:90
 msgid "Show the personal folder in the desktop"
 msgstr "Mostrar la carpeta personal en el escritorio"
 
-#: ../preferences.js:93
+#: ../preferences.js:91
 msgid "Show the trash icon in the desktop"
 msgstr "Mostrar la papelera en el escritorio"
 
-#: ../preferences.js:97
+#: ../preferences.js:95
 msgid "Settings shared with Nautilus"
 msgstr "Configuración compartida con Nautilus"
 
-#: ../preferences.js:103
+#: ../preferences.js:101
 msgid "Click type for open files"
 msgstr "Tipo de click para abrir ficheros"
 
-#: ../preferences.js:103
+#: ../preferences.js:101
 msgid "Single click"
 msgstr "Click simple"
 
-#: ../preferences.js:103
+#: ../preferences.js:101
 msgid "Double click"
 msgstr "Click doble"
 
-#: ../preferences.js:104
+#: ../preferences.js:102
 msgid "Show hidden files"
 msgstr "Mostrar archivos ocultos"
 
-#: ../desktopIconsUtil.js:68
+#: ../preferences.js:103
+msgid "Show a context menu item to delete permanently"
+msgstr "Permitir borrar permanentemente desde el menú contextual"
+
+#: ../desktopIconsUtil.js:67
 msgid "Command not found"
 msgstr "Comando no encontrado"
 
-#: ../fileItem.js:549
+#: ../fileItem.js:571
 msgid "Don’t Allow Launching"
 msgstr "No permitir lanzar"
 
-#: ../fileItem.js:551
+#: ../fileItem.js:573
 msgid "Allow Launching"
 msgstr "Permitir lanzar"
 
-#: ../fileItem.js:603
+#: ../fileItem.js:639
 msgid "Open"
 msgstr "Abrir"
 
-#: ../fileItem.js:609
+#: ../fileItem.js:645
 msgid "Open With Other Application"
 msgstr "Abrir con otra aplicación"
 
-#: ../fileItem.js:616
+#: ../fileItem.js:652
 msgid "Cut"
 msgstr "Cortar"
 
-#: ../fileItem.js:619
+#: ../fileItem.js:655
 msgid "Copy"
 msgstr "Copiar"
 
-#: ../fileItem.js:623
+#: ../fileItem.js:659
 msgid "Rename…"
 msgstr "Renombrar…"
 
-#: ../fileItem.js:627
+#: ../fileItem.js:663
 msgid "Move to Trash"
 msgstr "Mover a la papelera"
 
-#: ../fileItem.js:639
+#: ../fileItem.js:667
+msgid "Delete permanently"
+msgstr "Borrar permanentemente"
+
+#: ../fileItem.js:680
 msgid "Empty Trash"
 msgstr "Vaciar la papelera"
 
-#: ../fileItem.js:647
+#: ../fileItem.js:688
 msgid "Properties"
 msgstr "Propiedades"
 
-#: ../fileItem.js:651
+#: ../fileItem.js:692
 msgid "Show in Files"
 msgstr "Mostrar en Files"
 
-#: ../fileItem.js:655 ../desktopManager.js:414
+#: ../fileItem.js:696 ../desktopManager.js:439
 msgid "Open in Terminal"
 msgstr "Abrir en una terminal"
 
-#: ../desktopManager.js:390
+#: ../desktopManager.js:415
 msgid "New Folder"
 msgstr "Nueva carpeta"
 
-#: ../desktopManager.js:396
+#: ../desktopManager.js:421
 msgid "Paste"
 msgstr "Pegar"
 
-#: ../desktopManager.js:400
+#: ../desktopManager.js:425
 msgid "Undo"
 msgstr "Deshacer"
 
-#: ../desktopManager.js:404
+#: ../desktopManager.js:429
 msgid "Redo"
 msgstr "Rehacer"
 
-#: ../desktopManager.js:410
+#: ../desktopManager.js:435
 msgid "Show Desktop in Files"
 msgstr "Mostrar el escritorio en Archivos"
 
-#: ../desktopManager.js:420
+#: ../desktopManager.js:445
 msgid "Change Background…"
 msgstr "Cambiar el fondo..."
 
-#: ../desktopManager.js:429
+#: ../desktopManager.js:454
 msgid "Display Settings"
 msgstr "Configuración de pantalla"
 
-#: ../desktopManager.js:862
+#: ../desktopManager.js:906
+msgid "Are you sure you want to permanently delete these items?"
+msgstr "¿Borrar estos elementos de manera permanente?"
+
+#: ../desktopManager.js:906
+msgid "If you delete an item, it will be permanently lost."
+msgstr "Si borra un elemento, éste se perderá para siempre."
+
+#: ../desktopManager.js:984
 msgid "Rename"
 msgstr "Renombrar…"
 
-#: ../desktopManager.js:900
+#: ../desktopManager.js:1025
 msgid "New folder"
 msgstr "Nueva carpeta"
 
@@ -183,6 +195,9 @@ msgstr "Mostrar la papelera"
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:6
 msgid "Show the trash icon in the desktop."
 msgstr "Mostrar la papelera en el escritorio."
+
+#~ msgid "OK"
+#~ msgstr "Aceptar"
 
 #~ msgid "Enter file name…"
 #~ msgstr "Introduzca el nombre del archivo…"
