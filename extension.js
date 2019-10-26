@@ -228,6 +228,8 @@ function innerEnable() {
         });
     }
 
+    data.areas = [];
+
     /*
      * If the desktop geometry changes (because a new monitor has been added, for example),
      * we kill the desktop program. It will be relaunched automatically with the new geometry,
@@ -245,6 +247,26 @@ function innerEnable() {
             killCurrentProcess();
         });
     }
+
+    /*
+     * This callback allows to detect a change in the working area (like when changing the Zoom value)
+     */
+    data.sizeChangedId = global.window_manager.connect('size-changed', () => {
+        if (data.areas.length != Main.layoutManager.monitors.length) {
+            killCurrentProcess();
+            return;
+        }
+        for(let monitorIndex = 0; monitorIndex < Main.layoutManager.monitors.length; monitorIndex++) {
+            let ws = global.workspace_manager.get_workspace_by_index(0);
+            let area = ws.get_work_area_for_monitor(monitorIndex);
+            let [w, h] = data.areas[monitorIndex];
+            if ((w != area.width) || (h != area.height)) {
+                killCurrentProcess();
+                return;
+            }
+        }
+    });
+
     data.isEnabled = true;
     if (data.launchDesktopId) {
         GLib.source_remove(data.launchDesktopId);
@@ -284,6 +306,9 @@ function disable() {
     }
     if (data.monitorsChangedId) {
         Main.layoutManager.disconnect(data.monitorsChangedId);
+    }
+    if (data.sizeChangedId) {
+        global.window_manager.disconnect(data.sizeChangedId);
     }
     killCurrentProcess();
 }
@@ -378,9 +403,11 @@ function launchDesktop() {
 
     let first = true;
 
+    data.areas = [];
     for(let monitorIndex = 0; monitorIndex < Main.layoutManager.monitors.length; monitorIndex++) {
         let ws = global.workspace_manager.get_workspace_by_index(0);
         let area = ws.get_work_area_for_monitor(monitorIndex);
+        data.areas[monitorIndex] = [area.width, area.height];
         // send the working area of each monitor in the desktop
         argv.push('-D');
         argv.push(area.x + ':' + area.y+':' + area.width + ':' + area.height);
