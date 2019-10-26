@@ -48,8 +48,6 @@ var DesktopGrid = class {
         this._maxRows =  Math.floor(this._height / (Prefs.get_desired_height(scaleFactor) + 4 * elementSpacing));
         this._elementWidth = Math.floor(this._width / this._maxColumns);
         this._elementHeight = Math.floor(this._height / this._maxRows);
-        this._elementMarginH = Math.floor((this._elementWidth - Prefs.get_desired_width(scaleFactor) - 4 * elementSpacing) / 2);
-        this._elementMarginV = Math.floor((this._elementHeight - Prefs.get_desired_height(scaleFactor) - 4 * elementSpacing) / 2);
 
         this._fileItems = {};
 
@@ -88,8 +86,8 @@ var DesktopGrid = class {
 
     _addFileItemTo(fileItem, column, row, coordinatesAction) {
 
-        let x = this._x + this._elementWidth * column + this._elementMarginH - this._minx;
-        let y = this._y + this._elementHeight * row + this._elementMarginV - this._miny;
+        let x = this._x + Math.floor(this._width * column / this._maxColumns) - this._minx;
+        let y = this._y + Math.floor(this._height * row / this._maxRows) - this._miny;
         this._container.put(fileItem.actor, x + elementSpacing, y + elementSpacing);
         this._setGridUse(column, row, true);
         this._fileItems[fileItem.uri] = [column, row, fileItem];
