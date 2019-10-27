@@ -34,7 +34,7 @@ desktopIconsUtil.js, desktopManager.js, enums.js, fileItem.js and preferences.js
 extension (extension.js) that have these roles:
 
  * Launch the desktop program at startup and relaunch it if it dies
- * Identify the desktop window and keep it at the bottom of the windows stack, in all desktops
+ * Identify the desktop windows and keep it at the bottom of the windows stack, in all desktops
 
 This last part is paramount in Wayland systems, because there an application can't set its role
 as freely as in X11.
@@ -42,7 +42,7 @@ as freely as in X11.
 Of course, to avoid breaking the security model of Wayland, the process for identifying the
 window is somewhat convoluted, to ensure that only the process launched from the extension can
 have those rights. To do so, the extension first generates a random UUID, which will be used
-to identify the window. Then it launches the desktop program (ding.js) with the '-U' parameter
+to identify the windows. Then it launches the desktop program (ding.js) with the '-U' parameter
 in its command line, and writes the UUID, followed by a carriage return, through the STDIN pipe
 of the desktop program. The '-U' parameter instructs the desktop program to wait for that UUID
 in its STDIN pipe (it is done this way to allow to run the desktop program in stand-alone mode
@@ -51,10 +51,11 @@ no other program can read it and use it before the legit desktop program. Passin
 command line would be very insecure because all programs can read it using the '/proc' virtual
 filesystem.
 
-Now the extension monitors all 'map' signals, and when a window with the UUID chosen as its title
-is mapped, it knows that it is the desktop window. It stores that window object (thus any new
-window with that same UUID will be ignored), enables the 'stick' property to make it appear in
-all desktops, send it to the bottom of the stack, and connects to three signals:
+Now the extension monitors all 'map' signals, and when a window with the UUID chosen as the start
+of its title is mapped (it also must have a blank space and the monitor number, since there is
+one window per monitor), it knows that it is the desktop window. It stores that window object,
+enables the 'stick' property to make it appear in all desktops, sends it to the bottom of the
+stack, and connects to three signals:
 
 * raised: it is called every time the window is sent to the front, so in the callback, the extension
 sends it again to the bottom.
@@ -64,7 +65,7 @@ right possition every time the user tries to move it.
 * unmanaged: called when the window disappears. It deletes the UUID, and waits for the desktop program
 to be killed (it will be relaunched again by the extension, and, of course, a new UUID will be used).
 
-The extension also intercepts three Gnome Shell system calls, in order to hide the desktop window
+The extension also intercepts three Gnome Shell system calls, in order to hide the desktop windows
 from the tab switcher and the Activities mode. These are 'Meta.Display.get_tab_list()',
 'Shell.Global.get_window_actors()', and 'Meta.Workspace.list_windows()'.
 
@@ -80,16 +81,17 @@ It accepts the following command line parameters:
 
 * -P: specifies the working path. If not set, it will default to './', which means that all the other
 files must be in the current path.
-* -D: specifies a monitor. It is followed by another parameter in the form: X;Y;W;H being each letter
+* -D: specifies a monitor. It is followed by another parameter in the form: X:Y:W:H:Z being each letter
       a number with, respectively:
     * X: the X coordinate of this monitor
     * Y: the Y coordinate of this monitor
     * W: the width in pixels of this monitor
     * H: the height in pixels of this monitor
+    * Z: the zoom value for this monitor
   you can set several -D parameters in the same command line, one for each monitor. A single window
-  will be created with all of them, but the background of each one will have a different color. If no
-  -D parameter is specified, it will create a single monitor with a size of 1280x720 pixels.
-* -Z: specifies the Zoom value (for retina-like monitors). By default it is 1.0.
+  will be created for each monitor. If no -D parameter is specified, it will create a single monitor
+  with a size of 1280x720 pixels.
+
 
 ## Build with Meson
 
