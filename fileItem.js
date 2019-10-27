@@ -495,7 +495,7 @@ var FileItem = class {
             else
                 emblem = Gio.ThemedIcon.new('emblem-symbolic-link');
         } else if (this.trustedDesktopFile) {
-            emblem = Gio.ThemedIcon.new('emblem-symbolic-link');
+            emblem = Gio.ThemedIcon.new('emblem-default');
         }
 
         if (emblem != null) {
