@@ -411,6 +411,18 @@ var FileItem = class {
                                 this._xOrigin = Math.floor((Prefs.get_desired_width(this._scaleFactor) - width) / 2);
                                 this._yOrigin = Math.floor(((Prefs.get_icon_size() * this._scaleFactor) - height) / 2);
                                 let pixbuf = thumbnailPixbuf.scale_simple(Math.floor(width), Math.floor(height), GdkPixbuf.InterpType.BILINEAR);
+                                let emblem = null;
+                                if (this._isSymlink) {
+                                    if (this._isBrokenSymlink)
+                                        emblem = Gio.ThemedIcon.new('emblem-unreadable');
+                                    else
+                                        emblem = Gio.ThemedIcon.new('emblem-symbolic-link');
+                                }
+                                if (emblem) {
+                                    let finalSize = (Prefs.get_icon_size() * this._scaleFactor) / 3;
+                                    let emblemIcon = Gtk.IconTheme.get_default().lookup_by_gicon(emblem, finalSize, Gtk.IconLookupFlags.FORCE_SIZE).load_icon();
+                                    emblemIcon.composite(pixbuf, 0, 0, finalSize, finalSize, 0, 0, 1, 1, GdkPixbuf.InterpType.BILINEAR, 255);
+                                }
                                 this._icon.set_from_pixbuf(pixbuf);
                                 this._dragSource.drag_source_set_icon_pixbuf(pixbuf);
                             }
@@ -502,7 +514,7 @@ var FileItem = class {
             itemIcon = itemIcon.copy();
             let finalSize = (Prefs.get_icon_size() * this._scaleFactor) / 3;
             let emblemIcon = theme.lookup_by_gicon(emblem, finalSize, Gtk.IconLookupFlags.FORCE_SIZE).load_icon();
-            emblemIcon.copy_area(0, 0, finalSize, finalSize, itemIcon, 0, 0);
+            emblemIcon.composite(itemIcon, 0, 0, finalSize, finalSize, 0, 0, 1, 1, GdkPixbuf.InterpType.BILINEAR, 255);
         }
         this._xOrigin = Math.floor((Prefs.get_desired_width(this._scaleFactor) - (Prefs.get_icon_size() * this._scaleFactor)) / 2);
         this._yOrigin = 0;
