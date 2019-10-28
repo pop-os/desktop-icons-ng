@@ -440,18 +440,43 @@ var FileItem = class {
         this._dragSource.drag_source_set_icon_pixbuf(pixbuf);
     }
 
+    _copyAndResizeIfNeeded(pixbuf) {
+        /**
+         * If the pixbuf is the original from the theme, copies it into a new one, to be able
+         * to paint the emblems without altering the cached pixbuf in the theme object.
+         * Also, ensures that the copied pixbuf is, at least, as big as the desired icon size,
+         * to ensure that the emblems fit.
+         */
+
+        if (this._copiedPixbuf) {
+            return pixbuf;
+        }
+
+        this._copiedPixbuf = true;
+        let minsize = Prefs.get_icon_size() * this._scaleFactor;
+        if ((pixbuf.width < minsize) || (pixbuf.height < minsize)) {
+            let width = (pixbuf.width < minsize) ? minsize : pixbuf.width;
+            let height = (pixbuf.height < minsize) ? minsize : pixbuf.height;
+            let newpixbuf = GdkPixbuf.Pixbuf.new(pixbuf.colorspace, true, pixbuf.bits_per_sample, width, height);
+            newpixbuf.fill(0);
+            let x = Math.floor((width - pixbuf.width) / 2);
+            let y = Math.floor((height - pixbuf.height) / 2);
+            pixbuf.composite(newpixbuf, x, y, pixbuf.width, pixbuf.height, x, y, 1, 1,  GdkPixbuf.InterpType.NEAREST, 255);
+            return newpixbuf;
+        } else {
+            return pixbuf.copy();
+        }
+    }
+
     _addEmblemsToPixbufIfNeeded(pixbuf) {
-        let copied = false;
+        this._copiedPixbuf = false;
         let emblem = null;
         if (this._isSymlink) {
             if (this._isBrokenSymlink)
                 emblem = Gio.ThemedIcon.new('emblem-unreadable');
             else
                 emblem = Gio.ThemedIcon.new('emblem-symbolic-link');
-            if (!copied) {
-                pixbuf = pixbuf.copy();
-                copied = true;
-            }
+            pixbuf = this._copyAndResizeIfNeeded(pixbuf);
             let theme = Gtk.IconTheme.get_default();
             let finalSize = (Prefs.get_icon_size() * this._scaleFactor) / 3;
             let emblemIcon = theme.lookup_by_gicon(emblem, finalSize, Gtk.IconLookupFlags.FORCE_SIZE).load_icon();
@@ -459,10 +484,7 @@ var FileItem = class {
         }
 
         if (this.trustedDesktopFile) {
-            if (!copied) {
-                pixbuf = pixbuf.copy();
-                copied = true;
-            }
+            pixbuf = this._copyAndResizeIfNeeded(pixbuf);
             let theme = Gtk.IconTheme.get_default();
             let finalSize = (Prefs.get_icon_size() * this._scaleFactor) / 3;
             emblem = Gio.ThemedIcon.new('emblem-default');
