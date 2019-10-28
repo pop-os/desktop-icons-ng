@@ -499,6 +499,7 @@ var FileItem = class {
         }
 
         if (emblem != null) {
+            itemIcon = itemIcon.copy();
             let finalSize = (Prefs.get_icon_size() * this._scaleFactor) / 3;
             let emblemIcon = theme.lookup_by_gicon(emblem, finalSize, Gtk.IconLookupFlags.FORCE_SIZE).load_icon();
             emblemIcon.copy_area(0, 0, finalSize, finalSize, itemIcon, 0, 0);
