@@ -1,5 +1,18 @@
 # History of versions #
 
+* Version 0.6.0 (2019/10/29)
+      * Fix icon distribution in the desktop
+      * Show the "Name" field in the .desktop files
+      * Better wrap of the names
+      * Show a tooltip with the filename
+      * Show a hand mouse cursor on "single click" policy
+      * Add "delete permanently" option
+      * Shift + Delete do "delete permanently"
+      * Better detection of screen size change
+      * Show symlink emblem also in .desktop files and in files with preview
+      * Fix "symlink in all icons" bug
+      * Ensure that all the emblems fit in the icon
+
 * Version 0.5.0 (2019/10/15)
       * Fix right-click menu in trash not showing sometimes
       * Fix opening a file during New folder operation

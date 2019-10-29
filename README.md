@@ -14,7 +14,7 @@ But it is still an alpha development, so it probably still have a lot of bugs. U
 
 ## Current version
 
-Version 0.5.0 alpha.
+Version 0.6.0 alpha.
 
 ## Requirements
 
