@@ -397,7 +397,11 @@ var DesktopManager = class {
                 return true;
             }
         } else if (symbol == Gdk.KEY_Delete) {
-            this.doTrash();
+            if (isShift) {
+                this.doDeletePermanently();
+            } else {
+                this.doTrash();
+            }
             return true;
         } else if (symbol == Gdk.KEY_F2) {
             let selection = this.getCurrentSelection(false);
