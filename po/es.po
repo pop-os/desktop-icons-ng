@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-24 23:03+0200\n"
+"POT-Creation-Date: 2019-11-01 21:39+0100\n"
 "PO-Revision-Date: 2019-10-24 23:04+0200\n"
 "Last-Translator: Sergio Costas <rastersoft@gmail.com>\n"
 "Language-Team: Español; Castellano <rastersoft@gmail.com>\n"
@@ -20,9 +20,117 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Gtranslator 3.34.0\n"
 
-#: ../preferences.js:83 ../desktopManager.js:461
+#: ../askNamePopup.js:31
+msgid "OK"
+msgstr "Aceptar"
+
+#: ../askNamePopup.js:32
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: ../desktopIconsUtil.js:67
+msgid "Command not found"
+msgstr "Comando no encontrado"
+
+#: ../desktopManager.js:419
+msgid "New Folder"
+msgstr "Nueva carpeta"
+
+#: ../desktopManager.js:425
+msgid "Paste"
+msgstr "Pegar"
+
+#: ../desktopManager.js:429
+msgid "Undo"
+msgstr "Deshacer"
+
+#: ../desktopManager.js:433
+msgid "Redo"
+msgstr "Rehacer"
+
+#: ../desktopManager.js:439
+msgid "Show Desktop in Files"
+msgstr "Mostrar el escritorio en Archivos"
+
+#: ../desktopManager.js:443 ../fileItem.js:738
+msgid "Open in Terminal"
+msgstr "Abrir en una terminal"
+
+#: ../desktopManager.js:449
+msgid "Change Background…"
+msgstr "Cambiar el fondo..."
+
+#: ../desktopManager.js:458
+msgid "Display Settings"
+msgstr "Configuración de pantalla"
+
+#: ../desktopManager.js:465 ../preferences.js:83
 msgid "Settings"
 msgstr "Configuración"
+
+#: ../desktopManager.js:910
+msgid "Are you sure you want to permanently delete these items?"
+msgstr "¿Borrar estos elementos de manera permanente?"
+
+#: ../desktopManager.js:910
+msgid "If you delete an item, it will be permanently lost."
+msgstr "Si borra un elemento, éste se perderá para siempre."
+
+#: ../desktopManager.js:988
+msgid "Rename"
+msgstr "Renombrar…"
+
+#: ../desktopManager.js:1029
+msgid "New folder"
+msgstr "Nueva carpeta"
+
+#: ../fileItem.js:613
+msgid "Don’t Allow Launching"
+msgstr "No permitir lanzar"
+
+#: ../fileItem.js:615
+msgid "Allow Launching"
+msgstr "Permitir lanzar"
+
+#: ../fileItem.js:681
+msgid "Open"
+msgstr "Abrir"
+
+#: ../fileItem.js:687
+msgid "Open With Other Application"
+msgstr "Abrir con otra aplicación"
+
+#: ../fileItem.js:694
+msgid "Cut"
+msgstr "Cortar"
+
+#: ../fileItem.js:697
+msgid "Copy"
+msgstr "Copiar"
+
+#: ../fileItem.js:701
+msgid "Rename…"
+msgstr "Renombrar…"
+
+#: ../fileItem.js:705
+msgid "Move to Trash"
+msgstr "Mover a la papelera"
+
+#: ../fileItem.js:709
+msgid "Delete permanently"
+msgstr "Borrar permanentemente"
+
+#: ../fileItem.js:722
+msgid "Empty Trash"
+msgstr "Vaciar la papelera"
+
+#: ../fileItem.js:730
+msgid "Properties"
+msgstr "Propiedades"
+
+#: ../fileItem.js:734
+msgid "Show in Files"
+msgstr "Mostrar en Files"
 
 #: ../preferences.js:89
 msgid "Size for the desktop icons"
@@ -72,106 +180,6 @@ msgstr "Mostrar archivos ocultos"
 msgid "Show a context menu item to delete permanently"
 msgstr "Permitir borrar permanentemente desde el menú contextual"
 
-#: ../desktopIconsUtil.js:67
-msgid "Command not found"
-msgstr "Comando no encontrado"
-
-#: ../fileItem.js:571
-msgid "Don’t Allow Launching"
-msgstr "No permitir lanzar"
-
-#: ../fileItem.js:573
-msgid "Allow Launching"
-msgstr "Permitir lanzar"
-
-#: ../fileItem.js:639
-msgid "Open"
-msgstr "Abrir"
-
-#: ../fileItem.js:645
-msgid "Open With Other Application"
-msgstr "Abrir con otra aplicación"
-
-#: ../fileItem.js:652
-msgid "Cut"
-msgstr "Cortar"
-
-#: ../fileItem.js:655
-msgid "Copy"
-msgstr "Copiar"
-
-#: ../fileItem.js:659
-msgid "Rename…"
-msgstr "Renombrar…"
-
-#: ../fileItem.js:663
-msgid "Move to Trash"
-msgstr "Mover a la papelera"
-
-#: ../fileItem.js:667
-msgid "Delete permanently"
-msgstr "Borrar permanentemente"
-
-#: ../fileItem.js:680
-msgid "Empty Trash"
-msgstr "Vaciar la papelera"
-
-#: ../fileItem.js:688
-msgid "Properties"
-msgstr "Propiedades"
-
-#: ../fileItem.js:692
-msgid "Show in Files"
-msgstr "Mostrar en Files"
-
-#: ../fileItem.js:696 ../desktopManager.js:439
-msgid "Open in Terminal"
-msgstr "Abrir en una terminal"
-
-#: ../desktopManager.js:415
-msgid "New Folder"
-msgstr "Nueva carpeta"
-
-#: ../desktopManager.js:421
-msgid "Paste"
-msgstr "Pegar"
-
-#: ../desktopManager.js:425
-msgid "Undo"
-msgstr "Deshacer"
-
-#: ../desktopManager.js:429
-msgid "Redo"
-msgstr "Rehacer"
-
-#: ../desktopManager.js:435
-msgid "Show Desktop in Files"
-msgstr "Mostrar el escritorio en Archivos"
-
-#: ../desktopManager.js:445
-msgid "Change Background…"
-msgstr "Cambiar el fondo..."
-
-#: ../desktopManager.js:454
-msgid "Display Settings"
-msgstr "Configuración de pantalla"
-
-#: ../desktopManager.js:906
-msgid "Are you sure you want to permanently delete these items?"
-msgstr "¿Borrar estos elementos de manera permanente?"
-
-#: ../desktopManager.js:906
-msgid "If you delete an item, it will be permanently lost."
-msgstr "Si borra un elemento, éste se perderá para siempre."
-
-#: ../desktopManager.js:984
-msgid "Rename"
-msgstr "Renombrar…"
-
-#: ../desktopManager.js:1025
-msgid "New folder"
-msgstr "Nueva carpeta"
-
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:1
 msgid "Icon size"
 msgstr "Tamaño de los iconos"
@@ -196,14 +204,8 @@ msgstr "Mostrar la papelera"
 msgid "Show the trash icon in the desktop."
 msgstr "Mostrar la papelera en el escritorio."
 
-#~ msgid "OK"
-#~ msgstr "Aceptar"
-
 #~ msgid "Enter file name…"
 #~ msgstr "Introduzca el nombre del archivo…"
-
-#~ msgid "Cancel"
-#~ msgstr "Cancelar"
 
 #~ msgid "New folder name"
 #~ msgstr "Nombre de la nueva carpeta"

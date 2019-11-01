@@ -1,143 +1,176 @@
-# German translation for desktop-icons.
-# Copyright (C) 2018 desktop-icons's COPYRIGHT HOLDER
-# This file is distributed under the same license as the desktop-icons package.
-# Mario Blättermann <mario.blaettermann@gmail.com>, 2018.
-# rugk <rugk+i18n@posteo.de>, 2019.
+#
+# Tim Hofstede <phokas@mail.de>, 2019.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: desktop-icons master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-17 21:43+0200\n"
-"PO-Revision-Date: 2019-03-09 15:42+0100\n"
-"Last-Translator: Tim Sabsch <tim@sabsch.com>\n"
-"Language-Team: German <gnome-de@gnome.org>\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
+"Project-Id-Version: unnamed project\n"
+"Last-Translator: Tim Hofstede <phokas@mail.de>\n"
+"Language-Team: German <phokas@mail.de>\n"
+"Language: de\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"PO-Revision-Date: 2019-11-01 14:06+0100\n"
+"X-Generator: Gtranslator 3.34.0\n"
 
-#: ../preferences.js:85
-msgid "OK"
-msgstr "OK"
-
-#: ../preferences.js:86 ../desktopManager.js:428
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Tim Sabsch <tim@sabsch.com>, 2018-2019.
+# Tim Hofstede, <phokas@mail.de>, 2019.
+# Sergio Costas <rastersoft@gmail.com>, 2018-2019.
+#
+#: ../preferences.js:83 ../desktopManager.js:461
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: ../preferences.js:91
+#: ../preferences.js:89
 msgid "Size for the desktop icons"
 msgstr "Größe der Arbeitsflächensymbole"
 
-#: ../preferences.js:91
+#: ../preferences.js:89
 msgid "Small"
 msgstr "Klein"
 
-#: ../preferences.js:91
+#: ../preferences.js:89
 msgid "Standard"
 msgstr "Standard"
 
-#: ../preferences.js:91
+#: ../preferences.js:89
 msgid "Large"
 msgstr "Groß"
 
-#: ../preferences.js:92
+#: ../preferences.js:90
 msgid "Show the personal folder in the desktop"
 msgstr "Den persönlichen Ordner auf der Arbeitsfläche anzeigen"
 
-#: ../preferences.js:93
+#: ../preferences.js:91
 msgid "Show the trash icon in the desktop"
 msgstr "Papierkorb-Symbol auf der Arbeitsfläche anzeigen"
 
-#: ../desktopIconsUtil.js:68
-msgid "Command not found"
-msgstr ""
+#: ../preferences.js:95
+msgid "Settings shared with Nautilus"
+msgstr "Mit Nautilus geteilte Einstellungen"
 
-#: ../fileItem.js:549
+#: ../preferences.js:101
+msgid "Click type for open files"
+msgstr "Öffnen-Aktion"
+
+#: ../preferences.js:101
+msgid "Single click"
+msgstr "Einfacher Klick"
+
+#: ../preferences.js:101
+msgid "Double click"
+msgstr "Doppelklick"
+
+#: ../preferences.js:102
+msgid "Show hidden files"
+msgstr "Verborgene Dateien anzeigen"
+
+#: ../preferences.js:103
+msgid "Show a context menu item to delete permanently"
+msgstr "Aktion zum dauerhaften Löschen anzeigen"
+
+#: ../desktopIconsUtil.js:67
+msgid "Command not found"
+msgstr "Kommando nicht gefunden"
+
+#: ../fileItem.js:571
 msgid "Don’t Allow Launching"
 msgstr "Start nicht erlauben"
 
-#: ../fileItem.js:551
+#: ../fileItem.js:573
 msgid "Allow Launching"
 msgstr "Start erlauben"
 
-#: ../fileItem.js:603
+#: ../fileItem.js:639
 msgid "Open"
 msgstr "Öffnen"
 
-#: ../fileItem.js:609
+#: ../fileItem.js:645
 msgid "Open With Other Application"
 msgstr "Mit anderer Anwendung öffnen"
 
-#: ../fileItem.js:616
+#: ../fileItem.js:652
 msgid "Cut"
 msgstr "Ausschneiden"
 
-#: ../fileItem.js:619
+#: ../fileItem.js:655
 msgid "Copy"
 msgstr "Kopieren"
 
-#: ../fileItem.js:623
+#: ../fileItem.js:659
 msgid "Rename…"
-msgstr "Umbenennen …"
+msgstr "Umbenennen"
 
-#: ../fileItem.js:627
+#: ../fileItem.js:663
 msgid "Move to Trash"
 msgstr "In den Papierkorb verschieben"
 
-#: ../fileItem.js:639
+#: ../fileItem.js:667
+msgid "Delete permanently"
+msgstr "Dauerhaft löschen"
+
+#: ../fileItem.js:680
 msgid "Empty Trash"
 msgstr "Papierkorb leeren"
 
-#: ../fileItem.js:647
+#: ../fileItem.js:688
 msgid "Properties"
 msgstr "Eigenschaften"
 
-#: ../fileItem.js:651
+#: ../fileItem.js:692
 msgid "Show in Files"
 msgstr "In Dateiverwaltung anzeigen"
 
-#: ../fileItem.js:655 ../desktopManager.js:406
+#: ../fileItem.js:696 ../desktopManager.js:439
 msgid "Open in Terminal"
 msgstr "Im Terminal öffnen"
 
-#: ../desktopManager.js:382
+#: ../desktopManager.js:415
 msgid "New Folder"
 msgstr "Neuer Ordner"
 
-#: ../desktopManager.js:388
+#: ../desktopManager.js:421
 msgid "Paste"
 msgstr "Einfügen"
 
-#: ../desktopManager.js:392
+#: ../desktopManager.js:425
 msgid "Undo"
 msgstr "Rückgängig"
 
-#: ../desktopManager.js:396
+#: ../desktopManager.js:429
 msgid "Redo"
 msgstr "Wiederholen"
 
-#: ../desktopManager.js:402
+#: ../desktopManager.js:435
 msgid "Show Desktop in Files"
 msgstr "Schreibtisch in Dateien anzeigen"
 
-#: ../desktopManager.js:412
+#: ../desktopManager.js:445
 msgid "Change Background…"
-msgstr "Hintergrund ändern …"
+msgstr "Hintergrund ändern…"
 
-#: ../desktopManager.js:421
+#: ../desktopManager.js:454
 msgid "Display Settings"
 msgstr "Anzeigeeinstellungen"
 
-#: ../desktopManager.js:841
-#, fuzzy
-msgid "Rename"
-msgstr "Umbenennen …"
+#: ../desktopManager.js:906
+msgid "Are you sure you want to permanently delete these items?"
+msgstr "Sind sie sicher, dass sie diese Dateien dauerhaft löschen wollen?"
 
-#: ../desktopManager.js:879
-#, fuzzy
+#: ../desktopManager.js:906
+msgid "If you delete an item, it will be permanently lost."
+msgstr "Sobald sie ein Objekt löschen, geht es dauerhaft verloren."
+
+#: ../desktopManager.js:984
+msgid "Rename"
+msgstr "Umbenennen"
+
+#: ../desktopManager.js:1025
 msgid "New folder"
 msgstr "Neuer Ordner"
 
@@ -164,33 +197,3 @@ msgstr "Papierkorb-Symbol anzeigen"
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:6
 msgid "Show the trash icon in the desktop."
 msgstr "Das Papierkorb-Symbol auf der Arbeitsfläche anzeigen."
-
-#~ msgid "Enter file name…"
-#~ msgstr "Dateinamen eingeben …"
-
-#~ msgid "Cancel"
-#~ msgstr "Abbrechen"
-
-#~ msgid "New folder name"
-#~ msgstr "Neuer Ordner"
-
-#~ msgid "Create"
-#~ msgstr "Erstellen"
-
-#~ msgid "Folder names cannot contain “/”."
-#~ msgstr "Ordnernamen dürfen kein »/« enthalten."
-
-#~ msgid "A folder cannot be called “.”."
-#~ msgstr "Ein Ordner darf nicht ».« genannt werden."
-
-#~ msgid "A folder cannot be called “..”."
-#~ msgstr "Ein Ordner darf nicht »..« genannt werden."
-
-#~ msgid "Folders with “.” at the beginning of their name are hidden."
-#~ msgstr "Ordner mit ».« am Anfang sind verborgen."
-
-#~ msgid "There is already a file or folder with that name."
-#~ msgstr "Es gibt bereits eine Datei oder einen Ordner mit diesem Namen."
-
-#~ msgid "Huge"
-#~ msgstr "Riesig"

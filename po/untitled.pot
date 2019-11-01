@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-24 23:03+0200\n"
+"POT-Creation-Date: 2019-11-01 21:39+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,8 +17,116 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../preferences.js:83 ../desktopManager.js:461
+#: ../askNamePopup.js:31
+msgid "OK"
+msgstr ""
+
+#: ../askNamePopup.js:32
+msgid "Cancel"
+msgstr ""
+
+#: ../desktopIconsUtil.js:67
+msgid "Command not found"
+msgstr ""
+
+#: ../desktopManager.js:419
+msgid "New Folder"
+msgstr ""
+
+#: ../desktopManager.js:425
+msgid "Paste"
+msgstr ""
+
+#: ../desktopManager.js:429
+msgid "Undo"
+msgstr ""
+
+#: ../desktopManager.js:433
+msgid "Redo"
+msgstr ""
+
+#: ../desktopManager.js:439
+msgid "Show Desktop in Files"
+msgstr ""
+
+#: ../desktopManager.js:443 ../fileItem.js:738
+msgid "Open in Terminal"
+msgstr ""
+
+#: ../desktopManager.js:449
+msgid "Change Background…"
+msgstr ""
+
+#: ../desktopManager.js:458
+msgid "Display Settings"
+msgstr ""
+
+#: ../desktopManager.js:465 ../preferences.js:83
 msgid "Settings"
+msgstr ""
+
+#: ../desktopManager.js:910
+msgid "Are you sure you want to permanently delete these items?"
+msgstr ""
+
+#: ../desktopManager.js:910
+msgid "If you delete an item, it will be permanently lost."
+msgstr ""
+
+#: ../desktopManager.js:988
+msgid "Rename"
+msgstr ""
+
+#: ../desktopManager.js:1029
+msgid "New folder"
+msgstr ""
+
+#: ../fileItem.js:613
+msgid "Don’t Allow Launching"
+msgstr ""
+
+#: ../fileItem.js:615
+msgid "Allow Launching"
+msgstr ""
+
+#: ../fileItem.js:681
+msgid "Open"
+msgstr ""
+
+#: ../fileItem.js:687
+msgid "Open With Other Application"
+msgstr ""
+
+#: ../fileItem.js:694
+msgid "Cut"
+msgstr ""
+
+#: ../fileItem.js:697
+msgid "Copy"
+msgstr ""
+
+#: ../fileItem.js:701
+msgid "Rename…"
+msgstr ""
+
+#: ../fileItem.js:705
+msgid "Move to Trash"
+msgstr ""
+
+#: ../fileItem.js:709
+msgid "Delete permanently"
+msgstr ""
+
+#: ../fileItem.js:722
+msgid "Empty Trash"
+msgstr ""
+
+#: ../fileItem.js:730
+msgid "Properties"
+msgstr ""
+
+#: ../fileItem.js:734
+msgid "Show in Files"
 msgstr ""
 
 #: ../preferences.js:89
@@ -67,106 +175,6 @@ msgstr ""
 
 #: ../preferences.js:103
 msgid "Show a context menu item to delete permanently"
-msgstr ""
-
-#: ../desktopIconsUtil.js:67
-msgid "Command not found"
-msgstr ""
-
-#: ../fileItem.js:571
-msgid "Don’t Allow Launching"
-msgstr ""
-
-#: ../fileItem.js:573
-msgid "Allow Launching"
-msgstr ""
-
-#: ../fileItem.js:639
-msgid "Open"
-msgstr ""
-
-#: ../fileItem.js:645
-msgid "Open With Other Application"
-msgstr ""
-
-#: ../fileItem.js:652
-msgid "Cut"
-msgstr ""
-
-#: ../fileItem.js:655
-msgid "Copy"
-msgstr ""
-
-#: ../fileItem.js:659
-msgid "Rename…"
-msgstr ""
-
-#: ../fileItem.js:663
-msgid "Move to Trash"
-msgstr ""
-
-#: ../fileItem.js:667
-msgid "Delete permanently"
-msgstr ""
-
-#: ../fileItem.js:680
-msgid "Empty Trash"
-msgstr ""
-
-#: ../fileItem.js:688
-msgid "Properties"
-msgstr ""
-
-#: ../fileItem.js:692
-msgid "Show in Files"
-msgstr ""
-
-#: ../fileItem.js:696 ../desktopManager.js:439
-msgid "Open in Terminal"
-msgstr ""
-
-#: ../desktopManager.js:415
-msgid "New Folder"
-msgstr ""
-
-#: ../desktopManager.js:421
-msgid "Paste"
-msgstr ""
-
-#: ../desktopManager.js:425
-msgid "Undo"
-msgstr ""
-
-#: ../desktopManager.js:429
-msgid "Redo"
-msgstr ""
-
-#: ../desktopManager.js:435
-msgid "Show Desktop in Files"
-msgstr ""
-
-#: ../desktopManager.js:445
-msgid "Change Background…"
-msgstr ""
-
-#: ../desktopManager.js:454
-msgid "Display Settings"
-msgstr ""
-
-#: ../desktopManager.js:906
-msgid "Are you sure you want to permanently delete these items?"
-msgstr ""
-
-#: ../desktopManager.js:906
-msgid "If you delete an item, it will be permanently lost."
-msgstr ""
-
-#: ../desktopManager.js:984
-msgid "Rename"
-msgstr ""
-
-#: ../desktopManager.js:1025
-msgid "New folder"
 msgstr ""
 
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:1
