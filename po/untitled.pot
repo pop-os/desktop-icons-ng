@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-03 23:56+0100\n"
+"POT-Creation-Date: 2019-11-05 22:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../askConfirmPopup.js:35 ../askNamePopup.js:33
+#: ../askConfirmPopup.js:35 ../askNamePopup.js:33 ../desktopIconsUtil.js:170
 msgid "Cancel"
 msgstr ""
 
@@ -41,8 +41,28 @@ msgstr ""
 msgid "Rename"
 msgstr ""
 
-#: ../desktopIconsUtil.js:67
+#: ../desktopIconsUtil.js:74
 msgid "Command not found"
+msgstr ""
+
+#: ../desktopIconsUtil.js:161
+msgid "Do you want to run “{0}”, or display its contents?"
+msgstr ""
+
+#: ../desktopIconsUtil.js:162
+msgid "“{0}” is an executable text file."
+msgstr ""
+
+#: ../desktopIconsUtil.js:166
+msgid "Execute in a terminal"
+msgstr ""
+
+#: ../desktopIconsUtil.js:168
+msgid "Show"
+msgstr ""
+
+#: ../desktopIconsUtil.js:172
+msgid "Execute"
 msgstr ""
 
 #: ../desktopManager.js:420
@@ -65,7 +85,7 @@ msgstr ""
 msgid "Show Desktop in Files"
 msgstr ""
 
-#: ../desktopManager.js:444 ../fileItem.js:738
+#: ../desktopManager.js:444 ../fileItem.js:746
 msgid "Open in Terminal"
 msgstr ""
 
@@ -93,51 +113,51 @@ msgstr ""
 msgid "New folder"
 msgstr ""
 
-#: ../fileItem.js:613
+#: ../fileItem.js:621
 msgid "Don’t Allow Launching"
 msgstr ""
 
-#: ../fileItem.js:615
+#: ../fileItem.js:623
 msgid "Allow Launching"
 msgstr ""
 
-#: ../fileItem.js:681
+#: ../fileItem.js:689
 msgid "Open"
 msgstr ""
 
-#: ../fileItem.js:687
+#: ../fileItem.js:695
 msgid "Open With Other Application"
 msgstr ""
 
-#: ../fileItem.js:694
+#: ../fileItem.js:702
 msgid "Cut"
 msgstr ""
 
-#: ../fileItem.js:697
+#: ../fileItem.js:705
 msgid "Copy"
 msgstr ""
 
-#: ../fileItem.js:701
+#: ../fileItem.js:709
 msgid "Rename…"
 msgstr ""
 
-#: ../fileItem.js:705
+#: ../fileItem.js:713
 msgid "Move to Trash"
 msgstr ""
 
-#: ../fileItem.js:709
+#: ../fileItem.js:717
 msgid "Delete permanently"
 msgstr ""
 
-#: ../fileItem.js:722
+#: ../fileItem.js:730
 msgid "Empty Trash"
 msgstr ""
 
-#: ../fileItem.js:730
+#: ../fileItem.js:738
 msgid "Properties"
 msgstr ""
 
-#: ../fileItem.js:734
+#: ../fileItem.js:742
 msgid "Show in Files"
 msgstr ""
 
@@ -187,6 +207,22 @@ msgstr ""
 
 #: ../preferences.js:103
 msgid "Show a context menu item to delete permanently"
+msgstr ""
+
+#: ../preferences.js:106
+msgid "Action to do when launching a program from the desktop"
+msgstr ""
+
+#: ../preferences.js:107
+msgid "Display the content of the file"
+msgstr ""
+
+#: ../preferences.js:108
+msgid "Launch the file"
+msgstr ""
+
+#: ../preferences.js:109
+msgid "Ask what to do"
 msgstr ""
 
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:1

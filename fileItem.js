@@ -570,10 +570,18 @@ var FileItem = class {
             return;
         }
 
-        if (this._attributeCanExecute && !this._isDirectory && !this._isValidDesktopFile && DesktopIconsUtil.isExecutable(this._attributeContentType)) {
-            if (this._execLine)
+        if (this._attributeCanExecute && !this._isDirectory && !this._isValidDesktopFile && this._execLine) {
+            let action =  DesktopIconsUtil.isExecutable(this._attributeContentType, this.file.get_basename());
+            switch (action) {
+            case Gtk.ResponseType.CANCEL:
+                return;
+            case Enums.WhatToDoWithExecutable.EXECUTE:
                 DesktopIconsUtil.spawnCommandLine(this._execLine);
-            return;
+                return;
+            case Enums.WhatToDoWithExecutable.EXECUTE_IN_TERMINAL:
+                DesktopIconsUtil.launchTerminal(this.file.get_parent().get_path(), this._execLine);
+                return;
+            }
         }
 
         Gio.AppInfo.launch_default_for_uri_async(this.file.get_uri(),
@@ -743,7 +751,7 @@ var FileItem = class {
     }
 
     _onOpenTerminalClicked () {
-        DesktopIconsUtil.launchTerminal(this.file.get_path());
+        DesktopIconsUtil.launchTerminal(this.file.get_path(), null);
     }
 
     _onPressButton(actor, event) {

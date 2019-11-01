@@ -55,6 +55,13 @@ var FileExistOperation = {
     SKIP: 3
 };
 
+var WhatToDoWithExecutable = {
+    EXECUTE: 0,
+    EXECUTE_IN_TERMINAL: 1,
+    DISPLAY: 2,
+    CANCEL: 3
+};
+
 var DEFAULT_ATTRIBUTES = 'metadata::*,standard::*,access::*,time::modified,unix::mode';
 var TERMINAL_SCHEMA = 'org.gnome.desktop.default-applications.terminal';
 var SCHEMA_NAUTILUS = 'org.gnome.nautilus.preferences';

@@ -484,7 +484,7 @@ var DesktopManager = class {
 
     _onOpenTerminalClicked() {
         let desktopPath = this._desktopDir.get_path();
-        DesktopIconsUtil.launchTerminal(desktopPath);
+        DesktopIconsUtil.launchTerminal(desktopPath, null);
     }
 
     _doPaste() {
