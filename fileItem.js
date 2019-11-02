@@ -641,7 +641,7 @@ var FileItem = class {
 
     _updateName() {
         if (this._isValidDesktopFile && !this._desktopManager.writableByOthers && !this._writableByOthers && this.trustedDesktopFile) {
-            this._setFileName(`${this._desktopFile.get_locale_string("Name")}.desktop`);
+            this._setFileName(this._desktopFile.get_locale_string("Name"));
         } else {
             this._setFileName(this._fileInfo.get_display_name());
         }
