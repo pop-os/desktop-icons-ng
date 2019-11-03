@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-01 21:39+0100\n"
-"PO-Revision-Date: 2019-10-24 23:04+0200\n"
+"POT-Creation-Date: 2019-11-03 21:40+0100\n"
+"PO-Revision-Date: 2019-11-03 21:40+0100\n"
 "Last-Translator: Sergio Costas <rastersoft@gmail.com>\n"
 "Language-Team: Español; Castellano <rastersoft@gmail.com>\n"
 "Language: es\n"
@@ -20,67 +20,67 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Gtranslator 3.34.0\n"
 
-#: ../askNamePopup.js:31
-msgid "OK"
-msgstr "Aceptar"
-
-#: ../askNamePopup.js:32
+#: ../askConfirmPopup.js:35 ../askNamePopup.js:33
 msgid "Cancel"
 msgstr "Cancelar"
+
+#: ../askConfirmPopup.js:36
+msgid "Delete"
+msgstr "Borrar"
+
+#: ../askNamePopup.js:32
+msgid "OK"
+msgstr "Aceptar"
 
 #: ../desktopIconsUtil.js:67
 msgid "Command not found"
 msgstr "Comando no encontrado"
 
-#: ../desktopManager.js:419
+#: ../desktopManager.js:420
 msgid "New Folder"
 msgstr "Nueva carpeta"
 
-#: ../desktopManager.js:425
+#: ../desktopManager.js:426
 msgid "Paste"
 msgstr "Pegar"
 
-#: ../desktopManager.js:429
+#: ../desktopManager.js:430
 msgid "Undo"
 msgstr "Deshacer"
 
-#: ../desktopManager.js:433
+#: ../desktopManager.js:434
 msgid "Redo"
 msgstr "Rehacer"
 
-#: ../desktopManager.js:439
+#: ../desktopManager.js:440
 msgid "Show Desktop in Files"
 msgstr "Mostrar el escritorio en Archivos"
 
-#: ../desktopManager.js:443 ../fileItem.js:738
+#: ../desktopManager.js:444 ../fileItem.js:738
 msgid "Open in Terminal"
 msgstr "Abrir en una terminal"
 
-#: ../desktopManager.js:449
+#: ../desktopManager.js:450
 msgid "Change Background…"
 msgstr "Cambiar el fondo..."
 
-#: ../desktopManager.js:458
+#: ../desktopManager.js:459
 msgid "Display Settings"
 msgstr "Configuración de pantalla"
 
-#: ../desktopManager.js:465 ../preferences.js:83
+#: ../desktopManager.js:466 ../preferences.js:83
 msgid "Settings"
 msgstr "Configuración"
 
-#: ../desktopManager.js:910
+#: ../desktopManager.js:911
 msgid "Are you sure you want to permanently delete these items?"
 msgstr "¿Borrar estos elementos de manera permanente?"
 
-#: ../desktopManager.js:910
+#: ../desktopManager.js:911
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Si borra un elemento, éste se perderá para siempre."
 
-#: ../desktopManager.js:988
-msgid "Rename"
-msgstr "Renombrar…"
-
-#: ../desktopManager.js:1029
+#: ../desktopManager.js:1020
 msgid "New folder"
 msgstr "Nueva carpeta"
 
@@ -203,6 +203,9 @@ msgstr "Mostrar la papelera"
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:6
 msgid "Show the trash icon in the desktop."
 msgstr "Mostrar la papelera en el escritorio."
+
+#~ msgid "Rename"
+#~ msgstr "Renombrar…"
 
 #~ msgid "Enter file name…"
 #~ msgstr "Introduzca el nombre del archivo…"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-01 21:39+0100\n"
+"POT-Creation-Date: 2019-11-03 21:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,67 +17,67 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../askNamePopup.js:31
-msgid "OK"
+#: ../askConfirmPopup.js:35 ../askNamePopup.js:33
+msgid "Cancel"
+msgstr ""
+
+#: ../askConfirmPopup.js:36
+msgid "Delete"
 msgstr ""
 
 #: ../askNamePopup.js:32
-msgid "Cancel"
+msgid "OK"
 msgstr ""
 
 #: ../desktopIconsUtil.js:67
 msgid "Command not found"
 msgstr ""
 
-#: ../desktopManager.js:419
+#: ../desktopManager.js:420
 msgid "New Folder"
 msgstr ""
 
-#: ../desktopManager.js:425
+#: ../desktopManager.js:426
 msgid "Paste"
 msgstr ""
 
-#: ../desktopManager.js:429
+#: ../desktopManager.js:430
 msgid "Undo"
 msgstr ""
 
-#: ../desktopManager.js:433
+#: ../desktopManager.js:434
 msgid "Redo"
 msgstr ""
 
-#: ../desktopManager.js:439
+#: ../desktopManager.js:440
 msgid "Show Desktop in Files"
 msgstr ""
 
-#: ../desktopManager.js:443 ../fileItem.js:738
+#: ../desktopManager.js:444 ../fileItem.js:738
 msgid "Open in Terminal"
 msgstr ""
 
-#: ../desktopManager.js:449
+#: ../desktopManager.js:450
 msgid "Change Background…"
 msgstr ""
 
-#: ../desktopManager.js:458
+#: ../desktopManager.js:459
 msgid "Display Settings"
 msgstr ""
 
-#: ../desktopManager.js:465 ../preferences.js:83
+#: ../desktopManager.js:466 ../preferences.js:83
 msgid "Settings"
 msgstr ""
 
-#: ../desktopManager.js:910
+#: ../desktopManager.js:911
 msgid "Are you sure you want to permanently delete these items?"
 msgstr ""
 
-#: ../desktopManager.js:910
+#: ../desktopManager.js:911
 msgid "If you delete an item, it will be permanently lost."
 msgstr ""
 
-#: ../desktopManager.js:988
-msgid "Rename"
-msgstr ""
-
-#: ../desktopManager.js:1029
+#: ../desktopManager.js:1020
 msgid "New folder"
 msgstr ""
 
