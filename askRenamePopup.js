@@ -34,7 +34,7 @@ var AskRenamePopup = class {
                                        column_spacing: 6,
                                        margin: 10});
         this._popover.add(contentBox);
-        let label = new Gtk.Label({label: _("File name"),
+        let label = new Gtk.Label({label: fileItem.isDirectory ? _("Folder name") : _("File name"),
                                    justify: Gtk.Justification.LEFT,
                                    halign: Gtk.Align.START});
         contentBox.attach(label, 0, 0, 2, 1);
