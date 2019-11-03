@@ -1,5 +1,6 @@
 askConfirmPopup.js
 askNamePopup.js
+askRenamePopup.js
 createThumbnail.js
 dbusUtils.js
 desktopGrid.js

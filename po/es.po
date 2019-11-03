@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-03 21:40+0100\n"
-"PO-Revision-Date: 2019-11-03 21:40+0100\n"
+"POT-Creation-Date: 2019-11-03 23:56+0100\n"
+"PO-Revision-Date: 2019-11-03 23:57+0100\n"
 "Last-Translator: Sergio Costas <rastersoft@gmail.com>\n"
 "Language-Team: Español; Castellano <rastersoft@gmail.com>\n"
 "Language: es\n"
@@ -31,6 +31,18 @@ msgstr "Borrar"
 #: ../askNamePopup.js:32
 msgid "OK"
 msgstr "Aceptar"
+
+#: ../askRenamePopup.js:37
+msgid "Folder name"
+msgstr "Nombre de la carpeta"
+
+#: ../askRenamePopup.js:37
+msgid "File name"
+msgstr "Nombre de archivo"
+
+#: ../askRenamePopup.js:44
+msgid "Rename"
+msgstr "Renombrar…"
 
 #: ../desktopIconsUtil.js:67
 msgid "Command not found"
@@ -203,9 +215,6 @@ msgstr "Mostrar la papelera"
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:6
 msgid "Show the trash icon in the desktop."
 msgstr "Mostrar la papelera en el escritorio."
-
-#~ msgid "Rename"
-#~ msgstr "Renombrar…"
 
 #~ msgid "Enter file name…"
 #~ msgstr "Introduzca el nombre del archivo…"
