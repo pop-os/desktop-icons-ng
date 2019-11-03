@@ -29,8 +29,7 @@ var AskRenamePopup = class {
                                        window_position: Gtk.WindowPosition.CENTER_ON_PARENT,
                                        transient_for: parentWindow,
                                        deletable: false,
-                                       hexpand: false,
-                                       vexpand: false});
+                                       resizable: false});
         this._window.set_modal(true);
         this._window.set_title(_("File name"));
         let contentArea = this._window.get_content_area();

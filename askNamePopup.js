@@ -27,7 +27,8 @@ var AskNamePopup = class {
 
         this._window = new Gtk.Dialog({use_header_bar: true,
                                        window_position: Gtk.WindowPosition.CENTER_ON_PARENT,
-                                       transient_for: parentWindow});
+                                       transient_for: parentWindow,
+                                       resizable: false});
         this._window.add_button(_("OK"), Gtk.ResponseType.OK);
         this._window.add_button(_("Cancel"), Gtk.ResponseType.CANCEL);
         this._window.set_modal(true);
