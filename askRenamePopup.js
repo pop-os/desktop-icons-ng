@@ -38,10 +38,13 @@ var AskRenamePopup = class {
         this._textArea = new Gtk.Entry();
         this._textArea.text = fileItem.fileName;
         contentBox.attach(this._textArea, 0, 1, 1, 1);
-        let button = new Gtk.Button({label: _("Rename")});
-        contentBox.attach(button, 1, 1, 1, 1);
-        button.connect('clicked', () => {
+        this._button = new Gtk.Button({label: _("Rename")});
+        contentBox.attach(this._button, 1, 1, 1, 1);
+        this._button.connect('clicked', () => {
             this._do_rename();
+        });
+        this._textArea.connect('changed', () => {
+            this._validate();
         });
         this._textArea.connect('activate', () => {
             this._do_rename();
@@ -49,6 +52,17 @@ var AskRenamePopup = class {
         this._textArea.set_can_default(true);
         this._popover.set_default_widget(this._textArea);
         this._popover.show_all();
+        this._textArea.grab_focus_without_selecting();
+        this._validate();
+    }
+
+    _validate() {
+        let text = this._textArea.text;
+        if ((text == '') || (-1 != text.indexOf('/')) || (text == this._fileItem.fileName)) {
+            this._button.sensitive = false;
+        } else {
+            this._button.sensitive = true;
+        }
     }
 
     _do_rename() {
