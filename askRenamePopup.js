@@ -18,6 +18,7 @@
 
 const Gtk = imports.gi.Gtk;
 const DBusUtils = imports.dbusUtils;
+const DesktopIconsUtil = imports.desktopIconsUtil;
 const Gettext = imports.gettext.domain('ding');
 
 const _ = Gettext.gettext;
@@ -52,8 +53,9 @@ var AskRenamePopup = class {
         this._textArea.set_can_default(true);
         this._popover.set_default_widget(this._textArea);
         this._popover.show_all();
-        this._textArea.grab_focus_without_selecting();
         this._validate();
+        this._textArea.grab_focus_without_selecting();
+        this._textArea.select_region(0, DesktopIconsUtil.getFileExtensionOffset(fileItem.fileName, fileItem.isDirectory));
     }
 
     _validate() {
