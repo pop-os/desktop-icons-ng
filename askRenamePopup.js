@@ -30,7 +30,9 @@ var AskRenamePopup = class {
         this._fileItem = fileItem;
         this._popover = new Gtk.Popover({relative_to: fileItem.actor,
                                          modal: true});
-        let contentBox = new Gtk.Grid();
+        let contentBox = new Gtk.Grid({row_spacing: 6,
+                                       column_spacing: 6,
+                                       margin: 10});
         this._popover.add(contentBox);
         let label = new Gtk.Label({label: _("File name"),
                                    justify: Gtk.Justification.LEFT,
