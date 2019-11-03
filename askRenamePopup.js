@@ -17,46 +17,44 @@
  */
 
 const Gtk = imports.gi.Gtk;
+const DBusUtils = imports.dbusUtils;
 const Gettext = imports.gettext.domain('ding');
 
 const _ = Gettext.gettext;
 
 var AskRenamePopup = class {
 
-    constructor(filename, parentWindow) {
+    constructor(fileItem) {
 
-        this._window = new Gtk.Dialog({use_header_bar: false,
-                                       window_position: Gtk.WindowPosition.CENTER_ON_PARENT,
-                                       transient_for: parentWindow,
-                                       deletable: false,
-                                       resizable: false});
-        this._window.set_modal(true);
-        this._window.set_title(_("File name"));
-        let contentArea = this._window.get_content_area();
+        this._fileItem = fileItem;
+        this._window = new Gtk.Popover({relative_to: fileItem.actor});
+        let contentBox = new Gtk.Grid();
+        this._window.add(contentBox);
+        let label = new Gtk.Label({label: _("File name"),
+                                   justify: Gtk.Justification.LEFT,
+                                   halign: Gtk.Align.START});
+        contentBox.attach(label, 0, 0, 2, 1);
         this._textArea = new Gtk.Entry();
-        if (filename) {
-            this._textArea.text = filename;
-        }
-        contentArea.orientation = Gtk.Orientation.HORIZONTAL;
-        contentArea.pack_start(this._textArea, true, true, 5);
+        this._textArea.text = fileItem.fileName;
+        contentBox.attach(this._textArea, 0, 1, 1, 1);
         let button = new Gtk.Button({label: _("Rename")});
-        contentArea.pack_start(button, false, false, 5);
+        contentBox.attach(button, 1, 1, 1, 1);
         button.connect('clicked', () => {
-            this._window.response(Gtk.ResponseType.OK);
+            this._do_rename();
         });
         this._textArea.connect('activate', () => {
-            this._window.response(Gtk.ResponseType.OK);
+            this._do_rename();
         });
+        this._window.show_all();
     }
 
-    run() {
-        this._window.show_all();
-        let retval = this._window.run();
-        this._window.hide();
-        if (retval == Gtk.ResponseType.OK) {
-            return this._textArea.text;
-        } else {
-            return null;
-        }
+    _do_rename() {
+        DBusUtils.NautilusFileOperationsProxy.RenameFileRemote(this._fileItem.file.get_uri(),
+                                                               this._textArea.text,
+            (result, error) => {
+                if (error)
+                    throw new Error('Error renaming file: ' + error.message);
+            }
+        );
     }
 };

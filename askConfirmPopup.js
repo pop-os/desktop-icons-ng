@@ -28,7 +28,7 @@ var AskConfirmPopup = class {
 
         this._window = new Gtk.MessageDialog({window_position: Gtk.WindowPosition.CENTER_ON_PARENT,
                                               transient_for: parentWindow,
-                                              message_type: Gtk.MessageType.QUESTION,
+                                              message_type: Gtk.MessageType.WARNING,
                                               buttons: Gtk.ButtonsType.OK_CANCEL,
                                               text: text,
                                               secondary_text: secondaryText});

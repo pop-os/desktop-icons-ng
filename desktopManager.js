@@ -986,17 +986,7 @@ var DesktopManager = class {
         for(let fileItem2 of this._fileList) {
             fileItem2.unsetSelected();
         }
-        let renameWindow = new AskRenamePopup.AskRenamePopup(fileItem.fileName, this._window);
-        let newName = renameWindow.run();
-        if (newName) {
-            DBusUtils.NautilusFileOperationsProxy.RenameFileRemote(fileItem.file.get_uri(),
-                                                                   newName,
-                (result, error) => {
-                    if (error)
-                        throw new Error('Error renaming file: ' + error.message);
-                }
-            );
-        }
+        this._renameWindow = new AskRenamePopup.AskRenamePopup(fileItem);
     }
 
     doOpenWith() {
