@@ -14,14 +14,15 @@ extensions_dir = join_paths(prefix, 'share', 'gnome-shell', 'extensions', 'ding@
 
 install_data([
 #    'createFolderDialog.js',
-    'ding.js',
-    'askNamePopup.js',
     'askConfirmPopup.js',
+    'askNamePopup.js',
+    'askRenamePopup.js',
     'createThumbnail.js',
     'dbusUtils.js',
     'desktopGrid.js',
     'desktopIconsUtil.js',
     'desktopManager.js',
+    'ding.js',
     'enums.js',
     'extension.js',
     'fileItem.js',

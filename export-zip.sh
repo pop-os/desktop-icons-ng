@@ -35,7 +35,7 @@ fi
 echo "# -------------------"
 echo "# Buiding with meson"
 echo "# -------------------"
-meson --prefix="${LOCAL_PREFIX}" --localedir=locale "${BUILD_DIR}" "${REPO_DIR}" 
+meson --prefix="${LOCAL_PREFIX}" --localedir=locale "${BUILD_DIR}" "${REPO_DIR}"
 ninja -C "${BUILD_DIR}" install
 
 # Create distribution ZIP file

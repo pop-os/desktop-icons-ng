@@ -29,6 +29,7 @@ const Prefs = imports.preferences;
 const Enums = imports.enums;
 const DBusUtils = imports.dbusUtils;
 const AskNamePopup = imports.askNamePopup;
+const AskRenamePopup = imports.askRenamePopup;
 const AskConfirmPopup = imports.askConfirmPopup;
 
 const Gettext = imports.gettext.domain('ding');
@@ -985,7 +986,7 @@ var DesktopManager = class {
         for(let fileItem2 of this._fileList) {
             fileItem2.unsetSelected();
         }
-        let renameWindow = new AskNamePopup.AskNamePopup(fileItem.fileName, _("Rename"), this._window);
+        let renameWindow = new AskRenamePopup.AskRenamePopup(fileItem.fileName, this._window);
         let newName = renameWindow.run();
         if (newName) {
             DBusUtils.NautilusFileOperationsProxy.RenameFileRemote(fileItem.file.get_uri(),
