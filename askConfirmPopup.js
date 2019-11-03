@@ -29,16 +29,19 @@ var AskConfirmPopup = class {
         this._window = new Gtk.MessageDialog({window_position: Gtk.WindowPosition.CENTER_ON_PARENT,
                                               transient_for: parentWindow,
                                               message_type: Gtk.MessageType.WARNING,
-                                              buttons: Gtk.ButtonsType.OK_CANCEL,
+                                              buttons: Gtk.ButtonsType.NONE,
                                               text: text,
                                               secondary_text: secondaryText});
+        this._window.add_button(_("Cancel"), Gtk.ResponseType.CANCEL);
+        let deleteButton = this._window.add_button(_("Delete"), Gtk.ResponseType.OK);
+        deleteButton.get_style_context().add_class("destructive-action");
     }
 
     run() {
         this._window.show_all();
         let retval = this._window.run();
         this._window.hide();
-        if (retval == Gtk.ResponseType.YES) {
+        if (retval == Gtk.ResponseType.OK) {
             return true;
         } else {
             return false;
