@@ -27,9 +27,10 @@ var AskRenamePopup = class {
     constructor(fileItem) {
 
         this._fileItem = fileItem;
-        this._window = new Gtk.Popover({relative_to: fileItem.actor});
+        this._popover = new Gtk.Popover({relative_to: fileItem.actor,
+                                         modal: true});
         let contentBox = new Gtk.Grid();
-        this._window.add(contentBox);
+        this._popover.add(contentBox);
         let label = new Gtk.Label({label: _("File name"),
                                    justify: Gtk.Justification.LEFT,
                                    halign: Gtk.Align.START});
@@ -45,7 +46,9 @@ var AskRenamePopup = class {
         this._textArea.connect('activate', () => {
             this._do_rename();
         });
-        this._window.show_all();
+        this._textArea.set_can_default(true);
+        this._popover.set_default_widget(this._textArea);
+        this._popover.show_all();
     }
 
     _do_rename() {
