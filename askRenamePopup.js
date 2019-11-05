@@ -54,6 +54,7 @@ var AskRenamePopup = class {
         });
         this._textArea.set_can_default(true);
         this._popover.set_default_widget(this._textArea);
+        this._button.get_style_context().add_class("suggested-action");
         this._popover.show_all();
         this._validate();
         this._textArea.grab_focus_without_selecting();
