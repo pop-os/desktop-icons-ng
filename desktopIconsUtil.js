@@ -39,7 +39,7 @@ function spawnCommandLine(command_line) {
         let [success, argv] = GLib.shell_parse_argv(command_line);
         trySpawn(null, argv);
     } catch (err) {
-        _handleSpawnError(command_line, err);
+        print(`${command_line} failed with ${err}`);
     }
 }
 
