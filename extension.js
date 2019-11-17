@@ -432,7 +432,7 @@ function launchDesktop() {
 
     data.windowUpdated = false;
     data.currentProcess = new LaunchSubprocess(0, "DING", "-U");
-    data.currentProcess.set_cwd(ExtensionUtils.getCurrentExtension().path);
+    data.currentProcess.set_cwd(GLib.get_home_dir());
     data.currentProcess.spawnv(argv);
 
     /*
