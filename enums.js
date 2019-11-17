@@ -17,7 +17,7 @@
  */
 
 var ICON_SIZE = { 'small': 48, 'standard': 64, 'large': 96 };
-var ICON_WIDTH = { 'small': 112, 'standard': 120, 'large': 120 };
+var ICON_WIDTH = { 'small': 90, 'standard': 120, 'large': 130 };
 var ICON_HEIGHT = { 'small': 90, 'standard': 106, 'large': 138 };
 
 var FileType = {
