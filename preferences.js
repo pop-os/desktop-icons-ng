@@ -108,6 +108,13 @@ function showPreferences() {
                                       'launch': _("Launch the file"),
                                       'ask': _("Ask what to do")
                                    }));
+    nautilusBox.add(buildSelector(nautilusSettings,
+                                  'show-image-thumbnails',
+                                  _("Show image thumbnails"), {
+                                      'never': _("Never"),
+                                      'local-only': _("Local files only"),
+                                      'always': _("Always")
+                                   }));
     window.show_all();
 }
 

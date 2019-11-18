@@ -360,9 +360,10 @@ var FileItem = class {
         }
 
         let thumbnailFactory = GnomeDesktop.DesktopThumbnailFactory.new(GnomeDesktop.DesktopThumbnailSize.LARGE);
-        if (thumbnailFactory.can_thumbnail(this._file.get_uri(),
+        if ((Prefs.nautilusSettings.get_string('show-image-thumbnails') != 'never') &&
+            (thumbnailFactory.can_thumbnail(this._file.get_uri(),
                                            this._attributeContentType,
-                                           this._modifiedTime)) {
+                                           this._modifiedTime))) {
             let thumbnail = thumbnailFactory.lookup(this._file.get_uri(), this._modifiedTime);
             if (thumbnail == null) {
                 if (!thumbnailFactory.has_valid_failed_thumbnail(this._file.get_uri(),

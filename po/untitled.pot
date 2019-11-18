@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-05 22:12+0100\n"
+"POT-Creation-Date: 2019-11-17 19:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,99 +65,99 @@ msgstr ""
 msgid "Execute"
 msgstr ""
 
-#: ../desktopManager.js:420
+#: ../desktopManager.js:425
 msgid "New Folder"
 msgstr ""
 
-#: ../desktopManager.js:426
+#: ../desktopManager.js:431
 msgid "Paste"
 msgstr ""
 
-#: ../desktopManager.js:430
+#: ../desktopManager.js:435
 msgid "Undo"
 msgstr ""
 
-#: ../desktopManager.js:434
+#: ../desktopManager.js:439
 msgid "Redo"
 msgstr ""
 
-#: ../desktopManager.js:440
+#: ../desktopManager.js:445
 msgid "Show Desktop in Files"
 msgstr ""
 
-#: ../desktopManager.js:444 ../fileItem.js:746
+#: ../desktopManager.js:449 ../fileItem.js:747
 msgid "Open in Terminal"
 msgstr ""
 
-#: ../desktopManager.js:450
+#: ../desktopManager.js:455
 msgid "Change Background…"
 msgstr ""
 
-#: ../desktopManager.js:459
+#: ../desktopManager.js:464
 msgid "Display Settings"
 msgstr ""
 
-#: ../desktopManager.js:466 ../preferences.js:83
+#: ../desktopManager.js:471 ../preferences.js:83
 msgid "Settings"
 msgstr ""
 
-#: ../desktopManager.js:911
+#: ../desktopManager.js:916
 msgid "Are you sure you want to permanently delete these items?"
 msgstr ""
 
-#: ../desktopManager.js:911
+#: ../desktopManager.js:916
 msgid "If you delete an item, it will be permanently lost."
 msgstr ""
 
-#: ../desktopManager.js:1020
+#: ../desktopManager.js:1025
 msgid "New folder"
 msgstr ""
 
-#: ../fileItem.js:621
+#: ../fileItem.js:622
 msgid "Don’t Allow Launching"
 msgstr ""
 
-#: ../fileItem.js:623
+#: ../fileItem.js:624
 msgid "Allow Launching"
 msgstr ""
 
-#: ../fileItem.js:689
+#: ../fileItem.js:690
 msgid "Open"
 msgstr ""
 
-#: ../fileItem.js:695
+#: ../fileItem.js:696
 msgid "Open With Other Application"
 msgstr ""
 
-#: ../fileItem.js:702
+#: ../fileItem.js:703
 msgid "Cut"
 msgstr ""
 
-#: ../fileItem.js:705
+#: ../fileItem.js:706
 msgid "Copy"
 msgstr ""
 
-#: ../fileItem.js:709
+#: ../fileItem.js:710
 msgid "Rename…"
 msgstr ""
 
-#: ../fileItem.js:713
+#: ../fileItem.js:714
 msgid "Move to Trash"
 msgstr ""
 
-#: ../fileItem.js:717
+#: ../fileItem.js:718
 msgid "Delete permanently"
 msgstr ""
 
-#: ../fileItem.js:730
+#: ../fileItem.js:731
 msgid "Empty Trash"
 msgstr ""
 
-#: ../fileItem.js:738
+#: ../fileItem.js:739
 msgid "Properties"
 msgstr ""
 
-#: ../fileItem.js:742
+#: ../fileItem.js:743
 msgid "Show in Files"
 msgstr ""
 
@@ -223,6 +223,22 @@ msgstr ""
 
 #: ../preferences.js:109
 msgid "Ask what to do"
+msgstr ""
+
+#: ../preferences.js:113
+msgid "Show image thumbnails"
+msgstr ""
+
+#: ../preferences.js:114
+msgid "Never"
+msgstr ""
+
+#: ../preferences.js:115
+msgid "Local files only"
+msgstr ""
+
+#: ../preferences.js:116
+msgid "Always"
 msgstr ""
 
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:1
