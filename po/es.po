@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-05 22:12+0100\n"
-"PO-Revision-Date: 2019-11-05 22:15+0100\n"
+"POT-Creation-Date: 2019-11-17 19:01+0100\n"
+"PO-Revision-Date: 2019-11-17 19:01+0100\n"
 "Last-Translator: Sergio Costas <rastersoft@gmail.com>\n"
 "Language-Team: Español; Castellano <rastersoft@gmail.com>\n"
 "Language: es\n"
@@ -68,99 +68,99 @@ msgstr "Mostrar"
 msgid "Execute"
 msgstr "Ejecutar"
 
-#: ../desktopManager.js:420
+#: ../desktopManager.js:425
 msgid "New Folder"
 msgstr "Nueva carpeta"
 
-#: ../desktopManager.js:426
+#: ../desktopManager.js:431
 msgid "Paste"
 msgstr "Pegar"
 
-#: ../desktopManager.js:430
+#: ../desktopManager.js:435
 msgid "Undo"
 msgstr "Deshacer"
 
-#: ../desktopManager.js:434
+#: ../desktopManager.js:439
 msgid "Redo"
 msgstr "Rehacer"
 
-#: ../desktopManager.js:440
+#: ../desktopManager.js:445
 msgid "Show Desktop in Files"
 msgstr "Mostrar el escritorio en Archivos"
 
-#: ../desktopManager.js:444 ../fileItem.js:746
+#: ../desktopManager.js:449 ../fileItem.js:747
 msgid "Open in Terminal"
 msgstr "Abrir en una terminal"
 
-#: ../desktopManager.js:450
+#: ../desktopManager.js:455
 msgid "Change Background…"
 msgstr "Cambiar el fondo..."
 
-#: ../desktopManager.js:459
+#: ../desktopManager.js:464
 msgid "Display Settings"
 msgstr "Configuración de pantalla"
 
-#: ../desktopManager.js:466 ../preferences.js:83
+#: ../desktopManager.js:471 ../preferences.js:83
 msgid "Settings"
 msgstr "Configuración"
 
-#: ../desktopManager.js:911
+#: ../desktopManager.js:916
 msgid "Are you sure you want to permanently delete these items?"
 msgstr "¿Borrar estos elementos de manera permanente?"
 
-#: ../desktopManager.js:911
+#: ../desktopManager.js:916
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Si borra un elemento, éste se perderá para siempre."
 
-#: ../desktopManager.js:1020
+#: ../desktopManager.js:1025
 msgid "New folder"
 msgstr "Nueva carpeta"
 
-#: ../fileItem.js:621
+#: ../fileItem.js:622
 msgid "Don’t Allow Launching"
 msgstr "No permitir lanzar"
 
-#: ../fileItem.js:623
+#: ../fileItem.js:624
 msgid "Allow Launching"
 msgstr "Permitir lanzar"
 
-#: ../fileItem.js:689
+#: ../fileItem.js:690
 msgid "Open"
 msgstr "Abrir"
 
-#: ../fileItem.js:695
+#: ../fileItem.js:696
 msgid "Open With Other Application"
 msgstr "Abrir con otra aplicación"
 
-#: ../fileItem.js:702
+#: ../fileItem.js:703
 msgid "Cut"
 msgstr "Cortar"
 
-#: ../fileItem.js:705
+#: ../fileItem.js:706
 msgid "Copy"
 msgstr "Copiar"
 
-#: ../fileItem.js:709
+#: ../fileItem.js:710
 msgid "Rename…"
 msgstr "Renombrar…"
 
-#: ../fileItem.js:713
+#: ../fileItem.js:714
 msgid "Move to Trash"
 msgstr "Mover a la papelera"
 
-#: ../fileItem.js:717
+#: ../fileItem.js:718
 msgid "Delete permanently"
 msgstr "Borrar permanentemente"
 
-#: ../fileItem.js:730
+#: ../fileItem.js:731
 msgid "Empty Trash"
 msgstr "Vaciar la papelera"
 
-#: ../fileItem.js:738
+#: ../fileItem.js:739
 msgid "Properties"
 msgstr "Propiedades"
 
-#: ../fileItem.js:742
+#: ../fileItem.js:743
 msgid "Show in Files"
 msgstr "Mostrar en Files"
 
@@ -227,6 +227,22 @@ msgstr "Ejecutar el fichero"
 #: ../preferences.js:109
 msgid "Ask what to do"
 msgstr "Preguntar qué hacer"
+
+#: ../preferences.js:113
+msgid "Show image thumbnails"
+msgstr "Mostrar miniaturas de imágenes"
+
+#: ../preferences.js:114
+msgid "Never"
+msgstr "Nunca"
+
+#: ../preferences.js:115
+msgid "Local files only"
+msgstr "Sólo ficheros locales"
+
+#: ../preferences.js:116
+msgid "Always"
+msgstr "Siempre"
 
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:1
 msgid "Icon size"

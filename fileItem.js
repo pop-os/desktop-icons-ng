@@ -39,7 +39,8 @@ const _ = Gettext.gettext;
 
 var FileItem = class {
 
-    constructor(desktopManager, file, fileInfo, fileExtra, scaleFactor) {
+    constructor(desktopManager, file, fileInfo, fileExtra, scaleFactor, codePath) {
+        this._codePath = codePath;
         this._desktopManager = desktopManager;
         this._scaleFactor = scaleFactor;
         this._fileExtra = fileExtra;
@@ -360,15 +361,16 @@ var FileItem = class {
         }
 
         let thumbnailFactory = GnomeDesktop.DesktopThumbnailFactory.new(GnomeDesktop.DesktopThumbnailSize.LARGE);
-        if (thumbnailFactory.can_thumbnail(this._file.get_uri(),
+        if ((Prefs.nautilusSettings.get_string('show-image-thumbnails') != 'never') &&
+            (thumbnailFactory.can_thumbnail(this._file.get_uri(),
                                            this._attributeContentType,
-                                           this._modifiedTime)) {
+                                           this._modifiedTime))) {
             let thumbnail = thumbnailFactory.lookup(this._file.get_uri(), this._modifiedTime);
             if (thumbnail == null) {
                 if (!thumbnailFactory.has_valid_failed_thumbnail(this._file.get_uri(),
                                                                  this._modifiedTime)) {
                     let argv = [];
-                    argv.push(GLib.build_filenamev(['.', 'createThumbnail.js']));
+                    argv.push(GLib.build_filenamev([this._codePath, 'createThumbnail.js']));
                     argv.push(this._file.get_path());
                     let [success, pid] = GLib.spawn_async(null, argv, null,
                                                           GLib.SpawnFlags.SEARCH_PATH | GLib.SpawnFlags.DO_NOT_REAP_CHILD, null);
