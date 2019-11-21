@@ -41,6 +41,7 @@ var DesktopManager = class {
 
         Gtk.init(null);
         DBusUtils.init();
+        this._codePath = codePath;
         this._asDesktop = asDesktop;
         this._desktopList = desktopList;
         this._appUuid = appUuid;
@@ -660,7 +661,8 @@ var DesktopManager = class {
                                     newFolder,
                                     newFolder.query_info(Enums.DEFAULT_ATTRIBUTES, Gio.FileQueryInfoFlags.NONE, null),
                                     extras,
-                                    this._scale
+                                    this._scale,
+                                    this._codePath
                                 )
                             );
                         }
@@ -672,7 +674,8 @@ var DesktopManager = class {
                                 fileEnum.get_child(info),
                                 info,
                                 Enums.FileType.NONE,
-                                this._scale
+                                this._scale,
+                                this._codePath
                             );
                             if (fileItem.isHidden && !showHidden) {
                                 /* if there are hidden files in the desktop and the user doesn't want to
