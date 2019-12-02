@@ -578,7 +578,7 @@ var FileItem = class {
             case Gtk.ResponseType.CANCEL:
                 return;
             case Enums.WhatToDoWithExecutable.EXECUTE:
-                DesktopIconsUtil.spawnCommandLine(this._execLine);
+                DesktopIconsUtil.spawnCommandLine(`"${this._execLine}"`);
                 return;
             case Enums.WhatToDoWithExecutable.EXECUTE_IN_TERMINAL:
                 DesktopIconsUtil.launchTerminal(this.file.get_parent().get_path(), this._execLine);
