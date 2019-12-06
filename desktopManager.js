@@ -218,7 +218,6 @@ var DesktopManager = class {
             this._startRubberband(x, y);
         }
         if (button == 3) {
-            this._currentWindow = window;
             this._menu.popup_at_pointer(event);
             this._syncUndoRedo();
             let atom = Gdk.Atom.intern('CLIPBOARD', false);
@@ -918,7 +917,7 @@ var DesktopManager = class {
         let fileItems = this.getCurrentSelection(false);
         if (fileItems) {
             let mimetype = Gio.content_type_guess(fileItems[0].fileName, null)[0];
-            let chooser = Gtk.AppChooserDialog.new_for_content_type(this._currentWindow,
+            let chooser = Gtk.AppChooserDialog.new_for_content_type(null,
                                                                     Gtk.DialogFlags.MODAL + Gtk.DialogFlags.USE_HEADER_BAR,
                                                                     mimetype);
             chooser.show_all();
@@ -942,7 +941,7 @@ var DesktopManager = class {
         for(let fileItem of this._fileList) {
             fileItem.unsetSelected();
         }
-        let newFolderWindow = new AskNamePopup.AskNamePopup(null, _("New folder"), this._currentWindow);
+        let newFolderWindow = new AskNamePopup.AskNamePopup(null, _("New folder"), null);
         let newName = newFolderWindow.run();
         if (newName) {
             let dir = DesktopIconsUtil.getDesktopDir().get_child(newName);
