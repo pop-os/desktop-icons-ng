@@ -31,6 +31,7 @@ const DBusUtils = imports.dbusUtils;
 const AskNamePopup = imports.askNamePopup;
 const AskRenamePopup = imports.askRenamePopup;
 const AskConfirmPopup = imports.askConfirmPopup;
+const ShowErrorPopup = imports.showErrorPopup;
 
 const Gettext = imports.gettext.domain('ding');
 
@@ -187,6 +188,13 @@ var DesktopManager = class {
         DBusUtils.NautilusFileOperationsProxy.connect('g-properties-changed', this._undoStatusChanged.bind(this));
         this._fileList = [];
         this._readFileList();
+
+        // Check if Nautilus is available
+        try {
+            DesktopIconsUtil.trySpawn(null, ["nautilus", "--version"]);
+        } catch (e) {
+            this._errorWindow = new ShowErrorPopup.ShowErrorPopup(_("Nautilus File Manager not found"), _("The Nautilus File Manager is mandatory to work with Desktop Icons NG."), null)
+        }
     }
 
     _createGrids() {

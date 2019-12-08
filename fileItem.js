@@ -205,7 +205,7 @@ var FileItem = class {
                                     (result, error) => {
                                         if (error)
                                             throw new Error('Error moving files: ' + error.message);
-                                        }
+                                    }
                                 );
                             } else {
                                 DBusUtils.NautilusFileOperationsProxy.TrashFilesRemote(fileList,
