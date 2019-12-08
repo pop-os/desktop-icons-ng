@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-08 19:17+0100\n"
+"POT-Creation-Date: 2019-12-09 00:15+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,55 +69,67 @@ msgstr ""
 msgid "Nautilus File Manager not found"
 msgstr ""
 
-#: ../desktopManager.js:196
+#: ../desktopManager.js:197
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr ""
 
-#: ../desktopManager.js:434
+#: ../desktopManager.js:437
 msgid "New Folder"
 msgstr ""
 
-#: ../desktopManager.js:440
+#: ../desktopManager.js:443
 msgid "Paste"
 msgstr ""
 
-#: ../desktopManager.js:444
+#: ../desktopManager.js:447
 msgid "Undo"
 msgstr ""
 
-#: ../desktopManager.js:448
+#: ../desktopManager.js:451
 msgid "Redo"
 msgstr ""
 
-#: ../desktopManager.js:454
+#: ../desktopManager.js:457
 msgid "Show Desktop in Files"
 msgstr ""
 
-#: ../desktopManager.js:458 ../fileItem.js:748
+#: ../desktopManager.js:461 ../fileItem.js:748
 msgid "Open in Terminal"
 msgstr ""
 
-#: ../desktopManager.js:464
+#: ../desktopManager.js:467
 msgid "Change Background…"
 msgstr ""
 
-#: ../desktopManager.js:473
+#: ../desktopManager.js:476
 msgid "Display Settings"
 msgstr ""
 
-#: ../desktopManager.js:480 ../preferences.js:83
+#: ../desktopManager.js:483 ../preferences.js:83
 msgid "Settings"
 msgstr ""
 
-#: ../desktopManager.js:927
+#: ../desktopManager.js:899 ../desktopManager.js:920
+msgid "Error while deleting files"
+msgstr ""
+
+#: ../desktopManager.js:900
+msgid "There was an error while trying to permanently delete the folder {:}."
+msgstr ""
+
+#: ../desktopManager.js:921
+msgid "There was an error while trying to permanently delete the file {:}."
+msgstr ""
+
+#: ../desktopManager.js:944
 msgid "Are you sure you want to permanently delete these items?"
 msgstr ""
 
-#: ../desktopManager.js:927
+#: ../desktopManager.js:944
 msgid "If you delete an item, it will be permanently lost."
 msgstr ""
 
-#: ../desktopManager.js:1036
+#: ../desktopManager.js:1054
 msgid "New folder"
 msgstr ""
 

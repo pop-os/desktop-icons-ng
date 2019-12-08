@@ -193,7 +193,10 @@ var DesktopManager = class {
         try {
             DesktopIconsUtil.trySpawn(null, ["nautilus", "--version"]);
         } catch (e) {
-            this._errorWindow = new ShowErrorPopup.ShowErrorPopup(_("Nautilus File Manager not found"), _("The Nautilus File Manager is mandatory to work with Desktop Icons NG."), null)
+            this._errorWindow = new ShowErrorPopup.ShowErrorPopup(_("Nautilus File Manager not found"),
+                                                                  _("The Nautilus File Manager is mandatory to work with Desktop Icons NG."),
+                                                                  null,
+                                                                  true);
         }
     }
 
@@ -892,7 +895,14 @@ var DesktopManager = class {
                     this._toDelete.shift().delete_async(GLib.PRIORITY_DEFAULT, null, (source, res) => {
                         try {
                             source.delete_finish(res);
-                        } catch(e) {}
+                        } catch(e) {
+                            let windowError = new ShowErrorPopup.ShowErrorPopup(_("Error while deleting files"),
+                                                                                _("There was an error while trying to permanently delete the folder {:}.").replace('{:}', source.get_parse_name()),
+                                                                                null,
+                                                                                false);
+                            windowError.run();
+                            return;
+                        }
                         // continue with the next file
                         this._deletingFilesRecursively = false;
                         this._deleteRecursively();
@@ -906,7 +916,14 @@ var DesktopManager = class {
             nextFileToDelete.delete_async(GLib.PRIORITY_DEFAULT, null, (source, res) => {
                 try {
                     source.delete_finish(res);
-                } catch(e) {}
+                } catch(e) {
+                    let windowError = new ShowErrorPopup.ShowErrorPopup(_("Error while deleting files"),
+                                                                        _("There was an error while trying to permanently delete the file {:}.").replace('{:}', source.get_parse_name()),
+                                                                        null,
+                                                                        false);
+                    windowError.run();
+                    return;
+                }
                 // continue with the next file
                 this._deletingFilesRecursively = false;
                 this._deleteRecursively();
@@ -926,6 +943,7 @@ var DesktopManager = class {
         }
         let renameWindow = new AskConfirmPopup.AskConfirmPopup(_("Are you sure you want to permanently delete these items?"), `${_("If you delete an item, it will be permanently lost.")}\n\n${filelist}`, this._window);
         if (renameWindow.run()) {
+            this._permanentDeleteError = false;
             for(let fileItem of this._fileList) {
                 if (fileItem.isSelected) {
                     this._toDelete.push(fileItem.file);

@@ -1,5 +1,16 @@
 # History of versions #
 
+* Version 0.7.0 (2019/12/08)
+      * Don't show ".desktop" in enabled .desktop files
+      * Appearance more consistent with Nautilus
+      * Allows to permanently delete files
+      * When clicking on a text script, honors "executable-text-activation" setting and, if set, asks what to do
+      * Honors "show-image-thumbnails" setting
+      * .desktop files are now launched with the $HOME folder as the current folder
+      * Allows to run script files with blank spaces in the file name
+      * Shows an error if Nautilus is not available in the system
+      * Shows an error if a file or folder can't be permanently deleted
+
 * Version 0.6.0 (2019/10/29)
       * Fix icon distribution in the desktop
       * Show the "Name" field in the .desktop files

@@ -24,7 +24,7 @@ const _ = Gettext.gettext;
 
 var ShowErrorPopup = class {
 
-    constructor(text, secondaryText, parentWindow) {
+    constructor(text, secondaryText, parentWindow, modal) {
 
         this._window = new Gtk.MessageDialog({window_position: Gtk.WindowPosition.CENTER_ON_PARENT,
                                               transient_for: parentWindow,
@@ -33,10 +33,18 @@ var ShowErrorPopup = class {
                                               text: text,
                                               secondary_text: secondaryText});
         let deleteButton = this._window.add_button(_("Close"), Gtk.ResponseType.OK);
-        deleteButton.connect('clicked', () => {
-            this._window.hide();
-            this._window.destroy();
-        });
+        if (modal) {
+            deleteButton.connect('clicked', () => {
+                this._window.hide();
+                this._window.destroy();
+            });
+            this._window.show();
+        }
+    }
+    run() {
         this._window.show();
+        this._window.run();
+        this._window.hide();
+        this._window.destroy();
     }
 };

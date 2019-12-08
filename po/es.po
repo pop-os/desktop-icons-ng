@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-08 19:17+0100\n"
-"PO-Revision-Date: 2019-12-08 19:18+0100\n"
+"POT-Creation-Date: 2019-12-09 00:15+0100\n"
+"PO-Revision-Date: 2019-12-09 00:16+0100\n"
 "Last-Translator: Sergio Costas <rastersoft@gmail.com>\n"
 "Language-Team: Español; Castellano <rastersoft@gmail.com>\n"
 "Language: es\n"
@@ -72,57 +72,69 @@ msgstr "Ejecutar"
 msgid "Nautilus File Manager not found"
 msgstr "No se encontró el Gestor de ficheros Nautilus"
 
-#: ../desktopManager.js:196
+#: ../desktopManager.js:197
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr ""
 "El gestor de ficheros Nautilus es necesario para que Desktop Icons NG "
 "funcione."
 
-#: ../desktopManager.js:434
+#: ../desktopManager.js:437
 msgid "New Folder"
 msgstr "Nueva carpeta"
 
-#: ../desktopManager.js:440
+#: ../desktopManager.js:443
 msgid "Paste"
 msgstr "Pegar"
 
-#: ../desktopManager.js:444
+#: ../desktopManager.js:447
 msgid "Undo"
 msgstr "Deshacer"
 
-#: ../desktopManager.js:448
+#: ../desktopManager.js:451
 msgid "Redo"
 msgstr "Rehacer"
 
-#: ../desktopManager.js:454
+#: ../desktopManager.js:457
 msgid "Show Desktop in Files"
 msgstr "Mostrar el escritorio en Archivos"
 
-#: ../desktopManager.js:458 ../fileItem.js:748
+#: ../desktopManager.js:461 ../fileItem.js:748
 msgid "Open in Terminal"
 msgstr "Abrir en una terminal"
 
-#: ../desktopManager.js:464
+#: ../desktopManager.js:467
 msgid "Change Background…"
 msgstr "Cambiar el fondo..."
 
-#: ../desktopManager.js:473
+#: ../desktopManager.js:476
 msgid "Display Settings"
 msgstr "Configuración de pantalla"
 
-#: ../desktopManager.js:480 ../preferences.js:83
+#: ../desktopManager.js:483 ../preferences.js:83
 msgid "Settings"
 msgstr "Configuración"
 
-#: ../desktopManager.js:927
+#: ../desktopManager.js:899 ../desktopManager.js:920
+msgid "Error while deleting files"
+msgstr "Error al borrar ficheros"
+
+#: ../desktopManager.js:900
+msgid "There was an error while trying to permanently delete the folder {:}."
+msgstr "Se produjo un error al intentar borrar la carpeta {:}."
+
+#: ../desktopManager.js:921
+msgid "There was an error while trying to permanently delete the file {:}."
+msgstr "Se produjo un error al intentar borrar el archivo {:}."
+
+#: ../desktopManager.js:944
 msgid "Are you sure you want to permanently delete these items?"
 msgstr "¿Borrar estos elementos de manera permanente?"
 
-#: ../desktopManager.js:927
+#: ../desktopManager.js:944
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Si borra un elemento, éste se perderá para siempre."
 
-#: ../desktopManager.js:1036
+#: ../desktopManager.js:1054
 msgid "New folder"
 msgstr "Nueva carpeta"
 
