@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-17 19:01+0100\n"
+"POT-Creation-Date: 2019-12-08 19:17+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,99 +65,107 @@ msgstr ""
 msgid "Execute"
 msgstr ""
 
-#: ../desktopManager.js:425
+#: ../desktopManager.js:196
+msgid "Nautilus File Manager not found"
+msgstr ""
+
+#: ../desktopManager.js:196
+msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
+msgstr ""
+
+#: ../desktopManager.js:434
 msgid "New Folder"
 msgstr ""
 
-#: ../desktopManager.js:431
+#: ../desktopManager.js:440
 msgid "Paste"
 msgstr ""
 
-#: ../desktopManager.js:435
+#: ../desktopManager.js:444
 msgid "Undo"
 msgstr ""
 
-#: ../desktopManager.js:439
+#: ../desktopManager.js:448
 msgid "Redo"
 msgstr ""
 
-#: ../desktopManager.js:445
+#: ../desktopManager.js:454
 msgid "Show Desktop in Files"
 msgstr ""
 
-#: ../desktopManager.js:449 ../fileItem.js:747
+#: ../desktopManager.js:458 ../fileItem.js:748
 msgid "Open in Terminal"
 msgstr ""
 
-#: ../desktopManager.js:455
+#: ../desktopManager.js:464
 msgid "Change Background…"
 msgstr ""
 
-#: ../desktopManager.js:464
+#: ../desktopManager.js:473
 msgid "Display Settings"
 msgstr ""
 
-#: ../desktopManager.js:471 ../preferences.js:83
+#: ../desktopManager.js:480 ../preferences.js:83
 msgid "Settings"
 msgstr ""
 
-#: ../desktopManager.js:916
+#: ../desktopManager.js:927
 msgid "Are you sure you want to permanently delete these items?"
 msgstr ""
 
-#: ../desktopManager.js:916
+#: ../desktopManager.js:927
 msgid "If you delete an item, it will be permanently lost."
 msgstr ""
 
-#: ../desktopManager.js:1025
+#: ../desktopManager.js:1036
 msgid "New folder"
 msgstr ""
 
-#: ../fileItem.js:622
+#: ../fileItem.js:623
 msgid "Don’t Allow Launching"
 msgstr ""
 
-#: ../fileItem.js:624
+#: ../fileItem.js:625
 msgid "Allow Launching"
 msgstr ""
 
-#: ../fileItem.js:690
+#: ../fileItem.js:691
 msgid "Open"
 msgstr ""
 
-#: ../fileItem.js:696
+#: ../fileItem.js:697
 msgid "Open With Other Application"
 msgstr ""
 
-#: ../fileItem.js:703
+#: ../fileItem.js:704
 msgid "Cut"
 msgstr ""
 
-#: ../fileItem.js:706
+#: ../fileItem.js:707
 msgid "Copy"
 msgstr ""
 
-#: ../fileItem.js:710
+#: ../fileItem.js:711
 msgid "Rename…"
 msgstr ""
 
-#: ../fileItem.js:714
+#: ../fileItem.js:715
 msgid "Move to Trash"
 msgstr ""
 
-#: ../fileItem.js:718
+#: ../fileItem.js:719
 msgid "Delete permanently"
 msgstr ""
 
-#: ../fileItem.js:731
+#: ../fileItem.js:732
 msgid "Empty Trash"
 msgstr ""
 
-#: ../fileItem.js:739
+#: ../fileItem.js:740
 msgid "Properties"
 msgstr ""
 
-#: ../fileItem.js:743
+#: ../fileItem.js:744
 msgid "Show in Files"
 msgstr ""
 
