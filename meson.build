@@ -28,6 +28,7 @@ install_data([
     'fileItem.js',
     'metadata.json',
     'preferences.js',
+    'showErrorPopup.js',
     'stylesheet.css'
   ],
   install_dir: extensions_dir
