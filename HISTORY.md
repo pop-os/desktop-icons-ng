@@ -1,6 +1,6 @@
 # History of versions #
 
-* Version 0.7.0 (2019/12/08)
+* Version 0.7.0 (2019/12/09)
       * Don't show ".desktop" in enabled .desktop files
       * Appearance more consistent with Nautilus
       * Allows to permanently delete files
@@ -10,6 +10,7 @@
       * Allows to run script files with blank spaces in the file name
       * Shows an error if Nautilus is not available in the system
       * Shows an error if a file or folder can't be permanently deleted
+      * Added note about configuration
 
 * Version 0.6.0 (2019/10/29)
       * Fix icon distribution in the desktop

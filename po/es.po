@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-09 13:49+0100\n"
-"PO-Revision-Date: 2019-12-09 13:50+0100\n"
+"PO-Revision-Date: 2019-12-09 16:16+0100\n"
 "Last-Translator: Sergio Costas <rastersoft@gmail.com>\n"
 "Language-Team: Español; Castellano <rastersoft@gmail.com>\n"
 "Language: es\n"
@@ -108,11 +108,11 @@ msgstr "Cambiar el fondo..."
 
 #: ../desktopManager.js:476
 msgid "Display Settings"
-msgstr "Configuración de pantalla"
+msgstr "Preferencias de pantalla"
 
 #: ../desktopManager.js:483 ../preferences.js:83
 msgid "Settings"
-msgstr "Configuración"
+msgstr "Preferencias"
 
 #: ../desktopManager.js:899 ../desktopManager.js:920
 msgid "Error while deleting files"
