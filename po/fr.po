@@ -8,140 +8,240 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-17 21:43+0200\n"
-"PO-Revision-Date: 2018-12-16 17:47+0100\n"
+"POT-Creation-Date: 2019-11-17 19:01+0100\n"
+"PO-Revision-Date: 2019-11-25 16:00+0100\n"
 "Last-Translator: Charles Monzat <charles.monzat@numericable.fr>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 3.30.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.2.4\n"
 
-#: ../preferences.js:85
+#: ../askConfirmPopup.js:35 ../askNamePopup.js:33 ../desktopIconsUtil.js:170
+msgid "Cancel"
+msgstr "Annuler"
+
+#: ../askConfirmPopup.js:36
+msgid "Delete"
+msgstr "Supprimer"
+
+#: ../askNamePopup.js:32
 msgid "OK"
 msgstr "Valider"
 
-#: ../preferences.js:86 ../desktopManager.js:428
-msgid "Settings"
-msgstr "Paramètres"
+#: ../askRenamePopup.js:37
+msgid "Folder name"
+msgstr "Nom du dossier"
 
-#: ../preferences.js:91
-msgid "Size for the desktop icons"
-msgstr "Taille des icônes du bureau"
+#: ../askRenamePopup.js:37
+msgid "File name"
+msgstr "Nom du fichier"
 
-#: ../preferences.js:91
-msgid "Small"
-msgstr "Petite"
-
-#: ../preferences.js:91
-msgid "Standard"
-msgstr "Normale"
-
-#: ../preferences.js:91
-msgid "Large"
-msgstr "Grande"
-
-#: ../preferences.js:92
-msgid "Show the personal folder in the desktop"
-msgstr "Montrer le dossier personnel sur le bureau"
-
-#: ../preferences.js:93
-msgid "Show the trash icon in the desktop"
-msgstr "Montrer la corbeille sur le bureau"
-
-#: ../desktopIconsUtil.js:68
-msgid "Command not found"
-msgstr "Commande non trouvée"
-
-#: ../fileItem.js:549
-msgid "Don’t Allow Launching"
-msgstr "Ne pas autoriser le lancement"
-
-#: ../fileItem.js:551
-msgid "Allow Launching"
-msgstr "Autoriser le lancement"
-
-#: ../fileItem.js:603
-msgid "Open"
-msgstr "Ouvrir"
-
-#: ../fileItem.js:609
-msgid "Open With Other Application"
-msgstr "Ouvrir avec une autre application"
-
-#: ../fileItem.js:616
-msgid "Cut"
-msgstr "Couper"
-
-#: ../fileItem.js:619
-msgid "Copy"
-msgstr "Copier"
-
-#: ../fileItem.js:623
-#, fuzzy
-msgid "Rename…"
-msgstr "Renommer"
-
-#: ../fileItem.js:627
-msgid "Move to Trash"
-msgstr "Mettre à la corbeille"
-
-#: ../fileItem.js:639
-msgid "Empty Trash"
-msgstr "Vider la corbeille"
-
-#: ../fileItem.js:647
-msgid "Properties"
-msgstr "Propriétés"
-
-#: ../fileItem.js:651
-msgid "Show in Files"
-msgstr "Montrer dans Fichiers"
-
-#: ../fileItem.js:655 ../desktopManager.js:406
-#, fuzzy
-msgid "Open in Terminal"
-msgstr "Ouvrir un terminal"
-
-#: ../desktopManager.js:382
-msgid "New Folder"
-msgstr "Nouveau dossier"
-
-#: ../desktopManager.js:388
-msgid "Paste"
-msgstr "Coller"
-
-#: ../desktopManager.js:392
-msgid "Undo"
-msgstr "Annuler"
-
-#: ../desktopManager.js:396
-msgid "Redo"
-msgstr "Refaire"
-
-#: ../desktopManager.js:402
-#, fuzzy
-msgid "Show Desktop in Files"
-msgstr "Ouvrir le bureau dans Fichiers"
-
-#: ../desktopManager.js:412
-msgid "Change Background…"
-msgstr "Changer l’arrière-plan…"
-
-#: ../desktopManager.js:421
-msgid "Display Settings"
-msgstr "Configuration d’affichage"
-
-#: ../desktopManager.js:841
+#: ../askRenamePopup.js:44
 msgid "Rename"
 msgstr "Renommer"
 
-#: ../desktopManager.js:879
-#, fuzzy
+#: ../desktopIconsUtil.js:74
+msgid "Command not found"
+msgstr "Commande non trouvée"
+
+#: ../desktopIconsUtil.js:161
+msgid "Do you want to run “{0}”, or display its contents?"
+msgstr "Voulez-vous lancer \"{0}\", ou afficher son contenu ?"
+
+#: ../desktopIconsUtil.js:162
+msgid "“{0}” is an executable text file."
+msgstr "\"{0}\" est un fichier texte exécutable."
+
+#: ../desktopIconsUtil.js:166
+msgid "Execute in a terminal"
+msgstr "Ouvrir un terminal"
+
+#: ../desktopIconsUtil.js:168
+msgid "Show"
+msgstr "Afficher"
+
+#: ../desktopIconsUtil.js:172
+msgid "Execute"
+msgstr "Exécuter"
+
+#: ../desktopManager.js:425
+msgid "New Folder"
+msgstr "Nouveau dossier"
+
+#: ../desktopManager.js:431
+msgid "Paste"
+msgstr "Coller"
+
+#: ../desktopManager.js:435
+msgid "Undo"
+msgstr "Annuler"
+
+#: ../desktopManager.js:439
+msgid "Redo"
+msgstr "Refaire"
+
+#: ../desktopManager.js:445
+msgid "Show Desktop in Files"
+msgstr "Ouvrir le bureau dans Fichiers"
+
+#: ../desktopManager.js:449 ../fileItem.js:747
+msgid "Open in Terminal"
+msgstr "Ouvrir un terminal"
+
+#: ../desktopManager.js:455
+msgid "Change Background…"
+msgstr "Changer l’arrière-plan…"
+
+#: ../desktopManager.js:464
+msgid "Display Settings"
+msgstr "Configuration d’affichage"
+
+#: ../desktopManager.js:471 ../preferences.js:83
+msgid "Settings"
+msgstr "Paramètres"
+
+#: ../desktopManager.js:916
+msgid "Are you sure you want to permanently delete these items?"
+msgstr "Êtes-vous sûr de vouloir supprimer définitivement ces éléments ?"
+
+#: ../desktopManager.js:916
+msgid "If you delete an item, it will be permanently lost."
+msgstr "Si vous supprimez un élément, il sera définitivement perdu."
+
+#: ../desktopManager.js:1025
 msgid "New folder"
 msgstr "Nouveau dossier"
+
+#: ../fileItem.js:622
+msgid "Don’t Allow Launching"
+msgstr "Ne pas autoriser le lancement"
+
+#: ../fileItem.js:624
+msgid "Allow Launching"
+msgstr "Autoriser le lancement"
+
+#: ../fileItem.js:690
+msgid "Open"
+msgstr "Ouvrir"
+
+#: ../fileItem.js:696
+msgid "Open With Other Application"
+msgstr "Ouvrir avec une autre application"
+
+#: ../fileItem.js:703
+msgid "Cut"
+msgstr "Couper"
+
+#: ../fileItem.js:706
+msgid "Copy"
+msgstr "Copier"
+
+#: ../fileItem.js:710
+msgid "Rename…"
+msgstr "Renommer... "
+
+#: ../fileItem.js:714
+msgid "Move to Trash"
+msgstr "Mettre à la corbeille"
+
+#: ../fileItem.js:718
+msgid "Delete permanently"
+msgstr "Effacer définitivement"
+
+#: ../fileItem.js:731
+msgid "Empty Trash"
+msgstr "Vider la corbeille"
+
+#: ../fileItem.js:739
+msgid "Properties"
+msgstr "Propriétés"
+
+#: ../fileItem.js:743
+msgid "Show in Files"
+msgstr "Montrer dans Fichiers"
+
+#: ../preferences.js:89
+msgid "Size for the desktop icons"
+msgstr "Taille des icônes du bureau"
+
+#: ../preferences.js:89
+msgid "Small"
+msgstr "Petite"
+
+#: ../preferences.js:89
+msgid "Standard"
+msgstr "Normale"
+
+#: ../preferences.js:89
+msgid "Large"
+msgstr "Grande"
+
+#: ../preferences.js:90
+msgid "Show the personal folder in the desktop"
+msgstr "Montrer le dossier personnel sur le bureau"
+
+#: ../preferences.js:91
+msgid "Show the trash icon in the desktop"
+msgstr "Montrer la corbeille sur le bureau"
+
+#: ../preferences.js:95
+msgid "Settings shared with Nautilus"
+msgstr "Paramètres partagés avec Nautilus"
+
+#: ../preferences.js:101
+msgid "Click type for open files"
+msgstr "Type de clic pour ouvrir les fichiers"
+
+#: ../preferences.js:101
+msgid "Single click"
+msgstr "Simple clic"
+
+#: ../preferences.js:101
+msgid "Double click"
+msgstr "Double clic"
+
+#: ../preferences.js:102
+msgid "Show hidden files"
+msgstr "Montrer dans Fichiers"
+
+#: ../preferences.js:103
+msgid "Show a context menu item to delete permanently"
+msgstr "Afficher un élément de menu contextuel 'Supprimer définitivement'"
+
+#: ../preferences.js:106
+msgid "Action to do when launching a program from the desktop"
+msgstr "Action à faire lors du lancement d'un programme depuis le bureau"
+
+#: ../preferences.js:107
+msgid "Display the content of the file"
+msgstr "Afficher le contenu du fichier"
+
+#: ../preferences.js:108
+msgid "Launch the file"
+msgstr "Lancer le fichier"
+
+#: ../preferences.js:109
+msgid "Ask what to do"
+msgstr "Demander quoi faire"
+
+#: ../preferences.js:113
+msgid "Show image thumbnails"
+msgstr "Afficher les imagettes"
+
+#: ../preferences.js:114
+msgid "Never"
+msgstr "Jamais"
+
+#: ../preferences.js:115
+msgid "Local files only"
+msgstr "Fichiers locaux uniquement"
+
+#: ../preferences.js:116
+msgid "Always"
+msgstr "Toujours"
 
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:1
 msgid "Icon size"
@@ -169,9 +269,6 @@ msgstr "Montrer la corbeille sur le bureau."
 
 #~ msgid "Enter file name…"
 #~ msgstr "Saisir un nom de fichier…"
-
-#~ msgid "Cancel"
-#~ msgstr "Annuler"
 
 #~ msgid "Huge"
 #~ msgstr "Immense"
