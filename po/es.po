@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-09 00:15+0100\n"
-"PO-Revision-Date: 2019-12-09 00:16+0100\n"
+"POT-Creation-Date: 2019-12-09 13:49+0100\n"
+"PO-Revision-Date: 2019-12-09 13:50+0100\n"
 "Last-Translator: Sergio Costas <rastersoft@gmail.com>\n"
 "Language-Team: Español; Castellano <rastersoft@gmail.com>\n"
 "Language: es\n"
@@ -265,6 +265,14 @@ msgstr "Sólo ficheros locales"
 #: ../preferences.js:116
 msgid "Always"
 msgstr "Siempre"
+
+#: ../prefs.js:39
+msgid ""
+"To configure Desktop Icons NG, do right-click in the desktop and choose the "
+"last item: 'Settings'"
+msgstr ""
+"Para configurar Desktop Icons NG, hacer click derecho en el escritorio y "
+"escoger la última opción: 'Preferencias'"
 
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:1
 msgid "Icon size"

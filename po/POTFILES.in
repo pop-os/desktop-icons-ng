@@ -11,4 +11,5 @@ enums.js
 extension.js
 fileItem.js
 preferences.js
+prefs.js
 schemas/org.gnome.shell.extensions.ding.gschema.xml
