@@ -140,18 +140,18 @@ function newListWindows() {
 function enable() {
     // If the desktop is still starting up, we wait until it is ready
     if (Main.layoutManager._startingUp) {
-        data.startupPreparedId = Main.layoutManager.connect('startup-complete', () => innerEnable());
+        data.startupPreparedId = Main.layoutManager.connect('startup-complete', () => { innerEnable(true); });
     } else {
-        innerEnable();
+        innerEnable(false);
     }
 }
 
 /**
  * The true code that configures everything and launches the desktop program
  */
-function innerEnable() {
+function innerEnable(removeId) {
 
-    if (data.startupPreparedId) {
+    if (removeId) {
         Main.layoutManager.disconnect(data.startupPreparedId);
         data.startupPreparedId = null;
     }
@@ -271,11 +271,7 @@ function innerEnable() {
     if (data.launchDesktopId) {
         GLib.source_remove(data.launchDesktopId);
     }
-    data.launchDesktopId = Mainloop.timeout_add(1000, () => {
-        data.launchDesktopId = 0;
-        launchDesktop();
-        return false;
-    });
+    launchDesktop();
 }
 
 /**
