@@ -172,7 +172,7 @@ var FileItem = class {
         this._dragSource.connect('drag-data-get', (widget, context, data, info, time) => {
             switch(info) {
                 case 0: // x-special/ding-icon-list
-                    this._desktopManager.doMoveWithDragAndDrop(this, this._x1 + this._xOrigin, this._y1 + this._yOrigin);
+                    this._desktopManager.doMoveWithDragAndDrop(this, this._x1, this._y1);
                     break;
                 case 1: // x-special/gnome-icon-list
                 case 2: //

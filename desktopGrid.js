@@ -133,6 +133,18 @@ var DesktopGrid = class {
         this._gridStatus[y * this._maxColumns + x] = inUse;
     }
 
+    getGridAt(x, y) {
+        if ((x >= this._x) && (x < (this._x + this._width)) && (y >= this._y) && (y < (this._y + this._height))) {
+            let column = Math.round((x - this._x) * this._maxColumns / this._width);
+            let row = Math.round((y - this._y) * this._maxRows / this._height);
+            let gridX = this._x + Math.round((column * this._width) / this._maxColumns) + elementSpacing;
+            let gridY = this._y + Math.round((row * this._height) / this._maxRows) + elementSpacing;
+            return [gridX, gridY];
+        } else {
+            return null;
+        }
+    }
+
     _getEmptyPlaceClosestTo(x, y, coordinatesAction) {
 
         let placeX = Math.round((x - this._x) * this._maxColumns / this._width);

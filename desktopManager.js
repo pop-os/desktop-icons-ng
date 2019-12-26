@@ -961,6 +961,15 @@ var DesktopManager = class {
     }
 
     doMoveWithDragAndDrop(fileItem, xOrigin, yOrigin) {
+        // Find the grid where the destination lies
+        for(let desktop of this._desktops) {
+            let grid = desktop.getGridAt(this._xDestination, this._yDestination);
+            if (grid !== null) {
+                this._xDestination = grid[0];
+                this._yDestination = grid[1];
+                break;
+            }
+        }
         let deltaX = this._xDestination - xOrigin;
         let deltaY = this._yDestination - yOrigin;
         let fileItems = [fileItem];
