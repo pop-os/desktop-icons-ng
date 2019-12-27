@@ -190,10 +190,10 @@ var DesktopGrid = class {
          if (!isFree) {
              return -1;
          }
-         if ((x >= this._x) && (x < (this._x + this._width)) && (y >= this._y) && (y < (this._y + this._height))) {
+         if ((x >= this._x) && (x < (this._x + this._width * this._zoom)) && (y >= this._y) && (y < (this._y + this._height * this._zoom))) {
              return 0;
          }
-         return Math.pow(x - (this._x + this._width / 2), 2) + Math.pow(x - (this._y + this._height / 2), 2);
+         return Math.pow(x - (this._x + this._width * this._zoom / 2), 2) + Math.pow(x - (this._y + this._height * this._zoom / 2), 2);
     }
 
     _coordinatesGlobalToLocal(x, y) {
@@ -255,12 +255,16 @@ var DesktopGrid = class {
     }
 
     getGridAt(x, y, extraX, extraY) {
-        if ((x >= this._x) && (x < (this._x + this._width)) && (y >= this._y) && (y < (this._y + this._height))) {
-            let column = Math.round((x - this._x) * this._maxColumns / this._width);
-            let row = Math.round((y - this._y) * this._maxRows / this._height);
-            let gridX = Math.max(this._x, this._x + Math.round((column * this._width) / this._maxColumns) - extraX);
-            let gridY = Math.max(this._y, this._y + Math.round((row * this._height) / this._maxRows) - extraY);
-            return [gridX, gridY];
+        if ((x >= this._x) && (x < (this._x + this._width * this._zoom)) && (y >= this._y) && (y < (this._y + this._height * this._zoom))) {
+            let [xLocal, yLocal] = this._coordinatesGlobalToLocal(x, y);
+            let column = Math.round(xLocal * this._maxColumns / this._width);
+            let row = Math.round(yLocal * this._maxRows / this._height);
+            let gridX = Math.round((column * this._width) / this._maxColumns);
+            let gridY = Math.round((row * this._height) / this._maxRows);
+            let [oX, oY] = this._coordinatesLocalToGlobal(gridX, gridY);
+            oX = Math.max(this._x, oX);
+            oY = Math.max(this._y, oY);
+            return [oX, oY];
         } else {
             return null;
         }
