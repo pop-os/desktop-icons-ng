@@ -133,12 +133,12 @@ var DesktopGrid = class {
         this._gridStatus[y * this._maxColumns + x] = inUse;
     }
 
-    getGridAt(x, y) {
+    getGridAt(x, y, extraX, extraY) {
         if ((x >= this._x) && (x < (this._x + this._width)) && (y >= this._y) && (y < (this._y + this._height))) {
             let column = Math.round((x - this._x) * this._maxColumns / this._width);
             let row = Math.round((y - this._y) * this._maxRows / this._height);
-            let gridX = this._x + Math.round((column * this._width) / this._maxColumns) + elementSpacing;
-            let gridY = this._y + Math.round((row * this._height) / this._maxRows) + elementSpacing;
+            let gridX = Math.max(this._x, this._x + Math.round((column * this._width) / this._maxColumns) - extraX);
+            let gridY = Math.max(this._y, this._y + Math.round((row * this._height) / this._maxRows) - extraY);
             return [gridX, gridY];
         } else {
             return null;
