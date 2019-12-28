@@ -90,12 +90,14 @@ var DesktopGrid = class {
                 this._window.connect('draw', (widget, cr) => {
                     Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0}));
                     cr.paint();
+                    cr.$dispose();
                     return false;
                 });
             }
         }
         this._container.connect('draw', (widget, cr) => {
             this._doDrawRubberBand(cr);
+            cr.$dispose();
         });
 
         this._fileItems = {};
