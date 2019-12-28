@@ -1003,7 +1003,8 @@ var MyLabel = GObject.registerClass({
         this.set_justify(Gtk.Justification.CENTER);
         this.set_lines(this._numberOfLines);
 
-        this._drawId = this.connect_after('draw', () => {
+        this._drawId = this.connect_after('draw', (widget, cr) => {
+            cr.$dispose();
             if (this._maximumHeight) {
                 if (this._currentHeight == this.get_allocated_height()) {
                     /*
