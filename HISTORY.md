@@ -1,5 +1,10 @@
 # History of versions #
 
+* Version 0.8.0 (2020/01/19)
+      * Fix memory leak when using the rubber band too fast
+      * Add finally full support for multimonitor and HiDPI combined
+      * Better precission in DnD
+
 * Version 0.7.0 (2019/12/09)
       * Don't show ".desktop" in enabled .desktop files
       * Appearance more consistent with Nautilus
