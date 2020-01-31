@@ -26,6 +26,7 @@ const Layout = imports.ui.layout;
 const Main = imports.ui.main;
 
 const ExtensionUtils = imports.misc.extensionUtils;
+const Config = imports.misc.config;
 const Mainloop = imports.mainloop;
 
 // This object will contain all the global variables
@@ -405,13 +406,19 @@ function launchDesktop() {
 
     data.desktopCoordinates = [];
 
+    let scale;
     for(let monitorIndex = 0; monitorIndex < Main.layoutManager.monitors.length; monitorIndex++) {
         let ws = global.workspace_manager.get_workspace_by_index(0);
         let area = ws.get_work_area_for_monitor(monitorIndex);
         // send the working area of each monitor in the desktop
         argv.push('-D');
-        argv.push(`${area.x}:${area.y}:${area.width}:${area.height}:${Main.layoutManager.monitors[monitorIndex].geometry_scale}`);
-        data.desktopCoordinates.push({x: area.x, y: area.y, width: area.width, height: area.height, zoom: Main.layoutManager.monitors[monitorIndex].geometry_scale})
+        if (ExtensionUtils.versionCheck(['3.30'], Config.PACKAGE_VERSION)) {
+            scale = St.ThemeContext.get_for_stage(global.stage).scale_factor;
+        } else {
+            scale = Main.layoutManager.monitors[monitorIndex].geometry_scale;
+        }
+        argv.push(`${area.x}:${area.y}:${area.width}:${area.height}:${scale}`);
+        data.desktopCoordinates.push({x: area.x, y: area.y, width: area.width, height: area.height, zoom: scale})
         if (first || (area.x < data.minx)) {
             data.minx = area.x;
         }
