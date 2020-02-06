@@ -822,7 +822,7 @@ var DesktopManager = class {
                 filelist += `"${fileItem.fileName}"`;
             }
         }
-        let renameWindow = new AskConfirmPopup.AskConfirmPopup(_("Are you sure you want to permanently delete these items?"), `${_("If you delete an item, it will be permanently lost.")}\n\n${filelist}`, this._window);
+        let renameWindow = new AskConfirmPopup.AskConfirmPopup(_("Are you sure you want to permanently delete these items?"), `${_("If you delete an item, it will be permanently lost.")}\n\n${filelist}`, null);
         if (renameWindow.run()) {
             this._permanentDeleteError = false;
             for(let fileItem of this._fileList) {

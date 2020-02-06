@@ -1,5 +1,8 @@
 # History of versions #
 
+* Version 0.9.0 (2020/01/31)
+      * Fix bug that prevented it to work with Gnome Shell 3.30
+
 * Version 0.8.0 (2020/01/19)
       * Fix memory leak when using the rubber band too fast
       * Add finally full support for multimonitor and HiDPI combined
