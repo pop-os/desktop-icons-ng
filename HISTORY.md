@@ -1,5 +1,8 @@
 # History of versions #
 
+* Version 0.9.1 (2020/02/06)
+      * Now "Delete permanently" works again
+
 * Version 0.9.0 (2020/01/31)
       * Fix bug that prevented it to work with Gnome Shell 3.30
 
