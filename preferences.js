@@ -86,7 +86,7 @@ function showPreferences() {
     frame.set_spacing(10);
     frame.set_border_width(10);
 
-    frame.add(buildSelector(desktopSettings, 'icon-size', _("Size for the desktop icons"), { 'small': _("Small"), 'standard': _("Standard"), 'large': _("Large") }));
+    frame.add(buildSelector(desktopSettings, 'icon-size', _("Size for the desktop icons"), {'tiny': _("Tiny"), 'small': _("Small"), 'standard': _("Standard"), 'large': _("Large") }));
     frame.add(buildSwitcher(desktopSettings, 'show-home', _("Show the personal folder in the desktop")));
     frame.add(buildSwitcher(desktopSettings, 'show-trash', _("Show the trash icon in the desktop")));
 

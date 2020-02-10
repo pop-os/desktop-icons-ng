@@ -16,9 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var ICON_SIZE = { 'small': 48, 'standard': 64, 'large': 96 };
-var ICON_WIDTH = { 'small': 90, 'standard': 120, 'large': 130 };
-var ICON_HEIGHT = { 'small': 90, 'standard': 106, 'large': 138 };
+var ICON_SIZE = { 'tiny': 36, 'small': 48, 'standard': 64, 'large': 96 };
+var ICON_WIDTH = { 'tiny': 70, 'small': 90, 'standard': 120, 'large': 130 };
+var ICON_HEIGHT = { 'tiny': 70, 'small': 90, 'standard': 106, 'large': 138 };
 
 var FileType = {
     NONE: null,
