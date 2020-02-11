@@ -37,6 +37,7 @@ var DesktopGrid = class {
 
     constructor(desktopManager, UUID, desktopDescription, asDesktop) {
 
+        this._destroying = false;
         this._desktopManager = desktopManager;
         this._asDesktop = asDesktop;
         this._zoom = desktopDescription.zoom;
@@ -64,6 +65,9 @@ var DesktopGrid = class {
         }
         this._window.set_resizable(false);
         this._window.connect('delete-event', () => {
+            if (this._destroying) {
+                return false;
+            }
             if (this._asDesktop) {
                 // Do not destroy window when closing if the instance is working as desktop
                 return true;
@@ -137,6 +141,11 @@ var DesktopGrid = class {
             this._desktopManager.xDestination = x;
             this._desktopManager.yDestination = y;
         });
+    }
+
+    destroy() {
+        this._destroying = true;
+        this._window.destroy();
     }
 
     setDropDestination(dropDestination) {

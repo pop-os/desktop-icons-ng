@@ -44,6 +44,7 @@ var DesktopManager = class {
         this._codePath = codePath;
         this._asDesktop = asDesktop;
         this._desktopList = desktopList;
+        this._desktops = [];
         this._appUuid = appUuid;
         this._desktopFilesChanged = false;
         this._readingDesktopFiles = true;
@@ -98,6 +99,9 @@ var DesktopManager = class {
     }
 
     _createGrids() {
+        for(let desktop of this._desktops) {
+            desktop.destroy();
+        }
         this._desktops = [];
         for(let desktopIndex in this._desktopList) {
             let desktop = this._desktopList[desktopIndex];
