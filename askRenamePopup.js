@@ -17,6 +17,8 @@
  */
 
 const Gtk = imports.gi.Gtk;
+const Gio = imports.gi.Gio;
+const GLib = imports.gi.GLib;
 const DBusUtils = imports.dbusUtils;
 const DesktopIconsUtil = imports.desktopIconsUtil;
 const Gettext = imports.gettext.domain('ding');
@@ -27,6 +29,7 @@ var AskRenamePopup = class {
 
     constructor(fileItem) {
 
+        this._desktopPath = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DESKTOP);
         this._fileItem = fileItem;
         this._popover = new Gtk.Popover({relative_to: fileItem.actor,
                                          modal: true});
@@ -63,7 +66,9 @@ var AskRenamePopup = class {
 
     _validate() {
         let text = this._textArea.text;
-        if ((text == '') || (-1 != text.indexOf('/')) || (text == this._fileItem.fileName)) {
+        let final_path = this._desktopPath + '/' + text;
+        let final_file = Gio.File.new_for_commandline_arg(final_path);
+        if ((text == '') || (-1 != text.indexOf('/')) || (text == this._fileItem.fileName) || final_file.query_exists(null)) {
             this._button.sensitive = false;
         } else {
             this._button.sensitive = true;
