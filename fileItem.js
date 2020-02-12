@@ -171,7 +171,7 @@ var FileItem = class {
         this._dragSource.connect('drag-data-get', (widget, context, data, info, time) => {
             switch(info) {
                 case 0: // x-special/ding-icon-list
-                    this._desktopManager.doMoveWithDragAndDrop(this, this._x1, this._y1, this._xOrigin, this._yOrigin);
+                    this._desktopManager.doMoveWithDragAndDrop(this, this._x1, this._y1);
                     break;
                 case 1: // x-special/gnome-icon-list
                 case 2: //
@@ -411,8 +411,6 @@ var FileItem = class {
                                     width = height * aspectRatio;
                                 else
                                     height = width / aspectRatio;
-                                this._xOrigin = Math.floor((Prefs.get_desired_width() - width) / 2);
-                                this._yOrigin = Math.floor((Prefs.get_icon_size() - height) / 2);
                                 let pixbuf = thumbnailPixbuf.scale_simple(Math.floor(width), Math.floor(height), GdkPixbuf.InterpType.BILINEAR);
                                 pixbuf = this._addEmblemsToPixbufIfNeeded(pixbuf);
                                 this._icon.set_from_pixbuf(pixbuf);
@@ -547,8 +545,6 @@ var FileItem = class {
 
         itemIcon = this._addEmblemsToPixbufIfNeeded(itemIcon);
 
-        this._xOrigin = Math.floor((Prefs.get_desired_width() - Prefs.get_icon_size()) / 2);
-        this._yOrigin = 0;
         return itemIcon;
     }
 

@@ -265,7 +265,7 @@ var DesktopGrid = class {
         this._gridStatus[y * this._maxColumns + x] = inUse;
     }
 
-    getGridAt(x, y, extraX, extraY) {
+    getGridAt(x, y) {
         if ((x >= this._x) && (x < (this._x + this._width * this._zoom)) && (y >= this._y) && (y < (this._y + this._height * this._zoom))) {
             let [xLocal, yLocal] = this._coordinatesGlobalToLocal(x, y);
             let column = Math.round(xLocal * this._maxColumns / this._width);
