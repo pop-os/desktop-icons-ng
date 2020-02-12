@@ -268,8 +268,8 @@ var DesktopGrid = class {
     getGridAt(x, y) {
         if ((x >= this._x) && (x < (this._x + this._width * this._zoom)) && (y >= this._y) && (y < (this._y + this._height * this._zoom))) {
             let [xLocal, yLocal] = this._coordinatesGlobalToLocal(x, y);
-            let column = Math.round(xLocal * this._maxColumns / this._width);
-            let row = Math.round(yLocal * this._maxRows / this._height);
+            let column = Math.floor(xLocal * this._maxColumns / this._width);
+            let row = Math.floor(yLocal * this._maxRows / this._height);
             let gridX = Math.round((column * this._width) / this._maxColumns);
             let gridY = Math.round((row * this._height) / this._maxRows);
             let [oX, oY] = this._coordinatesLocalToGlobal(gridX, gridY);
