@@ -845,10 +845,10 @@ var DesktopManager = class {
         });
     }
 
-    doMoveWithDragAndDrop(fileItem, xOrigin, yOrigin, extraX, extraY) {
+    doMoveWithDragAndDrop(fileItem, xOrigin, yOrigin) {
         // Find the grid where the destination lies
         for(let desktop of this._desktops) {
-            let grid = desktop.getGridAt(this.xDestination, this.yDestination, extraX, extraY);
+            let grid = desktop.getGridAt(this.xDestination, this.yDestination);
             if (grid !== null) {
                 this.xDestination = grid[0];
                 this.yDestination = grid[1];
