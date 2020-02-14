@@ -96,7 +96,7 @@ files must be in the current path.
 ## Build with Meson
 
 The project uses a build system called [Meson](https://mesonbuild.com/). You can install
-in most Linux distributions as "meson".
+in most Linux distributions as "meson". You also need "ninja" and xgettext.
 
 It's possible to read more information in the Meson docs to tweak the configuration if needed.
 
