@@ -1,5 +1,10 @@
 # History of versions #
 
+* Version 0.10.0 (2020/02/22)
+      * Added 'tiny' icon size
+      * Doesn't allow to use an existing name when renaming or creatin a new folder
+      * Fixed the DnD positioning (finally)
+
 * Version 0.9.1 (2020/02/06)
       * Now "Delete permanently" works again
 
@@ -9,7 +14,7 @@
 * Version 0.8.0 (2020/01/19)
       * Fix memory leak when using the rubber band too fast
       * Add finally full support for multimonitor and HiDPI combined
-      * Better precission in DnD
+      * Better precision in DnD
 
 * Version 0.7.0 (2019/12/09)
       * Don't show ".desktop" in enabled .desktop files
