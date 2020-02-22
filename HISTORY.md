@@ -2,7 +2,7 @@
 
 * Version 0.10.0 (2020/02/22)
       * Added 'tiny' icon size
-      * Doesn't allow to use an existing name when renaming or creatin a new folder
+      * Doesn't allow to use an existing name when renaming or creating a new folder
       * Fixed the DnD positioning (finally)
 
 * Version 0.9.1 (2020/02/06)
