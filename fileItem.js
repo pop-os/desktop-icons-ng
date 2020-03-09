@@ -169,18 +169,10 @@ var FileItem = class {
         }
         this._dragSource.drag_source_set_target_list(targets);
         this._dragSource.connect('drag-data-get', (widget, context, data, info, time) => {
-            switch(info) {
-                case 0: // x-special/ding-icon-list
-                    this._desktopManager.doMoveWithDragAndDrop(this, this._x1, this._y1);
-                    break;
-                case 1: // x-special/gnome-icon-list
-                case 2: //
-                    let dragData = this._desktopManager.fillDragDataGet(info);
-                    if (dragData != null) {
-                        let list = ByteArray.fromString(dragData[1]);
-                        data.set(dragData[0], 8, list);
-                    }
-                break;
+            let dragData = this._desktopManager.fillDragDataGet(info, this._x1, this._y1);
+            if (dragData != null) {
+                let list = ByteArray.fromString(dragData[1]);
+                data.set(dragData[0], 8, list);
             }
         });
     }
@@ -196,7 +188,7 @@ var FileItem = class {
                 dropDestination.drag_dest_set_target_list(targets);
                 dropDestination.connect('drag-data-received', (widget, context, x, y, selection, info, time) => {
                     if ((info == 1) || (info == 2)) {
-                        let fileList = DesktopIconsUtil.getFilesFromNautilusDnD(selection, info);
+                        let [fileList, x, y] = DesktopIconsUtil.getFilesFromNautilusDnD(selection, info);
                         if (fileList.length != 0) {
                             if (this._fileExtra != Enums.FileType.USER_DIRECTORY_TRASH) {
                                 this._desktopManager.clearFileCoordinates(fileList, null);

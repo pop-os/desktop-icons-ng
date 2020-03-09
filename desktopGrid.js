@@ -136,11 +136,6 @@ var DesktopGrid = class {
         this._window.connect('key-press-event', (actor, event) => {
             this._desktopManager.onKeyPress(event);
         });
-        this._eventBox.connect('drag-motion', (widget, context, x, y) => {
-            [x, y] = this._coordinatesLocalToGlobal(x, y);
-            this._desktopManager.xDestination = x;
-            this._desktopManager.yDestination = y;
-        });
     }
 
     destroy() {

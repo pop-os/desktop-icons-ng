@@ -159,11 +159,43 @@ var DesktopManager = class {
         }
     }
 
-    onDragDataReceived(x, y, selection, info) {
-        if ((info == 1) || (info == 2)) {
-            let fileList = DesktopIconsUtil.getFilesFromNautilusDnD(selection, info);
+    doMoveWithDragAndDrop(fileItem, xOrigin, yOrigin, xDestination, yDestination) {
+        // Find the grid where the destination lies
+        for(let desktop of this._desktops) {
+            let grid = desktop.getGridAt(xDestination, yDestination);
+            if (grid !== null) {
+                xDestination = grid[0];
+                yDestination = grid[1];
+                break;
+            }
+        }
+        let deltaX = xDestination - xOrigin;
+        let deltaY = yDestination - yOrigin;
+        let fileItems = [];
+        for(let item of this._fileList) {
+            if (item.isSelected) {
+                fileItems.push(item);
+                item.removeFromGrid();
+                let [x, y, a, b, c] = item.getCoordinates();
+                item.savedCoordinates = [x + deltaX, y + deltaY];
+            }
+        }
+        // force to store the new coordinates
+        this._addFilesToDesktop(fileItems, Enums.StoredCoordinates.OVERWRITE);
+    }
+
+    onDragDataReceived(xDestination, yDestination, selection, info) {
+        let [fileList, xOrigin, yOrigin] = DesktopIconsUtil.getFilesFromNautilusDnD(selection, info);
+        switch(info) {
+        case 0:
             if (fileList.length != 0) {
-                this.clearFileCoordinates(fileList, `${x},${y}`);
+                this.doMoveWithDragAndDrop(this, parseInt(xOrigin), parseInt(yOrigin), xDestination, yDestination);
+            }
+            break;
+        case 1:
+        case 2:
+            if (fileList.length != 0) {
+                this.clearFileCoordinates(fileList, `${xDestination},${yDestination}`);
                 DBusUtils.NautilusFileOperationsProxy.MoveURIsRemote(
                     fileList,
                     "file://" + GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DESKTOP),
@@ -173,28 +205,35 @@ var DesktopManager = class {
                         }
                 );
             }
+            break;
         }
     }
 
-    fillDragDataGet(info) {
+    fillDragDataGet(info, x, y) {
         let fileList = this.getCurrentSelection(false);
         if (fileList == null) {
             return null;
         }
         let atom;
         switch(info) {
+            case 0:
+                atom = Gdk.atom_intern('x-special/ding-icon-list', false);
+                break;
             case 1:
                 atom = Gdk.atom_intern('x-special/gnome-icon-list', false);
-            break;
+                break;
             case 2:
                 atom = Gdk.atom_intern('text/uri-list', false);
-            break;
+                break;
             default:
                 return null;
         }
         let data = "";
         for (let fileItem of fileList) {
             data += fileItem.uri;
+            if (info == 0) {
+                data += `\r${x} ${y}`
+            }
             if (info == 1) {
                 let coordinates = fileItem.getCoordinates();
                 if (coordinates != null) {
@@ -843,34 +882,6 @@ var DesktopManager = class {
             if (error)
                 throw new Error('Error trashing files on the desktop: ' + error.message);
         });
-    }
-
-    doMoveWithDragAndDrop(fileItem, xOrigin, yOrigin) {
-        // Find the grid where the destination lies
-        for(let desktop of this._desktops) {
-            let grid = desktop.getGridAt(this.xDestination, this.yDestination);
-            if (grid !== null) {
-                this.xDestination = grid[0];
-                this.yDestination = grid[1];
-                break;
-            }
-        }
-        let deltaX = this.xDestination - xOrigin;
-        let deltaY = this.yDestination - yOrigin;
-        let fileItems = [fileItem];
-        fileItem.removeFromGrid();
-        let [x, y, a, b, c] = fileItem.getCoordinates();
-        fileItem.savedCoordinates = [x + deltaX, y + deltaY];
-        for(let item of this._fileList) {
-            if (item.isSelected && (item != fileItem)) {
-                fileItems.push(item);
-                item.removeFromGrid();
-                [x, y, a, b, c] = item.getCoordinates();
-                item.savedCoordinates = [x + deltaX, y + deltaY];
-            }
-        }
-        // force to store the new coordinates
-        this._addFilesToDesktop(fileItems, Enums.StoredCoordinates.OVERWRITE);
     }
 
     checkIfSpecialFilesAreSelected() {
