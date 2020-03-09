@@ -51,6 +51,7 @@ var DesktopManager = class {
         this._toDelete = [];
         this._deletingFilesRecursively = false;
         this._desktopDir = DesktopIconsUtil.getDesktopDir();
+        this.desktopFsId = this._desktopDir.query_info('id::filesystem', Gio.FileQueryInfoFlags.NONE, null).get_attribute_string('id::filesystem');
         this._updateWritableByOthers();
         this._monitorDesktopDir = this._desktopDir.monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, null);
         this._monitorDesktopDir.set_rate_limit(1000);
@@ -196,14 +197,27 @@ var DesktopManager = class {
         case 2:
             if (fileList.length != 0) {
                 this.clearFileCoordinates(fileList, `${xDestination},${yDestination}`);
-                DBusUtils.NautilusFileOperationsProxy.MoveURIsRemote(
-                    fileList,
-                    "file://" + GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DESKTOP),
-                    (result, error) => {
-                        if (error)
-                            throw new Error('Error moving files: ' + error.message);
-                        }
-                );
+                let data = Gio.File.new_for_uri(fileList[0]).query_info('id::filesystem', Gio.FileQueryInfoFlags.NONE, null);
+                let id_fs = data.get_attribute_string('id::filesystem');
+                if (this.desktopFsId == id_fs) {
+                    DBusUtils.NautilusFileOperationsProxy.MoveURIsRemote(
+                        fileList,
+                        "file://" + GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DESKTOP),
+                        (result, error) => {
+                            if (error)
+                                throw new Error('Error moving files: ' + error.message);
+                            }
+                    );
+                } else {
+                    DBusUtils.NautilusFileOperationsProxy.CopyURIsRemote(
+                        fileList,
+                        "file://" + GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DESKTOP),
+                        (result, error) => {
+                            if (error)
+                                throw new Error('Error moving files: ' + error.message);
+                            }
+                    );
+                }
             }
             break;
         }

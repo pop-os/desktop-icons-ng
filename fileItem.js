@@ -192,12 +192,23 @@ var FileItem = class {
                         if (fileList.length != 0) {
                             if (this._fileExtra != Enums.FileType.USER_DIRECTORY_TRASH) {
                                 this._desktopManager.clearFileCoordinates(fileList, null);
-                                DBusUtils.NautilusFileOperationsProxy.MoveURIsRemote(fileList, this._file.get_uri(),
-                                    (result, error) => {
-                                        if (error)
-                                            throw new Error('Error moving files: ' + error.message);
-                                    }
-                                );
+                                let data = Gio.File.new_for_uri(fileList[0]).query_info('id::filesystem', Gio.FileQueryInfoFlags.NONE, null);
+                                let id_fs = data.get_attribute_string('id::filesystem');
+                                if (this._desktopManager.desktopFsId == id_fs) {
+                                    DBusUtils.NautilusFileOperationsProxy.MoveURIsRemote(fileList, this._file.get_uri(),
+                                        (result, error) => {
+                                            if (error)
+                                                throw new Error('Error moving files: ' + error.message);
+                                        }
+                                    );
+                                } else {
+                                    DBusUtils.NautilusFileOperationsProxy.CopyURIsRemote(fileList, this._file.get_uri(),
+                                        (result, error) => {
+                                            if (error)
+                                                throw new Error('Error moving files: ' + error.message);
+                                        }
+                                    );
+                                }
                             } else {
                                 DBusUtils.NautilusFileOperationsProxy.TrashFilesRemote(fileList,
                                     (result, error) => {
