@@ -2,6 +2,7 @@
 
  Version 0.11.0 (2020/03/22)
       * Copy files instead of move when using DnD into another drive
+      * Removed flicker when a file is created or removed
       * Fix DnD for Chrome and other programs
       * Use GtkApplication
 
