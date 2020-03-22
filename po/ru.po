@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-17 21:43+0200\n"
+"POT-Creation-Date: 2020-03-22 21:03+0100\n"
 "PO-Revision-Date: 2018-11-22 22:02+0300\n"
 "Last-Translator: Stas Solovey <whats_up@tut.by>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
@@ -19,130 +19,267 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 2.2\n"
 
-#: ../preferences.js:85
+#: ../askConfirmPopup.js:35 ../askNamePopup.js:36 ../desktopIconsUtil.js:176
+msgid "Cancel"
+msgstr "Отмена"
+
+#: ../askConfirmPopup.js:36
+msgid "Delete"
+msgstr ""
+
+#: ../askNamePopup.js:35
 msgid "OK"
 msgstr ""
 
-#: ../preferences.js:86 ../desktopManager.js:428
-msgid "Settings"
-msgstr "Параметры"
+#: ../askRenamePopup.js:40
+msgid "Folder name"
+msgstr ""
 
-#: ../preferences.js:91
-msgid "Size for the desktop icons"
-msgstr "Размер значков"
+#: ../askRenamePopup.js:40
+#, fuzzy
+msgid "File name"
+msgstr "Переименовать"
 
-#: ../preferences.js:91
-msgid "Small"
-msgstr "Маленький"
+#: ../askRenamePopup.js:47
+msgid "Rename"
+msgstr "Переименовать"
 
-#: ../preferences.js:91
-msgid "Standard"
-msgstr "Стандартный"
-
-#: ../preferences.js:91
-msgid "Large"
-msgstr "Большой"
-
-#: ../preferences.js:92
-msgid "Show the personal folder in the desktop"
-msgstr "Показывать домашнюю папку на рабочем столе"
-
-#: ../preferences.js:93
-msgid "Show the trash icon in the desktop"
-msgstr "Показывать «Корзину» на рабочем столе"
-
-#: ../desktopIconsUtil.js:68
+#: ../desktopIconsUtil.js:74
 msgid "Command not found"
 msgstr ""
 
-#: ../fileItem.js:549
-msgid "Don’t Allow Launching"
+#: ../desktopIconsUtil.js:167
+msgid "Do you want to run “{0}”, or display its contents?"
 msgstr ""
 
-#: ../fileItem.js:551
-msgid "Allow Launching"
+#: ../desktopIconsUtil.js:168
+msgid "“{0}” is an executable text file."
 msgstr ""
 
-#: ../fileItem.js:603
-msgid "Open"
-msgstr "Открыть"
-
-#: ../fileItem.js:609
-msgid "Open With Other Application"
-msgstr ""
-
-#: ../fileItem.js:616
-msgid "Cut"
-msgstr "Вырезать"
-
-#: ../fileItem.js:619
-msgid "Copy"
-msgstr "Вставить"
-
-#: ../fileItem.js:623
+#: ../desktopIconsUtil.js:172
 #, fuzzy
-msgid "Rename…"
-msgstr "Переименовать"
-
-#: ../fileItem.js:627
-msgid "Move to Trash"
-msgstr "Переместить в корзину"
-
-#: ../fileItem.js:639
-#, fuzzy
-msgid "Empty Trash"
-msgstr "Очистить корзину"
-
-#: ../fileItem.js:647
-msgid "Properties"
-msgstr "Свойства"
-
-#: ../fileItem.js:651
-msgid "Show in Files"
-msgstr "Показать в «Файлах»"
-
-#: ../fileItem.js:655 ../desktopManager.js:406
-#, fuzzy
-msgid "Open in Terminal"
+msgid "Execute in a terminal"
 msgstr "Открыть терминал"
 
-#: ../desktopManager.js:382
+#: ../desktopIconsUtil.js:174
+msgid "Show"
+msgstr ""
+
+#: ../desktopIconsUtil.js:178
+msgid "Execute"
+msgstr ""
+
+#: ../desktopManager.js:96
+msgid "Nautilus File Manager not found"
+msgstr ""
+
+#: ../desktopManager.js:97
+msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
+msgstr ""
+
+#: ../desktopManager.js:375
 msgid "New Folder"
 msgstr "Создать папку"
 
-#: ../desktopManager.js:388
+#: ../desktopManager.js:381
 msgid "Paste"
 msgstr "Вставить"
 
-#: ../desktopManager.js:392
+#: ../desktopManager.js:385
 msgid "Undo"
 msgstr "Отменить"
 
-#: ../desktopManager.js:396
+#: ../desktopManager.js:389
 msgid "Redo"
 msgstr "Повторить"
 
-#: ../desktopManager.js:402
+#: ../desktopManager.js:395
 #, fuzzy
 msgid "Show Desktop in Files"
 msgstr "Открыть «Рабочий стол» в «Файлах»"
 
-#: ../desktopManager.js:412
+#: ../desktopManager.js:399 ../fileItem.js:747
+#, fuzzy
+msgid "Open in Terminal"
+msgstr "Открыть терминал"
+
+#: ../desktopManager.js:405
 msgid "Change Background…"
 msgstr "Изменить фон…"
 
-#: ../desktopManager.js:421
+#: ../desktopManager.js:414
 msgid "Display Settings"
 msgstr "Настройки дисплея"
 
-#: ../desktopManager.js:841
-msgid "Rename"
-msgstr "Переименовать"
+#: ../desktopManager.js:421 ../preferences.js:83
+msgid "Settings"
+msgstr "Параметры"
 
-#: ../desktopManager.js:879
+#: ../desktopManager.js:838 ../desktopManager.js:859
+msgid "Error while deleting files"
+msgstr ""
+
+#: ../desktopManager.js:839
+msgid "There was an error while trying to permanently delete the folder {:}."
+msgstr ""
+
+#: ../desktopManager.js:860
+msgid "There was an error while trying to permanently delete the file {:}."
+msgstr ""
+
+#: ../desktopManager.js:883
+msgid "Are you sure you want to permanently delete these items?"
+msgstr ""
+
+#: ../desktopManager.js:883
+msgid "If you delete an item, it will be permanently lost."
+msgstr ""
+
+#: ../desktopManager.js:974
 #, fuzzy
 msgid "New folder"
 msgstr "Создать папку"
+
+#: ../fileItem.js:622
+msgid "Don’t Allow Launching"
+msgstr ""
+
+#: ../fileItem.js:624
+msgid "Allow Launching"
+msgstr ""
+
+#: ../fileItem.js:690
+msgid "Open"
+msgstr "Открыть"
+
+#: ../fileItem.js:696
+msgid "Open With Other Application"
+msgstr ""
+
+#: ../fileItem.js:703
+msgid "Cut"
+msgstr "Вырезать"
+
+#: ../fileItem.js:706
+msgid "Copy"
+msgstr "Вставить"
+
+#: ../fileItem.js:710
+#, fuzzy
+msgid "Rename…"
+msgstr "Переименовать"
+
+#: ../fileItem.js:714
+msgid "Move to Trash"
+msgstr "Переместить в корзину"
+
+#: ../fileItem.js:718
+msgid "Delete permanently"
+msgstr ""
+
+#: ../fileItem.js:731
+#, fuzzy
+msgid "Empty Trash"
+msgstr "Очистить корзину"
+
+#: ../fileItem.js:739
+msgid "Properties"
+msgstr "Свойства"
+
+#: ../fileItem.js:743
+msgid "Show in Files"
+msgstr "Показать в «Файлах»"
+
+#: ../preferences.js:89
+msgid "Size for the desktop icons"
+msgstr "Размер значков"
+
+#: ../preferences.js:89
+msgid "Tiny"
+msgstr ""
+
+#: ../preferences.js:89
+msgid "Small"
+msgstr "Маленький"
+
+#: ../preferences.js:89
+msgid "Standard"
+msgstr "Стандартный"
+
+#: ../preferences.js:89
+msgid "Large"
+msgstr "Большой"
+
+#: ../preferences.js:90
+msgid "Show the personal folder in the desktop"
+msgstr "Показывать домашнюю папку на рабочем столе"
+
+#: ../preferences.js:91
+msgid "Show the trash icon in the desktop"
+msgstr "Показывать «Корзину» на рабочем столе"
+
+#: ../preferences.js:95
+msgid "Settings shared with Nautilus"
+msgstr ""
+
+#: ../preferences.js:101
+msgid "Click type for open files"
+msgstr ""
+
+#: ../preferences.js:101
+msgid "Single click"
+msgstr ""
+
+#: ../preferences.js:101
+msgid "Double click"
+msgstr ""
+
+#: ../preferences.js:102
+#, fuzzy
+msgid "Show hidden files"
+msgstr "Показать в «Файлах»"
+
+#: ../preferences.js:103
+msgid "Show a context menu item to delete permanently"
+msgstr ""
+
+#: ../preferences.js:106
+msgid "Action to do when launching a program from the desktop"
+msgstr ""
+
+#: ../preferences.js:107
+msgid "Display the content of the file"
+msgstr ""
+
+#: ../preferences.js:108
+msgid "Launch the file"
+msgstr ""
+
+#: ../preferences.js:109
+msgid "Ask what to do"
+msgstr ""
+
+#: ../preferences.js:113
+msgid "Show image thumbnails"
+msgstr ""
+
+#: ../preferences.js:114
+msgid "Never"
+msgstr ""
+
+#: ../preferences.js:115
+msgid "Local files only"
+msgstr ""
+
+#: ../preferences.js:116
+msgid "Always"
+msgstr ""
+
+#: ../prefs.js:39
+msgid ""
+"To configure Desktop Icons NG, do right-click in the desktop and choose the "
+"last item: 'Settings'"
+msgstr ""
 
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:1
 msgid "Icon size"
@@ -170,9 +307,6 @@ msgstr "Показывать значок корзины на рабочем с�
 
 #~ msgid "Enter file name…"
 #~ msgstr "Ввести имя файла…"
-
-#~ msgid "Cancel"
-#~ msgstr "Отмена"
 
 #~ msgid "Huge"
 #~ msgstr "Огромный"

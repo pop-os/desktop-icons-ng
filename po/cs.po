@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-17 21:43+0200\n"
+"POT-Creation-Date: 2020-03-22 21:03+0100\n"
 "PO-Revision-Date: 2019-03-02 18:02+0100\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: Czech <zeten30@gmail.com>\n"
@@ -19,127 +19,265 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: ../preferences.js:85
+#: ../askConfirmPopup.js:35 ../askNamePopup.js:36 ../desktopIconsUtil.js:176
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: ../askConfirmPopup.js:36
+msgid "Delete"
+msgstr ""
+
+#: ../askNamePopup.js:35
 msgid "OK"
 msgstr "Budiž"
 
-#: ../preferences.js:86 ../desktopManager.js:428
-msgid "Settings"
-msgstr "Nastavení"
+#: ../askRenamePopup.js:40
+#, fuzzy
+msgid "Folder name"
+msgstr "Název nové složky"
 
-#: ../preferences.js:91
-msgid "Size for the desktop icons"
-msgstr "Velikost ikon na pracovní ploše"
-
-#: ../preferences.js:91
-msgid "Small"
-msgstr "malé"
-
-#: ../preferences.js:91
-msgid "Standard"
-msgstr "standardní"
-
-#: ../preferences.js:91
-msgid "Large"
-msgstr "velké"
-
-#: ../preferences.js:92
-msgid "Show the personal folder in the desktop"
-msgstr "Zobrazovat osobní složku na pracovní ploše"
-
-#: ../preferences.js:93
-msgid "Show the trash icon in the desktop"
-msgstr "Zobrazovat ikonu koše na pracovní ploše"
-
-#: ../desktopIconsUtil.js:68
-msgid "Command not found"
-msgstr ""
-
-#: ../fileItem.js:549
-msgid "Don’t Allow Launching"
-msgstr "Nepovolit spouštění"
-
-#: ../fileItem.js:551
-msgid "Allow Launching"
-msgstr "Povolit spouštění"
-
-#: ../fileItem.js:603
-msgid "Open"
-msgstr "Otevřít"
-
-#: ../fileItem.js:609
-msgid "Open With Other Application"
-msgstr "Otevřít pomocí jiné aplikace"
-
-#: ../fileItem.js:616
-msgid "Cut"
-msgstr "Vyjmout"
-
-#: ../fileItem.js:619
-msgid "Copy"
-msgstr "Kopírovat"
-
-#: ../fileItem.js:623
-msgid "Rename…"
+#: ../askRenamePopup.js:40
+#, fuzzy
+msgid "File name"
 msgstr "Přejmenovat…"
 
-#: ../fileItem.js:627
-msgid "Move to Trash"
-msgstr "Přesunout do koše"
-
-#: ../fileItem.js:639
-msgid "Empty Trash"
-msgstr "Vyprázdnit koš"
-
-#: ../fileItem.js:647
-msgid "Properties"
-msgstr "Vlastnosti"
-
-#: ../fileItem.js:651
-msgid "Show in Files"
-msgstr "Zobrazit v Souborech"
-
-#: ../fileItem.js:655 ../desktopManager.js:406
-msgid "Open in Terminal"
-msgstr "Otevřít v terminálu"
-
-#: ../desktopManager.js:382
-msgid "New Folder"
-msgstr "Nová složka"
-
-#: ../desktopManager.js:388
-msgid "Paste"
-msgstr "Vložit"
-
-#: ../desktopManager.js:392
-msgid "Undo"
-msgstr "Zpět"
-
-#: ../desktopManager.js:396
-msgid "Redo"
-msgstr "Znovu"
-
-#: ../desktopManager.js:402
-msgid "Show Desktop in Files"
-msgstr "Zobrazit plochu v Souborech"
-
-#: ../desktopManager.js:412
-msgid "Change Background…"
-msgstr "Změnit pozadí…"
-
-#: ../desktopManager.js:421
-msgid "Display Settings"
-msgstr "Zobrazit nastavení"
-
-#: ../desktopManager.js:841
+#: ../askRenamePopup.js:47
 #, fuzzy
 msgid "Rename"
 msgstr "Přejmenovat…"
 
-#: ../desktopManager.js:879
+#: ../desktopIconsUtil.js:74
+msgid "Command not found"
+msgstr ""
+
+#: ../desktopIconsUtil.js:167
+msgid "Do you want to run “{0}”, or display its contents?"
+msgstr ""
+
+#: ../desktopIconsUtil.js:168
+msgid "“{0}” is an executable text file."
+msgstr ""
+
+#: ../desktopIconsUtil.js:172
+#, fuzzy
+msgid "Execute in a terminal"
+msgstr "Otevřít v terminálu"
+
+#: ../desktopIconsUtil.js:174
+msgid "Show"
+msgstr ""
+
+#: ../desktopIconsUtil.js:178
+msgid "Execute"
+msgstr ""
+
+#: ../desktopManager.js:96
+msgid "Nautilus File Manager not found"
+msgstr ""
+
+#: ../desktopManager.js:97
+msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
+msgstr ""
+
+#: ../desktopManager.js:375
+msgid "New Folder"
+msgstr "Nová složka"
+
+#: ../desktopManager.js:381
+msgid "Paste"
+msgstr "Vložit"
+
+#: ../desktopManager.js:385
+msgid "Undo"
+msgstr "Zpět"
+
+#: ../desktopManager.js:389
+msgid "Redo"
+msgstr "Znovu"
+
+#: ../desktopManager.js:395
+msgid "Show Desktop in Files"
+msgstr "Zobrazit plochu v Souborech"
+
+#: ../desktopManager.js:399 ../fileItem.js:747
+msgid "Open in Terminal"
+msgstr "Otevřít v terminálu"
+
+#: ../desktopManager.js:405
+msgid "Change Background…"
+msgstr "Změnit pozadí…"
+
+#: ../desktopManager.js:414
+msgid "Display Settings"
+msgstr "Zobrazit nastavení"
+
+#: ../desktopManager.js:421 ../preferences.js:83
+msgid "Settings"
+msgstr "Nastavení"
+
+#: ../desktopManager.js:838 ../desktopManager.js:859
+msgid "Error while deleting files"
+msgstr ""
+
+#: ../desktopManager.js:839
+msgid "There was an error while trying to permanently delete the folder {:}."
+msgstr ""
+
+#: ../desktopManager.js:860
+msgid "There was an error while trying to permanently delete the file {:}."
+msgstr ""
+
+#: ../desktopManager.js:883
+msgid "Are you sure you want to permanently delete these items?"
+msgstr ""
+
+#: ../desktopManager.js:883
+msgid "If you delete an item, it will be permanently lost."
+msgstr ""
+
+#: ../desktopManager.js:974
 #, fuzzy
 msgid "New folder"
 msgstr "Nová složka"
+
+#: ../fileItem.js:622
+msgid "Don’t Allow Launching"
+msgstr "Nepovolit spouštění"
+
+#: ../fileItem.js:624
+msgid "Allow Launching"
+msgstr "Povolit spouštění"
+
+#: ../fileItem.js:690
+msgid "Open"
+msgstr "Otevřít"
+
+#: ../fileItem.js:696
+msgid "Open With Other Application"
+msgstr "Otevřít pomocí jiné aplikace"
+
+#: ../fileItem.js:703
+msgid "Cut"
+msgstr "Vyjmout"
+
+#: ../fileItem.js:706
+msgid "Copy"
+msgstr "Kopírovat"
+
+#: ../fileItem.js:710
+msgid "Rename…"
+msgstr "Přejmenovat…"
+
+#: ../fileItem.js:714
+msgid "Move to Trash"
+msgstr "Přesunout do koše"
+
+#: ../fileItem.js:718
+msgid "Delete permanently"
+msgstr ""
+
+#: ../fileItem.js:731
+msgid "Empty Trash"
+msgstr "Vyprázdnit koš"
+
+#: ../fileItem.js:739
+msgid "Properties"
+msgstr "Vlastnosti"
+
+#: ../fileItem.js:743
+msgid "Show in Files"
+msgstr "Zobrazit v Souborech"
+
+#: ../preferences.js:89
+msgid "Size for the desktop icons"
+msgstr "Velikost ikon na pracovní ploše"
+
+#: ../preferences.js:89
+msgid "Tiny"
+msgstr ""
+
+#: ../preferences.js:89
+msgid "Small"
+msgstr "malé"
+
+#: ../preferences.js:89
+msgid "Standard"
+msgstr "standardní"
+
+#: ../preferences.js:89
+msgid "Large"
+msgstr "velké"
+
+#: ../preferences.js:90
+msgid "Show the personal folder in the desktop"
+msgstr "Zobrazovat osobní složku na pracovní ploše"
+
+#: ../preferences.js:91
+msgid "Show the trash icon in the desktop"
+msgstr "Zobrazovat ikonu koše na pracovní ploše"
+
+#: ../preferences.js:95
+msgid "Settings shared with Nautilus"
+msgstr ""
+
+#: ../preferences.js:101
+msgid "Click type for open files"
+msgstr ""
+
+#: ../preferences.js:101
+msgid "Single click"
+msgstr ""
+
+#: ../preferences.js:101
+msgid "Double click"
+msgstr ""
+
+#: ../preferences.js:102
+#, fuzzy
+msgid "Show hidden files"
+msgstr "Zobrazit v Souborech"
+
+#: ../preferences.js:103
+msgid "Show a context menu item to delete permanently"
+msgstr ""
+
+#: ../preferences.js:106
+msgid "Action to do when launching a program from the desktop"
+msgstr ""
+
+#: ../preferences.js:107
+msgid "Display the content of the file"
+msgstr ""
+
+#: ../preferences.js:108
+msgid "Launch the file"
+msgstr ""
+
+#: ../preferences.js:109
+msgid "Ask what to do"
+msgstr ""
+
+#: ../preferences.js:113
+msgid "Show image thumbnails"
+msgstr ""
+
+#: ../preferences.js:114
+msgid "Never"
+msgstr ""
+
+#: ../preferences.js:115
+msgid "Local files only"
+msgstr ""
+
+#: ../preferences.js:116
+msgid "Always"
+msgstr ""
+
+#: ../prefs.js:39
+msgid ""
+"To configure Desktop Icons NG, do right-click in the desktop and choose the "
+"last item: 'Settings'"
+msgstr ""
 
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:1
 msgid "Icon size"
@@ -167,12 +305,6 @@ msgstr "Zobrazovat ikonu koše na pracovní ploše."
 
 #~ msgid "Enter file name…"
 #~ msgstr "Zadejte název souboru…"
-
-#~ msgid "Cancel"
-#~ msgstr "Zrušit"
-
-#~ msgid "New folder name"
-#~ msgstr "Název nové složky"
 
 #~ msgid "Create"
 #~ msgstr "Vytvořit"

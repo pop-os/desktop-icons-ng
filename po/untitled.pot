@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-09 13:49+0100\n"
+"POT-Creation-Date: 2020-03-22 21:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../askConfirmPopup.js:35 ../askNamePopup.js:33 ../desktopIconsUtil.js:170
+#: ../askConfirmPopup.js:35 ../askNamePopup.js:36 ../desktopIconsUtil.js:176
 msgid "Cancel"
 msgstr ""
 
@@ -25,19 +25,19 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: ../askNamePopup.js:32
+#: ../askNamePopup.js:35
 msgid "OK"
 msgstr ""
 
-#: ../askRenamePopup.js:37
+#: ../askRenamePopup.js:40
 msgid "Folder name"
 msgstr ""
 
-#: ../askRenamePopup.js:37
+#: ../askRenamePopup.js:40
 msgid "File name"
 msgstr ""
 
-#: ../askRenamePopup.js:44
+#: ../askRenamePopup.js:47
 msgid "Rename"
 msgstr ""
 
@@ -45,144 +45,148 @@ msgstr ""
 msgid "Command not found"
 msgstr ""
 
-#: ../desktopIconsUtil.js:161
+#: ../desktopIconsUtil.js:167
 msgid "Do you want to run “{0}”, or display its contents?"
 msgstr ""
 
-#: ../desktopIconsUtil.js:162
+#: ../desktopIconsUtil.js:168
 msgid "“{0}” is an executable text file."
 msgstr ""
 
-#: ../desktopIconsUtil.js:166
+#: ../desktopIconsUtil.js:172
 msgid "Execute in a terminal"
 msgstr ""
 
-#: ../desktopIconsUtil.js:168
+#: ../desktopIconsUtil.js:174
 msgid "Show"
 msgstr ""
 
-#: ../desktopIconsUtil.js:172
+#: ../desktopIconsUtil.js:178
 msgid "Execute"
 msgstr ""
 
-#: ../desktopManager.js:196
+#: ../desktopManager.js:96
 msgid "Nautilus File Manager not found"
 msgstr ""
 
-#: ../desktopManager.js:197
+#: ../desktopManager.js:97
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr ""
 
-#: ../desktopManager.js:437
+#: ../desktopManager.js:375
 msgid "New Folder"
 msgstr ""
 
-#: ../desktopManager.js:443
+#: ../desktopManager.js:381
 msgid "Paste"
 msgstr ""
 
-#: ../desktopManager.js:447
+#: ../desktopManager.js:385
 msgid "Undo"
 msgstr ""
 
-#: ../desktopManager.js:451
+#: ../desktopManager.js:389
 msgid "Redo"
 msgstr ""
 
-#: ../desktopManager.js:457
+#: ../desktopManager.js:395
 msgid "Show Desktop in Files"
 msgstr ""
 
-#: ../desktopManager.js:461 ../fileItem.js:748
+#: ../desktopManager.js:399 ../fileItem.js:747
 msgid "Open in Terminal"
 msgstr ""
 
-#: ../desktopManager.js:467
+#: ../desktopManager.js:405
 msgid "Change Background…"
 msgstr ""
 
-#: ../desktopManager.js:476
+#: ../desktopManager.js:414
 msgid "Display Settings"
 msgstr ""
 
-#: ../desktopManager.js:483 ../preferences.js:83
+#: ../desktopManager.js:421 ../preferences.js:83
 msgid "Settings"
 msgstr ""
 
-#: ../desktopManager.js:899 ../desktopManager.js:920
+#: ../desktopManager.js:838 ../desktopManager.js:859
 msgid "Error while deleting files"
 msgstr ""
 
-#: ../desktopManager.js:900
+#: ../desktopManager.js:839
 msgid "There was an error while trying to permanently delete the folder {:}."
 msgstr ""
 
-#: ../desktopManager.js:921
+#: ../desktopManager.js:860
 msgid "There was an error while trying to permanently delete the file {:}."
 msgstr ""
 
-#: ../desktopManager.js:944
+#: ../desktopManager.js:883
 msgid "Are you sure you want to permanently delete these items?"
 msgstr ""
 
-#: ../desktopManager.js:944
+#: ../desktopManager.js:883
 msgid "If you delete an item, it will be permanently lost."
 msgstr ""
 
-#: ../desktopManager.js:1054
+#: ../desktopManager.js:974
 msgid "New folder"
 msgstr ""
 
-#: ../fileItem.js:623
+#: ../fileItem.js:622
 msgid "Don’t Allow Launching"
 msgstr ""
 
-#: ../fileItem.js:625
+#: ../fileItem.js:624
 msgid "Allow Launching"
 msgstr ""
 
-#: ../fileItem.js:691
+#: ../fileItem.js:690
 msgid "Open"
 msgstr ""
 
-#: ../fileItem.js:697
+#: ../fileItem.js:696
 msgid "Open With Other Application"
 msgstr ""
 
-#: ../fileItem.js:704
+#: ../fileItem.js:703
 msgid "Cut"
 msgstr ""
 
-#: ../fileItem.js:707
+#: ../fileItem.js:706
 msgid "Copy"
 msgstr ""
 
-#: ../fileItem.js:711
+#: ../fileItem.js:710
 msgid "Rename…"
 msgstr ""
 
-#: ../fileItem.js:715
+#: ../fileItem.js:714
 msgid "Move to Trash"
 msgstr ""
 
-#: ../fileItem.js:719
+#: ../fileItem.js:718
 msgid "Delete permanently"
 msgstr ""
 
-#: ../fileItem.js:732
+#: ../fileItem.js:731
 msgid "Empty Trash"
 msgstr ""
 
-#: ../fileItem.js:740
+#: ../fileItem.js:739
 msgid "Properties"
 msgstr ""
 
-#: ../fileItem.js:744
+#: ../fileItem.js:743
 msgid "Show in Files"
 msgstr ""
 
 #: ../preferences.js:89
 msgid "Size for the desktop icons"
+msgstr ""
+
+#: ../preferences.js:89
+msgid "Tiny"
 msgstr ""
 
 #: ../preferences.js:89

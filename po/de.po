@@ -3,16 +3,108 @@
 #
 msgid ""
 msgstr ""
-"MIME-Version: 1.0\n"
 "Project-Id-Version: unnamed project\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-22 21:03+0100\n"
+"PO-Revision-Date: 2019-11-01 14:06+0100\n"
 "Last-Translator: Tim Hofstede <phokas@mail.de>\n"
 "Language-Team: German <phokas@mail.de>\n"
 "Language: de\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"PO-Revision-Date: 2019-11-01 14:06+0100\n"
 "X-Generator: Gtranslator 3.34.0\n"
+
+#: ../askConfirmPopup.js:35 ../askNamePopup.js:36 ../desktopIconsUtil.js:176
+msgid "Cancel"
+msgstr ""
+
+#: ../askConfirmPopup.js:36
+msgid "Delete"
+msgstr ""
+
+#: ../askNamePopup.js:35
+msgid "OK"
+msgstr ""
+
+#: ../askRenamePopup.js:40
+msgid "Folder name"
+msgstr ""
+
+#: ../askRenamePopup.js:40
+#, fuzzy
+msgid "File name"
+msgstr "Umbenennen"
+
+#: ../askRenamePopup.js:47
+msgid "Rename"
+msgstr "Umbenennen"
+
+#: ../desktopIconsUtil.js:74
+msgid "Command not found"
+msgstr "Kommando nicht gefunden"
+
+#: ../desktopIconsUtil.js:167
+msgid "Do you want to run “{0}”, or display its contents?"
+msgstr ""
+
+#: ../desktopIconsUtil.js:168
+msgid "“{0}” is an executable text file."
+msgstr ""
+
+#: ../desktopIconsUtil.js:172
+#, fuzzy
+msgid "Execute in a terminal"
+msgstr "Im Terminal öffnen"
+
+#: ../desktopIconsUtil.js:174
+msgid "Show"
+msgstr ""
+
+#: ../desktopIconsUtil.js:178
+msgid "Execute"
+msgstr ""
+
+#: ../desktopManager.js:96
+msgid "Nautilus File Manager not found"
+msgstr ""
+
+#: ../desktopManager.js:97
+msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
+msgstr ""
+
+#: ../desktopManager.js:375
+msgid "New Folder"
+msgstr "Neuer Ordner"
+
+#: ../desktopManager.js:381
+msgid "Paste"
+msgstr "Einfügen"
+
+#: ../desktopManager.js:385
+msgid "Undo"
+msgstr "Rückgängig"
+
+#: ../desktopManager.js:389
+msgid "Redo"
+msgstr "Wiederholen"
+
+#: ../desktopManager.js:395
+msgid "Show Desktop in Files"
+msgstr "Schreibtisch in Dateien anzeigen"
+
+#: ../desktopManager.js:399 ../fileItem.js:747
+msgid "Open in Terminal"
+msgstr "Im Terminal öffnen"
+
+#: ../desktopManager.js:405
+msgid "Change Background…"
+msgstr "Hintergrund ändern…"
+
+#: ../desktopManager.js:414
+msgid "Display Settings"
+msgstr "Anzeigeeinstellungen"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
@@ -22,13 +114,91 @@ msgstr ""
 # Tim Hofstede, <phokas@mail.de>, 2019.
 # Sergio Costas <rastersoft@gmail.com>, 2018-2019.
 #
-#: ../preferences.js:83 ../desktopManager.js:461
+#: ../desktopManager.js:421 ../preferences.js:83
 msgid "Settings"
 msgstr "Einstellungen"
+
+#: ../desktopManager.js:838 ../desktopManager.js:859
+#, fuzzy
+msgid "Error while deleting files"
+msgstr "Verborgene Dateien anzeigen"
+
+#: ../desktopManager.js:839
+msgid "There was an error while trying to permanently delete the folder {:}."
+msgstr ""
+
+#: ../desktopManager.js:860
+#, fuzzy
+msgid "There was an error while trying to permanently delete the file {:}."
+msgstr "Sind sie sicher, dass sie diese Dateien dauerhaft löschen wollen?"
+
+#: ../desktopManager.js:883
+msgid "Are you sure you want to permanently delete these items?"
+msgstr "Sind sie sicher, dass sie diese Dateien dauerhaft löschen wollen?"
+
+#: ../desktopManager.js:883
+msgid "If you delete an item, it will be permanently lost."
+msgstr "Sobald sie ein Objekt löschen, geht es dauerhaft verloren."
+
+#: ../desktopManager.js:974
+msgid "New folder"
+msgstr "Neuer Ordner"
+
+#: ../fileItem.js:622
+msgid "Don’t Allow Launching"
+msgstr "Start nicht erlauben"
+
+#: ../fileItem.js:624
+msgid "Allow Launching"
+msgstr "Start erlauben"
+
+#: ../fileItem.js:690
+msgid "Open"
+msgstr "Öffnen"
+
+#: ../fileItem.js:696
+msgid "Open With Other Application"
+msgstr "Mit anderer Anwendung öffnen"
+
+#: ../fileItem.js:703
+msgid "Cut"
+msgstr "Ausschneiden"
+
+#: ../fileItem.js:706
+msgid "Copy"
+msgstr "Kopieren"
+
+#: ../fileItem.js:710
+msgid "Rename…"
+msgstr "Umbenennen"
+
+#: ../fileItem.js:714
+msgid "Move to Trash"
+msgstr "In den Papierkorb verschieben"
+
+#: ../fileItem.js:718
+msgid "Delete permanently"
+msgstr "Dauerhaft löschen"
+
+#: ../fileItem.js:731
+msgid "Empty Trash"
+msgstr "Papierkorb leeren"
+
+#: ../fileItem.js:739
+msgid "Properties"
+msgstr "Eigenschaften"
+
+#: ../fileItem.js:743
+msgid "Show in Files"
+msgstr "In Dateiverwaltung anzeigen"
 
 #: ../preferences.js:89
 msgid "Size for the desktop icons"
 msgstr "Größe der Arbeitsflächensymbole"
+
+#: ../preferences.js:89
+msgid "Tiny"
+msgstr ""
 
 #: ../preferences.js:89
 msgid "Small"
@@ -74,105 +244,43 @@ msgstr "Verborgene Dateien anzeigen"
 msgid "Show a context menu item to delete permanently"
 msgstr "Aktion zum dauerhaften Löschen anzeigen"
 
-#: ../desktopIconsUtil.js:67
-msgid "Command not found"
-msgstr "Kommando nicht gefunden"
+#: ../preferences.js:106
+msgid "Action to do when launching a program from the desktop"
+msgstr ""
 
-#: ../fileItem.js:571
-msgid "Don’t Allow Launching"
-msgstr "Start nicht erlauben"
+#: ../preferences.js:107
+msgid "Display the content of the file"
+msgstr ""
 
-#: ../fileItem.js:573
-msgid "Allow Launching"
-msgstr "Start erlauben"
+#: ../preferences.js:108
+msgid "Launch the file"
+msgstr ""
 
-#: ../fileItem.js:639
-msgid "Open"
-msgstr "Öffnen"
+#: ../preferences.js:109
+msgid "Ask what to do"
+msgstr ""
 
-#: ../fileItem.js:645
-msgid "Open With Other Application"
-msgstr "Mit anderer Anwendung öffnen"
+#: ../preferences.js:113
+msgid "Show image thumbnails"
+msgstr ""
 
-#: ../fileItem.js:652
-msgid "Cut"
-msgstr "Ausschneiden"
+#: ../preferences.js:114
+msgid "Never"
+msgstr ""
 
-#: ../fileItem.js:655
-msgid "Copy"
-msgstr "Kopieren"
+#: ../preferences.js:115
+msgid "Local files only"
+msgstr ""
 
-#: ../fileItem.js:659
-msgid "Rename…"
-msgstr "Umbenennen"
+#: ../preferences.js:116
+msgid "Always"
+msgstr ""
 
-#: ../fileItem.js:663
-msgid "Move to Trash"
-msgstr "In den Papierkorb verschieben"
-
-#: ../fileItem.js:667
-msgid "Delete permanently"
-msgstr "Dauerhaft löschen"
-
-#: ../fileItem.js:680
-msgid "Empty Trash"
-msgstr "Papierkorb leeren"
-
-#: ../fileItem.js:688
-msgid "Properties"
-msgstr "Eigenschaften"
-
-#: ../fileItem.js:692
-msgid "Show in Files"
-msgstr "In Dateiverwaltung anzeigen"
-
-#: ../fileItem.js:696 ../desktopManager.js:439
-msgid "Open in Terminal"
-msgstr "Im Terminal öffnen"
-
-#: ../desktopManager.js:415
-msgid "New Folder"
-msgstr "Neuer Ordner"
-
-#: ../desktopManager.js:421
-msgid "Paste"
-msgstr "Einfügen"
-
-#: ../desktopManager.js:425
-msgid "Undo"
-msgstr "Rückgängig"
-
-#: ../desktopManager.js:429
-msgid "Redo"
-msgstr "Wiederholen"
-
-#: ../desktopManager.js:435
-msgid "Show Desktop in Files"
-msgstr "Schreibtisch in Dateien anzeigen"
-
-#: ../desktopManager.js:445
-msgid "Change Background…"
-msgstr "Hintergrund ändern…"
-
-#: ../desktopManager.js:454
-msgid "Display Settings"
-msgstr "Anzeigeeinstellungen"
-
-#: ../desktopManager.js:906
-msgid "Are you sure you want to permanently delete these items?"
-msgstr "Sind sie sicher, dass sie diese Dateien dauerhaft löschen wollen?"
-
-#: ../desktopManager.js:906
-msgid "If you delete an item, it will be permanently lost."
-msgstr "Sobald sie ein Objekt löschen, geht es dauerhaft verloren."
-
-#: ../desktopManager.js:984
-msgid "Rename"
-msgstr "Umbenennen"
-
-#: ../desktopManager.js:1025
-msgid "New folder"
-msgstr "Neuer Ordner"
+#: ../prefs.js:39
+msgid ""
+"To configure Desktop Icons NG, do right-click in the desktop and choose the "
+"last item: 'Settings'"
+msgstr ""
 
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:1
 msgid "Icon size"

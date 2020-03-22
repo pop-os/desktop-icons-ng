@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-17 21:43+0200\n"
+"POT-Creation-Date: 2020-03-22 21:03+0100\n"
 "PO-Revision-Date: 2019-04-29 17:35-0300\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
@@ -19,127 +19,265 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 "X-Generator: Gtranslator 3.32.0\n"
 
-#: ../preferences.js:85
+#: ../askConfirmPopup.js:35 ../askNamePopup.js:36 ../desktopIconsUtil.js:176
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: ../askConfirmPopup.js:36
+msgid "Delete"
+msgstr ""
+
+#: ../askNamePopup.js:35
 msgid "OK"
 msgstr "OK"
 
-#: ../preferences.js:86 ../desktopManager.js:428
-msgid "Settings"
-msgstr "Configurações"
+#: ../askRenamePopup.js:40
+#, fuzzy
+msgid "Folder name"
+msgstr "Nome da nova pasta"
 
-#: ../preferences.js:91
-msgid "Size for the desktop icons"
-msgstr "Tamanho para os ícones da área de trabalho"
-
-#: ../preferences.js:91
-msgid "Small"
-msgstr "Pequeno"
-
-#: ../preferences.js:91
-msgid "Standard"
-msgstr "Padrão"
-
-#: ../preferences.js:91
-msgid "Large"
-msgstr "Grande"
-
-#: ../preferences.js:92
-msgid "Show the personal folder in the desktop"
-msgstr "Mostrar a pasta pessoal na área de trabalho"
-
-#: ../preferences.js:93
-msgid "Show the trash icon in the desktop"
-msgstr "Mostrar o ícone da lixeira na área de trabalho"
-
-#: ../desktopIconsUtil.js:68
-msgid "Command not found"
-msgstr "Comando não encontrado"
-
-#: ../fileItem.js:549
-msgid "Don’t Allow Launching"
-msgstr "Não permitir iniciar"
-
-#: ../fileItem.js:551
-msgid "Allow Launching"
-msgstr "Permitir iniciar"
-
-#: ../fileItem.js:603
-msgid "Open"
-msgstr "Abrir"
-
-#: ../fileItem.js:609
-msgid "Open With Other Application"
-msgstr "Abrir com outro aplicativo"
-
-#: ../fileItem.js:616
-msgid "Cut"
-msgstr "Recortar"
-
-#: ../fileItem.js:619
-msgid "Copy"
-msgstr "Copiar"
-
-#: ../fileItem.js:623
-msgid "Rename…"
+#: ../askRenamePopup.js:40
+#, fuzzy
+msgid "File name"
 msgstr "Renomear…"
 
-#: ../fileItem.js:627
-msgid "Move to Trash"
-msgstr "Mover para a lixeira"
-
-#: ../fileItem.js:639
-msgid "Empty Trash"
-msgstr "Esvaziar lixeira"
-
-#: ../fileItem.js:647
-msgid "Properties"
-msgstr "Propriedades"
-
-#: ../fileItem.js:651
-msgid "Show in Files"
-msgstr "Mostrar no Arquivos"
-
-#: ../fileItem.js:655 ../desktopManager.js:406
-msgid "Open in Terminal"
-msgstr "Abrir no terminal"
-
-#: ../desktopManager.js:382
-msgid "New Folder"
-msgstr "Nova pasta"
-
-#: ../desktopManager.js:388
-msgid "Paste"
-msgstr "Colar"
-
-#: ../desktopManager.js:392
-msgid "Undo"
-msgstr "Desfazer"
-
-#: ../desktopManager.js:396
-msgid "Redo"
-msgstr "Refazer"
-
-#: ../desktopManager.js:402
-msgid "Show Desktop in Files"
-msgstr "Mostrar a área de trabalho no Arquivos"
-
-#: ../desktopManager.js:412
-msgid "Change Background…"
-msgstr "Alterar plano de fundo…"
-
-#: ../desktopManager.js:421
-msgid "Display Settings"
-msgstr "Configurações de exibição"
-
-#: ../desktopManager.js:841
+#: ../askRenamePopup.js:47
 #, fuzzy
 msgid "Rename"
 msgstr "Renomear…"
 
-#: ../desktopManager.js:879
+#: ../desktopIconsUtil.js:74
+msgid "Command not found"
+msgstr "Comando não encontrado"
+
+#: ../desktopIconsUtil.js:167
+msgid "Do you want to run “{0}”, or display its contents?"
+msgstr ""
+
+#: ../desktopIconsUtil.js:168
+msgid "“{0}” is an executable text file."
+msgstr ""
+
+#: ../desktopIconsUtil.js:172
+#, fuzzy
+msgid "Execute in a terminal"
+msgstr "Abrir no terminal"
+
+#: ../desktopIconsUtil.js:174
+msgid "Show"
+msgstr ""
+
+#: ../desktopIconsUtil.js:178
+msgid "Execute"
+msgstr ""
+
+#: ../desktopManager.js:96
+msgid "Nautilus File Manager not found"
+msgstr ""
+
+#: ../desktopManager.js:97
+msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
+msgstr ""
+
+#: ../desktopManager.js:375
+msgid "New Folder"
+msgstr "Nova pasta"
+
+#: ../desktopManager.js:381
+msgid "Paste"
+msgstr "Colar"
+
+#: ../desktopManager.js:385
+msgid "Undo"
+msgstr "Desfazer"
+
+#: ../desktopManager.js:389
+msgid "Redo"
+msgstr "Refazer"
+
+#: ../desktopManager.js:395
+msgid "Show Desktop in Files"
+msgstr "Mostrar a área de trabalho no Arquivos"
+
+#: ../desktopManager.js:399 ../fileItem.js:747
+msgid "Open in Terminal"
+msgstr "Abrir no terminal"
+
+#: ../desktopManager.js:405
+msgid "Change Background…"
+msgstr "Alterar plano de fundo…"
+
+#: ../desktopManager.js:414
+msgid "Display Settings"
+msgstr "Configurações de exibição"
+
+#: ../desktopManager.js:421 ../preferences.js:83
+msgid "Settings"
+msgstr "Configurações"
+
+#: ../desktopManager.js:838 ../desktopManager.js:859
+msgid "Error while deleting files"
+msgstr ""
+
+#: ../desktopManager.js:839
+msgid "There was an error while trying to permanently delete the folder {:}."
+msgstr ""
+
+#: ../desktopManager.js:860
+msgid "There was an error while trying to permanently delete the file {:}."
+msgstr ""
+
+#: ../desktopManager.js:883
+msgid "Are you sure you want to permanently delete these items?"
+msgstr ""
+
+#: ../desktopManager.js:883
+msgid "If you delete an item, it will be permanently lost."
+msgstr ""
+
+#: ../desktopManager.js:974
 #, fuzzy
 msgid "New folder"
 msgstr "Nova pasta"
+
+#: ../fileItem.js:622
+msgid "Don’t Allow Launching"
+msgstr "Não permitir iniciar"
+
+#: ../fileItem.js:624
+msgid "Allow Launching"
+msgstr "Permitir iniciar"
+
+#: ../fileItem.js:690
+msgid "Open"
+msgstr "Abrir"
+
+#: ../fileItem.js:696
+msgid "Open With Other Application"
+msgstr "Abrir com outro aplicativo"
+
+#: ../fileItem.js:703
+msgid "Cut"
+msgstr "Recortar"
+
+#: ../fileItem.js:706
+msgid "Copy"
+msgstr "Copiar"
+
+#: ../fileItem.js:710
+msgid "Rename…"
+msgstr "Renomear…"
+
+#: ../fileItem.js:714
+msgid "Move to Trash"
+msgstr "Mover para a lixeira"
+
+#: ../fileItem.js:718
+msgid "Delete permanently"
+msgstr ""
+
+#: ../fileItem.js:731
+msgid "Empty Trash"
+msgstr "Esvaziar lixeira"
+
+#: ../fileItem.js:739
+msgid "Properties"
+msgstr "Propriedades"
+
+#: ../fileItem.js:743
+msgid "Show in Files"
+msgstr "Mostrar no Arquivos"
+
+#: ../preferences.js:89
+msgid "Size for the desktop icons"
+msgstr "Tamanho para os ícones da área de trabalho"
+
+#: ../preferences.js:89
+msgid "Tiny"
+msgstr ""
+
+#: ../preferences.js:89
+msgid "Small"
+msgstr "Pequeno"
+
+#: ../preferences.js:89
+msgid "Standard"
+msgstr "Padrão"
+
+#: ../preferences.js:89
+msgid "Large"
+msgstr "Grande"
+
+#: ../preferences.js:90
+msgid "Show the personal folder in the desktop"
+msgstr "Mostrar a pasta pessoal na área de trabalho"
+
+#: ../preferences.js:91
+msgid "Show the trash icon in the desktop"
+msgstr "Mostrar o ícone da lixeira na área de trabalho"
+
+#: ../preferences.js:95
+msgid "Settings shared with Nautilus"
+msgstr ""
+
+#: ../preferences.js:101
+msgid "Click type for open files"
+msgstr ""
+
+#: ../preferences.js:101
+msgid "Single click"
+msgstr ""
+
+#: ../preferences.js:101
+msgid "Double click"
+msgstr ""
+
+#: ../preferences.js:102
+#, fuzzy
+msgid "Show hidden files"
+msgstr "Mostrar no Arquivos"
+
+#: ../preferences.js:103
+msgid "Show a context menu item to delete permanently"
+msgstr ""
+
+#: ../preferences.js:106
+msgid "Action to do when launching a program from the desktop"
+msgstr ""
+
+#: ../preferences.js:107
+msgid "Display the content of the file"
+msgstr ""
+
+#: ../preferences.js:108
+msgid "Launch the file"
+msgstr ""
+
+#: ../preferences.js:109
+msgid "Ask what to do"
+msgstr ""
+
+#: ../preferences.js:113
+msgid "Show image thumbnails"
+msgstr ""
+
+#: ../preferences.js:114
+msgid "Never"
+msgstr ""
+
+#: ../preferences.js:115
+msgid "Local files only"
+msgstr ""
+
+#: ../preferences.js:116
+msgid "Always"
+msgstr ""
+
+#: ../prefs.js:39
+msgid ""
+"To configure Desktop Icons NG, do right-click in the desktop and choose the "
+"last item: 'Settings'"
+msgstr ""
 
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:1
 msgid "Icon size"
@@ -167,12 +305,6 @@ msgstr "Mostra o ícone da lixeira na área de trabalho."
 
 #~ msgid "Enter file name…"
 #~ msgstr "Insira um nome de arquivo…"
-
-#~ msgid "Cancel"
-#~ msgstr "Cancelar"
-
-#~ msgid "New folder name"
-#~ msgstr "Nome da nova pasta"
 
 #~ msgid "Create"
 #~ msgstr "Criar"

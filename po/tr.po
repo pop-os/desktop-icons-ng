@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-17 21:43+0200\n"
+"POT-Creation-Date: 2020-03-22 21:03+0100\n"
 "PO-Revision-Date: 2019-03-13 13:43+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
@@ -21,127 +21,265 @@ msgstr ""
 "X-Generator: Gtranslator 3.30.1\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../preferences.js:85
+#: ../askConfirmPopup.js:35 ../askNamePopup.js:36 ../desktopIconsUtil.js:176
+msgid "Cancel"
+msgstr "İptal"
+
+#: ../askConfirmPopup.js:36
+msgid "Delete"
+msgstr ""
+
+#: ../askNamePopup.js:35
 msgid "OK"
 msgstr "Tamam"
 
-#: ../preferences.js:86 ../desktopManager.js:428
-msgid "Settings"
-msgstr "Ayarlar"
+#: ../askRenamePopup.js:40
+#, fuzzy
+msgid "Folder name"
+msgstr "Yeni klasör adı"
 
-#: ../preferences.js:91
-msgid "Size for the desktop icons"
-msgstr "Masaüstü simgeleri boyutu"
-
-#: ../preferences.js:91
-msgid "Small"
-msgstr "Küçük"
-
-#: ../preferences.js:91
-msgid "Standard"
-msgstr "Standart"
-
-#: ../preferences.js:91
-msgid "Large"
-msgstr "Büyük"
-
-#: ../preferences.js:92
-msgid "Show the personal folder in the desktop"
-msgstr "Kişisel klasörü masaüstünde göster"
-
-#: ../preferences.js:93
-msgid "Show the trash icon in the desktop"
-msgstr "Çöp kutusunu masaüstünde göster"
-
-#: ../desktopIconsUtil.js:68
-msgid "Command not found"
-msgstr ""
-
-#: ../fileItem.js:549
-msgid "Don’t Allow Launching"
-msgstr "Başlatmaya İzin Verme"
-
-#: ../fileItem.js:551
-msgid "Allow Launching"
-msgstr "Başlatmaya İzin Ver"
-
-#: ../fileItem.js:603
-msgid "Open"
-msgstr "Aç"
-
-#: ../fileItem.js:609
-msgid "Open With Other Application"
-msgstr "Başka Uygulamayla Aç"
-
-#: ../fileItem.js:616
-msgid "Cut"
-msgstr "Kes"
-
-#: ../fileItem.js:619
-msgid "Copy"
-msgstr "Kopyala"
-
-#: ../fileItem.js:623
-msgid "Rename…"
+#: ../askRenamePopup.js:40
+#, fuzzy
+msgid "File name"
 msgstr "Yeniden Adlandır…"
 
-#: ../fileItem.js:627
-msgid "Move to Trash"
-msgstr "Çöpe Taşı"
-
-#: ../fileItem.js:639
-msgid "Empty Trash"
-msgstr "Çöpü Boşalt"
-
-#: ../fileItem.js:647
-msgid "Properties"
-msgstr "Özellikler"
-
-#: ../fileItem.js:651
-msgid "Show in Files"
-msgstr "Dosyalarʼda Göster"
-
-#: ../fileItem.js:655 ../desktopManager.js:406
-msgid "Open in Terminal"
-msgstr "Uçbirimde Aç"
-
-#: ../desktopManager.js:382
-msgid "New Folder"
-msgstr "Yeni Klasör"
-
-#: ../desktopManager.js:388
-msgid "Paste"
-msgstr "Yapıştır"
-
-#: ../desktopManager.js:392
-msgid "Undo"
-msgstr "Geri Al"
-
-#: ../desktopManager.js:396
-msgid "Redo"
-msgstr "Yinele"
-
-#: ../desktopManager.js:402
-msgid "Show Desktop in Files"
-msgstr "Masaüstünü Dosyalarʼda Göster"
-
-#: ../desktopManager.js:412
-msgid "Change Background…"
-msgstr "Arka Planı Değiştir…"
-
-#: ../desktopManager.js:421
-msgid "Display Settings"
-msgstr "Görüntü Ayarları"
-
-#: ../desktopManager.js:841
+#: ../askRenamePopup.js:47
 #, fuzzy
 msgid "Rename"
 msgstr "Yeniden Adlandır…"
 
-#: ../desktopManager.js:879
+#: ../desktopIconsUtil.js:74
+msgid "Command not found"
+msgstr ""
+
+#: ../desktopIconsUtil.js:167
+msgid "Do you want to run “{0}”, or display its contents?"
+msgstr ""
+
+#: ../desktopIconsUtil.js:168
+msgid "“{0}” is an executable text file."
+msgstr ""
+
+#: ../desktopIconsUtil.js:172
+#, fuzzy
+msgid "Execute in a terminal"
+msgstr "Uçbirimde Aç"
+
+#: ../desktopIconsUtil.js:174
+msgid "Show"
+msgstr ""
+
+#: ../desktopIconsUtil.js:178
+msgid "Execute"
+msgstr ""
+
+#: ../desktopManager.js:96
+msgid "Nautilus File Manager not found"
+msgstr ""
+
+#: ../desktopManager.js:97
+msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
+msgstr ""
+
+#: ../desktopManager.js:375
+msgid "New Folder"
+msgstr "Yeni Klasör"
+
+#: ../desktopManager.js:381
+msgid "Paste"
+msgstr "Yapıştır"
+
+#: ../desktopManager.js:385
+msgid "Undo"
+msgstr "Geri Al"
+
+#: ../desktopManager.js:389
+msgid "Redo"
+msgstr "Yinele"
+
+#: ../desktopManager.js:395
+msgid "Show Desktop in Files"
+msgstr "Masaüstünü Dosyalarʼda Göster"
+
+#: ../desktopManager.js:399 ../fileItem.js:747
+msgid "Open in Terminal"
+msgstr "Uçbirimde Aç"
+
+#: ../desktopManager.js:405
+msgid "Change Background…"
+msgstr "Arka Planı Değiştir…"
+
+#: ../desktopManager.js:414
+msgid "Display Settings"
+msgstr "Görüntü Ayarları"
+
+#: ../desktopManager.js:421 ../preferences.js:83
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: ../desktopManager.js:838 ../desktopManager.js:859
+msgid "Error while deleting files"
+msgstr ""
+
+#: ../desktopManager.js:839
+msgid "There was an error while trying to permanently delete the folder {:}."
+msgstr ""
+
+#: ../desktopManager.js:860
+msgid "There was an error while trying to permanently delete the file {:}."
+msgstr ""
+
+#: ../desktopManager.js:883
+msgid "Are you sure you want to permanently delete these items?"
+msgstr ""
+
+#: ../desktopManager.js:883
+msgid "If you delete an item, it will be permanently lost."
+msgstr ""
+
+#: ../desktopManager.js:974
 #, fuzzy
 msgid "New folder"
 msgstr "Yeni Klasör"
+
+#: ../fileItem.js:622
+msgid "Don’t Allow Launching"
+msgstr "Başlatmaya İzin Verme"
+
+#: ../fileItem.js:624
+msgid "Allow Launching"
+msgstr "Başlatmaya İzin Ver"
+
+#: ../fileItem.js:690
+msgid "Open"
+msgstr "Aç"
+
+#: ../fileItem.js:696
+msgid "Open With Other Application"
+msgstr "Başka Uygulamayla Aç"
+
+#: ../fileItem.js:703
+msgid "Cut"
+msgstr "Kes"
+
+#: ../fileItem.js:706
+msgid "Copy"
+msgstr "Kopyala"
+
+#: ../fileItem.js:710
+msgid "Rename…"
+msgstr "Yeniden Adlandır…"
+
+#: ../fileItem.js:714
+msgid "Move to Trash"
+msgstr "Çöpe Taşı"
+
+#: ../fileItem.js:718
+msgid "Delete permanently"
+msgstr ""
+
+#: ../fileItem.js:731
+msgid "Empty Trash"
+msgstr "Çöpü Boşalt"
+
+#: ../fileItem.js:739
+msgid "Properties"
+msgstr "Özellikler"
+
+#: ../fileItem.js:743
+msgid "Show in Files"
+msgstr "Dosyalarʼda Göster"
+
+#: ../preferences.js:89
+msgid "Size for the desktop icons"
+msgstr "Masaüstü simgeleri boyutu"
+
+#: ../preferences.js:89
+msgid "Tiny"
+msgstr ""
+
+#: ../preferences.js:89
+msgid "Small"
+msgstr "Küçük"
+
+#: ../preferences.js:89
+msgid "Standard"
+msgstr "Standart"
+
+#: ../preferences.js:89
+msgid "Large"
+msgstr "Büyük"
+
+#: ../preferences.js:90
+msgid "Show the personal folder in the desktop"
+msgstr "Kişisel klasörü masaüstünde göster"
+
+#: ../preferences.js:91
+msgid "Show the trash icon in the desktop"
+msgstr "Çöp kutusunu masaüstünde göster"
+
+#: ../preferences.js:95
+msgid "Settings shared with Nautilus"
+msgstr ""
+
+#: ../preferences.js:101
+msgid "Click type for open files"
+msgstr ""
+
+#: ../preferences.js:101
+msgid "Single click"
+msgstr ""
+
+#: ../preferences.js:101
+msgid "Double click"
+msgstr ""
+
+#: ../preferences.js:102
+#, fuzzy
+msgid "Show hidden files"
+msgstr "Dosyalarʼda Göster"
+
+#: ../preferences.js:103
+msgid "Show a context menu item to delete permanently"
+msgstr ""
+
+#: ../preferences.js:106
+msgid "Action to do when launching a program from the desktop"
+msgstr ""
+
+#: ../preferences.js:107
+msgid "Display the content of the file"
+msgstr ""
+
+#: ../preferences.js:108
+msgid "Launch the file"
+msgstr ""
+
+#: ../preferences.js:109
+msgid "Ask what to do"
+msgstr ""
+
+#: ../preferences.js:113
+msgid "Show image thumbnails"
+msgstr ""
+
+#: ../preferences.js:114
+msgid "Never"
+msgstr ""
+
+#: ../preferences.js:115
+msgid "Local files only"
+msgstr ""
+
+#: ../preferences.js:116
+msgid "Always"
+msgstr ""
+
+#: ../prefs.js:39
+msgid ""
+"To configure Desktop Icons NG, do right-click in the desktop and choose the "
+"last item: 'Settings'"
+msgstr ""
 
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:1
 msgid "Icon size"
@@ -169,12 +307,6 @@ msgstr "Çöp kutusu simgesini masaüstünde göster."
 
 #~ msgid "Enter file name…"
 #~ msgstr "Dosya adını gir…"
-
-#~ msgid "Cancel"
-#~ msgstr "İptal"
-
-#~ msgid "New folder name"
-#~ msgstr "Yeni klasör adı"
 
 #~ msgid "Create"
 #~ msgstr "Oluştur"

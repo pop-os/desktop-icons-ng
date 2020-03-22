@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-17 21:43+0200\n"
+"POT-Creation-Date: 2020-03-22 21:03+0100\n"
 "PO-Revision-Date: 2019-03-12 09:51+0100\n"
 "Last-Translator: Milo Casagrande <milo@milo.name>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
@@ -19,127 +19,265 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: ../preferences.js:85
+#: ../askConfirmPopup.js:35 ../askNamePopup.js:36 ../desktopIconsUtil.js:176
+msgid "Cancel"
+msgstr "Annulla"
+
+#: ../askConfirmPopup.js:36
+msgid "Delete"
+msgstr ""
+
+#: ../askNamePopup.js:35
 msgid "OK"
 msgstr "Ok"
 
-#: ../preferences.js:86 ../desktopManager.js:428
-msgid "Settings"
-msgstr "Impostazioni"
-
-#: ../preferences.js:91
-msgid "Size for the desktop icons"
-msgstr "Dimensione delle icone della scrivania"
-
-#: ../preferences.js:91
-msgid "Small"
-msgstr "Piccola"
-
-#: ../preferences.js:91
-msgid "Standard"
-msgstr "Normale"
-
-#: ../preferences.js:91
-msgid "Large"
-msgstr "Grande"
-
-#: ../preferences.js:92
-msgid "Show the personal folder in the desktop"
-msgstr "Mostra la cartella personale sulla scrivania"
-
-#: ../preferences.js:93
-msgid "Show the trash icon in the desktop"
-msgstr "Mostra il cestino sulla scrivania"
-
-#: ../desktopIconsUtil.js:68
-msgid "Command not found"
-msgstr ""
-
-#: ../fileItem.js:549
-msgid "Don’t Allow Launching"
-msgstr "Non permettere l'esecuzione"
-
-#: ../fileItem.js:551
-msgid "Allow Launching"
-msgstr "Permetti l'esecuzione"
-
-#: ../fileItem.js:603
-msgid "Open"
-msgstr "Apri"
-
-#: ../fileItem.js:609
-msgid "Open With Other Application"
-msgstr "Apri con altra applicazione"
-
-#: ../fileItem.js:616
-msgid "Cut"
-msgstr "Taglia"
-
-#: ../fileItem.js:619
-msgid "Copy"
-msgstr "Copia"
-
-#: ../fileItem.js:623
-msgid "Rename…"
-msgstr "Rinomina…"
-
-#: ../fileItem.js:627
-msgid "Move to Trash"
-msgstr "Sposta nel cestino"
-
-#: ../fileItem.js:639
-msgid "Empty Trash"
-msgstr "Svuota il cestino"
-
-#: ../fileItem.js:647
-msgid "Properties"
-msgstr "Proprietà"
-
-#: ../fileItem.js:651
-msgid "Show in Files"
-msgstr "Mostra in File"
-
-#: ../fileItem.js:655 ../desktopManager.js:406
-msgid "Open in Terminal"
-msgstr "Apri in Terminale"
-
-#: ../desktopManager.js:382
-msgid "New Folder"
+#: ../askRenamePopup.js:40
+#, fuzzy
+msgid "Folder name"
 msgstr "Nuova cartella"
 
-#: ../desktopManager.js:388
-msgid "Paste"
-msgstr "Incolla"
+#: ../askRenamePopup.js:40
+#, fuzzy
+msgid "File name"
+msgstr "Rinomina…"
 
-#: ../desktopManager.js:392
-msgid "Undo"
-msgstr "Annulla"
-
-#: ../desktopManager.js:396
-msgid "Redo"
-msgstr "Ripeti"
-
-#: ../desktopManager.js:402
-msgid "Show Desktop in Files"
-msgstr "Mostra la scrivania in File"
-
-#: ../desktopManager.js:412
-msgid "Change Background…"
-msgstr "Cambia lo sfondo…"
-
-#: ../desktopManager.js:421
-msgid "Display Settings"
-msgstr "Impostazioni dello schermo"
-
-#: ../desktopManager.js:841
+#: ../askRenamePopup.js:47
 #, fuzzy
 msgid "Rename"
 msgstr "Rinomina…"
 
-#: ../desktopManager.js:879
+#: ../desktopIconsUtil.js:74
+msgid "Command not found"
+msgstr ""
+
+#: ../desktopIconsUtil.js:167
+msgid "Do you want to run “{0}”, or display its contents?"
+msgstr ""
+
+#: ../desktopIconsUtil.js:168
+msgid "“{0}” is an executable text file."
+msgstr ""
+
+#: ../desktopIconsUtil.js:172
+#, fuzzy
+msgid "Execute in a terminal"
+msgstr "Apri in Terminale"
+
+#: ../desktopIconsUtil.js:174
+msgid "Show"
+msgstr ""
+
+#: ../desktopIconsUtil.js:178
+msgid "Execute"
+msgstr ""
+
+#: ../desktopManager.js:96
+msgid "Nautilus File Manager not found"
+msgstr ""
+
+#: ../desktopManager.js:97
+msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
+msgstr ""
+
+#: ../desktopManager.js:375
+msgid "New Folder"
+msgstr "Nuova cartella"
+
+#: ../desktopManager.js:381
+msgid "Paste"
+msgstr "Incolla"
+
+#: ../desktopManager.js:385
+msgid "Undo"
+msgstr "Annulla"
+
+#: ../desktopManager.js:389
+msgid "Redo"
+msgstr "Ripeti"
+
+#: ../desktopManager.js:395
+msgid "Show Desktop in Files"
+msgstr "Mostra la scrivania in File"
+
+#: ../desktopManager.js:399 ../fileItem.js:747
+msgid "Open in Terminal"
+msgstr "Apri in Terminale"
+
+#: ../desktopManager.js:405
+msgid "Change Background…"
+msgstr "Cambia lo sfondo…"
+
+#: ../desktopManager.js:414
+msgid "Display Settings"
+msgstr "Impostazioni dello schermo"
+
+#: ../desktopManager.js:421 ../preferences.js:83
+msgid "Settings"
+msgstr "Impostazioni"
+
+#: ../desktopManager.js:838 ../desktopManager.js:859
+msgid "Error while deleting files"
+msgstr ""
+
+#: ../desktopManager.js:839
+msgid "There was an error while trying to permanently delete the folder {:}."
+msgstr ""
+
+#: ../desktopManager.js:860
+msgid "There was an error while trying to permanently delete the file {:}."
+msgstr ""
+
+#: ../desktopManager.js:883
+msgid "Are you sure you want to permanently delete these items?"
+msgstr ""
+
+#: ../desktopManager.js:883
+msgid "If you delete an item, it will be permanently lost."
+msgstr ""
+
+#: ../desktopManager.js:974
 #, fuzzy
 msgid "New folder"
 msgstr "Nuova cartella"
+
+#: ../fileItem.js:622
+msgid "Don’t Allow Launching"
+msgstr "Non permettere l'esecuzione"
+
+#: ../fileItem.js:624
+msgid "Allow Launching"
+msgstr "Permetti l'esecuzione"
+
+#: ../fileItem.js:690
+msgid "Open"
+msgstr "Apri"
+
+#: ../fileItem.js:696
+msgid "Open With Other Application"
+msgstr "Apri con altra applicazione"
+
+#: ../fileItem.js:703
+msgid "Cut"
+msgstr "Taglia"
+
+#: ../fileItem.js:706
+msgid "Copy"
+msgstr "Copia"
+
+#: ../fileItem.js:710
+msgid "Rename…"
+msgstr "Rinomina…"
+
+#: ../fileItem.js:714
+msgid "Move to Trash"
+msgstr "Sposta nel cestino"
+
+#: ../fileItem.js:718
+msgid "Delete permanently"
+msgstr ""
+
+#: ../fileItem.js:731
+msgid "Empty Trash"
+msgstr "Svuota il cestino"
+
+#: ../fileItem.js:739
+msgid "Properties"
+msgstr "Proprietà"
+
+#: ../fileItem.js:743
+msgid "Show in Files"
+msgstr "Mostra in File"
+
+#: ../preferences.js:89
+msgid "Size for the desktop icons"
+msgstr "Dimensione delle icone della scrivania"
+
+#: ../preferences.js:89
+msgid "Tiny"
+msgstr ""
+
+#: ../preferences.js:89
+msgid "Small"
+msgstr "Piccola"
+
+#: ../preferences.js:89
+msgid "Standard"
+msgstr "Normale"
+
+#: ../preferences.js:89
+msgid "Large"
+msgstr "Grande"
+
+#: ../preferences.js:90
+msgid "Show the personal folder in the desktop"
+msgstr "Mostra la cartella personale sulla scrivania"
+
+#: ../preferences.js:91
+msgid "Show the trash icon in the desktop"
+msgstr "Mostra il cestino sulla scrivania"
+
+#: ../preferences.js:95
+msgid "Settings shared with Nautilus"
+msgstr ""
+
+#: ../preferences.js:101
+msgid "Click type for open files"
+msgstr ""
+
+#: ../preferences.js:101
+msgid "Single click"
+msgstr ""
+
+#: ../preferences.js:101
+msgid "Double click"
+msgstr ""
+
+#: ../preferences.js:102
+#, fuzzy
+msgid "Show hidden files"
+msgstr "Mostra in File"
+
+#: ../preferences.js:103
+msgid "Show a context menu item to delete permanently"
+msgstr ""
+
+#: ../preferences.js:106
+msgid "Action to do when launching a program from the desktop"
+msgstr ""
+
+#: ../preferences.js:107
+msgid "Display the content of the file"
+msgstr ""
+
+#: ../preferences.js:108
+msgid "Launch the file"
+msgstr ""
+
+#: ../preferences.js:109
+msgid "Ask what to do"
+msgstr ""
+
+#: ../preferences.js:113
+msgid "Show image thumbnails"
+msgstr ""
+
+#: ../preferences.js:114
+msgid "Never"
+msgstr ""
+
+#: ../preferences.js:115
+msgid "Local files only"
+msgstr ""
+
+#: ../preferences.js:116
+msgid "Always"
+msgstr ""
+
+#: ../prefs.js:39
+msgid ""
+"To configure Desktop Icons NG, do right-click in the desktop and choose the "
+"last item: 'Settings'"
+msgstr ""
 
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:1
 msgid "Icon size"
@@ -167,12 +305,6 @@ msgstr "Mostra il cestino sulla scrivania."
 
 #~ msgid "Enter file name…"
 #~ msgstr "Indicare un nome per il file…"
-
-#~ msgid "Cancel"
-#~ msgstr "Annulla"
-
-#~ msgid "New folder name"
-#~ msgstr "Nuova cartella"
 
 #~ msgid "Create"
 #~ msgstr "Crea"
