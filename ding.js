@@ -89,14 +89,53 @@ Gettext.bindtextdomain("ding", GLib.build_filenamev([codePath, "locale"]));
 
 const DesktopManager = imports.desktopManager;
 
-if (!errorFound) {
-    Gtk.init(null);
-    Prefs.init(codePath);
-    var desktopManager = new DesktopManager.DesktopManager(appUuid, desktops, codePath, asDesktop);
-    Gtk.main();
-    // return value
-    0;
-} else {
-    // return value
+var desktopManager;
+
+class DesktopApp {
+    constructor() {
+        this._windowGroup = new Gtk.WindowGroup();
+        this._application = new Gtk.Application({
+            application_id: 'com.rastersoft.ding',
+            flags: Gio.ApplicationFlags.FLAGS_NONE
+        });
+        this._application.connect('startup', this._startup.bind(this));
+        this._application.connect('activate', this._activate.bind(this));
+        this._application.connect('shutdown', this._shutdown.bind(this));
+    }
+
+    run() {
+        this._application.run(null);
+    }
+
+    _startup() {
+        Prefs.init(codePath);
+        this._desktopManager = new DesktopManager.DesktopManager(this, appUuid, desktops, codePath, asDesktop);
+    }
+
+    _activate() {
+    }
+
+    _shutdown() {
+    }
+
+    hold() {
+        this._application.hold();
+    }
+
+    release() {
+        this._application.release();
+    }
+    newWindow(params) {
+        params.application = this._application;
+        let window = new Gtk.ApplicationWindow(params);
+        this._windowGroup.add_window(window);
+        return window;
+    }
+}
+
+if (errorFound) {
     1;
+} else {
+    var desktopIconsApplication = new DesktopApp();
+    desktopIconsApplication.run();
 }

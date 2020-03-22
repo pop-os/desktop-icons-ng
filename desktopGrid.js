@@ -35,10 +35,11 @@ var elementSpacing = 2;
 
 var DesktopGrid = class {
 
-    constructor(desktopManager, UUID, desktopDescription, asDesktop) {
+    constructor(desktopManager, gapplication, UUID, desktopDescription, asDesktop) {
 
         this._destroying = false;
         this._desktopManager = desktopManager;
+        this._gapplication = gapplication;
         this._asDesktop = asDesktop;
         this._zoom = desktopDescription.zoom;
         this._x = desktopDescription.x;
@@ -51,8 +52,7 @@ var DesktopGrid = class {
         this._elementWidth = Math.floor(this._width / this._maxColumns);
         this._elementHeight = Math.floor(this._height / this._maxRows);
 
-        this._window = new Gtk.Window();
-        this._window.set_title(this._UUID);
+        this._window = gapplication.newWindow({title: this._UUID, defaultWidth: this._width, defaultHeight: this._height});
         if (asDesktop) {
             this._window.set_decorated(false);
             this._window.set_deletable(false);
@@ -68,13 +68,7 @@ var DesktopGrid = class {
             if (this._destroying) {
                 return false;
             }
-            if (this._asDesktop) {
-                // Do not destroy window when closing if the instance is working as desktop
-                return true;
-            } else {
-                // Exit if this instance is working as an stand-alone window
-                Gtk.main_quit();
-            }
+            return this._asDesktop;
         });
 
         this._eventBox = new Gtk.EventBox({ visible: true });
@@ -140,7 +134,7 @@ var DesktopGrid = class {
 
     destroy() {
         this._destroying = true;
-        this._window.destroy();
+        this._window.close();
     }
 
     setDropDestination(dropDestination) {
