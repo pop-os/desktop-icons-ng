@@ -588,8 +588,6 @@ var DesktopManager = class {
 
     _readFileList() {
         this._readingDesktopFiles = true;
-        this._removeAllFilesFromGrids();
-
         this._desktopFilesChanged = false;
         if (this._desktopEnumerateCancellable)
             this._desktopEnumerateCancellable.cancel();
@@ -604,10 +602,11 @@ var DesktopManager = class {
                 try {
                     let fileEnum = source.enumerate_children_finish(result);
                     if (!this._desktopFilesChanged) {
+                        let fileList = [];
                         // if no file changed while reading the desktop folder, the fileItems list if right
                         this._readingDesktopFiles = false;
                         for (let [newFolder, extras] of DesktopIconsUtil.getExtraFolders()) {
-                            this._fileList.push(
+                            fileList.push(
                                 new FileItem.FileItem(
                                     this,
                                     newFolder,
@@ -638,8 +637,10 @@ var DesktopManager = class {
                                 }
                                 continue;
                             }
-                            this._fileList.push(fileItem);
+                            fileList.push(fileItem);
                         }
+                        this._removeAllFilesFromGrids();
+                        this._fileList = fileList;
                         this._addFilesToDesktop(this._fileList, Enums.StoredCoordinates.PRESERVE);
                     } else {
                         // But if there was a file change, we must re-read it to be sure that the list is complete
