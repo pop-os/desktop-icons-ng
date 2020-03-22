@@ -1,5 +1,10 @@
 # History of versions #
 
+ Version 0.11.0 (2020/03/22)
+      * Copy files instead of move when using DnD into another drive
+      * Fix DnD for Chrome and other programs
+      * Use GtkApplication
+
 * Version 0.10.0 (2020/02/22)
       * Added 'tiny' icon size
       * Doesn't allow to use an existing name when renaming or creating a new folder
