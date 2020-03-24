@@ -57,6 +57,7 @@ var DesktopManager = class {
         this._monitorDesktopDir = this._desktopDir.monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, null);
         this._monitorDesktopDir.set_rate_limit(1000);
         this._monitorDesktopDir.connect('changed', (obj, file, otherFile, eventType) => this._updateDesktopIfChanged(file, otherFile, eventType));
+        this._showHidden = Prefs.gtkSettings.get_boolean('show-hidden');
         this._settingsId = Prefs.desktopSettings.connect('changed', (obj, key) => {
             if (key == 'icon-size') {
                 this._removeAllFilesFromGrids();
@@ -66,6 +67,7 @@ var DesktopManager = class {
         });
         this._gtkSettingsId = Prefs.gtkSettings.connect('changed', (obj, key) => {
             if (key == 'show-hidden') {
+                this._showHidden = Prefs.gtkSettings.get_boolean('show-hidden');
                 this._updateDesktop();
             }
         });
@@ -617,7 +619,6 @@ var DesktopManager = class {
                             );
                         }
                         let info;
-                        let showHidden = Prefs.gtkSettings.get_boolean('show-hidden');
                         while ((info = fileEnum.next_file(null))) {
                             let fileItem = new FileItem.FileItem(
                                 this,
@@ -626,7 +627,7 @@ var DesktopManager = class {
                                 Enums.FileType.NONE,
                                 this._codePath
                             );
-                            if (fileItem.isHidden && !showHidden) {
+                            if (fileItem.isHidden && !this._showHidden) {
                                 /* if there are hidden files in the desktop and the user doesn't want to
                                    show them, remove the coordinates. This ensures that if the user enables
                                    showing them, they won't fight with other icons for the same place
@@ -751,6 +752,13 @@ var DesktopManager = class {
     }
 
     _updateDesktopIfChanged(file, otherFile, eventType) {
+        if (!this._showHidden && (file.get_basename()[0] == '.')) {
+            // If the file is not visible, we don't need to refresh the desktop
+            // Unless it is a hidden file being renamed to visible
+            if (!otherFile || (otherFile.get_basename()[0] == '.')) {
+                return;
+            }
+        }
         if (this._readingDesktopFiles) {
             // just notify that the files changed while being read from the disk.
             this._desktopFilesChanged = true;
