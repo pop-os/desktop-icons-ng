@@ -164,6 +164,9 @@ var FileItem = class {
             this._grid.removeItem(this);
             this._grid = null;
         }
+        if (this._menu) {
+            this._menu.popdown();
+        }
     }
 
     _setDragSource() {
