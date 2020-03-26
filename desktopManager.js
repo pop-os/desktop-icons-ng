@@ -38,10 +38,9 @@ const Gettext = imports.gettext.domain('ding');
 const _ = Gettext.gettext;
 
 var DesktopManager = class {
-    constructor(gapplication, appUuid, desktopList, codePath, asDesktop) {
+    constructor(appUuid, desktopList, codePath, asDesktop) {
 
         DBusUtils.init();
-        this._gapplication = gapplication;
         this._codePath = codePath;
         this._asDesktop = asDesktop;
         this._desktopList = desktopList;
@@ -118,7 +117,7 @@ var DesktopManager = class {
             } else {
                 var desktopName = `DING ${desktopIndex}`;
             }
-            this._desktops.push(new DesktopGrid.DesktopGrid(this, this._gapplication, desktopName, desktop, this._asDesktop));
+            this._desktops.push(new DesktopGrid.DesktopGrid(this, desktopName, desktop, this._asDesktop));
         }
     }
 
