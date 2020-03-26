@@ -374,6 +374,20 @@ var FileItem = class {
     }
 
     _updateIcon() {
+        try {
+            let customIcon = this._fileInfo.get_attribute_as_string('metadata::custom-icon');
+            if (customIcon && (customIcon != '')) {
+                let customIconFile = Gio.File.new_for_uri(customIcon);
+                if (customIconFile.query_exists(null)) {
+                    if (this._loadImageAsIcon(customIconFile)) {
+                        return;
+                    }
+                }
+            }
+        } catch (error) {
+            print(error);
+        }
+
         if (this._fileExtra == Enums.FileType.USER_DIRECTORY_TRASH) {
             let pixbuf = this._createEmblemedIcon(this._fileInfo.get_icon(), null);
             this._icon.set_from_pixbuf(pixbuf);
@@ -385,8 +399,8 @@ var FileItem = class {
         let thumbnailFactory = GnomeDesktop.DesktopThumbnailFactory.new(GnomeDesktop.DesktopThumbnailSize.LARGE);
         if ((Prefs.nautilusSettings.get_string('show-image-thumbnails') != 'never') &&
             (thumbnailFactory.can_thumbnail(this._file.get_uri(),
-                                           this._attributeContentType,
-                                           this._modifiedTime))) {
+                                            this._attributeContentType,
+                                            this._modifiedTime))) {
             let thumbnail = thumbnailFactory.lookup(this._file.get_uri(), this._modifiedTime);
             if (thumbnail == null) {
                 if (!thumbnailFactory.has_valid_failed_thumbnail(this._file.get_uri(),
@@ -417,25 +431,7 @@ var FileItem = class {
                 this._loadThumbnailDataCancellable = new Gio.Cancellable();
                 let thumbnailFile = Gio.File.new_for_path(thumbnail);
                 try {
-                    let [thumbnailData, etag_out] = thumbnailFile.load_bytes(this._loadThumbnailDataCancellable);
-                    this._loadThumbnailDataCancellable = null;
-                    let thumbnailStream = Gio.MemoryInputStream.new_from_bytes(thumbnailData);
-                    let thumbnailPixbuf = GdkPixbuf.Pixbuf.new_from_stream(thumbnailStream, null);
-
-                    if (thumbnailPixbuf != null) {
-                        let width = Prefs.get_desired_width();
-                        let height = Prefs.get_icon_size();
-                        let aspectRatio = thumbnailPixbuf.width / thumbnailPixbuf.height;
-                        if ((width / height) > aspectRatio)
-                            width = height * aspectRatio;
-                        else
-                            height = width / aspectRatio;
-                        let pixbuf = thumbnailPixbuf.scale_simple(Math.floor(width), Math.floor(height), GdkPixbuf.InterpType.BILINEAR);
-                        pixbuf = this._addEmblemsToPixbufIfNeeded(pixbuf);
-                        this._icon.set_from_pixbuf(pixbuf);
-                        this._dragSource.drag_source_set_icon_pixbuf(pixbuf);
-                        icon_set = true;
-                    }
+                    icon_set = this._loadImageAsIcon(thumbnailFile);
                 } catch (error) {
                     if (!error.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED)) {
                         print('Error while loading thumbnail: ' + error);
@@ -465,7 +461,30 @@ var FileItem = class {
         if (this._fileExtra == Enums.FileType.EXTERNAL_DRIVE) {
             return this._custom.get_icon();
         }
-        return this._fileInfo.get_icon()
+        return this._fileInfo.get_icon();
+    }
+
+    _loadImageAsIcon(imageFile) {
+        let [thumbnailData, etag_out] = imageFile.load_bytes(this._loadThumbnailDataCancellable);
+        this._loadThumbnailDataCancellable = null;
+        let thumbnailStream = Gio.MemoryInputStream.new_from_bytes(thumbnailData);
+        let thumbnailPixbuf = GdkPixbuf.Pixbuf.new_from_stream(thumbnailStream, null);
+
+        if (thumbnailPixbuf != null) {
+            let width = Prefs.get_desired_width();
+            let height = Prefs.get_icon_size();
+            let aspectRatio = thumbnailPixbuf.width / thumbnailPixbuf.height;
+            if ((width / height) > aspectRatio)
+                width = height * aspectRatio;
+            else
+                height = width / aspectRatio;
+            let pixbuf = thumbnailPixbuf.scale_simple(Math.floor(width), Math.floor(height), GdkPixbuf.InterpType.BILINEAR);
+            pixbuf = this._addEmblemsToPixbufIfNeeded(pixbuf);
+            this._icon.set_from_pixbuf(pixbuf);
+            this._dragSource.drag_source_set_icon_pixbuf(pixbuf);
+            return true;
+        }
+        return false;
     }
 
     _copyAndResizeIfNeeded(pixbuf) {
