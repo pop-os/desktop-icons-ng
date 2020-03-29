@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-22 21:03+0100\n"
+"POT-Creation-Date: 2020-03-30 00:44+0200\n"
 "PO-Revision-Date: 2019-03-11 21:50+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -71,120 +71,120 @@ msgstr ""
 msgid "Execute"
 msgstr ""
 
-#: ../desktopManager.js:96
+#: ../desktopManager.js:97
 msgid "Nautilus File Manager not found"
 msgstr ""
 
-#: ../desktopManager.js:97
+#: ../desktopManager.js:98
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr ""
 
-#: ../desktopManager.js:375
+#: ../desktopManager.js:376
 msgid "New Folder"
 msgstr "Ny mapp"
 
-#: ../desktopManager.js:381
+#: ../desktopManager.js:382
 msgid "Paste"
 msgstr "Klistra in"
 
-#: ../desktopManager.js:385
+#: ../desktopManager.js:386
 msgid "Undo"
 msgstr "Ångra"
 
-#: ../desktopManager.js:389
+#: ../desktopManager.js:390
 msgid "Redo"
 msgstr "Gör om"
 
-#: ../desktopManager.js:395
+#: ../desktopManager.js:396
 msgid "Show Desktop in Files"
 msgstr "Visa skrivbord i Filer"
 
-#: ../desktopManager.js:399 ../fileItem.js:747
+#: ../desktopManager.js:400 ../fileItem.js:757
 msgid "Open in Terminal"
 msgstr "Öppna i terminal"
 
-#: ../desktopManager.js:405
+#: ../desktopManager.js:406
 msgid "Change Background…"
 msgstr "Ändra bakgrund…"
 
-#: ../desktopManager.js:414
+#: ../desktopManager.js:415
 msgid "Display Settings"
 msgstr "Visningsinställningar"
 
-#: ../desktopManager.js:421 ../preferences.js:83
+#: ../desktopManager.js:422 ../preferences.js:83
 msgid "Settings"
 msgstr "Inställningar"
 
-#: ../desktopManager.js:838 ../desktopManager.js:859
+#: ../desktopManager.js:846 ../desktopManager.js:867
 msgid "Error while deleting files"
 msgstr ""
 
-#: ../desktopManager.js:839
+#: ../desktopManager.js:847
 msgid "There was an error while trying to permanently delete the folder {:}."
 msgstr ""
 
-#: ../desktopManager.js:860
+#: ../desktopManager.js:868
 msgid "There was an error while trying to permanently delete the file {:}."
 msgstr ""
 
-#: ../desktopManager.js:883
+#: ../desktopManager.js:891
 msgid "Are you sure you want to permanently delete these items?"
 msgstr ""
 
-#: ../desktopManager.js:883
+#: ../desktopManager.js:891
 msgid "If you delete an item, it will be permanently lost."
 msgstr ""
 
-#: ../desktopManager.js:974
+#: ../desktopManager.js:982
 #, fuzzy
 msgid "New folder"
 msgstr "Ny mapp"
 
-#: ../fileItem.js:622
+#: ../fileItem.js:632
 msgid "Don’t Allow Launching"
 msgstr "Tillåt ej programstart"
 
-#: ../fileItem.js:624
+#: ../fileItem.js:634
 msgid "Allow Launching"
 msgstr "Tillåt programstart"
 
-#: ../fileItem.js:690
+#: ../fileItem.js:700
 msgid "Open"
 msgstr "Öppna"
 
-#: ../fileItem.js:696
+#: ../fileItem.js:706
 msgid "Open With Other Application"
 msgstr "Öppna med annat program"
 
-#: ../fileItem.js:703
+#: ../fileItem.js:713
 msgid "Cut"
 msgstr "Klipp ut"
 
-#: ../fileItem.js:706
+#: ../fileItem.js:716
 msgid "Copy"
 msgstr "Kopiera"
 
-#: ../fileItem.js:710
+#: ../fileItem.js:720
 msgid "Rename…"
 msgstr "Byt namn…"
 
-#: ../fileItem.js:714
+#: ../fileItem.js:724
 msgid "Move to Trash"
 msgstr "Flytta till papperskorgen"
 
-#: ../fileItem.js:718
+#: ../fileItem.js:728
 msgid "Delete permanently"
 msgstr ""
 
-#: ../fileItem.js:731
+#: ../fileItem.js:741
 msgid "Empty Trash"
 msgstr "Töm papperskorgen"
 
-#: ../fileItem.js:739
+#: ../fileItem.js:749
 msgid "Properties"
 msgstr "Egenskaper"
 
-#: ../fileItem.js:743
+#: ../fileItem.js:753
 msgid "Show in Files"
 msgstr "Visa i Filer"
 

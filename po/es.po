@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-22 21:03+0100\n"
+"POT-Creation-Date: 2020-03-30 00:44+0200\n"
 "PO-Revision-Date: 2020-03-22 21:04+0100\n"
 "Last-Translator: Sergio Costas <rastersoft@gmail.com>\n"
 "Language-Team: Español; Castellano <rastersoft@gmail.com>\n"
@@ -68,121 +68,121 @@ msgstr "Mostrar"
 msgid "Execute"
 msgstr "Ejecutar"
 
-#: ../desktopManager.js:96
+#: ../desktopManager.js:97
 msgid "Nautilus File Manager not found"
 msgstr "No se encontró el Gestor de ficheros Nautilus"
 
-#: ../desktopManager.js:97
+#: ../desktopManager.js:98
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr ""
 "El gestor de ficheros Nautilus es necesario para que Desktop Icons NG "
 "funcione."
 
-#: ../desktopManager.js:375
+#: ../desktopManager.js:376
 msgid "New Folder"
 msgstr "Nueva carpeta"
 
-#: ../desktopManager.js:381
+#: ../desktopManager.js:382
 msgid "Paste"
 msgstr "Pegar"
 
-#: ../desktopManager.js:385
+#: ../desktopManager.js:386
 msgid "Undo"
 msgstr "Deshacer"
 
-#: ../desktopManager.js:389
+#: ../desktopManager.js:390
 msgid "Redo"
 msgstr "Rehacer"
 
-#: ../desktopManager.js:395
+#: ../desktopManager.js:396
 msgid "Show Desktop in Files"
 msgstr "Mostrar el escritorio en Archivos"
 
-#: ../desktopManager.js:399 ../fileItem.js:747
+#: ../desktopManager.js:400 ../fileItem.js:757
 msgid "Open in Terminal"
 msgstr "Abrir en una terminal"
 
-#: ../desktopManager.js:405
+#: ../desktopManager.js:406
 msgid "Change Background…"
 msgstr "Cambiar el fondo..."
 
-#: ../desktopManager.js:414
+#: ../desktopManager.js:415
 msgid "Display Settings"
 msgstr "Preferencias de pantalla"
 
-#: ../desktopManager.js:421 ../preferences.js:83
+#: ../desktopManager.js:422 ../preferences.js:83
 msgid "Settings"
 msgstr "Preferencias"
 
-#: ../desktopManager.js:838 ../desktopManager.js:859
+#: ../desktopManager.js:846 ../desktopManager.js:867
 msgid "Error while deleting files"
 msgstr "Error al borrar ficheros"
 
-#: ../desktopManager.js:839
+#: ../desktopManager.js:847
 msgid "There was an error while trying to permanently delete the folder {:}."
 msgstr "Se produjo un error al intentar borrar la carpeta {:}."
 
-#: ../desktopManager.js:860
+#: ../desktopManager.js:868
 msgid "There was an error while trying to permanently delete the file {:}."
 msgstr "Se produjo un error al intentar borrar el archivo {:}."
 
-#: ../desktopManager.js:883
+#: ../desktopManager.js:891
 msgid "Are you sure you want to permanently delete these items?"
 msgstr "¿Borrar estos elementos de manera permanente?"
 
-#: ../desktopManager.js:883
+#: ../desktopManager.js:891
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Si borra un elemento, éste se perderá para siempre."
 
-#: ../desktopManager.js:974
+#: ../desktopManager.js:982
 msgid "New folder"
 msgstr "Nueva carpeta"
 
-#: ../fileItem.js:622
+#: ../fileItem.js:632
 msgid "Don’t Allow Launching"
 msgstr "No permitir lanzar"
 
-#: ../fileItem.js:624
+#: ../fileItem.js:634
 msgid "Allow Launching"
 msgstr "Permitir lanzar"
 
-#: ../fileItem.js:690
+#: ../fileItem.js:700
 msgid "Open"
 msgstr "Abrir"
 
-#: ../fileItem.js:696
+#: ../fileItem.js:706
 msgid "Open With Other Application"
 msgstr "Abrir con otra aplicación"
 
-#: ../fileItem.js:703
+#: ../fileItem.js:713
 msgid "Cut"
 msgstr "Cortar"
 
-#: ../fileItem.js:706
+#: ../fileItem.js:716
 msgid "Copy"
 msgstr "Copiar"
 
-#: ../fileItem.js:710
+#: ../fileItem.js:720
 msgid "Rename…"
 msgstr "Renombrar…"
 
-#: ../fileItem.js:714
+#: ../fileItem.js:724
 msgid "Move to Trash"
 msgstr "Mover a la papelera"
 
-#: ../fileItem.js:718
+#: ../fileItem.js:728
 msgid "Delete permanently"
 msgstr "Borrar permanentemente"
 
-#: ../fileItem.js:731
+#: ../fileItem.js:741
 msgid "Empty Trash"
 msgstr "Vaciar la papelera"
 
-#: ../fileItem.js:739
+#: ../fileItem.js:749
 msgid "Properties"
 msgstr "Propiedades"
 
-#: ../fileItem.js:743
+#: ../fileItem.js:753
 msgid "Show in Files"
 msgstr "Mostrar en Files"
 
