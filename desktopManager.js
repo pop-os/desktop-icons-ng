@@ -371,6 +371,13 @@ var DesktopManager = class {
                 this.doRename(selection[0]);
                 return true;
             }
+        } else if (symbol == Gdk.KEY_space) {
+            let selection = this.getCurrentSelection(false);
+            if (selection) {
+                // Support renaming other grids file items.
+                DBusUtils.GnomeNautilusPreviewProxy.ShowFileRemote(selection[0].uri, 0, false);
+                return true;
+            }
         }
         return false;
     }
