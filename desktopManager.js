@@ -751,6 +751,10 @@ var DesktopManager = class {
     }
 
     _updateDesktopIfChanged(file, otherFile, eventType) {
+        if (eventType == Gio.FileMonitorEvent.CHANGED) {
+            // use only CHANGES_DONE_HINT
+            return;
+        }
         if (!this._showHidden && (file.get_basename()[0] == '.')) {
             // If the file is not visible, we don't need to refresh the desktop
             // Unless it is a hidden file being renamed to visible
