@@ -65,27 +65,31 @@ msgstr ""
 msgid "Execute"
 msgstr ""
 
-#: ../desktopManager.js:97
+#: ../desktopManager.js:99
 msgid "Nautilus File Manager not found"
 msgstr ""
 
-#: ../desktopManager.js:98
+#: ../desktopManager.js:100
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr ""
 
-#: ../desktopManager.js:376
+#: ../desktopManager.js:399
 msgid "New Folder"
 msgstr ""
 
-#: ../desktopManager.js:382
+#: ../desktopManager.js:403
+msgid "New Document"
+msgstr ""
+
+#: ../desktopManager.js:408
 msgid "Paste"
 msgstr ""
 
-#: ../desktopManager.js:386
+#: ../desktopManager.js:412
 msgid "Undo"
 msgstr ""
 
-#: ../desktopManager.js:390
+#: ../desktopManager.js:416
 msgid "Redo"
 msgstr ""
 

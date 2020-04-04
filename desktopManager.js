@@ -32,6 +32,7 @@ const AskNamePopup = imports.askNamePopup;
 const AskRenamePopup = imports.askRenamePopup;
 const AskConfirmPopup = imports.askConfirmPopup;
 const ShowErrorPopup = imports.showErrorPopup;
+const TemplateManager = imports.templateManager;
 
 const Gettext = imports.gettext.domain('ding');
 
@@ -43,6 +44,7 @@ var DesktopManager = class {
         DBusUtils.init();
         this._clickX = 0;
         this._clickY = 0;
+        this._templateManager = new TemplateManager.TemplateManager();
         this._codePath = codePath;
         this._asDesktop = asDesktop;
         this._desktopList = desktopList;
@@ -263,7 +265,7 @@ var DesktopManager = class {
         return [atom, data];
     }
 
-    onPressButton(x, y, event, window) {
+    onPressButton(x, y, event, grid) {
 
         this._clickX = Math.floor(x);
         this._clickY = Math.floor(y);
@@ -281,7 +283,27 @@ var DesktopManager = class {
             this._startRubberband(x, y);
         }
         if (button == 3) {
-            this._menu.popup_at_pointer(event);
+            let templates = this._templateManager.getTemplates();
+            if (templates.length == 0) {
+                this._newDocumentItem.hide();
+            } else {
+                let templateMenu = new Gtk.Menu();
+                this._newDocumentItem.set_submenu(templateMenu);
+                for(let template of templates) {
+                    let box = new Gtk.Box({"orientation":Gtk.Orientation.HORIZONTAL, "spacing": 6});
+                    let icon = Gtk.Image.new_from_gicon(template["icon"], Gtk.IconSize.MENU);
+                    let text = new Gtk.Label({"label": template["name"]});
+                    box.add(icon);
+                    box.add(text);
+                    let entry = new Gtk.MenuItem({"label": template["name"]});
+                    //entry.add(box);
+                    templateMenu.add(entry);
+                    entry.connect("activate", ()=>{
+                        this._newDocument(template);
+                    });
+                }
+                this._newDocumentItem.show_all();
+            }
             this._syncUndoRedo();
             let atom = Gdk.Atom.intern('CLIPBOARD', false);
             let clipboard = Gtk.Clipboard.get(atom);
@@ -289,6 +311,7 @@ var DesktopManager = class {
                 let [valid, is_cut, files] = this._parseClipboardText(text);
                 this._pasteMenuItem.set_sensitive(valid);
             });
+            this._menu.popup_at_pointer(event);
         }
     }
 
@@ -332,7 +355,7 @@ var DesktopManager = class {
         );
     }
 
-    onKeyPress(event) {
+    onKeyPress(event, grid) {
         let symbol = event.get_keyval()[1];
         let isCtrl = (event.get_state()[1] & Gdk.ModifierType.CONTROL_MASK) != 0;
         let isShift = (event.get_state()[1] & Gdk.ModifierType.SHIFT_MASK) != 0;
@@ -387,6 +410,9 @@ var DesktopManager = class {
         let newFolder = new Gtk.MenuItem({label: _("New Folder")});
         newFolder.connect("activate", () => this._newFolder());
         this._menu.add(newFolder);
+
+        this._newDocumentItem = new Gtk.MenuItem({label: _("New Document")});
+        this._menu.add(this._newDocumentItem);
 
         this._menu.add(new Gtk.SeparatorMenuItem());
 
@@ -537,7 +563,7 @@ var DesktopManager = class {
         return false;
     }
 
-    onReleaseButton() {
+    onReleaseButton(grid) {
         if (this.rubberBand) {
             this.rubberBand = false;
             for(let item of this._fileList) {
@@ -1033,6 +1059,32 @@ var DesktopManager = class {
             } catch(e) {
                 print(`Failed to create folder ${e.message}`);
             }
+        }
+    }
+
+    _newDocument(template) {
+        let file = this._templateManager.getTemplateFile(template["file"]);
+        if (file == null) {
+            return;
+        }
+        let counter = 0;
+        let finalName = `${template["name"]}${template["extension"]}`;
+        let destination;
+        do {
+            if (counter != 0) {
+                finalName = `${template["name"]} ${counter}${template["extension"]}`
+            }
+            destination = Gio.File.new_for_path(GLib.build_filenamev([GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DESKTOP), finalName]));
+            counter++;
+        } while(destination.query_exists(null));
+        try {
+            file.copy(destination, Gio.FileCopyFlags.NONE, null, null);
+            let info = new Gio.FileInfo();
+            info.set_attribute_string('metadata::nautilus-drop-position', `${this._clickX},${this._clickY}`);
+            info.set_attribute_string('metadata::nautilus-icon-position', '');
+            destination.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
+        } catch(e) {
+            print(`Failed to create template ${e.message}`);
         }
     }
 }

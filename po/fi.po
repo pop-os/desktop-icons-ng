@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-06 00:20+0200\n"
+"POT-Creation-Date: 2020-04-06 00:46+0200\n"
 "PO-Revision-Date: 2019-06-02 15:23+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: Finnish <lokalisointi-lista@googlegroups.com>\n"
@@ -70,75 +70,79 @@ msgstr ""
 msgid "Execute"
 msgstr ""
 
-#: desktopManager.js:97
+#: desktopManager.js:101
 msgid "Nautilus File Manager not found"
 msgstr ""
 
-#: desktopManager.js:98
+#: desktopManager.js:102
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr ""
 
-#: desktopManager.js:376
+#: desktopManager.js:410
 msgid "New Folder"
 msgstr "Uusi kansio"
 
-#: desktopManager.js:382
+#: desktopManager.js:414
+msgid "New Document"
+msgstr ""
+
+#: desktopManager.js:419
 msgid "Paste"
 msgstr "Liitä"
 
-#: desktopManager.js:386
+#: desktopManager.js:423
 msgid "Undo"
 msgstr "Kumoa"
 
-#: desktopManager.js:390
+#: desktopManager.js:427
 msgid "Redo"
 msgstr "Tee uudeleen"
 
-#: desktopManager.js:396
+#: desktopManager.js:433
 msgid "Select all"
 msgstr ""
 
-#: desktopManager.js:402
+#: desktopManager.js:439
 msgid "Show Desktop in Files"
 msgstr "Näytä työpöytä tiedostonhallinnassa"
 
-#: desktopManager.js:406 fileItem.js:757
+#: desktopManager.js:443 fileItem.js:757
 msgid "Open in Terminal"
 msgstr "Avaa päätteessä"
 
-#: desktopManager.js:412
+#: desktopManager.js:449
 msgid "Change Background…"
 msgstr "Vaihda taustakuvaa…"
 
-#: desktopManager.js:421
+#: desktopManager.js:458
 msgid "Display Settings"
 msgstr "Näytön asetukset"
 
-#: desktopManager.js:428 preferences.js:83
+#: desktopManager.js:465 preferences.js:83
 msgid "Settings"
 msgstr "Asetukset"
 
-#: desktopManager.js:864 desktopManager.js:885
+#: desktopManager.js:913 desktopManager.js:934
 msgid "Error while deleting files"
 msgstr ""
 
-#: desktopManager.js:865
+#: desktopManager.js:914
 msgid "There was an error while trying to permanently delete the folder {:}."
 msgstr ""
 
-#: desktopManager.js:886
+#: desktopManager.js:935
 msgid "There was an error while trying to permanently delete the file {:}."
 msgstr ""
 
-#: desktopManager.js:909
+#: desktopManager.js:958
 msgid "Are you sure you want to permanently delete these items?"
 msgstr ""
 
-#: desktopManager.js:909
+#: desktopManager.js:958
 msgid "If you delete an item, it will be permanently lost."
 msgstr ""
 
-#: desktopManager.js:1000
+#: desktopManager.js:1049
 #, fuzzy
 msgid "New folder"
 msgstr "Uusi kansio"

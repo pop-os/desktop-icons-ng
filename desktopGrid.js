@@ -122,7 +122,7 @@ var DesktopGrid = class {
         this._eventBox.connect('button-press-event', (actor, event) => {
             let [a, x, y] = event.get_coords();
             [x, y] = this._coordinatesLocalToGlobal(x, y);
-            this._desktopManager.onPressButton(x, y, event, this._window);
+            this._desktopManager.onPressButton(x, y, event, this);
             return false;
         });
         this._eventBox.connect('motion-notify-event', (actor, event) => {
@@ -131,10 +131,10 @@ var DesktopGrid = class {
             this._desktopManager.onMotion(x, y);
         });
         this._eventBox.connect('button-release-event', (actor, event) => {
-            this._desktopManager.onReleaseButton();
+            this._desktopManager.onReleaseButton(this);
         });
         this._window.connect('key-press-event', (actor, event) => {
-            this._desktopManager.onKeyPress(event);
+            this._desktopManager.onKeyPress(event, this);
         });
     }
 
