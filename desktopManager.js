@@ -41,6 +41,8 @@ var DesktopManager = class {
     constructor(appUuid, desktopList, codePath, asDesktop) {
 
         DBusUtils.init();
+        this._clickX = 0;
+        this._clickY = 0;
         this._codePath = codePath;
         this._asDesktop = asDesktop;
         this._desktopList = desktopList;
@@ -93,7 +95,7 @@ var DesktopManager = class {
         // Check if Nautilus is available
         try {
             DesktopIconsUtil.trySpawn(null, ["nautilus", "--version"]);
-        } catch (e) {
+        } catch(e) {
             this._errorWindow = new ShowErrorPopup.ShowErrorPopup(_("Nautilus File Manager not found"),
                                                                   _("The Nautilus File Manager is mandatory to work with Desktop Icons NG."),
                                                                   null,
@@ -263,6 +265,8 @@ var DesktopManager = class {
 
     onPressButton(x, y, event, window) {
 
+        this._clickX = Math.floor(x);
+        this._clickY = Math.floor(y);
         let button = event.get_button()[1];
         let state = event.get_state()[1];
         if (button == 1) {
@@ -714,9 +718,21 @@ var DesktopManager = class {
                 fileItem.dropCoordinates = null;
                 storeMode = Enums.StoredCoordinates.OVERWRITE;
             }
+            // try first in the designated desktop
+            let assigned = false;
             for (let desktop of this._desktops) {
-                let distance = desktop.getDistance(x, y);
-                if (distance != -1) {
+                if (desktop.getDistance(x, y) == 0) {
+                    desktop.addFileItemCloseTo(fileItem, x, y, storeMode);
+                    assigned = true;
+                    break;
+                }
+            }
+            if (assigned) {
+                continue;
+            }
+            // if there is no space in the designated desktop, try in another
+            for (let desktop of this._desktops) {
+                if (desktop.getDistance(x, y) != -1) {
                     desktop.addFileItemCloseTo(fileItem, x, y, storeMode);
                     break;
                 }
@@ -987,12 +1003,15 @@ var DesktopManager = class {
         let newName = newFolderWindow.run();
         if (newName) {
             let dir = DesktopIconsUtil.getDesktopDir().get_child(newName);
-            DBusUtils.NautilusFileOperationsProxy.CreateFolderRemote(dir.get_uri(),
-                (result, error) => {
-                    if (error)
-                        throw new Error('Error creating new folder: ' + error.message);
-                }
-            );
+            try {
+                dir.make_directory(null);
+                let info = new Gio.FileInfo();
+                info.set_attribute_string('metadata::nautilus-drop-position', `${this._clickX},${this._clickY}`);
+                info.set_attribute_string('metadata::nautilus-icon-position', '');
+                dir.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
+            } catch(e) {
+                print(`Failed to create folder ${e.message}`);
+            }
         }
     }
 }
