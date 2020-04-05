@@ -20,6 +20,7 @@ const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
 var NautilusFileOperationsProxy;
 var FreeDesktopFileManagerProxy;
+var GnomeNautilusPreviewProxy;
 
 const NautilusFileOperationsInterface = `<node>
 <interface name='org.gnome.Nautilus.FileOperations'>
@@ -68,6 +69,18 @@ const FreeDesktopFileManagerInterface = `<node>
 
 const FreeDesktopFileManagerProxyInterface = Gio.DBusProxy.makeProxyWrapper(FreeDesktopFileManagerInterface);
 
+const GnomeNautilusPreviewInterface = `<node>
+<interface name='org.gnome.NautilusPreviewer'>
+    <method name='ShowFile'>
+        <arg name='FileUri' type='s' direction='in'/>
+        <arg name='ParentXid' type='i' direction='in'/>
+        <arg name='CloseIfShown' type='b' direction='in'/>
+    </method>
+</interface>
+</node>`;
+
+const GnomeNautilusPreviewProxyInterface = Gio.DBusProxy.makeProxyWrapper(GnomeNautilusPreviewInterface);
+
 function init() {
     NautilusFileOperationsProxy = new NautilusFileOperationsProxyInterface(
         Gio.DBus.session,
@@ -87,6 +100,17 @@ function init() {
         (proxy, error) => {
             if (error) {
                 log('Error connecting to Nautilus');
+            }
+        }
+    );
+
+    GnomeNautilusPreviewProxy = new GnomeNautilusPreviewProxyInterface(
+        Gio.DBus.session,
+        'org.gnome.NautilusPreviewer',
+        '/org/gnome/NautilusPreviewer',
+        (proxy, error) => {
+            if (error) {
+                log('Error connecting to Nautilus Previewer');
             }
         }
     );
