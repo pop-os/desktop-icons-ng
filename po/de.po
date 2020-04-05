@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-30 11:56+0200\n"
+"POT-Creation-Date: 2020-04-05 23:27+0200\n"
 "PO-Revision-Date: 2020-03-30 11:56+0200\n"
 "Last-Translator: Tim Hofstede <phokas@mail.de>\n"
 "Language-Team: German <phokas@mail.de>\n"
@@ -16,255 +16,255 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "X-Generator: Gtranslator 3.34.0\n"
 
-#: ../askConfirmPopup.js:35 ../askNamePopup.js:36 ../desktopIconsUtil.js:176
+#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:176
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: ../askConfirmPopup.js:36
+#: askConfirmPopup.js:36
 msgid "Delete"
 msgstr "Löschen"
 
-#: ../askNamePopup.js:35
+#: askNamePopup.js:35
 msgid "OK"
 msgstr "OK"
 
-#: ../askRenamePopup.js:40
+#: askRenamePopup.js:40
 msgid "Folder name"
 msgstr "Ordnername"
 
-#: ../askRenamePopup.js:40
+#: askRenamePopup.js:40
 msgid "File name"
 msgstr "Dateiname"
 
-#: ../askRenamePopup.js:47
+#: askRenamePopup.js:47
 msgid "Rename"
 msgstr "Umbenennen"
 
-#: ../desktopIconsUtil.js:74
+#: desktopIconsUtil.js:74
 msgid "Command not found"
 msgstr "Kommando nicht gefunden"
 
-#: ../desktopIconsUtil.js:167
+#: desktopIconsUtil.js:167
 msgid "Do you want to run “{0}”, or display its contents?"
 msgstr "Möchten Sie “{0}” ausführen oder dessen Inhalt anzeigen lassen?"
 
-#: ../desktopIconsUtil.js:168
+#: desktopIconsUtil.js:168
 msgid "“{0}” is an executable text file."
 msgstr "“{0}” ist eine ausführbare Textdatei."
 
-#: ../desktopIconsUtil.js:172
+#: desktopIconsUtil.js:172
 msgid "Execute in a terminal"
 msgstr "Im Terminal öffnen"
 
-#: ../desktopIconsUtil.js:174
+#: desktopIconsUtil.js:174
 msgid "Show"
 msgstr "Anzeigen"
 
-#: ../desktopIconsUtil.js:178
+#: desktopIconsUtil.js:178
 msgid "Execute"
 msgstr "Ausführen"
 
-#: ../desktopManager.js:97
+#: desktopManager.js:97
 msgid "Nautilus File Manager not found"
 msgstr "Nautilus-Dateiverwaltung nicht gefunden"
 
-#: ../desktopManager.js:98
+#: desktopManager.js:98
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr "Die Nautilus-Dateiverwaltung wird für Desktop Icons NG benötigt."
 
-#: ../desktopManager.js:376
+#: desktopManager.js:376
 msgid "New Folder"
 msgstr "Neuer Ordner"
 
-#: ../desktopManager.js:382
+#: desktopManager.js:382
 msgid "Paste"
 msgstr "Einfügen"
 
-#: ../desktopManager.js:386
+#: desktopManager.js:386
 msgid "Undo"
 msgstr "Rückgängig"
 
-#: ../desktopManager.js:390
+#: desktopManager.js:390
 msgid "Redo"
 msgstr "Wiederholen"
 
-#: ../desktopManager.js:396
+#: desktopManager.js:396
 msgid "Show Desktop in Files"
 msgstr "Schreibtisch in Dateien anzeigen"
 
-#: ../desktopManager.js:400 ../fileItem.js:757
+#: desktopManager.js:400 fileItem.js:757
 msgid "Open in Terminal"
 msgstr "Im Terminal öffnen"
 
-#: ../desktopManager.js:406
+#: desktopManager.js:406
 msgid "Change Background…"
 msgstr "Hintergrund ändern…"
 
-#: ../desktopManager.js:415
+#: desktopManager.js:415
 msgid "Display Settings"
 msgstr "Anzeigeeinstellungen"
 
-#: ../desktopManager.js:422 ../preferences.js:83
+#: desktopManager.js:422 preferences.js:83
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: ../desktopManager.js:846 ../desktopManager.js:867
+#: desktopManager.js:850 desktopManager.js:871
 msgid "Error while deleting files"
 msgstr "Fehler beim Löschen der Dateien"
 
-#: ../desktopManager.js:847
+#: desktopManager.js:851
 msgid "There was an error while trying to permanently delete the folder {:}."
 msgstr "Ein Fehler trat beim dauerhaften Löschen von Ordner {:} auf."
 
-#: ../desktopManager.js:868
+#: desktopManager.js:872
 msgid "There was an error while trying to permanently delete the file {:}."
 msgstr "Ein Fehler trat beim dauerhaften Löschen von Datei {:} auf."
 
-#: ../desktopManager.js:891
+#: desktopManager.js:895
 msgid "Are you sure you want to permanently delete these items?"
 msgstr "Sind Sie sicher, dass Sie diese Dateien dauerhaft löschen wollen?"
 
-#: ../desktopManager.js:891
+#: desktopManager.js:895
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Sobald Sie ein Objekt löschen, geht es dauerhaft verloren."
 
-#: ../desktopManager.js:982
+#: desktopManager.js:986
 msgid "New folder"
 msgstr "Neuer Ordner"
 
-#: ../fileItem.js:632
+#: fileItem.js:632
 msgid "Don’t Allow Launching"
 msgstr "Start nicht erlauben"
 
-#: ../fileItem.js:634
+#: fileItem.js:634
 msgid "Allow Launching"
 msgstr "Start erlauben"
 
-#: ../fileItem.js:700
+#: fileItem.js:700
 msgid "Open"
 msgstr "Öffnen"
 
-#: ../fileItem.js:706
+#: fileItem.js:706
 msgid "Open With Other Application"
 msgstr "Mit anderer Anwendung öffnen"
 
-#: ../fileItem.js:713
+#: fileItem.js:713
 msgid "Cut"
 msgstr "Ausschneiden"
 
-#: ../fileItem.js:716
+#: fileItem.js:716
 msgid "Copy"
 msgstr "Kopieren"
 
-#: ../fileItem.js:720
+#: fileItem.js:720
 msgid "Rename…"
 msgstr "Umbenennen"
 
-#: ../fileItem.js:724
+#: fileItem.js:724
 msgid "Move to Trash"
 msgstr "In den Papierkorb verschieben"
 
-#: ../fileItem.js:728
+#: fileItem.js:728
 msgid "Delete permanently"
 msgstr "Dauerhaft löschen"
 
-#: ../fileItem.js:741
+#: fileItem.js:741
 msgid "Empty Trash"
 msgstr "Papierkorb leeren"
 
-#: ../fileItem.js:749
+#: fileItem.js:749
 msgid "Properties"
 msgstr "Eigenschaften"
 
-#: ../fileItem.js:753
+#: fileItem.js:753
 msgid "Show in Files"
 msgstr "In Dateiverwaltung anzeigen"
 
-#: ../preferences.js:89
+#: preferences.js:89
 msgid "Size for the desktop icons"
 msgstr "Größe der Arbeitsflächensymbole"
 
-#: ../preferences.js:89
+#: preferences.js:89
 msgid "Tiny"
 msgstr "Winzig"
 
-#: ../preferences.js:89
+#: preferences.js:89
 msgid "Small"
 msgstr "Klein"
 
-#: ../preferences.js:89
+#: preferences.js:89
 msgid "Standard"
 msgstr "Standard"
 
-#: ../preferences.js:89
+#: preferences.js:89
 msgid "Large"
 msgstr "Groß"
 
-#: ../preferences.js:90
+#: preferences.js:90
 msgid "Show the personal folder in the desktop"
 msgstr "Den persönlichen Ordner auf der Arbeitsfläche anzeigen"
 
-#: ../preferences.js:91
+#: preferences.js:91
 msgid "Show the trash icon in the desktop"
 msgstr "Papierkorb-Symbol auf der Arbeitsfläche anzeigen"
 
-#: ../preferences.js:95
+#: preferences.js:95
 msgid "Settings shared with Nautilus"
 msgstr "Mit Nautilus geteilte Einstellungen"
 
-#: ../preferences.js:101
+#: preferences.js:101
 msgid "Click type for open files"
 msgstr "Öffnen-Aktion"
 
-#: ../preferences.js:101
+#: preferences.js:101
 msgid "Single click"
 msgstr "Einfacher Klick"
 
-#: ../preferences.js:101
+#: preferences.js:101
 msgid "Double click"
 msgstr "Doppelklick"
 
-#: ../preferences.js:102
+#: preferences.js:102
 msgid "Show hidden files"
 msgstr "Verborgene Dateien anzeigen"
 
-#: ../preferences.js:103
+#: preferences.js:103
 msgid "Show a context menu item to delete permanently"
 msgstr "Aktion zum dauerhaften Löschen anzeigen"
 
-#: ../preferences.js:106
+#: preferences.js:106
 msgid "Action to do when launching a program from the desktop"
 msgstr ""
 
-#: ../preferences.js:107
+#: preferences.js:107
 msgid "Display the content of the file"
 msgstr "Anzeigen"
 
-#: ../preferences.js:108
+#: preferences.js:108
 msgid "Launch the file"
 msgstr "Ausführen"
 
-#: ../preferences.js:109
+#: preferences.js:109
 msgid "Ask what to do"
 msgstr "Nachfragen, was geschehen soll"
 
-#: ../preferences.js:113
+#: preferences.js:113
 msgid "Show image thumbnails"
 msgstr "Miniatur-Vorschaubilder anzeigen"
 
-#: ../preferences.js:114
+#: preferences.js:114
 msgid "Never"
 msgstr "Nie"
 
-#: ../preferences.js:115
+#: preferences.js:115
 msgid "Local files only"
 msgstr "Nur Dateien auf diesem Rechner"
 
-#: ../preferences.js:116
+#: preferences.js:116
 msgid "Always"
 msgstr "Alle Dateien"
 
-#: ../prefs.js:39
+#: prefs.js:39
 msgid ""
 "To configure Desktop Icons NG, do right-click in the desktop and choose the "
 "last item: 'Settings'"
@@ -272,26 +272,26 @@ msgstr ""
 "Um Desktop Icons NG zu konfigurieren: Rechtsklick auf dem Schreibtisch und "
 "die letzte Option 'Einstellungen' wählen"
 
-#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:1
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:12
 msgid "Icon size"
 msgstr "Symbolgröße"
 
-#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:2
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:13
 msgid "Set the size for the desktop icons."
 msgstr "Die Größe der Arbeitsflächensymbole festlegen."
 
-#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:3
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:17
 msgid "Show personal folder"
 msgstr "Persönlichen Ordner anzeigen"
 
-#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:4
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:18
 msgid "Show the personal folder in the desktop."
 msgstr "Den persönlichen Ordner auf der Arbeitsfläche anzeigen."
 
-#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:5
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:22
 msgid "Show trash icon"
 msgstr "Papierkorb-Symbol anzeigen"
 
-#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:6
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:23
 msgid "Show the trash icon in the desktop."
 msgstr "Das Papierkorb-Symbol auf der Arbeitsfläche anzeigen."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-30 00:44+0200\n"
+"POT-Creation-Date: 2020-04-05 23:27+0200\n"
 "PO-Revision-Date: 2019-06-02 15:23+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: Finnish <lokalisointi-lista@googlegroups.com>\n"
@@ -18,287 +18,287 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: ../askConfirmPopup.js:35 ../askNamePopup.js:36 ../desktopIconsUtil.js:176
+#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:176
 msgid "Cancel"
 msgstr "Peru"
 
-#: ../askConfirmPopup.js:36
+#: askConfirmPopup.js:36
 msgid "Delete"
 msgstr ""
 
-#: ../askNamePopup.js:35
+#: askNamePopup.js:35
 msgid "OK"
 msgstr "OK"
 
-#: ../askRenamePopup.js:40
+#: askRenamePopup.js:40
 #, fuzzy
 msgid "Folder name"
 msgstr "Uusi kansion nimi"
 
-#: ../askRenamePopup.js:40
+#: askRenamePopup.js:40
 #, fuzzy
 msgid "File name"
 msgstr "Nimeä uudelleen…"
 
-#: ../askRenamePopup.js:47
+#: askRenamePopup.js:47
 #, fuzzy
 msgid "Rename"
 msgstr "Nimeä uudelleen…"
 
-#: ../desktopIconsUtil.js:74
+#: desktopIconsUtil.js:74
 msgid "Command not found"
 msgstr "Komentoa ei löydy"
 
-#: ../desktopIconsUtil.js:167
+#: desktopIconsUtil.js:167
 msgid "Do you want to run “{0}”, or display its contents?"
 msgstr ""
 
-#: ../desktopIconsUtil.js:168
+#: desktopIconsUtil.js:168
 msgid "“{0}” is an executable text file."
 msgstr ""
 
-#: ../desktopIconsUtil.js:172
+#: desktopIconsUtil.js:172
 #, fuzzy
 msgid "Execute in a terminal"
 msgstr "Avaa päätteessä"
 
-#: ../desktopIconsUtil.js:174
+#: desktopIconsUtil.js:174
 msgid "Show"
 msgstr ""
 
-#: ../desktopIconsUtil.js:178
+#: desktopIconsUtil.js:178
 msgid "Execute"
 msgstr ""
 
-#: ../desktopManager.js:97
+#: desktopManager.js:97
 msgid "Nautilus File Manager not found"
 msgstr ""
 
-#: ../desktopManager.js:98
+#: desktopManager.js:98
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr ""
 
-#: ../desktopManager.js:376
+#: desktopManager.js:376
 msgid "New Folder"
 msgstr "Uusi kansio"
 
-#: ../desktopManager.js:382
+#: desktopManager.js:382
 msgid "Paste"
 msgstr "Liitä"
 
-#: ../desktopManager.js:386
+#: desktopManager.js:386
 msgid "Undo"
 msgstr "Kumoa"
 
-#: ../desktopManager.js:390
+#: desktopManager.js:390
 msgid "Redo"
 msgstr "Tee uudeleen"
 
-#: ../desktopManager.js:396
+#: desktopManager.js:396
 msgid "Show Desktop in Files"
 msgstr "Näytä työpöytä tiedostonhallinnassa"
 
-#: ../desktopManager.js:400 ../fileItem.js:757
+#: desktopManager.js:400 fileItem.js:757
 msgid "Open in Terminal"
 msgstr "Avaa päätteessä"
 
-#: ../desktopManager.js:406
+#: desktopManager.js:406
 msgid "Change Background…"
 msgstr "Vaihda taustakuvaa…"
 
-#: ../desktopManager.js:415
+#: desktopManager.js:415
 msgid "Display Settings"
 msgstr "Näytön asetukset"
 
-#: ../desktopManager.js:422 ../preferences.js:83
+#: desktopManager.js:422 preferences.js:83
 msgid "Settings"
 msgstr "Asetukset"
 
-#: ../desktopManager.js:846 ../desktopManager.js:867
+#: desktopManager.js:850 desktopManager.js:871
 msgid "Error while deleting files"
 msgstr ""
 
-#: ../desktopManager.js:847
+#: desktopManager.js:851
 msgid "There was an error while trying to permanently delete the folder {:}."
 msgstr ""
 
-#: ../desktopManager.js:868
+#: desktopManager.js:872
 msgid "There was an error while trying to permanently delete the file {:}."
 msgstr ""
 
-#: ../desktopManager.js:891
+#: desktopManager.js:895
 msgid "Are you sure you want to permanently delete these items?"
 msgstr ""
 
-#: ../desktopManager.js:891
+#: desktopManager.js:895
 msgid "If you delete an item, it will be permanently lost."
 msgstr ""
 
-#: ../desktopManager.js:982
+#: desktopManager.js:986
 #, fuzzy
 msgid "New folder"
 msgstr "Uusi kansio"
 
-#: ../fileItem.js:632
+#: fileItem.js:632
 msgid "Don’t Allow Launching"
 msgstr "Älä salli käynnistämistä"
 
-#: ../fileItem.js:634
+#: fileItem.js:634
 msgid "Allow Launching"
 msgstr "Salli käynnistäminen"
 
-#: ../fileItem.js:700
+#: fileItem.js:700
 msgid "Open"
 msgstr "Avaa"
 
-#: ../fileItem.js:706
+#: fileItem.js:706
 msgid "Open With Other Application"
 msgstr "Avaa toisella sovelluksella"
 
-#: ../fileItem.js:713
+#: fileItem.js:713
 msgid "Cut"
 msgstr "Leikkaa"
 
-#: ../fileItem.js:716
+#: fileItem.js:716
 msgid "Copy"
 msgstr "Kopioi"
 
-#: ../fileItem.js:720
+#: fileItem.js:720
 msgid "Rename…"
 msgstr "Nimeä uudelleen…"
 
-#: ../fileItem.js:724
+#: fileItem.js:724
 msgid "Move to Trash"
 msgstr "Siirrä roskakoriin"
 
-#: ../fileItem.js:728
+#: fileItem.js:728
 msgid "Delete permanently"
 msgstr ""
 
-#: ../fileItem.js:741
+#: fileItem.js:741
 msgid "Empty Trash"
 msgstr "Tyhjennä roskakori"
 
-#: ../fileItem.js:749
+#: fileItem.js:749
 msgid "Properties"
 msgstr "Ominaisuudet"
 
-#: ../fileItem.js:753
+#: fileItem.js:753
 msgid "Show in Files"
 msgstr "Näytä tiedostonhallinnassa"
 
-#: ../preferences.js:89
+#: preferences.js:89
 msgid "Size for the desktop icons"
 msgstr "Työpöytäkuvakkeiden koko"
 
-#: ../preferences.js:89
+#: preferences.js:89
 msgid "Tiny"
 msgstr ""
 
-#: ../preferences.js:89
+#: preferences.js:89
 msgid "Small"
 msgstr "Pieni"
 
-#: ../preferences.js:89
+#: preferences.js:89
 msgid "Standard"
 msgstr "Normaali"
 
-#: ../preferences.js:89
+#: preferences.js:89
 msgid "Large"
 msgstr "Suuri"
 
-#: ../preferences.js:90
+#: preferences.js:90
 msgid "Show the personal folder in the desktop"
 msgstr "Näytä kotikansio työpöydällä"
 
-#: ../preferences.js:91
+#: preferences.js:91
 msgid "Show the trash icon in the desktop"
 msgstr "Näytä roskakorin kuvake työpöydällä"
 
-#: ../preferences.js:95
+#: preferences.js:95
 msgid "Settings shared with Nautilus"
 msgstr ""
 
-#: ../preferences.js:101
+#: preferences.js:101
 msgid "Click type for open files"
 msgstr ""
 
-#: ../preferences.js:101
+#: preferences.js:101
 msgid "Single click"
 msgstr ""
 
-#: ../preferences.js:101
+#: preferences.js:101
 msgid "Double click"
 msgstr ""
 
-#: ../preferences.js:102
+#: preferences.js:102
 #, fuzzy
 msgid "Show hidden files"
 msgstr "Näytä tiedostonhallinnassa"
 
-#: ../preferences.js:103
+#: preferences.js:103
 msgid "Show a context menu item to delete permanently"
 msgstr ""
 
-#: ../preferences.js:106
+#: preferences.js:106
 msgid "Action to do when launching a program from the desktop"
 msgstr ""
 
-#: ../preferences.js:107
+#: preferences.js:107
 msgid "Display the content of the file"
 msgstr ""
 
-#: ../preferences.js:108
+#: preferences.js:108
 msgid "Launch the file"
 msgstr ""
 
-#: ../preferences.js:109
+#: preferences.js:109
 msgid "Ask what to do"
 msgstr ""
 
-#: ../preferences.js:113
+#: preferences.js:113
 msgid "Show image thumbnails"
 msgstr ""
 
-#: ../preferences.js:114
+#: preferences.js:114
 msgid "Never"
 msgstr ""
 
-#: ../preferences.js:115
+#: preferences.js:115
 msgid "Local files only"
 msgstr ""
 
-#: ../preferences.js:116
+#: preferences.js:116
 msgid "Always"
 msgstr ""
 
-#: ../prefs.js:39
+#: prefs.js:39
 msgid ""
 "To configure Desktop Icons NG, do right-click in the desktop and choose the "
 "last item: 'Settings'"
 msgstr ""
 
-#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:1
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:12
 msgid "Icon size"
 msgstr "Kuvakekoko"
 
-#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:2
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:13
 msgid "Set the size for the desktop icons."
 msgstr "Aseta työpöytäkuvakkeiden koko."
 
-#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:3
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:17
 msgid "Show personal folder"
 msgstr "Näytä kotikansio"
 
-#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:4
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:18
 msgid "Show the personal folder in the desktop."
 msgstr "Näytä kotikansio työpöydällä."
 
-#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:5
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:22
 msgid "Show trash icon"
 msgstr "Näytä roskakorin kuvake"
 
-#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:6
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:23
 msgid "Show the trash icon in the desktop."
 msgstr "Näytä roskakorin kuvake työpöydällä."
 
