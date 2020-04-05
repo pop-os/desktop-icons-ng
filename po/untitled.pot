@@ -217,59 +217,79 @@ msgstr ""
 msgid "Show the trash icon in the desktop"
 msgstr ""
 
+#: ../preferences.js:94
+msgid "Icon alignment"
+msgstr ""
+
 #: ../preferences.js:95
-msgid "Settings shared with Nautilus"
+msgid "Top-left corner"
 msgstr ""
 
-#: ../preferences.js:101
-msgid "Click type for open files"
+#: ../preferences.js:96
+msgid "Top-right corner"
 msgstr ""
 
-#: ../preferences.js:101
-msgid "Single click"
+#: ../preferences.js:97
+msgid "Bottom-left corner"
 msgstr ""
 
-#: ../preferences.js:101
-msgid "Double click"
-msgstr ""
-
-#: ../preferences.js:102
-msgid "Show hidden files"
+#: ../preferences.js:98
+msgid "Bottom-right corner"
 msgstr ""
 
 #: ../preferences.js:103
-msgid "Show a context menu item to delete permanently"
-msgstr ""
-
-#: ../preferences.js:106
-msgid "Action to do when launching a program from the desktop"
-msgstr ""
-
-#: ../preferences.js:107
-msgid "Display the content of the file"
-msgstr ""
-
-#: ../preferences.js:108
-msgid "Launch the file"
+msgid "Settings shared with Nautilus"
 msgstr ""
 
 #: ../preferences.js:109
-msgid "Ask what to do"
+msgid "Click type for open files"
 msgstr ""
 
-#: ../preferences.js:113
-msgid "Show image thumbnails"
+#: ../preferences.js:109
+msgid "Single click"
+msgstr ""
+
+#: ../preferences.js:109
+msgid "Double click"
+msgstr ""
+
+#: ../preferences.js:110
+msgid "Show hidden files"
+msgstr ""
+
+#: ../preferences.js:111
+msgid "Show a context menu item to delete permanently"
 msgstr ""
 
 #: ../preferences.js:114
-msgid "Never"
+msgid "Action to do when launching a program from the desktop"
 msgstr ""
 
 #: ../preferences.js:115
-msgid "Local files only"
+msgid "Display the content of the file"
 msgstr ""
 
 #: ../preferences.js:116
+msgid "Launch the file"
+msgstr ""
+
+#: ../preferences.js:117
+msgid "Ask what to do"
+msgstr ""
+
+#: ../preferences.js:121
+msgid "Show image thumbnails"
+msgstr ""
+
+#: ../preferences.js:122
+msgid "Never"
+msgstr ""
+
+#: ../preferences.js:123
+msgid "Local files only"
+msgstr ""
+
+#: ../preferences.js:124
 msgid "Always"
 msgstr ""
 
@@ -301,4 +321,12 @@ msgstr ""
 
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:6
 msgid "Show the trash icon in the desktop."
+msgstr ""
+
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:7
+msgid "Start corner"
+msgstr ""
+
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:8
+msgid "Set the corner from where the icons will start to be placed."
 msgstr ""

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-06 00:46+0200\n"
+"POT-Creation-Date: 2020-04-06 01:02+0200\n"
 "PO-Revision-Date: 2019-11-25 16:00+0100\n"
 "Last-Translator: Charles Monzat <charles.monzat@numericable.fr>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
@@ -221,59 +221,80 @@ msgstr "Montrer le dossier personnel sur le bureau"
 msgid "Show the trash icon in the desktop"
 msgstr "Montrer la corbeille sur le bureau"
 
+#: preferences.js:94
+#, fuzzy
+msgid "New icons alignment"
+msgstr "Taille d’icônes"
+
 #: preferences.js:95
+msgid "Top-left corner"
+msgstr ""
+
+#: preferences.js:96
+msgid "Top-right corner"
+msgstr ""
+
+#: preferences.js:97
+msgid "Bottom-left corner"
+msgstr ""
+
+#: preferences.js:98
+msgid "Bottom-right corner"
+msgstr ""
+
+#: preferences.js:103
 msgid "Settings shared with Nautilus"
 msgstr "Paramètres partagés avec Nautilus"
 
-#: preferences.js:101
+#: preferences.js:109
 msgid "Click type for open files"
 msgstr "Type de clic pour ouvrir les fichiers"
 
-#: preferences.js:101
+#: preferences.js:109
 msgid "Single click"
 msgstr "Simple clic"
 
-#: preferences.js:101
+#: preferences.js:109
 msgid "Double click"
 msgstr "Double clic"
 
-#: preferences.js:102
+#: preferences.js:110
 msgid "Show hidden files"
 msgstr "Montrer dans Fichiers"
 
-#: preferences.js:103
+#: preferences.js:111
 msgid "Show a context menu item to delete permanently"
 msgstr "Afficher un élément de menu contextuel 'Supprimer définitivement'"
 
-#: preferences.js:106
+#: preferences.js:114
 msgid "Action to do when launching a program from the desktop"
 msgstr "Action à faire lors du lancement d'un programme depuis le bureau"
 
-#: preferences.js:107
+#: preferences.js:115
 msgid "Display the content of the file"
 msgstr "Afficher le contenu du fichier"
 
-#: preferences.js:108
+#: preferences.js:116
 msgid "Launch the file"
 msgstr "Lancer le fichier"
 
-#: preferences.js:109
+#: preferences.js:117
 msgid "Ask what to do"
 msgstr "Demander quoi faire"
 
-#: preferences.js:113
+#: preferences.js:121
 msgid "Show image thumbnails"
 msgstr "Afficher les imagettes"
 
-#: preferences.js:114
+#: preferences.js:122
 msgid "Never"
 msgstr "Jamais"
 
-#: preferences.js:115
+#: preferences.js:123
 msgid "Local files only"
 msgstr "Fichiers locaux uniquement"
 
-#: preferences.js:116
+#: preferences.js:124
 msgid "Always"
 msgstr "Toujours"
 
@@ -283,29 +304,38 @@ msgid ""
 "last item: 'Settings'"
 msgstr ""
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:12
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:18
 msgid "Icon size"
 msgstr "Taille d’icônes"
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:13
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:19
 msgid "Set the size for the desktop icons."
 msgstr "Définir la taille des icônes du bureau."
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:17
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:23
 msgid "Show personal folder"
 msgstr "Montrer le dossier personnel"
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:18
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:24
 msgid "Show the personal folder in the desktop."
 msgstr "Montrer le dossier personnel sur le bureau."
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:22
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:28
 msgid "Show trash icon"
 msgstr "Montrer l’icône de la corbeille"
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:23
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:29
 msgid "Show the trash icon in the desktop."
 msgstr "Montrer la corbeille sur le bureau."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:33
+#, fuzzy
+msgid "New icons start corner"
+msgstr "Taille d’icônes"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:34
+msgid "Set the corner from where the icons will start to be placed."
+msgstr ""
 
 #~ msgid "Enter file name…"
 #~ msgstr "Saisir un nom de fichier…"

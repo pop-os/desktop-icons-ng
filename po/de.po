@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-06 00:46+0200\n"
+"POT-Creation-Date: 2020-04-06 01:02+0200\n"
 "PO-Revision-Date: 2020-03-30 11:56+0200\n"
 "Last-Translator: Tim Hofstede <phokas@mail.de>\n"
 "Language-Team: German <phokas@mail.de>\n"
@@ -216,59 +216,80 @@ msgstr "Den persönlichen Ordner auf der Arbeitsfläche anzeigen"
 msgid "Show the trash icon in the desktop"
 msgstr "Papierkorb-Symbol auf der Arbeitsfläche anzeigen"
 
+#: preferences.js:94
+#, fuzzy
+msgid "New icons alignment"
+msgstr "Symbolgröße"
+
 #: preferences.js:95
+msgid "Top-left corner"
+msgstr ""
+
+#: preferences.js:96
+msgid "Top-right corner"
+msgstr ""
+
+#: preferences.js:97
+msgid "Bottom-left corner"
+msgstr ""
+
+#: preferences.js:98
+msgid "Bottom-right corner"
+msgstr ""
+
+#: preferences.js:103
 msgid "Settings shared with Nautilus"
 msgstr "Mit Nautilus geteilte Einstellungen"
 
-#: preferences.js:101
+#: preferences.js:109
 msgid "Click type for open files"
 msgstr "Öffnen-Aktion"
 
-#: preferences.js:101
+#: preferences.js:109
 msgid "Single click"
 msgstr "Einfacher Klick"
 
-#: preferences.js:101
+#: preferences.js:109
 msgid "Double click"
 msgstr "Doppelklick"
 
-#: preferences.js:102
+#: preferences.js:110
 msgid "Show hidden files"
 msgstr "Verborgene Dateien anzeigen"
 
-#: preferences.js:103
+#: preferences.js:111
 msgid "Show a context menu item to delete permanently"
 msgstr "Aktion zum dauerhaften Löschen anzeigen"
 
-#: preferences.js:106
+#: preferences.js:114
 msgid "Action to do when launching a program from the desktop"
 msgstr ""
 
-#: preferences.js:107
+#: preferences.js:115
 msgid "Display the content of the file"
 msgstr "Anzeigen"
 
-#: preferences.js:108
+#: preferences.js:116
 msgid "Launch the file"
 msgstr "Ausführen"
 
-#: preferences.js:109
+#: preferences.js:117
 msgid "Ask what to do"
 msgstr "Nachfragen, was geschehen soll"
 
-#: preferences.js:113
+#: preferences.js:121
 msgid "Show image thumbnails"
 msgstr "Miniatur-Vorschaubilder anzeigen"
 
-#: preferences.js:114
+#: preferences.js:122
 msgid "Never"
 msgstr "Nie"
 
-#: preferences.js:115
+#: preferences.js:123
 msgid "Local files only"
 msgstr "Nur Dateien auf diesem Rechner"
 
-#: preferences.js:116
+#: preferences.js:124
 msgid "Always"
 msgstr "Alle Dateien"
 
@@ -280,26 +301,35 @@ msgstr ""
 "Um Desktop Icons NG zu konfigurieren: Rechtsklick auf dem Schreibtisch und "
 "die letzte Option 'Einstellungen' wählen"
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:12
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:18
 msgid "Icon size"
 msgstr "Symbolgröße"
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:13
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:19
 msgid "Set the size for the desktop icons."
 msgstr "Die Größe der Arbeitsflächensymbole festlegen."
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:17
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:23
 msgid "Show personal folder"
 msgstr "Persönlichen Ordner anzeigen"
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:18
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:24
 msgid "Show the personal folder in the desktop."
 msgstr "Den persönlichen Ordner auf der Arbeitsfläche anzeigen."
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:22
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:28
 msgid "Show trash icon"
 msgstr "Papierkorb-Symbol anzeigen"
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:23
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:29
 msgid "Show the trash icon in the desktop."
 msgstr "Das Papierkorb-Symbol auf der Arbeitsfläche anzeigen."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:33
+#, fuzzy
+msgid "New icons start corner"
+msgstr "Symbolgröße"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:34
+msgid "Set the corner from where the icons will start to be placed."
+msgstr ""

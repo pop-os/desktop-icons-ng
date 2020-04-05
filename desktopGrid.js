@@ -282,6 +282,8 @@ var DesktopGrid = class {
         let placeX = Math.round(x * this._maxColumns / this._width);
         let placeY = Math.round(y * this._maxRows / this._height);
 
+        let cornerInversion = Prefs.get_start_corner();
+
         placeX = DesktopIconsUtil.clamp(placeX, 0, this._maxColumns - 1);
         placeY = DesktopIconsUtil.clamp(placeY, 0, this._maxRows - 1);
         if (this._isEmptyAt(placeX, placeY)) {
@@ -291,8 +293,19 @@ var DesktopGrid = class {
         let resColumn = null;
         let resRow = null;
         let minDistance = Infinity;
-        for (let column = 0; column < this._maxColumns; column++) {
-            for (let row = 0; row < this._maxRows; row++) {
+        let column, row;
+        for (let tmp_column = 0; tmp_column < this._maxColumns; tmp_column++) {
+            if (cornerInversion[0]) {
+                column = this._maxColumns - tmp_column - 1;
+            } else {
+                column = tmp_column;
+            }
+            for (let tmp_row = 0; tmp_row < this._maxRows; tmp_row++) {
+                if (cornerInversion[1]) {
+                    row = this._maxRows - tmp_row - 1;
+                } else {
+                    row = tmp_row;
+                }
                 if (!this._isEmptyAt(column, row)) {
                     continue;
                 }

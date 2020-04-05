@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-06 00:46+0200\n"
+"POT-Creation-Date: 2020-04-06 01:02+0200\n"
 "PO-Revision-Date: 2019-06-01 18:50+0200\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
@@ -223,60 +223,81 @@ msgstr "A személyes mappa megjelenítése az asztalon"
 msgid "Show the trash icon in the desktop"
 msgstr "A kuka ikon megjelenítése az asztalon"
 
+#: preferences.js:94
+#, fuzzy
+msgid "New icons alignment"
+msgstr "Ikonméret"
+
 #: preferences.js:95
+msgid "Top-left corner"
+msgstr ""
+
+#: preferences.js:96
+msgid "Top-right corner"
+msgstr ""
+
+#: preferences.js:97
+msgid "Bottom-left corner"
+msgstr ""
+
+#: preferences.js:98
+msgid "Bottom-right corner"
+msgstr ""
+
+#: preferences.js:103
 msgid "Settings shared with Nautilus"
 msgstr ""
 
-#: preferences.js:101
+#: preferences.js:109
 msgid "Click type for open files"
 msgstr ""
 
-#: preferences.js:101
+#: preferences.js:109
 msgid "Single click"
 msgstr ""
 
-#: preferences.js:101
+#: preferences.js:109
 msgid "Double click"
 msgstr ""
 
-#: preferences.js:102
+#: preferences.js:110
 #, fuzzy
 msgid "Show hidden files"
 msgstr "Megjelenítés a Fájlokban"
 
-#: preferences.js:103
+#: preferences.js:111
 msgid "Show a context menu item to delete permanently"
 msgstr ""
 
-#: preferences.js:106
+#: preferences.js:114
 msgid "Action to do when launching a program from the desktop"
 msgstr ""
 
-#: preferences.js:107
+#: preferences.js:115
 msgid "Display the content of the file"
 msgstr ""
 
-#: preferences.js:108
+#: preferences.js:116
 msgid "Launch the file"
 msgstr ""
 
-#: preferences.js:109
+#: preferences.js:117
 msgid "Ask what to do"
 msgstr ""
 
-#: preferences.js:113
+#: preferences.js:121
 msgid "Show image thumbnails"
 msgstr ""
 
-#: preferences.js:114
+#: preferences.js:122
 msgid "Never"
 msgstr ""
 
-#: preferences.js:115
+#: preferences.js:123
 msgid "Local files only"
 msgstr ""
 
-#: preferences.js:116
+#: preferences.js:124
 msgid "Always"
 msgstr ""
 
@@ -286,29 +307,38 @@ msgid ""
 "last item: 'Settings'"
 msgstr ""
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:12
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:18
 msgid "Icon size"
 msgstr "Ikonméret"
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:13
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:19
 msgid "Set the size for the desktop icons."
 msgstr "Az asztali ikonok méretének beállítása."
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:17
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:23
 msgid "Show personal folder"
 msgstr "Személyes mappa megjelenítése"
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:18
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:24
 msgid "Show the personal folder in the desktop."
 msgstr "A személyes mappa megjelenítése az asztalon."
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:22
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:28
 msgid "Show trash icon"
 msgstr "Kuka ikon megjelenítése"
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:23
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:29
 msgid "Show the trash icon in the desktop."
 msgstr "A kuka ikon megjelenítése az asztalon."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:33
+#, fuzzy
+msgid "New icons start corner"
+msgstr "Ikonméret"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:34
+msgid "Set the corner from where the icons will start to be placed."
+msgstr ""
 
 #~ msgid "Enter file name…"
 #~ msgstr "Adjon meg egy fájlnevet…"
