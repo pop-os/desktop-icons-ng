@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-05 23:27+0200\n"
-"PO-Revision-Date: 2020-03-22 21:04+0100\n"
+"POT-Creation-Date: 2020-04-06 00:20+0200\n"
+"PO-Revision-Date: 2020-04-06 00:20+0200\n"
 "Last-Translator: Sergio Costas <rastersoft@gmail.com>\n"
 "Language-Team: Español; Castellano <rastersoft@gmail.com>\n"
 "Language: es\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 3.34.0\n"
+"X-Generator: Gtranslator 3.36.0\n"
 
 #: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:176
 msgid "Cancel"
@@ -95,46 +95,50 @@ msgid "Redo"
 msgstr "Rehacer"
 
 #: desktopManager.js:396
+msgid "Select all"
+msgstr "Seleccionar todo"
+
+#: desktopManager.js:402
 msgid "Show Desktop in Files"
 msgstr "Mostrar el escritorio en Archivos"
 
-#: desktopManager.js:400 fileItem.js:757
+#: desktopManager.js:406 fileItem.js:757
 msgid "Open in Terminal"
 msgstr "Abrir en una terminal"
 
-#: desktopManager.js:406
+#: desktopManager.js:412
 msgid "Change Background…"
 msgstr "Cambiar el fondo..."
 
-#: desktopManager.js:415
+#: desktopManager.js:421
 msgid "Display Settings"
 msgstr "Preferencias de pantalla"
 
-#: desktopManager.js:422 preferences.js:83
+#: desktopManager.js:428 preferences.js:83
 msgid "Settings"
 msgstr "Preferencias"
 
-#: desktopManager.js:850 desktopManager.js:871
+#: desktopManager.js:864 desktopManager.js:885
 msgid "Error while deleting files"
 msgstr "Error al borrar ficheros"
 
-#: desktopManager.js:851
+#: desktopManager.js:865
 msgid "There was an error while trying to permanently delete the folder {:}."
 msgstr "Se produjo un error al intentar borrar la carpeta {:}."
 
-#: desktopManager.js:872
+#: desktopManager.js:886
 msgid "There was an error while trying to permanently delete the file {:}."
 msgstr "Se produjo un error al intentar borrar el archivo {:}."
 
-#: desktopManager.js:895
+#: desktopManager.js:909
 msgid "Are you sure you want to permanently delete these items?"
 msgstr "¿Borrar estos elementos de manera permanente?"
 
-#: desktopManager.js:895
+#: desktopManager.js:909
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Si borra un elemento, éste se perderá para siempre."
 
-#: desktopManager.js:986
+#: desktopManager.js:1000
 msgid "New folder"
 msgstr "Nueva carpeta"
 

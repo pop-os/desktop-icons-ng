@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-05 23:27+0200\n"
+"POT-Creation-Date: 2020-04-06 00:20+0200\n"
 "PO-Revision-Date: 2018-11-22 22:02+0300\n"
 "Last-Translator: Stas Solovey <whats_up@tut.by>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
@@ -94,48 +94,52 @@ msgid "Redo"
 msgstr "Повторить"
 
 #: desktopManager.js:396
+msgid "Select all"
+msgstr ""
+
+#: desktopManager.js:402
 #, fuzzy
 msgid "Show Desktop in Files"
 msgstr "Открыть «Рабочий стол» в «Файлах»"
 
-#: desktopManager.js:400 fileItem.js:757
+#: desktopManager.js:406 fileItem.js:757
 #, fuzzy
 msgid "Open in Terminal"
 msgstr "Открыть терминал"
 
-#: desktopManager.js:406
+#: desktopManager.js:412
 msgid "Change Background…"
 msgstr "Изменить фон…"
 
-#: desktopManager.js:415
+#: desktopManager.js:421
 msgid "Display Settings"
 msgstr "Настройки дисплея"
 
-#: desktopManager.js:422 preferences.js:83
+#: desktopManager.js:428 preferences.js:83
 msgid "Settings"
 msgstr "Параметры"
 
-#: desktopManager.js:850 desktopManager.js:871
+#: desktopManager.js:864 desktopManager.js:885
 msgid "Error while deleting files"
 msgstr ""
 
-#: desktopManager.js:851
+#: desktopManager.js:865
 msgid "There was an error while trying to permanently delete the folder {:}."
 msgstr ""
 
-#: desktopManager.js:872
+#: desktopManager.js:886
 msgid "There was an error while trying to permanently delete the file {:}."
 msgstr ""
 
-#: desktopManager.js:895
+#: desktopManager.js:909
 msgid "Are you sure you want to permanently delete these items?"
 msgstr ""
 
-#: desktopManager.js:895
+#: desktopManager.js:909
 msgid "If you delete an item, it will be permanently lost."
 msgstr ""
 
-#: desktopManager.js:986
+#: desktopManager.js:1000
 #, fuzzy
 msgid "New folder"
 msgstr "Создать папку"

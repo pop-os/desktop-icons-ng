@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-30 00:44+0200\n"
+"POT-Creation-Date: 2020-04-05 21:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,46 +90,50 @@ msgid "Redo"
 msgstr ""
 
 #: ../desktopManager.js:396
+msgid "Select all"
+msgstr ""
+
+#: ../desktopManager.js:403
 msgid "Show Desktop in Files"
 msgstr ""
 
-#: ../desktopManager.js:400 ../fileItem.js:757
+#: ../desktopManager.js:407 ../fileItem.js:757
 msgid "Open in Terminal"
 msgstr ""
 
-#: ../desktopManager.js:406
+#: ../desktopManager.js:413
 msgid "Change Background…"
 msgstr ""
 
-#: ../desktopManager.js:415
+#: ../desktopManager.js:422
 msgid "Display Settings"
 msgstr ""
 
-#: ../desktopManager.js:422 ../preferences.js:83
+#: ../desktopManager.js:429 ../preferences.js:83
 msgid "Settings"
 msgstr ""
 
-#: ../desktopManager.js:846 ../desktopManager.js:867
+#: ../desktopManager.js:865 ../desktopManager.js:886
 msgid "Error while deleting files"
 msgstr ""
 
-#: ../desktopManager.js:847
+#: ../desktopManager.js:866
 msgid "There was an error while trying to permanently delete the folder {:}."
 msgstr ""
 
-#: ../desktopManager.js:868
+#: ../desktopManager.js:887
 msgid "There was an error while trying to permanently delete the file {:}."
 msgstr ""
 
-#: ../desktopManager.js:891
+#: ../desktopManager.js:910
 msgid "Are you sure you want to permanently delete these items?"
 msgstr ""
 
-#: ../desktopManager.js:891
+#: ../desktopManager.js:910
 msgid "If you delete an item, it will be permanently lost."
 msgstr ""
 
-#: ../desktopManager.js:982
+#: ../desktopManager.js:1001
 msgid "New folder"
 msgstr ""
 

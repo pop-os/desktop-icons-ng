@@ -404,6 +404,12 @@ var DesktopManager = class {
 
         this._menu.add(new Gtk.SeparatorMenuItem());
 
+        let selectAll = new Gtk.MenuItem({label: _("Select all")});
+        selectAll.connect("activate", () => this._selectAll());
+        this._menu.add(selectAll);
+
+        this._menu.add(new Gtk.SeparatorMenuItem());
+
         this._showDesktopInFilesMenuItem = new Gtk.MenuItem({label: _("Show Desktop in Files")});
         this._showDesktopInFilesMenuItem.connect("activate", () => this._onOpenDesktopInFilesClicked());
         this._menu.add(this._showDesktopInFilesMenuItem);
@@ -434,6 +440,14 @@ var DesktopManager = class {
         this._settingsMenuItem.connect("activate", () => Prefs.showPreferences());
         this._menu.add(this._settingsMenuItem);
         this._menu.show_all();
+    }
+
+    _selectAll() {
+        for(let fileItem of this._fileList) {
+            if (fileItem.isAllSelectable) {
+                fileItem.setSelected();
+            }
+        }
     }
 
     _onOpenDesktopInFilesClicked() {
