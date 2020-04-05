@@ -835,6 +835,10 @@ var FileItem = class {
         return this._isSelected;
     }
 
+    get isAllSelectable() {
+        return this._fileExtra == Enums.FileType.NONE;
+    }
+
     _onReleaseButton(actor, event) {
         let button = event.get_button()[1];
         if (button == 1) {

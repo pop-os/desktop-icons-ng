@@ -108,6 +108,8 @@ meson --prefix=$HOME/.local/ --localedir=share/gnome-shell/extensions/ding@raste
 ninja -C .build install
 ```
 
+or just run the `local_install.sh` script.
+
 It is strongly recommended to delete the destination folder
 ($HOME/.local/share/gnome-shell/extensions/ding@rastersoft.com) before doing this, to ensure that no old
 data is kept.

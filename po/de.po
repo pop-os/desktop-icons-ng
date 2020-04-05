@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-05 23:27+0200\n"
+"POT-Creation-Date: 2020-04-06 00:20+0200\n"
 "PO-Revision-Date: 2020-03-30 11:56+0200\n"
 "Last-Translator: Tim Hofstede <phokas@mail.de>\n"
 "Language-Team: German <phokas@mail.de>\n"
@@ -89,46 +89,50 @@ msgid "Redo"
 msgstr "Wiederholen"
 
 #: desktopManager.js:396
+msgid "Select all"
+msgstr ""
+
+#: desktopManager.js:402
 msgid "Show Desktop in Files"
 msgstr "Schreibtisch in Dateien anzeigen"
 
-#: desktopManager.js:400 fileItem.js:757
+#: desktopManager.js:406 fileItem.js:757
 msgid "Open in Terminal"
 msgstr "Im Terminal öffnen"
 
-#: desktopManager.js:406
+#: desktopManager.js:412
 msgid "Change Background…"
 msgstr "Hintergrund ändern…"
 
-#: desktopManager.js:415
+#: desktopManager.js:421
 msgid "Display Settings"
 msgstr "Anzeigeeinstellungen"
 
-#: desktopManager.js:422 preferences.js:83
+#: desktopManager.js:428 preferences.js:83
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: desktopManager.js:850 desktopManager.js:871
+#: desktopManager.js:864 desktopManager.js:885
 msgid "Error while deleting files"
 msgstr "Fehler beim Löschen der Dateien"
 
-#: desktopManager.js:851
+#: desktopManager.js:865
 msgid "There was an error while trying to permanently delete the folder {:}."
 msgstr "Ein Fehler trat beim dauerhaften Löschen von Ordner {:} auf."
 
-#: desktopManager.js:872
+#: desktopManager.js:886
 msgid "There was an error while trying to permanently delete the file {:}."
 msgstr "Ein Fehler trat beim dauerhaften Löschen von Datei {:} auf."
 
-#: desktopManager.js:895
+#: desktopManager.js:909
 msgid "Are you sure you want to permanently delete these items?"
 msgstr "Sind Sie sicher, dass Sie diese Dateien dauerhaft löschen wollen?"
 
-#: desktopManager.js:895
+#: desktopManager.js:909
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Sobald Sie ein Objekt löschen, geht es dauerhaft verloren."
 
-#: desktopManager.js:986
+#: desktopManager.js:1000
 msgid "New folder"
 msgstr "Neuer Ordner"
 

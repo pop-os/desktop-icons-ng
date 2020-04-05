@@ -115,31 +115,3 @@ function init() {
         }
     );
 }
-
-function openFileWithOtherApplication(filePath) {
-    let fdList = new Gio.UnixFDList();
-    let channel = GLib.IOChannel.new_file(filePath, "r");
-    fdList.append(channel.unix_get_fd());
-    channel.set_close_on_unref(true);
-    let builder = GLib.VariantBuilder.new(GLib.VariantType.new("a{sv}"));
-    let options = builder.end();
-    let parameters = GLib.Variant.new_tuple([GLib.Variant.new_string("0"),
-                                             GLib.Variant.new_handle(0),
-                                             options]);
-    Gio.bus_get(Gio.BusType.SESSION, null,
-        (source, result) => {
-            let dbus_connection = Gio.bus_get_finish(result);
-            dbus_connection.call_with_unix_fd_list("org.freedesktop.portal.Desktop",
-                                                   "/org/freedesktop/portal/desktop",
-                                                   "org.freedesktop.portal.OpenURI",
-                                                   "OpenFile",
-                                                   parameters,
-                                                   GLib.VariantType.new("o"),
-                                                   Gio.DBusCallFlags.NONE,
-                                                   -1,
-                                                   fdList,
-                                                   null,
-                                                   null);
-        }
-    );
-}

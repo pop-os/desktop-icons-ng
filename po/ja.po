@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-05 23:27+0200\n"
+"POT-Creation-Date: 2020-04-06 00:20+0200\n"
 "PO-Revision-Date: 2019-03-15 06:30+0000\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -94,46 +94,50 @@ msgid "Redo"
 msgstr "やり直す"
 
 #: desktopManager.js:396
+msgid "Select all"
+msgstr ""
+
+#: desktopManager.js:402
 msgid "Show Desktop in Files"
 msgstr "“ファイル”でデスクトップを表示する"
 
-#: desktopManager.js:400 fileItem.js:757
+#: desktopManager.js:406 fileItem.js:757
 msgid "Open in Terminal"
 msgstr "端末を開く"
 
-#: desktopManager.js:406
+#: desktopManager.js:412
 msgid "Change Background…"
 msgstr "背景を変更する…"
 
-#: desktopManager.js:415
+#: desktopManager.js:421
 msgid "Display Settings"
 msgstr "ディスプレイの設定"
 
-#: desktopManager.js:422 preferences.js:83
+#: desktopManager.js:428 preferences.js:83
 msgid "Settings"
 msgstr "設定"
 
-#: desktopManager.js:850 desktopManager.js:871
+#: desktopManager.js:864 desktopManager.js:885
 msgid "Error while deleting files"
 msgstr ""
 
-#: desktopManager.js:851
+#: desktopManager.js:865
 msgid "There was an error while trying to permanently delete the folder {:}."
 msgstr ""
 
-#: desktopManager.js:872
+#: desktopManager.js:886
 msgid "There was an error while trying to permanently delete the file {:}."
 msgstr ""
 
-#: desktopManager.js:895
+#: desktopManager.js:909
 msgid "Are you sure you want to permanently delete these items?"
 msgstr ""
 
-#: desktopManager.js:895
+#: desktopManager.js:909
 msgid "If you delete an item, it will be permanently lost."
 msgstr ""
 
-#: desktopManager.js:986
+#: desktopManager.js:1000
 #, fuzzy
 msgid "New folder"
 msgstr "新しいフォルダー"
