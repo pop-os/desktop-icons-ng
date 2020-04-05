@@ -142,7 +142,8 @@ function enable() {
  * @param {string} title The window title
  * @returns The desktop number, or -1 if there is no valid number
  */
-function getDesktopNumber(title) {
+function getDesktopNumber(window) {
+    let title = window.get_title();
     try {
         let pos = title.indexOf(" ");
         if (pos == -1) {
@@ -202,13 +203,12 @@ function innerEnable(removeId) {
                 * course, that value isn't fixed, but calculated automatically each time the
                 * desktop geometry changes, so a bigger top bar will work fine.
                 */
-                let desktopNumber = getDesktopNumber(window.get_title());
+                let desktopNumber = getDesktopNumber(window);
                 if ((desktopNumber >= 0) && (desktopNumber < data.desktopCoordinates.length)) {
                     window.move_frame(false,
                                       data.desktopCoordinates[desktopNumber].x,
                                       data.desktopCoordinates[desktopNumber].y);
                     // Show the window in all desktops, and send it to the bottom
-                    window.stick();
                     window.lower();
                     data.desktopWindows.push(window);
                     // keep the window at the bottom when the user clicks on it
@@ -217,7 +217,7 @@ function innerEnable(removeId) {
                     });
                     // Don't allow to move it with Alt+F7 or other special keys
                     window.connect('position-changed', () => {
-                        let desktopNumber = getDesktopNumber(window.get_title());
+                        let desktopNumber = getDesktopNumber(window);
                         window.move_frame(false,
                                           data.desktopCoordinates[desktopNumber].x,
                                           data.desktopCoordinates[desktopNumber].y);
@@ -233,8 +233,14 @@ function innerEnable(removeId) {
              * If the user switches to another workspace, ensure that the desktop window
              * is sent to the bottom, thus giving the focus to any window that is there
              */
+            let currentWorkspace = global.workspace_manager.get_active_workspace();
             for (let desktopWindow of data.desktopWindows) {
                 try {
+                    desktopWindow.change_workspace(currentWorkspace);
+                    let desktopNumber = getDesktopNumber(desktopWindow);
+                    window.move_frame(false,
+                                      data.desktopCoordinates[desktopNumber].x,
+                                      data.desktopCoordinates[desktopNumber].y);
                     desktopWindow.lower();
                 } catch {}
             }

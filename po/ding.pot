@@ -1,25 +1,25 @@
-# Japanese translation for desktop-icons.
-# Copyright (C) 2019 desktop-icons's COPYRIGHT HOLDER
-# This file is distributed under the same license as the desktop-icons package.
-# sicklylife <translation@sicklylife.jp>, 2019.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the ding package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: desktop-icons master\n"
+"Project-Id-Version: ding\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-06 00:46+0200\n"
-"PO-Revision-Date: 2019-03-15 06:30+0000\n"
-"Last-Translator: sicklylife <translation@sicklylife.jp>\n"
-"Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
-"Language: ja\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:176
 msgid "Cancel"
-msgstr "キャンセル"
+msgstr ""
 
 #: askConfirmPopup.js:36
 msgid "Delete"
@@ -27,22 +27,19 @@ msgstr ""
 
 #: askNamePopup.js:35
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: askRenamePopup.js:40
-#, fuzzy
 msgid "Folder name"
-msgstr "新しいフォルダー名"
+msgstr ""
 
 #: askRenamePopup.js:40
-#, fuzzy
 msgid "File name"
-msgstr "名前の変更…"
+msgstr ""
 
 #: askRenamePopup.js:47
-#, fuzzy
 msgid "Rename"
-msgstr "名前の変更…"
+msgstr ""
 
 #: desktopIconsUtil.js:74
 msgid "Command not found"
@@ -57,9 +54,8 @@ msgid "“{0}” is an executable text file."
 msgstr ""
 
 #: desktopIconsUtil.js:172
-#, fuzzy
 msgid "Execute in a terminal"
-msgstr "端末を開く"
+msgstr ""
 
 #: desktopIconsUtil.js:174
 msgid "Show"
@@ -79,7 +75,7 @@ msgstr ""
 
 #: desktopManager.js:410
 msgid "New Folder"
-msgstr "新しいフォルダー"
+msgstr ""
 
 #: desktopManager.js:414
 msgid "New Document"
@@ -87,15 +83,15 @@ msgstr ""
 
 #: desktopManager.js:419
 msgid "Paste"
-msgstr "貼り付け"
+msgstr ""
 
 #: desktopManager.js:423
 msgid "Undo"
-msgstr "元に戻す"
+msgstr ""
 
 #: desktopManager.js:427
 msgid "Redo"
-msgstr "やり直す"
+msgstr ""
 
 #: desktopManager.js:433
 msgid "Select all"
@@ -103,23 +99,23 @@ msgstr ""
 
 #: desktopManager.js:439
 msgid "Show Desktop in Files"
-msgstr "“ファイル”でデスクトップを表示する"
+msgstr ""
 
 #: desktopManager.js:443 fileItem.js:757
 msgid "Open in Terminal"
-msgstr "端末を開く"
+msgstr ""
 
 #: desktopManager.js:449
 msgid "Change Background…"
-msgstr "背景を変更する…"
+msgstr ""
 
 #: desktopManager.js:458
 msgid "Display Settings"
-msgstr "ディスプレイの設定"
+msgstr ""
 
 #: desktopManager.js:465 preferences.js:83
 msgid "Settings"
-msgstr "設定"
+msgstr ""
 
 #: desktopManager.js:913 desktopManager.js:934
 msgid "Error while deleting files"
@@ -142,41 +138,40 @@ msgid "If you delete an item, it will be permanently lost."
 msgstr ""
 
 #: desktopManager.js:1049
-#, fuzzy
 msgid "New folder"
-msgstr "新しいフォルダー"
+msgstr ""
 
 #: fileItem.js:632
 msgid "Don’t Allow Launching"
-msgstr "起動を許可しない"
+msgstr ""
 
 #: fileItem.js:634
 msgid "Allow Launching"
-msgstr "起動を許可する"
+msgstr ""
 
 #: fileItem.js:700
 msgid "Open"
-msgstr "開く"
+msgstr ""
 
 #: fileItem.js:706
 msgid "Open With Other Application"
-msgstr "別のアプリケーションで開く"
+msgstr ""
 
 #: fileItem.js:713
 msgid "Cut"
-msgstr "切り取り"
+msgstr ""
 
 #: fileItem.js:716
 msgid "Copy"
-msgstr "コピー"
+msgstr ""
 
 #: fileItem.js:720
 msgid "Rename…"
-msgstr "名前の変更…"
+msgstr ""
 
 #: fileItem.js:724
 msgid "Move to Trash"
-msgstr "ゴミ箱へ移動する"
+msgstr ""
 
 #: fileItem.js:728
 msgid "Delete permanently"
@@ -184,19 +179,19 @@ msgstr ""
 
 #: fileItem.js:741
 msgid "Empty Trash"
-msgstr "ゴミ箱を空にする"
+msgstr ""
 
 #: fileItem.js:749
 msgid "Properties"
-msgstr "プロパティ"
+msgstr ""
 
 #: fileItem.js:753
 msgid "Show in Files"
-msgstr "“ファイル”で表示する"
+msgstr ""
 
 #: preferences.js:89
 msgid "Size for the desktop icons"
-msgstr "デスクトップアイコンのサイズ"
+msgstr ""
 
 #: preferences.js:89
 msgid "Tiny"
@@ -204,23 +199,23 @@ msgstr ""
 
 #: preferences.js:89
 msgid "Small"
-msgstr "小さい"
+msgstr ""
 
 #: preferences.js:89
 msgid "Standard"
-msgstr "標準"
+msgstr ""
 
 #: preferences.js:89
 msgid "Large"
-msgstr "大きい"
+msgstr ""
 
 #: preferences.js:90
 msgid "Show the personal folder in the desktop"
-msgstr "デスクトップにホームフォルダーを表示する"
+msgstr ""
 
 #: preferences.js:91
 msgid "Show the trash icon in the desktop"
-msgstr "デスクトップにゴミ箱を表示する"
+msgstr ""
 
 #: preferences.js:95
 msgid "Settings shared with Nautilus"
@@ -239,9 +234,8 @@ msgid "Double click"
 msgstr ""
 
 #: preferences.js:102
-#, fuzzy
 msgid "Show hidden files"
-msgstr "“ファイル”で表示する"
+msgstr ""
 
 #: preferences.js:103
 msgid "Show a context menu item to delete permanently"
@@ -287,45 +281,24 @@ msgstr ""
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:12
 msgid "Icon size"
-msgstr "アイコンサイズ"
+msgstr ""
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:13
 msgid "Set the size for the desktop icons."
-msgstr "デスクトップのアイコンサイズを設定します。"
+msgstr ""
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:17
 msgid "Show personal folder"
-msgstr "ホームフォルダーを表示する"
+msgstr ""
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:18
 msgid "Show the personal folder in the desktop."
-msgstr "デスクトップにホームフォルダーを表示します。"
+msgstr ""
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:22
 msgid "Show trash icon"
-msgstr "ゴミ箱アイコンを表示する"
+msgstr ""
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:23
 msgid "Show the trash icon in the desktop."
-msgstr "デスクトップにゴミ箱のアイコンを表示します。"
-
-#~ msgid "Enter file name…"
-#~ msgstr "ファイル名を入力してください…"
-
-#~ msgid "Create"
-#~ msgstr "作成"
-
-#~ msgid "Folder names cannot contain “/”."
-#~ msgstr "“/”は、フォルダー名に含められません。"
-
-#~ msgid "A folder cannot be called “.”."
-#~ msgstr "“.”という名前をフォルダーに付けられません。"
-
-#~ msgid "A folder cannot be called “..”."
-#~ msgstr "“..”という名前をフォルダーに付けられません。"
-
-#~ msgid "Folders with “.” at the beginning of their name are hidden."
-#~ msgstr "名前が“.”で始まるフォルダーは、隠しフォルダーになります。"
-
-#~ msgid "There is already a file or folder with that name."
-#~ msgstr "その名前のファイルかフォルダーがすでに存在します。"
+msgstr ""
