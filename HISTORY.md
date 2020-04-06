@@ -4,7 +4,11 @@
       * Copy files instead of move when using DnD into another drive
       * Removed flicker when a file is created or removed
       * Fix DnD for Chrome and other programs
-      * Use GtkApplication
+      * Template support
+      * Allow to choose the align corner for the icons
+      * Added "Select all" option
+      * Added support for preview
+      * Creates folders in the place where the mouse cursor is
 
 * Version 0.10.0 (2020/02/22)
       * Added 'tiny' icon size
