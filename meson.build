@@ -29,7 +29,8 @@ install_data([
     'metadata.json',
     'preferences.js',
     'showErrorPopup.js',
-    'stylesheet.css'
+    'stylesheet.css',
+    'templateManager.js'
   ],
   install_dir: extensions_dir
 )
