@@ -78,7 +78,7 @@ msgstr "Neuer Ordner"
 
 #: desktopManager.js:414
 msgid "New Document"
-msgstr ""
+msgstr "Neues Dokument"
 
 #: desktopManager.js:419
 msgid "Paste"
@@ -94,7 +94,7 @@ msgstr "Wiederholen"
 
 #: desktopManager.js:433
 msgid "Select all"
-msgstr ""
+msgstr "Alles auswählen"
 
 #: desktopManager.js:439
 msgid "Show Desktop in Files"
@@ -217,25 +217,24 @@ msgid "Show the trash icon in the desktop"
 msgstr "Papierkorb-Symbol auf der Arbeitsfläche anzeigen"
 
 #: preferences.js:94
-#, fuzzy
 msgid "New icons alignment"
-msgstr "Symbolgröße"
+msgstr "Ausrichtung der Arbeitsflächensymbole"
 
 #: preferences.js:95
 msgid "Top-left corner"
-msgstr ""
+msgstr "Ecke oben links"
 
 #: preferences.js:96
 msgid "Top-right corner"
-msgstr ""
+msgstr "Ecke oben rechts"
 
 #: preferences.js:97
 msgid "Bottom-left corner"
-msgstr ""
+msgstr "Ecke unten links"
 
 #: preferences.js:98
 msgid "Bottom-right corner"
-msgstr ""
+msgstr "Ecke unten rechts"
 
 #: preferences.js:103
 msgid "Settings shared with Nautilus"
@@ -263,7 +262,7 @@ msgstr "Aktion zum dauerhaften Löschen anzeigen"
 
 #: preferences.js:114
 msgid "Action to do when launching a program from the desktop"
-msgstr ""
+msgstr "Ausführbare Textdateien auf dem Schreibtisch"
 
 #: preferences.js:115
 msgid "Display the content of the file"
@@ -294,12 +293,8 @@ msgid "Always"
 msgstr "Alle Dateien"
 
 #: prefs.js:39
-msgid ""
-"To configure Desktop Icons NG, do right-click in the desktop and choose the "
-"last item: 'Settings'"
-msgstr ""
-"Um Desktop Icons NG zu konfigurieren: Rechtsklick auf dem Schreibtisch und "
-"die letzte Option 'Einstellungen' wählen"
+msgid "To configure Desktop Icons NG, do right-click in the desktop and choose the last item: 'Settings'"
+msgstr "Um Desktop Icons NG zu konfigurieren: Rechtsklick auf dem Schreibtisch und die letzte Option 'Einstellungen' wählen"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:18
 msgid "Icon size"
@@ -326,10 +321,9 @@ msgid "Show the trash icon in the desktop."
 msgstr "Das Papierkorb-Symbol auf der Arbeitsfläche anzeigen."
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:33
-#, fuzzy
 msgid "New icons start corner"
-msgstr "Symbolgröße"
+msgstr "Ecke für neue Arbeitsflächensymbole"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:34
 msgid "Set the corner from where the icons will start to be placed."
-msgstr ""
+msgstr "Lege die Ecke fest, von der aus neue Arbeitsflächensymbole platziert werden."
