@@ -109,38 +109,44 @@ class ManageWindow {
                             break;
                         }
                     }
-                    if (this._keepAtTop != keepAtTop) {
-                        if (this._keepAtTop) {
-                            this._window.make_above();
-                        } else {
-                            this._window.unmake_above();
-                        }
-                    }
                 } catch(e) {
                     print(`Exception ${e.message}`);
                 }
-                this.refreshState();
+            }
+            if (this._keepAtTop != keepAtTop) {
+                if (this._keepAtTop) {
+                    this._window.make_above();
+                } else {
+                    this._window.unmake_above();
+                }
+            }
+            if (this._keepAtBottom) {
+                this._window.lower();
+            }
+            if ((this._x !== null) && (this._y !== null)) {
+                this._window.move_frame(false, this._x, this._y);
             }
         }
     }
 
-    refreshState() {
+    refreshState(checkWorkspace) {
         if (this._keepAtBottom) {
             this._window.lower();
         }
-        if (this._showInAllDesktops) {
+        if (checkWorkspace && this._showInAllDesktops) {
             let currentWorkspace = global.workspace_manager.get_active_workspace();
             if (!this._window.located_on_workspace(currentWorkspace)) {
                 this._window.change_workspace(currentWorkspace);
             }
         }
-        if ((this._x !== null) && (this._y !== null)) {
-            this._window.move_frame(false, this._x, this._y);
-        }
     }
 
     get hideFromWindowList() {
         return this._hideFromWindowList;
+    }
+
+    get keepAtBottom() {
+        return this._keepAtBottom;
     }
 }
 
@@ -165,14 +171,14 @@ var EmulateX11WindowType = class {
         replaceMethod(Shell.Global, 'get_window_actors', newGetWindowActors);
         replaceMethod(Meta.Workspace, 'list_windows', newListWindows);
         this._idMap = global.window_manager.connect_after('map', () => {
-            this._refreshWindows();
+            this._refreshWindows(false);
         });
 
         /* Something odd happens with "stick" when using popup submenus, so
            this implements the same functionality
          */
         this._switchWorkspaceId = global.window_manager.connect('switch-workspace', () => {
-            this._refreshWindows();
+            this._refreshWindows(true);
         });
 
         /* But in Overview mode it is paramount to not change the workspace to emulate
@@ -184,7 +190,7 @@ var EmulateX11WindowType = class {
 
 		this._hidingId = Main.overview.connect('hiding', () => {
             this._enableRefresh = true;
-            this._refreshWindows();
+            this._refreshWindows(true);
         });
     }
 
@@ -243,10 +249,27 @@ var EmulateX11WindowType = class {
         window.customJS_ding = null;
     }
 
-    _refreshWindows() {
+    _refreshWindows(checkWorkspace) {
         if (this._enableRefresh) {
             for (let window of this._windowList) {
-                window.customJS_ding.refreshState();
+                window.customJS_ding.refreshState(checkWorkspace);
+            }
+            if (checkWorkspace) {
+                // activate the top-most window
+                let windows = global.display.get_tab_list(Meta.TabList.NORMAL_ALL, global.workspace_manager.get_active_workspace());
+                let lastWindow = null;
+                for (let window of windows) {
+                    lastWindow = window;
+                    if (!window.customJS_ding || !window.customJS_ding.keepAtBottom) {
+                        Main.activateWindow(window);
+                        lastWindow = null;
+                        break;
+                    }
+                }
+                if (lastWindow) {
+                    // if there is only the bottom window, activate it
+                    Main.activateWindow(lastWindow);
+                }
             }
         }
     }
