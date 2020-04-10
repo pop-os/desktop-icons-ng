@@ -23,6 +23,7 @@ install_data([
     'desktopIconsUtil.js',
     'desktopManager.js',
     'ding.js',
+    'emulateX11WindowType.js',
     'enums.js',
     'extension.js',
     'fileItem.js',
