@@ -35,7 +35,7 @@ var elementSpacing = 2;
 
 var DesktopGrid = class {
 
-    constructor(desktopManager, UUID, desktopDescription, asDesktop) {
+    constructor(desktopManager, desktopName, desktopDescription, asDesktop) {
 
         this._destroying = false;
         this._desktopManager = desktopManager;
@@ -45,14 +45,12 @@ var DesktopGrid = class {
         this._y = desktopDescription.y;
         this._width = Math.floor(desktopDescription.width / this._zoom);
         this._height = Math.floor(desktopDescription.height / this._zoom);
-        this._UUID = UUID;
         this._maxColumns = Math.floor(this._width / (Prefs.get_desired_width() + 4 * elementSpacing));
         this._maxRows =  Math.floor(this._height / (Prefs.get_desired_height() + 4 * elementSpacing));
         this._elementWidth = Math.floor(this._width / this._maxColumns);
         this._elementHeight = Math.floor(this._height / this._maxRows);
 
-        this._window = new Gtk.Window();
-        this._window.set_title(this._UUID);
+        this._window = new Gtk.Window({"title": desktopName});
         if (asDesktop) {
             this._window.set_decorated(false);
             this._window.set_deletable(false);

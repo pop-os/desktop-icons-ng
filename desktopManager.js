@@ -114,9 +114,9 @@ var DesktopManager = class {
             let desktop = this._desktopList[desktopIndex];
             if (this._asDesktop) {
                 if (this._appUuid) {
-                    var desktopName = `${this._appUuid} ${desktopIndex}`;
+                    var desktopName = `${this._appUuid} @!${desktop.x},${desktop.y};BDH`;
                 } else {
-                    var desktopName = `${desktopIndex}`;
+                    var desktopName = `@!${desktop.x},${desktop.y};BDH`;
                 }
             } else {
                 var desktopName = `DING ${desktopIndex}`;
