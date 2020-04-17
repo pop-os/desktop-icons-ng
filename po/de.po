@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-06 01:02+0200\n"
+"POT-Creation-Date: 2020-04-17 21:13+0200\n"
 "PO-Revision-Date: 2020-03-30 11:56+0200\n"
 "Last-Translator: Tim Hofstede <phokas@mail.de>\n"
 "Language-Team: German <phokas@mail.de>\n"
@@ -293,8 +293,12 @@ msgid "Always"
 msgstr "Alle Dateien"
 
 #: prefs.js:39
-msgid "To configure Desktop Icons NG, do right-click in the desktop and choose the last item: 'Settings'"
-msgstr "Um Desktop Icons NG zu konfigurieren: Rechtsklick auf dem Schreibtisch und die letzte Option 'Einstellungen' wählen"
+msgid ""
+"To configure Desktop Icons NG, do right-click in the desktop and choose the "
+"last item: 'Settings'"
+msgstr ""
+"Um Desktop Icons NG zu konfigurieren: Rechtsklick auf dem Schreibtisch und "
+"die letzte Option 'Einstellungen' wählen"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:18
 msgid "Icon size"
@@ -326,4 +330,5 @@ msgstr "Ecke für neue Arbeitsflächensymbole"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:34
 msgid "Set the corner from where the icons will start to be placed."
-msgstr "Lege die Ecke fest, von der aus neue Arbeitsflächensymbole platziert werden."
+msgstr ""
+"Lege die Ecke fest, von der aus neue Arbeitsflächensymbole platziert werden."
