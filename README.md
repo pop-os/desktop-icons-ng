@@ -93,6 +93,12 @@ files must be in the current path.
   with a size of 1280x720 pixels.
 
 
+## Manual installation
+
+The easiest way of installing DING is to run the `local_install.sh` script. It performs the build steps
+specified in the next section.
+
+
 ## Build with Meson
 
 The project uses a build system called [Meson](https://mesonbuild.com/). You can install
@@ -107,9 +113,6 @@ project and install it:
 meson --prefix=$HOME/.local/ --localedir=share/gnome-shell/extensions/ding@rastersoft.com/locale .build
 ninja -C .build install
 ```
-
-or just run the `local_install.sh` script.
-
 It is strongly recommended to delete the destination folder
 ($HOME/.local/share/gnome-shell/extensions/ding@rastersoft.com) before doing this, to ensure that no old
 data is kept.
