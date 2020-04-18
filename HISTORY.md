@@ -4,6 +4,7 @@ Version 0.12.0
       * Don't fail if there is no TEMPLATES folder
       * Support Ctrl+A for 'select all'
       * Use "Home" as the name of the user's personal folder
+
 * Version 0.11.0 (2020/04/17)
       * Copy files instead of move when using DnD into another drive
       * Removed flicker when a file is created or removed
