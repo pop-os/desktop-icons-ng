@@ -72,7 +72,9 @@ var TemplateManager = class {
                     this._templates = [];
                     let info;
                     while ((info = fileEnum.next_file(null))) {
-                        this._templates.push(info);
+                        if (info.get_file_type() != Gio.FileType.DIRECTORY) {
+                            this._templates.push(info);
+                        }
                     }
                 } catch(e) {}
             }
