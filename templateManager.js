@@ -26,6 +26,9 @@ var TemplateManager = class {
         this._templates = [];
         this._templatesEnumerateCancellable = null;
         this._templateDir = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_TEMPLATES);
+        if (this._templateDir == GLib.get_home_dir()) {
+            this._templateDir = null;
+        }
         if (this._templateDir != null) {
             this._templateGFile = Gio.File.new_for_path(this._templateDir);
             this._monitor = this._templateGFile.monitor_directory(Gio.FileMonitorFlags.NONE, null);
