@@ -401,6 +401,9 @@ var DesktopManager = class {
                 DBusUtils.GnomeNautilusPreviewProxy.ShowFileRemote(selection[0].uri, 0, false);
                 return true;
             }
+        } else if (isCtrl && ((symbol == Gdk.KEY_A) || (symbol == Gdk.KEY_a))) {
+            this._selectAll();
+            return true;
         }
         return false;
     }
