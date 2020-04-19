@@ -23,15 +23,19 @@ const DesktopIconsUtil = imports.desktopIconsUtil;
 var TemplateManager = class {
 
     constructor() {
-        this._templateDir = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_TEMPLATES);
-        this._templateGFile = Gio.File.new_for_path(this._templateDir);
         this._templates = [];
         this._templatesEnumerateCancellable = null;
-        this._monitor = this._templateGFile.monitor_directory(Gio.FileMonitorFlags.NONE, null);
-        this._monitor.connect("changed", () => {
+        this._templateDir = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_TEMPLATES);
+        if (this._templateDir != null) {
+            this._templateGFile = Gio.File.new_for_path(this._templateDir);
+            this._monitor = this._templateGFile.monitor_directory(Gio.FileMonitorFlags.NONE, null);
+            this._monitor.connect("changed", () => {
+                this._refreshTemplates();
+            });
             this._refreshTemplates();
-        });
-        this._refreshTemplates();
+        } else {
+            this._templateGFile = null;
+        }
     }
 
     getTemplates() {
@@ -73,6 +77,9 @@ var TemplateManager = class {
     }
 
     getTemplateFile(name) {
+        if (this._templateGFile == null) {
+            return null;
+        }
         let template = Gio.File.new_for_path(GLib.build_filenamev([this._templateDir, name]));
         if (template.query_exists(null)) {
             return template;
