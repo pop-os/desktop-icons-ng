@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ding\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-17 21:13+0200\n"
+"POT-Creation-Date: 2020-04-25 00:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,119 +73,124 @@ msgstr ""
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr ""
 
-#: desktopManager.js:410
+#: desktopManager.js:413
 msgid "New Folder"
 msgstr ""
 
-#: desktopManager.js:414
+#: desktopManager.js:417
 msgid "New Document"
 msgstr ""
 
-#: desktopManager.js:419
+#: desktopManager.js:422
 msgid "Paste"
 msgstr ""
 
-#: desktopManager.js:423
+#: desktopManager.js:426
 msgid "Undo"
 msgstr ""
 
-#: desktopManager.js:427
+#: desktopManager.js:430
 msgid "Redo"
 msgstr ""
 
-#: desktopManager.js:433
+#: desktopManager.js:436
 msgid "Select all"
 msgstr ""
 
-#: desktopManager.js:439
+#: desktopManager.js:442
 msgid "Show Desktop in Files"
 msgstr ""
 
-#: desktopManager.js:443 fileItem.js:757
+#: desktopManager.js:446 fileItem.js:761
 msgid "Open in Terminal"
 msgstr ""
 
-#: desktopManager.js:449
+#: desktopManager.js:452
 msgid "Change Background…"
 msgstr ""
 
-#: desktopManager.js:458
+#: desktopManager.js:461
 msgid "Display Settings"
 msgstr ""
 
-#: desktopManager.js:465 preferences.js:83
+#: desktopManager.js:468 preferences.js:83
 msgid "Settings"
 msgstr ""
 
-#: desktopManager.js:913 desktopManager.js:934
+#: desktopManager.js:916 desktopManager.js:937
 msgid "Error while deleting files"
 msgstr ""
 
-#: desktopManager.js:914
+#: desktopManager.js:917
 msgid "There was an error while trying to permanently delete the folder {:}."
 msgstr ""
 
-#: desktopManager.js:935
+#: desktopManager.js:938
 msgid "There was an error while trying to permanently delete the file {:}."
 msgstr ""
 
-#: desktopManager.js:958
+#: desktopManager.js:961
 msgid "Are you sure you want to permanently delete these items?"
 msgstr ""
 
-#: desktopManager.js:958
+#: desktopManager.js:961
 msgid "If you delete an item, it will be permanently lost."
 msgstr ""
 
-#: desktopManager.js:1049
+#: desktopManager.js:1052
 msgid "New folder"
 msgstr ""
 
-#: fileItem.js:632
+#. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
+#: fileItem.js:143
+msgid "Home"
+msgstr ""
+
+#: fileItem.js:636
 msgid "Don’t Allow Launching"
 msgstr ""
 
-#: fileItem.js:634
+#: fileItem.js:638
 msgid "Allow Launching"
 msgstr ""
 
-#: fileItem.js:700
+#: fileItem.js:704
 msgid "Open"
 msgstr ""
 
-#: fileItem.js:706
+#: fileItem.js:710
 msgid "Open With Other Application"
 msgstr ""
 
-#: fileItem.js:713
+#: fileItem.js:717
 msgid "Cut"
 msgstr ""
 
-#: fileItem.js:716
+#: fileItem.js:720
 msgid "Copy"
 msgstr ""
 
-#: fileItem.js:720
+#: fileItem.js:724
 msgid "Rename…"
 msgstr ""
 
-#: fileItem.js:724
+#: fileItem.js:728
 msgid "Move to Trash"
 msgstr ""
 
-#: fileItem.js:728
+#: fileItem.js:732
 msgid "Delete permanently"
 msgstr ""
 
-#: fileItem.js:741
+#: fileItem.js:745
 msgid "Empty Trash"
 msgstr ""
 
-#: fileItem.js:749
+#: fileItem.js:753
 msgid "Properties"
 msgstr ""
 
-#: fileItem.js:753
+#: fileItem.js:757
 msgid "Show in Files"
 msgstr ""
 

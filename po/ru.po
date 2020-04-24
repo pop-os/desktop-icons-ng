@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-17 21:13+0200\n"
+"POT-Creation-Date: 2020-04-25 00:58+0200\n"
 "PO-Revision-Date: 2018-11-22 22:02+0300\n"
 "Last-Translator: Stas Solovey <whats_up@tut.by>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
@@ -77,124 +77,129 @@ msgstr ""
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr ""
 
-#: desktopManager.js:410
+#: desktopManager.js:413
 msgid "New Folder"
 msgstr "Создать папку"
 
-#: desktopManager.js:414
+#: desktopManager.js:417
 msgid "New Document"
 msgstr ""
 
-#: desktopManager.js:419
+#: desktopManager.js:422
 msgid "Paste"
 msgstr "Вставить"
 
-#: desktopManager.js:423
+#: desktopManager.js:426
 msgid "Undo"
 msgstr "Отменить"
 
-#: desktopManager.js:427
+#: desktopManager.js:430
 msgid "Redo"
 msgstr "Повторить"
 
-#: desktopManager.js:433
+#: desktopManager.js:436
 msgid "Select all"
 msgstr ""
 
-#: desktopManager.js:439
+#: desktopManager.js:442
 #, fuzzy
 msgid "Show Desktop in Files"
 msgstr "Открыть «Рабочий стол» в «Файлах»"
 
-#: desktopManager.js:443 fileItem.js:757
+#: desktopManager.js:446 fileItem.js:761
 #, fuzzy
 msgid "Open in Terminal"
 msgstr "Открыть терминал"
 
-#: desktopManager.js:449
+#: desktopManager.js:452
 msgid "Change Background…"
 msgstr "Изменить фон…"
 
-#: desktopManager.js:458
+#: desktopManager.js:461
 msgid "Display Settings"
 msgstr "Настройки дисплея"
 
-#: desktopManager.js:465 preferences.js:83
+#: desktopManager.js:468 preferences.js:83
 msgid "Settings"
 msgstr "Параметры"
 
-#: desktopManager.js:913 desktopManager.js:934
+#: desktopManager.js:916 desktopManager.js:937
 msgid "Error while deleting files"
 msgstr ""
 
-#: desktopManager.js:914
+#: desktopManager.js:917
 msgid "There was an error while trying to permanently delete the folder {:}."
 msgstr ""
 
-#: desktopManager.js:935
+#: desktopManager.js:938
 msgid "There was an error while trying to permanently delete the file {:}."
 msgstr ""
 
-#: desktopManager.js:958
+#: desktopManager.js:961
 msgid "Are you sure you want to permanently delete these items?"
 msgstr ""
 
-#: desktopManager.js:958
+#: desktopManager.js:961
 msgid "If you delete an item, it will be permanently lost."
 msgstr ""
 
-#: desktopManager.js:1049
+#: desktopManager.js:1052
 #, fuzzy
 msgid "New folder"
 msgstr "Создать папку"
 
-#: fileItem.js:632
+#. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
+#: fileItem.js:143
+msgid "Home"
+msgstr ""
+
+#: fileItem.js:636
 msgid "Don’t Allow Launching"
 msgstr ""
 
-#: fileItem.js:634
+#: fileItem.js:638
 msgid "Allow Launching"
 msgstr ""
 
-#: fileItem.js:700
+#: fileItem.js:704
 msgid "Open"
 msgstr "Открыть"
 
-#: fileItem.js:706
+#: fileItem.js:710
 msgid "Open With Other Application"
 msgstr ""
 
-#: fileItem.js:713
+#: fileItem.js:717
 msgid "Cut"
 msgstr "Вырезать"
 
-#: fileItem.js:716
+#: fileItem.js:720
 msgid "Copy"
 msgstr "Вставить"
 
-#: fileItem.js:720
+#: fileItem.js:724
 #, fuzzy
 msgid "Rename…"
 msgstr "Переименовать"
 
-#: fileItem.js:724
+#: fileItem.js:728
 msgid "Move to Trash"
 msgstr "Переместить в корзину"
 
-#: fileItem.js:728
+#: fileItem.js:732
 msgid "Delete permanently"
 msgstr ""
 
-#: fileItem.js:741
+#: fileItem.js:745
 #, fuzzy
 msgid "Empty Trash"
 msgstr "Очистить корзину"
 
-#: fileItem.js:749
+#: fileItem.js:753
 msgid "Properties"
 msgstr "Свойства"
 
-#: fileItem.js:753
+#: fileItem.js:757
 msgid "Show in Files"
 msgstr "Показать в «Файлах»"
 
