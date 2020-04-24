@@ -173,7 +173,10 @@ var EmulateX11WindowType = class {
         this._idMap = global.window_manager.connect_after('map', () => {
             this._refreshWindows(false);
         });
-
+        this._idDestroy = global.window_manager.connect_after("destroy", (wm, window) => {
+            // if a window is closed, ensure that the desktop doesn't receive the focus
+            this._refreshWindows(true);
+        });
         /* Something odd happens with "stick" when using popup submenus, so
            this implements the same functionality
          */
@@ -216,6 +219,9 @@ var EmulateX11WindowType = class {
         // disconnect signals
         if (this._idMap) {
             global.window_manager.disconnect(this._idMap);
+        }
+        if (this._idDestroy) {
+            global.window_manager.disconnect(this._idDestroy);
         }
         if (this._switchWorkspaceId) {
             global.window_manager.disconnect(this._switchWorkspaceId);
