@@ -5,6 +5,7 @@
 # Sabri Ünal <libreajans@gmail.com>, 2019.
 # Serdar Sağlam <teknomobil@yandex.com>, 2019
 # Emin Tufan Çetin <etcetin@gmail.com>, 2019.
+# Mahmut Elmas <mahmutelmas06@gmail.com>, 2020.
 #
 msgid ""
 msgstr ""
@@ -12,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-17 21:13+0200\n"
 "PO-Revision-Date: 2019-03-13 13:43+0300\n"
-"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
+"Last-Translator: Mahmut Elmas <mahmutelmas06@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +28,7 @@ msgstr "İptal"
 
 #: askConfirmPopup.js:36
 msgid "Delete"
-msgstr ""
+msgstr "Sil"
 
 #: askNamePopup.js:35
 msgid "OK"
@@ -50,15 +51,15 @@ msgstr "Yeniden Adlandır…"
 
 #: desktopIconsUtil.js:74
 msgid "Command not found"
-msgstr ""
+msgstr "Komut Bulunamadı"
 
 #: desktopIconsUtil.js:167
 msgid "Do you want to run “{0}”, or display its contents?"
-msgstr ""
+msgstr "“{0}” dosyasını çalıştırmak mı, içeriğini görmek mi istiyorsunuz ?"
 
 #: desktopIconsUtil.js:168
 msgid "“{0}” is an executable text file."
-msgstr ""
+msgstr "“{0}” dosyası çalıştırılabilir bir metin dosyasıdır."
 
 #: desktopIconsUtil.js:172
 #, fuzzy
@@ -67,19 +68,19 @@ msgstr "Uçbirimde Aç"
 
 #: desktopIconsUtil.js:174
 msgid "Show"
-msgstr ""
+msgstr "Göster"
 
 #: desktopIconsUtil.js:178
 msgid "Execute"
-msgstr ""
+msgstr "Çalıştır"
 
 #: desktopManager.js:101
 msgid "Nautilus File Manager not found"
-msgstr ""
+msgstr "Nautilus dosya yöneticisi bulunamadı"
 
 #: desktopManager.js:102
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
-msgstr ""
+msgstr "Nautilus dosya yöneticisi olmadan bu eklenti bir işe yaramaz"
 
 #: desktopManager.js:410
 msgid "New Folder"
@@ -87,7 +88,7 @@ msgstr "Yeni Klasör"
 
 #: desktopManager.js:414
 msgid "New Document"
-msgstr ""
+msgstr "Yeni Belge"
 
 #: desktopManager.js:419
 msgid "Paste"
@@ -103,7 +104,7 @@ msgstr "Yinele"
 
 #: desktopManager.js:433
 msgid "Select all"
-msgstr ""
+msgstr "Tümünü Seç"
 
 #: desktopManager.js:439
 msgid "Show Desktop in Files"
@@ -127,23 +128,23 @@ msgstr "Ayarlar"
 
 #: desktopManager.js:913 desktopManager.js:934
 msgid "Error while deleting files"
-msgstr ""
+msgstr "Dosyalar silinirken bir hata oluştu"
 
 #: desktopManager.js:914
 msgid "There was an error while trying to permanently delete the folder {:}."
-msgstr ""
+msgstr "{:} Klasörğ tamamen silinirken hata oluştu"
 
 #: desktopManager.js:935
 msgid "There was an error while trying to permanently delete the file {:}."
-msgstr ""
+msgstr "{:} Dosyası tamamen silinirken hata oluştu"
 
 #: desktopManager.js:958
 msgid "Are you sure you want to permanently delete these items?"
-msgstr ""
+msgstr "Dosyaları geri dönüşümsüz olarak silmek istediğinizden emin misiniz?"
 
 #: desktopManager.js:958
 msgid "If you delete an item, it will be permanently lost."
-msgstr ""
+msgstr "Bir dosya silerseniz, geri dönüşümü yoktur."
 
 #: desktopManager.js:1049
 #, fuzzy
@@ -184,7 +185,7 @@ msgstr "Çöpe Taşı"
 
 #: fileItem.js:728
 msgid "Delete permanently"
-msgstr ""
+msgstr "Tamamen Sil"
 
 #: fileItem.js:741
 msgid "Empty Trash"
@@ -204,7 +205,7 @@ msgstr "Masaüstü simgeleri boyutu"
 
 #: preferences.js:89
 msgid "Tiny"
-msgstr ""
+msgstr "Minik"
 
 #: preferences.js:89
 msgid "Small"
@@ -233,35 +234,35 @@ msgstr "Simge boyutu"
 
 #: preferences.js:95
 msgid "Top-left corner"
-msgstr ""
+msgstr "Sol üst köşe"
 
 #: preferences.js:96
 msgid "Top-right corner"
-msgstr ""
+msgstr "Sağ üst Köşe"
 
 #: preferences.js:97
 msgid "Bottom-left corner"
-msgstr ""
+msgstr "Sol alt köşe"
 
 #: preferences.js:98
 msgid "Bottom-right corner"
-msgstr ""
+msgstr "Sağ alt köşe"
 
 #: preferences.js:103
 msgid "Settings shared with Nautilus"
-msgstr ""
+msgstr "Ayarlar Nautilus ile paylaşıldı"
 
 #: preferences.js:109
 msgid "Click type for open files"
-msgstr ""
+msgstr "Dosyaları açma türü"
 
 #: preferences.js:109
 msgid "Single click"
-msgstr ""
+msgstr "Tek tıklama"
 
 #: preferences.js:109
 msgid "Double click"
-msgstr ""
+msgstr "Çift tıklama"
 
 #: preferences.js:110
 #, fuzzy
@@ -270,45 +271,45 @@ msgstr "Dosyalarʼda Göster"
 
 #: preferences.js:111
 msgid "Show a context menu item to delete permanently"
-msgstr ""
+msgstr "Tamamen silmek için sağ tıkta seçenek göster"
 
 #: preferences.js:114
 msgid "Action to do when launching a program from the desktop"
-msgstr ""
+msgstr "Masaüstünden program çalıştırırken ne yapılsın"
 
 #: preferences.js:115
 msgid "Display the content of the file"
-msgstr ""
+msgstr "İçeriği göster"
 
 #: preferences.js:116
 msgid "Launch the file"
-msgstr ""
+msgstr "Çalıştır"
 
 #: preferences.js:117
 msgid "Ask what to do"
-msgstr ""
+msgstr "Ne yapılacağını sor"
 
 #: preferences.js:121
 msgid "Show image thumbnails"
-msgstr ""
+msgstr "Resim önizlemelerini göster"
 
 #: preferences.js:122
 msgid "Never"
-msgstr ""
+msgstr "Asla"
 
 #: preferences.js:123
 msgid "Local files only"
-msgstr ""
+msgstr "Yalnızca yerel dosyalar"
 
 #: preferences.js:124
 msgid "Always"
-msgstr ""
+msgstr "Her zaman"
 
 #: prefs.js:39
 msgid ""
 "To configure Desktop Icons NG, do right-click in the desktop and choose the "
 "last item: 'Settings'"
-msgstr ""
+msgstr "Masaüstünde Sağ tık/ Ayarları seçerek bu eklentiyi yapılandır"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:18
 msgid "Icon size"
@@ -341,7 +342,7 @@ msgstr "Simge boyutu"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:34
 msgid "Set the corner from where the icons will start to be placed."
-msgstr ""
+msgstr "Simgelerin nereden itibaren hizalanacağını seçin"
 
 #~ msgid "Enter file name…"
 #~ msgstr "Dosya adını gir…"
