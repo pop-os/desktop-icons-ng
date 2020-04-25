@@ -33,5 +33,10 @@
         <summary>New icons start corner</summary>
         <description>Set the corner from where the icons will start to be placed.</description>
     </key>
+    <key type="b" name="show-volumes">
+        <default>true</default>
+        <summary>Show external disk drives</summary>
+        <description>Show the disk drives connected to the computer.</description>
+    </key>
   </schema>
 </schemalist>

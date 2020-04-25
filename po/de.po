@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-25 00:58+0200\n"
+"POT-Creation-Date: 2020-04-25 18:08+0200\n"
 "PO-Revision-Date: 2020-03-30 11:56+0200\n"
 "Last-Translator: Tim Hofstede <phokas@mail.de>\n"
 "Language-Team: German <phokas@mail.de>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "X-Generator: Gtranslator 3.34.0\n"
 
-#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:176
+#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:187
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -44,152 +44,160 @@ msgstr "Umbenennen"
 msgid "Command not found"
 msgstr "Kommando nicht gefunden"
 
-#: desktopIconsUtil.js:167
+#: desktopIconsUtil.js:178
 msgid "Do you want to run “{0}”, or display its contents?"
 msgstr "Möchten Sie “{0}” ausführen oder dessen Inhalt anzeigen lassen?"
 
-#: desktopIconsUtil.js:168
+#: desktopIconsUtil.js:179
 msgid "“{0}” is an executable text file."
 msgstr "“{0}” ist eine ausführbare Textdatei."
 
-#: desktopIconsUtil.js:172
+#: desktopIconsUtil.js:183
 msgid "Execute in a terminal"
 msgstr "Im Terminal öffnen"
 
-#: desktopIconsUtil.js:174
+#: desktopIconsUtil.js:185
 msgid "Show"
 msgstr "Anzeigen"
 
-#: desktopIconsUtil.js:178
+#: desktopIconsUtil.js:189
 msgid "Execute"
 msgstr "Ausführen"
 
-#: desktopManager.js:101
+#: desktopManager.js:104
 msgid "Nautilus File Manager not found"
 msgstr "Nautilus-Dateiverwaltung nicht gefunden"
 
-#: desktopManager.js:102
+#: desktopManager.js:105
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr "Die Nautilus-Dateiverwaltung wird für Desktop Icons NG benötigt."
 
-#: desktopManager.js:413
+#: desktopManager.js:416
 msgid "New Folder"
 msgstr "Neuer Ordner"
 
-#: desktopManager.js:417
+#: desktopManager.js:420
 msgid "New Document"
 msgstr "Neues Dokument"
 
-#: desktopManager.js:422
+#: desktopManager.js:425
 msgid "Paste"
 msgstr "Einfügen"
 
-#: desktopManager.js:426
+#: desktopManager.js:429
 msgid "Undo"
 msgstr "Rückgängig"
 
-#: desktopManager.js:430
+#: desktopManager.js:433
 msgid "Redo"
 msgstr "Wiederholen"
 
-#: desktopManager.js:436
+#: desktopManager.js:439
 msgid "Select all"
 msgstr "Alles auswählen"
 
-#: desktopManager.js:442
+#: desktopManager.js:445
 msgid "Show Desktop in Files"
 msgstr "Schreibtisch in Dateien anzeigen"
 
-#: desktopManager.js:446 fileItem.js:761
+#: desktopManager.js:449 fileItem.js:782
 msgid "Open in Terminal"
 msgstr "Im Terminal öffnen"
 
-#: desktopManager.js:452
+#: desktopManager.js:455
 msgid "Change Background…"
 msgstr "Hintergrund ändern…"
 
-#: desktopManager.js:461
+#: desktopManager.js:464
 msgid "Display Settings"
 msgstr "Anzeigeeinstellungen"
 
-#: desktopManager.js:468 preferences.js:83
+#: desktopManager.js:471 preferences.js:83
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: desktopManager.js:916 desktopManager.js:937
+#: desktopManager.js:933 desktopManager.js:954
 msgid "Error while deleting files"
 msgstr "Fehler beim Löschen der Dateien"
 
-#: desktopManager.js:917
+#: desktopManager.js:934
 msgid "There was an error while trying to permanently delete the folder {:}."
 msgstr "Ein Fehler trat beim dauerhaften Löschen von Ordner {:} auf."
 
-#: desktopManager.js:938
+#: desktopManager.js:955
 msgid "There was an error while trying to permanently delete the file {:}."
 msgstr "Ein Fehler trat beim dauerhaften Löschen von Datei {:} auf."
 
-#: desktopManager.js:961
+#: desktopManager.js:978
 msgid "Are you sure you want to permanently delete these items?"
 msgstr "Sind Sie sicher, dass Sie diese Dateien dauerhaft löschen wollen?"
 
-#: desktopManager.js:961
+#: desktopManager.js:978
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Sobald Sie ein Objekt löschen, geht es dauerhaft verloren."
 
-#: desktopManager.js:1052
+#: desktopManager.js:1069
 msgid "New folder"
 msgstr "Neuer Ordner"
 
 #. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
-#: fileItem.js:143
+#: fileItem.js:144
 msgid "Home"
 msgstr ""
 
-#: fileItem.js:636
+#: fileItem.js:646
 msgid "Don’t Allow Launching"
 msgstr "Start nicht erlauben"
 
-#: fileItem.js:638
+#: fileItem.js:648
 msgid "Allow Launching"
 msgstr "Start erlauben"
 
-#: fileItem.js:704
+#: fileItem.js:714
 msgid "Open"
 msgstr "Öffnen"
 
-#: fileItem.js:710
+#: fileItem.js:720
 msgid "Open With Other Application"
 msgstr "Mit anderer Anwendung öffnen"
 
-#: fileItem.js:717
+#: fileItem.js:727
 msgid "Cut"
 msgstr "Ausschneiden"
 
-#: fileItem.js:720
+#: fileItem.js:730
 msgid "Copy"
 msgstr "Kopieren"
 
-#: fileItem.js:724
+#: fileItem.js:734
 msgid "Rename…"
 msgstr "Umbenennen"
 
-#: fileItem.js:728
+#: fileItem.js:738
 msgid "Move to Trash"
 msgstr "In den Papierkorb verschieben"
 
-#: fileItem.js:732
+#: fileItem.js:742
 msgid "Delete permanently"
 msgstr "Dauerhaft löschen"
 
-#: fileItem.js:745
+#: fileItem.js:755
 msgid "Empty Trash"
 msgstr "Papierkorb leeren"
 
-#: fileItem.js:753
+#: fileItem.js:762
+msgid "Eject"
+msgstr ""
+
+#: fileItem.js:765
+msgid "Unmount"
+msgstr ""
+
+#: fileItem.js:774
 msgid "Properties"
 msgstr "Eigenschaften"
 
-#: fileItem.js:757
+#: fileItem.js:778
 msgid "Show in Files"
 msgstr "In Dateiverwaltung anzeigen"
 
@@ -221,79 +229,84 @@ msgstr "Den persönlichen Ordner auf der Arbeitsfläche anzeigen"
 msgid "Show the trash icon in the desktop"
 msgstr "Papierkorb-Symbol auf der Arbeitsfläche anzeigen"
 
-#: preferences.js:94
+#: preferences.js:92
+#, fuzzy
+msgid "Show the external drives"
+msgstr "Den persönlichen Ordner auf der Arbeitsfläche anzeigen"
+
+#: preferences.js:95
 msgid "New icons alignment"
 msgstr "Ausrichtung der Arbeitsflächensymbole"
 
-#: preferences.js:95
+#: preferences.js:96
 msgid "Top-left corner"
 msgstr "Ecke oben links"
 
-#: preferences.js:96
+#: preferences.js:97
 msgid "Top-right corner"
 msgstr "Ecke oben rechts"
 
-#: preferences.js:97
+#: preferences.js:98
 msgid "Bottom-left corner"
 msgstr "Ecke unten links"
 
-#: preferences.js:98
+#: preferences.js:99
 msgid "Bottom-right corner"
 msgstr "Ecke unten rechts"
 
-#: preferences.js:103
+#: preferences.js:104
 msgid "Settings shared with Nautilus"
 msgstr "Mit Nautilus geteilte Einstellungen"
 
-#: preferences.js:109
+#: preferences.js:110
 msgid "Click type for open files"
 msgstr "Öffnen-Aktion"
 
-#: preferences.js:109
+#: preferences.js:110
 msgid "Single click"
 msgstr "Einfacher Klick"
 
-#: preferences.js:109
+#: preferences.js:110
 msgid "Double click"
 msgstr "Doppelklick"
 
-#: preferences.js:110
+#: preferences.js:111
 msgid "Show hidden files"
 msgstr "Verborgene Dateien anzeigen"
 
-#: preferences.js:111
+#: preferences.js:112
 msgid "Show a context menu item to delete permanently"
 msgstr "Aktion zum dauerhaften Löschen anzeigen"
 
-#: preferences.js:114
+#: preferences.js:115
 msgid "Action to do when launching a program from the desktop"
 msgstr "Ausführbare Textdateien auf dem Schreibtisch"
 
-#: preferences.js:115
+#: preferences.js:116
 msgid "Display the content of the file"
 msgstr "Anzeigen"
 
-#: preferences.js:116
+#: preferences.js:117
 msgid "Launch the file"
 msgstr "Ausführen"
 
-#: preferences.js:117
+#: preferences.js:118
 msgid "Ask what to do"
 msgstr "Nachfragen, was geschehen soll"
 
-#: preferences.js:121
+#: preferences.js:122
 msgid "Show image thumbnails"
 msgstr "Miniatur-Vorschaubilder anzeigen"
 
-#: preferences.js:122
+#: preferences.js:123
 msgid "Never"
 msgstr "Nie"
 
-#: preferences.js:123
+#: preferences.js:124
 msgid "Local files only"
 msgstr "Nur Dateien auf diesem Rechner"
 
-#: preferences.js:124
+#: preferences.js:125
 msgid "Always"
 msgstr "Alle Dateien"
 
@@ -337,3 +350,11 @@ msgstr "Ecke für neue Arbeitsflächensymbole"
 msgid "Set the corner from where the icons will start to be placed."
 msgstr ""
 "Lege die Ecke fest, von der aus neue Arbeitsflächensymbole platziert werden."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:38
+msgid "Show external disk drives"
+msgstr ""
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:39
+msgid "Show the disk drives connected to the computer."
+msgstr ""

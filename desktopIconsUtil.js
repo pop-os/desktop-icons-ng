@@ -106,6 +106,18 @@ function getExtraFolders() {
     return extraFolders;
 }
 
+function getMounts(volumeMonitor) {
+    if (!Prefs.desktopSettings.get_boolean('show-volumes')) {
+        return [];
+    }
+
+    let result = [];
+    for (let mount of volumeMonitor.get_mounts()) {
+        result.push([mount.get_root(), Enums.FileType.EXTERNAL_DRIVE, mount]);
+    }
+    return result;
+}
+
 function getFileExtensionOffset(filename, isDirectory) {
     let offset = filename.length;
 

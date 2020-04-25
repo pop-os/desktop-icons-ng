@@ -89,6 +89,7 @@ function showPreferences() {
     frame.add(buildSelector(desktopSettings, 'icon-size', _("Size for the desktop icons"), {'tiny': _("Tiny"), 'small': _("Small"), 'standard': _("Standard"), 'large': _("Large") }));
     frame.add(buildSwitcher(desktopSettings, 'show-home', _("Show the personal folder in the desktop")));
     frame.add(buildSwitcher(desktopSettings, 'show-trash', _("Show the trash icon in the desktop")));
+    frame.add(buildSwitcher(desktopSettings, 'show-volumes', _("Show the external drives")));
     frame.add(buildSelector(desktopSettings,
                             'start-corner',
                             _("New icons alignment"),

@@ -68,17 +68,20 @@ var DesktopManager = class {
             }
             this._updateDesktop();
         });
-        this._gtkSettingsId = Prefs.gtkSettings.connect('changed', (obj, key) => {
+        Prefs.gtkSettings.connect('changed', (obj, key) => {
             if (key == 'show-hidden') {
                 this._showHidden = Prefs.gtkSettings.get_boolean('show-hidden');
                 this._updateDesktop();
             }
         });
-        this._nautilusSettingsId = Prefs.nautilusSettings.connect('changed', (obj, key) => {
+        Prefs.nautilusSettings.connect('changed', (obj, key) => {
             if (key == 'show-image-thumbnails') {
                 this._updateDesktop();
             }
         });
+        this._volumeMonitor = Gio.VolumeMonitor.get();
+        this._volumeMonitor.connect('mount-added', () => { this._updateDesktop() });
+        this._volumeMonitor.connect('mount-removed', () => { this._updateDesktop() });
 
         this.rubberBand = false;
 
@@ -671,7 +674,8 @@ var DesktopManager = class {
                                     newFolder,
                                     newFolder.query_info(Enums.DEFAULT_ATTRIBUTES, Gio.FileQueryInfoFlags.NONE, null),
                                     extras,
-                                    this._codePath
+                                    this._codePath,
+                                    null
                                 )
                             );
                         }
@@ -682,7 +686,8 @@ var DesktopManager = class {
                                 fileEnum.get_child(info),
                                 info,
                                 Enums.FileType.NONE,
-                                this._codePath
+                                this._codePath,
+                                null
                             );
                             if (fileItem.isHidden && !this._showHidden) {
                                 /* if there are hidden files in the desktop and the user doesn't want to
@@ -703,6 +708,18 @@ var DesktopManager = class {
                                     delete this._pendingDropFiles[basename];
                                 }
                             }
+                        }
+                        for (let [newFolder, extras, volume] of DesktopIconsUtil.getMounts(this._volumeMonitor)) {
+                            fileList.push(
+                                new FileItem.FileItem(
+                                    this,
+                                    newFolder,
+                                    newFolder.query_info(Enums.DEFAULT_ATTRIBUTES, Gio.FileQueryInfoFlags.NONE, null),
+                                    extras,
+                                    this._codePath,
+                                    volume
+                                )
+                            );
                         }
                         this._removeAllFilesFromGrids();
                         this._fileList = fileList;

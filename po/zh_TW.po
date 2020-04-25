@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-25 00:58+0200\n"
+"POT-Creation-Date: 2020-04-25 18:08+0200\n"
 "PO-Revision-Date: 2018-10-24 21:31+0800\n"
 "Last-Translator: pan93412 <pan93412@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) <chinese-l10n@googlegroups.com>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.2\n"
 
-#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:176
+#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:187
 msgid "Cancel"
 msgstr ""
 
@@ -45,157 +45,165 @@ msgstr ""
 msgid "Command not found"
 msgstr ""
 
-#: desktopIconsUtil.js:167
+#: desktopIconsUtil.js:178
 msgid "Do you want to run “{0}”, or display its contents?"
 msgstr ""
 
-#: desktopIconsUtil.js:168
+#: desktopIconsUtil.js:179
 msgid "“{0}” is an executable text file."
 msgstr ""
 
-#: desktopIconsUtil.js:172
+#: desktopIconsUtil.js:183
 #, fuzzy
 msgid "Execute in a terminal"
 msgstr "開啟終端器"
 
-#: desktopIconsUtil.js:174
+#: desktopIconsUtil.js:185
 msgid "Show"
 msgstr ""
 
-#: desktopIconsUtil.js:178
+#: desktopIconsUtil.js:189
 msgid "Execute"
 msgstr ""
 
-#: desktopManager.js:101
+#: desktopManager.js:104
 msgid "Nautilus File Manager not found"
 msgstr ""
 
-#: desktopManager.js:102
+#: desktopManager.js:105
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr ""
 
-#: desktopManager.js:413
+#: desktopManager.js:416
 msgid "New Folder"
 msgstr "新增資料夾"
 
-#: desktopManager.js:417
+#: desktopManager.js:420
 msgid "New Document"
 msgstr ""
 
-#: desktopManager.js:422
+#: desktopManager.js:425
 msgid "Paste"
 msgstr "貼上"
 
-#: desktopManager.js:426
+#: desktopManager.js:429
 msgid "Undo"
 msgstr "復原"
 
-#: desktopManager.js:430
+#: desktopManager.js:433
 msgid "Redo"
 msgstr "重做"
 
-#: desktopManager.js:436
+#: desktopManager.js:439
 msgid "Select all"
 msgstr ""
 
-#: desktopManager.js:442
+#: desktopManager.js:445
 #, fuzzy
 msgid "Show Desktop in Files"
 msgstr "在《檔案》中開啟桌面"
 
-#: desktopManager.js:446 fileItem.js:761
+#: desktopManager.js:449 fileItem.js:782
 #, fuzzy
 msgid "Open in Terminal"
 msgstr "開啟終端器"
 
-#: desktopManager.js:452
+#: desktopManager.js:455
 msgid "Change Background…"
 msgstr "變更背景圖片…"
 
-#: desktopManager.js:461
+#: desktopManager.js:464
 msgid "Display Settings"
 msgstr "顯示設定"
 
-#: desktopManager.js:468 preferences.js:83
+#: desktopManager.js:471 preferences.js:83
 msgid "Settings"
 msgstr "設定"
 
-#: desktopManager.js:916 desktopManager.js:937
+#: desktopManager.js:933 desktopManager.js:954
 msgid "Error while deleting files"
 msgstr ""
 
-#: desktopManager.js:917
+#: desktopManager.js:934
 msgid "There was an error while trying to permanently delete the folder {:}."
 msgstr ""
 
-#: desktopManager.js:938
+#: desktopManager.js:955
 msgid "There was an error while trying to permanently delete the file {:}."
 msgstr ""
 
-#: desktopManager.js:961
+#: desktopManager.js:978
 msgid "Are you sure you want to permanently delete these items?"
 msgstr ""
 
-#: desktopManager.js:961
+#: desktopManager.js:978
 msgid "If you delete an item, it will be permanently lost."
 msgstr ""
 
-#: desktopManager.js:1052
+#: desktopManager.js:1069
 #, fuzzy
 msgid "New folder"
 msgstr "新增資料夾"
 
 #. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
-#: fileItem.js:143
+#: fileItem.js:144
 msgid "Home"
 msgstr ""
 
-#: fileItem.js:636
+#: fileItem.js:646
 msgid "Don’t Allow Launching"
 msgstr ""
 
-#: fileItem.js:638
+#: fileItem.js:648
 msgid "Allow Launching"
 msgstr ""
 
-#: fileItem.js:704
+#: fileItem.js:714
 msgid "Open"
 msgstr "開啟"
 
-#: fileItem.js:710
+#: fileItem.js:720
 msgid "Open With Other Application"
 msgstr ""
 
-#: fileItem.js:717
+#: fileItem.js:727
 msgid "Cut"
 msgstr "剪下"
 
-#: fileItem.js:720
+#: fileItem.js:730
 msgid "Copy"
 msgstr "複製"
 
-#: fileItem.js:724
+#: fileItem.js:734
 msgid "Rename…"
 msgstr ""
 
-#: fileItem.js:728
+#: fileItem.js:738
 msgid "Move to Trash"
 msgstr "移動到垃圾桶"
 
-#: fileItem.js:732
+#: fileItem.js:742
 msgid "Delete permanently"
 msgstr ""
 
-#: fileItem.js:745
+#: fileItem.js:755
 #, fuzzy
 msgid "Empty Trash"
 msgstr "清空回收桶"
 
-#: fileItem.js:753
+#: fileItem.js:762
+msgid "Eject"
+msgstr ""
+
+#: fileItem.js:765
+msgid "Unmount"
+msgstr ""
+
+#: fileItem.js:774
 msgid "Properties"
 msgstr "屬性"
 
-#: fileItem.js:757
+#: fileItem.js:778
 msgid "Show in Files"
 msgstr "在《檔案》中顯示"
 
@@ -227,81 +235,86 @@ msgstr "在桌面顯示個人資料夾"
 msgid "Show the trash icon in the desktop"
 msgstr "在桌面顯示垃圾桶圖示"
 
-#: preferences.js:94
+#: preferences.js:92
+#, fuzzy
+msgid "Show the external drives"
+msgstr "在桌面顯示個人資料夾"
+
+#: preferences.js:95
 #, fuzzy
 msgid "New icons alignment"
 msgstr "圖示大小"
 
-#: preferences.js:95
+#: preferences.js:96
 msgid "Top-left corner"
 msgstr ""
 
-#: preferences.js:96
+#: preferences.js:97
 msgid "Top-right corner"
 msgstr ""
 
-#: preferences.js:97
+#: preferences.js:98
 msgid "Bottom-left corner"
 msgstr ""
 
-#: preferences.js:98
+#: preferences.js:99
 msgid "Bottom-right corner"
 msgstr ""
 
-#: preferences.js:103
+#: preferences.js:104
 msgid "Settings shared with Nautilus"
 msgstr ""
 
-#: preferences.js:109
+#: preferences.js:110
 msgid "Click type for open files"
 msgstr ""
 
-#: preferences.js:109
+#: preferences.js:110
 msgid "Single click"
 msgstr ""
 
-#: preferences.js:109
+#: preferences.js:110
 msgid "Double click"
 msgstr ""
 
-#: preferences.js:110
+#: preferences.js:111
 #, fuzzy
 msgid "Show hidden files"
 msgstr "在《檔案》中顯示"
 
-#: preferences.js:111
+#: preferences.js:112
 msgid "Show a context menu item to delete permanently"
 msgstr ""
 
-#: preferences.js:114
+#: preferences.js:115
 msgid "Action to do when launching a program from the desktop"
 msgstr ""
 
-#: preferences.js:115
+#: preferences.js:116
 msgid "Display the content of the file"
 msgstr ""
 
-#: preferences.js:116
+#: preferences.js:117
 msgid "Launch the file"
 msgstr ""
 
-#: preferences.js:117
+#: preferences.js:118
 msgid "Ask what to do"
 msgstr ""
 
-#: preferences.js:121
+#: preferences.js:122
 msgid "Show image thumbnails"
 msgstr ""
 
-#: preferences.js:122
+#: preferences.js:123
 msgid "Never"
 msgstr ""
 
-#: preferences.js:123
+#: preferences.js:124
 msgid "Local files only"
 msgstr ""
 
-#: preferences.js:124
+#: preferences.js:125
 msgid "Always"
 msgstr ""
 
@@ -342,6 +355,14 @@ msgstr "圖示大小"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:34
 msgid "Set the corner from where the icons will start to be placed."
+msgstr ""
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:38
+msgid "Show external disk drives"
+msgstr ""
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:39
+msgid "Show the disk drives connected to the computer."
 msgstr ""
 
 #~ msgid "Huge"
