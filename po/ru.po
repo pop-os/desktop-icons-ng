@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-25 18:08+0200\n"
+"POT-Creation-Date: 2020-04-26 14:48+0200\n"
 "PO-Revision-Date: 2018-11-22 22:02+0300\n"
 "Last-Translator: Stas Solovey <whats_up@tut.by>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 2.2\n"
 
-#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:187
+#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:191
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -47,11 +47,11 @@ msgstr "Переименовать"
 msgid "Command not found"
 msgstr "Команда не найдена"
 
-#: desktopIconsUtil.js:178
+#: desktopIconsUtil.js:182
 msgid "Do you want to run “{0}”, or display its contents?"
 msgstr "Вы хотите выполнить “{0}” или отобразить содержимое?"
 
-#: desktopIconsUtil.js:179
+#: desktopIconsUtil.js:183
 msgid "“{0}” is an executable text file."
 msgstr "“{0}” является исполняемым текстовым файлом."
 
@@ -59,11 +59,11 @@ msgstr "“{0}” является исполняемым текстовым ф�
 msgid "Execute in a terminal"
 msgstr "Выполнить в терминале"
 
-#: desktopIconsUtil.js:185
+#: desktopIconsUtil.js:189
 msgid "Show"
 msgstr "Показать"
 
-#: desktopIconsUtil.js:189
+#: desktopIconsUtil.js:193
 msgid "Execute"
 msgstr "Выполнить"
 
@@ -192,15 +192,15 @@ msgstr "Очистить корзину"
 msgid "Eject"
 msgstr ""
 
-#: fileItem.js:765
+#: fileItem.js:769
 msgid "Unmount"
 msgstr ""
 
-#: fileItem.js:774
+#: fileItem.js:782
 msgid "Properties"
 msgstr "Свойства"
 
-#: fileItem.js:778
+#: fileItem.js:786
 msgid "Show in Files"
 msgstr "Показать в файловом менеджере"
 
@@ -232,45 +232,54 @@ msgstr "Показывать домашнюю папку на рабочем с�
 msgid "Show the trash icon in the desktop"
 msgstr "Показывать корзину на рабочем столе"
 
-#: preferences.js:92
+#: preferences.js:92 schemas/org.gnome.shell.extensions.ding.gschema.xml:38
 #, fuzzy
-msgid "Show the external drives"
+msgid "Show external drives in the desktop"
 msgstr "Показывать домашнюю папку на рабочем столе"
 
-#: preferences.js:95
+#: preferences.js:93 schemas/org.gnome.shell.extensions.ding.gschema.xml:43
+#, fuzzy
+msgid "Show network drives in the desktop"
+msgstr "Показывать значок домашней папки на рабочем столе."
+
+#: preferences.js:96
 #, fuzzy
 msgid "New icons alignment"
 msgstr "Выравнивание для новых значков"
 
-#: preferences.js:96
+#: preferences.js:97
 msgid "Top-left corner"
 msgstr "Верхний левый угол"
 
-#: preferences.js:97
+#: preferences.js:98
 msgid "Top-right corner"
 msgstr "В правом верхнем углу"
 
-#: preferences.js:98
+#: preferences.js:99
 msgid "Bottom-left corner"
 msgstr "Нижний левый угол"
 
-#: preferences.js:99
+#: preferences.js:100
 msgid "Bottom-right corner"
 msgstr "Правый нижний угол"
 
-#: preferences.js:104
+#: preferences.js:102 schemas/org.gnome.shell.extensions.ding.gschema.xml:48
+msgid "Add new drives to the opposite side of the screen"
+msgstr ""
+
+#: preferences.js:106
 msgid "Settings shared with Nautilus"
 msgstr "Общие настройки с Nautilus"
 
-#: preferences.js:110
+#: preferences.js:112
 msgid "Click type for open files"
 msgstr "Действие открытия"
 
-#: preferences.js:110
+#: preferences.js:112
 msgid "Single click"
 msgstr "Открывать одинарным нажатием"
 
-#: preferences.js:110
+#: preferences.js:112
 msgid "Double click"
 msgstr "Открывать двойным нажатием"
 
@@ -278,39 +287,39 @@ msgstr "Открывать двойным нажатием"
 msgid "Show hidden files"
 msgstr "Добавить пункт «Показать в файловом менеджере»"
 
-#: preferences.js:112
+#: preferences.js:114
 msgid "Show a context menu item to delete permanently"
 msgstr "Добавить пункт «Удалит навсегда в контекстном меню»"
 
-#: preferences.js:115
+#: preferences.js:117
 msgid "Action to do when launching a program from the desktop"
 msgstr "Исполняемые текстовые файлы"
 
-#: preferences.js:116
+#: preferences.js:118
 msgid "Display the content of the file"
 msgstr "Показать"
 
-#: preferences.js:117
+#: preferences.js:119
 msgid "Launch the file"
 msgstr "Запустить"
 
-#: preferences.js:118
+#: preferences.js:120
 msgid "Ask what to do"
 msgstr "Спросить что делать"
 
-#: preferences.js:122
+#: preferences.js:124
 msgid "Show image thumbnails"
 msgstr "Показать эскизы изображений"
 
-#: preferences.js:123
+#: preferences.js:125
 msgid "Never"
 msgstr "Никогда"
 
-#: preferences.js:124
+#: preferences.js:126
 msgid "Local files only"
 msgstr "Только для локальных файлов"
 
-#: preferences.js:125
+#: preferences.js:127
 msgid "Always"
 msgstr "Всегда"
 
@@ -354,13 +363,32 @@ msgstr "Размер значков"
 msgid "Set the corner from where the icons will start to be placed."
 msgstr "Установите угол, откуда значки начнут размещаться."
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:38
-msgid "Show external disk drives"
-msgstr ""
-
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:39
 msgid "Show the disk drives connected to the computer."
 msgstr ""
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:44
+#, fuzzy
+msgid "Show mounted network volumes in the desktop."
+msgstr "Показывать значок домашней папки на рабочем столе."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:49
+msgid ""
+"When adding drives and volumes to the desktop, add them to the opposite side "
+"of the screen."
+msgstr ""
+
+#, fuzzy
+#~ msgid "Show external disk drives in the desktop"
+#~ msgstr "Показывать домашнюю папку на рабочем столе"
+
+#, fuzzy
+#~ msgid "Show the external drives"
+#~ msgstr "Показывать домашнюю папку на рабочем столе"
+
+#, fuzzy
+#~ msgid "Show network volumes"
+#~ msgstr "Показать в «Файлах»"
 
 #~ msgid "Enter file name…"
 #~ msgstr "Ввести имя файла…"

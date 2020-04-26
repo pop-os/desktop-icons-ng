@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-25 18:08+0200\n"
+"POT-Creation-Date: 2020-04-26 14:48+0200\n"
 "PO-Revision-Date: 2019-03-13 13:43+0300\n"
 "Last-Translator: Mahmut Elmas <mahmutelmas06@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "X-Generator: Gtranslator 3.30.1\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:187
+#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:191
 msgid "Cancel"
 msgstr "İptal"
 
@@ -53,24 +53,24 @@ msgstr "Yeniden Adlandır…"
 msgid "Command not found"
 msgstr "Komut Bulunamadı"
 
-#: desktopIconsUtil.js:178
+#: desktopIconsUtil.js:182
 msgid "Do you want to run “{0}”, or display its contents?"
 msgstr "“{0}” dosyasını çalıştırmak mı, içeriğini görmek mi istiyorsunuz ?"
 
-#: desktopIconsUtil.js:179
+#: desktopIconsUtil.js:183
 msgid "“{0}” is an executable text file."
 msgstr "“{0}” dosyası çalıştırılabilir bir metin dosyasıdır."
 
-#: desktopIconsUtil.js:183
+#: desktopIconsUtil.js:187
 #, fuzzy
 msgid "Execute in a terminal"
 msgstr "Uçbirimde Aç"
 
-#: desktopIconsUtil.js:185
+#: desktopIconsUtil.js:189
 msgid "Show"
 msgstr "Göster"
 
-#: desktopIconsUtil.js:189
+#: desktopIconsUtil.js:193
 msgid "Execute"
 msgstr "Çalıştır"
 
@@ -110,7 +110,7 @@ msgstr "Tümünü Seç"
 msgid "Show Desktop in Files"
 msgstr "Masaüstünü Dosyalarʼda Göster"
 
-#: desktopManager.js:449 fileItem.js:782
+#: desktopManager.js:449 fileItem.js:790
 msgid "Open in Terminal"
 msgstr "Uçbirimde Aç"
 
@@ -200,15 +200,15 @@ msgstr "Çöpü Boşalt"
 msgid "Eject"
 msgstr ""
 
-#: fileItem.js:765
+#: fileItem.js:769
 msgid "Unmount"
 msgstr ""
 
-#: fileItem.js:774
+#: fileItem.js:782
 msgid "Properties"
 msgstr "Özellikler"
 
-#: fileItem.js:778
+#: fileItem.js:786
 msgid "Show in Files"
 msgstr "Dosyalarʼda Göster"
 
@@ -240,86 +240,95 @@ msgstr "Kişisel klasörü masaüstünde göster"
 msgid "Show the trash icon in the desktop"
 msgstr "Çöp kutusunu masaüstünde göster"
 
-#: preferences.js:92
+#: preferences.js:92 schemas/org.gnome.shell.extensions.ding.gschema.xml:38
 #, fuzzy
-msgid "Show the external drives"
+msgid "Show external drives in the desktop"
 msgstr "Kişisel klasörü masaüstünde göster"
 
-#: preferences.js:95
+#: preferences.js:93 schemas/org.gnome.shell.extensions.ding.gschema.xml:43
+#, fuzzy
+msgid "Show network drives in the desktop"
+msgstr "Kişisel klasörü masaüstünde göster."
+
+#: preferences.js:96
 #, fuzzy
 msgid "New icons alignment"
 msgstr "Simge boyutu"
 
-#: preferences.js:96
+#: preferences.js:97
 msgid "Top-left corner"
 msgstr "Sol üst köşe"
 
-#: preferences.js:97
+#: preferences.js:98
 msgid "Top-right corner"
 msgstr "Sağ üst Köşe"
 
-#: preferences.js:98
+#: preferences.js:99
 msgid "Bottom-left corner"
 msgstr "Sol alt köşe"
 
-#: preferences.js:99
+#: preferences.js:100
 msgid "Bottom-right corner"
 msgstr "Sağ alt köşe"
 
-#: preferences.js:104
+#: preferences.js:102 schemas/org.gnome.shell.extensions.ding.gschema.xml:48
+msgid "Add new drives to the opposite side of the screen"
+msgstr ""
+
+#: preferences.js:106
 msgid "Settings shared with Nautilus"
 msgstr "Ayarlar Nautilus ile paylaşıldı"
 
-#: preferences.js:110
+#: preferences.js:112
 msgid "Click type for open files"
 msgstr "Dosyaları açma türü"
 
-#: preferences.js:110
+#: preferences.js:112
 msgid "Single click"
 msgstr "Tek tıklama"
 
-#: preferences.js:110
+#: preferences.js:112
 msgid "Double click"
 msgstr "Çift tıklama"
 
-#: preferences.js:111
+#: preferences.js:113
 #, fuzzy
 msgid "Show hidden files"
 msgstr "Dosyalarʼda Göster"
 
-#: preferences.js:112
+#: preferences.js:114
 msgid "Show a context menu item to delete permanently"
 msgstr "Tamamen silmek için sağ tıkta seçenek göster"
 
-#: preferences.js:115
+#: preferences.js:117
 msgid "Action to do when launching a program from the desktop"
 msgstr "Masaüstünden program çalıştırırken ne yapılsın"
 
-#: preferences.js:116
+#: preferences.js:118
 msgid "Display the content of the file"
 msgstr "İçeriği göster"
 
-#: preferences.js:117
+#: preferences.js:119
 msgid "Launch the file"
 msgstr "Çalıştır"
 
-#: preferences.js:118
+#: preferences.js:120
 msgid "Ask what to do"
 msgstr "Ne yapılacağını sor"
 
-#: preferences.js:122
+#: preferences.js:124
 msgid "Show image thumbnails"
 msgstr "Resim önizlemelerini göster"
 
-#: preferences.js:123
+#: preferences.js:125
 msgid "Never"
 msgstr "Asla"
 
-#: preferences.js:124
+#: preferences.js:126
 msgid "Local files only"
 msgstr "Yalnızca yerel dosyalar"
 
-#: preferences.js:125
+#: preferences.js:127
 msgid "Always"
 msgstr "Her zaman"
 
@@ -362,13 +371,32 @@ msgstr "Simge boyutu"
 msgid "Set the corner from where the icons will start to be placed."
 msgstr "Simgelerin nereden itibaren hizalanacağını seçin"
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:38
-msgid "Show external disk drives"
-msgstr ""
-
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:39
 msgid "Show the disk drives connected to the computer."
 msgstr ""
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:44
+#, fuzzy
+msgid "Show mounted network volumes in the desktop."
+msgstr "Kişisel klasörü masaüstünde göster."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:49
+msgid ""
+"When adding drives and volumes to the desktop, add them to the opposite side "
+"of the screen."
+msgstr ""
+
+#, fuzzy
+#~ msgid "Show external disk drives in the desktop"
+#~ msgstr "Kişisel klasörü masaüstünde göster"
+
+#, fuzzy
+#~ msgid "Show the external drives"
+#~ msgstr "Kişisel klasörü masaüstünde göster"
+
+#, fuzzy
+#~ msgid "Show network volumes"
+#~ msgstr "Dosyalarʼda Göster"
 
 #~ msgid "Enter file name…"
 #~ msgstr "Dosya adını gir…"

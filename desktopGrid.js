@@ -246,7 +246,11 @@ var DesktopGrid = class {
     }
 
     addFileItemCloseTo(fileItem, x, y, coordinatesAction) {
-        let [column, row] = this._getEmptyPlaceClosestTo(x, y, coordinatesAction);
+        let add_volumes_opposite = Prefs.desktopSettings.get_boolean('add-volumes-opposite');
+        let [column, row] = this._getEmptyPlaceClosestTo(x,
+                                                         y,
+                                                         coordinatesAction,
+                                                         fileItem.isDrive && add_volumes_opposite);
         this._addFileItemTo(fileItem, column, row, coordinatesAction);
     }
 
@@ -274,13 +278,16 @@ var DesktopGrid = class {
         }
     }
 
-    _getEmptyPlaceClosestTo(x, y, coordinatesAction) {
+    _getEmptyPlaceClosestTo(x, y, coordinatesAction, reverseHorizontal) {
 
         [x, y] = this._coordinatesGlobalToLocal(x, y);
         let placeX = Math.round(x * this._maxColumns / this._width);
         let placeY = Math.round(y * this._maxRows / this._height);
 
         let cornerInversion = Prefs.get_start_corner();
+        if (reverseHorizontal) {
+            cornerInversion[0] = !cornerInversion[0];
+        }
 
         placeX = DesktopIconsUtil.clamp(placeX, 0, this._maxColumns - 1);
         placeY = DesktopIconsUtil.clamp(placeY, 0, this._maxRows - 1);

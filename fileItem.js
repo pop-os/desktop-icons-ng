@@ -872,6 +872,9 @@ var FileItem = class {
         return this._fileExtra == Enums.FileType.NONE;
     }
 
+    get isDrive() {
+        return this._fileExtra == Enums.FileType.EXTERNAL_DRIVE;
+    }
     _onReleaseButton(actor, event) {
         let button = event.get_button()[1];
         if (button == 1) {

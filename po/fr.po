@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-25 18:08+0200\n"
+"POT-Creation-Date: 2020-04-26 14:48+0200\n"
 "PO-Revision-Date: 2019-11-25 16:00+0100\n"
 "Last-Translator: Charles Monzat <charles.monzat@numericable.fr>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 2.2.4\n"
 
-#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:187
+#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:191
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -47,23 +47,23 @@ msgstr "Renommer"
 msgid "Command not found"
 msgstr "Commande non trouvée"
 
-#: desktopIconsUtil.js:178
+#: desktopIconsUtil.js:182
 msgid "Do you want to run “{0}”, or display its contents?"
 msgstr "Voulez-vous lancer \"{0}\", ou afficher son contenu ?"
 
-#: desktopIconsUtil.js:179
+#: desktopIconsUtil.js:183
 msgid "“{0}” is an executable text file."
 msgstr "\"{0}\" est un fichier texte exécutable."
 
-#: desktopIconsUtil.js:183
+#: desktopIconsUtil.js:187
 msgid "Execute in a terminal"
 msgstr "Ouvrir un terminal"
 
-#: desktopIconsUtil.js:185
+#: desktopIconsUtil.js:189
 msgid "Show"
 msgstr "Afficher"
 
-#: desktopIconsUtil.js:189
+#: desktopIconsUtil.js:193
 msgid "Execute"
 msgstr "Exécuter"
 
@@ -103,7 +103,7 @@ msgstr ""
 msgid "Show Desktop in Files"
 msgstr "Ouvrir le bureau dans Fichiers"
 
-#: desktopManager.js:449 fileItem.js:782
+#: desktopManager.js:449 fileItem.js:790
 msgid "Open in Terminal"
 msgstr "Ouvrir un terminal"
 
@@ -194,15 +194,15 @@ msgstr "Vider la corbeille"
 msgid "Eject"
 msgstr ""
 
-#: fileItem.js:765
+#: fileItem.js:769
 msgid "Unmount"
 msgstr ""
 
-#: fileItem.js:774
+#: fileItem.js:782
 msgid "Properties"
 msgstr "Propriétés"
 
-#: fileItem.js:778
+#: fileItem.js:786
 msgid "Show in Files"
 msgstr "Montrer dans Fichiers"
 
@@ -234,85 +234,94 @@ msgstr "Montrer le dossier personnel sur le bureau"
 msgid "Show the trash icon in the desktop"
 msgstr "Montrer la corbeille sur le bureau"
 
-#: preferences.js:92
+#: preferences.js:92 schemas/org.gnome.shell.extensions.ding.gschema.xml:38
 #, fuzzy
-msgid "Show the external drives"
+msgid "Show external drives in the desktop"
 msgstr "Montrer le dossier personnel sur le bureau"
 
-#: preferences.js:95
+#: preferences.js:93 schemas/org.gnome.shell.extensions.ding.gschema.xml:43
+#, fuzzy
+msgid "Show network drives in the desktop"
+msgstr "Montrer le dossier personnel sur le bureau."
+
+#: preferences.js:96
 #, fuzzy
 msgid "New icons alignment"
 msgstr "Taille d’icônes"
 
-#: preferences.js:96
+#: preferences.js:97
 msgid "Top-left corner"
 msgstr ""
 
-#: preferences.js:97
+#: preferences.js:98
 msgid "Top-right corner"
 msgstr ""
 
-#: preferences.js:98
+#: preferences.js:99
 msgid "Bottom-left corner"
 msgstr ""
 
-#: preferences.js:99
+#: preferences.js:100
 msgid "Bottom-right corner"
 msgstr ""
 
-#: preferences.js:104
+#: preferences.js:102 schemas/org.gnome.shell.extensions.ding.gschema.xml:48
+msgid "Add new drives to the opposite side of the screen"
+msgstr ""
+
+#: preferences.js:106
 msgid "Settings shared with Nautilus"
 msgstr "Paramètres partagés avec Nautilus"
 
-#: preferences.js:110
+#: preferences.js:112
 msgid "Click type for open files"
 msgstr "Type de clic pour ouvrir les fichiers"
 
-#: preferences.js:110
+#: preferences.js:112
 msgid "Single click"
 msgstr "Simple clic"
 
-#: preferences.js:110
+#: preferences.js:112
 msgid "Double click"
 msgstr "Double clic"
 
-#: preferences.js:111
+#: preferences.js:113
 msgid "Show hidden files"
 msgstr "Montrer dans Fichiers"
 
-#: preferences.js:112
+#: preferences.js:114
 msgid "Show a context menu item to delete permanently"
 msgstr "Afficher un élément de menu contextuel 'Supprimer définitivement'"
 
-#: preferences.js:115
+#: preferences.js:117
 msgid "Action to do when launching a program from the desktop"
 msgstr "Action à faire lors du lancement d'un programme depuis le bureau"
 
-#: preferences.js:116
+#: preferences.js:118
 msgid "Display the content of the file"
 msgstr "Afficher le contenu du fichier"
 
-#: preferences.js:117
+#: preferences.js:119
 msgid "Launch the file"
 msgstr "Lancer le fichier"
 
-#: preferences.js:118
+#: preferences.js:120
 msgid "Ask what to do"
 msgstr "Demander quoi faire"
 
-#: preferences.js:122
+#: preferences.js:124
 msgid "Show image thumbnails"
 msgstr "Afficher les imagettes"
 
-#: preferences.js:123
+#: preferences.js:125
 msgid "Never"
 msgstr "Jamais"
 
-#: preferences.js:124
+#: preferences.js:126
 msgid "Local files only"
 msgstr "Fichiers locaux uniquement"
 
-#: preferences.js:125
+#: preferences.js:127
 msgid "Always"
 msgstr "Toujours"
 
@@ -355,13 +364,32 @@ msgstr "Taille d’icônes"
 msgid "Set the corner from where the icons will start to be placed."
 msgstr ""
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:38
-msgid "Show external disk drives"
-msgstr ""
-
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:39
 msgid "Show the disk drives connected to the computer."
 msgstr ""
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:44
+#, fuzzy
+msgid "Show mounted network volumes in the desktop."
+msgstr "Montrer le dossier personnel sur le bureau."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:49
+msgid ""
+"When adding drives and volumes to the desktop, add them to the opposite side "
+"of the screen."
+msgstr ""
+
+#, fuzzy
+#~ msgid "Show external disk drives in the desktop"
+#~ msgstr "Montrer le dossier personnel sur le bureau"
+
+#, fuzzy
+#~ msgid "Show the external drives"
+#~ msgstr "Montrer le dossier personnel sur le bureau"
+
+#, fuzzy
+#~ msgid "Show network volumes"
+#~ msgstr "Montrer dans Fichiers"
 
 #~ msgid "Enter file name…"
 #~ msgstr "Saisir un nom de fichier…"
