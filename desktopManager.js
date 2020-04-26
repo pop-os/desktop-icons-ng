@@ -103,6 +103,7 @@ var DesktopManager = class {
                                                                   null,
                                                                   true);
         }
+        this._pendingDropFiles = {};
     }
 
     _createGrids() {
@@ -153,12 +154,15 @@ var DesktopManager = class {
         for(let element of fileList) {
             let file = Gio.File.new_for_uri(element);
             if (!file.is_native() || !file.query_exists(null)) {
+                if (dropCoordinates != null) {
+                    this._pendingDropFiles[file.get_basename()] = dropCoordinates;
+                }
                 continue;
             }
             let info = new Gio.FileInfo();
             info.set_attribute_string('metadata::nautilus-icon-position', '');
             if (dropCoordinates != null) {
-                info.set_attribute_string('metadata::nautilus-drop-position', dropCoordinates);
+                info.set_attribute_string('metadata::nautilus-drop-position', `${dropCoordinates[0]},${dropCoordinates[1]}`);
             }
             try {
                 file.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
@@ -202,7 +206,7 @@ var DesktopManager = class {
         case 1:
         case 2:
             if (fileList.length != 0) {
-                this.clearFileCoordinates(fileList, `${xDestination},${yDestination}`);
+                this.clearFileCoordinates(fileList, [xDestination, yDestination]);
                 let data = Gio.File.new_for_uri(fileList[0]).query_info('id::filesystem', Gio.FileQueryInfoFlags.NONE, null);
                 let id_fs = data.get_attribute_string('id::filesystem');
                 if (this.desktopFsId == id_fs) {
@@ -692,6 +696,13 @@ var DesktopManager = class {
                                 continue;
                             }
                             fileList.push(fileItem);
+                            if (fileItem.dropCoordinates == null) {
+                                let basename = fileItem.file.get_basename();
+                                if (basename in this._pendingDropFiles) {
+                                    fileItem.dropCoordinates = this._pendingDropFiles[basename];
+                                    delete this._pendingDropFiles[basename];
+                                }
+                            }
                         }
                         this._removeAllFilesFromGrids();
                         this._fileList = fileList;
