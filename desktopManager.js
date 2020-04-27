@@ -899,6 +899,26 @@ var DesktopManager = class {
         }
     }
 
+    _deleteHelper(file) {
+        file.delete_async(GLib.PRIORITY_DEFAULT, null, (source, res) => {
+            this._deletingFilesRecursively = false;
+            try {
+                source.delete_finish(res);
+            } catch(e) {
+                let windowError = new ShowErrorPopup.ShowErrorPopup(
+                    _("Error while deleting files"),
+                    e.message,
+                    null,
+                    false);
+                windowError.run();
+                this._toDelete = [];
+                return;
+            }
+            // continue with the next file
+            this._deleteRecursively();
+        });
+    }
+
     _deleteRecursively() {
         if (this._deletingFilesRecursively || (this._toDelete.length == 0)) {
             return;
@@ -906,56 +926,46 @@ var DesktopManager = class {
         this._deletingFilesRecursively = true;
         let nextFileToDelete = this._toDelete.shift();
         if (nextFileToDelete.query_file_type(Gio.FileQueryInfoFlags.NOFOLLOW_SYMLINKS, null) == Gio.FileType.DIRECTORY) {
-            nextFileToDelete.enumerate_children_async(Enums.DEFAULT_ATTRIBUTES, Gio.FileQueryInfoFlags.NOFOLLOW_SYMLINKS, GLib.PRIORITY_DEFAULT, null, (source, res) => {
-                let fileEnum = source.enumerate_children_finish(res);
-                // insert again the folder at the beginning
-                this._toDelete.unshift(source);
-                let info;
-                let hasChilds = false;
-                while ((info = fileEnum.next_file(null))) {
-                    let file = fileEnum.get_child(info);
-                    // insert the children to the beginning of the array, to be deleted first
-                    this._toDelete.unshift(file);
-                    hasChilds = true;
-                }
-                if (!hasChilds) {
-                    // the folder is empty, so it can be deleted
-                    this._toDelete.shift().delete_async(GLib.PRIORITY_DEFAULT, null, (source, res) => {
-                        try {
-                            source.delete_finish(res);
-                        } catch(e) {
-                            let windowError = new ShowErrorPopup.ShowErrorPopup(_("Error while deleting files"),
-                                                                                _("There was an error while trying to permanently delete the folder {:}.").replace('{:}', source.get_parse_name()),
-                                                                                null,
-                                                                                false);
-                            windowError.run();
-                            return;
+            nextFileToDelete.enumerate_children_async(
+                Enums.DEFAULT_ATTRIBUTES,
+                Gio.FileQueryInfoFlags.NOFOLLOW_SYMLINKS,
+                GLib.PRIORITY_DEFAULT,
+                null,
+                (source, res) => {
+                    try {
+                        let fileEnum = source.enumerate_children_finish(res);
+                        // insert again the folder at the beginning
+                        this._toDelete.unshift(source);
+                        let info;
+                        let hasChilds = false;
+                        while ((info = fileEnum.next_file(null))) {
+                            let file = fileEnum.get_child(info);
+                            // insert the children to the beginning of the array, to be deleted first
+                            this._toDelete.unshift(file);
+                            hasChilds = true;
                         }
-                        // continue with the next file
+                        if (!hasChilds) {
+                            // the folder is empty, so it can be deleted
+                            this._deleteHelper(this._toDelete.shift());
+                        } else {
+                            // continue processing the list
+                            this._deletingFilesRecursively = false;
+                            this._deleteRecursively();
+                        }
+                    } catch(e) {
+                        let windowError = new ShowErrorPopup.ShowErrorPopup(
+                            _("Error while deleting files"),
+                            e.message,
+                            null,
+                            false);
+                        windowError.run();
+                        this._toDelete = [];
                         this._deletingFilesRecursively = false;
-                        this._deleteRecursively();
-                    }); // remove it from the list (yes, again)
-                }
-                // continue processing the list
-                this._deletingFilesRecursively = false;
-                this._deleteRecursively();
-            });
+                        return;
+                    }
+                });
         } else {
-            nextFileToDelete.delete_async(GLib.PRIORITY_DEFAULT, null, (source, res) => {
-                try {
-                    source.delete_finish(res);
-                } catch(e) {
-                    let windowError = new ShowErrorPopup.ShowErrorPopup(_("Error while deleting files"),
-                                                                        _("There was an error while trying to permanently delete the file {:}.").replace('{:}', source.get_parse_name()),
-                                                                        null,
-                                                                        false);
-                    windowError.run();
-                    return;
-                }
-                // continue with the next file
-                this._deletingFilesRecursively = false;
-                this._deleteRecursively();
-            });
+            this._deleteHelper(nextFileToDelete);
         }
     }
 
@@ -969,7 +979,10 @@ var DesktopManager = class {
                 filelist += `"${fileItem.fileName}"`;
             }
         }
-        let renameWindow = new AskConfirmPopup.AskConfirmPopup(_("Are you sure you want to permanently delete these items?"), `${_("If you delete an item, it will be permanently lost.")}\n\n${filelist}`, null);
+        let renameWindow = new AskConfirmPopup.AskConfirmPopup(
+            _("Are you sure you want to permanently delete these items?"),
+            `${_("If you delete an item, it will be permanently lost.")}\n\n${filelist}`,
+            null);
         if (renameWindow.run()) {
             this._permanentDeleteError = false;
             for(let fileItem of this._fileList) {
