@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-26 14:48+0200\n"
+"POT-Creation-Date: 2020-04-28 22:17+0200\n"
 "PO-Revision-Date: 2019-03-04 14:55+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:191
+#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:190
 msgid "Cancel"
 msgstr "Annullér"
 
@@ -48,24 +48,24 @@ msgstr "Omdøb …"
 msgid "Command not found"
 msgstr ""
 
-#: desktopIconsUtil.js:182
+#: desktopIconsUtil.js:181
 msgid "Do you want to run “{0}”, or display its contents?"
 msgstr ""
 
-#: desktopIconsUtil.js:183
+#: desktopIconsUtil.js:182
 msgid "“{0}” is an executable text file."
 msgstr ""
 
-#: desktopIconsUtil.js:187
+#: desktopIconsUtil.js:186
 #, fuzzy
 msgid "Execute in a terminal"
 msgstr "Åbn i terminal"
 
-#: desktopIconsUtil.js:189
+#: desktopIconsUtil.js:188
 msgid "Show"
 msgstr ""
 
-#: desktopIconsUtil.js:193
+#: desktopIconsUtil.js:192
 msgid "Execute"
 msgstr ""
 
@@ -77,71 +77,63 @@ msgstr ""
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr ""
 
-#: desktopManager.js:416
+#: desktopManager.js:420
 msgid "New Folder"
 msgstr "Ny mappe"
 
-#: desktopManager.js:420
+#: desktopManager.js:424
 msgid "New Document"
 msgstr ""
 
-#: desktopManager.js:425
+#: desktopManager.js:429
 msgid "Paste"
 msgstr "Indsæt"
 
-#: desktopManager.js:429
+#: desktopManager.js:433
 msgid "Undo"
 msgstr "Fortryd"
 
-#: desktopManager.js:433
+#: desktopManager.js:437
 msgid "Redo"
 msgstr "Omgør"
 
-#: desktopManager.js:439
+#: desktopManager.js:443
 msgid "Select all"
 msgstr ""
 
-#: desktopManager.js:445
+#: desktopManager.js:449
 msgid "Show Desktop in Files"
 msgstr "Vis skrivebordet i Filer"
 
-#: desktopManager.js:449 fileItem.js:790
+#: desktopManager.js:453 fileItem.js:790
 msgid "Open in Terminal"
 msgstr "Åbn i terminal"
 
-#: desktopManager.js:455
+#: desktopManager.js:459
 msgid "Change Background…"
 msgstr "Skift baggrund …"
 
-#: desktopManager.js:464
+#: desktopManager.js:468
 msgid "Display Settings"
 msgstr "Skærmindstillinger"
 
-#: desktopManager.js:471 preferences.js:83
+#: desktopManager.js:475 preferences.js:83
 msgid "Settings"
 msgstr "Indstillinger"
 
-#: desktopManager.js:933 desktopManager.js:954
+#: desktopManager.js:926 desktopManager.js:974
 msgid "Error while deleting files"
 msgstr ""
 
-#: desktopManager.js:934
-msgid "There was an error while trying to permanently delete the folder {:}."
-msgstr ""
-
-#: desktopManager.js:955
-msgid "There was an error while trying to permanently delete the file {:}."
-msgstr ""
-
-#: desktopManager.js:978
+#: desktopManager.js:1000
 msgid "Are you sure you want to permanently delete these items?"
 msgstr ""
 
-#: desktopManager.js:978
+#: desktopManager.js:1001
 msgid "If you delete an item, it will be permanently lost."
 msgstr ""
 
-#: desktopManager.js:1069
+#: desktopManager.js:1093
 #, fuzzy
 msgid "New folder"
 msgstr "Ny mappe"
