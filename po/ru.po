@@ -267,7 +267,7 @@ msgstr "Показать в файловом менеджере"
 
 #: preferences.js:111
 msgid "Show a context menu item to delete permanently"
-msgstr "Показать пункт "Удалит навсегда" в контекстном меню"
+msgstr "Показать пункт Удалит навсегда в контекстном меню"
 
 #: preferences.js:114
 msgid "Action to do when launching a program from the desktop"
