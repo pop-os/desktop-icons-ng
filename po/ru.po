@@ -36,7 +36,6 @@ msgid "Folder name"
 msgstr "Имя папки"
 
 #: askRenamePopup.js:40
-#, fuzzy
 msgid "File name"
 msgstr "Имя файла"
 
@@ -334,7 +333,6 @@ msgid "Show the trash icon in the desktop."
 msgstr "Показывать значок корзины на рабочем столе."
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:33
-#, fuzzy
 msgid "New icons start corner"
 msgstr "Размер значков"
 
