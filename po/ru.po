@@ -246,7 +246,7 @@ msgstr "Правый нижний угол"
 
 #: preferences.js:103
 msgid "Settings shared with Nautilus"
-msgstr ""
+msgstr "Общие настройки с Nautilus"
 
 #: preferences.js:109
 msgid "Click type for open files"
