@@ -162,7 +162,7 @@ msgstr "Открыть"
 
 #: fileItem.js:710
 msgid "Open With Other Application"
-msgstr "Открыть с помощью другого приложения"
+msgstr "Открыть в другом приложении"
 
 #: fileItem.js:717
 msgid "Cut"
