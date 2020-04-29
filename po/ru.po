@@ -250,15 +250,15 @@ msgstr "Общие настройки с Nautilus"
 
 #: preferences.js:109
 msgid "Click type for open files"
-msgstr "Способ открытия файлов"
+msgstr "Действие открытия"
 
 #: preferences.js:109
 msgid "Single click"
-msgstr "Одиночное нажатие"
+msgstr "Открывать одинарным нажатием"
 
 #: preferences.js:109
 msgid "Double click"
-msgstr "Двойное нажатие"
+msgstr "Открывать двойным нажатием"
 
 #: preferences.js:110
 msgid "Show hidden files"
@@ -270,19 +270,19 @@ msgstr "Добавить пункт «Удалит навсегда в конт�
 
 #: preferences.js:114
 msgid "Action to do when launching a program from the desktop"
-msgstr "Действие при запуске скрипта"
+msgstr "Исполняемые текстовые файлы"
 
 #: preferences.js:115
 msgid "Display the content of the file"
-msgstr "Показать содержимое файла"
+msgstr "Показать"
 
 #: preferences.js:116
 msgid "Launch the file"
-msgstr "Запустите файл"
+msgstr "Запустить"
 
 #: preferences.js:117
 msgid "Ask what to do"
-msgstr "Спроси что делать"
+msgstr "Спросить что делать"
 
 #: preferences.js:121
 msgid "Show image thumbnails"
