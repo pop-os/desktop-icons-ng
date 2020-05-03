@@ -98,8 +98,14 @@ function innerEnable(removeId) {
      * thus adapting to it on-the-fly.
      */
     data.monitorsChangedId = Main.layoutManager.connect('monitors-changed', () => {
-        data.reloadTime = 3000; // give more time in this case, to ensure that everything has changed
-        killCurrentProcess();
+        reloadIfSizesChanged();
+    });
+    /*
+     * Any change in the workareas must be detected too, for example if the used size
+     * changes.
+     */
+    data.workareasChangedId = global.display.connect('workareas-changed', () => {
+        reloadIfSizesChanged();
     });
 
     data.desktopCoordinates = [];
@@ -108,19 +114,7 @@ function innerEnable(removeId) {
      * This callback allows to detect a change in the working area (like when changing the Zoom value)
      */
     data.sizeChangedId = global.window_manager.connect('size-changed', () => {
-        if (data.desktopCoordinates.length != Main.layoutManager.monitors.length) {
-            killCurrentProcess();
-            return;
-        }
-        for(let monitorIndex = 0; monitorIndex < Main.layoutManager.monitors.length; monitorIndex++) {
-            let ws = global.workspace_manager.get_workspace_by_index(0);
-            let area = ws.get_work_area_for_monitor(monitorIndex);
-            let area2 = data.desktopCoordinates[monitorIndex];
-            if ((area.width != area2.width) || (area.height != area2.height)) {
-                killCurrentProcess();
-                return;
-            }
-        }
+        reloadIfSizesChanged();
     });
 
     data.isEnabled = true;
@@ -148,10 +142,39 @@ function disable() {
     if (data.monitorsChangedId) {
         Main.layoutManager.disconnect(data.monitorsChangedId);
     }
+    if (data.workareasChangedId) {
+        global.display.disconnect(data.workareasChangedId);
+    }
     if (data.sizeChangedId) {
         global.window_manager.disconnect(data.sizeChangedId);
     }
     killCurrentProcess();
+}
+
+function reloadIfSizesChanged() {
+    if (data.desktopCoordinates.length != Main.layoutManager.monitors.length) {
+        killCurrentProcess();
+        return;
+    }
+    for(let monitorIndex = 0; monitorIndex < Main.layoutManager.monitors.length; monitorIndex++) {
+        let ws = global.workspace_manager.get_workspace_by_index(0);
+        let area = ws.get_work_area_for_monitor(monitorIndex);
+        let area2 = data.desktopCoordinates[monitorIndex];
+        let scale;
+        if (ExtensionUtils.versionCheck(['3.30'], Config.PACKAGE_VERSION)) {
+            scale = St.ThemeContext.get_for_stage(global.stage).scale_factor;
+        } else {
+            scale = Main.layoutManager.monitors[monitorIndex].geometry_scale;
+        }
+        if ((area.x != area2.x) ||
+            (area.y != area2.y) ||
+            (area.width != area2.width) ||
+            (area.height != area2.height) ||
+            (scale != area2.zoom)) {
+            killCurrentProcess();
+            return;
+        }
+    }
 }
 
 /**
