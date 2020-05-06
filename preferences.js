@@ -181,5 +181,5 @@ function get_desired_height() {
 }
 
 function get_start_corner() {
-    return Enums.START_CORNER[desktopSettings.get_string('start-corner')];
+    return Enums.START_CORNER[desktopSettings.get_string('start-corner')].slice();
 }
