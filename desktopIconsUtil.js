@@ -106,6 +106,20 @@ function getExtraFolders() {
     return extraFolders;
 }
 
+function getMounts(volumeMonitor) {
+    let show_volumes = Prefs.desktopSettings.get_boolean('show-volumes');
+    let show_network = Prefs.desktopSettings.get_boolean('show-network-volumes');
+
+    let result = [];
+    for (let mount of volumeMonitor.get_mounts()) {
+        let is_drive = (mount.get_drive() != null) || (mount.get_volume() != null);
+        if ((is_drive && show_volumes) || (!is_drive && show_network)) {
+            result.push([mount.get_root(), Enums.FileType.EXTERNAL_DRIVE, mount]);
+        }
+    }
+    return result;
+}
+
 function getFileExtensionOffset(filename, isDirectory) {
     let offset = filename.length;
 

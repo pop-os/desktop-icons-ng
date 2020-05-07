@@ -29,6 +29,7 @@ var FileType = {
     NONE: null,
     USER_DIRECTORY_HOME: 'show-home',
     USER_DIRECTORY_TRASH: 'show-trash',
+    EXTERNAL_DRIVE: 'external-drive'
 }
 
 var StoredCoordinates = {

@@ -39,7 +39,8 @@ const _ = Gettext.gettext;
 
 var FileItem = class {
 
-    constructor(desktopManager, file, fileInfo, fileExtra, codePath) {
+    constructor(desktopManager, file, fileInfo, fileExtra, codePath, custom) {
+        this._custom = custom;
         this._codePath = codePath;
         this._desktopManager = desktopManager;
         this._fileExtra = fileExtra;
@@ -178,7 +179,8 @@ var FileItem = class {
         let targets = new Gtk.TargetList(null);
         targets.add(Gdk.atom_intern('x-special/ding-icon-list', false), Gtk.TargetFlags.SAME_APP, 0);
         if ((this._fileExtra != Enums.FileType.USER_DIRECTORY_TRASH) &&
-            (this._fileExtra != Enums.FileType.USER_DIRECTORY_HOME)) {
+            (this._fileExtra != Enums.FileType.USER_DIRECTORY_HOME) &&
+            (this._fileExtra != Enums.FileType.EXTERNAL_DRIVE)) {
                 targets.add(Gdk.atom_intern('x-special/gnome-icon-list', false), 0, 1);
                 targets.add(Gdk.atom_intern('text/uri-list', false), 0, 2);
         }
@@ -196,6 +198,7 @@ var FileItem = class {
         dropDestination.drag_dest_set(Gtk.DestDefaults.ALL, null, Gdk.DragAction.MOVE);
         if ((this._fileExtra == Enums.FileType.USER_DIRECTORY_TRASH) ||
             (this._fileExtra == Enums.FileType.USER_DIRECTORY_HOME) ||
+            (this._fileExtra != Enums.FileType.EXTERNAL_DRIVE) ||
             (this._isDirectory)) {
                 let targets = new Gtk.TargetList(null);
                 targets.add(Gdk.atom_intern('x-special/gnome-icon-list', false), 0, 1);
@@ -450,12 +453,19 @@ var FileItem = class {
                 if (this.trustedDesktopFile && this._desktopFile.has_key('Icon')) {
                     pixbuf = this._createEmblemedIcon(null, this._desktopFile.get_string('Icon'));
                 } else {
-                    pixbuf = this._createEmblemedIcon(this._fileInfo.get_icon(), null);
+                    pixbuf = this._createEmblemedIcon(this._getDefaultIcon(), null);
                 }
             }
             this._icon.set_from_pixbuf(pixbuf);
             this._dragSource.drag_source_set_icon_pixbuf(pixbuf);
         }
+    }
+
+    _getDefaultIcon() {
+        if (this._fileExtra == Enums.FileType.EXTERNAL_DRIVE) {
+            return this._custom.get_icon();
+        }
+        return this._fileInfo.get_icon()
     }
 
     _copyAndResizeIfNeeded(pixbuf) {
@@ -746,6 +756,25 @@ var FileItem = class {
             trashItem.connect('activate', () => {this._desktopManager.doEmptyTrash();});
             this._menu.add(trashItem);
             break;
+        case Enums.FileType.EXTERNAL_DRIVE:
+            this._menu.add(new Gtk.SeparatorMenuItem());
+            if (this._custom.can_eject()) {
+                this._volumeItem = new Gtk.MenuItem({label: _('Eject')});
+                this._volumeItem.connect('activate', () => {
+                    this._custom.eject_with_operation(Gio.MountUnmountFlags.NONE, null, null, (obj, res) => {
+                        obj.eject_with_operation_finish(res);
+                    });
+                });
+            } else if (this._custom.can_unmount()) {
+                this._volumeItem = new Gtk.MenuItem({label: _('Unmount')});
+                this._volumeItem.connect('activate', () => {
+                    this._custom.unmount_with_operation(Gio.MountUnmountFlags.NONE, null, null, (obj, res) => {
+                        obj.unmount_with_operation_finish(res);
+                    });
+                });
+            }
+            this._menu.add(this._volumeItem);
+            break;
         default:
             break;
         }
@@ -843,6 +872,9 @@ var FileItem = class {
         return this._fileExtra == Enums.FileType.NONE;
     }
 
+    get isDrive() {
+        return this._fileExtra == Enums.FileType.EXTERNAL_DRIVE;
+    }
     _onReleaseButton(actor, event) {
         let button = event.get_button()[1];
         if (button == 1) {

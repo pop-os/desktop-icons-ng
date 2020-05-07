@@ -33,5 +33,20 @@
         <summary>New icons start corner</summary>
         <description>Set the corner from where the icons will start to be placed.</description>
     </key>
+    <key type="b" name="show-volumes">
+        <default>true</default>
+        <summary>Show external drives in the desktop</summary>
+        <description>Show the disk drives connected to the computer.</description>
+    </key>
+    <key type="b" name="show-network-volumes">
+        <default>false</default>
+        <summary>Show network drives in the desktop</summary>
+        <description>Show mounted network volumes in the desktop.</description>
+    </key>
+    <key type="b" name="add-volumes-opposite">
+        <default>true</default>
+        <summary>Add new drives to the opposite side of the screen</summary>
+        <description>When adding drives and volumes to the desktop, add them to the opposite side of the screen.</description>
+    </key>
   </schema>
 </schemalist>

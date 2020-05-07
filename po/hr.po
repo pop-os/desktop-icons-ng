@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-shell-extension-desktop-icons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-25 00:58+0200\n"
+"POT-Creation-Date: 2020-04-28 22:17+0200\n"
 "PO-Revision-Date: 2019-06-22 18:52+0200\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Launchpad-Export-Date: 2019-03-27 09:36+0000\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:176
+#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:190
 msgid "Cancel"
 msgstr "Odustani"
 
@@ -49,154 +49,154 @@ msgstr "Preimenuj…"
 msgid "Command not found"
 msgstr "Naredba nije pronađena"
 
-#: desktopIconsUtil.js:167
+#: desktopIconsUtil.js:181
 msgid "Do you want to run “{0}”, or display its contents?"
 msgstr ""
 
-#: desktopIconsUtil.js:168
+#: desktopIconsUtil.js:182
 msgid "“{0}” is an executable text file."
 msgstr ""
 
-#: desktopIconsUtil.js:172
+#: desktopIconsUtil.js:186
 #, fuzzy
 msgid "Execute in a terminal"
 msgstr "Otvori u Terminalu"
 
-#: desktopIconsUtil.js:174
+#: desktopIconsUtil.js:188
 msgid "Show"
 msgstr ""
 
-#: desktopIconsUtil.js:178
+#: desktopIconsUtil.js:192
 msgid "Execute"
 msgstr ""
 
-#: desktopManager.js:101
+#: desktopManager.js:104
 msgid "Nautilus File Manager not found"
 msgstr ""
 
-#: desktopManager.js:102
+#: desktopManager.js:105
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr ""
 
-#: desktopManager.js:413
+#: desktopManager.js:420
 msgid "New Folder"
 msgstr "Nova mapa"
 
-#: desktopManager.js:417
+#: desktopManager.js:424
 msgid "New Document"
 msgstr ""
 
-#: desktopManager.js:422
+#: desktopManager.js:429
 msgid "Paste"
 msgstr "Zalijepi"
 
-#: desktopManager.js:426
+#: desktopManager.js:433
 msgid "Undo"
 msgstr "Poništi"
 
-#: desktopManager.js:430
+#: desktopManager.js:437
 msgid "Redo"
 msgstr "Ponovi"
 
-#: desktopManager.js:436
+#: desktopManager.js:443
 msgid "Select all"
 msgstr ""
 
-#: desktopManager.js:442
+#: desktopManager.js:449
 msgid "Show Desktop in Files"
 msgstr "Prikaži radnu površinu u Datotekama"
 
-#: desktopManager.js:446 fileItem.js:761
+#: desktopManager.js:453 fileItem.js:790
 msgid "Open in Terminal"
 msgstr "Otvori u Terminalu"
 
-#: desktopManager.js:452
+#: desktopManager.js:459
 msgid "Change Background…"
 msgstr "Promijeni pozadinu…"
 
-#: desktopManager.js:461
+#: desktopManager.js:468
 msgid "Display Settings"
 msgstr "Postavke zaslona"
 
-#: desktopManager.js:468 preferences.js:83
+#: desktopManager.js:475 preferences.js:83
 msgid "Settings"
 msgstr "Postavke"
 
-#: desktopManager.js:916 desktopManager.js:937
+#: desktopManager.js:926 desktopManager.js:974
 msgid "Error while deleting files"
 msgstr ""
 
-#: desktopManager.js:917
-msgid "There was an error while trying to permanently delete the folder {:}."
-msgstr ""
-
-#: desktopManager.js:938
-msgid "There was an error while trying to permanently delete the file {:}."
-msgstr ""
-
-#: desktopManager.js:961
+#: desktopManager.js:1000
 msgid "Are you sure you want to permanently delete these items?"
 msgstr ""
 
-#: desktopManager.js:961
+#: desktopManager.js:1001
 msgid "If you delete an item, it will be permanently lost."
 msgstr ""
 
-#: desktopManager.js:1052
+#: desktopManager.js:1093
 #, fuzzy
 msgid "New folder"
 msgstr "Nova mapa"
 
 #. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
-#: fileItem.js:143
+#: fileItem.js:144
 msgid "Home"
 msgstr ""
 
-#: fileItem.js:636
+#: fileItem.js:646
 msgid "Don’t Allow Launching"
 msgstr "Ne dopuštaj pokretanje"
 
-#: fileItem.js:638
+#: fileItem.js:648
 msgid "Allow Launching"
 msgstr "Dopusti pokretanje"
 
-#: fileItem.js:704
+#: fileItem.js:714
 msgid "Open"
 msgstr "Otvori"
 
-#: fileItem.js:710
+#: fileItem.js:720
 msgid "Open With Other Application"
 msgstr "Otvori s drugom aplikacijom"
 
-#: fileItem.js:717
+#: fileItem.js:727
 msgid "Cut"
 msgstr "Izreži"
 
-#: fileItem.js:720
+#: fileItem.js:730
 msgid "Copy"
 msgstr "Kopiraj"
 
-#: fileItem.js:724
+#: fileItem.js:734
 msgid "Rename…"
 msgstr "Preimenuj…"
 
-#: fileItem.js:728
+#: fileItem.js:738
 msgid "Move to Trash"
 msgstr "Premjesti u smeće"
 
-#: fileItem.js:732
+#: fileItem.js:742
 msgid "Delete permanently"
 msgstr ""
 
-#: fileItem.js:745
+#: fileItem.js:755
 msgid "Empty Trash"
 msgstr "Isprazni smeće"
 
-#: fileItem.js:753
+#: fileItem.js:762
+msgid "Eject"
+msgstr ""
+
+#: fileItem.js:769
+msgid "Unmount"
+msgstr ""
+
+#: fileItem.js:782
 msgid "Properties"
 msgstr "Svojstva"
 
-#: fileItem.js:757
+#: fileItem.js:786
 msgid "Show in Files"
 msgstr "Prikaži u Datotekama"
 
@@ -228,81 +228,95 @@ msgstr "Prikaži osobnu mapu na radnoj površini"
 msgid "Show the trash icon in the desktop"
 msgstr "Prikaži mapu smeća na radnoj površini"
 
-#: preferences.js:94
+#: preferences.js:92 schemas/org.gnome.shell.extensions.ding.gschema.xml:38
+#, fuzzy
+msgid "Show external drives in the desktop"
+msgstr "Prikaži osobnu mapu na radnoj površini"
+
+#: preferences.js:93 schemas/org.gnome.shell.extensions.ding.gschema.xml:43
+#, fuzzy
+msgid "Show network drives in the desktop"
+msgstr "Prikaži osobnu mapu na radnoj površini."
+
+#: preferences.js:96
 #, fuzzy
 msgid "New icons alignment"
 msgstr "Veličina ikona"
 
-#: preferences.js:95
+#: preferences.js:97
 msgid "Top-left corner"
 msgstr ""
 
-#: preferences.js:96
+#: preferences.js:98
 msgid "Top-right corner"
 msgstr ""
 
-#: preferences.js:97
+#: preferences.js:99
 msgid "Bottom-left corner"
 msgstr ""
 
-#: preferences.js:98
+#: preferences.js:100
 msgid "Bottom-right corner"
 msgstr ""
 
-#: preferences.js:103
+#: preferences.js:102 schemas/org.gnome.shell.extensions.ding.gschema.xml:48
+msgid "Add new drives to the opposite side of the screen"
+msgstr ""
+
+#: preferences.js:106
 msgid "Settings shared with Nautilus"
 msgstr ""
 
-#: preferences.js:109
+#: preferences.js:112
 msgid "Click type for open files"
 msgstr ""
 
-#: preferences.js:109
+#: preferences.js:112
 msgid "Single click"
 msgstr ""
 
-#: preferences.js:109
+#: preferences.js:112
 msgid "Double click"
 msgstr ""
 
-#: preferences.js:110
+#: preferences.js:113
 #, fuzzy
 msgid "Show hidden files"
 msgstr "Prikaži u Datotekama"
 
-#: preferences.js:111
+#: preferences.js:114
 msgid "Show a context menu item to delete permanently"
 msgstr ""
 
-#: preferences.js:114
+#: preferences.js:117
 msgid "Action to do when launching a program from the desktop"
 msgstr ""
 
-#: preferences.js:115
+#: preferences.js:118
 msgid "Display the content of the file"
 msgstr ""
 
-#: preferences.js:116
+#: preferences.js:119
 msgid "Launch the file"
 msgstr ""
 
-#: preferences.js:117
+#: preferences.js:120
 msgid "Ask what to do"
 msgstr ""
 
-#: preferences.js:121
+#: preferences.js:124
 msgid "Show image thumbnails"
 msgstr ""
 
-#: preferences.js:122
+#: preferences.js:125
 msgid "Never"
 msgstr ""
 
-#: preferences.js:123
+#: preferences.js:126
 msgid "Local files only"
 msgstr ""
 
-#: preferences.js:124
+#: preferences.js:127
 msgid "Always"
 msgstr ""
 
@@ -344,6 +358,33 @@ msgstr "Veličina ikona"
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:34
 msgid "Set the corner from where the icons will start to be placed."
 msgstr ""
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:39
+msgid "Show the disk drives connected to the computer."
+msgstr ""
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:44
+#, fuzzy
+msgid "Show mounted network volumes in the desktop."
+msgstr "Prikaži osobnu mapu na radnoj površini."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:49
+msgid ""
+"When adding drives and volumes to the desktop, add them to the opposite side "
+"of the screen."
+msgstr ""
+
+#, fuzzy
+#~ msgid "Show external disk drives in the desktop"
+#~ msgstr "Prikaži osobnu mapu na radnoj površini"
+
+#, fuzzy
+#~ msgid "Show the external drives"
+#~ msgstr "Prikaži osobnu mapu na radnoj površini"
+
+#, fuzzy
+#~ msgid "Show network volumes"
+#~ msgstr "Prikaži u Datotekama"
 
 #~ msgid "Enter file name…"
 #~ msgstr "Upiši naziv datoteke…"

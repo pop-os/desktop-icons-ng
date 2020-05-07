@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-25 00:58+0200\n"
-"PO-Revision-Date: 2020-04-25 00:58+0200\n"
+"POT-Creation-Date: 2020-04-28 22:17+0200\n"
+"PO-Revision-Date: 2020-04-26 14:49+0200\n"
 "Last-Translator: Sergio Costas <rastersoft@gmail.com>\n"
 "Language-Team: Español; Castellano <rastersoft@gmail.com>\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Gtranslator 3.36.0\n"
 
-#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:176
+#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:190
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -48,154 +48,154 @@ msgstr "Renombrar…"
 msgid "Command not found"
 msgstr "Comando no encontrado"
 
-#: desktopIconsUtil.js:167
+#: desktopIconsUtil.js:181
 msgid "Do you want to run “{0}”, or display its contents?"
 msgstr "¿Quiere ejecutar “{0}” o mostrar su contenido?"
 
-#: desktopIconsUtil.js:168
+#: desktopIconsUtil.js:182
 msgid "“{0}” is an executable text file."
 msgstr "“{0}” es un archivo de texto ejecutable."
 
-#: desktopIconsUtil.js:172
+#: desktopIconsUtil.js:186
 msgid "Execute in a terminal"
 msgstr "Ejecutar en una terminal"
 
-#: desktopIconsUtil.js:174
+#: desktopIconsUtil.js:188
 msgid "Show"
 msgstr "Mostrar"
 
-#: desktopIconsUtil.js:178
+#: desktopIconsUtil.js:192
 msgid "Execute"
 msgstr "Ejecutar"
 
-#: desktopManager.js:101
+#: desktopManager.js:104
 msgid "Nautilus File Manager not found"
 msgstr "No se encontró el Gestor de ficheros Nautilus"
 
-#: desktopManager.js:102
+#: desktopManager.js:105
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr ""
 "El gestor de ficheros Nautilus es necesario para que Desktop Icons NG "
 "funcione."
 
-#: desktopManager.js:413
+#: desktopManager.js:420
 msgid "New Folder"
 msgstr "Nueva carpeta"
 
-#: desktopManager.js:417
+#: desktopManager.js:424
 msgid "New Document"
 msgstr "Documento nuevo"
 
-#: desktopManager.js:422
+#: desktopManager.js:429
 msgid "Paste"
 msgstr "Pegar"
 
-#: desktopManager.js:426
+#: desktopManager.js:433
 msgid "Undo"
 msgstr "Deshacer"
 
-#: desktopManager.js:430
+#: desktopManager.js:437
 msgid "Redo"
 msgstr "Rehacer"
 
-#: desktopManager.js:436
+#: desktopManager.js:443
 msgid "Select all"
 msgstr "Seleccionar todo"
 
-#: desktopManager.js:442
+#: desktopManager.js:449
 msgid "Show Desktop in Files"
 msgstr "Mostrar el escritorio en Archivos"
 
-#: desktopManager.js:446 fileItem.js:761
+#: desktopManager.js:453 fileItem.js:790
 msgid "Open in Terminal"
 msgstr "Abrir en una terminal"
 
-#: desktopManager.js:452
+#: desktopManager.js:459
 msgid "Change Background…"
 msgstr "Cambiar el fondo..."
 
-#: desktopManager.js:461
+#: desktopManager.js:468
 msgid "Display Settings"
 msgstr "Preferencias de pantalla"
 
-#: desktopManager.js:468 preferences.js:83
+#: desktopManager.js:475 preferences.js:83
 msgid "Settings"
 msgstr "Preferencias"
 
-#: desktopManager.js:916 desktopManager.js:937
+#: desktopManager.js:926 desktopManager.js:974
 msgid "Error while deleting files"
 msgstr "Error al borrar ficheros"
 
-#: desktopManager.js:917
-msgid "There was an error while trying to permanently delete the folder {:}."
-msgstr "Se produjo un error al intentar borrar la carpeta {:}."
-
-#: desktopManager.js:938
-msgid "There was an error while trying to permanently delete the file {:}."
-msgstr "Se produjo un error al intentar borrar el archivo {:}."
-
-#: desktopManager.js:961
+#: desktopManager.js:1000
 msgid "Are you sure you want to permanently delete these items?"
 msgstr "¿Borrar estos elementos de manera permanente?"
 
-#: desktopManager.js:961
+#: desktopManager.js:1001
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Si borra un elemento, éste se perderá para siempre."
 
-#: desktopManager.js:1052
+#: desktopManager.js:1093
 msgid "New folder"
 msgstr "Nueva carpeta"
 
 #. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
-#: fileItem.js:143
+#: fileItem.js:144
 msgid "Home"
 msgstr "Carpeta personal"
 
-#: fileItem.js:636
+#: fileItem.js:646
 msgid "Don’t Allow Launching"
 msgstr "No permitir lanzar"
 
-#: fileItem.js:638
+#: fileItem.js:648
 msgid "Allow Launching"
 msgstr "Permitir lanzar"
 
-#: fileItem.js:704
+#: fileItem.js:714
 msgid "Open"
 msgstr "Abrir"
 
-#: fileItem.js:710
+#: fileItem.js:720
 msgid "Open With Other Application"
 msgstr "Abrir con otra aplicación"
 
-#: fileItem.js:717
+#: fileItem.js:727
 msgid "Cut"
 msgstr "Cortar"
 
-#: fileItem.js:720
+#: fileItem.js:730
 msgid "Copy"
 msgstr "Copiar"
 
-#: fileItem.js:724
+#: fileItem.js:734
 msgid "Rename…"
 msgstr "Renombrar…"
 
-#: fileItem.js:728
+#: fileItem.js:738
 msgid "Move to Trash"
 msgstr "Mover a la papelera"
 
-#: fileItem.js:732
+#: fileItem.js:742
 msgid "Delete permanently"
 msgstr "Borrar permanentemente"
 
-#: fileItem.js:745
+#: fileItem.js:755
 msgid "Empty Trash"
 msgstr "Vaciar la papelera"
 
-#: fileItem.js:753
+#: fileItem.js:762
+msgid "Eject"
+msgstr "Expulsar"
+
+#: fileItem.js:769
+msgid "Unmount"
+msgstr "Desmontar"
+
+#: fileItem.js:782
 msgid "Properties"
 msgstr "Propiedades"
 
-#: fileItem.js:757
+#: fileItem.js:786
 msgid "Show in Files"
 msgstr "Mostrar en Files"
 
@@ -227,79 +227,91 @@ msgstr "Mostrar la carpeta personal en el escritorio"
 msgid "Show the trash icon in the desktop"
 msgstr "Mostrar la papelera en el escritorio"
 
-#: preferences.js:94
+#: preferences.js:92 schemas/org.gnome.shell.extensions.ding.gschema.xml:38
+msgid "Show external drives in the desktop"
+msgstr "Mostrar unidades externas en el escritorio"
+
+#: preferences.js:93 schemas/org.gnome.shell.extensions.ding.gschema.xml:43
+msgid "Show network drives in the desktop"
+msgstr "Mostrar unidades de red en el escritorio"
+
+#: preferences.js:96
 msgid "New icons alignment"
 msgstr "Alineamiento de nuevos iconos"
 
-#: preferences.js:95
+#: preferences.js:97
 msgid "Top-left corner"
 msgstr "Esquina superior-izquierda"
 
-#: preferences.js:96
+#: preferences.js:98
 msgid "Top-right corner"
 msgstr "Esquina superior-derecha"
 
-#: preferences.js:97
+#: preferences.js:99
 msgid "Bottom-left corner"
 msgstr "Esquina inferior-izquierda"
 
-#: preferences.js:98
+#: preferences.js:100
 msgid "Bottom-right corner"
 msgstr "Esquina inferior-derecha"
 
-#: preferences.js:103
+#: preferences.js:102 schemas/org.gnome.shell.extensions.ding.gschema.xml:48
+msgid "Add new drives to the opposite side of the screen"
+msgstr "Añadir nuevas unidades en el lado opuesto de la pantalla"
+
+#: preferences.js:106
 msgid "Settings shared with Nautilus"
 msgstr "Configuración compartida con Nautilus"
 
-#: preferences.js:109
+#: preferences.js:112
 msgid "Click type for open files"
 msgstr "Tipo de click para abrir ficheros"
 
-#: preferences.js:109
+#: preferences.js:112
 msgid "Single click"
 msgstr "Click simple"
 
-#: preferences.js:109
+#: preferences.js:112
 msgid "Double click"
 msgstr "Click doble"
 
-#: preferences.js:110
+#: preferences.js:113
 msgid "Show hidden files"
 msgstr "Mostrar archivos ocultos"
 
-#: preferences.js:111
+#: preferences.js:114
 msgid "Show a context menu item to delete permanently"
 msgstr "Permitir borrar permanentemente desde el menú contextual"
 
-#: preferences.js:114
+#: preferences.js:117
 msgid "Action to do when launching a program from the desktop"
 msgstr "Acción a realizar al lanzar un programa desde el escritorio"
 
-#: preferences.js:115
+#: preferences.js:118
 msgid "Display the content of the file"
 msgstr "Mostrar el contenido del fichero"
 
-#: preferences.js:116
+#: preferences.js:119
 msgid "Launch the file"
 msgstr "Ejecutar el fichero"
 
-#: preferences.js:117
+#: preferences.js:120
 msgid "Ask what to do"
 msgstr "Preguntar qué hacer"
 
-#: preferences.js:121
+#: preferences.js:124
 msgid "Show image thumbnails"
 msgstr "Mostrar miniaturas de imágenes"
 
-#: preferences.js:122
+#: preferences.js:125
 msgid "Never"
 msgstr "Nunca"
 
-#: preferences.js:123
+#: preferences.js:126
 msgid "Local files only"
 msgstr "Sólo ficheros locales"
 
-#: preferences.js:124
+#: preferences.js:127
 msgid "Always"
 msgstr "Siempre"
 
@@ -343,6 +355,42 @@ msgstr "Esquina para los nuevos iconos"
 msgid "Set the corner from where the icons will start to be placed."
 msgstr ""
 "Establece la esquina a partir de la cual los nuevos iconos se irán añadiendo."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:39
+msgid "Show the disk drives connected to the computer."
+msgstr "Mostrar los discos duros conectados al ordenador."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:44
+msgid "Show mounted network volumes in the desktop."
+msgstr "Muestra en el escritorio las unidades de red montadas."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:49
+msgid ""
+"When adding drives and volumes to the desktop, add them to the opposite side "
+"of the screen."
+msgstr ""
+"Al añadir unidades y volúmenes al escritorio, añadirlos en el lado opuesto "
+"de la pantalla."
+
+#~ msgid ""
+#~ "There was an error while trying to permanently delete the folder {:}."
+#~ msgstr "Se produjo un error al intentar borrar la carpeta {:}."
+
+#~ msgid "There was an error while trying to permanently delete the file {:}."
+#~ msgstr "Se produjo un error al intentar borrar el archivo {:}."
+
+#, fuzzy
+#~ msgid "Show external disk drives in the desktop"
+#~ msgstr "Mostrar unidades externas"
+
+#~ msgid "Show the external drives"
+#~ msgstr "Mostrar unidades externas"
+
+#~ msgid "Show network mounts"
+#~ msgstr "Mostrar unidades de red"
+
+#~ msgid "Show network volumes"
+#~ msgstr "Mostrar unidades de red"
 
 #~ msgid "Enter file name…"
 #~ msgstr "Introduzca el nombre del archivo…"
@@ -391,6 +439,3 @@ msgstr ""
 
 #~ msgid "Shows the Pictures folder in the desktop."
 #~ msgstr "Muestra la carpeta Imágenes en el escritorio."
-
-#~ msgid "Shows the Videos folder in the desktop."
-#~ msgstr "Muestra la carpeta Vídeos en el escritorio."
