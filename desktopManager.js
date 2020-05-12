@@ -411,6 +411,9 @@ var DesktopManager = class {
         } else if (isCtrl && ((symbol == Gdk.KEY_A) || (symbol == Gdk.KEY_a))) {
             this._selectAll();
             return true;
+        } else if (symbol == Gdk.KEY_F5) {
+            this._updateDesktop();
+            return true;
         }
         return false;
     }
