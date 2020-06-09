@@ -28,6 +28,7 @@ install_data([
     'extension.js',
     'fileItem.js',
     'metadata.json',
+    'prefs.js',
     'preferences.js',
     'showErrorPopup.js',
     'stylesheet.css',
