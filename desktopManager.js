@@ -732,8 +732,10 @@ var DesktopManager = class {
                         this._readFileList();
                     }
                 } catch(e) {
-                    print("Error reading the desktop. Retrying..." + e);
-                    Gtk.main_quit();
+                    GLib.idle_add(GLib.PRIORITY_LOW, () => {
+                        this._readFileList();
+                        return GLib.SOURCE_REMOVE;
+                    });
                 }
             }
         );
