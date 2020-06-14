@@ -33,8 +33,6 @@ function buildPrefsWidget() {
     let localedir = extension.dir.get_child('locale');
     if (localedir.query_exists(null))
         Gettext.bindtextdomain('ding', localedir.get_path());
-    else
-        Gettext.bindtextdomain('ding', Config.LOCALEDIR);
 
     let frame = new Gtk.Label({ label: _("To configure Desktop Icons NG, do right-click in the desktop and choose the last item: 'Settings'"),
                                 lines: 5,
