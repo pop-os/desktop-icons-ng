@@ -111,10 +111,13 @@ function getMounts(volumeMonitor) {
     let show_network = Prefs.desktopSettings.get_boolean('show-network-volumes');
 
     let result = [];
+    let uris = [];
     for (let mount of volumeMonitor.get_mounts()) {
         let is_drive = (mount.get_drive() != null) || (mount.get_volume() != null);
-        if ((is_drive && show_volumes) || (!is_drive && show_network)) {
+        let uri = mount.get_root().get_uri();
+        if (((is_drive && show_volumes) || (!is_drive && show_network)) && (!(uris.includes(uri)))) {
             result.push([mount.get_root(), Enums.FileType.EXTERNAL_DRIVE, mount]);
+            uris.push(uri);
         }
     }
     return result;
