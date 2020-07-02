@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-28 22:17+0200\n"
+"POT-Creation-Date: 2020-07-02 20:18+0200\n"
 "PO-Revision-Date: 2019-03-13 13:43+0300\n"
 "Last-Translator: Mahmut Elmas <mahmutelmas06@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "X-Generator: Gtranslator 3.30.1\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:190
+#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:193
 msgid "Cancel"
 msgstr "İptal"
 
@@ -53,24 +53,24 @@ msgstr "Yeniden Adlandır…"
 msgid "Command not found"
 msgstr "Komut Bulunamadı"
 
-#: desktopIconsUtil.js:181
+#: desktopIconsUtil.js:184
 msgid "Do you want to run “{0}”, or display its contents?"
 msgstr "“{0}” dosyasını çalıştırmak mı, içeriğini görmek mi istiyorsunuz ?"
 
-#: desktopIconsUtil.js:182
+#: desktopIconsUtil.js:185
 msgid "“{0}” is an executable text file."
 msgstr "“{0}” dosyası çalıştırılabilir bir metin dosyasıdır."
 
-#: desktopIconsUtil.js:186
+#: desktopIconsUtil.js:189
 #, fuzzy
 msgid "Execute in a terminal"
 msgstr "Uçbirimde Aç"
 
-#: desktopIconsUtil.js:188
+#: desktopIconsUtil.js:191
 msgid "Show"
 msgstr "Göster"
 
-#: desktopIconsUtil.js:192
+#: desktopIconsUtil.js:195
 msgid "Execute"
 msgstr "Çalıştır"
 
@@ -82,63 +82,63 @@ msgstr "Nautilus dosya yöneticisi bulunamadı"
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr "Nautilus dosya yöneticisi olmadan bu eklenti bir işe yaramaz"
 
-#: desktopManager.js:420
+#: desktopManager.js:423
 msgid "New Folder"
 msgstr "Yeni Klasör"
 
-#: desktopManager.js:424
+#: desktopManager.js:427
 msgid "New Document"
 msgstr "Yeni Belge"
 
-#: desktopManager.js:429
+#: desktopManager.js:432
 msgid "Paste"
 msgstr "Yapıştır"
 
-#: desktopManager.js:433
+#: desktopManager.js:436
 msgid "Undo"
 msgstr "Geri Al"
 
-#: desktopManager.js:437
+#: desktopManager.js:440
 msgid "Redo"
 msgstr "Yinele"
 
-#: desktopManager.js:443
+#: desktopManager.js:446
 msgid "Select all"
 msgstr "Tümünü Seç"
 
-#: desktopManager.js:449
+#: desktopManager.js:452
 msgid "Show Desktop in Files"
 msgstr "Masaüstünü Dosyalarʼda Göster"
 
-#: desktopManager.js:453 fileItem.js:790
+#: desktopManager.js:456 fileItem.js:809
 msgid "Open in Terminal"
 msgstr "Uçbirimde Aç"
 
-#: desktopManager.js:459
+#: desktopManager.js:462
 msgid "Change Background…"
 msgstr "Arka Planı Değiştir…"
 
-#: desktopManager.js:468
+#: desktopManager.js:471
 msgid "Display Settings"
 msgstr "Görüntü Ayarları"
 
-#: desktopManager.js:475 preferences.js:83
+#: desktopManager.js:478 preferences.js:83
 msgid "Settings"
 msgstr "Ayarlar"
 
-#: desktopManager.js:926 desktopManager.js:974
+#: desktopManager.js:931 desktopManager.js:979
 msgid "Error while deleting files"
 msgstr "Dosyalar silinirken bir hata oluştu"
 
-#: desktopManager.js:1000
+#: desktopManager.js:1005
 msgid "Are you sure you want to permanently delete these items?"
 msgstr "Dosyaları geri dönüşümsüz olarak silmek istediğinizden emin misiniz?"
 
-#: desktopManager.js:1001
+#: desktopManager.js:1006
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Bir dosya silerseniz, geri dönüşümü yoktur."
 
-#: desktopManager.js:1093
+#: desktopManager.js:1098
 #, fuzzy
 msgid "New folder"
 msgstr "Yeni Klasör"
@@ -148,59 +148,59 @@ msgstr "Yeni Klasör"
 msgid "Home"
 msgstr ""
 
-#: fileItem.js:646
+#: fileItem.js:665
 msgid "Don’t Allow Launching"
 msgstr "Başlatmaya İzin Verme"
 
-#: fileItem.js:648
+#: fileItem.js:667
 msgid "Allow Launching"
 msgstr "Başlatmaya İzin Ver"
 
-#: fileItem.js:714
+#: fileItem.js:733
 msgid "Open"
 msgstr "Aç"
 
-#: fileItem.js:720
+#: fileItem.js:739
 msgid "Open With Other Application"
 msgstr "Başka Uygulamayla Aç"
 
-#: fileItem.js:727
+#: fileItem.js:746
 msgid "Cut"
 msgstr "Kes"
 
-#: fileItem.js:730
+#: fileItem.js:749
 msgid "Copy"
 msgstr "Kopyala"
 
-#: fileItem.js:734
+#: fileItem.js:753
 msgid "Rename…"
 msgstr "Yeniden Adlandır…"
 
-#: fileItem.js:738
+#: fileItem.js:757
 msgid "Move to Trash"
 msgstr "Çöpe Taşı"
 
-#: fileItem.js:742
+#: fileItem.js:761
 msgid "Delete permanently"
 msgstr "Tamamen Sil"
 
-#: fileItem.js:755
+#: fileItem.js:774
 msgid "Empty Trash"
 msgstr "Çöpü Boşalt"
 
-#: fileItem.js:762
+#: fileItem.js:781
 msgid "Eject"
 msgstr ""
 
-#: fileItem.js:769
+#: fileItem.js:788
 msgid "Unmount"
 msgstr ""
 
-#: fileItem.js:782
+#: fileItem.js:801
 msgid "Properties"
 msgstr "Özellikler"
 
-#: fileItem.js:786
+#: fileItem.js:805
 msgid "Show in Files"
 msgstr "Dosyalarʼda Göster"
 
@@ -324,7 +324,7 @@ msgstr "Yalnızca yerel dosyalar"
 msgid "Always"
 msgstr "Her zaman"
 
-#: prefs.js:39
+#: prefs.js:37
 msgid ""
 "To configure Desktop Icons NG, do right-click in the desktop and choose the "
 "last item: 'Settings'"

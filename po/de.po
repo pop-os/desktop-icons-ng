@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-28 22:17+0200\n"
+"POT-Creation-Date: 2020-07-02 20:18+0200\n"
 "PO-Revision-Date: 2020-03-30 11:56+0200\n"
 "Last-Translator: Tim Hofstede <phokas@mail.de>\n"
 "Language-Team: German <phokas@mail.de>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "X-Generator: Gtranslator 3.34.0\n"
 
-#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:190
+#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:193
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -44,23 +44,23 @@ msgstr "Umbenennen"
 msgid "Command not found"
 msgstr "Kommando nicht gefunden"
 
-#: desktopIconsUtil.js:181
+#: desktopIconsUtil.js:184
 msgid "Do you want to run “{0}”, or display its contents?"
 msgstr "Möchten Sie “{0}” ausführen oder dessen Inhalt anzeigen lassen?"
 
-#: desktopIconsUtil.js:182
+#: desktopIconsUtil.js:185
 msgid "“{0}” is an executable text file."
 msgstr "“{0}” ist eine ausführbare Textdatei."
 
-#: desktopIconsUtil.js:186
+#: desktopIconsUtil.js:189
 msgid "Execute in a terminal"
 msgstr "Im Terminal öffnen"
 
-#: desktopIconsUtil.js:188
+#: desktopIconsUtil.js:191
 msgid "Show"
 msgstr "Anzeigen"
 
-#: desktopIconsUtil.js:192
+#: desktopIconsUtil.js:195
 msgid "Execute"
 msgstr "Ausführen"
 
@@ -72,63 +72,63 @@ msgstr "Nautilus-Dateiverwaltung nicht gefunden"
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr "Die Nautilus-Dateiverwaltung wird für Desktop Icons NG benötigt."
 
-#: desktopManager.js:420
+#: desktopManager.js:423
 msgid "New Folder"
 msgstr "Neuer Ordner"
 
-#: desktopManager.js:424
+#: desktopManager.js:427
 msgid "New Document"
 msgstr "Neues Dokument"
 
-#: desktopManager.js:429
+#: desktopManager.js:432
 msgid "Paste"
 msgstr "Einfügen"
 
-#: desktopManager.js:433
+#: desktopManager.js:436
 msgid "Undo"
 msgstr "Rückgängig"
 
-#: desktopManager.js:437
+#: desktopManager.js:440
 msgid "Redo"
 msgstr "Wiederholen"
 
-#: desktopManager.js:443
+#: desktopManager.js:446
 msgid "Select all"
 msgstr "Alles auswählen"
 
-#: desktopManager.js:449
+#: desktopManager.js:452
 msgid "Show Desktop in Files"
 msgstr "Schreibtisch in Dateien anzeigen"
 
-#: desktopManager.js:453 fileItem.js:790
+#: desktopManager.js:456 fileItem.js:809
 msgid "Open in Terminal"
 msgstr "Im Terminal öffnen"
 
-#: desktopManager.js:459
+#: desktopManager.js:462
 msgid "Change Background…"
 msgstr "Hintergrund ändern…"
 
-#: desktopManager.js:468
+#: desktopManager.js:471
 msgid "Display Settings"
 msgstr "Anzeigeeinstellungen"
 
-#: desktopManager.js:475 preferences.js:83
+#: desktopManager.js:478 preferences.js:83
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: desktopManager.js:926 desktopManager.js:974
+#: desktopManager.js:931 desktopManager.js:979
 msgid "Error while deleting files"
 msgstr "Fehler beim Löschen der Dateien"
 
-#: desktopManager.js:1000
+#: desktopManager.js:1005
 msgid "Are you sure you want to permanently delete these items?"
 msgstr "Sind Sie sicher, dass Sie diese Dateien dauerhaft löschen wollen?"
 
-#: desktopManager.js:1001
+#: desktopManager.js:1006
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Sobald Sie ein Objekt löschen, geht es dauerhaft verloren."
 
-#: desktopManager.js:1093
+#: desktopManager.js:1098
 msgid "New folder"
 msgstr "Neuer Ordner"
 
@@ -137,59 +137,59 @@ msgstr "Neuer Ordner"
 msgid "Home"
 msgstr ""
 
-#: fileItem.js:646
+#: fileItem.js:665
 msgid "Don’t Allow Launching"
 msgstr "Start nicht erlauben"
 
-#: fileItem.js:648
+#: fileItem.js:667
 msgid "Allow Launching"
 msgstr "Start erlauben"
 
-#: fileItem.js:714
+#: fileItem.js:733
 msgid "Open"
 msgstr "Öffnen"
 
-#: fileItem.js:720
+#: fileItem.js:739
 msgid "Open With Other Application"
 msgstr "Mit anderer Anwendung öffnen"
 
-#: fileItem.js:727
+#: fileItem.js:746
 msgid "Cut"
 msgstr "Ausschneiden"
 
-#: fileItem.js:730
+#: fileItem.js:749
 msgid "Copy"
 msgstr "Kopieren"
 
-#: fileItem.js:734
+#: fileItem.js:753
 msgid "Rename…"
 msgstr "Umbenennen"
 
-#: fileItem.js:738
+#: fileItem.js:757
 msgid "Move to Trash"
 msgstr "In den Papierkorb verschieben"
 
-#: fileItem.js:742
+#: fileItem.js:761
 msgid "Delete permanently"
 msgstr "Dauerhaft löschen"
 
-#: fileItem.js:755
+#: fileItem.js:774
 msgid "Empty Trash"
 msgstr "Papierkorb leeren"
 
-#: fileItem.js:762
+#: fileItem.js:781
 msgid "Eject"
 msgstr ""
 
-#: fileItem.js:769
+#: fileItem.js:788
 msgid "Unmount"
 msgstr ""
 
-#: fileItem.js:782
+#: fileItem.js:801
 msgid "Properties"
 msgstr "Eigenschaften"
 
-#: fileItem.js:786
+#: fileItem.js:805
 msgid "Show in Files"
 msgstr "In Dateiverwaltung anzeigen"
 
@@ -311,7 +311,7 @@ msgstr "Nur Dateien auf diesem Rechner"
 msgid "Always"
 msgstr "Alle Dateien"
 
-#: prefs.js:39
+#: prefs.js:37
 msgid ""
 "To configure Desktop Icons NG, do right-click in the desktop and choose the "
 "last item: 'Settings'"

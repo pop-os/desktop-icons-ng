@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-28 22:17+0200\n"
+"POT-Creation-Date: 2020-07-02 20:18+0200\n"
 "PO-Revision-Date: 2019-03-02 18:02+0100\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: Czech <zeten30@gmail.com>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:190
+#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:193
 msgid "Cancel"
 msgstr "Zrušit"
 
@@ -50,24 +50,24 @@ msgstr "Přejmenovat…"
 msgid "Command not found"
 msgstr ""
 
-#: desktopIconsUtil.js:181
+#: desktopIconsUtil.js:184
 msgid "Do you want to run “{0}”, or display its contents?"
 msgstr ""
 
-#: desktopIconsUtil.js:182
+#: desktopIconsUtil.js:185
 msgid "“{0}” is an executable text file."
 msgstr ""
 
-#: desktopIconsUtil.js:186
+#: desktopIconsUtil.js:189
 #, fuzzy
 msgid "Execute in a terminal"
 msgstr "Otevřít v terminálu"
 
-#: desktopIconsUtil.js:188
+#: desktopIconsUtil.js:191
 msgid "Show"
 msgstr ""
 
-#: desktopIconsUtil.js:192
+#: desktopIconsUtil.js:195
 msgid "Execute"
 msgstr ""
 
@@ -79,63 +79,63 @@ msgstr ""
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr ""
 
-#: desktopManager.js:420
+#: desktopManager.js:423
 msgid "New Folder"
 msgstr "Nová složka"
 
-#: desktopManager.js:424
+#: desktopManager.js:427
 msgid "New Document"
 msgstr ""
 
-#: desktopManager.js:429
+#: desktopManager.js:432
 msgid "Paste"
 msgstr "Vložit"
 
-#: desktopManager.js:433
+#: desktopManager.js:436
 msgid "Undo"
 msgstr "Zpět"
 
-#: desktopManager.js:437
+#: desktopManager.js:440
 msgid "Redo"
 msgstr "Znovu"
 
-#: desktopManager.js:443
+#: desktopManager.js:446
 msgid "Select all"
 msgstr ""
 
-#: desktopManager.js:449
+#: desktopManager.js:452
 msgid "Show Desktop in Files"
 msgstr "Zobrazit plochu v Souborech"
 
-#: desktopManager.js:453 fileItem.js:790
+#: desktopManager.js:456 fileItem.js:809
 msgid "Open in Terminal"
 msgstr "Otevřít v terminálu"
 
-#: desktopManager.js:459
+#: desktopManager.js:462
 msgid "Change Background…"
 msgstr "Změnit pozadí…"
 
-#: desktopManager.js:468
+#: desktopManager.js:471
 msgid "Display Settings"
 msgstr "Zobrazit nastavení"
 
-#: desktopManager.js:475 preferences.js:83
+#: desktopManager.js:478 preferences.js:83
 msgid "Settings"
 msgstr "Nastavení"
 
-#: desktopManager.js:926 desktopManager.js:974
+#: desktopManager.js:931 desktopManager.js:979
 msgid "Error while deleting files"
 msgstr ""
 
-#: desktopManager.js:1000
+#: desktopManager.js:1005
 msgid "Are you sure you want to permanently delete these items?"
 msgstr ""
 
-#: desktopManager.js:1001
+#: desktopManager.js:1006
 msgid "If you delete an item, it will be permanently lost."
 msgstr ""
 
-#: desktopManager.js:1093
+#: desktopManager.js:1098
 #, fuzzy
 msgid "New folder"
 msgstr "Nová složka"
@@ -145,59 +145,59 @@ msgstr "Nová složka"
 msgid "Home"
 msgstr ""
 
-#: fileItem.js:646
+#: fileItem.js:665
 msgid "Don’t Allow Launching"
 msgstr "Nepovolit spouštění"
 
-#: fileItem.js:648
+#: fileItem.js:667
 msgid "Allow Launching"
 msgstr "Povolit spouštění"
 
-#: fileItem.js:714
+#: fileItem.js:733
 msgid "Open"
 msgstr "Otevřít"
 
-#: fileItem.js:720
+#: fileItem.js:739
 msgid "Open With Other Application"
 msgstr "Otevřít pomocí jiné aplikace"
 
-#: fileItem.js:727
+#: fileItem.js:746
 msgid "Cut"
 msgstr "Vyjmout"
 
-#: fileItem.js:730
+#: fileItem.js:749
 msgid "Copy"
 msgstr "Kopírovat"
 
-#: fileItem.js:734
+#: fileItem.js:753
 msgid "Rename…"
 msgstr "Přejmenovat…"
 
-#: fileItem.js:738
+#: fileItem.js:757
 msgid "Move to Trash"
 msgstr "Přesunout do koše"
 
-#: fileItem.js:742
+#: fileItem.js:761
 msgid "Delete permanently"
 msgstr ""
 
-#: fileItem.js:755
+#: fileItem.js:774
 msgid "Empty Trash"
 msgstr "Vyprázdnit koš"
 
-#: fileItem.js:762
+#: fileItem.js:781
 msgid "Eject"
 msgstr ""
 
-#: fileItem.js:769
+#: fileItem.js:788
 msgid "Unmount"
 msgstr ""
 
-#: fileItem.js:782
+#: fileItem.js:801
 msgid "Properties"
 msgstr "Vlastnosti"
 
-#: fileItem.js:786
+#: fileItem.js:805
 msgid "Show in Files"
 msgstr "Zobrazit v Souborech"
 
@@ -321,7 +321,7 @@ msgstr ""
 msgid "Always"
 msgstr ""
 
-#: prefs.js:39
+#: prefs.js:37
 msgid ""
 "To configure Desktop Icons NG, do right-click in the desktop and choose the "
 "last item: 'Settings'"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-28 22:17+0200\n"
+"POT-Creation-Date: 2020-07-02 20:18+0200\n"
 "PO-Revision-Date: 2019-07-22 10:24+0200\n"
 "Last-Translator: Jordi Mas <jmas@softcatala.org>\n"
 "Language-Team: Catalan <info@softcatala.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:190
+#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:193
 msgid "Cancel"
 msgstr "Cancel·la"
 
@@ -47,24 +47,24 @@ msgstr "Canvia el nom…"
 msgid "Command not found"
 msgstr "\tNo s'ha trobat l'ordre"
 
-#: desktopIconsUtil.js:181
+#: desktopIconsUtil.js:184
 msgid "Do you want to run “{0}”, or display its contents?"
 msgstr ""
 
-#: desktopIconsUtil.js:182
+#: desktopIconsUtil.js:185
 msgid "“{0}” is an executable text file."
 msgstr ""
 
-#: desktopIconsUtil.js:186
+#: desktopIconsUtil.js:189
 #, fuzzy
 msgid "Execute in a terminal"
 msgstr "Obre al Terminal"
 
-#: desktopIconsUtil.js:188
+#: desktopIconsUtil.js:191
 msgid "Show"
 msgstr ""
 
-#: desktopIconsUtil.js:192
+#: desktopIconsUtil.js:195
 msgid "Execute"
 msgstr ""
 
@@ -76,63 +76,63 @@ msgstr ""
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr ""
 
-#: desktopManager.js:420
+#: desktopManager.js:423
 msgid "New Folder"
 msgstr "Carpeta nova"
 
-#: desktopManager.js:424
+#: desktopManager.js:427
 msgid "New Document"
 msgstr ""
 
-#: desktopManager.js:429
+#: desktopManager.js:432
 msgid "Paste"
 msgstr "Enganxa"
 
-#: desktopManager.js:433
+#: desktopManager.js:436
 msgid "Undo"
 msgstr "Desfés"
 
-#: desktopManager.js:437
+#: desktopManager.js:440
 msgid "Redo"
 msgstr "Refés"
 
-#: desktopManager.js:443
+#: desktopManager.js:446
 msgid "Select all"
 msgstr ""
 
-#: desktopManager.js:449
+#: desktopManager.js:452
 msgid "Show Desktop in Files"
 msgstr "Mostra l'escriptori al Fitxers"
 
-#: desktopManager.js:453 fileItem.js:790
+#: desktopManager.js:456 fileItem.js:809
 msgid "Open in Terminal"
 msgstr "Obre al Terminal"
 
-#: desktopManager.js:459
+#: desktopManager.js:462
 msgid "Change Background…"
 msgstr "Canvia el fons de l'escriptori…"
 
-#: desktopManager.js:468
+#: desktopManager.js:471
 msgid "Display Settings"
 msgstr "Paràmetres de la pantalla"
 
-#: desktopManager.js:475 preferences.js:83
+#: desktopManager.js:478 preferences.js:83
 msgid "Settings"
 msgstr "Paràmetres"
 
-#: desktopManager.js:926 desktopManager.js:974
+#: desktopManager.js:931 desktopManager.js:979
 msgid "Error while deleting files"
 msgstr ""
 
-#: desktopManager.js:1000
+#: desktopManager.js:1005
 msgid "Are you sure you want to permanently delete these items?"
 msgstr ""
 
-#: desktopManager.js:1001
+#: desktopManager.js:1006
 msgid "If you delete an item, it will be permanently lost."
 msgstr ""
 
-#: desktopManager.js:1093
+#: desktopManager.js:1098
 #, fuzzy
 msgid "New folder"
 msgstr "Carpeta nova"
@@ -142,59 +142,59 @@ msgstr "Carpeta nova"
 msgid "Home"
 msgstr ""
 
-#: fileItem.js:646
+#: fileItem.js:665
 msgid "Don’t Allow Launching"
 msgstr "No permetis que s'iniciï"
 
-#: fileItem.js:648
+#: fileItem.js:667
 msgid "Allow Launching"
 msgstr "Permet que s'iniciï"
 
-#: fileItem.js:714
+#: fileItem.js:733
 msgid "Open"
 msgstr "Obre"
 
-#: fileItem.js:720
+#: fileItem.js:739
 msgid "Open With Other Application"
 msgstr "Obre amb una altra aplicació..."
 
-#: fileItem.js:727
+#: fileItem.js:746
 msgid "Cut"
 msgstr "Retalla"
 
-#: fileItem.js:730
+#: fileItem.js:749
 msgid "Copy"
 msgstr "Copia"
 
-#: fileItem.js:734
+#: fileItem.js:753
 msgid "Rename…"
 msgstr "Canvia el nom…"
 
-#: fileItem.js:738
+#: fileItem.js:757
 msgid "Move to Trash"
 msgstr "Mou a la paperera"
 
-#: fileItem.js:742
+#: fileItem.js:761
 msgid "Delete permanently"
 msgstr ""
 
-#: fileItem.js:755
+#: fileItem.js:774
 msgid "Empty Trash"
 msgstr "Buida la paperera"
 
-#: fileItem.js:762
+#: fileItem.js:781
 msgid "Eject"
 msgstr ""
 
-#: fileItem.js:769
+#: fileItem.js:788
 msgid "Unmount"
 msgstr ""
 
-#: fileItem.js:782
+#: fileItem.js:801
 msgid "Properties"
 msgstr "Propietats"
 
-#: fileItem.js:786
+#: fileItem.js:805
 msgid "Show in Files"
 msgstr "Mostra al Fitxers"
 
@@ -318,7 +318,7 @@ msgstr ""
 msgid "Always"
 msgstr ""
 
-#: prefs.js:39
+#: prefs.js:37
 msgid ""
 "To configure Desktop Icons NG, do right-click in the desktop and choose the "
 "last item: 'Settings'"
