@@ -1,9 +1,15 @@
 # History of versions #
 
-Version 0.12.0
+* Version 0.12.0
       * Don't fail if there is no TEMPLATES folder
       * Support Ctrl+A for 'select all'
       * Use "Home" as the name of the user's personal folder
+      * Show mounted drives in the desktop
+      * Re-read the desktop on error
+      * Custom icons support
+      * Detect changes in the size of the working area
+      * Preserves the drop place for remote places
+      * Better detection for focus loss
 
 * Version 0.11.0 (2020/04/17)
       * Copy files instead of move when using DnD into another drive
