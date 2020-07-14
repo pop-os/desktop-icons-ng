@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: desktop-icons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-02 20:18+0200\n"
-"PO-Revision-Date: 2020-07-14 13:04+0200\n"
-"Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
+"PO-Revision-Date: 2020-07-14 13:32+0200\n"
+"Last-Translator: Piotr Kuśnierz <piotr.kusnierz@protonmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -34,11 +34,11 @@ msgstr "OK"
 
 #: askRenamePopup.js:40
 msgid "Folder name"
-msgstr "Nazwa nowego katalogu"
+msgstr "Nazwa katalogu"
 
 #: askRenamePopup.js:40
 msgid "File name"
-msgstr "Nazwa nowego pliku"
+msgstr "Nazwa pliku"
 
 #: askRenamePopup.js:47
 msgid "Rename"
@@ -351,7 +351,7 @@ msgstr "Wyrównanie ikon"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:34
 msgid "Set the corner from where the icons will start to be placed."
-msgstr "Ustaw róg, z którego zaczną być umieszczane ikony."
+msgstr "Ustaw róg od którego zaczną być umieszczane ikony."
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:39
 msgid "Show the disk drives connected to the computer."
