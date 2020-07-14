@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: desktop-icons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-02 20:18+0200\n"
-"PO-Revision-Date: 2019-05-01 13:03+0200\n"
+"PO-Revision-Date: 2020-07-14 13:04+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 2.3.1\n"
 
 #: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:193
 msgid "Cancel"
@@ -25,26 +26,23 @@ msgstr "Anuluj"
 
 #: askConfirmPopup.js:36
 msgid "Delete"
-msgstr ""
+msgstr "Usuń"
 
 #: askNamePopup.js:35
 msgid "OK"
 msgstr "OK"
 
 #: askRenamePopup.js:40
-#, fuzzy
 msgid "Folder name"
 msgstr "Nazwa nowego katalogu"
 
 #: askRenamePopup.js:40
-#, fuzzy
 msgid "File name"
-msgstr "Zmień nazwę…"
+msgstr "Nazwa nowego pliku"
 
 #: askRenamePopup.js:47
-#, fuzzy
 msgid "Rename"
-msgstr "Zmień nazwę…"
+msgstr "Zmień nazwę"
 
 #: desktopIconsUtil.js:74
 msgid "Command not found"
@@ -59,25 +57,24 @@ msgid "“{0}” is an executable text file."
 msgstr ""
 
 #: desktopIconsUtil.js:189
-#, fuzzy
 msgid "Execute in a terminal"
 msgstr "Otwórz w terminalu"
 
 #: desktopIconsUtil.js:191
 msgid "Show"
-msgstr ""
+msgstr "Pokaż"
 
 #: desktopIconsUtil.js:195
 msgid "Execute"
-msgstr ""
+msgstr "Wykonaj"
 
 #: desktopManager.js:104
 msgid "Nautilus File Manager not found"
-msgstr ""
+msgstr "Menedżer plików Nautilus nie został odnaleziony"
 
 #: desktopManager.js:105
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
-msgstr ""
+msgstr "Menedżer plików Nautilus jest obowiązkowy do pracy z Desktop Icons NG."
 
 #: desktopManager.js:423
 msgid "New Folder"
@@ -85,7 +82,7 @@ msgstr "Nowy katalog"
 
 #: desktopManager.js:427
 msgid "New Document"
-msgstr ""
+msgstr "Nowy dokument"
 
 #: desktopManager.js:432
 msgid "Paste"
@@ -101,7 +98,7 @@ msgstr "Ponów"
 
 #: desktopManager.js:446
 msgid "Select all"
-msgstr ""
+msgstr "Zaznacz wszystko"
 
 #: desktopManager.js:452
 msgid "Show Desktop in Files"
@@ -125,25 +122,24 @@ msgstr "Ustawienia"
 
 #: desktopManager.js:931 desktopManager.js:979
 msgid "Error while deleting files"
-msgstr ""
+msgstr "Wystąpił błąd podczas usuwania plików"
 
 #: desktopManager.js:1005
 msgid "Are you sure you want to permanently delete these items?"
-msgstr ""
+msgstr "Czy na pewno usunąć trwale wybrane elementy?"
 
 #: desktopManager.js:1006
 msgid "If you delete an item, it will be permanently lost."
-msgstr ""
+msgstr "Jeśli usuniesz element, zostanie on trwale utracony."
 
 #: desktopManager.js:1098
-#, fuzzy
 msgid "New folder"
 msgstr "Nowy katalog"
 
 #. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
 #: fileItem.js:144
 msgid "Home"
-msgstr ""
+msgstr "Katalog domowy"
 
 #: fileItem.js:665
 msgid "Don’t Allow Launching"
@@ -179,7 +175,7 @@ msgstr "Przenieś do kosza"
 
 #: fileItem.js:761
 msgid "Delete permanently"
-msgstr ""
+msgstr "Usuń trwale"
 
 #: fileItem.js:774
 msgid "Empty Trash"
@@ -187,11 +183,11 @@ msgstr "Opróżnij kosz"
 
 #: fileItem.js:781
 msgid "Eject"
-msgstr ""
+msgstr "Wysuń"
 
 #: fileItem.js:788
 msgid "Unmount"
-msgstr ""
+msgstr "Odmontuj"
 
 #: fileItem.js:801
 msgid "Properties"
@@ -207,7 +203,7 @@ msgstr "Rozmiar ikon na pulpicie"
 
 #: preferences.js:89
 msgid "Tiny"
-msgstr ""
+msgstr "Malutki"
 
 #: preferences.js:89
 msgid "Small"
@@ -230,102 +226,100 @@ msgid "Show the trash icon in the desktop"
 msgstr "Kosz na pulpicie"
 
 #: preferences.js:92 schemas/org.gnome.shell.extensions.ding.gschema.xml:38
-#, fuzzy
 msgid "Show external drives in the desktop"
-msgstr "Katalog domowy na pulpicie"
+msgstr "Pokaż dyski zewnętrzne na pulpicie"
 
 #: preferences.js:93 schemas/org.gnome.shell.extensions.ding.gschema.xml:43
-#, fuzzy
 msgid "Show network drives in the desktop"
-msgstr "Wyświetla katalog domowy na pulpicie."
+msgstr "Pokaż dyski sieciowe na pulpicie"
 
 #: preferences.js:96
-#, fuzzy
 msgid "New icons alignment"
-msgstr "Rozmiar ikon"
+msgstr "Wyrównanie nowych ikon"
 
 #: preferences.js:97
 msgid "Top-left corner"
-msgstr ""
+msgstr "Do lewego górnego rogu"
 
 #: preferences.js:98
 msgid "Top-right corner"
-msgstr ""
+msgstr "Do prawego górnego rogu"
 
 #: preferences.js:99
 msgid "Bottom-left corner"
-msgstr ""
+msgstr "Do lewego dolnego rogu"
 
 #: preferences.js:100
 msgid "Bottom-right corner"
-msgstr ""
+msgstr "Do prawego dolnego rogu"
 
 #: preferences.js:102 schemas/org.gnome.shell.extensions.ding.gschema.xml:48
 msgid "Add new drives to the opposite side of the screen"
-msgstr ""
+msgstr "Dodaj nowe dyski po przeciwnej stronie ekranu"
 
 #: preferences.js:106
 msgid "Settings shared with Nautilus"
-msgstr ""
+msgstr "Ustawienia współdzielone z Nautilus"
 
 #: preferences.js:112
 msgid "Click type for open files"
-msgstr ""
+msgstr "Wybierz sposób otwierania elementów"
 
 #: preferences.js:112
 msgid "Single click"
-msgstr ""
+msgstr "Pojedyncze kliknięcie"
 
 #: preferences.js:112
 msgid "Double click"
-msgstr ""
+msgstr "Podwójne kliknięcie"
 
 #: preferences.js:113
-#, fuzzy
 msgid "Show hidden files"
-msgstr "Wyświetl w menedżerze plików"
+msgstr "Pokaż ukryte pliki"
 
 #: preferences.js:114
 msgid "Show a context menu item to delete permanently"
-msgstr ""
+msgstr "Pokaż element usuń trwale w menu kontekstowym"
 
 #: preferences.js:117
 msgid "Action to do when launching a program from the desktop"
-msgstr ""
+msgstr "Czynność do wykonania podczas uruchamiania programu z pulpitu"
 
 #: preferences.js:118
 msgid "Display the content of the file"
-msgstr ""
+msgstr "Pokaż zawartość pliku"
 
 #: preferences.js:119
 msgid "Launch the file"
-msgstr ""
+msgstr "Uruchom plik"
 
 #: preferences.js:120
 msgid "Ask what to do"
-msgstr ""
+msgstr "Zapytaj co zrobić"
 
 #: preferences.js:124
 msgid "Show image thumbnails"
-msgstr ""
+msgstr "Pokazuj podgląd obrazów"
 
 #: preferences.js:125
 msgid "Never"
-msgstr ""
+msgstr "Nigdy"
 
 #: preferences.js:126
 msgid "Local files only"
-msgstr ""
+msgstr "Tylko dla lokalnych plików"
 
 #: preferences.js:127
 msgid "Always"
-msgstr ""
+msgstr "Zawsze"
 
 #: prefs.js:37
 msgid ""
 "To configure Desktop Icons NG, do right-click in the desktop and choose the "
 "last item: 'Settings'"
 msgstr ""
+"Aby skonfigurować ikony puplitu, kliknij pulpit prawym przyciskiem myszy i "
+"wybierz ostatni element: 'Ustawienia'"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:18
 msgid "Icon size"
@@ -352,28 +346,27 @@ msgid "Show the trash icon in the desktop."
 msgstr "Wyświetla kosz na pulpicie."
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:33
-#, fuzzy
 msgid "New icons start corner"
-msgstr "Rozmiar ikon"
+msgstr "Wyrównanie ikon"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:34
 msgid "Set the corner from where the icons will start to be placed."
-msgstr ""
+msgstr "Ustaw róg, z którego zaczną być umieszczane ikony."
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:39
 msgid "Show the disk drives connected to the computer."
-msgstr ""
+msgstr "Pokaż dyski podłączone do komputera."
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:44
-#, fuzzy
 msgid "Show mounted network volumes in the desktop."
-msgstr "Wyświetla katalog domowy na pulpicie."
+msgstr "Pokaż zamontowane woluminy sieciowe na pulpicie."
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:49
 msgid ""
 "When adding drives and volumes to the desktop, add them to the opposite side "
 "of the screen."
 msgstr ""
+"Dodając dyski i woluminy do pulpitu, dodaj je po przeciwnej stronie ekranu."
 
 #, fuzzy
 #~ msgid "Show external disk drives in the desktop"
