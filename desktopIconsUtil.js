@@ -113,11 +113,15 @@ function getMounts(volumeMonitor) {
     let result = [];
     let uris = [];
     for (let mount of volumeMonitor.get_mounts()) {
-        let is_drive = (mount.get_drive() != null) || (mount.get_volume() != null);
-        let uri = mount.get_root().get_uri();
-        if (((is_drive && show_volumes) || (!is_drive && show_network)) && (!(uris.includes(uri)))) {
-            result.push([mount.get_root(), Enums.FileType.EXTERNAL_DRIVE, mount]);
-            uris.push(uri);
+        try {
+            let is_drive = (mount.get_drive() != null) || (mount.get_volume() != null);
+            let uri = mount.get_root().get_uri();
+            if (((is_drive && show_volumes) || (!is_drive && show_network)) && (!(uris.includes(uri)))) {
+                result.push([mount.get_root(), Enums.FileType.EXTERNAL_DRIVE, mount]);
+                uris.push(uri);
+            }
+        } catch(e) {
+            print(`Failed with ${e} while getting volume`);
         }
     }
     return result;

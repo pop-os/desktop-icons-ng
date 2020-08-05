@@ -713,16 +713,20 @@ var DesktopManager = class {
                             }
                         }
                         for (let [newFolder, extras, volume] of DesktopIconsUtil.getMounts(this._volumeMonitor)) {
-                            fileList.push(
-                                new FileItem.FileItem(
-                                    this,
-                                    newFolder,
-                                    newFolder.query_info(Enums.DEFAULT_ATTRIBUTES, Gio.FileQueryInfoFlags.NONE, null),
-                                    extras,
-                                    this._codePath,
-                                    volume
-                                )
-                            );
+                            try {
+                                fileList.push(
+                                    new FileItem.FileItem(
+                                        this,
+                                        newFolder,
+                                        newFolder.query_info(Enums.DEFAULT_ATTRIBUTES, Gio.FileQueryInfoFlags.NONE, null),
+                                        extras,
+                                        this._codePath,
+                                        volume
+                                    )
+                                );
+                            } catch (e) {
+                                print(`Failed with ${e} while adding volume ${newFolder}`);
+                            }
                         }
                         this._removeAllFilesFromGrids();
                         this._fileList = fileList;
