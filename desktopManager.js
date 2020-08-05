@@ -236,11 +236,12 @@ var DesktopManager = class {
         }
     }
 
-    fillDragDataGet(info, x, y) {
+    fillDragDataGet(info, x, y, sortFunction) {
         let fileList = this.getCurrentSelection(false);
         if (fileList == null) {
             return null;
         }
+        fileList.sort(sortFunction);
         let atom;
         switch(info) {
             case 0:
@@ -872,12 +873,15 @@ var DesktopManager = class {
         }
         switch(eventType) {
             case Gio.FileMonitorEvent.MOVED_IN:
+            case Gio.FileMonitorEvent.MOVED_CREATED:
                 /* Remove the coordinates that could exist to avoid conflicts between
                    files that are already in the desktop and the new one
-                */
-                let info = new Gio.FileInfo();
-                info.set_attribute_string('metadata::nautilus-icon-position', '');
-                file.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
+                 */
+                try {
+                    let info = new Gio.FileInfo();
+                    info.set_attribute_string('metadata::nautilus-icon-position', '');
+                    file.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
+                } catch (e) {} // can happen if a file is created and deleted very fast
                 break;
             case Gio.FileMonitorEvent.ATTRIBUTE_CHANGED:
                 /* The desktop is what changed, and not a file inside it */

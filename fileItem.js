@@ -186,12 +186,29 @@ var FileItem = class {
         }
         this._dragSource.drag_source_set_target_list(targets);
         this._dragSource.connect('drag-data-get', (widget, context, data, info, time) => {
-            let dragData = this._desktopManager.fillDragDataGet(info, this._x1, this._y1);
+            let dragData = this._desktopManager.fillDragDataGet(info, this._x1, this._y1, this._sortDrag.bind(this));
             if (dragData != null) {
                 let list = ByteArray.fromString(dragData[1]);
                 data.set(dragData[0], 8, list);
             }
         });
+    }
+
+    _sortDrag(fileA, fileB) {
+        // Puts the file that starts the DnD as first in the list
+        if (fileA.uri == fileB.uri) {
+            return 0;
+        }
+        if (fileA.uri == this._file.get_uri()) {
+            return -1;
+        }
+        if (fileB.uri == this._file.get_uri()) {
+            return 1;
+        }
+        if (fileA.uri < fileB.uri) {
+            return -1;
+        }
+        return 1;
     }
 
     _setDropDestination(dropDestination) {
@@ -208,31 +225,37 @@ var FileItem = class {
                     if ((info == 1) || (info == 2)) {
                         let [fileList, x, y] = DesktopIconsUtil.getFilesFromNautilusDnD(selection, info);
                         if (fileList.length != 0) {
+                            if (fileList[0] == this._file.get_uri()) {
+                                // Dragging a file/folder over itself will do nothing
+                                return;
+                            }
                             if (this._fileExtra != Enums.FileType.USER_DIRECTORY_TRASH) {
-                                this._desktopManager.clearFileCoordinates(fileList, null);
                                 let data = Gio.File.new_for_uri(fileList[0]).query_info('id::filesystem', Gio.FileQueryInfoFlags.NONE, null);
                                 let id_fs = data.get_attribute_string('id::filesystem');
                                 if (this._desktopManager.desktopFsId == id_fs) {
                                     DBusUtils.NautilusFileOperationsProxy.MoveURIsRemote(fileList, this._file.get_uri(),
                                         (result, error) => {
-                                            if (error)
+                                            if (error) {
                                                 throw new Error('Error moving files: ' + error.message);
+                                            }
                                         }
                                     );
                                 } else {
                                     DBusUtils.NautilusFileOperationsProxy.CopyURIsRemote(fileList, this._file.get_uri(),
                                         (result, error) => {
-                                            if (error)
+                                            if (error) {
                                                 throw new Error('Error moving files: ' + error.message);
+                                            }
                                         }
                                     );
                                 }
                             } else {
                                 DBusUtils.NautilusFileOperationsProxy.TrashFilesRemote(fileList,
                                     (result, error) => {
-                                        if (error)
+                                        if (error) {
                                             throw new Error('Error moving files: ' + error.message);
                                         }
+                                    }
                                 );
                             }
                         }
