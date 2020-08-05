@@ -62,11 +62,13 @@ var DesktopManager = class {
         this._monitorDesktopDir.set_rate_limit(1000);
         this._monitorDesktopDir.connect('changed', (obj, file, otherFile, eventType) => this._updateDesktopIfChanged(file, otherFile, eventType));
         this._showHidden = Prefs.gtkSettings.get_boolean('show-hidden');
+        this.showDropPlace = Prefs.desktopSettings.get_boolean('show-drop-place');
         this._settingsId = Prefs.desktopSettings.connect('changed', (obj, key) => {
             if (key == 'icon-size') {
                 this._removeAllFilesFromGrids();
                 this._createGrids();
             }
+            this.showDropPlace = Prefs.desktopSettings.get_boolean('show-drop-place');
             this._updateDesktop();
         });
         Prefs.gtkSettings.connect('changed', (obj, key) => {

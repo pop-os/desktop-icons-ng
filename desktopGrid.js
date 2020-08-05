@@ -97,6 +97,9 @@ var DesktopGrid = class {
                 });
             }
         }
+        this._xmark = 0;
+        this._ymark = 0;
+        this._showDropDestination = false;
         this._container.connect('draw', (widget, cr) => {
             this._doDrawRubberBand(cr);
             cr.$dispose();
@@ -148,9 +151,23 @@ var DesktopGrid = class {
         targets.add(Gdk.atom_intern('x-special/gnome-icon-list', false), 0, 1);
         targets.add(Gdk.atom_intern('text/uri-list', false), 0, 2);
         dropDestination.drag_dest_set_target_list(targets);
+        dropDestination.connect('drag-motion', (widget, context, x, y, time) => {
+            this._showDropDestination = true;
+            this._xmark = this._elementWidth * Math.floor(x / this._elementWidth);
+            this._ymark = this._elementHeight * Math.floor(y / this._elementHeight);
+            this._window.queue_draw();
+        });
+        this._eventBox.connect('drag-leave', (widget, context, time) => {
+            this._showDropDestination = false;
+            this._window.queue_draw();
+        });
         dropDestination.connect('drag-data-received', (widget, context, x, y, selection, info, time) => {
+            this._showDropDestination = false;
+            x = this._elementWidth * Math.floor(x / this._elementWidth);
+            y = this._elementHeight * Math.floor(y / this._elementHeight);
             [x, y] = this._coordinatesLocalToGlobal(x, y);
             this._desktopManager.onDragDataReceived(x, y, selection, info);
+            this._window.queue_draw();
         });
     }
 
@@ -164,14 +181,38 @@ var DesktopGrid = class {
                                                                 this._desktopManager.rubberBandInitY);
             let [xFin, yFin] = this._coordinatesGlobalToLocal(this._desktopManager.mouseX,
                                                               this._desktopManager.mouseY);
-            cr.rectangle(xInit, yInit, xFin - xInit, yFin - yInit);
-            Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({
-                                                        red: this._desktopManager.selectColor.red,
+            cr.rectangle(xInit + 0.5, yInit + 0.5, xFin - xInit, yFin - yInit);
+            Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: this._desktopManager.selectColor.red,
                                                         green: this._desktopManager.selectColor.green,
                                                         blue: this._desktopManager.selectColor.blue,
                                                         alpha: 0.6})
             );
             cr.fill();
+            cr.setLineWidth(1);
+            cr.rectangle(xInit + 0.5, yInit + 0.5, xFin - xInit, yFin - yInit);
+            Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: this._desktopManager.selectColor.red,
+                                                        green: this._desktopManager.selectColor.green,
+                                                        blue: this._desktopManager.selectColor.blue,
+                                                        alpha: 1.0})
+            );
+            cr.stroke();
+        }
+        if (this._showDropDestination && this._desktopManager.showDropPlace) {
+            cr.rectangle(this._xmark + 0.5, this._ymark + 0.5, this._elementWidth, this._elementHeight);
+            Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: 1.0 - this._desktopManager.selectColor.red,
+                                                        green: 1.0 - this._desktopManager.selectColor.green,
+                                                        blue: 1.0 - this._desktopManager.selectColor.blue,
+                                                        alpha: 0.4})
+            );
+            cr.fill();
+            cr.setLineWidth(0.5);
+            cr.rectangle(this._xmark + 0.5, this._ymark + 0.5, this._elementWidth, this._elementHeight);
+            Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: 1.0 - this._desktopManager.selectColor.red,
+                                                        green: 1.0 - this._desktopManager.selectColor.green,
+                                                        blue: 1.0 - this._desktopManager.selectColor.blue,
+                                                        alpha: 1.0})
+            );
+            cr.stroke();
         }
     }
 
