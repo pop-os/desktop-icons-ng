@@ -207,6 +207,12 @@ var DesktopManager = class {
     }
 
     onDragMotion(x, y) {
+        if (this.dragItem === null) {
+            for(let desktop of this._desktops) {
+                desktop.refreshDrag([[0, 0]], x, y);
+            }
+            return;
+        }
         if (this._dragList === null) {
             let itemList = this.getCurrentSelection(false);
             if (itemList.length == 0) {
@@ -221,19 +227,15 @@ var DesktopManager = class {
                 this._dragList.push([x1 - oX, y1 - oY]);
             }
         }
-        let newCoords = [];
-        for (let [x3, y3] of this._dragList) {
-            newCoords.push([x3 + x, y3 + y]);
-        }
         for(let desktop of this._desktops) {
-            desktop.refreshDrag(newCoords);
+            desktop.refreshDrag(this._dragList, x, y);
         }
     }
 
     onDragLeave() {
         this._dragList = null;
         for(let desktop of this._desktops) {
-            desktop.refreshDrag(null);
+            desktop.refreshDrag(null, 0, 0);
         }
     }
 

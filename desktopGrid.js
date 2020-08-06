@@ -168,7 +168,7 @@ var DesktopGrid = class {
         });
     }
 
-    refreshDrag(selectedList) {
+    refreshDrag(selectedList, ox, oy) {
         if (selectedList === null) {
             this._selectedList = null;
             this._window.queue_draw();
@@ -176,7 +176,9 @@ var DesktopGrid = class {
         }
         let newSelectedList = [];
         for (let [x, y] of selectedList) {
-            if ((x < this._x) || (y < this._y) || (x >= (this._x + this._width)) || (y >= (this._y + this._height))) {
+            x += ox;
+            y += oy;
+            if ((x < this._x) || (y < this._y) || (x >= (this._x + this._width * this._zoom)) || (y >= (this._y + this._height * this._zoom))) {
                 continue;
             }
             [x, y] = this._coordinatesGlobalToLocal(x, y);
@@ -185,9 +187,13 @@ var DesktopGrid = class {
             newSelectedList.push([x, y]);
         }
         if (newSelectedList.length == 0) {
+            if (this._selectedList !== null) {
+                this._selectedList = null;
+                this._window.queue_draw();
+            }
             return;
         }
-        if ((this._selectedList !== null) && (this._selectedList.length != 0)) {
+        if (this._selectedList !== null) {
             if ((newSelectedList[0][0] == this._selectedList[0][0]) && (newSelectedList[0][1] == this._selectedList[0][1])) {
                 return;
             }
