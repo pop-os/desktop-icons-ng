@@ -44,6 +44,7 @@ var DesktopManager = class {
         DBusUtils.init();
         this._clickX = 0;
         this._clickY = 0;
+        this.dragItem = null;
         this._templateManager = new TemplateManager.TemplateManager();
         this._codePath = codePath;
         this._asDesktop = asDesktop;
@@ -198,6 +199,10 @@ var DesktopManager = class {
         this._addFilesToDesktop(fileItems, Enums.StoredCoordinates.OVERWRITE);
     }
 
+    onDragBegin(item) {
+        this.dragItem = item;
+    }
+
     onDragDataReceived(xDestination, yDestination, selection, info) {
         let [fileList, xOrigin, yOrigin] = DesktopIconsUtil.getFilesFromNautilusDnD(selection, info);
         switch(info) {
@@ -234,14 +239,14 @@ var DesktopManager = class {
             }
             break;
         }
+        this.dragItem = null;
     }
 
-    fillDragDataGet(info, x, y, sortFunction) {
+    fillDragDataGet(info, x, y) {
         let fileList = this.getCurrentSelection(false);
         if (fileList == null) {
             return null;
         }
-        fileList.sort(sortFunction);
         let atom;
         switch(info) {
             case 0:
