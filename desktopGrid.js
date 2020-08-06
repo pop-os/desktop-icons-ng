@@ -97,9 +97,8 @@ var DesktopGrid = class {
                 });
             }
         }
-        this._xmark = 0;
-        this._ymark = 0;
-        this._showDropDestination = false;
+
+        this._selectedList = null;
         this._container.connect('draw', (widget, cr) => {
             this._doDrawRubberBand(cr);
             cr.$dispose();
@@ -152,23 +151,49 @@ var DesktopGrid = class {
         targets.add(Gdk.atom_intern('text/uri-list', false), 0, 2);
         dropDestination.drag_dest_set_target_list(targets);
         dropDestination.connect('drag-motion', (widget, context, x, y, time) => {
-            this._showDropDestination = true;
-            this._xmark = this._elementWidth * Math.floor(x / this._elementWidth);
-            this._ymark = this._elementHeight * Math.floor(y / this._elementHeight);
-            this._window.queue_draw();
+            x = this._elementWidth * Math.floor(x / this._elementWidth);
+            y = this._elementHeight * Math.floor(y / this._elementHeight);
+            [x, y] = this._coordinatesLocalToGlobal(x, y);
+            this._desktopManager.onDragMotion(x, y);
         });
         this._eventBox.connect('drag-leave', (widget, context, time) => {
-            this._showDropDestination = false;
-            this._window.queue_draw();
+            this._desktopManager.onDragLeave();
         });
         dropDestination.connect('drag-data-received', (widget, context, x, y, selection, info, time) => {
-            this._showDropDestination = false;
             x = this._elementWidth * Math.floor(x / this._elementWidth);
             y = this._elementHeight * Math.floor(y / this._elementHeight);
             [x, y] = this._coordinatesLocalToGlobal(x, y);
             this._desktopManager.onDragDataReceived(x, y, selection, info);
             this._window.queue_draw();
         });
+    }
+
+    refreshDrag(selectedList) {
+        if (selectedList === null) {
+            this._selectedList = null;
+            this._window.queue_draw();
+            return;
+        }
+        let newSelectedList = [];
+        for (let [x, y] of selectedList) {
+            if ((x < this._x) || (y < this._y) || (x >= (this._x + this._width)) || (y >= (this._y + this._height))) {
+                continue;
+            }
+            [x, y] = this._coordinatesGlobalToLocal(x, y);
+            x = this._elementWidth * Math.floor((x / this._elementWidth) + 0.5);
+            y = this._elementHeight * Math.floor((y / this._elementHeight) + 0.5);
+            newSelectedList.push([x, y]);
+        }
+        if (newSelectedList.length == 0) {
+            return;
+        }
+        if ((this._selectedList !== null) && (this._selectedList.length != 0)) {
+            if ((newSelectedList[0][0] == this._selectedList[0][0]) && (newSelectedList[0][1] == this._selectedList[0][1])) {
+                return;
+            }
+        }
+        this._selectedList = newSelectedList;
+        this._window.queue_draw();
     }
 
     queue_draw() {
@@ -197,22 +222,24 @@ var DesktopGrid = class {
             );
             cr.stroke();
         }
-        if (this._showDropDestination && this._desktopManager.showDropPlace) {
-            cr.rectangle(this._xmark + 0.5, this._ymark + 0.5, this._elementWidth, this._elementHeight);
-            Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: 1.0 - this._desktopManager.selectColor.red,
-                                                        green: 1.0 - this._desktopManager.selectColor.green,
-                                                        blue: 1.0 - this._desktopManager.selectColor.blue,
-                                                        alpha: 0.4})
-            );
-            cr.fill();
-            cr.setLineWidth(0.5);
-            cr.rectangle(this._xmark + 0.5, this._ymark + 0.5, this._elementWidth, this._elementHeight);
-            Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: 1.0 - this._desktopManager.selectColor.red,
-                                                        green: 1.0 - this._desktopManager.selectColor.green,
-                                                        blue: 1.0 - this._desktopManager.selectColor.blue,
-                                                        alpha: 1.0})
-            );
-            cr.stroke();
+        if (this._selectedList !== null) {
+            for(let [x, y] of this._selectedList) {
+                cr.rectangle(x + 0.5, y + 0.5, this._elementWidth, this._elementHeight);
+                Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: 1.0 - this._desktopManager.selectColor.red,
+                                                            green: 1.0 - this._desktopManager.selectColor.green,
+                                                            blue: 1.0 - this._desktopManager.selectColor.blue,
+                                                            alpha: 0.4})
+                );
+                cr.fill();
+                cr.setLineWidth(0.5);
+                cr.rectangle(x + 0.5, y + 0.5, this._elementWidth, this._elementHeight);
+                Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: 1.0 - this._desktopManager.selectColor.red,
+                                                            green: 1.0 - this._desktopManager.selectColor.green,
+                                                            blue: 1.0 - this._desktopManager.selectColor.blue,
+                                                            alpha: 1.0})
+                );
+                cr.stroke();
+            }
         }
     }
 

@@ -44,6 +44,7 @@ var DesktopManager = class {
         DBusUtils.init();
         this._clickX = 0;
         this._clickY = 0;
+        this._dragList = null;
         this.dragItem = null;
         this._templateManager = new TemplateManager.TemplateManager();
         this._codePath = codePath;
@@ -205,7 +206,39 @@ var DesktopManager = class {
         this.dragItem = item;
     }
 
+    onDragMotion(x, y) {
+        if (this._dragList === null) {
+            let itemList = this.getCurrentSelection(false);
+            if (itemList.length == 0) {
+                return;
+            }
+            let [x1, y1, x2, y2, c] = this.dragItem.getCoordinates();
+            let oX = x1;
+            let oY = y1;
+            this._dragList = [];
+            for (let item of itemList) {
+                [x1, y1, x2, y2, c] = item.getCoordinates();
+                this._dragList.push([x1 - oX, y1 - oY]);
+            }
+        }
+        let newCoords = [];
+        for (let [x3, y3] of this._dragList) {
+            newCoords.push([x3 + x, y3 + y]);
+        }
+        for(let desktop of this._desktops) {
+            desktop.refreshDrag(newCoords);
+        }
+    }
+
+    onDragLeave() {
+        this._dragList = null;
+        for(let desktop of this._desktops) {
+            desktop.refreshDrag(null);
+        }
+    }
+
     onDragDataReceived(xDestination, yDestination, selection, info) {
+        this.onDragLeave();
         let [fileList, xOrigin, yOrigin] = DesktopIconsUtil.getFilesFromNautilusDnD(selection, info);
         switch(info) {
         case 0:
