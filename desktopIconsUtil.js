@@ -110,9 +110,16 @@ function getMounts(volumeMonitor) {
     let show_volumes = Prefs.desktopSettings.get_boolean('show-volumes');
     let show_network = Prefs.desktopSettings.get_boolean('show-network-volumes');
 
+    try {
+        var mounts = volumeMonitor.get_mounts();
+    } catch(e) {
+        print(`Failed to get the list of mounts with ${e}`);
+        return [];
+    }
+
     let result = [];
     let uris = [];
-    for (let mount of volumeMonitor.get_mounts()) {
+    for (let mount of mounts) {
         try {
             let is_drive = (mount.get_drive() != null) || (mount.get_volume() != null);
             let uri = mount.get_root().get_uri();
