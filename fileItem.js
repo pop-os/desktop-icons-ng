@@ -195,6 +195,9 @@ var FileItem = class {
                 data.set(dragData[0], 8, list);
             }
         });
+        this._dragSource.connect('drag-end', (widget, context) => {
+            this._desktopManager.onDragEnd();
+        })
     }
 
     _setDropDestination(dropDestination) {
@@ -211,7 +214,7 @@ var FileItem = class {
                     if ((info == 1) || (info == 2)) {
                         let [fileList, x, y] = DesktopIconsUtil.getFilesFromNautilusDnD(selection, info);
                         if (fileList.length != 0) {
-                            if (this._desktopManager.dragItem.uri == this._file.get_uri()) {
+                            if (this._desktopManager.dragItem && (this._desktopManager.dragItem.uri == this._file.get_uri())) {
                                 // Dragging a file/folder over itself will do nothing
                                 return;
                             }

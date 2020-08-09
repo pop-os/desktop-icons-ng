@@ -215,7 +215,7 @@ var DesktopManager = class {
         }
         if (this._dragList === null) {
             let itemList = this.getCurrentSelection(false);
-            if (itemList.length == 0) {
+            if (!itemList) {
                 return;
             }
             let [x1, y1, x2, y2, c] = this.dragItem.getCoordinates();
@@ -237,6 +237,10 @@ var DesktopManager = class {
         for(let desktop of this._desktops) {
             desktop.refreshDrag(null, 0, 0);
         }
+    }
+
+    onDragEnd() {
+        this.dragItem = null;
     }
 
     onDragDataReceived(xDestination, yDestination, selection, info) {
@@ -276,7 +280,6 @@ var DesktopManager = class {
             }
             break;
         }
-        this.dragItem = null;
     }
 
     fillDragDataGet(info, x, y) {
