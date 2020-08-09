@@ -178,13 +178,10 @@ var DesktopGrid = class {
         for (let [x, y] of selectedList) {
             x += ox;
             y += oy;
-            if ((x < this._x) || (y < this._y) || (x >= (this._x + this._width * this._zoom)) || (y >= (this._y + this._height * this._zoom))) {
-                continue;
+            let r = this.getGridAt(x, y, false);
+            if (r !== null) {
+                newSelectedList.push(r);
             }
-            [x, y] = this._coordinatesGlobalToLocal(x, y);
-            x = this._elementWidth * Math.floor((x / this._elementWidth) + 0.5);
-            y = this._elementHeight * Math.floor((y / this._elementHeight) + 0.5);
-            newSelectedList.push([x, y]);
         }
         if (newSelectedList.length == 0) {
             if (this._selectedList !== null) {
@@ -268,7 +265,7 @@ var DesktopGrid = class {
          if (!isFree) {
              return -1;
          }
-         if ((x >= this._x) && (x < (this._x + this._width * this._zoom)) && (y >= this._y) && (y < (this._y + this._height * this._zoom))) {
+         if (this._coordinatesBelongToThisGrid(x, y)) {
              return 0;
          }
          return Math.pow(x - (this._x + this._width * this._zoom / 2), 2) + Math.pow(x - (this._y + this._height * this._zoom / 2), 2);
@@ -336,16 +333,22 @@ var DesktopGrid = class {
         this._gridStatus[y * this._maxColumns + x] = inUse;
     }
 
-    getGridAt(x, y) {
-        if ((x >= this._x) && (x < (this._x + this._width * this._zoom)) && (y >= this._y) && (y < (this._y + this._height * this._zoom))) {
+    getGridAt(x, y, globalCoordinates) {
+        if (this._coordinatesBelongToThisGrid(x, y)) {
             [x, y] = this._coordinatesGlobalToLocal(x, y);
             x = this._elementWidth * Math.floor((x / this._elementWidth) + 0.5);
             y = this._elementHeight * Math.floor((y / this._elementHeight) + 0.5);
-            [x, y] = this._coordinatesLocalToGlobal(x, y);
+            if (globalCoordinates) {
+                [x, y] = this._coordinatesLocalToGlobal(x, y);
+            }
             return [x, y];
         } else {
             return null;
         }
+    }
+
+    _coordinatesBelongToThisGrid(x, y) {
+        return ((x >= this._x) && (x < (this._x + this._width * this._zoom)) && (y >= this._y) && (y < (this._y + this._height * this._zoom)));
     }
 
     _getEmptyPlaceClosestTo(x, y, coordinatesAction, reverseHorizontal) {

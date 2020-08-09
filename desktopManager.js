@@ -180,7 +180,7 @@ var DesktopManager = class {
     doMoveWithDragAndDrop(xOrigin, yOrigin, xDestination, yDestination) {
         // Find the grid where the destination lies
         for(let desktop of this._desktops) {
-            let grid = desktop.getGridAt(xDestination, yDestination);
+            let grid = desktop.getGridAt(xDestination, yDestination, true);
             if (grid !== null) {
                 xDestination = grid[0];
                 yDestination = grid[1];
