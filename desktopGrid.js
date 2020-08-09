@@ -338,15 +338,11 @@ var DesktopGrid = class {
 
     getGridAt(x, y) {
         if ((x >= this._x) && (x < (this._x + this._width * this._zoom)) && (y >= this._y) && (y < (this._y + this._height * this._zoom))) {
-            let [xLocal, yLocal] = this._coordinatesGlobalToLocal(x, y);
-            let column = Math.floor(xLocal * this._maxColumns / this._width);
-            let row = Math.floor(yLocal * this._maxRows / this._height);
-            let gridX = Math.round((column * this._width) / this._maxColumns);
-            let gridY = Math.round((row * this._height) / this._maxRows);
-            let [oX, oY] = this._coordinatesLocalToGlobal(gridX, gridY);
-            oX = Math.max(this._x, oX);
-            oY = Math.max(this._y, oY);
-            return [oX, oY];
+            [x, y] = this._coordinatesGlobalToLocal(x, y);
+            x = this._elementWidth * Math.floor((x / this._elementWidth) + 0.5);
+            y = this._elementHeight * Math.floor((y / this._elementHeight) + 0.5);
+            [x, y] = this._coordinatesLocalToGlobal(x, y);
+            return [x, y];
         } else {
             return null;
         }
@@ -355,8 +351,8 @@ var DesktopGrid = class {
     _getEmptyPlaceClosestTo(x, y, coordinatesAction, reverseHorizontal) {
 
         [x, y] = this._coordinatesGlobalToLocal(x, y);
-        let placeX = Math.round(x * this._maxColumns / this._width);
-        let placeY = Math.round(y * this._maxRows / this._height);
+        let placeX = Math.floor(x / this._elementWidth);
+        let placeY = Math.floor(y / this._elementHeight);
 
         let cornerInversion = Prefs.get_start_corner();
         if (reverseHorizontal) {
@@ -389,8 +385,8 @@ var DesktopGrid = class {
                     continue;
                 }
 
-                let proposedX = Math.round((column * this._width) / this._maxColumns);
-                let proposedY = Math.round((row * this._height) / this._maxRows);
+                let proposedX = column * this._elementWidth;
+                let proposedY = row * this._elementHeight;
                 if (coordinatesAction == Enums.StoredCoordinates.ASSIGN)
                     return [column, row];
                 let distance = DesktopIconsUtil.distanceBetweenPoints(proposedX, proposedY, x, y);

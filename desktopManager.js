@@ -177,7 +177,7 @@ var DesktopManager = class {
         }
     }
 
-    doMoveWithDragAndDrop(fileItem, xOrigin, yOrigin, xDestination, yDestination) {
+    doMoveWithDragAndDrop(xOrigin, yOrigin, xDestination, yDestination) {
         // Find the grid where the destination lies
         for(let desktop of this._desktops) {
             let grid = desktop.getGridAt(xDestination, yDestination);
@@ -250,7 +250,7 @@ var DesktopManager = class {
         case 0:
             if (fileList.length != 0) {
                 let [xOrigin, yOrigin, a, b, c] = this.dragItem.getCoordinates();
-                this.doMoveWithDragAndDrop(this, xOrigin, yOrigin, xDestination, yDestination);
+                this.doMoveWithDragAndDrop(xOrigin, yOrigin, xDestination, yDestination);
             }
             break;
         case 1:
