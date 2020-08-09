@@ -212,7 +212,7 @@ var FileItem = class {
                 dropDestination.drag_dest_set_target_list(targets);
                 dropDestination.connect('drag-data-received', (widget, context, x, y, selection, info, time) => {
                     if ((info == 1) || (info == 2)) {
-                        let [fileList, x, y] = DesktopIconsUtil.getFilesFromNautilusDnD(selection, info);
+                        let fileList = DesktopIconsUtil.getFilesFromNautilusDnD(selection, info);
                         if (fileList.length != 0) {
                             if (this._desktopManager.dragItem && (this._desktopManager.dragItem.uri == this._file.get_uri())) {
                                 // Dragging a file/folder over itself will do nothing
