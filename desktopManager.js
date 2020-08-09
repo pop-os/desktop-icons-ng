@@ -245,11 +245,12 @@ var DesktopManager = class {
 
     onDragDataReceived(xDestination, yDestination, selection, info) {
         this.onDragLeave();
-        let [fileList, xOrigin, yOrigin] = DesktopIconsUtil.getFilesFromNautilusDnD(selection, info);
+        let fileList = DesktopIconsUtil.getFilesFromNautilusDnD(selection, info);
         switch(info) {
         case 0:
             if (fileList.length != 0) {
-                this.doMoveWithDragAndDrop(this, parseInt(xOrigin), parseInt(yOrigin), xDestination, yDestination);
+                let [xOrigin, yOrigin, a, b, c] = this.dragItem.getCoordinates();
+                this.doMoveWithDragAndDrop(this, xOrigin, yOrigin, xDestination, yDestination);
             }
             break;
         case 1:
@@ -282,7 +283,7 @@ var DesktopManager = class {
         }
     }
 
-    fillDragDataGet(info, x, y) {
+    fillDragDataGet(info) {
         let fileList = this.getCurrentSelection(false);
         if (fileList == null) {
             return null;
@@ -304,9 +305,6 @@ var DesktopManager = class {
         let data = "";
         for (let fileItem of fileList) {
             data += fileItem.uri;
-            if (info == 0) {
-                data += `\r${x} ${y}`
-            }
             if (info == 1) {
                 let coordinates = fileItem.getCoordinates();
                 if (coordinates != null) {

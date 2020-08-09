@@ -189,7 +189,7 @@ var FileItem = class {
             this._desktopManager.onDragBegin(this);
         });
         this._dragSource.connect('drag-data-get', (widget, context, data, info, time) => {
-            let dragData = this._desktopManager.fillDragDataGet(info, this._x1, this._y1);
+            let dragData = this._desktopManager.fillDragDataGet(info);
             if (dragData != null) {
                 let list = ByteArray.fromString(dragData[1]);
                 data.set(dragData[0], 8, list);

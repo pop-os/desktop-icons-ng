@@ -157,19 +157,14 @@ function getFilesFromNautilusDnD(selection, type) {
     let data = String.fromCharCode.apply(null, selection.get_data());
     let retval = [];
     let elements = data.split('\r\n');
-    let x;
-    let y;
     for(let item of elements) {
         if (item.length == 0) {
             continue;
         }
-        if ((type == 0) || (type == 1)) {
-            // x-special/gnome-icon-list and x-special/ding-icon-list
+        if (type == 1) {
+            // x-special/gnome-icon-list
             let entry = item.split('\r');
             retval.push(entry[0]);
-            if (type == 0) {
-                [x, y] = entry[1].split(' ');
-            }
         } else {
             // text/uri-list
             if (item[0] == '#') {
@@ -178,7 +173,7 @@ function getFilesFromNautilusDnD(selection, type) {
             retval.push(item);
         }
     }
-    return [retval, x, y];
+    return retval;
 }
 
 
