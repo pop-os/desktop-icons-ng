@@ -228,7 +228,7 @@ var DesktopGrid = class {
             );
             cr.stroke();
         }
-        if (this._selectedList !== null) {
+        if (this._desktopManager.showDropPlace && (this._selectedList !== null)) {
             for(let [x, y] of this._selectedList) {
                 cr.rectangle(x + 0.5, y + 0.5, this._elementWidth, this._elementHeight);
                 Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: 1.0 - this._desktopManager.selectColor.red,
