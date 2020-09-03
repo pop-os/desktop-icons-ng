@@ -44,6 +44,7 @@ var DesktopManager = class {
         DBusUtils.init();
         this._clickX = 0;
         this._clickY = 0;
+        this._dragList = null;
         this.dragItem = null;
         this._templateManager = new TemplateManager.TemplateManager();
         this._codePath = codePath;
@@ -62,11 +63,13 @@ var DesktopManager = class {
         this._monitorDesktopDir.set_rate_limit(1000);
         this._monitorDesktopDir.connect('changed', (obj, file, otherFile, eventType) => this._updateDesktopIfChanged(file, otherFile, eventType));
         this._showHidden = Prefs.gtkSettings.get_boolean('show-hidden');
+        this.showDropPlace = Prefs.desktopSettings.get_boolean('show-drop-place');
         this._settingsId = Prefs.desktopSettings.connect('changed', (obj, key) => {
             if (key == 'icon-size') {
                 this._removeAllFilesFromGrids();
                 this._createGrids();
             }
+            this.showDropPlace = Prefs.desktopSettings.get_boolean('show-drop-place');
             this._updateDesktop();
         });
         Prefs.gtkSettings.connect('changed', (obj, key) => {
@@ -174,10 +177,10 @@ var DesktopManager = class {
         }
     }
 
-    doMoveWithDragAndDrop(fileItem, xOrigin, yOrigin, xDestination, yDestination) {
+    doMoveWithDragAndDrop(xOrigin, yOrigin, xDestination, yDestination) {
         // Find the grid where the destination lies
         for(let desktop of this._desktops) {
-            let grid = desktop.getGridAt(xDestination, yDestination);
+            let grid = desktop.getGridAt(xDestination, yDestination, true);
             if (grid !== null) {
                 xDestination = grid[0];
                 yDestination = grid[1];
@@ -203,12 +206,51 @@ var DesktopManager = class {
         this.dragItem = item;
     }
 
+    onDragMotion(x, y) {
+        if (this.dragItem === null) {
+            for(let desktop of this._desktops) {
+                desktop.refreshDrag([[0, 0]], x, y);
+            }
+            return;
+        }
+        if (this._dragList === null) {
+            let itemList = this.getCurrentSelection(false);
+            if (!itemList) {
+                return;
+            }
+            let [x1, y1, x2, y2, c] = this.dragItem.getCoordinates();
+            let oX = x1;
+            let oY = y1;
+            this._dragList = [];
+            for (let item of itemList) {
+                [x1, y1, x2, y2, c] = item.getCoordinates();
+                this._dragList.push([x1 - oX, y1 - oY]);
+            }
+        }
+        for(let desktop of this._desktops) {
+            desktop.refreshDrag(this._dragList, x, y);
+        }
+    }
+
+    onDragLeave() {
+        this._dragList = null;
+        for(let desktop of this._desktops) {
+            desktop.refreshDrag(null, 0, 0);
+        }
+    }
+
+    onDragEnd() {
+        this.dragItem = null;
+    }
+
     onDragDataReceived(xDestination, yDestination, selection, info) {
-        let [fileList, xOrigin, yOrigin] = DesktopIconsUtil.getFilesFromNautilusDnD(selection, info);
+        this.onDragLeave();
+        let fileList = DesktopIconsUtil.getFilesFromNautilusDnD(selection, info);
         switch(info) {
         case 0:
             if (fileList.length != 0) {
-                this.doMoveWithDragAndDrop(this, parseInt(xOrigin), parseInt(yOrigin), xDestination, yDestination);
+                let [xOrigin, yOrigin, a, b, c] = this.dragItem.getCoordinates();
+                this.doMoveWithDragAndDrop(xOrigin, yOrigin, xDestination, yDestination);
             }
             break;
         case 1:
@@ -239,10 +281,9 @@ var DesktopManager = class {
             }
             break;
         }
-        this.dragItem = null;
     }
 
-    fillDragDataGet(info, x, y) {
+    fillDragDataGet(info) {
         let fileList = this.getCurrentSelection(false);
         if (fileList == null) {
             return null;
@@ -264,9 +305,6 @@ var DesktopManager = class {
         let data = "";
         for (let fileItem of fileList) {
             data += fileItem.uri;
-            if (info == 0) {
-                data += `\r${x} ${y}`
-            }
             if (info == 1) {
                 let coordinates = fileItem.getCoordinates();
                 if (coordinates != null) {

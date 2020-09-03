@@ -97,6 +97,8 @@ var DesktopGrid = class {
                 });
             }
         }
+
+        this._selectedList = null;
         this._container.connect('draw', (widget, cr) => {
             this._doDrawRubberBand(cr);
             cr.$dispose();
@@ -148,10 +150,53 @@ var DesktopGrid = class {
         targets.add(Gdk.atom_intern('x-special/gnome-icon-list', false), 0, 1);
         targets.add(Gdk.atom_intern('text/uri-list', false), 0, 2);
         dropDestination.drag_dest_set_target_list(targets);
+        dropDestination.connect('drag-motion', (widget, context, x, y, time) => {
+            x = this._elementWidth * Math.floor(x / this._elementWidth);
+            y = this._elementHeight * Math.floor(y / this._elementHeight);
+            [x, y] = this._coordinatesLocalToGlobal(x, y);
+            this._desktopManager.onDragMotion(x, y);
+        });
+        this._eventBox.connect('drag-leave', (widget, context, time) => {
+            this._desktopManager.onDragLeave();
+        });
         dropDestination.connect('drag-data-received', (widget, context, x, y, selection, info, time) => {
+            x = this._elementWidth * Math.floor(x / this._elementWidth);
+            y = this._elementHeight * Math.floor(y / this._elementHeight);
             [x, y] = this._coordinatesLocalToGlobal(x, y);
             this._desktopManager.onDragDataReceived(x, y, selection, info);
+            this._window.queue_draw();
         });
+    }
+
+    refreshDrag(selectedList, ox, oy) {
+        if (selectedList === null) {
+            this._selectedList = null;
+            this._window.queue_draw();
+            return;
+        }
+        let newSelectedList = [];
+        for (let [x, y] of selectedList) {
+            x += ox;
+            y += oy;
+            let r = this.getGridAt(x, y, false);
+            if (r !== null) {
+                newSelectedList.push(r);
+            }
+        }
+        if (newSelectedList.length == 0) {
+            if (this._selectedList !== null) {
+                this._selectedList = null;
+                this._window.queue_draw();
+            }
+            return;
+        }
+        if (this._selectedList !== null) {
+            if ((newSelectedList[0][0] == this._selectedList[0][0]) && (newSelectedList[0][1] == this._selectedList[0][1])) {
+                return;
+            }
+        }
+        this._selectedList = newSelectedList;
+        this._window.queue_draw();
     }
 
     queue_draw() {
@@ -164,14 +209,40 @@ var DesktopGrid = class {
                                                                 this._desktopManager.rubberBandInitY);
             let [xFin, yFin] = this._coordinatesGlobalToLocal(this._desktopManager.mouseX,
                                                               this._desktopManager.mouseY);
-            cr.rectangle(xInit, yInit, xFin - xInit, yFin - yInit);
-            Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({
-                                                        red: this._desktopManager.selectColor.red,
+            cr.rectangle(xInit + 0.5, yInit + 0.5, xFin - xInit, yFin - yInit);
+            Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: this._desktopManager.selectColor.red,
                                                         green: this._desktopManager.selectColor.green,
                                                         blue: this._desktopManager.selectColor.blue,
                                                         alpha: 0.6})
             );
             cr.fill();
+            cr.setLineWidth(1);
+            cr.rectangle(xInit + 0.5, yInit + 0.5, xFin - xInit, yFin - yInit);
+            Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: this._desktopManager.selectColor.red,
+                                                        green: this._desktopManager.selectColor.green,
+                                                        blue: this._desktopManager.selectColor.blue,
+                                                        alpha: 1.0})
+            );
+            cr.stroke();
+        }
+        if (this._desktopManager.showDropPlace && (this._selectedList !== null)) {
+            for(let [x, y] of this._selectedList) {
+                cr.rectangle(x + 0.5, y + 0.5, this._elementWidth, this._elementHeight);
+                Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: 1.0 - this._desktopManager.selectColor.red,
+                                                            green: 1.0 - this._desktopManager.selectColor.green,
+                                                            blue: 1.0 - this._desktopManager.selectColor.blue,
+                                                            alpha: 0.4})
+                );
+                cr.fill();
+                cr.setLineWidth(0.5);
+                cr.rectangle(x + 0.5, y + 0.5, this._elementWidth, this._elementHeight);
+                Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: 1.0 - this._desktopManager.selectColor.red,
+                                                            green: 1.0 - this._desktopManager.selectColor.green,
+                                                            blue: 1.0 - this._desktopManager.selectColor.blue,
+                                                            alpha: 1.0})
+                );
+                cr.stroke();
+            }
         }
     }
 
@@ -194,7 +265,7 @@ var DesktopGrid = class {
          if (!isFree) {
              return -1;
          }
-         if ((x >= this._x) && (x < (this._x + this._width * this._zoom)) && (y >= this._y) && (y < (this._y + this._height * this._zoom))) {
+         if (this._coordinatesBelongToThisGrid(x, y)) {
              return 0;
          }
          return Math.pow(x - (this._x + this._width * this._zoom / 2), 2) + Math.pow(x - (this._y + this._height * this._zoom / 2), 2);
@@ -262,27 +333,29 @@ var DesktopGrid = class {
         this._gridStatus[y * this._maxColumns + x] = inUse;
     }
 
-    getGridAt(x, y) {
-        if ((x >= this._x) && (x < (this._x + this._width * this._zoom)) && (y >= this._y) && (y < (this._y + this._height * this._zoom))) {
-            let [xLocal, yLocal] = this._coordinatesGlobalToLocal(x, y);
-            let column = Math.floor(xLocal * this._maxColumns / this._width);
-            let row = Math.floor(yLocal * this._maxRows / this._height);
-            let gridX = Math.round((column * this._width) / this._maxColumns);
-            let gridY = Math.round((row * this._height) / this._maxRows);
-            let [oX, oY] = this._coordinatesLocalToGlobal(gridX, gridY);
-            oX = Math.max(this._x, oX);
-            oY = Math.max(this._y, oY);
-            return [oX, oY];
+    getGridAt(x, y, globalCoordinates) {
+        if (this._coordinatesBelongToThisGrid(x, y)) {
+            [x, y] = this._coordinatesGlobalToLocal(x, y);
+            x = this._elementWidth * Math.floor((x / this._elementWidth) + 0.5);
+            y = this._elementHeight * Math.floor((y / this._elementHeight) + 0.5);
+            if (globalCoordinates) {
+                [x, y] = this._coordinatesLocalToGlobal(x, y);
+            }
+            return [x, y];
         } else {
             return null;
         }
     }
 
+    _coordinatesBelongToThisGrid(x, y) {
+        return ((x >= this._x) && (x < (this._x + this._width * this._zoom)) && (y >= this._y) && (y < (this._y + this._height * this._zoom)));
+    }
+
     _getEmptyPlaceClosestTo(x, y, coordinatesAction, reverseHorizontal) {
 
         [x, y] = this._coordinatesGlobalToLocal(x, y);
-        let placeX = Math.round(x * this._maxColumns / this._width);
-        let placeY = Math.round(y * this._maxRows / this._height);
+        let placeX = Math.floor(x / this._elementWidth);
+        let placeY = Math.floor(y / this._elementHeight);
 
         let cornerInversion = Prefs.get_start_corner();
         if (reverseHorizontal) {
@@ -315,8 +388,8 @@ var DesktopGrid = class {
                     continue;
                 }
 
-                let proposedX = Math.round((column * this._width) / this._maxColumns);
-                let proposedY = Math.round((row * this._height) / this._maxRows);
+                let proposedX = column * this._elementWidth;
+                let proposedY = row * this._elementHeight;
                 if (coordinatesAction == Enums.StoredCoordinates.ASSIGN)
                     return [column, row];
                 let distance = DesktopIconsUtil.distanceBetweenPoints(proposedX, proposedY, x, y);

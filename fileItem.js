@@ -189,12 +189,15 @@ var FileItem = class {
             this._desktopManager.onDragBegin(this);
         });
         this._dragSource.connect('drag-data-get', (widget, context, data, info, time) => {
-            let dragData = this._desktopManager.fillDragDataGet(info, this._x1, this._y1);
+            let dragData = this._desktopManager.fillDragDataGet(info);
             if (dragData != null) {
                 let list = ByteArray.fromString(dragData[1]);
                 data.set(dragData[0], 8, list);
             }
         });
+        this._dragSource.connect('drag-end', (widget, context) => {
+            this._desktopManager.onDragEnd();
+        })
     }
 
     _setDropDestination(dropDestination) {
@@ -209,9 +212,9 @@ var FileItem = class {
                 dropDestination.drag_dest_set_target_list(targets);
                 dropDestination.connect('drag-data-received', (widget, context, x, y, selection, info, time) => {
                     if ((info == 1) || (info == 2)) {
-                        let [fileList, x, y] = DesktopIconsUtil.getFilesFromNautilusDnD(selection, info);
+                        let fileList = DesktopIconsUtil.getFilesFromNautilusDnD(selection, info);
                         if (fileList.length != 0) {
-                            if (this._desktopManager.dragItem.uri == this._file.get_uri()) {
+                            if (this._desktopManager.dragItem && (this._desktopManager.dragItem.uri == this._file.get_uri())) {
                                 // Dragging a file/folder over itself will do nothing
                                 return;
                             }
