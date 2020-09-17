@@ -43,8 +43,13 @@ var DesktopGrid = class {
         this._zoom = desktopDescription.zoom;
         this._x = desktopDescription.x;
         this._y = desktopDescription.y;
-        this._width = Math.floor(desktopDescription.width / this._zoom);
-        this._height = Math.floor(desktopDescription.height / this._zoom);
+        let size_divisor = this._zoom;
+        let using_X11 = Gdk.Display.get_default().constructor.$gtype.name === 'GdkX11Display';
+        if (asDesktop && using_X11) {
+            size_divisor = Math.ceil(this._zoom);
+        }
+        this._width = Math.floor(desktopDescription.width / size_divisor);
+        this._height = Math.floor(desktopDescription.height / size_divisor);
         this._maxColumns = Math.floor(this._width / (Prefs.get_desired_width() + 4 * elementSpacing));
         this._maxRows =  Math.floor(this._height / (Prefs.get_desired_height() + 4 * elementSpacing));
         this._elementWidth = Math.floor(this._width / this._maxColumns);
@@ -55,7 +60,7 @@ var DesktopGrid = class {
             this._window.set_decorated(false);
             this._window.set_deletable(false);
             // If we are under X11, manage everything from here
-            if (Gdk.Display.get_default().constructor.$gtype.name === 'GdkX11Display') {
+            if (using_X11) {
                 this._window.set_type_hint(Gdk.WindowTypeHint.DESKTOP);
                 this._window.stick();
                 this._window.move(this._x / this._zoom, this._y / this._zoom);

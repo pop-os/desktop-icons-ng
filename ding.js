@@ -65,7 +65,7 @@ for(let arg of ARGV) {
         break;
     case '-D':
         let data = arg.split(":");
-        desktops.push({x:parseInt(data[0]), y:parseInt(data[1]), width:parseInt(data[2]), height:parseInt(data[3]), zoom:parseInt(data[4])});
+        desktops.push({x:parseInt(data[0]), y:parseInt(data[1]), width:parseInt(data[2]), height:parseInt(data[3]), zoom:parseFloat(data[4])});
         break;
     }
     lastCommand = null;
