@@ -364,7 +364,7 @@ var DesktopGrid = class {
 
         placeX = DesktopIconsUtil.clamp(placeX, 0, this._maxColumns - 1);
         placeY = DesktopIconsUtil.clamp(placeY, 0, this._maxRows - 1);
-        if (this._isEmptyAt(placeX, placeY)) {
+        if (this._isEmptyAt(placeX, placeY) && (coordinatesAction != Enums.StoredCoordinates.ASSIGN)) {
             return [placeX, placeY];
         }
         let found = false;
