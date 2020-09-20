@@ -35,6 +35,7 @@ var extensionPath;
 var nautilusSettings;
 var gtkSettings;
 var desktopSettings;
+var mutterSettings;
 // This is already in Nautilus settings, so it should not be made tweakable here
 var CLICK_POLICY_SINGLE = false;
 
@@ -52,6 +53,8 @@ function init(path) {
         _onNautilusSettingsChanged();
     }
     desktopSettings = get_schema(Enums.SCHEMA);
+    let schemaMutter = schemaSource.lookup(Enums.SCHEMA_MUTTER, true);
+    mutterSettings = new Gio.Settings({ settings_schema: schemaMutter});
 }
 
 function get_schema(schema) {

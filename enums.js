@@ -73,6 +73,7 @@ var TERMINAL_SCHEMA = 'org.gnome.desktop.default-applications.terminal';
 var SCHEMA_NAUTILUS = 'org.gnome.nautilus.preferences';
 var SCHEMA_GTK = 'org.gtk.Settings.FileChooser';
 var SCHEMA = 'org.gnome.shell.extensions.ding';
+var SCHEMA_MUTTER = 'org.gnome.mutter';
 var EXEC_KEY = 'exec';
 
 var S_IXUSR = 0o00100;
