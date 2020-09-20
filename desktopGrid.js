@@ -35,18 +35,25 @@ var elementSpacing = 2;
 
 var DesktopGrid = class {
 
-    constructor(desktopManager, desktopName, desktopDescription, asDesktop) {
+    constructor(desktopManager, desktopName, desktopDescription, asDesktop, premultiplied) {
 
         this._destroying = false;
         this._desktopManager = desktopManager;
         this._asDesktop = asDesktop;
+        this._premultiplied = premultiplied;
         this._zoom = desktopDescription.zoom;
         this._x = desktopDescription.x;
         this._y = desktopDescription.y;
         let size_divisor = this._zoom;
         let using_X11 = Gdk.Display.get_default().constructor.$gtype.name === 'GdkX11Display';
-        if (asDesktop && using_X11) {
-            size_divisor = Math.ceil(this._zoom);
+        if (asDesktop) {
+            if (using_X11) {
+                size_divisor = Math.ceil(this._zoom);
+            } else {
+                if (premultiplied) {
+                    size_divisor = 1;
+                }
+            }
         }
         this._width = Math.floor(desktopDescription.width / size_divisor);
         this._height = Math.floor(desktopDescription.height / size_divisor);

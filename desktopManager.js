@@ -42,6 +42,13 @@ var DesktopManager = class {
     constructor(appUuid, desktopList, codePath, asDesktop) {
 
         DBusUtils.init();
+        this._premultiplied = false;
+        for (let f of Prefs.mutterSettings.get_strv('experimental-features')) {
+            if (f == 'scale-monitor-framebuffer') {
+                this._premultiplied = true;
+                break;
+            }
+        }
         this._clickX = 0;
         this._clickY = 0;
         this._dragList = null;
@@ -129,7 +136,7 @@ var DesktopManager = class {
             } else {
                 var desktopName = `DING ${desktopIndex}`;
             }
-            this._desktops.push(new DesktopGrid.DesktopGrid(this, desktopName, desktop, this._asDesktop));
+            this._desktops.push(new DesktopGrid.DesktopGrid(this, desktopName, desktop, this._asDesktop, this._premultiplied));
         }
     }
 
