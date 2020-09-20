@@ -214,8 +214,13 @@ var FileItem = class {
                     if ((info == 1) || (info == 2)) {
                         let fileList = DesktopIconsUtil.getFilesFromNautilusDnD(selection, info);
                         if (fileList.length != 0) {
-                            if (this._desktopManager.dragItem && (this._desktopManager.dragItem.uri == this._file.get_uri())) {
-                                // Dragging a file/folder over itself will do nothing
+                            if (this._desktopManager.dragItem && ((this._desktopManager.dragItem.uri == this._file.get_uri()) || !(this._isValidDesktopFile || this.isDirectory))) {
+                                // Dragging a file/folder over itself or over another file will do nothing, allow drag to directory or validdesktop file
+                                return;
+                            }
+                            if ( this._isValidDesktopFile ) {
+                                // open the desktopfile with these dropped files as the arguments
+                                this.doOpen(fileList);
                                 return;
                             }
                             if (this._fileExtra != Enums.FileType.USER_DIRECTORY_TRASH) {
@@ -615,14 +620,18 @@ var FileItem = class {
         this._desktopManager.doRename(this);
     }
 
-    doOpen() {
+    doOpen(fileList) {
+        if (! fileList ) {
+            fileList = [] ;
+        }
+        
         if (this._isBrokenSymlink) {
             log(`Error: Can’t open ${this.file.get_uri()} because it is a broken symlink.`);
             return;
         }
 
         if (this.trustedDesktopFile) {
-            this._desktopFile.launch_uris_as_manager([], null, GLib.SpawnFlags.SEARCH_PATH, null, null);
+            this._desktopFile.launch_uris_as_manager(fileList, null, GLib.SpawnFlags.SEARCH_PATH, null, null);
             return;
         }
 
