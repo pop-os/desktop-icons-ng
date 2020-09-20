@@ -43,11 +43,14 @@ var DesktopManager = class {
 
         DBusUtils.init();
         this._premultiplied = false;
-        for (let f of Prefs.mutterSettings.get_strv('experimental-features')) {
-            if (f == 'scale-monitor-framebuffer') {
-                this._premultiplied = true;
-                break;
+        try {
+            for (let f of Prefs.mutterSettings.get_strv('experimental-features')) {
+                if (f == 'scale-monitor-framebuffer') {
+                    this._premultiplied = true;
+                    break;
+                }
             }
+        } catch(e) {
         }
         this._clickX = 0;
         this._clickY = 0;
