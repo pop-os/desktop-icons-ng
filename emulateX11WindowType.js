@@ -15,6 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+const GLib = imports.gi.GLib;
 const Shell = imports.gi.Shell;
 const Meta = imports.gi.Meta;
 const Main = imports.ui.main;
@@ -201,6 +202,10 @@ var EmulateX11WindowType = class {
         if (this._isX11) {
             return;
         }
+        if (this._activate_window_ID) {
+            GLib.source_remove(this._activate_window_ID);
+            this._activate_window_ID = null;
+        }
         for(let window of this._windowList) {
             this._clearWindow(window);
         }
@@ -256,27 +261,26 @@ var EmulateX11WindowType = class {
     }
 
     _refreshWindows(checkWorkspace) {
-        if (this._enableRefresh) {
-            for (let window of this._windowList) {
-                window.customJS_ding.refreshState(checkWorkspace);
-            }
-            if (checkWorkspace) {
-                // activate the top-most window
-                let windows = global.display.get_tab_list(Meta.TabList.NORMAL_ALL, global.workspace_manager.get_active_workspace());
-                let lastWindow = null;
-                for (let window of windows) {
-                    lastWindow = window;
-                    if (!window.customJS_ding || !window.customJS_ding.keepAtBottom) {
-                        Main.activateWindow(window);
-                        lastWindow = null;
-                        break;
+        if (!this._activate_window_ID) {
+            this._activate_window_ID = GLib.idle_add(GLib.PRIORITY_LOW, function() {
+                if (this._enableRefresh) {
+                    for (let window of this._windowList) {
+                        window.customJS_ding.refreshState(checkWorkspace);
+                    }
+                    if (checkWorkspace) {
+                        // activate the top-most window
+                        let windows = global.display.get_tab_list(Meta.TabList.NORMAL_ALL, global.workspace_manager.get_active_workspace());
+                        for (let window of windows) {
+                            if (!window.customJS_ding || !window.customJS_ding._keepAtBottom) {
+                                Main.activateWindow(window);
+                                break;
+                            }
+                        }
                     }
                 }
-                if (lastWindow) {
-                    // if there is only the bottom window, activate it
-                    Main.activateWindow(lastWindow);
-                }
-            }
+                this._activate_window_ID = null;
+                return GLib.SOURCE_REMOVE;
+            }.bind(this));
         }
     }
 }
