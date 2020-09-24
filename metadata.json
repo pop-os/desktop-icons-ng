@@ -2,9 +2,7 @@
     "description": "Adds icons to the desktop. Fork of the original Desktop Icons extension, with several enhancements .",
     "name": "Desktop Icons NG (DING)",
     "shell-version": [
-      "3.30",
-      "3.32",
-      "3.34"
+      "3.38"
     ],
     "uuid": "ding@rastersoft.com",
     "url": "https://gitlab.com/rastersoft/desktop-icons-ng"

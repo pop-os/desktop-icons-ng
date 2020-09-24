@@ -39,7 +39,7 @@ const Gettext = imports.gettext.domain('ding');
 const _ = Gettext.gettext;
 
 var DesktopManager = class {
-    constructor(appUuid, desktopList, codePath, asDesktop) {
+    constructor(desktopList, codePath, asDesktop) {
 
         DBusUtils.init();
         this._premultiplied = false;
@@ -61,7 +61,6 @@ var DesktopManager = class {
         this._asDesktop = asDesktop;
         this._desktopList = desktopList;
         this._desktops = [];
-        this._appUuid = appUuid;
         this._desktopFilesChanged = false;
         this._readingDesktopFiles = true;
         this._toDelete = [];
@@ -121,6 +120,16 @@ var DesktopManager = class {
                                                                   true);
         }
         this._pendingDropFiles = {};
+        if (this._asDesktop) {
+            this._sigtermID = GLib.unix_signal_add(GLib.PRIORITY_DEFAULT, 15, () => {
+                GLib.source_remove(this._sigtermID);
+                for(let desktop of this._desktops) {
+                    desktop.destroy();
+                }
+                Gtk.main_quit();
+                return false;
+            });
+        }
     }
 
     _createGrids() {
@@ -131,11 +140,7 @@ var DesktopManager = class {
         for(let desktopIndex in this._desktopList) {
             let desktop = this._desktopList[desktopIndex];
             if (this._asDesktop) {
-                if (this._appUuid) {
-                    var desktopName = `${this._appUuid} @!${desktop.x},${desktop.y};BDH`;
-                } else {
-                    var desktopName = `@!${desktop.x},${desktop.y};BDH`;
-                }
+                var desktopName = `@!${desktop.x},${desktop.y};BDH`;
             } else {
                 var desktopName = `DING ${desktopIndex}`;
             }
