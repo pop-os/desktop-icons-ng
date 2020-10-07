@@ -217,3 +217,12 @@ function isExecutable(mimetype, file_name) {
         return Enums.WhatToDoWithExecutable.DISPLAY;
     }
 }
+
+function writeTextFileToDesktop(text, filename) {
+    let path = GLib.build_filenamev([GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DESKTOP),  filename]);
+    let file = Gio.File.new_for_path(path);
+    const PERMISSIONS_MODE = 0o744;
+    if (GLib.mkdir_with_parents(file.get_parent().get_path(), PERMISSIONS_MODE) === 0) {
+                let [success, tag] = file.replace_contents(text, null, false, Gio.FileCreateFlags.REPLACE_DESTINATION, null);
+    }
+}
