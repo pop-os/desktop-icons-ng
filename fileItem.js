@@ -59,7 +59,6 @@ var FileItem = class {
         this.actor.connect('destroy', () => this._onDestroy());
 
         this._eventBox = new Gtk.EventBox({visible: true});
-        this.actor.add(this._eventBox);
 
         this._innerContainer = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL});
         this._container = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL});
@@ -87,6 +86,7 @@ var FileItem = class {
 
         this._innerContainer.pack_start(this._label, false, true, 0);
         this._container.pack_start(this._eventBox, false, false, 0);
+        this.actor.add(this._container);
 
         /* We need to allow the "button-press" event to pass through the callbacks, to allow the DnD to work
          * But we must avoid them to reach the main window.
