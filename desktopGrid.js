@@ -161,6 +161,7 @@ var DesktopGrid = class {
         targets.add(Gdk.atom_intern('x-special/ding-icon-list', false), Gtk.TargetFlags.SAME_APP, 0);
         targets.add(Gdk.atom_intern('x-special/gnome-icon-list', false), 0, 1);
         targets.add(Gdk.atom_intern('text/uri-list', false), 0, 2);
+        targets.add(Gdk.atom_intern('text/plain', false), 0, 3);
         dropDestination.drag_dest_set_target_list(targets);
         dropDestination.connect('drag-motion', (widget, context, x, y, time) => {
             x = this._elementWidth * Math.floor(x / this._elementWidth);
