@@ -61,13 +61,15 @@ var FileItem = class {
         this._eventBox = new Gtk.EventBox({visible: true});
         this.actor.add(this._eventBox);
 
+        this._innerContainer = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL});
         this._container = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL});
-        this._styleContext = this._container.get_style_context();
-        this._eventBox.add(this._container);
+        this._styleContext = this._innerContainer.get_style_context();
+        this._eventBox.add(this._innerContainer);
+
 
         this._icon = new Gtk.Image();
         this._iconContainer = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL});
-        this._container.pack_start(this._iconContainer, false, false, 0);
+        this._innerContainer.pack_start(this._iconContainer, false, false, 0);
         this._iconContainer.set_size_request(Prefs.get_desired_width(), Prefs.get_icon_size());
         this._iconContainer.pack_start(this._icon, true, true, 0);
         this._iconContainer.set_baseline_position(Gtk.BaselinePosition.CENTER);
@@ -83,7 +85,8 @@ var FileItem = class {
         this._label.set_lines(2);
         this._setFileName(fileInfo.get_display_name());
 
-        this._container.pack_start(this._label, false, true, 0);
+        this._innerContainer.pack_start(this._label, false, true, 0);
+        this._container.pack_start(this._eventBox, false, false, 0);
 
         /* We need to allow the "button-press" event to pass through the callbacks, to allow the DnD to work
          * But we must avoid them to reach the main window.
