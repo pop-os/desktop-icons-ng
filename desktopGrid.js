@@ -218,10 +218,18 @@ var DesktopGrid = class {
 
     _doDrawRubberBand(cr) {
         if (this._desktopManager.rubberBand) {
-            let [xInit, yInit] = this._coordinatesGlobalToLocal(this._desktopManager.rubberBandInitX,
-                                                                this._desktopManager.rubberBandInitY);
-            let [xFin, yFin] = this._coordinatesGlobalToLocal(this._desktopManager.mouseX,
-                                                              this._desktopManager.mouseY);
+            let minX = Math.min(this._desktopManager.rubberBandInitX, this._desktopManager.mouseX);
+            let maxX = Math.max(this._desktopManager.rubberBandInitX, this._desktopManager.mouseX);
+            let minY = Math.min(this._desktopManager.rubberBandInitY, this._desktopManager.mouseY);
+            let maxY = Math.max(this._desktopManager.rubberBandInitY, this._desktopManager.mouseY);
+
+            if ((minX >= (this._x + this._width )) || (minY >= (this._y + this._height)) || (maxX < this._x) || (maxY < this._y)) {
+                return;
+            }
+
+            let [xInit, yInit] = this._coordinatesGlobalToLocal(minX, minY);
+            let [xFin, yFin] = this._coordinatesGlobalToLocal(maxX, maxY);
+
             cr.rectangle(xInit + 0.5, yInit + 0.5, xFin - xInit, yFin - yInit);
             Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: this._desktopManager.selectColor.red,
                                                         green: this._desktopManager.selectColor.green,
