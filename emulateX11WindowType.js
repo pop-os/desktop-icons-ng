@@ -200,8 +200,12 @@ var EmulateX11WindowType = class {
             }
             this._refreshWindows(false);
         });
-        this._idDestroy = global.window_manager.connect_after("destroy", (wm, window) => {
+        this._idDestroy = global.window_manager.connect_after("destroy", (wm, windowActor) => {
             // if a window is closed, ensure that the desktop doesn't receive the focus
+            let window = windowActor.get_meta_window();
+            if (window && (window.get_window_type() >= Meta.WindowType.DROPDOWN_MENU)) {
+                return;
+            }
             this._refreshWindows(true);
         });
         /* Something odd happens with "stick" when using popup submenus, so
