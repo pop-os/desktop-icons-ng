@@ -139,6 +139,9 @@ var FileItem = class {
         }
         this.actor.show_all();
         this._updateName();
+        if (this._dropCoordinates) {
+            this.setSelected();
+        }
     }
 
     _setFileName(text) {
