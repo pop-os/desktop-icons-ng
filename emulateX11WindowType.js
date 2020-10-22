@@ -200,8 +200,12 @@ var EmulateX11WindowType = class {
             }
             this._refreshWindows(false);
         });
-        this._idDestroy = global.window_manager.connect_after("destroy", (wm, window) => {
+        this._idDestroy = global.window_manager.connect_after("destroy", (wm, windowActor) => {
             // if a window is closed, ensure that the desktop doesn't receive the focus
+            let window = windowActor.get_meta_window();
+            if (window && (window.get_window_type() >= Meta.WindowType.DROPDOWN_MENU)) {
+                return;
+            }
             this._refreshWindows(true);
         });
         /* Something odd happens with "stick" when using popup submenus, so
@@ -298,7 +302,7 @@ var EmulateX11WindowType = class {
                         // activate the top-most window
                         let windows = global.display.get_tab_list(Meta.TabList.NORMAL_ALL, global.workspace_manager.get_active_workspace());
                         for (let window of windows) {
-                            if (!window.customJS_ding || !window.customJS_ding._keepAtBottom) {
+                            if ((!window.customJS_ding || !window.customJS_ding._keepAtBottom) && !window.minimized) {
                                 Main.activateWindow(window);
                                 break;
                             }
