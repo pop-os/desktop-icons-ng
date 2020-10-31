@@ -1,0 +1,11 @@
+gnome-shell-extension-desktop-icons-ng (0.18.0) focal; urgency=medium
+
+  * New upstream release 
+
+ -- Michael Aaron Murphy <mmstick@pm.me>  Sat, 05 Jun 2021 00:39:45 -0600
+
+gnome-shell-extension-desktop-icons-ng (0.14.0) focal; urgency=medium
+
+  * Initial Release for Pop
+
+ -- Michael Aaron Murphy <michael@system76.com>  Sat, 31 Oct 2020 09:45:31 -0600
