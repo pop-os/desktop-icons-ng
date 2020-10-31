@@ -1,0 +1,26 @@
+From 2e072567b91049d15bdca2f3e4853c9722abd213 Mon Sep 17 00:00:00 2001
+From: Ian Douglas Scott <idscott@system76.com>
+Date: Wed, 2 Dec 2020 09:01:14 -0800
+Subject: [PATCH] Remove unconditional Gettext.bindtextdomain call
+
+This breaks the use of a system locale directory.
+---
+ ding.js | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/ding.js b/ding.js
+index cb39f24..50d9a3e 100755
+--- a/ding.js
++++ b/ding.js
+@@ -75,8 +75,6 @@ imports.searchPath.unshift(codePath);
+ const Prefs = imports.preferences;
+ const Gettext = imports.gettext;
+ 
+-Gettext.bindtextdomain("ding", GLib.build_filenamev([codePath, "locale"]));
+-
+ const DesktopManager = imports.desktopManager;
+ 
+ if (!errorFound) {
+-- 
+2.27.0
+
