@@ -1,0 +1,30 @@
+Source: gnome-shell-extension-desktop-icons-ng
+Section: gnome
+Priority: optional
+Maintainer: System76 <info@system76.com>
+Build-Depends: debhelper-compat (= 10),
+               libglib2.0-bin,
+               meson
+Standards-Version: 4.4.0
+Homepage: https://github.com/pop-os/desktop-icons-ng
+Vcs-Git: https://github.com/pop-os/desktop-icons-ng.git
+Vcs-Browser: https://github.com/pop-os/desktop-icons-ng
+Rules-Requires-Root: no
+
+Package: gnome-shell-extension-desktop-icons-ng
+Architecture: all
+Depends: ${misc:Depends},
+         gnome-shell (>= 3.33),
+         gjs,
+         nautilus (>= 3.30.4),
+         xdg-desktop-portal
+Description: desktop icon (ng) support for GNOME Shell
+ This package provides a GNOME Shell extension for showing the contents
+ of ~/Desktop on the desktop of the Shell. Common file management
+ operations such as launching, copy/paste, rename and deleting are
+ supported.
+
+Package: gnome-shell-extension-desktop-icons
+Architecture: all
+Depends: gnome-shell-extension-desktop-icons-ng
+Description: Transitional package for desktop-icons-ng
