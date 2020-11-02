@@ -10,8 +10,6 @@ with these advantages:
  * When hovering or clicking on an icon with a name too large to fit, it shows the full name
  * Doesn't hang the compositor when there is too much activity in the desktop folder
 
-But it is still an alpha development, so it probably still have a lot of bugs. Use with care.
-
 ## Current version
 
 Version 0.11.0
