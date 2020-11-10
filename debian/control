@@ -13,9 +13,6 @@ Rules-Requires-Root: no
 
 Package: gnome-shell-extension-desktop-icons-ng
 Architecture: all
-Conflicts: gnome-shell-extension-desktop-icons
-Provides: gnome-shell-extension-desktop-icons
-Replaces: gnome-shell-extension-desktop-icons
 Depends: ${misc:Depends},
          gnome-shell (>= 3.33),
          gjs,
@@ -26,3 +23,8 @@ Description: desktop icon (ng) support for GNOME Shell
  of ~/Desktop on the desktop of the Shell. Common file management
  operations such as launching, copy/paste, rename and deleting are
  supported.
+
+Package: gnome-shell-extension-desktop-icons
+Architecture: all
+Depends: gnome-shell-extension-desktop-icons-ng
+Description: Transitional package for desktop-icons-ng
