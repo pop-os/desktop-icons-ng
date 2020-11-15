@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-05 21:48+0200\n"
-"PO-Revision-Date: 2020-05-08 12:26+0200\n"
-"Last-Translator: Alan <Alan90000@yahoo.com>\n"
+"PO-Revision-Date: 2020-11-04 15:48+0100\n"
+"Last-Translator: Davy Defaud <davy.defaud@free.fr>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"Plural-Forms: nplurals=2; plural=(n >= 2);\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:197
 msgid "Cancel"
@@ -49,11 +49,11 @@ msgstr "Commande non trouvée"
 
 #: desktopIconsUtil.js:188
 msgid "Do you want to run “{0}”, or display its contents?"
-msgstr "Voulez-vous lancer \"{0}\", ou afficher son contenu ?"
+msgstr "Voulez‑vous exécuter « {0} » ou afficher son contenu ?"
 
 #: desktopIconsUtil.js:189
 msgid "“{0}” is an executable text file."
-msgstr "\"{0}\" est un fichier texte exécutable."
+msgstr "« {0} » est un fichier texte exécutable."
 
 #: desktopIconsUtil.js:193
 msgid "Execute in a terminal"
@@ -74,8 +74,8 @@ msgstr "Gestionnaire de fichiers Nautilus introuvable"
 #: desktopManager.js:107
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr ""
-"Le gestionnaire de fichiers Nautilus est obligatoire pour fonctionner avec "
-"Desktop Icons NG."
+"Le gestionnaire de fichiers Nautilus est nécessaire au fonctionnement de "
+"Desktop Icons NG."
 
 #: desktopManager.js:426
 msgid "New Folder"
@@ -111,11 +111,11 @@ msgstr "Ouvrir un terminal"
 
 #: desktopManager.js:465
 msgid "Change Background…"
-msgstr "Changer l’arrière-plan…"
+msgstr "Changer l’arrière‑plan…"
 
 #: desktopManager.js:474
 msgid "Display Settings"
-msgstr "Paramètres d'affichage"
+msgstr "Paramètres d’affichage"
 
 #: desktopManager.js:481 preferences.js:83
 msgid "Settings"
@@ -127,7 +127,7 @@ msgstr "Erreur lors de la suppression des fichiers"
 
 #: desktopManager.js:1015
 msgid "Are you sure you want to permanently delete these items?"
-msgstr "Êtes-vous sûr de vouloir supprimer définitivement ces éléments ?"
+msgstr "Êtes‑vous sûr de vouloir supprimer définitivement ces éléments ?"
 
 #: desktopManager.js:1016
 msgid "If you delete an item, it will be permanently lost."
@@ -168,7 +168,7 @@ msgstr "Copier"
 
 #: fileItem.js:776
 msgid "Rename…"
-msgstr "Renommer..."
+msgstr "Renommer…"
 
 #: fileItem.js:780
 msgid "Move to Trash"
@@ -176,7 +176,7 @@ msgstr "Mettre à la corbeille"
 
 #: fileItem.js:784
 msgid "Delete permanently"
-msgstr "Effacer définitivement"
+msgstr "Supprimer définitivement"
 
 #: fileItem.js:797
 msgid "Empty Trash"
@@ -220,19 +220,19 @@ msgstr "Grande"
 
 #: preferences.js:90
 msgid "Show the personal folder in the desktop"
-msgstr "Montrer le dossier personnel sur le bureau"
+msgstr "Afficher le dossier personnel sur le bureau"
 
 #: preferences.js:91
 msgid "Show the trash icon in the desktop"
-msgstr "Montrer la corbeille sur le bureau"
+msgstr "Afficher la corbeille sur le bureau"
 
 #: preferences.js:92 schemas/org.gnome.shell.extensions.ding.gschema.xml:38
 msgid "Show external drives in the desktop"
-msgstr "Montrer les disques externes sur le bureau"
+msgstr "Afficher les volumes de stockage externes sur le bureau"
 
 #: preferences.js:93 schemas/org.gnome.shell.extensions.ding.gschema.xml:43
 msgid "Show network drives in the desktop"
-msgstr "Montrer les lecteurs réseau sur le bureau"
+msgstr "Afficher les volumes réseau sur le bureau"
 
 #: preferences.js:96
 msgid "New icons alignment"
@@ -256,11 +256,11 @@ msgstr "Coin inférieur droit"
 
 #: preferences.js:102 schemas/org.gnome.shell.extensions.ding.gschema.xml:48
 msgid "Add new drives to the opposite side of the screen"
-msgstr "Ajouter de nouveaux disques sur le côté opposé de l'écran"
+msgstr "Ajouter les nouveaux volumes de stockage sur le côté opposé de l’écran"
 
 #: preferences.js:103
 msgid "Highlight the drop place during Drag'n'Drop"
-msgstr ""
+msgstr "Mettre en évidence la destination lors d’un glisser‑déposer"
 
 #: preferences.js:107
 msgid "Settings shared with Nautilus"
@@ -280,15 +280,16 @@ msgstr "Double clic"
 
 #: preferences.js:114
 msgid "Show hidden files"
-msgstr "Montrer les fichiers cachés"
+msgstr "Afficher les fichiers cachés"
 
 #: preferences.js:115
 msgid "Show a context menu item to delete permanently"
-msgstr "Afficher un élément de menu contextuel \"Supprimer définitivement\""
+msgstr ""
+"Afficher un élément « Supprimer définitivement » dans le menu contextuel"
 
 #: preferences.js:118
 msgid "Action to do when launching a program from the desktop"
-msgstr "Action à faire lors du lancement d'un programme depuis le bureau"
+msgstr "Action à effectuer lors du lancement d’un programme depuis le bureau"
 
 #: preferences.js:119
 msgid "Display the content of the file"
@@ -323,89 +324,69 @@ msgid ""
 "To configure Desktop Icons NG, do right-click in the desktop and choose the "
 "last item: 'Settings'"
 msgstr ""
-"Pour configurer Desktop Icons NG, faites un clic droit sur le bureau et "
-"choisissez le dernier élément : \"Paramètres\""
+"Pour configurer Desktop Icons NG, faites un clic droit sur le bureau et "
+"choisissez le dernier élément : « Paramètres »"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:18
 msgid "Icon size"
-msgstr "Taille d’icônes"
+msgstr "Taille des icônes"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:19
 msgid "Set the size for the desktop icons."
-msgstr "Définir la taille des icônes du bureau."
+msgstr "Définit la taille des icônes du bureau."
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:23
 msgid "Show personal folder"
-msgstr "Montrer le dossier personnel"
+msgstr "Afficher le dossier personnel"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:24
 msgid "Show the personal folder in the desktop."
-msgstr "Montrer le dossier personnel sur le bureau."
+msgstr "Affiche le dossier personnel sur le bureau."
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:28
 msgid "Show trash icon"
-msgstr "Montrer l’icône de la corbeille"
+msgstr "Afficher la corbeille"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:29
 msgid "Show the trash icon in the desktop."
-msgstr "Montrer la corbeille sur le bureau."
+msgstr "Affiche l’icône de la corbeille sur le bureau."
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:33
 msgid "New icons start corner"
-msgstr "Coin de départ des nouvelles icônes"
+msgstr "Coin de référence des nouvelles icônes"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:34
 msgid "Set the corner from where the icons will start to be placed."
 msgstr ""
-"Définir le coin à partir duquel les icônes commenceront à être placées."
+"Définit le coin à partir duquel les icônes commenceront à être placées."
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:39
 msgid "Show the disk drives connected to the computer."
-msgstr "Montrer les unités de disque connectées à l'ordinateur."
+msgstr "Affiche les volumes de stockage connectées à l’ordinateur."
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:44
 msgid "Show mounted network volumes in the desktop."
-msgstr "Montrer les volumes réseau montés sur le bureau."
+msgstr "Affiche sur le bureau les volumes réseau montés."
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:49
 msgid ""
 "When adding drives and volumes to the desktop, add them to the opposite side "
 "of the screen."
 msgstr ""
-"Lorsque vous ajoutez des lecteurs et des volumes au bureau, ajoutez-les de "
-"l'autre côté de l'écran."
+"Lorsque des volumes de stockage locaux ou réseau sont ajoutés sur le bureau, "
+"les afficher sur le côté opposé de l’écran."
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:53
 msgid "Shows a rectangle in the destination place during DnD"
 msgstr ""
+"Affiche un rectangle sur l’emplacement de destination lors d’un "
+"glisser‑déposer"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:54
 msgid ""
 "When doing a Drag'n'Drop operation, marks the place in the grid where the "
 "icon will be put with a semitransparent rectangle."
 msgstr ""
+"Lors d’un glisser‑déposer, affiche un rectangle semi‑transparent à "
+"l’emplacement de la grille où l’icône sera déposée."
 
-#, fuzzy
-#~ msgid "There was an error while trying to permanently delete the file {:}."
-#~ msgstr "Êtes-vous sûr de vouloir supprimer définitivement ces éléments ?"
-
-#, fuzzy
-#~ msgid "Show external disk drives in the desktop"
-#~ msgstr "Montrer le dossier personnel sur le bureau"
-
-#, fuzzy
-#~ msgid "Show the external drives"
-#~ msgstr "Montrer le dossier personnel sur le bureau"
-
-#, fuzzy
-#~ msgid "Show network volumes"
-#~ msgstr "Montrer dans Fichiers"
-
-#~ msgid "Enter file name…"
-#~ msgstr "Saisir un nom de fichier…"
-
-#~ msgid "Huge"
-#~ msgstr "Immense"
-
-#~ msgid "Ok"
-#~ msgstr "Valider"
