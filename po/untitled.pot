@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-05 21:54+0200\n"
+"POT-Creation-Date: 2020-11-22 01:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../askConfirmPopup.js:35 ../askNamePopup.js:36 ../desktopIconsUtil.js:176
+#: ../askConfirmPopup.js:35 ../askNamePopup.js:36 ../desktopIconsUtil.js:199
 msgid "Cancel"
 msgstr ""
 
@@ -45,255 +45,279 @@ msgstr ""
 msgid "Command not found"
 msgstr ""
 
-#: ../desktopIconsUtil.js:167
+#: ../desktopIconsUtil.js:190
 msgid "Do you want to run “{0}”, or display its contents?"
 msgstr ""
 
-#: ../desktopIconsUtil.js:168
+#: ../desktopIconsUtil.js:191
 msgid "“{0}” is an executable text file."
 msgstr ""
 
-#: ../desktopIconsUtil.js:172
+#: ../desktopIconsUtil.js:195
 msgid "Execute in a terminal"
 msgstr ""
 
-#: ../desktopIconsUtil.js:174
+#: ../desktopIconsUtil.js:197
 msgid "Show"
 msgstr ""
 
-#: ../desktopIconsUtil.js:178
+#: ../desktopIconsUtil.js:201
 msgid "Execute"
 msgstr ""
 
-#: ../desktopManager.js:99
+#: ../desktopManager.js:117
 msgid "Nautilus File Manager not found"
 msgstr ""
 
-#: ../desktopManager.js:100
+#: ../desktopManager.js:118
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr ""
 
-#: ../desktopManager.js:399
+#: ../desktopManager.js:525
 msgid "New Folder"
 msgstr ""
 
-#: ../desktopManager.js:403
+#: ../desktopManager.js:529
 msgid "New Document"
 msgstr ""
 
-#: ../desktopManager.js:408
+#: ../desktopManager.js:534
 msgid "Paste"
 msgstr ""
 
-#: ../desktopManager.js:412
+#: ../desktopManager.js:538
 msgid "Undo"
 msgstr ""
 
-#: ../desktopManager.js:416
+#: ../desktopManager.js:542
 msgid "Redo"
 msgstr ""
 
-#: ../desktopManager.js:396
+#: ../desktopManager.js:548
 msgid "Select all"
 msgstr ""
 
-#: ../desktopManager.js:403
+#: ../desktopManager.js:554
 msgid "Show Desktop in Files"
 msgstr ""
 
-#: ../desktopManager.js:407 ../fileItem.js:757
+#: ../desktopManager.js:558 ../fileItem.js:836
 msgid "Open in Terminal"
 msgstr ""
 
-#: ../desktopManager.js:413
+#: ../desktopManager.js:564
 msgid "Change Background…"
 msgstr ""
 
-#: ../desktopManager.js:422
+#: ../desktopManager.js:573
 msgid "Display Settings"
 msgstr ""
 
-#: ../desktopManager.js:429 ../preferences.js:83
+#: ../desktopManager.js:580 ../preferences.js:88
 msgid "Settings"
 msgstr ""
 
-#: ../desktopManager.js:865 ../desktopManager.js:886
+#: ../desktopManager.js:1040 ../desktopManager.js:1088
 msgid "Error while deleting files"
 msgstr ""
 
-#: ../desktopManager.js:866
-msgid "There was an error while trying to permanently delete the folder {:}."
-msgstr ""
-
-#: ../desktopManager.js:887
-msgid "There was an error while trying to permanently delete the file {:}."
-msgstr ""
-
-#: ../desktopManager.js:910
+#: ../desktopManager.js:1114
 msgid "Are you sure you want to permanently delete these items?"
 msgstr ""
 
-#: ../desktopManager.js:910
+#: ../desktopManager.js:1115
 msgid "If you delete an item, it will be permanently lost."
 msgstr ""
 
-#: ../desktopManager.js:1001
+#: ../desktopManager.js:1207
 msgid "New folder"
 msgstr ""
 
-#: ../fileItem.js:632
+#. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
+#: ../fileItem.js:150
+msgid "Home"
+msgstr ""
+
+#: ../fileItem.js:692
 msgid "Don’t Allow Launching"
 msgstr ""
 
-#: ../fileItem.js:634
+#: ../fileItem.js:694
 msgid "Allow Launching"
 msgstr ""
 
-#: ../fileItem.js:700
+#: ../fileItem.js:760
 msgid "Open"
 msgstr ""
 
-#: ../fileItem.js:706
+#: ../fileItem.js:766
 msgid "Open With Other Application"
 msgstr ""
 
-#: ../fileItem.js:713
+#: ../fileItem.js:773
 msgid "Cut"
 msgstr ""
 
-#: ../fileItem.js:716
+#: ../fileItem.js:776
 msgid "Copy"
 msgstr ""
 
-#: ../fileItem.js:720
+#: ../fileItem.js:780
 msgid "Rename…"
 msgstr ""
 
-#: ../fileItem.js:724
+#: ../fileItem.js:784
 msgid "Move to Trash"
 msgstr ""
 
-#: ../fileItem.js:728
+#: ../fileItem.js:788
 msgid "Delete permanently"
 msgstr ""
 
-#: ../fileItem.js:741
+#: ../fileItem.js:801
 msgid "Empty Trash"
 msgstr ""
 
-#: ../fileItem.js:749
+#: ../fileItem.js:808
+msgid "Eject"
+msgstr ""
+
+#: ../fileItem.js:815
+msgid "Unmount"
+msgstr ""
+
+#: ../fileItem.js:828
 msgid "Properties"
 msgstr ""
 
-#: ../fileItem.js:753
+#: ../fileItem.js:832
 msgid "Show in Files"
 msgstr ""
 
-#: ../preferences.js:89
+#: ../preferences.js:94
 msgid "Size for the desktop icons"
 msgstr ""
 
-#: ../preferences.js:89
+#: ../preferences.js:94
 msgid "Tiny"
 msgstr ""
 
-#: ../preferences.js:89
+#: ../preferences.js:94
 msgid "Small"
 msgstr ""
 
-#: ../preferences.js:89
+#: ../preferences.js:94
 msgid "Standard"
 msgstr ""
 
-#: ../preferences.js:89
+#: ../preferences.js:94
 msgid "Large"
 msgstr ""
 
-#: ../preferences.js:90
+#: ../preferences.js:95
 msgid "Show the personal folder in the desktop"
 msgstr ""
 
-#: ../preferences.js:91
+#: ../preferences.js:96
 msgid "Show the trash icon in the desktop"
 msgstr ""
 
-#: ../preferences.js:94
-msgid "Icon alignment"
-msgstr ""
-
-#: ../preferences.js:95
-msgid "Top-left corner"
-msgstr ""
-
-#: ../preferences.js:96
-msgid "Top-right corner"
-msgstr ""
-
 #: ../preferences.js:97
-msgid "Bottom-left corner"
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:9
+msgid "Show external drives in the desktop"
 msgstr ""
 
 #: ../preferences.js:98
-msgid "Bottom-right corner"
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:11
+msgid "Show network drives in the desktop"
+msgstr ""
+
+#: ../preferences.js:101
+msgid "New icons alignment"
+msgstr ""
+
+#: ../preferences.js:102
+msgid "Top-left corner"
 msgstr ""
 
 #: ../preferences.js:103
+msgid "Top-right corner"
+msgstr ""
+
+#: ../preferences.js:104
+msgid "Bottom-left corner"
+msgstr ""
+
+#: ../preferences.js:105
+msgid "Bottom-right corner"
+msgstr ""
+
+#: ../preferences.js:107
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:13
+msgid "Add new drives to the opposite side of the screen"
+msgstr ""
+
+#: ../preferences.js:108
+msgid "Highlight the drop place during Drag'n'Drop"
+msgstr ""
+
+#: ../preferences.js:112
 msgid "Settings shared with Nautilus"
 msgstr ""
 
-#: ../preferences.js:109
+#: ../preferences.js:118
 msgid "Click type for open files"
 msgstr ""
 
-#: ../preferences.js:109
+#: ../preferences.js:118
 msgid "Single click"
 msgstr ""
 
-#: ../preferences.js:109
+#: ../preferences.js:118
 msgid "Double click"
 msgstr ""
 
-#: ../preferences.js:110
+#: ../preferences.js:119
 msgid "Show hidden files"
 msgstr ""
 
-#: ../preferences.js:111
+#: ../preferences.js:120
 msgid "Show a context menu item to delete permanently"
 msgstr ""
 
-#: ../preferences.js:114
+#: ../preferences.js:123
 msgid "Action to do when launching a program from the desktop"
 msgstr ""
 
-#: ../preferences.js:115
+#: ../preferences.js:124
 msgid "Display the content of the file"
 msgstr ""
 
-#: ../preferences.js:116
+#: ../preferences.js:125
 msgid "Launch the file"
 msgstr ""
 
-#: ../preferences.js:117
+#: ../preferences.js:126
 msgid "Ask what to do"
 msgstr ""
 
-#: ../preferences.js:121
+#: ../preferences.js:130
 msgid "Show image thumbnails"
 msgstr ""
 
-#: ../preferences.js:122
+#: ../preferences.js:131
 msgid "Never"
 msgstr ""
 
-#: ../preferences.js:123
+#: ../preferences.js:132
 msgid "Local files only"
 msgstr ""
 
-#: ../preferences.js:124
+#: ../preferences.js:133
 msgid "Always"
 msgstr ""
 
-#: ../prefs.js:39
+#: ../prefs.js:37
 msgid ""
 "To configure Desktop Icons NG, do right-click in the desktop and choose the "
 "last item: 'Settings'"
@@ -324,9 +348,33 @@ msgid "Show the trash icon in the desktop."
 msgstr ""
 
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:7
-msgid "Start corner"
+msgid "New icons start corner"
 msgstr ""
 
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:8
 msgid "Set the corner from where the icons will start to be placed."
+msgstr ""
+
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:10
+msgid "Show the disk drives connected to the computer."
+msgstr ""
+
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:12
+msgid "Show mounted network volumes in the desktop."
+msgstr ""
+
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:14
+msgid ""
+"When adding drives and volumes to the desktop, add them to the opposite side "
+"of the screen."
+msgstr ""
+
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:15
+msgid "Shows a rectangle in the destination place during DnD"
+msgstr ""
+
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:16
+msgid ""
+"When doing a Drag'n'Drop operation, marks the place in the grid where the "
+"icon will be put with a semitransparent rectangle."
 msgstr ""

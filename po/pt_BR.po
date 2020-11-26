@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-05 21:48+0200\n"
+"POT-Creation-Date: 2020-11-22 01:35+0100\n"
 "PO-Revision-Date: 2019-04-29 17:35-0300\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
@@ -19,371 +19,374 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 "X-Generator: Gtranslator 3.32.0\n"
 
-#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:197
+#: ../askConfirmPopup.js:35 ../askNamePopup.js:36 ../desktopIconsUtil.js:199
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: askConfirmPopup.js:36
+#: ../askConfirmPopup.js:36
 msgid "Delete"
 msgstr ""
 
-#: askNamePopup.js:35
+#: ../askNamePopup.js:35
 msgid "OK"
 msgstr "OK"
 
-#: askRenamePopup.js:40
+#: ../askRenamePopup.js:40
 #, fuzzy
 msgid "Folder name"
 msgstr "Nome da nova pasta"
 
-#: askRenamePopup.js:40
+#: ../askRenamePopup.js:40
 #, fuzzy
 msgid "File name"
 msgstr "Renomear…"
 
-#: askRenamePopup.js:47
+#: ../askRenamePopup.js:47
 #, fuzzy
 msgid "Rename"
 msgstr "Renomear…"
 
-#: desktopIconsUtil.js:74
+#: ../desktopIconsUtil.js:74
 msgid "Command not found"
 msgstr "Comando não encontrado"
 
-#: desktopIconsUtil.js:188
+#: ../desktopIconsUtil.js:190
 msgid "Do you want to run “{0}”, or display its contents?"
 msgstr ""
 
-#: desktopIconsUtil.js:189
+#: ../desktopIconsUtil.js:191
 msgid "“{0}” is an executable text file."
 msgstr ""
 
-#: desktopIconsUtil.js:193
+#: ../desktopIconsUtil.js:195
 #, fuzzy
 msgid "Execute in a terminal"
 msgstr "Abrir no terminal"
 
-#: desktopIconsUtil.js:195
+#: ../desktopIconsUtil.js:197
 msgid "Show"
 msgstr ""
 
-#: desktopIconsUtil.js:199
+#: ../desktopIconsUtil.js:201
 msgid "Execute"
 msgstr ""
 
-#: desktopManager.js:106
+#: ../desktopManager.js:117
 msgid "Nautilus File Manager not found"
 msgstr ""
 
-#: desktopManager.js:107
+#: ../desktopManager.js:118
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr ""
 
-#: desktopManager.js:426
+#: ../desktopManager.js:525
 msgid "New Folder"
 msgstr "Nova pasta"
 
-#: desktopManager.js:430
+#: ../desktopManager.js:529
 msgid "New Document"
 msgstr ""
 
-#: desktopManager.js:435
+#: ../desktopManager.js:534
 msgid "Paste"
 msgstr "Colar"
 
-#: desktopManager.js:439
+#: ../desktopManager.js:538
 msgid "Undo"
 msgstr "Desfazer"
 
-#: desktopManager.js:443
+#: ../desktopManager.js:542
 msgid "Redo"
 msgstr "Refazer"
 
-#: desktopManager.js:449
+#: ../desktopManager.js:548
 msgid "Select all"
 msgstr ""
 
-#: desktopManager.js:455
+#: ../desktopManager.js:554
 msgid "Show Desktop in Files"
 msgstr "Mostrar a área de trabalho no Arquivos"
 
-#: desktopManager.js:459 fileItem.js:832
+#: ../desktopManager.js:558 ../fileItem.js:836
 msgid "Open in Terminal"
 msgstr "Abrir no terminal"
 
-#: desktopManager.js:465
+#: ../desktopManager.js:564
 msgid "Change Background…"
 msgstr "Alterar plano de fundo…"
 
-#: desktopManager.js:474
+#: ../desktopManager.js:573
 msgid "Display Settings"
 msgstr "Configurações de exibição"
 
-#: desktopManager.js:481 preferences.js:83
+#: ../desktopManager.js:580 ../preferences.js:88
 msgid "Settings"
 msgstr "Configurações"
 
-#: desktopManager.js:941 desktopManager.js:989
+#: ../desktopManager.js:1040 ../desktopManager.js:1088
 msgid "Error while deleting files"
 msgstr ""
 
-#: desktopManager.js:1015
+#: ../desktopManager.js:1114
 msgid "Are you sure you want to permanently delete these items?"
 msgstr ""
 
-#: desktopManager.js:1016
+#: ../desktopManager.js:1115
 msgid "If you delete an item, it will be permanently lost."
 msgstr ""
 
-#: desktopManager.js:1108
+#: ../desktopManager.js:1207
 #, fuzzy
 msgid "New folder"
 msgstr "Nova pasta"
 
 #. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
-#: fileItem.js:144
+#: ../fileItem.js:150
 msgid "Home"
 msgstr ""
 
-#: fileItem.js:688
+#: ../fileItem.js:692
 msgid "Don’t Allow Launching"
 msgstr "Não permitir iniciar"
 
-#: fileItem.js:690
+#: ../fileItem.js:694
 msgid "Allow Launching"
 msgstr "Permitir iniciar"
 
-#: fileItem.js:756
+#: ../fileItem.js:760
 msgid "Open"
 msgstr "Abrir"
 
-#: fileItem.js:762
+#: ../fileItem.js:766
 msgid "Open With Other Application"
 msgstr "Abrir com outro aplicativo"
 
-#: fileItem.js:769
+#: ../fileItem.js:773
 msgid "Cut"
 msgstr "Recortar"
 
-#: fileItem.js:772
+#: ../fileItem.js:776
 msgid "Copy"
 msgstr "Copiar"
 
-#: fileItem.js:776
+#: ../fileItem.js:780
 msgid "Rename…"
 msgstr "Renomear…"
 
-#: fileItem.js:780
+#: ../fileItem.js:784
 msgid "Move to Trash"
 msgstr "Mover para a lixeira"
 
-#: fileItem.js:784
+#: ../fileItem.js:788
 msgid "Delete permanently"
 msgstr ""
 
-#: fileItem.js:797
+#: ../fileItem.js:801
 msgid "Empty Trash"
 msgstr "Esvaziar lixeira"
 
-#: fileItem.js:804
+#: ../fileItem.js:808
 msgid "Eject"
 msgstr ""
 
-#: fileItem.js:811
+#: ../fileItem.js:815
 msgid "Unmount"
 msgstr ""
 
-#: fileItem.js:824
+#: ../fileItem.js:828
 msgid "Properties"
 msgstr "Propriedades"
 
-#: fileItem.js:828
+#: ../fileItem.js:832
 msgid "Show in Files"
 msgstr "Mostrar no Arquivos"
 
-#: preferences.js:89
+#: ../preferences.js:94
 msgid "Size for the desktop icons"
 msgstr "Tamanho para os ícones da área de trabalho"
 
-#: preferences.js:89
+#: ../preferences.js:94
 msgid "Tiny"
 msgstr ""
 
-#: preferences.js:89
+#: ../preferences.js:94
 msgid "Small"
 msgstr "Pequeno"
 
-#: preferences.js:89
+#: ../preferences.js:94
 msgid "Standard"
 msgstr "Padrão"
 
-#: preferences.js:89
+#: ../preferences.js:94
 msgid "Large"
 msgstr "Grande"
 
-#: preferences.js:90
+#: ../preferences.js:95
 msgid "Show the personal folder in the desktop"
 msgstr "Mostrar a pasta pessoal na área de trabalho"
 
-#: preferences.js:91
+#: ../preferences.js:96
 msgid "Show the trash icon in the desktop"
 msgstr "Mostrar o ícone da lixeira na área de trabalho"
 
-#: preferences.js:92 schemas/org.gnome.shell.extensions.ding.gschema.xml:38
+#: ../preferences.js:97
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:9
 #, fuzzy
 msgid "Show external drives in the desktop"
 msgstr "Mostrar a pasta pessoal na área de trabalho"
 
-#: preferences.js:93 schemas/org.gnome.shell.extensions.ding.gschema.xml:43
+#: ../preferences.js:98
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:11
 #, fuzzy
 msgid "Show network drives in the desktop"
 msgstr "Mostra a pasta pessoal na área de trabalho."
 
-#: preferences.js:96
+#: ../preferences.js:101
 #, fuzzy
 msgid "New icons alignment"
 msgstr "Tamanho do ícone"
 
-#: preferences.js:97
+#: ../preferences.js:102
 msgid "Top-left corner"
 msgstr ""
 
-#: preferences.js:98
+#: ../preferences.js:103
 msgid "Top-right corner"
 msgstr ""
 
-#: preferences.js:99
+#: ../preferences.js:104
 msgid "Bottom-left corner"
 msgstr ""
 
-#: preferences.js:100
+#: ../preferences.js:105
 msgid "Bottom-right corner"
 msgstr ""
 
-#: preferences.js:102 schemas/org.gnome.shell.extensions.ding.gschema.xml:48
+#: ../preferences.js:107
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:13
 msgid "Add new drives to the opposite side of the screen"
 msgstr ""
 
-#: preferences.js:103
+#: ../preferences.js:108
 msgid "Highlight the drop place during Drag'n'Drop"
 msgstr ""
 
-#: preferences.js:107
+#: ../preferences.js:112
 msgid "Settings shared with Nautilus"
 msgstr ""
 
-#: preferences.js:113
+#: ../preferences.js:118
 msgid "Click type for open files"
 msgstr ""
 
-#: preferences.js:113
+#: ../preferences.js:118
 msgid "Single click"
 msgstr ""
 
-#: preferences.js:113
+#: ../preferences.js:118
 msgid "Double click"
 msgstr ""
 
-#: preferences.js:114
+#: ../preferences.js:119
 #, fuzzy
 msgid "Show hidden files"
 msgstr "Mostrar no Arquivos"
 
-#: preferences.js:115
+#: ../preferences.js:120
 msgid "Show a context menu item to delete permanently"
 msgstr ""
 
-#: preferences.js:118
+#: ../preferences.js:123
 msgid "Action to do when launching a program from the desktop"
 msgstr ""
 
-#: preferences.js:119
+#: ../preferences.js:124
 msgid "Display the content of the file"
 msgstr ""
 
-#: preferences.js:120
+#: ../preferences.js:125
 msgid "Launch the file"
 msgstr ""
 
-#: preferences.js:121
+#: ../preferences.js:126
 msgid "Ask what to do"
 msgstr ""
 
-#: preferences.js:125
+#: ../preferences.js:130
 msgid "Show image thumbnails"
 msgstr ""
 
-#: preferences.js:126
+#: ../preferences.js:131
 msgid "Never"
 msgstr ""
 
-#: preferences.js:127
+#: ../preferences.js:132
 msgid "Local files only"
 msgstr ""
 
-#: preferences.js:128
+#: ../preferences.js:133
 msgid "Always"
 msgstr ""
 
-#: prefs.js:37
+#: ../prefs.js:37
 msgid ""
 "To configure Desktop Icons NG, do right-click in the desktop and choose the "
 "last item: 'Settings'"
 msgstr ""
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:18
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:1
 msgid "Icon size"
 msgstr "Tamanho do ícone"
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:19
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:2
 msgid "Set the size for the desktop icons."
 msgstr "Define o tamanho para os ícones da área de trabalho."
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:23
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:3
 msgid "Show personal folder"
 msgstr "Mostrar pasta pessoal"
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:24
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:4
 msgid "Show the personal folder in the desktop."
 msgstr "Mostra a pasta pessoal na área de trabalho."
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:28
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:5
 msgid "Show trash icon"
 msgstr "Mostrar ícone da lixeira"
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:29
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:6
 msgid "Show the trash icon in the desktop."
 msgstr "Mostra o ícone da lixeira na área de trabalho."
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:33
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:7
 #, fuzzy
 msgid "New icons start corner"
 msgstr "Tamanho do ícone"
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:34
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:8
 msgid "Set the corner from where the icons will start to be placed."
 msgstr ""
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:39
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:10
 msgid "Show the disk drives connected to the computer."
 msgstr ""
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:44
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:12
 #, fuzzy
 msgid "Show mounted network volumes in the desktop."
 msgstr "Mostra a pasta pessoal na área de trabalho."
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:49
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:14
 msgid ""
 "When adding drives and volumes to the desktop, add them to the opposite side "
 "of the screen."
 msgstr ""
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:53
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:15
 msgid "Shows a rectangle in the destination place during DnD"
 msgstr ""
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:54
+#: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:16
 msgid ""
 "When doing a Drag'n'Drop operation, marks the place in the grid where the "
 "icon will be put with a semitransparent rectangle."
