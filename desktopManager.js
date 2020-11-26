@@ -516,6 +516,9 @@ var DesktopManager = class {
         } else if (symbol == Gdk.KEY_F5) {
             this._updateDesktop();
             return true;
+        } else if (isCtrl && ((symbol == Gdk.KEY_H) || (symbol == Gdk.KEY_h))) {
+            Prefs.gtkSettings.set_boolean('show-hidden', !this._showHidden);
+            return true;
         }
         return false;
     }
