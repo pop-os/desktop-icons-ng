@@ -237,6 +237,8 @@ function launchDesktop() {
     let first = true;
 
     data.desktopCoordinates = [];
+    argv.push('-M');
+    argv.push(`${Main.layoutManager.primaryIndex}`);
 
     for(let monitorIndex = 0; monitorIndex < Main.layoutManager.monitors.length; monitorIndex++) {
         let ws = global.workspace_manager.get_workspace_by_index(0);

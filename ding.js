@@ -28,6 +28,8 @@ let lastCommand = null;
 let codePath = '.';
 let errorFound = false;
 let asDesktop = false;
+let primaryIndex = 0;
+
 for(let arg of ARGV) {
     if (lastCommand == null) {
         switch(arg) {
@@ -37,6 +39,7 @@ for(let arg of ARGV) {
             break;
         case '-P':
         case '-D':
+        case '-M':
             lastCommand = arg;
             break;
         default:
@@ -56,6 +59,9 @@ for(let arg of ARGV) {
     case '-D':
         let data = arg.split(":");
         desktops.push({x:parseInt(data[0]), y:parseInt(data[1]), width:parseInt(data[2]), height:parseInt(data[3]), zoom:parseFloat(data[4])});
+        break;
+    case '-M':
+        primaryIndex = parseInt(arg);
         break;
     }
     lastCommand = null;
@@ -82,7 +88,7 @@ const DesktopManager = imports.desktopManager;
 if (!errorFound) {
     Gtk.init(null);
     Prefs.init(codePath);
-    var desktopManager = new DesktopManager.DesktopManager(desktops, codePath, asDesktop);
+    var desktopManager = new DesktopManager.DesktopManager(desktops, codePath, asDesktop, primaryIndex);
     Gtk.main();
     // return value
     0;

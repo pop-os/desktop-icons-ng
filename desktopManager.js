@@ -39,7 +39,7 @@ const Gettext = imports.gettext.domain('ding');
 const _ = Gettext.gettext;
 
 var DesktopManager = class {
-    constructor(desktopList, codePath, asDesktop) {
+    constructor(desktopList, codePath, asDesktop, primaryIndex) {
 
         DBusUtils.init();
         this._premultiplied = false;
@@ -52,6 +52,8 @@ var DesktopManager = class {
             }
         } catch(e) {
         }
+        this._primaryIndex = primaryIndex;
+        this._primaryScreen = desktopList[primaryIndex];
         this._clickX = 0;
         this._clickY = 0;
         this._dragList = null;
@@ -899,8 +901,8 @@ var DesktopManager = class {
         for (let fileItem of notAssignedYet) {
             let x, y;
             if (fileItem.dropCoordinates == null) {
-                x = 0;
-                y = 0;
+                x = this._primaryScreen.x;
+                y = this._primaryScreen.y;
                 storeMode = Enums.StoredCoordinates.ASSIGN;
             } else {
                 [x, y] = fileItem.dropCoordinates;
