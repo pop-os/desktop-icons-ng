@@ -21,6 +21,9 @@ const GLib = imports.gi.GLib;
 var NautilusFileOperationsProxy;
 var FreeDesktopFileManagerProxy;
 var GnomeNautilusPreviewProxy;
+var SwitcherooControlProxyClass;
+var SwitcherooControlProxy;
+var discreteGpuAvailable;
 
 const NautilusFileOperationsInterface = `<node>
 <interface name='org.gnome.Nautilus.FileOperations'>
@@ -81,6 +84,31 @@ const GnomeNautilusPreviewInterface = `<node>
 
 const GnomeNautilusPreviewProxyInterface = Gio.DBusProxy.makeProxyWrapper(GnomeNautilusPreviewInterface);
 
+const SwitcherooControlInterface = `<node>
+<interface name="net.hadess.SwitcherooControl">
+    <property name="HasDualGpu" type="b" access="read"/>
+    <property name="NumGPUs" type="u" access="read"/>
+    <property name="GPUs" type="aa{sv}" access="read"/>
+</interface>
+</node>`;
+
+const SWITCHEROO_CONTROL_BUS_NAME = 'net.hadess.SwitcherooControl';
+
+function _switcherooProxyAppeared() {
+    SwitcherooControlProxyClass = Gio.DBusProxy.makeProxyWrapper(SwitcherooControlInterface);
+    SwitcherooControlProxy = new SwitcherooControlProxyClass(Gio.DBus.system,
+        SWITCHEROO_CONTROL_BUS_NAME,
+        '/net/hadess/SwitcherooControl',
+        (proxy, error) => {
+            if (error) {
+                discreteGpuAvailable = false;
+                log(error.message);
+                return;
+            }
+            discreteGpuAvailable = SwitcherooControlProxy.HasDualGpu;
+        });
+}
+
 function init() {
     NautilusFileOperationsProxy = new NautilusFileOperationsProxyInterface(
         Gio.DBus.session,
@@ -114,4 +142,14 @@ function init() {
             }
         }
     );
+
+    SwitcherooControlProxy = null;
+    discreteGpuAvailable = false;
+    Gio.DBus.system.watch_name(SWITCHEROO_CONTROL_BUS_NAME,
+        Gio.BusNameWatcherFlags.NONE,
+        _switcherooProxyAppeared,
+        () => {
+            SwitcherooControlProxy = null;
+            discreteGpuAvailable = false;
+        });
 }
