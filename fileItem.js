@@ -2,6 +2,7 @@
  *
  * Copyright (C) 2019 Sergio Costas (rastersoft@gmail.com)
  * Based on code original (C) Carlos Soriano
+ * SwitcherooControl code based on code original from Marsch84
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -630,14 +631,20 @@ var FileItem = class {
         if (! fileList ) {
             fileList = [] ;
         }
-        
+        this._doOpenContext(null, fileList);
+    }
+
+    _doOpenContext(context, fileList) {
+        if (! fileList ) {
+            fileList = [] ;
+        }
         if (this._isBrokenSymlink) {
             log(`Error: Can’t open ${this.file.get_uri()} because it is a broken symlink.`);
             return;
         }
 
         if (this.trustedDesktopFile) {
-            this._desktopFile.launch_uris_as_manager(fileList, null, GLib.SpawnFlags.SEARCH_PATH, null, null);
+            this._desktopFile.launch_uris_as_manager(fileList, context, GLib.SpawnFlags.SEARCH_PATH, null, null);
             return;
         }
 
@@ -749,6 +756,39 @@ var FileItem = class {
         return !this.trustedDesktopFile && this._fileExtra == Enums.FileType.NONE;
     }
 
+    _doDiscreteGpu() {
+        if (!DBusUtils.SwitcherooControlProxy) {
+            log('Could not apply discrete GPU environment, switcheroo-control not available');
+            return;
+        }
+        let gpus = DBusUtils.SwitcherooControlProxy.GPUs;
+        if (!gpus) {
+            log('Could not apply discrete GPU environment. No GPUs in list.');
+            return;
+        }
+
+        for(let gpu in gpus) {
+            if (!gpus[gpu])
+                continue;
+
+            let default_variant = gpus[gpu]['Default'];
+            if (!default_variant || default_variant.get_boolean())
+                continue;
+
+            let env = gpus[gpu]['Environment'];
+            if (!env)
+                continue;
+
+            let env_s = env.get_strv();
+            let context = new Gio.AppLaunchContext;
+            for (let i = 0; i < env_s.length; i=i+2) {
+                context.setenv(env_s[i], env_s[i+1]);
+            }
+            this._doOpenContext(context, null);
+            return;
+        }
+        log('Could not find discrete GPU data in switcheroo-control');
+    }
 
     _createMenu() {
         this._menu = new Gtk.Menu();
@@ -766,6 +806,11 @@ var FileItem = class {
                 this._actionOpenWith = new Gtk.MenuItem({label: _('Open With Other Application')});
                 this._actionOpenWith.connect('activate', () => this._desktopManager.doOpenWith());
                 this._menu.add(this._actionOpenWith);
+                if (DBusUtils.discreteGpuAvailable && this.trustedDesktopFile) {
+                    this._actionDedicatedGPU = new Gtk.MenuItem({label:_('Launch using Dedicated Graphics Card')});
+                    this._actionDedicatedGPU.connect('activate', () => this._doDiscreteGpu());
+                    this._menu.add(this._actionDedicatedGPU);
+                }
             } else {
                 this._actionOpenWith = null;
             }
