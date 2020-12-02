@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 
 %:
-	dh $@ --localedir=share/gnome-shell/extensions/ding@rastersoft.com/locale
+	dh $@
 
 override_dh_fixperms:
 	dh_fixperms -XcreateThumbnail.js -Xding.js
