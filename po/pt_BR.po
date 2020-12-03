@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the desktop-icons package.
 # Enrico Nicoletto <liverig@gmail.com>, 2018.
 # Rafael Fontenelle <rafaelff@gnome.org>, 2018-2019.
+# Fernando Alves <fernandoalvess617@gmail.com>, 2020.
 #
 msgid ""
 msgstr ""
@@ -25,7 +26,7 @@ msgstr "Cancelar"
 
 #: ../askConfirmPopup.js:36
 msgid "Delete"
-msgstr ""
+msgstr "Excluir"
 
 #: ../askNamePopup.js:35
 msgid "OK"
@@ -52,11 +53,11 @@ msgstr "Comando não encontrado"
 
 #: ../desktopIconsUtil.js:190
 msgid "Do you want to run “{0}”, or display its contents?"
-msgstr ""
+msgstr "Você deseja executar “{0}” ou exibir seu conteúdo?"
 
 #: ../desktopIconsUtil.js:191
 msgid "“{0}” is an executable text file."
-msgstr ""
+msgstr "“{0}” é um arquivo executável."
 
 #: ../desktopIconsUtil.js:195
 #, fuzzy
@@ -65,19 +66,19 @@ msgstr "Abrir no terminal"
 
 #: ../desktopIconsUtil.js:197
 msgid "Show"
-msgstr ""
+msgstr "Exibir"
 
 #: ../desktopIconsUtil.js:201
 msgid "Execute"
-msgstr ""
+msgstr "Executar"
 
 #: ../desktopManager.js:117
 msgid "Nautilus File Manager not found"
-msgstr ""
+msgstr "Gerenciador de arquivos Nautilus não encontrado"
 
 #: ../desktopManager.js:118
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
-msgstr ""
+msgstr "O gerenciador de arquivos Nautilus é um requisito para a extensão Desktop Icons NG funcionar."
 
 #: ../desktopManager.js:525
 msgid "New Folder"
@@ -85,7 +86,7 @@ msgstr "Nova pasta"
 
 #: ../desktopManager.js:529
 msgid "New Document"
-msgstr ""
+msgstr "Novo documento"
 
 #: ../desktopManager.js:534
 msgid "Paste"
@@ -101,7 +102,7 @@ msgstr "Refazer"
 
 #: ../desktopManager.js:548
 msgid "Select all"
-msgstr ""
+msgstr "Selecionar todos"
 
 #: ../desktopManager.js:554
 msgid "Show Desktop in Files"
@@ -125,15 +126,15 @@ msgstr "Configurações"
 
 #: ../desktopManager.js:1040 ../desktopManager.js:1088
 msgid "Error while deleting files"
-msgstr ""
+msgstr "Erro ao excluir os arquivos"
 
 #: ../desktopManager.js:1114
 msgid "Are you sure you want to permanently delete these items?"
-msgstr ""
+msgstr "Você tem certeza que deseja excluir permanentemente esses arquivos?"
 
 #: ../desktopManager.js:1115
 msgid "If you delete an item, it will be permanently lost."
-msgstr ""
+msgstr "Se você excluir um item, ele será perdido permanentemente."
 
 #: ../desktopManager.js:1207
 #, fuzzy
@@ -143,7 +144,7 @@ msgstr "Nova pasta"
 #. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
 #: ../fileItem.js:150
 msgid "Home"
-msgstr ""
+msgstr "Pasta pessoal"
 
 #: ../fileItem.js:692
 msgid "Don’t Allow Launching"
@@ -179,7 +180,7 @@ msgstr "Mover para a lixeira"
 
 #: ../fileItem.js:788
 msgid "Delete permanently"
-msgstr ""
+msgstr "Excluir permanentemente"
 
 #: ../fileItem.js:801
 msgid "Empty Trash"
@@ -187,11 +188,11 @@ msgstr "Esvaziar lixeira"
 
 #: ../fileItem.js:808
 msgid "Eject"
-msgstr ""
+msgstr "Ejetar"
 
 #: ../fileItem.js:815
 msgid "Unmount"
-msgstr ""
+msgstr "Desmontar"
 
 #: ../fileItem.js:828
 msgid "Properties"
@@ -207,7 +208,7 @@ msgstr "Tamanho para os ícones da área de trabalho"
 
 #: ../preferences.js:94
 msgid "Tiny"
-msgstr ""
+msgstr "Muito pequeno"
 
 #: ../preferences.js:94
 msgid "Small"
@@ -248,44 +249,44 @@ msgstr "Tamanho do ícone"
 
 #: ../preferences.js:102
 msgid "Top-left corner"
-msgstr ""
+msgstr "Canto superior esquerdo"
 
 #: ../preferences.js:103
 msgid "Top-right corner"
-msgstr ""
+msgstr "Canto superior direito"
 
 #: ../preferences.js:104
 msgid "Bottom-left corner"
-msgstr ""
+msgstr "Canto inferior esquerdo"
 
 #: ../preferences.js:105
 msgid "Bottom-right corner"
-msgstr ""
+msgstr "Canto inferior direito"
 
 #: ../preferences.js:107
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:13
 msgid "Add new drives to the opposite side of the screen"
-msgstr ""
+msgstr "Mostrar novos dispositivos no lado oposto da tela"
 
 #: ../preferences.js:108
 msgid "Highlight the drop place during Drag'n'Drop"
-msgstr ""
+msgstr "Destacar o local onde o ícone será alocado ao arrastar e soltar"
 
 #: ../preferences.js:112
 msgid "Settings shared with Nautilus"
-msgstr ""
+msgstr "Configurações compartilhadas com Nautilus"
 
 #: ../preferences.js:118
 msgid "Click type for open files"
-msgstr ""
+msgstr "Tipo de clique para abrir arquivos"
 
 #: ../preferences.js:118
 msgid "Single click"
-msgstr ""
+msgstr "Clique único"
 
 #: ../preferences.js:118
 msgid "Double click"
-msgstr ""
+msgstr "Clique duplo"
 
 #: ../preferences.js:119
 #, fuzzy
@@ -294,45 +295,47 @@ msgstr "Mostrar no Arquivos"
 
 #: ../preferences.js:120
 msgid "Show a context menu item to delete permanently"
-msgstr ""
+msgstr "Mostrar a opção de excluir permanentemente no menu de contexto"
 
 #: ../preferences.js:123
 msgid "Action to do when launching a program from the desktop"
-msgstr ""
+msgstr "O que fazer ao clicar num programa na área de trabalho"
 
 #: ../preferences.js:124
 msgid "Display the content of the file"
-msgstr ""
+msgstr "Mostrar o conteúdo do arquivo"
 
 #: ../preferences.js:125
 msgid "Launch the file"
-msgstr ""
+msgstr "Executar o arquivo"
 
 #: ../preferences.js:126
 msgid "Ask what to do"
-msgstr ""
+msgstr "Perguntar o que fazer"
 
 #: ../preferences.js:130
 msgid "Show image thumbnails"
-msgstr ""
+msgstr "Mostrar miniaturas"
 
 #: ../preferences.js:131
 msgid "Never"
-msgstr ""
+msgstr "Nunca"
 
 #: ../preferences.js:132
 msgid "Local files only"
-msgstr ""
+msgstr "Apenas arquivos locais"
 
 #: ../preferences.js:133
 msgid "Always"
-msgstr ""
+msgstr "Sempre"
 
 #: ../prefs.js:37
 msgid ""
 "To configure Desktop Icons NG, do right-click in the desktop and choose the "
 "last item: 'Settings'"
 msgstr ""
+"Para configurar Desktop Icons NG clique com o botão direito do mouse na área de trabalho e clique na "
+"última opção: 'Configurações'"
 
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:1
 msgid "Icon size"
@@ -365,11 +368,11 @@ msgstr "Tamanho do ícone"
 
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:8
 msgid "Set the corner from where the icons will start to be placed."
-msgstr ""
+msgstr "Escolha o canto da tela onde os ícones ficarão inicialmente"
 
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:10
 msgid "Show the disk drives connected to the computer."
-msgstr ""
+msgstr "Mostrar as unidades de discos conectadas ao computador."
 
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:12
 #, fuzzy
@@ -381,16 +384,20 @@ msgid ""
 "When adding drives and volumes to the desktop, add them to the opposite side "
 "of the screen."
 msgstr ""
+"Ao mostrar os discos e volumes montados, posicioná-los no lado "
+"oposto da tela."
 
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:15
 msgid "Shows a rectangle in the destination place during DnD"
-msgstr ""
+msgstr "Mostrar um retângulo na pasta de destino ao arrastar e soltar um arquivo"
 
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:16
 msgid ""
 "When doing a Drag'n'Drop operation, marks the place in the grid where the "
 "icon will be put with a semitransparent rectangle."
 msgstr ""
+"Ao arrastar, destacar com um retângulo semitransparente o local "
+"onde o ícone ficará alocado."
 
 #, fuzzy
 #~ msgid "Show external disk drives in the desktop"
