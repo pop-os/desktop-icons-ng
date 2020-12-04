@@ -106,7 +106,7 @@ msgstr "Selecionar todos"
 
 #: ../desktopManager.js:554
 msgid "Show Desktop in Files"
-msgstr "Mostrar a área de trabalho no Arquivos"
+msgstr "Mostrar a área de trabalho nos Arquivos"
 
 #: ../desktopManager.js:558 ../fileItem.js:836
 msgid "Open in Terminal"
@@ -234,18 +234,18 @@ msgstr "Mostrar o ícone da lixeira na área de trabalho"
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:9
 #, fuzzy
 msgid "Show external drives in the desktop"
-msgstr "Mostrar a pasta pessoal na área de trabalho"
+msgstr "Mostrar dispositivos externos na área de trabalho"
 
 #: ../preferences.js:98
 #: ../schemas/org.gnome.shell.extensions.ding.gschema.xml.h:11
 #, fuzzy
 msgid "Show network drives in the desktop"
-msgstr "Mostra a pasta pessoal na área de trabalho."
+msgstr "Mostrar dispositivos da rede na área de trabalho."
 
 #: ../preferences.js:101
 #, fuzzy
 msgid "New icons alignment"
-msgstr "Tamanho do ícone"
+msgstr "Posição dos ícones novos"
 
 #: ../preferences.js:102
 msgid "Top-left corner"
@@ -291,7 +291,7 @@ msgstr "Clique duplo"
 #: ../preferences.js:119
 #, fuzzy
 msgid "Show hidden files"
-msgstr "Mostrar no Arquivos"
+msgstr "Mostrar arquivos ocultos"
 
 #: ../preferences.js:120
 msgid "Show a context menu item to delete permanently"
@@ -401,15 +401,15 @@ msgstr ""
 
 #, fuzzy
 #~ msgid "Show external disk drives in the desktop"
-#~ msgstr "Mostrar a pasta pessoal na área de trabalho"
+#~ msgstr "Mostrar dispositivos externos na área de trabalho"
 
 #, fuzzy
 #~ msgid "Show the external drives"
-#~ msgstr "Mostrar a pasta pessoal na área de trabalho"
+#~ msgstr "Mostrar dispositivos externos"
 
 #, fuzzy
 #~ msgid "Show network volumes"
-#~ msgstr "Mostrar no Arquivos"
+#~ msgstr "Mostrar dispositivos da rede"
 
 #~ msgid "Enter file name…"
 #~ msgstr "Insira um nome de arquivo…"
