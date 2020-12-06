@@ -509,7 +509,7 @@ var DesktopManager = class {
             let selection = this.getCurrentSelection(false);
             if (selection) {
                 // Support renaming other grids file items.
-                DBusUtils.GnomeNautilusPreviewProxy.ShowFileRemote(selection[0].uri, 0, false);
+                DBusUtils.GnomeNautilusPreviewProxy.ShowFileRemote(selection[0].uri, 0, true);
                 return true;
             }
         } else if (isCtrl && ((symbol == Gdk.KEY_A) || (symbol == Gdk.KEY_a))) {
