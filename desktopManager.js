@@ -94,6 +94,10 @@ var DesktopManager = class {
                 this._updateDesktop();
             }
         });
+        this._gtkIconTheme = Gtk.IconTheme.get_default()
+        this._gtkIconTheme.connect('changed', () => {
+            this._updateDesktop();
+        });
         this._volumeMonitor = Gio.VolumeMonitor.get();
         this._volumeMonitor.connect('mount-added', () => { this._updateDesktop() });
         this._volumeMonitor.connect('mount-removed', () => { this._updateDesktop() });
