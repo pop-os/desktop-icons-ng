@@ -790,6 +790,16 @@ var FileItem = class {
         log('Could not find discrete GPU data in switcheroo-control');
     }
 
+    _addScriptsMenu() {
+        this._subMenu = new Gtk.Menu();
+        this._ScriptMenuItem = new Gtk.MenuItem({label: _("Scripts")});
+        this._ScriptMenuItem.set_submenu(this._subMenu);
+        this._menu.add(this._ScriptMenuItem);
+        this._menu.add(new Gtk.SeparatorMenuItem());
+        this._desktopManager._createScriptsMenu(this._subMenu);
+        this._subMenu.show_all();
+    }
+
     _createMenu() {
         this._menu = new Gtk.Menu();
         this._menuId = this._menu.connect('hide', () => {
@@ -800,6 +810,7 @@ var FileItem = class {
         let open = new Gtk.MenuItem({label:_('Open')});
         open.connect('activate', () => this.doOpen());
         this._menu.add(open);
+        this._addScriptsMenu();
         switch (this._fileExtra) {
         case Enums.FileType.NONE:
             if (!this._isDirectory) {

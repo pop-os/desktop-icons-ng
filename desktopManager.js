@@ -75,6 +75,9 @@ var DesktopManager = class {
         this._monitorDesktopDir = this._desktopDir.monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, null);
         this._monitorDesktopDir.set_rate_limit(1000);
         this._monitorDesktopDir.connect('changed', (obj, file, otherFile, eventType) => this._updateDesktopIfChanged(file, otherFile, eventType));
+        this._monitorScriptDir = this._scriptsDir.monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, null);
+        this._monitorScriptDir.set_rate_limit(1000);
+        this._monitorScriptDir.connect('changed', (obj, file, otherFile, eventType) => this._updateDesktopIfChanged(file, otherFile, eventType));
         this._showHidden = Prefs.gtkSettings.get_boolean('show-hidden');
         this.showDropPlace = Prefs.desktopSettings.get_boolean('show-drop-place');
         this._settingsId = Prefs.desktopSettings.connect('changed', (obj, key) => {
@@ -597,6 +600,40 @@ var DesktopManager = class {
         this._menu.show_all();
     }
 
+    _createScriptsMenu(subMenu) {
+        this._subMenu = subMenu;
+        if ( this._scriptsList.length == 0 ) {
+            let menuItem = new Gtk.MenuItem({label: _(`No Scripts Available`)});
+            this._subMenu.add(menuItem);
+        }
+        for ( let fileItem of this._scriptsList ) {
+            if ( fileItem._attributeCanExecute ) {
+                let menuItemName = fileItem.fileName
+                let menuItemPath = fileItem.file.get_path();
+                let menuItem = new Gtk.MenuItem({label: _(`${menuItemName}`)});
+                menuItem.connect("activate", () =>  this._onScriptClicked(menuItemPath));
+                this._subMenu.add(menuItem);
+            }
+        }
+        this._subMenu.add( new Gtk.SeparatorMenuItem());
+        this._ShowScriptFolderMenuItem = new Gtk.MenuItem({label: _("Show Scripts Folder")});
+        this._ShowScriptFolderMenuItem.connect("activate", () =>  this._onShowScriptFolderClicked());
+        this._subMenu.add(this._ShowScriptFolderMenuItem);
+    }
+
+    _onShowScriptFolderClicked() {
+        Gio.AppInfo.launch_default_for_uri_async(this._scriptsDir.get_uri(),
+            null, null,
+            (source, result) => {
+                try {
+                    Gio.AppInfo.launch_default_for_uri_finish(result);
+                } catch (e) {
+                   log('Error opening Scripts Folder in Files: ' + e.message);
+                }
+            }
+        );
+    }
+
     _selectAll() {
         for(let fileItem of this._fileList) {
             if (fileItem.isAllSelectable) {
@@ -1049,6 +1086,7 @@ var DesktopManager = class {
                 break;
         }
         this._readFileList();
+        this._readScriptFileList();
     }
 
     _getClipboardText(isCopy) {
