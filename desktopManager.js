@@ -38,6 +38,7 @@ const Gettext = imports.gettext.domain('ding');
 
 const _ = Gettext.gettext;
 
+
 var DesktopManager = class {
     constructor(desktopList, codePath, asDesktop, primaryIndex) {
 
@@ -68,6 +69,7 @@ var DesktopManager = class {
         this._toDelete = [];
         this._deletingFilesRecursively = false;
         this._desktopDir = DesktopIconsUtil.getDesktopDir();
+        this._scriptsDir = DesktopIconsUtil.getScriptsDir();
         this.desktopFsId = this._desktopDir.query_info('id::filesystem', Gio.FileQueryInfoFlags.NONE, null).get_attribute_string('id::filesystem');
         this._updateWritableByOthers();
         this._monitorDesktopDir = this._desktopDir.monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, null);
@@ -115,6 +117,9 @@ var DesktopManager = class {
         DBusUtils.NautilusFileOperationsProxy.connect('g-properties-changed', this._undoStatusChanged.bind(this));
         this._fileList = [];
         this._readFileList();
+
+        this._scriptsList = [];
+        this._readScriptFileList();
 
         // Check if Nautilus is available
         try {
@@ -760,6 +765,46 @@ var DesktopManager = class {
             fileItem.removeFromGrid();
         }
         this._fileList = [];
+    }
+
+    _readScriptFileList() {
+        if (this._scriptsEnumerateCancellable) {
+            this._scriptsEnumerateCancellable.cancel();
+        }
+        this._scriptsEnumerateCancellable = new Gio.Cancellable();
+        this._scriptsDir.enumerate_children_async(
+            Enums.DEFAULT_ATTRIBUTES,
+            Gio.FileQueryInfoFlags.NONE,
+            GLib.PRIORITY_DEFAULT,
+            this._scriptsEnumerateCancellable,
+            (source, result) => {
+                try {
+                    let fileEnum = source.enumerate_children_finish(result);
+                    let scriptsList = [];
+                    let info;
+                    while ((info = fileEnum.next_file(null))) {
+                        let scriptsItem = new FileItem.FileItem(
+                                this,
+                                fileEnum.get_child(info),
+                                info,
+                                Enums.FileType.NONE,
+                                this._codePath,
+                                null
+                        );
+                    scriptsList.push(scriptsItem);
+                    }
+                    this._scriptsList = scriptsList;
+                    } catch(e) {
+                    if (e.matches (Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_FOUND)) {
+                        return;
+                    }
+                    GLib.idle_add(GLib.PRIORITY_LOW, () => {
+                        this._readScriptFileList();
+                        return GLib.SOURCE_REMOVE;
+                    });
+                }
+            }
+        );
     }
 
     _readFileList() {
