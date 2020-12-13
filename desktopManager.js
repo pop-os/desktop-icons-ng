@@ -599,6 +599,7 @@ var DesktopManager = class {
 
     _createScriptsMenu(subMenu) {
         this._readScriptFileList();
+        this._scriptsList.sort().reverse();
         this._subMenu = subMenu;
         if ( this._scriptsList.length == 0 ) {
             let menuItem = new Gtk.MenuItem({label: _(`No Scripts Available`)});
