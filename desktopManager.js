@@ -825,11 +825,11 @@ var DesktopManager = class {
                                 Enums.FileType.NONE,
                                 this._codePath,
                                 null
-                        );
-                    scriptsList.push(scriptsItem);
+                                );
+                        scriptsList.push(scriptsItem);
                     }
                     this._scriptsList = scriptsList;
-                    } catch(e) {
+                } catch(e) {
                     if (e.matches (Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_FOUND)) {
                         return;
                     }
