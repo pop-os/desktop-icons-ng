@@ -75,9 +75,9 @@ var DesktopManager = class {
         this._monitorDesktopDir = this._desktopDir.monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, null);
         this._monitorDesktopDir.set_rate_limit(1000);
         this._monitorDesktopDir.connect('changed', (obj, file, otherFile, eventType) => this._updateDesktopIfChanged(file, otherFile, eventType));
-        this._monitorScriptDir = this._scriptsDir.monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, null);
-        this._monitorScriptDir.set_rate_limit(1000);
-        this._monitorScriptDir.connect('changed', (obj, file, otherFile, eventType) => this._updateDesktopIfChanged(file, otherFile, eventType));
+        //this._monitorScriptDir = this._scriptsDir.monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, null);
+        //this._monitorScriptDir.set_rate_limit(1000);
+        //this._monitorScriptDir.connect('changed', (obj, file, otherFile, eventType) => this._updateDesktopIfChanged(file, otherFile, eventType));
         this._showHidden = Prefs.gtkSettings.get_boolean('show-hidden');
         this.showDropPlace = Prefs.desktopSettings.get_boolean('show-drop-place');
         this._settingsId = Prefs.desktopSettings.connect('changed', (obj, key) => {
@@ -606,6 +606,7 @@ var DesktopManager = class {
             let menuItem = new Gtk.MenuItem({label: _(`No Scripts Available`)});
             this._subMenu.add(menuItem);
         }
+        this._readScriptFileList();
         for ( let fileItem of this._scriptsList ) {
             if ( fileItem._attributeCanExecute ) {
                 let menuItemName = fileItem.fileName
@@ -1043,6 +1044,7 @@ var DesktopManager = class {
             this._desktopFilesChanged = true;
         } else {
             this._readFileList();
+            this._readScriptFileList();
         }
     }
 
