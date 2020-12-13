@@ -38,7 +38,6 @@ const Gettext = imports.gettext.domain('ding');
 
 const _ = Gettext.gettext;
 
-
 var DesktopManager = class {
     constructor(desktopList, codePath, asDesktop, primaryIndex) {
 
