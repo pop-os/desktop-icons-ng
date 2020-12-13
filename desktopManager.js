@@ -1337,4 +1337,29 @@ var DesktopManager = class {
             print(`Failed to create template ${e.message}`);
         }
     }
+
+    _onScriptClicked(menuItemPath) {
+        let pathList = [];
+        let uriList = [];
+        for ( let item of this._fileList ) {
+            if ( item.isSelected &&  ! item.isSpecial ) {
+                log (item.file.get_path());
+                log (item.file.get_uri());
+                pathList.push(`'` + item.file.get_path() + `\n'`);
+                uriList.push(`'` + item.file.get_uri() + `\n'`);
+            }
+        }
+        pathList = pathList.join("");
+        uriList = uriList.join("");
+        let deskTop = `'` + DesktopIconsUtil.getDesktopDir().get_path() + `'`;
+        let execline = []
+        execline.push(`/bin/bash -c "`);
+        execline.push(`NAUTILUS_SCRIPT_SELECTED_FILE_PATHS=${pathList}`);
+        execline.push(`NAUTILUS_SCRIPT_SELECTED_URIS=${uriList}`);
+        execline.push(`NAUTILUS_SCRIPT_CURRENT_URI=${deskTop}`);
+        execline.push(`'${menuItemPath}'"`)
+        execline = execline.join(" ");
+        log ( execline );
+        DesktopIconsUtil.spawnCommandLine(execline);
+    }
 }
