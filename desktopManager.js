@@ -74,6 +74,9 @@ var DesktopManager = class {
         this._monitorDesktopDir = this._desktopDir.monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, null);
         this._monitorDesktopDir.set_rate_limit(1000);
         this._monitorDesktopDir.connect('changed', (obj, file, otherFile, eventType) => this._updateDesktopIfChanged(file, otherFile, eventType));
+        this._monitorScriptDir = this._scriptsDir.monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, null);
+        this._monitorScriptDir.set_rate_limit(1000);
+        this._monitorScriptDir.connect('changed', (obj, file, otherFile, eventType) => this._updateDesktopIfChanged(file, otherFile, eventType));
         this._showHidden = Prefs.gtkSettings.get_boolean('show-hidden');
         this.showDropPlace = Prefs.desktopSettings.get_boolean('show-drop-place');
         this._settingsId = Prefs.desktopSettings.connect('changed', (obj, key) => {
@@ -596,14 +599,17 @@ var DesktopManager = class {
         this._menu.show_all();
     }
 
-    _createScriptsMenu(subMenu) {
-        this._readScriptFileList();
-        this._scriptsList.sort().reverse();
-        this._subMenu = subMenu;
+    _createScriptsMenu(Menu) {
         if ( this._scriptsList.length == 0 ) {
-            let menuItem = new Gtk.MenuItem({label: _(`No Scripts Available`)});
-            this._subMenu.add(menuItem);
+            return;
         }
+        this._menu = Menu;
+        this._scriptsList.sort().reverse();
+        this._subMenu = new Gtk.Menu();
+        this._ScriptMenuItem = new Gtk.MenuItem({label: _("Scripts")});
+        this._ScriptMenuItem.set_submenu(this._subMenu);
+        this._menu.add(this._ScriptMenuItem);
+        this._menu.add(new Gtk.SeparatorMenuItem());
         for ( let fileItem of this._scriptsList ) {
             if ( fileItem._attributeCanExecute ) {
                 let menuItemName = fileItem.fileName
@@ -614,9 +620,10 @@ var DesktopManager = class {
             }
         }
         this._subMenu.add( new Gtk.SeparatorMenuItem());
-        this._ShowScriptFolderMenuItem = new Gtk.MenuItem({label: _("Show Scripts Folder")});
+        this._ShowScriptFolderMenuItem = new Gtk.MenuItem({label: _("Open Scripts Folder")});
         this._ShowScriptFolderMenuItem.connect("activate", () =>  this._onShowScriptFolderClicked());
         this._subMenu.add(this._ShowScriptFolderMenuItem);
+        this._subMenu.show_all();
     }
 
     _onShowScriptFolderClicked() {
@@ -1342,8 +1349,6 @@ var DesktopManager = class {
         let uriList = [];
         for ( let item of this._fileList ) {
             if ( item.isSelected &&  ! item.isSpecial ) {
-                log (item.file.get_path());
-                log (item.file.get_uri());
                 pathList.push(`'` + item.file.get_path() + `\n'`);
                 uriList.push(`'` + item.file.get_uri() + `\n'`);
             }
@@ -1351,13 +1356,11 @@ var DesktopManager = class {
         pathList = pathList.join("");
         uriList = uriList.join("");
         let deskTop = `'` + DesktopIconsUtil.getDesktopDir().get_path() + `'`;
-        let execline = []
-        execline.push(`/bin/bash -c "`);
-        execline.push(`NAUTILUS_SCRIPT_SELECTED_FILE_PATHS=${pathList}`);
-        execline.push(`NAUTILUS_SCRIPT_SELECTED_URIS=${uriList}`);
-        execline.push(`NAUTILUS_SCRIPT_CURRENT_URI=${deskTop}`);
-        execline.push(`'${menuItemPath}'"`)
-        execline = execline.join(" ");
+        let execline = `/bin/bash -c "`;
+        execline += `NAUTILUS_SCRIPT_SELECTED_FILE_PATHS=${pathList} `;
+        execline += `NAUTILUS_SCRIPT_SELECTED_URIS=${uriList} `;
+        execline += `NAUTILUS_SCRIPT_CURRENT_URI=${deskTop} `;
+        execline += `'${menuItemPath}'"`;
         DesktopIconsUtil.spawnCommandLine(execline);
     }
 }
