@@ -604,7 +604,6 @@ var DesktopManager = class {
             return;
         }
         this._menu = Menu;
-        this._scriptsList.sort().reverse();
         this._subMenu = new Gtk.Menu();
         this._ScriptMenuItem = new Gtk.MenuItem({label: _("Scripts")});
         this._ScriptMenuItem.set_submenu(this._subMenu);
@@ -619,24 +618,7 @@ var DesktopManager = class {
                 this._subMenu.add(menuItem);
             }
         }
-        this._subMenu.add( new Gtk.SeparatorMenuItem());
-        this._ShowScriptFolderMenuItem = new Gtk.MenuItem({label: _("Open Scripts Folder")});
-        this._ShowScriptFolderMenuItem.connect("activate", () =>  this._onShowScriptFolderClicked());
-        this._subMenu.add(this._ShowScriptFolderMenuItem);
         this._subMenu.show_all();
-    }
-
-    _onShowScriptFolderClicked() {
-        Gio.AppInfo.launch_default_for_uri_async(this._scriptsDir.get_uri(),
-            null, null,
-            (source, result) => {
-                try {
-                    Gio.AppInfo.launch_default_for_uri_finish(result);
-                } catch (e) {
-                   log('Error opening Scripts Folder in Files: ' + e.message);
-                }
-            }
-        );
     }
 
     _selectAll() {
@@ -835,7 +817,7 @@ var DesktopManager = class {
                                 );
                         scriptsList.push(scriptsItem);
                     }
-                    this._scriptsList = scriptsList;
+                    this._scriptsList = scriptsList.sort().reverse();
                 } catch(e) {
                     if (e.matches (Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_FOUND)) {
                         return;
