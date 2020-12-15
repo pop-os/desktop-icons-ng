@@ -603,22 +603,21 @@ var DesktopManager = class {
         if ( this._scriptsList.length == 0 ) {
             return;
         }
-        this._menu = Menu;
-        this._subMenu = new Gtk.Menu();
+        this._ScriptSubMenu = new Gtk.Menu();
         this._ScriptMenuItem = new Gtk.MenuItem({label: _("Scripts")});
-        this._ScriptMenuItem.set_submenu(this._subMenu);
-        this._menu.add(this._ScriptMenuItem);
-        this._menu.add(new Gtk.SeparatorMenuItem());
+        this._ScriptMenuItem.set_submenu(this._ScriptSubMenu);
+        Menu.add(this._ScriptMenuItem);
+        Menu.add(new Gtk.SeparatorMenuItem());
         for ( let fileItem of this._scriptsList ) {
             if ( fileItem._attributeCanExecute ) {
                 let menuItemName = fileItem.fileName
                 let menuItemPath = fileItem.file.get_path();
                 let menuItem = new Gtk.MenuItem({label: _(`${menuItemName}`)});
                 menuItem.connect("activate", () =>  this._onScriptClicked(menuItemPath));
-                this._subMenu.add(menuItem);
+                this._ScriptSubMenu.add(menuItem);
             }
         }
-        this._subMenu.show_all();
+        this._ScriptSubMenu.show_all();
     }
 
     _selectAll() {
