@@ -65,6 +65,7 @@ var DesktopManager = class {
         this._desktops = [];
         this._desktopFilesChanged = false;
         this._readingDesktopFiles = true;
+        this._idleScriptReadPending = false;
         this._toDelete = [];
         this._deletingFilesRecursively = false;
         this._desktopDir = DesktopIconsUtil.getDesktopDir();
@@ -818,11 +819,12 @@ var DesktopManager = class {
                     }
                     this._scriptsList = scriptsList.sort().reverse();
                 } catch(e) {
-                    if (e.matches (Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_FOUND)) {
+                    if ( this._backgroundScriptReadID == 0 ) {
                         return;
                     }
-                    GLib.idle_add(GLib.PRIORITY_LOW, () => {
+                    this._backgroundScriptReadID = GLib.idle_add(GLib.PRIORITY_LOW, () => {
                         this._readScriptFileList();
+                        this._backgroundScriptReadID = 0;
                         return GLib.SOURCE_REMOVE;
                     });
                 }
