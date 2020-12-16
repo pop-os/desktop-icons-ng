@@ -65,7 +65,6 @@ var DesktopManager = class {
         this._desktops = [];
         this._desktopFilesChanged = false;
         this._readingDesktopFiles = true;
-        this._idleScriptReadPending = false;
         this._toDelete = [];
         this._deletingFilesRecursively = false;
         this._desktopDir = DesktopIconsUtil.getDesktopDir();
