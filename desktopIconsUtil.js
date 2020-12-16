@@ -218,11 +218,18 @@ function isExecutable(mimetype, file_name) {
     }
 }
 
-function writeTextFileToDesktop(text, filename) {
+function writeTextFileToDesktop(text, filename, dropCoordinates) {
     let path = GLib.build_filenamev([GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DESKTOP),  filename]);
     let file = Gio.File.new_for_path(path);
     const PERMISSIONS_MODE = 0o744;
     if (GLib.mkdir_with_parents(file.get_parent().get_path(), PERMISSIONS_MODE) === 0) {
                 let [success, tag] = file.replace_contents(text, null, false, Gio.FileCreateFlags.REPLACE_DESTINATION, null);
+    }
+    if (dropCoordinates != null) {
+        let info = new Gio.FileInfo();
+        info.set_attribute_string('metadata::nautilus-drop-position', `${dropCoordinates[0]},${dropCoordinates[1]}`);
+        try {
+            file.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
+        } catch(e) {}
     }
 }

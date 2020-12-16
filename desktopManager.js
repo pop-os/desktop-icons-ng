@@ -303,13 +303,14 @@ var DesktopManager = class {
             break;
         case 3:
             if (fileList.length != 0 ) {
-                this.detectURLorText(fileList);
+                let dropCoordinates = [ xDestination, yDestination ];
+                this.detectURLorText(fileList, dropCoordinates);
             }
             break;
         }
     }
 
-    detectURLorText(fileList) {
+    detectURLorText(fileList, dropCoordinates) {
         function isValidURL(str) {
             var pattern = new RegExp('^(https|http|ftp|rtsp|mms)?:\\/\\/?'+ 
             '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+
@@ -321,30 +322,30 @@ var DesktopManager = class {
         }
         let text = fileList.toString();
         if (isValidURL(text)) {
-            this.writeURLlinktoDesktop(text);
+            this.writeURLlinktoDesktop(text, dropCoordinates);
         } else {
             let filename = "Dragged Text";
             let now = Date().valueOf().split(" ").join("").replace( /:/g , '-');
             filename = filename + "-" + now;
-            DesktopIconsUtil.writeTextFileToDesktop(text, filename);
+            DesktopIconsUtil.writeTextFileToDesktop(text, filename, dropCoordinates);
         }
     }
 
-    writeURLlinktoDesktop(link) {
+    writeURLlinktoDesktop(link, dropCoordinates) {
         let filename = link.split("?")[0];
         filename = filename.split("//")[1];
         filename = filename.split("/")[0] ;
         let now = Date().valueOf().split(" ").join("").replace( /:/g , '-' );
         filename = filename + "-" + now ;
-        this.writeHTMLTypeLink(filename, link);
+        this.writeHTMLTypeLink(filename, link, dropCoordinates);
     }
 
 
-    writeHTMLTypeLink(filename, link) {
+    writeHTMLTypeLink(filename, link, dropCoordinates) {
         filename = filename + ".html";
         let body = [ '<html>', '<head>', '<meta http-equiv="refresh" content="0; url=' + link + '" />', '</head>', '<body>', '</body>', '</html>' ];
         body = body.join('\n');
-        DesktopIconsUtil.writeTextFileToDesktop(body, filename);
+        DesktopIconsUtil.writeTextFileToDesktop(body, filename, dropCoordinates);
     }
 
     fillDragDataGet(info) {
