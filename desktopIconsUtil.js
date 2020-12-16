@@ -225,11 +225,11 @@ function writeTextFileToDesktop(text, filename, dropCoordinates) {
     if (GLib.mkdir_with_parents(file.get_parent().get_path(), PERMISSIONS_MODE) === 0) {
                 let [success, tag] = file.replace_contents(text, null, false, Gio.FileCreateFlags.REPLACE_DESTINATION, null);
     }
-    let info = new Gio.FileInfo();
     if (dropCoordinates != null) {
+        let info = new Gio.FileInfo();
         info.set_attribute_string('metadata::nautilus-drop-position', `${dropCoordinates[0]},${dropCoordinates[1]}`);
+        try {
+            file.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
+        } catch(e) {}
     }
-    try {
-        file.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
-    } catch(e) {}
 }
