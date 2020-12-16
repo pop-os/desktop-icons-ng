@@ -819,6 +819,10 @@ var DesktopManager = class {
                     }
                     this._scriptsList = scriptsList.sort().reverse();
                 } catch(e) {
+                    if (e.matches (Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_FOUND)) {
+                        this._scriptsList = [];
+                        return;
+                    }
                     if ( this._backgroundScriptReadID == 0 ) {
                         return;
                     }
