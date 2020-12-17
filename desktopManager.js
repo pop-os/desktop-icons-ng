@@ -791,6 +791,7 @@ var DesktopManager = class {
     }
 
     _readScriptFileList() {
+        log ( "Read starting" )
         if (this._scriptsEnumerateCancellable) {
             this._scriptsEnumerateCancellable.cancel();
         }
@@ -822,17 +823,22 @@ var DesktopManager = class {
                         this._scriptsList = [];
                         return;
                     }
-                    if ( this._backgroundScriptReadID == 0 ) {
+                    log ( this._backgroundScriptReadID );
+                    if ( (this._backgroundScriptReadID) && ( this._backgroundScriptID !== 0 )) {
+                        log ( "returning without starting idle read" )
                         return;
                     }
                     this._backgroundScriptReadID = GLib.idle_add(GLib.PRIORITY_LOW, () => {
+                        log ("idle start" );
                         this._readScriptFileList();
                         this._backgroundScriptReadID = 0;
+                        log ( "idle end" );
                         return GLib.SOURCE_REMOVE;
                     });
                 }
             }
         );
+        log ( "Read ending" )
     }
 
     _readFileList() {
