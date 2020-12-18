@@ -819,16 +819,15 @@ var DesktopManager = class {
                     }
                     this._scriptsList = scriptsList.sort().reverse();
                 } catch(e) {
+                    if (e.matches (Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED)) {
+                        log ( "cancelling" );
+                        return;
+                    }
                     if (e.matches (Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_FOUND)) {
                         this._scriptsList = [];
                         return;
                     }
-                    log ( this._backgroundScriptReadID );
-                    if ( (this._backgroundScriptReadID) && ( this._backgroundScriptID !== 0 )) {
-                        log ( "returning without starting idle read" )
-                        return;
-                    }
-                    this._backgroundScriptReadID = GLib.idle_add(GLib.PRIORITY_LOW, () => {
+                    GLib.idle_add(GLib.PRIORITY_LOW, () => {
                         log ("idle start" );
                         this._readScriptFileList();
                         this._backgroundScriptReadID = 0;
