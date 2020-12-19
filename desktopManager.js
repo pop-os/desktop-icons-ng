@@ -65,6 +65,8 @@ var DesktopManager = class {
         this._desktops = [];
         this._desktopFilesChanged = false;
         this._readingDesktopFiles = true;
+        this._readingScriptFiles = true;
+        this._scriptFilesChanged = false;
         this._toDelete = [];
         this._deletingFilesRecursively = false;
         this._desktopDir = DesktopIconsUtil.getDesktopDir();
@@ -76,7 +78,7 @@ var DesktopManager = class {
         this._monitorDesktopDir.connect('changed', (obj, file, otherFile, eventType) => this._updateDesktopIfChanged(file, otherFile, eventType));
         this._monitorScriptDir = this._scriptsDir.monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, null);
         this._monitorScriptDir.set_rate_limit(1000);
-        this._monitorScriptDir.connect('changed', (obj, file, otherFile, eventType) => this._readScriptFileList());
+        this._monitorScriptDir.connect('changed', (obj, file, otherFile, eventType) => this._updateScriptFile());
         this._showHidden = Prefs.gtkSettings.get_boolean('show-hidden');
         this.showDropPlace = Prefs.desktopSettings.get_boolean('show-drop-place');
         this._settingsId = Prefs.desktopSettings.connect('changed', (obj, key) => {
@@ -121,7 +123,7 @@ var DesktopManager = class {
         this._readFileList();
 
         this._scriptsList = [];
-        this._readScriptFileList();
+        this._updateScriptFile();
 
         // Check if Nautilus is available
         try {
@@ -790,8 +792,24 @@ var DesktopManager = class {
         this._fileList = [];
     }
 
+    _updateScriptFile() {
+        if ( this._readingScriptFile ) {
+            this._scriptFilesChanged = true;
+            log ( `Return, avoid update` );
+            return;
+        }
+        log ( `Updating` );
+        this._readScriptFileList();
+    }
+
     _readScriptFileList() {
         log ( "Read starting" )
+        if (!this._scriptsDir.query_exists(null)) {
+            this._scriptsList = [];
+            return;
+        }
+        this._readingScriptFile = true;
+        this._scriptFilesChanged = false;
         if (this._scriptsEnumerateCancellable) {
             this._scriptsEnumerateCancellable.cancel();
         }
@@ -803,34 +821,39 @@ var DesktopManager = class {
             this._scriptsEnumerateCancellable,
             (source, result) => {
                 try {
-                    let fileEnum = source.enumerate_children_finish(result);
-                    let scriptsList = [];
-                    let info;
-                    while ((info = fileEnum.next_file(null))) {
-                        let scriptsItem = new FileItem.FileItem(
-                                this,
-                                fileEnum.get_child(info),
-                                info,
-                                Enums.FileType.NONE,
-                                this._codePath,
-                                null
-                                );
-                        scriptsList.push(scriptsItem);
+                    if ( ! this.scriptFilesChanged ) {
+                        this._readingScriptFile = false;
+                        let fileEnum = source.enumerate_children_finish(result);
+                        let scriptsList = [];
+                        let info;
+                        while ((info = fileEnum.next_file(null))) {
+                            let scriptsItem = new FileItem.FileItem(
+                                    this,
+                                    fileEnum.get_child(info),
+                                    info,
+                                    Enums.FileType.NONE,
+                                    this._codePath,
+                                    null
+                                    );
+                            scriptsList.push(scriptsItem);
+                        }
+                        this._scriptsList = scriptsList.sort().reverse();
+                    } else {
+                        this._readScriptFileList();
                     }
-                    this._scriptsList = scriptsList.sort().reverse();
                 } catch(e) {
                     if (e.matches (Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED)) {
                         log ( "cancelling" );
                         return;
                     }
                     if (e.matches (Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_FOUND)) {
+                        log ( "directory missing" );
                         this._scriptsList = [];
                         return;
                     }
                     GLib.idle_add(GLib.PRIORITY_LOW, () => {
                         log ("idle start" );
                         this._readScriptFileList();
-                        this._backgroundScriptReadID = 0;
                         log ( "idle end" );
                         return GLib.SOURCE_REMOVE;
                     });
