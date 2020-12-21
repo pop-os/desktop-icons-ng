@@ -610,9 +610,9 @@ var DesktopManager = class {
         Menu.add(this._ScriptMenuItem);
         Menu.add(new Gtk.SeparatorMenuItem());
         for ( let fileItem of this._scriptsList ) {
-            if ( fileItem._attributeCanExecute ) {
-                let menuItemName = fileItem.fileName
-                let menuItemPath = fileItem.file.get_path();
+            if ( fileItem[0].get_attribute_boolean('access::can-execute') ) {
+                let menuItemName = fileItem[0].get_name();
+                let menuItemPath = fileItem[1].get_path();
                 let menuItem = new Gtk.MenuItem({label: _(`${menuItemName}`)});
                 menuItem.connect("activate", () =>  this._onScriptClicked(menuItemPath));
                 this._ScriptSubMenu.add(menuItem);
@@ -794,15 +794,12 @@ var DesktopManager = class {
     _updateScriptFileList() {
         if ( this._scriptsEnumerateCancellable ) {
             this._scriptFilesChanged = true;
-            log ( `Return, avoid update` );
             return;
         }
-        log ( `Updating` );
         this._readScriptFileList();
     }
 
     _readScriptFileList() {
-        log ( "Read starting" )
         if (!this._scriptsDir.query_exists(null)) {
             this._scriptsList = [];
             return;
@@ -821,46 +818,20 @@ var DesktopManager = class {
                 this._scriptsEnumerateCancellable = null;
                 try {
                     if ( ! this._scriptFilesChanged ) {
-                        log ( this._scriptFilesChanged );
                         let fileEnum = source.enumerate_children_finish(result);
                         let scriptsList = [];
                         let info;
                         while ((info = fileEnum.next_file(null))) {
-                            let scriptsItem = new FileItem.FileItem(
-                                    this,
-                                    fileEnum.get_child(info),
-                                    info,
-                                    Enums.FileType.NONE,
-                                    this._codePath,
-                                    null
-                                    );
-                            scriptsList.push(scriptsItem);
+                            scriptsList.push([info, fileEnum.get_child(info)]);
                         }
                         this._scriptsList = scriptsList.sort().reverse();
                     } else {
-                        log ( "reareading" );
                         this._readScriptFileList();
                     }
                 } catch(e) {
-                    if (e.matches (Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED)) {
-                        log ( "cancelling" );
-                        return;
-                    }
-                    if (e.matches (Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_FOUND)) {
-                        log ( "directory missing" );
-                        this._scriptsList = [];
-                        return;
-                    }
-                    GLib.idle_add(GLib.PRIORITY_LOW, () => {
-                        log ("idle start" );
-                        this._readScriptFileList();
-                        log ( "idle end" );
-                        return GLib.SOURCE_REMOVE;
-                    });
                 }
             }
         );
-        log ( "Read ending" )
     }
 
     _readFileList() {
