@@ -824,7 +824,11 @@ var DesktopManager = class {
                         while ((info = fileEnum.next_file(null))) {
                             scriptsList.push([info, fileEnum.get_child(info)]);
                         }
-                        this._scriptsList = scriptsList.sort().reverse();
+                        this._scriptsList = scriptsList.sort(
+                            (a,b) => { return a[0].get_name().localeCompare( b[0].get_name(),
+                                     { sensitivity: 'accent' , numeric: 'true', localeMatcher: 'lookup' });
+                            }
+                        );
                     } else {
                         this._readScriptFileList();
                     }
@@ -1338,7 +1342,7 @@ var DesktopManager = class {
         }
         pathList = pathList.join("");
         uriList = uriList.join("");
-        let deskTop = `'` + DesktopIconsUtil.getDesktopDir().get_path() + `'`;
+        let deskTop = `'` + DesktopIconsUtil.getDesktopDir().get_uri() + `'`;
         let execline = `/bin/bash -c "`;
         execline += `NAUTILUS_SCRIPT_SELECTED_FILE_PATHS=${pathList} `;
         execline += `NAUTILUS_SCRIPT_SELECTED_URIS=${uriList} `;
