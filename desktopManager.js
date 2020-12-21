@@ -65,7 +65,6 @@ var DesktopManager = class {
         this._desktops = [];
         this._desktopFilesChanged = false;
         this._readingDesktopFiles = true;
-        this._readingScriptFiles = true;
         this._scriptFilesChanged = false;
         this._toDelete = [];
         this._deletingFilesRecursively = false;
@@ -78,7 +77,7 @@ var DesktopManager = class {
         this._monitorDesktopDir.connect('changed', (obj, file, otherFile, eventType) => this._updateDesktopIfChanged(file, otherFile, eventType));
         this._monitorScriptDir = this._scriptsDir.monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, null);
         this._monitorScriptDir.set_rate_limit(1000);
-        this._monitorScriptDir.connect('changed', (obj, file, otherFile, eventType) => this._updateScriptFile());
+        this._monitorScriptDir.connect('changed', (obj, file, otherFile, eventType) => this._updateScriptFileList());
         this._showHidden = Prefs.gtkSettings.get_boolean('show-hidden');
         this.showDropPlace = Prefs.desktopSettings.get_boolean('show-drop-place');
         this._settingsId = Prefs.desktopSettings.connect('changed', (obj, key) => {
@@ -123,7 +122,7 @@ var DesktopManager = class {
         this._readFileList();
 
         this._scriptsList = [];
-        this._updateScriptFile();
+        this._updateScriptFileList();
 
         // Check if Nautilus is available
         try {
@@ -792,8 +791,8 @@ var DesktopManager = class {
         this._fileList = [];
     }
 
-    _updateScriptFile() {
-        if ( this._readingScriptFile ) {
+    _updateScriptFileList() {
+        if ( this._scriptsEnumerateCancellable ) {
             this._scriptFilesChanged = true;
             log ( `Return, avoid update` );
             return;
@@ -808,7 +807,6 @@ var DesktopManager = class {
             this._scriptsList = [];
             return;
         }
-        this._readingScriptFile = true;
         this._scriptFilesChanged = false;
         if (this._scriptsEnumerateCancellable) {
             this._scriptsEnumerateCancellable.cancel();
@@ -820,9 +818,10 @@ var DesktopManager = class {
             GLib.PRIORITY_DEFAULT,
             this._scriptsEnumerateCancellable,
             (source, result) => {
+                this._scriptsEnumerateCancellable = null;
                 try {
-                    if ( ! this.scriptFilesChanged ) {
-                        this._readingScriptFile = false;
+                    if ( ! this._scriptFilesChanged ) {
+                        log ( this._scriptFilesChanged );
                         let fileEnum = source.enumerate_children_finish(result);
                         let scriptsList = [];
                         let info;
@@ -839,6 +838,7 @@ var DesktopManager = class {
                         }
                         this._scriptsList = scriptsList.sort().reverse();
                     } else {
+                        log ( "reareading" );
                         this._readScriptFileList();
                     }
                 } catch(e) {
