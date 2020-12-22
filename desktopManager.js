@@ -122,7 +122,7 @@ var DesktopManager = class {
         this._readFileList();
 
         this._scriptsList = [];
-        this._updateScriptFileList();
+        this._readScriptFileList();
 
         // Check if Nautilus is available
         try {
@@ -825,8 +825,9 @@ var DesktopManager = class {
                             scriptsList.push([info, fileEnum.get_child(info)]);
                         }
                         this._scriptsList = scriptsList.sort(
-                            (a,b) => { return a[0].get_name().localeCompare( b[0].get_name(),
-                                     { sensitivity: 'accent' , numeric: 'true', localeMatcher: 'lookup' });
+                            (a,b) => {
+                                return a[0].get_name().localeCompare(b[0].get_name(),
+                                { sensitivity: 'accent' , numeric: 'true', localeMatcher: 'lookup' });
                             }
                         );
                     } else {
