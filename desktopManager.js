@@ -65,14 +65,19 @@ var DesktopManager = class {
         this._desktops = [];
         this._desktopFilesChanged = false;
         this._readingDesktopFiles = true;
+        this._scriptFilesChanged = false;
         this._toDelete = [];
         this._deletingFilesRecursively = false;
         this._desktopDir = DesktopIconsUtil.getDesktopDir();
+        this._scriptsDir = DesktopIconsUtil.getScriptsDir();
         this.desktopFsId = this._desktopDir.query_info('id::filesystem', Gio.FileQueryInfoFlags.NONE, null).get_attribute_string('id::filesystem');
         this._updateWritableByOthers();
         this._monitorDesktopDir = this._desktopDir.monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, null);
         this._monitorDesktopDir.set_rate_limit(1000);
         this._monitorDesktopDir.connect('changed', (obj, file, otherFile, eventType) => this._updateDesktopIfChanged(file, otherFile, eventType));
+        this._monitorScriptDir = this._scriptsDir.monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, null);
+        this._monitorScriptDir.set_rate_limit(1000);
+        this._monitorScriptDir.connect('changed', (obj, file, otherFile, eventType) => this._updateScriptFileList());
         this._showHidden = Prefs.gtkSettings.get_boolean('show-hidden');
         this.showDropPlace = Prefs.desktopSettings.get_boolean('show-drop-place');
         this._settingsId = Prefs.desktopSettings.connect('changed', (obj, key) => {
@@ -115,6 +120,9 @@ var DesktopManager = class {
         DBusUtils.NautilusFileOperationsProxy.connect('g-properties-changed', this._undoStatusChanged.bind(this));
         this._fileList = [];
         this._readFileList();
+
+        this._scriptsList = [];
+        this._readScriptFileList();
 
         // Check if Nautilus is available
         try {
@@ -593,6 +601,27 @@ var DesktopManager = class {
         this._menu.show_all();
     }
 
+    _createScriptsMenu(Menu) {
+        if ( this._scriptsList.length == 0 ) {
+            return;
+        }
+        this._ScriptSubMenu = new Gtk.Menu();
+        this._ScriptMenuItem = new Gtk.MenuItem({label: _("Scripts")});
+        this._ScriptMenuItem.set_submenu(this._ScriptSubMenu);
+        Menu.add(this._ScriptMenuItem);
+        Menu.add(new Gtk.SeparatorMenuItem());
+        for ( let fileItem of this._scriptsList ) {
+            if ( fileItem[0].get_attribute_boolean('access::can-execute') ) {
+                let menuItemName = fileItem[0].get_name();
+                let menuItemPath = fileItem[1].get_path();
+                let menuItem = new Gtk.MenuItem({label: _(`${menuItemName}`)});
+                menuItem.connect("activate", () =>  this._onScriptClicked(menuItemPath));
+                this._ScriptSubMenu.add(menuItem);
+            }
+        }
+        this._ScriptSubMenu.show_all();
+    }
+
     _selectAll() {
         for(let fileItem of this._fileList) {
             if (fileItem.isAllSelectable) {
@@ -761,6 +790,54 @@ var DesktopManager = class {
             fileItem.removeFromGrid();
         }
         this._fileList = [];
+    }
+
+    _updateScriptFileList() {
+        if ( this._scriptsEnumerateCancellable ) {
+            this._scriptFilesChanged = true;
+            return;
+        }
+        this._readScriptFileList();
+    }
+
+    _readScriptFileList() {
+        if (!this._scriptsDir.query_exists(null)) {
+            this._scriptsList = [];
+            return;
+        }
+        this._scriptFilesChanged = false;
+        if (this._scriptsEnumerateCancellable) {
+            this._scriptsEnumerateCancellable.cancel();
+        }
+        this._scriptsEnumerateCancellable = new Gio.Cancellable();
+        this._scriptsDir.enumerate_children_async(
+            Enums.DEFAULT_ATTRIBUTES,
+            Gio.FileQueryInfoFlags.NONE,
+            GLib.PRIORITY_DEFAULT,
+            this._scriptsEnumerateCancellable,
+            (source, result) => {
+                this._scriptsEnumerateCancellable = null;
+                try {
+                    if ( ! this._scriptFilesChanged ) {
+                        let fileEnum = source.enumerate_children_finish(result);
+                        let scriptsList = [];
+                        let info;
+                        while ((info = fileEnum.next_file(null))) {
+                            scriptsList.push([info, fileEnum.get_child(info)]);
+                        }
+                        this._scriptsList = scriptsList.sort(
+                            (a,b) => {
+                                return a[0].get_name().localeCompare(b[0].get_name(),
+                                { sensitivity: 'accent' , numeric: 'true', localeMatcher: 'lookup' });
+                            }
+                        );
+                    } else {
+                        this._readScriptFileList();
+                    }
+                } catch(e) {
+                }
+            }
+        );
     }
 
     _readFileList() {
@@ -1254,5 +1331,25 @@ var DesktopManager = class {
         } catch(e) {
             print(`Failed to create template ${e.message}`);
         }
+    }
+
+    _onScriptClicked(menuItemPath) {
+        let pathList = [];
+        let uriList = [];
+        for ( let item of this._fileList ) {
+            if ( item.isSelected &&  ! item.isSpecial ) {
+                pathList.push(`'` + item.file.get_path() + `\n'`);
+                uriList.push(`'` + item.file.get_uri() + `\n'`);
+            }
+        }
+        pathList = pathList.join("");
+        uriList = uriList.join("");
+        let deskTop = `'` + DesktopIconsUtil.getDesktopDir().get_uri() + `'`;
+        let execline = `/bin/bash -c "`;
+        execline += `NAUTILUS_SCRIPT_SELECTED_FILE_PATHS=${pathList} `;
+        execline += `NAUTILUS_SCRIPT_SELECTED_URIS=${uriList} `;
+        execline += `NAUTILUS_SCRIPT_CURRENT_URI=${deskTop} `;
+        execline += `'${menuItemPath}'"`;
+        DesktopIconsUtil.spawnCommandLine(execline);
     }
 }

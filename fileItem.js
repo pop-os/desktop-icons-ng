@@ -800,6 +800,7 @@ var FileItem = class {
         let open = new Gtk.MenuItem({label:_('Open')});
         open.connect('activate', () => this.doOpen());
         this._menu.add(open);
+        this._desktopManager._createScriptsMenu(this._menu);
         switch (this._fileExtra) {
         case Enums.FileType.NONE:
             if (!this._isDirectory) {
