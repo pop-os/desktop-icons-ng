@@ -838,7 +838,7 @@ var FileItem = class {
             }
             if (this._isValidDesktopFile && !this._desktopManager.writableByOthers && !this._writableByOthers && (this._selectedItemsNum == 1 )) {
                 this._menu.add(new Gtk.SeparatorMenuItem());
-                this._allowLaunchingMenuItem = new Gtk.MenuItem({label: this.trustedDesktopFile ? _("Dont Allow Launching") : _("Allow Launching")});
+                this._allowLaunchingMenuItem = new Gtk.MenuItem({label: this.trustedDesktopFile ? _("Don't Allow Launching") : _("Allow Launching")});
                 this._allowLaunchingMenuItem.connect('activate', () => this._onAllowDisallowLaunchingClicked());
                 this._menu.add(this._allowLaunchingMenuItem);
             }
