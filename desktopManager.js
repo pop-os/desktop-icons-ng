@@ -1352,4 +1352,12 @@ var DesktopManager = class {
         execline += `'${menuItemPath}'"`;
         DesktopIconsUtil.spawnCommandLine(execline);
     }
+
+    doMultiOpen() {
+        let openFileListItems = this.getCurrentSelection();
+        for ( let fileItem of openFileListItems ) {
+            fileItem.unsetSelected();
+            fileItem.doOpen() ;
+        }
+    }
 }

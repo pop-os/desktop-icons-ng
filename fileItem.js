@@ -675,8 +675,8 @@ var FileItem = class {
     }
 
     _onShowInFilesClicked() {
-
-        DBusUtils.FreeDesktopFileManagerProxy.ShowItemsRemote([this.file.get_uri()], '',
+        let showInFilesList = this._desktopManager.getCurrentSelection(true);
+        DBusUtils.FreeDesktopFileManagerProxy.ShowItemsRemote(showInFilesList, '',
             (result, error) => {
                 if (error)
                     log('Error showing file on desktop: ' + error.message);
@@ -685,8 +685,8 @@ var FileItem = class {
     }
 
     _onPropertiesClicked() {
-
-        DBusUtils.FreeDesktopFileManagerProxy.ShowItemPropertiesRemote([this.file.get_uri()], '',
+        let propertiesFileList = this._desktopManager.getCurrentSelection(true);
+        DBusUtils.FreeDesktopFileManagerProxy.ShowItemPropertiesRemote(propertiesFileList, '',
             (result, error) => {
                 if (error)
                     log('Error showing properties: ' + error.message);
@@ -791,20 +791,21 @@ var FileItem = class {
     }
 
     _createMenu() {
+        this._selectedItemsNum = this._desktopManager.getNumberOfSelectedItems();
         this._menu = new Gtk.Menu();
         this._menuId = this._menu.connect('hide', () => {
             this._menu.disconnect(this._menuId);
             this._menu = null;
             this._menuId = null;
         });
-        let open = new Gtk.MenuItem({label:_('Open')});
-        open.connect('activate', () => this.doOpen());
+        let open = new Gtk.MenuItem({label: (this._selectedItemsNum > 1 ? _("Open All...") : _("Open"))});
+        open.connect('activate', () => {this._desktopManager.doMultiOpen();});
         this._menu.add(open);
         this._desktopManager._createScriptsMenu(this._menu);
         switch (this._fileExtra) {
         case Enums.FileType.NONE:
             if (!this._isDirectory) {
-                this._actionOpenWith = new Gtk.MenuItem({label: _('Open With Other Application')});
+                this._actionOpenWith = new Gtk.MenuItem({label: this._selectedItemsNum > 1 ? _("Open All With Other Application...") : _("Open With Other Application")});
                 this._actionOpenWith.connect('activate', () => this._desktopManager.doOpenWith());
                 this._menu.add(this._actionOpenWith);
                 if (DBusUtils.discreteGpuAvailable && this.trustedDesktopFile) {
@@ -822,7 +823,7 @@ var FileItem = class {
             this._actionCopy = new Gtk.MenuItem({label:_('Copy')});
             this._actionCopy.connect('activate', () => {this._desktopManager.doCopy();});
             this._menu.add(this._actionCopy);
-            if (this.canRename()) {
+            if (this.canRename() && (this._selectedItemsNum == 1)) {
                 let rename = new Gtk.MenuItem({label:_('Rename…')});
                 rename.connect('activate', () => this.doRename());
                 this._menu.add(rename);
@@ -835,9 +836,9 @@ var FileItem = class {
                 this._actionDelete.connect('activate', () => {this._desktopManager.doDeletePermanently();});
                 this._menu.add(this._actionDelete);
             }
-            if (this._isValidDesktopFile && !this._desktopManager.writableByOthers && !this._writableByOthers) {
+            if (this._isValidDesktopFile && !this._desktopManager.writableByOthers && !this._writableByOthers && (this._selectedItemsNum == 1 )) {
                 this._menu.add(new Gtk.SeparatorMenuItem());
-                this._allowLaunchingMenuItem = new Gtk.MenuItem({label: this._allowLaunchingText});
+                this._allowLaunchingMenuItem = new Gtk.MenuItem({label: this.trustedDesktopFile ? _("Dont Allow Launching") : _("Allow Launching")});
                 this._allowLaunchingMenuItem.connect('activate', () => this._onAllowDisallowLaunchingClicked());
                 this._menu.add(this._allowLaunchingMenuItem);
             }
@@ -871,14 +872,14 @@ var FileItem = class {
             break;
         }
         this._menu.add(new Gtk.SeparatorMenuItem());
-        let properties = new Gtk.MenuItem({label: _('Properties')});
+        let properties = new Gtk.MenuItem({label: this._selectedItemsNum > 1 ? _('Common Properties') : _('Properties') });
         properties.connect('activate', () => this._onPropertiesClicked());
         this._menu.add(properties);
         this._menu.add(new Gtk.SeparatorMenuItem());
-        let showInFiles = new Gtk.MenuItem({label: _('Show in Files')});
+        let showInFiles = new Gtk.MenuItem({label: this._selectedItemsNum > 1 ? _('Show All in Files') : _('Show in Files')});
         showInFiles.connect('activate', () => this._onShowInFilesClicked());
         this._menu.add(showInFiles);
-        if (this._isDirectory && this.file.get_path() != null) {
+        if (this._isDirectory && this.file.get_path() != null && this._selectedItemsNum == 1) {
             let openInTerminal = new Gtk.MenuItem({label: _('Open in Terminal')});
             openInTerminal.connect('activate', () => this._onOpenTerminalClicked());
             this._menu.add(openInTerminal);
@@ -899,7 +900,7 @@ var FileItem = class {
             this._createMenu();
             this._menu.popup_at_pointer(event);
             if (this._actionOpenWith) {
-                let allowOpenWith = (this._desktopManager.getNumberOfSelectedItems() > 0);
+                let allowOpenWith = (this._selectedItemsNum > 0);
                 this._actionOpenWith.set_sensitive(allowOpenWith);
             }
             let allowCutCopyTrash = this._desktopManager.checkIfSpecialFilesAreSelected();
