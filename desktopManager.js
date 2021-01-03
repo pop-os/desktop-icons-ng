@@ -1360,4 +1360,17 @@ var DesktopManager = class {
             fileItem.doOpen() ;
         }
     }
+
+    mailFilesFromSelection() {
+        let xdgEmailCommand = [];
+        xdgEmailCommand.push('xdg-email')
+        for (let fileItem of this._fileList) {
+            if (fileItem.isSelected) {
+                fileItem.unsetSelected;
+                xdgEmailCommand.push('--attach');
+                xdgEmailCommand.push(fileItem.file.get_path());
+            }
+        }
+        DesktopIconsUtil.trySpawn(null, xdgEmailCommand);
+    }
 }

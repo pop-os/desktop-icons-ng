@@ -865,6 +865,11 @@ var FileItem = class {
             break;
         }
         this._menu.add(new Gtk.SeparatorMenuItem());
+        if ( (! this._desktopManager.checkIfSpecialFilesAreSelected()) && (this._selectedItemsNum >= 1 )) {
+            let mailFilesFromSelection = new Gtk.MenuItem({label: _('Send to...')});
+            mailFilesFromSelection.connect('activate', () => {this._desktopManager.mailFilesFromSelection();});
+            this._menu.add(mailFilesFromSelection);
+        }
         let properties = new Gtk.MenuItem({label: this._selectedItemsNum > 1 ? _('Common Properties') : _('Properties') });
         properties.connect('activate', () => this._onPropertiesClicked());
         this._menu.add(properties);
