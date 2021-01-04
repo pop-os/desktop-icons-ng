@@ -1373,4 +1373,21 @@ var DesktopManager = class {
         }
         DesktopIconsUtil.trySpawn(null, xdgEmailCommand);
     }
+
+    doCompressFilesFromSelection() {
+        let compressFileItems = this.getCurrentSelection(true);
+        for (let fileItem of this._fileList) {
+            fileItem.unsetSelected();
+        }
+        let desktopFolder = this._desktopDir.get_uri();
+        if (desktopFolder) {
+            DBusUtils.GnomeArchiveManagerProxy.CompressRemote(compressFileItems, desktopFolder, true,
+                (result, error) => {
+                    if (error) {
+                        throw new Error('Error compressing files: ' + error.message);
+                    }
+                }
+            );
+        }
+    }
 }

@@ -869,6 +869,9 @@ var FileItem = class {
             let mailFilesFromSelection = new Gtk.MenuItem({label: _('Send to...')});
             mailFilesFromSelection.connect('activate', () => {this._desktopManager.mailFilesFromSelection();});
             this._menu.add(mailFilesFromSelection);
+            let compressFilesFromSelection = new Gtk.MenuItem({label: Gettext.ngettext('Compress {0} file', 'Compress {0} files', this._selectedItemsNum).replace('{0}', this._selectedItemsNum)});
+            compressFilesFromSelection.connect('activate', () => {this._desktopManager.doCompressFilesFromSelection();});
+            this._menu.add(compressFilesFromSelection);
         }
         let properties = new Gtk.MenuItem({label: this._selectedItemsNum > 1 ? _('Common Properties') : _('Properties') });
         properties.connect('activate', () => this._onPropertiesClicked());
