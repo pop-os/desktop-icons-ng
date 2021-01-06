@@ -872,7 +872,12 @@ var FileItem = class {
             let compressFilesFromSelection = new Gtk.MenuItem({label: Gettext.ngettext('Compress {0} file', 'Compress {0} files', this._selectedItemsNum).replace('{0}', this._selectedItemsNum)});
             compressFilesFromSelection.connect('activate', () => {this._desktopManager.doCompressFilesFromSelection();});
             this._menu.add(compressFilesFromSelection);
+            let newFolderFromSelection = new Gtk.MenuItem({label:  Gettext.ngettext('New Folder with {0} item', 'New Folder with {0} items' , this._selectedItemsNum).replace('{0}', this._selectedItemsNum)});
+            newFolderFromSelection.connect('activate', () => {this._desktopManager.doNewFolderFromSelection();});
+            this._menu.add(newFolderFromSelection);
+            this._menu.add(new Gtk.SeparatorMenuItem());
         }
+        this._menu.add(new Gtk.SeparatorMenuItem());
         let properties = new Gtk.MenuItem({label: this._selectedItemsNum > 1 ? _('Common Properties') : _('Properties') });
         properties.connect('activate', () => this._onPropertiesClicked());
         this._menu.add(properties);
