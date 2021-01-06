@@ -1301,6 +1301,9 @@ var DesktopManager = class {
                 info.set_attribute_string('metadata::nautilus-drop-position', `${this._clickX},${this._clickY}`);
                 info.set_attribute_string('metadata::nautilus-icon-position', '');
                 dir.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
+                if (window) {
+                    return dir.get_uri();
+                }
             } catch(e) {
                 print(`Failed to create folder ${e.message}`);
             }
@@ -1372,6 +1375,23 @@ var DesktopManager = class {
             }
         }
         DesktopIconsUtil.trySpawn(null, xdgEmailCommand);
+    }
+
+    doNewFolderFromSelection() {
+        let newFolderFileItems = this.getCurrentSelection(true);
+        for (let fileItem of this._fileList) {
+           fileItem.unsetSelected();
+        }
+        let newFolder = this._newFolder(true);
+        if (newFolder) {
+            DBusUtils.NautilusFileOperationsProxy.MoveURIsRemote(newFolderFileItems, newFolder,
+                (result, error) => {
+                    if (error) {
+                        throw new Error('Error moving files: ' + error.message);
+                    }
+                }
+            );
+        }
     }
 
     doCompressFilesFromSelection() {
