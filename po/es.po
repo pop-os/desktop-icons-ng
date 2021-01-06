@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Daniel Mustieles <daniel.mustieles@gmail.com>, 2018-2019.
-# Sergio Costas <rastersoft@gmail.com>, 2018-2020.
+# Sergio Costas <rastersoft@gmail.com>, 2018-2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-31 12:39+0100\n"
-"PO-Revision-Date: 2020-12-31 12:39+0100\n"
+"POT-Creation-Date: 2021-01-06 01:44+0100\n"
+"PO-Revision-Date: 2021-01-06 01:45+0100\n"
 "Last-Translator: Sergio Costas <rastersoft@gmail.com>\n"
 "Language-Team: Español; Castellano <rastersoft@gmail.com>\n"
 "Language: es\n"
@@ -106,7 +106,7 @@ msgstr "Seleccionar todo"
 msgid "Show Desktop in Files"
 msgstr "Mostrar el escritorio en Archivos"
 
-#: ../desktopManager.js:576 ../fileItem.js:883
+#: ../desktopManager.js:576 ../fileItem.js:889
 msgid "Open in Terminal"
 msgstr "Abrir en una terminal"
 
@@ -147,83 +147,95 @@ msgstr "Nueva carpeta"
 msgid "Home"
 msgstr "Carpeta personal"
 
-#: ../fileItem.js:699
-msgid "Don’t Allow Launching"
-msgstr "No permitir lanzar"
-
-#: ../fileItem.js:701 ../fileItem.js:841
-msgid "Allow Launching"
-msgstr "Permitir lanzar"
-
-#: ../fileItem.js:801
+#: ../fileItem.js:794
 msgid "Open All..."
 msgstr "Abrir todo..."
 
-#: ../fileItem.js:801
+#: ../fileItem.js:794
 msgid "Open"
 msgstr "Abrir"
 
-#: ../fileItem.js:808
+#: ../fileItem.js:801
 msgid "Open All With Other Application..."
 msgstr "Abrir todo con otra aplicación"
 
-#: ../fileItem.js:808
+#: ../fileItem.js:801
 msgid "Open With Other Application"
 msgstr "Abrir con otra aplicación"
 
-#: ../fileItem.js:812
+#: ../fileItem.js:805
 msgid "Launch using Dedicated Graphics Card"
 msgstr "Lanzar con la Tarjeta Gráfica Dedicada"
 
-#: ../fileItem.js:820
+#: ../fileItem.js:813
 msgid "Cut"
 msgstr "Cortar"
 
-#: ../fileItem.js:823
+#: ../fileItem.js:816
 msgid "Copy"
 msgstr "Copiar"
 
-#: ../fileItem.js:827
+#: ../fileItem.js:820
 msgid "Rename…"
 msgstr "Renombrar…"
 
-#: ../fileItem.js:831
+#: ../fileItem.js:824
 msgid "Move to Trash"
 msgstr "Mover a la papelera"
 
-#: ../fileItem.js:835
+#: ../fileItem.js:828
 msgid "Delete permanently"
 msgstr "Borrar permanentemente"
 
-#: ../fileItem.js:841
+#: ../fileItem.js:834
 msgid "Don't Allow Launching"
 msgstr "No permitir lanzar"
 
-#: ../fileItem.js:848
+#: ../fileItem.js:834
+msgid "Allow Launching"
+msgstr "Permitir lanzar"
+
+#: ../fileItem.js:841
 msgid "Empty Trash"
 msgstr "Vaciar la papelera"
 
-#: ../fileItem.js:855
+#: ../fileItem.js:848
 msgid "Eject"
 msgstr "Expulsar"
 
-#: ../fileItem.js:862
+#: ../fileItem.js:855
 msgid "Unmount"
 msgstr "Desmontar"
 
+#: ../fileItem.js:869
+msgid "Send to..."
+msgstr "Enviar a..."
+
+#: ../fileItem.js:872
+msgid "Compress {0} file"
+msgid_plural "Compress {0} files"
+msgstr[0] "Comprimir {0} archivo"
+msgstr[1] "Comprimir {0} archivos"
+
 #: ../fileItem.js:875
+msgid "New Folder with {0} item"
+msgid_plural "New Folder with {0} items"
+msgstr[0] "Nueva carpeta con {0} elemento"
+msgstr[1] "Nueva carpeta con {0} elementos"
+
+#: ../fileItem.js:881
 msgid "Common Properties"
 msgstr "Propiedades Comunes"
 
-#: ../fileItem.js:875
+#: ../fileItem.js:881
 msgid "Properties"
 msgstr "Propiedades"
 
-#: ../fileItem.js:879
+#: ../fileItem.js:885
 msgid "Show All in Files"
 msgstr "Mostrar todo en Files"
 
-#: ../fileItem.js:879
+#: ../fileItem.js:885
 msgid "Show in Files"
 msgstr "Mostrar en Files"
 
@@ -418,6 +430,9 @@ msgid ""
 msgstr ""
 "Durante una operación de Arrastrar'y'Soltar, muestra en qué lugar se "
 "depositará el icono."
+
+#~ msgid "Don’t Allow Launching"
+#~ msgstr "No permitir lanzar"
 
 #~ msgid ""
 #~ "There was an error while trying to permanently delete the folder {:}."

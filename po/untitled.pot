@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-31 12:39+0100\n"
+"POT-Creation-Date: 2021-01-06 01:44+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #: ../askConfirmPopup.js:35 ../askNamePopup.js:36 ../desktopIconsUtil.js:204
 msgid "Cancel"
@@ -101,7 +102,7 @@ msgstr ""
 msgid "Show Desktop in Files"
 msgstr ""
 
-#: ../desktopManager.js:576 ../fileItem.js:883
+#: ../desktopManager.js:576 ../fileItem.js:889
 msgid "Open in Terminal"
 msgstr ""
 
@@ -142,83 +143,95 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: ../fileItem.js:699
-msgid "Don’t Allow Launching"
-msgstr ""
-
-#: ../fileItem.js:701 ../fileItem.js:841
-msgid "Allow Launching"
-msgstr ""
-
-#: ../fileItem.js:801
+#: ../fileItem.js:794
 msgid "Open All..."
 msgstr ""
 
-#: ../fileItem.js:801
+#: ../fileItem.js:794
 msgid "Open"
 msgstr ""
 
-#: ../fileItem.js:808
+#: ../fileItem.js:801
 msgid "Open All With Other Application..."
 msgstr ""
 
-#: ../fileItem.js:808
+#: ../fileItem.js:801
 msgid "Open With Other Application"
 msgstr ""
 
-#: ../fileItem.js:812
+#: ../fileItem.js:805
 msgid "Launch using Dedicated Graphics Card"
 msgstr ""
 
-#: ../fileItem.js:820
+#: ../fileItem.js:813
 msgid "Cut"
 msgstr ""
 
-#: ../fileItem.js:823
+#: ../fileItem.js:816
 msgid "Copy"
 msgstr ""
 
-#: ../fileItem.js:827
+#: ../fileItem.js:820
 msgid "Rename…"
 msgstr ""
 
-#: ../fileItem.js:831
+#: ../fileItem.js:824
 msgid "Move to Trash"
 msgstr ""
 
-#: ../fileItem.js:835
+#: ../fileItem.js:828
 msgid "Delete permanently"
 msgstr ""
 
-#: ../fileItem.js:841
+#: ../fileItem.js:834
 msgid "Don't Allow Launching"
 msgstr ""
 
-#: ../fileItem.js:848
+#: ../fileItem.js:834
+msgid "Allow Launching"
+msgstr ""
+
+#: ../fileItem.js:841
 msgid "Empty Trash"
 msgstr ""
 
-#: ../fileItem.js:855
+#: ../fileItem.js:848
 msgid "Eject"
 msgstr ""
 
-#: ../fileItem.js:862
+#: ../fileItem.js:855
 msgid "Unmount"
 msgstr ""
 
+#: ../fileItem.js:869
+msgid "Send to..."
+msgstr ""
+
+#: ../fileItem.js:872
+msgid "Compress {0} file"
+msgid_plural "Compress {0} files"
+msgstr[0] ""
+msgstr[1] ""
+
 #: ../fileItem.js:875
+msgid "New Folder with {0} item"
+msgid_plural "New Folder with {0} items"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../fileItem.js:881
 msgid "Common Properties"
 msgstr ""
 
-#: ../fileItem.js:875
+#: ../fileItem.js:881
 msgid "Properties"
 msgstr ""
 
-#: ../fileItem.js:879
+#: ../fileItem.js:885
 msgid "Show All in Files"
 msgstr ""
 
-#: ../fileItem.js:879
+#: ../fileItem.js:885
 msgid "Show in Files"
 msgstr ""
 
