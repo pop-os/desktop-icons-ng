@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-05 21:48+0200\n"
+"POT-Creation-Date: 2021-01-09 17:26+0100\n"
 "PO-Revision-Date: 2018-11-22 22:02+0300\n"
 "Last-Translator: Stas Solovey <whats_up@tut.by>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 2.2\n"
 
-#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:197
+#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:204
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -43,280 +43,326 @@ msgstr "Имя файла"
 msgid "Rename"
 msgstr "Переименовать"
 
-#: desktopIconsUtil.js:74
+#: desktopIconsUtil.js:79
 msgid "Command not found"
 msgstr "Команда не найдена"
 
-#: desktopIconsUtil.js:188
+#: desktopIconsUtil.js:195
 msgid "Do you want to run “{0}”, or display its contents?"
 msgstr "Вы хотите выполнить “{0}” или отобразить содержимое?"
 
-#: desktopIconsUtil.js:189
+#: desktopIconsUtil.js:196
 msgid "“{0}” is an executable text file."
 msgstr "“{0}” является исполняемым текстовым файлом."
 
-#: desktopIconsUtil.js:193
+#: desktopIconsUtil.js:200
 msgid "Execute in a terminal"
 msgstr "Выполнить в терминале"
 
-#: desktopIconsUtil.js:195
+#: desktopIconsUtil.js:202
 msgid "Show"
 msgstr "Показать"
 
-#: desktopIconsUtil.js:199
+#: desktopIconsUtil.js:206
 msgid "Execute"
 msgstr "Выполнить"
 
-#: desktopManager.js:106
+#: desktopManager.js:131
 msgid "Nautilus File Manager not found"
 msgstr "Файловый менеджер Nautilus не найден"
 
-#: desktopManager.js:107
+#: desktopManager.js:132
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr ""
 "Файловый менеджер Nautilus является обязательным для работы с иконками "
 "рабочего стола NG."
 
-#: desktopManager.js:426
+#: desktopManager.js:543
 msgid "New Folder"
 msgstr "Создать папку"
 
-#: desktopManager.js:430
+#: desktopManager.js:547
 msgid "New Document"
 msgstr "Создать документ"
 
-#: desktopManager.js:435
+#: desktopManager.js:552
 msgid "Paste"
 msgstr "Вставить"
 
-#: desktopManager.js:439
+#: desktopManager.js:556
 msgid "Undo"
 msgstr "Отменить"
 
-#: desktopManager.js:443
+#: desktopManager.js:560
 msgid "Redo"
 msgstr "Повторить"
 
-#: desktopManager.js:449
+#: desktopManager.js:566
 msgid "Select all"
 msgstr "Выделить все"
 
-#: desktopManager.js:455
+#: desktopManager.js:572
 msgid "Show Desktop in Files"
 msgstr "Открыть рабочий стол в файловом менеджере"
 
-#: desktopManager.js:459 fileItem.js:832
+#: desktopManager.js:576 fileItem.js:889
 msgid "Open in Terminal"
 msgstr "Открыть терминал"
 
-#: desktopManager.js:465
+#: desktopManager.js:582
 msgid "Change Background…"
 msgstr "Изменить фон"
 
-#: desktopManager.js:474
+#: desktopManager.js:591
 msgid "Display Settings"
 msgstr "Настроить дисплей"
 
-#: desktopManager.js:481 preferences.js:83
+#: desktopManager.js:598 preferences.js:88
 msgid "Settings"
 msgstr "Параметры"
 
-#: desktopManager.js:941 desktopManager.js:989
+#: desktopManager.js:609
+msgid "Scripts"
+msgstr ""
+
+#: desktopManager.js:1127 desktopManager.js:1175
 msgid "Error while deleting files"
 msgstr "Ошибка при удалении файлов"
 
-#: desktopManager.js:1015
+#: desktopManager.js:1201
 msgid "Are you sure you want to permanently delete these items?"
 msgstr "Вы уверены, что хотите удалить эти файлы навсегда?"
 
-#: desktopManager.js:1016
+#: desktopManager.js:1202
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Если вы удалите файл, он будет навсегда потерян."
 
-#: desktopManager.js:1108
+#: desktopManager.js:1294
 msgid "New folder"
 msgstr "Создать папку"
 
 #. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
-#: fileItem.js:144
+#: fileItem.js:151
 msgid "Home"
 msgstr "Домашняя папка"
 
-#: fileItem.js:688
-msgid "Don’t Allow Launching"
-msgstr "Не разрешать запуск"
+#: fileItem.js:794
+msgid "Open All..."
+msgstr ""
 
-#: fileItem.js:690
-msgid "Allow Launching"
-msgstr "Разрешать запуск"
-
-#: fileItem.js:756
+#: fileItem.js:794
 msgid "Open"
 msgstr "Открыть"
 
-#: fileItem.js:762
+#: fileItem.js:801
+#, fuzzy
+msgid "Open All With Other Application..."
+msgstr "Открыть в другом приложении"
+
+#: fileItem.js:801
 msgid "Open With Other Application"
 msgstr "Открыть в другом приложении"
 
-#: fileItem.js:769
+#: fileItem.js:805
+msgid "Launch using Dedicated Graphics Card"
+msgstr ""
+
+#: fileItem.js:813
 msgid "Cut"
 msgstr "Вырезать"
 
-#: fileItem.js:772
+#: fileItem.js:816
 msgid "Copy"
 msgstr "Вставить"
 
-#: fileItem.js:776
+#: fileItem.js:820
 msgid "Rename…"
 msgstr "Переименовать"
 
-#: fileItem.js:780
+#: fileItem.js:824
 msgid "Move to Trash"
 msgstr "Переместить в корзину"
 
-#: fileItem.js:784
+#: fileItem.js:828
 msgid "Delete permanently"
 msgstr "Удалить навсегда"
 
-#: fileItem.js:797
+#: fileItem.js:834
+#, fuzzy
+msgid "Don't Allow Launching"
+msgstr "Не разрешать запуск"
+
+#: fileItem.js:834
+msgid "Allow Launching"
+msgstr "Разрешать запуск"
+
+#: fileItem.js:841
 msgid "Empty Trash"
 msgstr "Очистить корзину"
 
-#: fileItem.js:804
+#: fileItem.js:848
 msgid "Eject"
 msgstr ""
 
-#: fileItem.js:811
+#: fileItem.js:855
 msgid "Unmount"
 msgstr ""
 
-#: fileItem.js:824
+#: fileItem.js:869
+msgid "Send to..."
+msgstr ""
+
+#: fileItem.js:872
+msgid "Compress {0} file"
+msgid_plural "Compress {0} files"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: fileItem.js:875
+msgid "New Folder with {0} item"
+msgid_plural "New Folder with {0} items"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: fileItem.js:881
+#, fuzzy
+msgid "Common Properties"
+msgstr "Свойства"
+
+#: fileItem.js:881
 msgid "Properties"
 msgstr "Свойства"
 
-#: fileItem.js:828
+#: fileItem.js:885
+#, fuzzy
+msgid "Show All in Files"
+msgstr "Показать в файловом менеджере"
+
+#: fileItem.js:885
 msgid "Show in Files"
 msgstr "Показать в файловом менеджере"
 
-#: preferences.js:89
+#: preferences.js:94
 msgid "Size for the desktop icons"
 msgstr "Размер значков"
 
-#: preferences.js:89
+#: preferences.js:94
 msgid "Tiny"
 msgstr "Крошечный"
 
-#: preferences.js:89
+#: preferences.js:94
 msgid "Small"
 msgstr "Маленький"
 
-#: preferences.js:89
+#: preferences.js:94
 msgid "Standard"
 msgstr "Стандартный"
 
-#: preferences.js:89
+#: preferences.js:94
 msgid "Large"
 msgstr "Большой"
 
-#: preferences.js:90
+#: preferences.js:95
 msgid "Show the personal folder in the desktop"
 msgstr "Показывать домашнюю папку на рабочем столе"
 
-#: preferences.js:91
+#: preferences.js:96
 msgid "Show the trash icon in the desktop"
 msgstr "Показывать корзину на рабочем столе"
 
-#: preferences.js:92 schemas/org.gnome.shell.extensions.ding.gschema.xml:38
+#: preferences.js:97 schemas/org.gnome.shell.extensions.ding.gschema.xml:38
 #, fuzzy
 msgid "Show external drives in the desktop"
 msgstr "Показывать домашнюю папку на рабочем столе"
 
-#: preferences.js:93 schemas/org.gnome.shell.extensions.ding.gschema.xml:43
+#: preferences.js:98 schemas/org.gnome.shell.extensions.ding.gschema.xml:43
 #, fuzzy
 msgid "Show network drives in the desktop"
 msgstr "Показывать значок домашней папки на рабочем столе."
 
-#: preferences.js:96
+#: preferences.js:101
 msgid "New icons alignment"
 msgstr "Выравнивание для новых значков"
 
-#: preferences.js:97
+#: preferences.js:102
 msgid "Top-left corner"
 msgstr "Верхний левый угол"
 
-#: preferences.js:98
+#: preferences.js:103
 msgid "Top-right corner"
 msgstr "В правом верхнем углу"
 
-#: preferences.js:99
+#: preferences.js:104
 msgid "Bottom-left corner"
 msgstr "Нижний левый угол"
 
-#: preferences.js:100
+#: preferences.js:105
 msgid "Bottom-right corner"
 msgstr "Правый нижний угол"
 
-#: preferences.js:102 schemas/org.gnome.shell.extensions.ding.gschema.xml:48
+#: preferences.js:107 schemas/org.gnome.shell.extensions.ding.gschema.xml:48
 msgid "Add new drives to the opposite side of the screen"
 msgstr ""
 
-#: preferences.js:103
+#: preferences.js:108
 msgid "Highlight the drop place during Drag'n'Drop"
 msgstr ""
 
-#: preferences.js:107
+#: preferences.js:112
 msgid "Settings shared with Nautilus"
 msgstr "Общие настройки с Nautilus"
 
-#: preferences.js:113
+#: preferences.js:118
 msgid "Click type for open files"
 msgstr "Действие открытия"
 
-#: preferences.js:113
+#: preferences.js:118
 msgid "Single click"
 msgstr "Открывать одинарным нажатием"
 
-#: preferences.js:113
+#: preferences.js:118
 msgid "Double click"
 msgstr "Открывать двойным нажатием"
 
-#: preferences.js:114
+#: preferences.js:119
 msgid "Show hidden files"
 msgstr "Добавить пункт «Показать в файловом менеджере»"
 
-#: preferences.js:115
+#: preferences.js:120
 msgid "Show a context menu item to delete permanently"
 msgstr "Добавить пункт «Удалит навсегда в контекстном меню»"
 
-#: preferences.js:118
+#: preferences.js:123
 msgid "Action to do when launching a program from the desktop"
 msgstr "Исполняемые текстовые файлы"
 
-#: preferences.js:119
+#: preferences.js:124
 msgid "Display the content of the file"
 msgstr "Показать"
 
-#: preferences.js:120
+#: preferences.js:125
 msgid "Launch the file"
 msgstr "Запустить"
 
-#: preferences.js:121
+#: preferences.js:126
 msgid "Ask what to do"
 msgstr "Спросить что делать"
 
-#: preferences.js:125
+#: preferences.js:130
 msgid "Show image thumbnails"
 msgstr "Показать эскизы изображений"
 
-#: preferences.js:126
+#: preferences.js:131
 msgid "Never"
 msgstr "Никогда"
 
-#: preferences.js:127
+#: preferences.js:132
 msgid "Local files only"
 msgstr "Только для локальных файлов"
 
-#: preferences.js:128
+#: preferences.js:133
 msgid "Always"
 msgstr "Всегда"
 
