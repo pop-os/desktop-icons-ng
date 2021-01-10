@@ -1265,14 +1265,22 @@ var DesktopManager = class {
         }
     }
 
-    getNumberOfSelectedItems() {
-        let count = 0;
-        this.selectionExtractable = true;
-        for(let item of this._fileList) {
+    getExtractable() {
+        let selectionExtractable = true;
+        for (let item of this._fileList) {
             if (item.isSelected) {
                 if (! this.decompressibleTypes.includes(item._attributeContentType)) {
-                    this.selectionExtractable = false;
+                        selectionExtractable = false;
                 }
+            }
+        }
+        return selectionExtractable;
+    }
+
+    getNumberOfSelectedItems() {
+        let count = 0;
+        for(let item of this._fileList) {
+            if (item.isSelected) {
                 count++;
             }
         }

@@ -866,11 +866,14 @@ var FileItem = class {
         }
         this._menu.add(new Gtk.SeparatorMenuItem());
         if ( (! this._desktopManager.checkIfSpecialFilesAreSelected()) && (this._selectedItemsNum >= 1 )) {
-            if (! this._isDirectory) {
-                let mailFilesFromSelection = new Gtk.MenuItem({label: _('Send to...')});
-                mailFilesFromSelection.connect('activate', () => {this._desktopManager.mailFilesFromSelection();});
-                this._menu.add(mailFilesFromSelection);
+            if (this._desktopManager.getExtractable()) {
+                let extractFilesFromSelection = new Gtk.MenuItem({label: (this._selectedItemsNum > 1 ? _("Extract All...") : _("Extract"))});
+                extractFilesFromSelection.connect('activate', () => {this._desktopManager.extractFilesFromSelection();});
+                this._menu.add(extractFilesFromSelection);
             }
+            let mailFilesFromSelection = new Gtk.MenuItem({label: _('Send to...')});
+            mailFilesFromSelection.connect('activate', () => {this._desktopManager.mailFilesFromSelection();});
+            this._menu.add(mailFilesFromSelection);
             let compressFilesFromSelection = new Gtk.MenuItem({label: Gettext.ngettext('Compress {0} file', 'Compress {0} files', this._selectedItemsNum).replace('{0}', this._selectedItemsNum)});
             compressFilesFromSelection.connect('activate', () => {this._desktopManager.doCompressFilesFromSelection();});
             this._menu.add(compressFilesFromSelection);
