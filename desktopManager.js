@@ -1457,17 +1457,22 @@ var DesktopManager = class {
         }
     }
 
-    extractFileFromSelection() {
+    extractFileFromSelection(extracthere) {
         let extractFileItem = '';
+        let folder = ''
         for ( let fileItem of this._fileList) {
             if (fileItem.isSelected) {
                 extractFileItem = fileItem.file.get_uri();
                 fileItem.unsetSelected();
             }
         }
-        let desktopFolder = this._desktopDir.get_uri();
-        if (desktopFolder) {
-            DBusUtils.GnomeArchiveManagerProxy.ExtractRemote(extractFileItem, desktopFolder, true,
+        if (extracthere) {
+            folder = this._desktopDir.get_uri();
+        } else {
+            folder = this._newFolder(true);
+        }
+        if (folder) {
+            DBusUtils.GnomeArchiveManagerProxy.ExtractRemote(extractFileItem, folder, true,
                 (result, error) => {
                     if (error) {
                         throw new Error('Error extracting files: ' + error.message);
