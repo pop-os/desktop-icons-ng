@@ -885,7 +885,6 @@ var FileItem = class {
             this._menu.add(newFolderFromSelection);
             this._menu.add(new Gtk.SeparatorMenuItem());
         }
-        this._menu.add(new Gtk.SeparatorMenuItem());
         let properties = new Gtk.MenuItem({label: this._selectedItemsNum > 1 ? _('Common Properties') : _('Properties') });
         properties.connect('activate', () => this._onPropertiesClicked());
         this._menu.add(properties);

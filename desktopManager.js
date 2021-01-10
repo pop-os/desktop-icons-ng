@@ -1484,7 +1484,10 @@ var DesktopManager = class {
 
     getExtractionSupportedTypes() {
         DBusUtils.GnomeArchiveManagerProxy.GetSupportedTypesRemote('extract',
-            (result) => {
+            (result, error) => {
+                if (error) {
+                    throw new Error('Error getting extractable Types' + error.message);
+                }
                 for ( let key of result.values()) {
                     for (let type of key.values()) {
                         this.decompressibleTypes.push(Object.values(type)[0]);
