@@ -1270,6 +1270,9 @@ var DesktopManager = class {
         this.selectionExtractable = true;
         for(let item of this._fileList) {
             if (item.isSelected) {
+                if (! this.decompressibleTypes.includes(item._attributeContentType)) {
+                    this.selectionExtractable = false;
+                }
                 count++;
             }
         }
