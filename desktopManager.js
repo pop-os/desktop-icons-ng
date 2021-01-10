@@ -1266,15 +1266,15 @@ var DesktopManager = class {
     }
 
     getExtractable() {
-        let selectionExtractable = true;
         for (let item of this._fileList) {
             if (item.isSelected) {
-                if (! this.decompressibleTypes.includes(item._attributeContentType)) {
-                        selectionExtractable = false;
+                if ( this.decompressibleTypes.includes(item._attributeContentType)) {
+                    return true
+                } else {
+                    return false;
                 }
             }
         }
-        return selectionExtractable;
     }
 
     getNumberOfSelectedItems() {
@@ -1451,6 +1451,26 @@ var DesktopManager = class {
                 (result, error) => {
                     if (error) {
                         throw new Error('Error compressing files: ' + error.message);
+                    }
+                }
+            );
+        }
+    }
+
+    extractFileFromSelection() {
+        let extractFileItem = '';
+        for ( let fileItem of this._fileList) {
+            if (fileItem.isSelected) {
+                extractFileItem = fileItem.file.get_uri();
+                fileItem.unsetSelected();
+            }
+        }
+        let desktopFolder = this._desktopDir.get_uri();
+        if (desktopFolder) {
+            DBusUtils.GnomeArchiveManagerProxy.ExtractRemote(extractFileItem, desktopFolder, true,
+                (result, error) => {
+                    if (error) {
+                        throw new Error('Error extracting files: ' + error.message);
                     }
                 }
             );

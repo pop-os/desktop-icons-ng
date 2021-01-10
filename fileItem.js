@@ -866,9 +866,9 @@ var FileItem = class {
         }
         this._menu.add(new Gtk.SeparatorMenuItem());
         if ( (! this._desktopManager.checkIfSpecialFilesAreSelected()) && (this._selectedItemsNum >= 1 )) {
-            if (this._desktopManager.getExtractable()) {
-                let extractFilesFromSelection = new Gtk.MenuItem({label: (this._selectedItemsNum > 1 ? _("Extract All...") : _("Extract"))});
-                extractFilesFromSelection.connect('activate', () => {this._desktopManager.extractFilesFromSelection();});
+            if (this._desktopManager.getExtractable() && this._selectedItemsNum == 1) {
+                let extractFilesFromSelection = new Gtk.MenuItem({label:  _("Extract")});
+                extractFilesFromSelection.connect('activate', () => {this._desktopManager.extractFileFromSelection();});
                 this._menu.add(extractFilesFromSelection);
             }
             let mailFilesFromSelection = new Gtk.MenuItem({label: _('Send to...')});
