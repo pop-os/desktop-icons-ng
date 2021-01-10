@@ -125,6 +125,9 @@ var DesktopManager = class {
         this._scriptsList = [];
         this._readScriptFileList();
 
+        this.decompressibleTypes = [];
+        this.getExtractionSupportedTypes();
+
         // Check if Nautilus is available
         try {
             DesktopIconsUtil.trySpawn(null, ["nautilus", "--version"]);
@@ -1264,6 +1267,7 @@ var DesktopManager = class {
 
     getNumberOfSelectedItems() {
         let count = 0;
+        this.selectionExtractable = true;
         for(let item of this._fileList) {
             if (item.isSelected) {
                 count++;
@@ -1440,5 +1444,17 @@ var DesktopManager = class {
                 }
             );
         }
+    }
+
+    getExtractionSupportedTypes() {
+        DBusUtils.GnomeArchiveManagerProxy.GetSupportedTypesRemote('extract',
+            (result) => {
+                for ( let key of result.values()) {
+                    for (let type of key.values()) {
+                        this.decompressibleTypes.push(Object.values(type)[0]);
+                    }
+                }
+            }
+        );
     }
 }
