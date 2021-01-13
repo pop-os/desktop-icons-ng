@@ -1469,10 +1469,10 @@ var DesktopManager = class {
         if (extracthere) {
             folder = this._desktopDir.get_uri();
         } else {
-            let dialog = new Gtk.FileChooserDialog({title: 'Select Folder'});
+            let dialog = new Gtk.FileChooserDialog({title: 'Select Extract Destination'});
             dialog.set_action(Gtk.FileChooserAction.SELECT_FOLDER);
             dialog.add_button(_('Cancel'), Gtk.ResponseType.CANCEL);
-            dialog.add_button(_('Save'), Gtk.ResponseType.ACCEPT);
+            dialog.add_button(_('Select'), Gtk.ResponseType.ACCEPT);
             let response = dialog.run();
             if (response === Gtk.ResponseType.ACCEPT) {
                 folder = dialog.get_uri();
