@@ -1469,7 +1469,15 @@ var DesktopManager = class {
         if (extracthere) {
             folder = this._desktopDir.get_uri();
         } else {
-            folder = this._newFolder(true);
+            let dialog = new Gtk.FileChooserDialog({title: 'Select Folder'});
+            dialog.set_action(Gtk.FileChooserAction.SELECT_FOLDER);
+            dialog.add_button(_('Cancel'), Gtk.ResponseType.CANCEL);
+            dialog.add_button(_('Save'), Gtk.ResponseType.ACCEPT);
+            let response = dialog.run();
+            if (response === Gtk.ResponseType.ACCEPT) {
+                folder = dialog.get_uri();
+            }
+            dialog.destroy();
         }
         if (folder) {
             DBusUtils.GnomeArchiveManagerProxy.ExtractRemote(extractFileItem, folder, true,
