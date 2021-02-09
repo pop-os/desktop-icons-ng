@@ -1287,7 +1287,14 @@ var DesktopManager = class {
         }
     }
 
-    _newFolder(window) {
+    _newFolder(position) {
+        let X;
+        let Y;
+        if (position) {
+            [X, Y] = position;
+        } else {
+            [X, Y] = [this._clickX, this._clickY];
+        }
         for(let fileItem of this._fileList) {
             fileItem.unsetSelected();
         }
@@ -1298,10 +1305,10 @@ var DesktopManager = class {
             try {
                 dir.make_directory(null);
                 let info = new Gio.FileInfo();
-                info.set_attribute_string('metadata::nautilus-drop-position', `${this._clickX},${this._clickY}`);
+                info.set_attribute_string('metadata::nautilus-drop-position', `${X},${Y}`);
                 info.set_attribute_string('metadata::nautilus-icon-position', '');
                 dir.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
-                if (window) {
+                if (position) {
                     return dir.get_uri();
                 }
             } catch(e) {
@@ -1377,12 +1384,12 @@ var DesktopManager = class {
         DesktopIconsUtil.trySpawn(null, xdgEmailCommand);
     }
 
-    doNewFolderFromSelection() {
+    doNewFolderFromSelection(position) {
         let newFolderFileItems = this.getCurrentSelection(true);
         for (let fileItem of this._fileList) {
            fileItem.unsetSelected();
         }
-        let newFolder = this._newFolder(true);
+        let newFolder = this._newFolder(position);
         if (newFolder) {
             DBusUtils.NautilusFileOperationsProxy.MoveURIsRemote(newFolderFileItems, newFolder,
                 (result, error) => {

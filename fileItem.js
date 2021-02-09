@@ -873,7 +873,7 @@ var FileItem = class {
             compressFilesFromSelection.connect('activate', () => {this._desktopManager.doCompressFilesFromSelection();});
             this._menu.add(compressFilesFromSelection);
             let newFolderFromSelection = new Gtk.MenuItem({label:  Gettext.ngettext('New Folder with {0} item', 'New Folder with {0} items' , this._selectedItemsNum).replace('{0}', this._selectedItemsNum)});
-            newFolderFromSelection.connect('activate', () => {this._desktopManager.doNewFolderFromSelection();});
+            newFolderFromSelection.connect('activate', () => {this._desktopManager.doNewFolderFromSelection(this._savedCoordinates);});
             this._menu.add(newFolderFromSelection);
             this._menu.add(new Gtk.SeparatorMenuItem());
         }
