@@ -14,12 +14,12 @@ But it is still an alpha development, so it probably still have a lot of bugs. U
 
 ## Current version
 
-Version 0.11.0
+Version 0.15.0
 
 ## Requirements
 
-* GNOME Shell >= 3.30
-* Nautilus >= 3.30.4
+* GNOME Shell >= 3.38
+* Nautilus >= 3.38
 
 ## TO-DO
 
@@ -39,23 +39,15 @@ extension (extension.js) that have these roles:
 This last part is paramount in Wayland systems, because there an application can't set its role
 as freely as in X11.
 
-Of course, to avoid breaking the security model of Wayland, the process for identifying the
-window is somewhat convoluted, to ensure that only the process launched from the extension can
-have those rights. To do so, the extension first generates a random UUID, which will be used
-to identify the windows. Then it launches the desktop program (ding.js) with the '-U' parameter
-in its command line, and writes the UUID, followed by a carriage return, through the STDIN pipe
-of the desktop program. The '-U' parameter instructs the desktop program to wait for that UUID
-in its STDIN pipe (it is done this way to allow to run the desktop program in stand-alone mode
-for debugging purposes). This way, the UUID is passed through a secure channel, ensuring that
-no other program can read it and use it before the legit desktop program. Passing it using the
-command line would be very insecure because all programs can read it using the '/proc' virtual
-filesystem.
+Of course, to avoid breaking the security model of Wayland, it is paramount to ensure that no other
+program can pose as DING. In old versions, the process for identifying the window was quite convoluted,
+passing an UUID through STDIN and putting it in the window title. But since Gnome Shell 3.38 there is
+a new API that allows to check whether a window belongs to an specific process launched from an
+extension, which makes the code much cleaner and straightforward.
 
-Now the extension monitors all 'map' signals, and when a window with the UUID chosen as the start
-of its title is mapped (it also must have a blank space and the monitor number, since there is
-one window per monitor), it knows that it is the desktop window. It stores that window object,
-enables the 'stick' property to make it appear in all desktops, sends it to the bottom of the
-stack, and connects to three signals:
+The extension monitors all 'map' signals, and when a window from the DING process previously
+launched is mapped, it knows that it is the desktop window. It stores that window object, sends it to
+the bottom of the stack, and connects to three signals:
 
 * raised: it is called every time the window is sent to the front, so in the callback, the extension
 sends it again to the bottom.
@@ -64,6 +56,10 @@ Alt+F7, or pressing Super and dragging it with the mouse, so this callback retur
 right possition every time the user tries to move it.
 * unmanaged: called when the window disappears. It deletes the UUID, and waits for the desktop program
 to be killed (it will be relaunched again by the extension, and, of course, a new UUID will be used).
+
+It also monitors other signals to ensure that the desktop receives the focus only when there are no
+other windows in the current desktop, and to keep the icons in the right screen, no matter if the
+user changes to another virtual desktop.
 
 The extension also intercepts three Gnome Shell system calls, in order to hide the desktop windows
 from the tab switcher and the Activities mode. These are 'Meta.Display.get_tab_list()',
@@ -91,6 +87,7 @@ files must be in the current path.
   you can set several -D parameters in the same command line, one for each monitor. A single window
   will be created for each monitor. If no -D parameter is specified, it will create a single monitor
   with a size of 1280x720 pixels.
+* -M: specifies which monitor is the primary index, to add there any new file icon.
 
 
 ## Manual installation
