@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-06 01:44+0100\n"
+"POT-Creation-Date: 2021-02-09 20:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -114,8 +114,8 @@ msgstr ""
 msgid "Display Settings"
 msgstr ""
 
-#: ../desktopManager.js:598 ../preferences.js:88
-msgid "Settings"
+#: ../desktopManager.js:598
+msgid "Desktop Icons settings"
 msgstr ""
 
 #: ../desktopManager.js:609
@@ -233,6 +233,10 @@ msgstr ""
 
 #: ../fileItem.js:885
 msgid "Show in Files"
+msgstr ""
+
+#: ../preferences.js:88
+msgid "Settings"
 msgstr ""
 
 #: ../preferences.js:94
