@@ -39,6 +39,10 @@ function buildPrefsWidget() {
                                 justify: Gtk.Justification.CENTER,
                                 wrap: true,
                                 wrap_mode: Pango.WrapMode.WORD});
-    frame.show_all();
+    if (frame.show_all) {
+        frame.show_all();
+    } else {
+        frame.show();
+    }
     return frame;
 }
