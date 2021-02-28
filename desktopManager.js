@@ -1228,6 +1228,15 @@ var DesktopManager = class {
         return false;
     }
 
+    checkIfDirectoryIsSelected() {
+        for(let item of this._fileList) {
+            if (item.isSelected && item.isDirectory) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     getCurrentSelection(getUri) {
         let listToTrash = [];
         for(let fileItem of this._fileList) {
@@ -1372,6 +1381,14 @@ var DesktopManager = class {
     }
 
     mailFilesFromSelection() {
+        if (this.checkIfDirectoryIsSelected()) {
+            let WindowError = new ShowErrorPopup.ShowErrorPopup(_("Can not email a Directory"),
+                                                                _("Selection includes a Directory, compress the directory to a file first."),
+                                                                null,
+                                                                false);
+            WindowError.run();
+            return;
+        }
         let xdgEmailCommand = [];
         xdgEmailCommand.push('xdg-email')
         for (let fileItem of this._fileList) {
