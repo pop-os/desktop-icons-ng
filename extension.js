@@ -322,7 +322,7 @@ var LaunchSubprocess = class {
         this._launcher = new Gio.SubprocessLauncher({flags: this._flags});
         if (Meta.is_wayland_compositor()) {
             this._waylandClient = Meta.WaylandClient.new(this._launcher);
-            if (ExtensionUtils.versionCheck(['3.38.0'], Config.PACKAGE_VERSION)) {
+            if (Config.PACKAGE_VERSION == '3.38.0') {
                 // workaround for bug in 3.38.0
                 this._launcher.ref();
             }
