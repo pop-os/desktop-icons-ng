@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-09 17:26+0100\n"
+"POT-Creation-Date: 2021-04-12 22:59+0200\n"
 "PO-Revision-Date: 2020-07-14 13:32+0200\n"
 "Last-Translator: Piotr Kuśnierz <piotr.kusnierz@protonmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
@@ -104,7 +104,7 @@ msgstr "Zaznacz wszystko"
 msgid "Show Desktop in Files"
 msgstr "Wyświetl pulpit w menedżerze plików"
 
-#: desktopManager.js:576 fileItem.js:889
+#: desktopManager.js:576 fileItem.js:891
 msgid "Open in Terminal"
 msgstr "Otwórz w terminalu"
 
@@ -116,9 +116,9 @@ msgstr "Zmień tło…"
 msgid "Display Settings"
 msgstr "Ustawienia ekranu"
 
-#: desktopManager.js:598 preferences.js:88
-msgid "Settings"
-msgstr "Ustawienia"
+#: desktopManager.js:598
+msgid "Desktop Icons settings"
+msgstr ""
 
 #: desktopManager.js:609
 msgid "Scripts"
@@ -136,9 +136,17 @@ msgstr "Czy na pewno usunąć trwale wybrane elementy?"
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Jeśli usuniesz element, zostanie on trwale utracony."
 
-#: desktopManager.js:1294
+#: desktopManager.js:1310
 msgid "New folder"
 msgstr "Nowy katalog"
+
+#: desktopManager.js:1385
+msgid "Can not email a Directory"
+msgstr ""
+
+#: desktopManager.js:1386
+msgid "Selection includes a Directory, compress the directory to a file first."
+msgstr ""
 
 #. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
 #: fileItem.js:151
@@ -207,41 +215,45 @@ msgstr "Wysuń"
 msgid "Unmount"
 msgstr "Odmontuj"
 
-#: fileItem.js:869
+#: fileItem.js:870
 msgid "Send to..."
 msgstr ""
 
-#: fileItem.js:872
+#: fileItem.js:874
 msgid "Compress {0} file"
 msgid_plural "Compress {0} files"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: fileItem.js:875
+#: fileItem.js:877
 msgid "New Folder with {0} item"
 msgid_plural "New Folder with {0} items"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: fileItem.js:881
+#: fileItem.js:883
 #, fuzzy
 msgid "Common Properties"
 msgstr "Właściwości"
 
-#: fileItem.js:881
+#: fileItem.js:883
 msgid "Properties"
 msgstr "Właściwości"
 
-#: fileItem.js:885
+#: fileItem.js:887
 #, fuzzy
 msgid "Show All in Files"
 msgstr "Wyświetl w menedżerze plików"
 
-#: fileItem.js:885
+#: fileItem.js:887
 msgid "Show in Files"
 msgstr "Wyświetl w menedżerze plików"
+
+#: preferences.js:88
+msgid "Settings"
+msgstr "Ustawienia"
 
 #: preferences.js:94
 msgid "Size for the desktop icons"
@@ -364,9 +376,10 @@ msgid "Always"
 msgstr "Zawsze"
 
 #: prefs.js:37
+#, fuzzy
 msgid ""
 "To configure Desktop Icons NG, do right-click in the desktop and choose the "
-"last item: 'Settings'"
+"last item: 'Desktop Icons settings'"
 msgstr ""
 "Aby skonfigurować ikony puplitu, kliknij pulpit prawym przyciskiem myszy i "
 "wybierz ostatni element: 'Ustawienia'"

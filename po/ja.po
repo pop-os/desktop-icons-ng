@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-09 17:26+0100\n"
+"POT-Creation-Date: 2021-04-12 22:59+0200\n"
 "PO-Revision-Date: 2021-01-18 09:05+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -103,7 +103,7 @@ msgstr "全て選択"
 msgid "Show Desktop in Files"
 msgstr "“ファイル”でデスクトップを表示する"
 
-#: desktopManager.js:576 fileItem.js:889
+#: desktopManager.js:576 fileItem.js:891
 msgid "Open in Terminal"
 msgstr "端末を開く"
 
@@ -115,9 +115,9 @@ msgstr "背景を変更する…"
 msgid "Display Settings"
 msgstr "ディスプレイの設定"
 
-#: desktopManager.js:598 preferences.js:88
-msgid "Settings"
-msgstr "設定"
+#: desktopManager.js:598
+msgid "Desktop Icons settings"
+msgstr ""
 
 #: desktopManager.js:609
 msgid "Scripts"
@@ -135,9 +135,17 @@ msgstr "これらのアイテムを完全に削除してもよろしいですか
 msgid "If you delete an item, it will be permanently lost."
 msgstr "アイテムを削除すると、永久に失われます。"
 
-#: desktopManager.js:1294
+#: desktopManager.js:1310
 msgid "New folder"
 msgstr "新しいフォルダー"
+
+#: desktopManager.js:1385
+msgid "Can not email a Directory"
+msgstr ""
+
+#: desktopManager.js:1386
+msgid "Selection includes a Directory, compress the directory to a file first."
+msgstr ""
 
 #. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
 #: fileItem.js:151
@@ -204,37 +212,41 @@ msgstr "取り出す"
 msgid "Unmount"
 msgstr "アンマウント"
 
-#: fileItem.js:869
+#: fileItem.js:870
 msgid "Send to..."
 msgstr "送る..."
 
-#: fileItem.js:872
+#: fileItem.js:874
 msgid "Compress {0} file"
 msgid_plural "Compress {0} files"
 msgstr[0] "{0}ファイルを圧縮"
 
-#: fileItem.js:875
+#: fileItem.js:877
 msgid "New Folder with {0} item"
 msgid_plural "New Folder with {0} items"
 msgstr[0] "{0}アイテムと新しいフォルダ"
 
-#: fileItem.js:881
+#: fileItem.js:883
 #, fuzzy
 msgid "Common Properties"
 msgstr "プロパティ"
 
-#: fileItem.js:881
+#: fileItem.js:883
 msgid "Properties"
 msgstr "プロパティ"
 
-#: fileItem.js:885
+#: fileItem.js:887
 #, fuzzy
 msgid "Show All in Files"
 msgstr "“ファイル”で表示する"
 
-#: fileItem.js:885
+#: fileItem.js:887
 msgid "Show in Files"
 msgstr "“ファイル”で表示する"
+
+#: preferences.js:88
+msgid "Settings"
+msgstr "設定"
 
 #: preferences.js:94
 msgid "Size for the desktop icons"
@@ -360,9 +372,10 @@ msgid "Always"
 msgstr "常に"
 
 #: prefs.js:37
+#, fuzzy
 msgid ""
 "To configure Desktop Icons NG, do right-click in the desktop and choose the "
-"last item: 'Settings'"
+"last item: 'Desktop Icons settings'"
 msgstr ""
 "デスクトップアイコンNGを設定するには、デスクトップを右クリックして、最後の"
 "「設定」をクリックしてください。"

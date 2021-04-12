@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-09 17:26+0100\n"
+"POT-Creation-Date: 2021-04-12 22:59+0200\n"
 "PO-Revision-Date: 2018-11-22 22:02+0300\n"
 "Last-Translator: Stas Solovey <whats_up@tut.by>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
@@ -105,7 +105,7 @@ msgstr "Выделить все"
 msgid "Show Desktop in Files"
 msgstr "Открыть рабочий стол в файловом менеджере"
 
-#: desktopManager.js:576 fileItem.js:889
+#: desktopManager.js:576 fileItem.js:891
 msgid "Open in Terminal"
 msgstr "Открыть терминал"
 
@@ -117,9 +117,9 @@ msgstr "Изменить фон"
 msgid "Display Settings"
 msgstr "Настроить дисплей"
 
-#: desktopManager.js:598 preferences.js:88
-msgid "Settings"
-msgstr "Параметры"
+#: desktopManager.js:598
+msgid "Desktop Icons settings"
+msgstr ""
 
 #: desktopManager.js:609
 msgid "Scripts"
@@ -137,9 +137,17 @@ msgstr "Вы уверены, что хотите удалить эти файл�
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Если вы удалите файл, он будет навсегда потерян."
 
-#: desktopManager.js:1294
+#: desktopManager.js:1310
 msgid "New folder"
 msgstr "Создать папку"
+
+#: desktopManager.js:1385
+msgid "Can not email a Directory"
+msgstr ""
+
+#: desktopManager.js:1386
+msgid "Selection includes a Directory, compress the directory to a file first."
+msgstr ""
 
 #. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
 #: fileItem.js:151
@@ -208,41 +216,45 @@ msgstr ""
 msgid "Unmount"
 msgstr ""
 
-#: fileItem.js:869
+#: fileItem.js:870
 msgid "Send to..."
 msgstr ""
 
-#: fileItem.js:872
+#: fileItem.js:874
 msgid "Compress {0} file"
 msgid_plural "Compress {0} files"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: fileItem.js:875
+#: fileItem.js:877
 msgid "New Folder with {0} item"
 msgid_plural "New Folder with {0} items"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: fileItem.js:881
+#: fileItem.js:883
 #, fuzzy
 msgid "Common Properties"
 msgstr "Свойства"
 
-#: fileItem.js:881
+#: fileItem.js:883
 msgid "Properties"
 msgstr "Свойства"
 
-#: fileItem.js:885
+#: fileItem.js:887
 #, fuzzy
 msgid "Show All in Files"
 msgstr "Показать в файловом менеджере"
 
-#: fileItem.js:885
+#: fileItem.js:887
 msgid "Show in Files"
 msgstr "Показать в файловом менеджере"
+
+#: preferences.js:88
+msgid "Settings"
+msgstr "Параметры"
 
 #: preferences.js:94
 msgid "Size for the desktop icons"
@@ -367,9 +379,10 @@ msgid "Always"
 msgstr "Всегда"
 
 #: prefs.js:37
+#, fuzzy
 msgid ""
 "To configure Desktop Icons NG, do right-click in the desktop and choose the "
-"last item: 'Settings'"
+"last item: 'Desktop Icons settings'"
 msgstr ""
 "Чтобы настроить значки рабочего стола NG, щелкните правой кнопкой мыши на "
 "рабочем столе и выберите последний пункт: Настройки"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-09 17:26+0100\n"
+"POT-Creation-Date: 2021-04-12 22:59+0200\n"
 "PO-Revision-Date: 2019-03-13 13:43+0300\n"
 "Last-Translator: Mahmut Elmas <mahmutelmas06@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
@@ -110,7 +110,7 @@ msgstr "Tümünü Seç"
 msgid "Show Desktop in Files"
 msgstr "Masaüstünü Dosyalarʼda Göster"
 
-#: desktopManager.js:576 fileItem.js:889
+#: desktopManager.js:576 fileItem.js:891
 msgid "Open in Terminal"
 msgstr "Uçbirimde Aç"
 
@@ -122,9 +122,9 @@ msgstr "Arka Planı Değiştir…"
 msgid "Display Settings"
 msgstr "Görüntü Ayarları"
 
-#: desktopManager.js:598 preferences.js:88
-msgid "Settings"
-msgstr "Ayarlar"
+#: desktopManager.js:598
+msgid "Desktop Icons settings"
+msgstr ""
 
 #: desktopManager.js:609
 msgid "Scripts"
@@ -142,10 +142,18 @@ msgstr "Dosyaları geri dönüşümsüz olarak silmek istediğinizden emin misin
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Bir dosya silerseniz, geri dönüşümü yoktur."
 
-#: desktopManager.js:1294
+#: desktopManager.js:1310
 #, fuzzy
 msgid "New folder"
 msgstr "Yeni Klasör"
+
+#: desktopManager.js:1385
+msgid "Can not email a Directory"
+msgstr ""
+
+#: desktopManager.js:1386
+msgid "Selection includes a Directory, compress the directory to a file first."
+msgstr ""
 
 #. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
 #: fileItem.js:151
@@ -214,37 +222,41 @@ msgstr ""
 msgid "Unmount"
 msgstr ""
 
-#: fileItem.js:869
+#: fileItem.js:870
 msgid "Send to..."
 msgstr ""
 
-#: fileItem.js:872
+#: fileItem.js:874
 msgid "Compress {0} file"
 msgid_plural "Compress {0} files"
 msgstr[0] ""
 
-#: fileItem.js:875
+#: fileItem.js:877
 msgid "New Folder with {0} item"
 msgid_plural "New Folder with {0} items"
 msgstr[0] ""
 
-#: fileItem.js:881
+#: fileItem.js:883
 #, fuzzy
 msgid "Common Properties"
 msgstr "Özellikler"
 
-#: fileItem.js:881
+#: fileItem.js:883
 msgid "Properties"
 msgstr "Özellikler"
 
-#: fileItem.js:885
+#: fileItem.js:887
 #, fuzzy
 msgid "Show All in Files"
 msgstr "Dosyalarʼda Göster"
 
-#: fileItem.js:885
+#: fileItem.js:887
 msgid "Show in Files"
 msgstr "Dosyalarʼda Göster"
+
+#: preferences.js:88
+msgid "Settings"
+msgstr "Ayarlar"
 
 #: preferences.js:94
 msgid "Size for the desktop icons"
@@ -371,9 +383,10 @@ msgid "Always"
 msgstr "Her zaman"
 
 #: prefs.js:37
+#, fuzzy
 msgid ""
 "To configure Desktop Icons NG, do right-click in the desktop and choose the "
-"last item: 'Settings'"
+"last item: 'Desktop Icons settings'"
 msgstr "Masaüstünde Sağ tık/ Ayarları seçerek bu eklentiyi yapılandır"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:18
