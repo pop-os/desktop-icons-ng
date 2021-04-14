@@ -386,7 +386,7 @@ msgid ""
 "To configure Desktop Icons NG, do right-click in the desktop and choose the "
 "last item: 'Desktop Icons settings'"
 msgstr ""
-msgstr "Per configurare Desktop Icons NG, fai un click destro sulla scrivania e seleziona "
+"Per configurare Desktop Icons NG, fai un click destro sulla scrivania e seleziona "
 "l'ultimo elemento: 'Impostazioni delle icone della scrivania'"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:18
