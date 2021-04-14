@@ -1,23 +1,23 @@
-# Swedish translation for desktop-icons.
-# Copyright © 2018, 2019 desktop-icons's COPYRIGHT HOLDER
-# This file is distributed under the same license as the desktop-icons package.
-# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2018, 2019.
+# Swedish translation for ding.
+# Copyright © 2018-2021 ding's COPYRIGHT HOLDER
+# This file is distributed under the same license as the ding package.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2018-2021.
 # Josef Andersson <l10nl18nsweja@gmail.com>, 2019.
+# Luna Jernberg <droidbittin@gmail.com>, 2021. 
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: desktop-icons master\n"
+"Project-Id-Version: ding\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-12 22:59+0200\n"
-"PO-Revision-Date: 2019-03-11 21:50+0100\n"
-"Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
+"PO-Revision-Date: 2021-04-07 17:52+0000\n"
+"Last-Translator: Anders Jonsson <Unknown>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:204
 msgid "Cancel"
@@ -25,59 +25,56 @@ msgstr "Avbryt"
 
 #: askConfirmPopup.js:36
 msgid "Delete"
-msgstr ""
+msgstr "Ta bort"
 
 #: askNamePopup.js:35
 msgid "OK"
 msgstr "OK"
 
 #: askRenamePopup.js:40
-#, fuzzy
 msgid "Folder name"
-msgstr "Nytt mappnamn"
+msgstr "Mappnamn"
 
 #: askRenamePopup.js:40
-#, fuzzy
 msgid "File name"
-msgstr "Byt namn…"
+msgstr "Filnamn"
 
 #: askRenamePopup.js:47
-#, fuzzy
 msgid "Rename"
-msgstr "Byt namn…"
+msgstr "Byt namn"
 
 #: desktopIconsUtil.js:79
 msgid "Command not found"
-msgstr ""
+msgstr "Kommandot hittades inte"
 
 #: desktopIconsUtil.js:195
 msgid "Do you want to run “{0}”, or display its contents?"
-msgstr ""
+msgstr "Vill du köra ”{0}”, eller visa dess innehåll?"
 
 #: desktopIconsUtil.js:196
 msgid "“{0}” is an executable text file."
-msgstr ""
+msgstr "”{0}” är en körbar textfil."
 
 #: desktopIconsUtil.js:200
-#, fuzzy
 msgid "Execute in a terminal"
-msgstr "Öppna i terminal"
+msgstr "Kör i en terminal"
 
 #: desktopIconsUtil.js:202
 msgid "Show"
-msgstr ""
+msgstr "Visa"
 
 #: desktopIconsUtil.js:206
 msgid "Execute"
-msgstr ""
+msgstr "Kör"
 
 #: desktopManager.js:131
 msgid "Nautilus File Manager not found"
-msgstr ""
+msgstr "Nautilus filhanterare hittades inte"
 
 #: desktopManager.js:132
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr ""
+"Filhanteraren Nautilus är obligatorisk för att arbeta med Desktop Icons NG."
 
 #: desktopManager.js:543
 msgid "New Folder"
@@ -85,7 +82,7 @@ msgstr "Ny mapp"
 
 #: desktopManager.js:547
 msgid "New Document"
-msgstr ""
+msgstr "Nytt dokument"
 
 #: desktopManager.js:552
 msgid "Paste"
@@ -101,7 +98,7 @@ msgstr "Gör om"
 
 #: desktopManager.js:566
 msgid "Select all"
-msgstr ""
+msgstr "Markera alla"
 
 #: desktopManager.js:572
 msgid "Show Desktop in Files"
@@ -125,22 +122,21 @@ msgstr ""
 
 #: desktopManager.js:609
 msgid "Scripts"
-msgstr ""
+msgstr "Skript"
 
 #: desktopManager.js:1127 desktopManager.js:1175
 msgid "Error while deleting files"
-msgstr ""
+msgstr "Fel vid borttagning av filer"
 
 #: desktopManager.js:1201
 msgid "Are you sure you want to permanently delete these items?"
-msgstr ""
+msgstr "Är du säker på att du vill ta bort dessa objekt permanent?"
 
 #: desktopManager.js:1202
 msgid "If you delete an item, it will be permanently lost."
-msgstr ""
+msgstr "Om du tar bort ett objekt är det borta för alltid."
 
 #: desktopManager.js:1310
-#, fuzzy
 msgid "New folder"
 msgstr "Ny mapp"
 
@@ -155,20 +151,19 @@ msgstr ""
 #. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
 #: fileItem.js:151
 msgid "Home"
-msgstr ""
+msgstr "Hem"
 
 #: fileItem.js:794
 msgid "Open All..."
-msgstr ""
+msgstr "Öppna alla…"
 
 #: fileItem.js:794
 msgid "Open"
 msgstr "Öppna"
 
 #: fileItem.js:801
-#, fuzzy
 msgid "Open All With Other Application..."
-msgstr "Öppna med annat program"
+msgstr "Öppna alla med annat program…"
 
 #: fileItem.js:801
 msgid "Open With Other Application"
@@ -176,7 +171,7 @@ msgstr "Öppna med annat program"
 
 #: fileItem.js:805
 msgid "Launch using Dedicated Graphics Card"
-msgstr ""
+msgstr "Starta med dedikerat grafikkort"
 
 #: fileItem.js:813
 msgid "Cut"
@@ -196,10 +191,9 @@ msgstr "Flytta till papperskorgen"
 
 #: fileItem.js:828
 msgid "Delete permanently"
-msgstr ""
+msgstr "Ta bort permanent"
 
 #: fileItem.js:834
-#, fuzzy
 msgid "Don't Allow Launching"
 msgstr "Tillåt ej programstart"
 
@@ -213,41 +207,39 @@ msgstr "Töm papperskorgen"
 
 #: fileItem.js:848
 msgid "Eject"
-msgstr ""
+msgstr "Mata ut"
 
 #: fileItem.js:855
 msgid "Unmount"
-msgstr ""
+msgstr "Avmontera"
 
 #: fileItem.js:870
 msgid "Send to..."
-msgstr ""
+msgstr "Skicka till…"
 
 #: fileItem.js:874
 msgid "Compress {0} file"
 msgid_plural "Compress {0} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Komprimera {0} fil"
+msgstr[1] "Komprimera {0} filer"
 
 #: fileItem.js:877
 msgid "New Folder with {0} item"
 msgid_plural "New Folder with {0} items"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ny mapp med {0} objekt"
+msgstr[1] "Ny mapp med {0} objekt"
 
 #: fileItem.js:883
-#, fuzzy
 msgid "Common Properties"
-msgstr "Egenskaper"
+msgstr "Gemensamma egenskaper"
 
 #: fileItem.js:883
 msgid "Properties"
 msgstr "Egenskaper"
 
 #: fileItem.js:887
-#, fuzzy
 msgid "Show All in Files"
-msgstr "Visa i Filer"
+msgstr "Visa alla i Filer"
 
 #: fileItem.js:887
 msgid "Show in Files"
@@ -263,7 +255,7 @@ msgstr "Storlek för skrivbordsikonerna"
 
 #: preferences.js:94
 msgid "Tiny"
-msgstr ""
+msgstr "Mycket liten"
 
 #: preferences.js:94
 msgid "Small"
@@ -287,109 +279,106 @@ msgstr "Visa den personliga mappen på skrivbordet"
 msgid "Show the trash icon in the desktop"
 msgstr "Visa papperskorgsikonen på skrivbordet"
 
-# TODO: *ON* the desktop?
 #: preferences.js:97 schemas/org.gnome.shell.extensions.ding.gschema.xml:38
-#, fuzzy
 msgid "Show external drives in the desktop"
-msgstr "Visa den personliga mappen på skrivbordet"
+msgstr "Visa externa enheter på skrivbordet"
 
-# TODO: *ON* the desktop?
 #: preferences.js:98 schemas/org.gnome.shell.extensions.ding.gschema.xml:43
-#, fuzzy
 msgid "Show network drives in the desktop"
-msgstr "Visa den personliga mappen på skrivbordet."
+msgstr "Visa nätverksenheter på skrivbordet"
 
 #: preferences.js:101
-#, fuzzy
 msgid "New icons alignment"
-msgstr "Ikonstorlek"
+msgstr "Justering för nya ikoner"
 
 #: preferences.js:102
 msgid "Top-left corner"
-msgstr ""
+msgstr "Övre vänstra hörnet"
 
 #: preferences.js:103
 msgid "Top-right corner"
-msgstr ""
+msgstr "Övre högra hörnet"
 
 #: preferences.js:104
 msgid "Bottom-left corner"
-msgstr ""
+msgstr "Nedre vänstra hörnet"
 
 #: preferences.js:105
 msgid "Bottom-right corner"
-msgstr ""
+msgstr "Nedre högra hörnet"
 
 #: preferences.js:107 schemas/org.gnome.shell.extensions.ding.gschema.xml:48
 msgid "Add new drives to the opposite side of the screen"
-msgstr ""
+msgstr "Lägg till nya enheter på motsatt sida av skärmen"
 
 #: preferences.js:108
 msgid "Highlight the drop place during Drag'n'Drop"
-msgstr ""
+msgstr "Markera släpplatsen under dra-och-släpp"
 
 #: preferences.js:112
 msgid "Settings shared with Nautilus"
-msgstr ""
+msgstr "Inställningar delade med Nautilus"
 
 #: preferences.js:118
 msgid "Click type for open files"
-msgstr ""
+msgstr "Klicktyp för filöppning"
 
 #: preferences.js:118
 msgid "Single click"
-msgstr ""
+msgstr "Enkelklick"
 
 #: preferences.js:118
 msgid "Double click"
-msgstr ""
+msgstr "Dubbelklick"
 
 #: preferences.js:119
-#, fuzzy
 msgid "Show hidden files"
-msgstr "Visa i Filer"
+msgstr "Visa dolda filer"
 
 #: preferences.js:120
 msgid "Show a context menu item to delete permanently"
-msgstr ""
+msgstr "Visa ett snabbvalsmenyobjekt för att ta bort permanent"
 
 #: preferences.js:123
 msgid "Action to do when launching a program from the desktop"
-msgstr ""
+msgstr "Åtgärd att utföra när ett program startas från skrivbordet"
 
 #: preferences.js:124
 msgid "Display the content of the file"
-msgstr ""
+msgstr "Visa innehållet i filen"
 
 #: preferences.js:125
 msgid "Launch the file"
-msgstr ""
+msgstr "Kör filen"
 
 #: preferences.js:126
 msgid "Ask what to do"
-msgstr ""
+msgstr "Fråga vad som ska göras"
 
 #: preferences.js:130
 msgid "Show image thumbnails"
-msgstr ""
+msgstr "Visa miniatyrbilder"
 
 #: preferences.js:131
 msgid "Never"
-msgstr ""
+msgstr "Aldrig"
 
 #: preferences.js:132
 msgid "Local files only"
-msgstr ""
+msgstr "Endast lokala filer"
 
 #: preferences.js:133
 msgid "Always"
-msgstr ""
+msgstr "Alltid"
 
 #: prefs.js:37
+#, fuzzy
 msgid ""
 "To configure Desktop Icons NG, do right-click in the desktop and choose the "
 "last item: 'Desktop Icons settings'"
 msgstr ""
+"För att konfigurera Desktop Icons NG, högerklicka på skrivbordet och välj "
+"det sista objektet: ”Inställningar”"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:18
 msgid "Icon size"
@@ -419,74 +408,37 @@ msgid "Show the trash icon in the desktop."
 msgstr "Visa papperskorgsikonen på skrivbordet."
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:33
-#, fuzzy
 msgid "New icons start corner"
-msgstr "Ikonstorlek"
+msgstr "Starthörn för nya ikoner"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:34
 msgid "Set the corner from where the icons will start to be placed."
-msgstr ""
+msgstr "Ställ in hörnet där ikonerna ska börja placeras."
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:39
 msgid "Show the disk drives connected to the computer."
-msgstr ""
+msgstr "Visa de hårddiskar som är anslutna till datorn."
 
-# TODO: *ON* the desktop?
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:44
-#, fuzzy
 msgid "Show mounted network volumes in the desktop."
-msgstr "Visa den personliga mappen på skrivbordet."
+msgstr "Visa monterade nätverksvolymer på skrivbordet."
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:49
 msgid ""
 "When adding drives and volumes to the desktop, add them to the opposite side "
 "of the screen."
 msgstr ""
+"När enheter och volymer läggs till på skrivbordet, lägg till dem på motsatt "
+"sida av skärmen."
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:53
 msgid "Shows a rectangle in the destination place during DnD"
-msgstr ""
+msgstr "Visar en rektangel i målplatsen under dra-och-släpp"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:54
 msgid ""
 "When doing a Drag'n'Drop operation, marks the place in the grid where the "
 "icon will be put with a semitransparent rectangle."
 msgstr ""
-
-# TODO: *ON* the desktop?
-#, fuzzy
-#~ msgid "Show external disk drives in the desktop"
-#~ msgstr "Visa den personliga mappen på skrivbordet"
-
-# TODO: *ON* the desktop?
-#, fuzzy
-#~ msgid "Show the external drives"
-#~ msgstr "Visa den personliga mappen på skrivbordet"
-
-#, fuzzy
-#~ msgid "Show network volumes"
-#~ msgstr "Visa i Filer"
-
-#~ msgid "Enter file name…"
-#~ msgstr "Ange filnamn…"
-
-#~ msgid "Create"
-#~ msgstr "Skapa"
-
-#~ msgid "Folder names cannot contain “/”."
-#~ msgstr "Mappnamn kan inte innehålla ”/”."
-
-#~ msgid "A folder cannot be called “.”."
-#~ msgstr "En mapp kan inte kallas ”.”."
-
-#~ msgid "A folder cannot be called “..”."
-#~ msgstr "En mapp kan inte kallas ”..”."
-
-#~ msgid "Folders with “.” at the beginning of their name are hidden."
-#~ msgstr "Mappar med ”.” i början på sitt namn är dolda."
-
-#~ msgid "There is already a file or folder with that name."
-#~ msgstr "Det finns redan en fil eller mapp med det namnet"
-
-#~ msgid "Huge"
-#~ msgstr "Enorm"
+"När en dra-och-släpp-operation utförs, markeras platsen i rutnätet där "
+"ikonen kommer placeras med en halvgenomskinlig rektangel."
