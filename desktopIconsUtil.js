@@ -185,7 +185,13 @@ function getFilesFromNautilusDnD(selection, type) {
 function isExecutable(mimetype, file_name) {
 
     if (Gio.content_type_can_be_executable(mimetype)) {
-        switch (Prefs.nautilusSettings.get_string('executable-text-activation')) {
+        // Gnome Shell 40 removed this option
+        try {
+            var action = Prefs.nautilusSettings.get_string('executable-text-activation');
+        } catch(e) {
+            var action = 'ask';
+        }
+        switch (action) {
             default: // display
                 return Enums.WhatToDoWithExecutable.DISPLAY;
             case 'launch':
