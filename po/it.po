@@ -34,12 +34,12 @@ msgstr "Ok"
 #: askRenamePopup.js:40
 #, fuzzy
 msgid "Folder name"
-msgstr "Nuova cartella"
+msgstr "Nome della cartella"
 
 #: askRenamePopup.js:40
 #, fuzzy
 msgid "File name"
-msgstr "Rinomina…"
+msgstr "Nome del file"
 
 #: askRenamePopup.js:47
 #, fuzzy
@@ -121,7 +121,7 @@ msgstr "Impostazioni dello schermo"
 
 #: desktopManager.js:598
 msgid "Desktop Icons settings"
-msgstr ""
+msgstr "Impostazioni di Desktop Icons"
 
 #: desktopManager.js:609
 msgid "Scripts"
@@ -146,11 +146,11 @@ msgstr "Nuova cartella"
 
 #: desktopManager.js:1385
 msgid "Can not email a Directory"
-msgstr ""
+msgstr "Non è possibile spedire per email una cartella"
 
 #: desktopManager.js:1386
 msgid "Selection includes a Directory, compress the directory to a file first."
-msgstr ""
+msgstr "La selezione include una cartella, comprimere prima la cartella in un file."
 
 #. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
 #: fileItem.js:151
@@ -387,7 +387,7 @@ msgid ""
 "last item: 'Desktop Icons settings'"
 msgstr ""
 "Per configurare Desktop Icons NG, fai un click destro sulla scrivania e seleziona "
-"l'ultimo elemento: 'Impostazioni delle icone della scrivania'"
+"l'ultimo elemento: 'Impostazioni di Desktop Icons'"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:18
 msgid "Icon size"
