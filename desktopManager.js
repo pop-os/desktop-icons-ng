@@ -118,6 +118,7 @@ var DesktopManager = class {
         this._createGrids();
 
         DBusUtils.NautilusFileOperationsProxy.connect('g-properties-changed', this._undoStatusChanged.bind(this));
+        DBusUtils.GtkVfsMetadataProxy.connectSignal('AttributeChanged', this._metadataChanged.bind(this));
         this._fileList = [];
         this._readFileList();
 
@@ -143,6 +144,12 @@ var DesktopManager = class {
                 Gtk.main_quit();
                 return false;
             });
+        }
+    }
+
+    _metadataChanged(proxy, nameOwner, args) {
+        if (this._desktopDir.get_path() == GLib.build_filenamev([GLib.get_home_dir(), GLib.path_get_dirname(args[1])])) {
+            this._updateDesktop();
         }
     }
 
