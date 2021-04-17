@@ -25,6 +25,7 @@ var SwitcherooControlProxyClass;
 var SwitcherooControlProxy;
 var discreteGpuAvailable;
 var GnomeArchiveManagerProxy;
+var GtkVfsMetadataProxy;
 
 const NautilusFileOperationsInterface = `<node>
 <interface name='org.gnome.Nautilus.FileOperations'>
@@ -207,6 +208,38 @@ const GnomeArchiveManagerInterface = `<node>
 
 const GnomeArchiveManagerProxyInterface = Gio.DBusProxy.makeProxyWrapper(GnomeArchiveManagerInterface);
 
+const GtkVfsMetadataInterface = `<node>
+  <interface name='org.gtk.vfs.Metadata'>
+
+    <method name="Set">
+      <arg type='ay' name='treefile' direction='in'/>
+      <arg type='ay' name='path' direction='in'/>
+      <arg type='a{sv}' name='data' direction='in'/>
+    </method>
+    <method name="Remove">
+      <arg type='ay' name='treefile' direction='in'/>
+      <arg type='ay' name='path' direction='in'/>
+    </method>
+    <method name="Move">
+      <arg type='ay' name='treefile' direction='in'/>
+      <arg type='ay' name='path' direction='in'/>
+      <arg type='ay' name='dest_path' direction='in'/>
+    </method>
+    <method name="GetTreeFromDevice">
+      <arg type='u' name='major' direction='in'/>
+      <arg type='u' name='minor' direction='in'/>
+      <arg type='s' name='tree' direction='out'/>
+    </method>
+    <signal name="AttributeChanged">
+      <arg type='s' name='tree_path'/>
+      <arg type='s' name='file_path'/>
+    </signal>
+
+  </interface>
+</node>`
+
+const GtkVfsMetadataProxyInterface = Gio.DBusProxy.makeProxyWrapper(GtkVfsMetadataInterface);
+
 function init() {
     NautilusFileOperationsProxy = new NautilusFileOperationsProxyInterface(
         Gio.DBus.session,
@@ -258,6 +291,17 @@ function init() {
         (proxy, error) => {
             if (error) {
                 log('Error connecting to ArchiveManager');
+            }
+        }
+    );
+
+    GtkVfsMetadataProxy = new GtkVfsMetadataProxyInterface(
+        Gio.DBus.session,
+        'org.gtk.vfs.Metadata',
+        '/org/gtk/vfs/metadata',
+        (proxy, error) => {
+            if (error) {
+                log('Error connecting to Gio VFS metadata');
             }
         }
     );
