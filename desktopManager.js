@@ -125,6 +125,9 @@ var DesktopManager = class {
         this._scriptsList = [];
         this._readScriptFileList();
 
+        this.decompressibleTypes = [];
+        this.getExtractionSupportedTypes();
+
         // Check if Nautilus is available
         try {
             DesktopIconsUtil.trySpawn(null, ["nautilus", "--version"]);
@@ -1262,6 +1265,14 @@ var DesktopManager = class {
         }
     }
 
+    getExtractable() {
+        for (let item of this._fileList) {
+            if (item.isSelected) {
+                return this.decompressibleTypes.includes(item._attributeContentType);
+            }
+        }
+    }
+
     getNumberOfSelectedItems() {
         let count = 0;
         for(let item of this._fileList) {
@@ -1440,5 +1451,53 @@ var DesktopManager = class {
                 }
             );
         }
+    }
+
+    extractFileFromSelection(extracthere) {
+        let extractFileItem = '';
+        let folder = ''
+        for ( let fileItem of this._fileList) {
+            if (fileItem.isSelected) {
+                extractFileItem = fileItem.file.get_uri();
+                fileItem.unsetSelected();
+            }
+        }
+        if (extracthere) {
+            folder = this._desktopDir.get_uri();
+        } else {
+            let dialog = new Gtk.FileChooserDialog({title: _('Select Extract Destination')});
+            dialog.set_action(Gtk.FileChooserAction.SELECT_FOLDER);
+            dialog.add_button(_('Cancel'), Gtk.ResponseType.CANCEL);
+            dialog.add_button(_('Select'), Gtk.ResponseType.ACCEPT);
+            let response = dialog.run();
+            if (response === Gtk.ResponseType.ACCEPT) {
+                folder = dialog.get_uri();
+            }
+            dialog.destroy();
+        }
+        if (folder) {
+            DBusUtils.GnomeArchiveManagerProxy.ExtractRemote(extractFileItem, folder, true,
+                (result, error) => {
+                    if (error) {
+                        throw new Error('Error extracting files: ' + error.message);
+                    }
+                }
+            );
+        }
+    }
+
+    getExtractionSupportedTypes() {
+        DBusUtils.GnomeArchiveManagerProxy.GetSupportedTypesRemote('extract',
+            (result, error) => {
+                if (error) {
+                    throw new Error('Error getting extractable Types' + error.message);
+                }
+                for ( let key of result.values()) {
+                    for (let type of key.values()) {
+                        this.decompressibleTypes.push(Object.values(type)[0]);
+                    }
+                }
+            }
+        );
     }
 }
