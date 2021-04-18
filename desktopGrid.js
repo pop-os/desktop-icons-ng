@@ -138,8 +138,7 @@ var DesktopGrid = class {
             return false;
         });
         this._eventBox.connect('motion-notify-event', (actor, event) => {
-            let device = event.get_device();
-            let [a, x, y] = device ? device.get_position() : event.get_coords();
+            let [a, x, y] = event.get_coords();
             [x, y] = this._coordinatesLocalToGlobal(x, y);
             this._desktopManager.onMotion(x, y);
         });
