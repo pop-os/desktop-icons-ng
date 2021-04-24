@@ -193,6 +193,7 @@ var FileItem = class {
         }
         this._dragSource.drag_source_set_target_list(targets);
         this._dragSource.connect('drag-begin', (widget, context) => {
+            Gtk.drag_set_icon_surface(context, this._icon.surface);
             this._desktopManager.onDragBegin(this);
         });
         this._dragSource.connect('drag-data-get', (widget, context, data, info, time) => {
@@ -414,8 +415,9 @@ var FileItem = class {
 
         if (this._fileExtra == Enums.FileType.USER_DIRECTORY_TRASH) {
             let pixbuf = this._createEmblemedIcon(this._fileInfo.get_icon(), null);
-            this._icon.set_from_pixbuf(pixbuf);
-            this._dragSource.drag_source_set_icon_pixbuf(pixbuf);
+            const scale = this._icon.get_scale_factor();
+            let surface = Gdk.cairo_surface_create_from_pixbuf(pixbuf, scale, null);
+            this._icon.set_from_surface(surface);
             return;
         }
         let icon_set = false;
@@ -459,7 +461,10 @@ var FileItem = class {
                 } catch (error) {
                     if (!error.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED)) {
                         print('Error while loading thumbnail: ' + error);
-                        this._icon.set_from_pixbuf(this._createEmblemedIcon(this._fileInfo.get_icon(), null));
+                        let pixbuf = this._createEmblemedIcon(this._fileInfo.get_icon());
+                        const scale = this._icon.get_scale_factor();
+                        let surface = Gdk.cairo_surface_create_from_pixbuf(pixbuf, scale, null);
+                        this._icon.set_from_surface(surface);
                     }
                 }
             }
@@ -476,8 +481,9 @@ var FileItem = class {
                     pixbuf = this._createEmblemedIcon(this._getDefaultIcon(), null);
                 }
             }
-            this._icon.set_from_pixbuf(pixbuf);
-            this._dragSource.drag_source_set_icon_pixbuf(pixbuf);
+            const scale = this._icon.get_scale_factor();
+            let surface = Gdk.cairo_surface_create_from_pixbuf(pixbuf, scale, null);
+            this._icon.set_from_surface(surface);
         }
     }
 
@@ -502,10 +508,13 @@ var FileItem = class {
                 width = height * aspectRatio;
             else
                 height = width / aspectRatio;
+            const scale = this._icon.get_scale_factor();
+            width *= scale;
+            height *= scale;
             let pixbuf = thumbnailPixbuf.scale_simple(Math.floor(width), Math.floor(height), GdkPixbuf.InterpType.BILINEAR);
             pixbuf = this._addEmblemsToPixbufIfNeeded(pixbuf);
-            this._icon.set_from_pixbuf(pixbuf);
-            this._dragSource.drag_source_set_icon_pixbuf(pixbuf);
+            let surface = Gdk.cairo_surface_create_from_pixbuf(pixbuf, scale, null);
+            this._icon.set_from_surface(surface);
             return true;
         }
         return false;
@@ -540,9 +549,10 @@ var FileItem = class {
     }
 
     _addEmblemsToPixbufIfNeeded(pixbuf) {
+        const scale = this._icon.get_scale_factor();
         this._copiedPixbuf = false;
         let emblem = null;
-        let finalSize = Math.floor(Prefs.get_icon_size() / 3);
+        let finalSize = Math.floor(Prefs.get_icon_size() / 3) * scale;
         if (this._isSymlink) {
             if (this._isBrokenSymlink)
                 emblem = Gio.ThemedIcon.new('emblem-unreadable');
@@ -550,7 +560,7 @@ var FileItem = class {
                 emblem = Gio.ThemedIcon.new('emblem-symbolic-link');
             pixbuf = this._copyAndResizeIfNeeded(pixbuf);
             let theme = Gtk.IconTheme.get_default();
-            let emblemIcon = theme.lookup_by_gicon(emblem, finalSize, Gtk.IconLookupFlags.FORCE_SIZE).load_icon();
+            let emblemIcon = theme.lookup_by_gicon_for_scale(emblem, finalSize / scale, scale, Gtk.IconLookupFlags.FORCE_SIZE).load_icon();
             emblemIcon.composite(pixbuf, pixbuf.width - finalSize, pixbuf.height - finalSize, finalSize, finalSize, pixbuf.width - finalSize, pixbuf.height - finalSize, 1, 1, GdkPixbuf.InterpType.BILINEAR, 255);
         }
 
@@ -558,7 +568,7 @@ var FileItem = class {
             pixbuf = this._copyAndResizeIfNeeded(pixbuf);
             let theme = Gtk.IconTheme.get_default();
             emblem = Gio.ThemedIcon.new('emblem-default');
-            let emblemIcon = theme.lookup_by_gicon(emblem, finalSize, Gtk.IconLookupFlags.FORCE_SIZE).load_icon();
+            let emblemIcon = theme.lookup_by_gicon_for_scale(emblem, finalSize / scale, scale, Gtk.IconLookupFlags.FORCE_SIZE).load_icon();
             emblemIcon.composite(pixbuf, 0, 0, finalSize, finalSize, 0, 0, 1, 1, GdkPixbuf.InterpType.BILINEAR, 255);
         }
         return pixbuf;
@@ -606,11 +616,12 @@ var FileItem = class {
         }
         let theme = Gtk.IconTheme.get_default();
 
+        const scale = this._icon.get_scale_factor();
         let itemIcon = null;
         try {
-            itemIcon = theme.lookup_by_gicon(icon, Prefs.get_icon_size(), Gtk.IconLookupFlags.FORCE_SIZE).load_icon();
+            itemIcon = theme.lookup_by_gicon_for_scale(icon, Prefs.get_icon_size(), scale, Gtk.IconLookupFlags.FORCE_SIZE).load_icon();
         } catch (e) {
-            itemIcon = theme.load_icon("text-x-generic", Prefs.get_icon_size(), Gtk.IconLookupFlags.FORCE_SIZE);
+            itemIcon = theme.load_icon_for_scale("text-x-generic", Prefs.get_icon_size(), scale, Gtk.IconLookupFlags.FORCE_SIZE);
         }
 
         itemIcon = this._addEmblemsToPixbufIfNeeded(itemIcon);
