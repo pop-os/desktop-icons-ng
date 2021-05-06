@@ -119,11 +119,11 @@ msgstr "Paramètres d’affichage"
 
 #: desktopManager.js:598
 msgid "Desktop Icons settings"
-msgstr ""
+msgstr "Paramètres des icônes du bureau"
 
 #: desktopManager.js:609
 msgid "Scripts"
-msgstr ""
+msgstr "Scripts"
 
 #: desktopManager.js:1127 desktopManager.js:1175
 msgid "Error while deleting files"
@@ -173,7 +173,7 @@ msgstr "Ouvrir avec une autre application"
 
 #: fileItem.js:805
 msgid "Launch using Dedicated Graphics Card"
-msgstr ""
+msgstr "Lancer avec la carte graphique dédiée"
 
 #: fileItem.js:813
 msgid "Cut"
@@ -218,7 +218,7 @@ msgstr "Démonter"
 
 #: fileItem.js:870
 msgid "Send to..."
-msgstr ""
+msgstr "Envoyer vers..."
 
 #: fileItem.js:874
 msgid "Compress {0} file"
@@ -229,8 +229,8 @@ msgstr[1] ""
 #: fileItem.js:877
 msgid "New Folder with {0} item"
 msgid_plural "New Folder with {0} items"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Nouveau dossier avec {0} élément"
+msgstr[1] "Nouveau dossier avec {0} éléments"
 
 #: fileItem.js:883
 #, fuzzy
