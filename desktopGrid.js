@@ -87,6 +87,9 @@ var DesktopGrid = class {
             }
         });
 
+        const scale = this._window.get_scale_factor();
+        this.gridGlobalRectangle = new Gdk.Rectangle({'x':this._x, 'y':this._y, 'width':(this._width*scale), 'height':(this._height*scale)});
+
         this._eventBox = new Gtk.EventBox({ visible: true });
         this._window.add(this._eventBox);
         this._container = new Gtk.Fixed();
@@ -217,22 +220,12 @@ var DesktopGrid = class {
     }
 
     _doDrawRubberBand(cr) {
-        if (this._desktopManager.rubberBand) {
-            let minX = Math.min(this._desktopManager.rubberBandInitX, this._desktopManager.mouseX);
-            let maxX = Math.max(this._desktopManager.rubberBandInitX, this._desktopManager.mouseX);
-            let minY = Math.min(this._desktopManager.rubberBandInitY, this._desktopManager.mouseY);
-            let maxY = Math.max(this._desktopManager.rubberBandInitY, this._desktopManager.mouseY);
-
-            const scale = this._window.get_scale_factor();
-            if ((minX >= (this._x + this._width * scale)) ||
-                (minY >= (this._y + this._height * scale)) ||
-                (maxX < this._x) ||
-                (maxY < this._y)) {
+        if (this._desktopManager.rubberBand && this._desktopManager.selectionRectangle) {
+            if (! this.gridGlobalRectangle.intersect(this._desktopManager.selectionRectangle)[0]) {
                 return;
             }
-
-            let [xInit, yInit] = this._coordinatesGlobalToLocal(minX, minY);
-            let [xFin, yFin] = this._coordinatesGlobalToLocal(maxX, maxY);
+            let [xInit, yInit] = this._coordinatesGlobalToLocal(this._desktopManager.x1, this._desktopManager.y1);
+            let [xFin, yFin] = this._coordinatesGlobalToLocal(this._desktopManager.x2, this._desktopManager.y2);
 
             cr.rectangle(xInit + 0.5, yInit + 0.5, xFin - xInit, yFin - yInit);
             Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: this._desktopManager.selectColor.red,

@@ -89,6 +89,8 @@ var FileItem = class {
         this._container.pack_start(this._eventBox, false, false, 0);
         this.actor.add(this._container);
 
+        this.containerRectangle = new Gdk.Rectangle();
+
         /* We need to allow the "button-press" event to pass through the callbacks, to allow the DnD to work
          * But we must avoid them to reach the main window.
          * The solution is to allow them to pass in a EventBox, used both for detecting the events and the DnD, and block them
@@ -285,6 +287,8 @@ var FileItem = class {
         this._label.margin_end = margin;
         this._label.margin_bottom = margin;
         this._iconContainer.margin_top = margin;
+        [this.containerRectangle.x, this.containerRectangle.y] = [this._x1, this._y1];
+        [this.containerRectangle.width, this.containerRectangle.height] = [this._x2 - this._x1, this._y2 - this._y1]
     }
 
     getCoordinates() {
@@ -1039,26 +1043,6 @@ var FileItem = class {
             }
         }
         return false;
-    }
-
-    startRubberband() {
-        this._rubberband = true;
-        this._touchedByRubberband = false;
-    }
-
-    endRubberband() {
-        this._rubberband = false;
-    }
-
-    updateRubberband(x1, y1, x2, y2) {
-        if ((x2 < this._x1) || (x1 > this._x2) || (y2 < this._y1) || (y1 > this._y2)) {
-            if (this._touchedByRubberband) {
-                this.unsetSelected();
-            }
-        } else {
-            this.setSelected();
-            this._touchedByRubberband = true;
-        }
     }
 
     get savedCoordinates() {
