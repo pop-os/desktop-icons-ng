@@ -61,16 +61,16 @@ var FileItem = class {
 
         this._eventBox = new Gtk.EventBox({visible: true});
 
-        this._innerContainer = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL});
+        this._innerContainer = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL,
+                                            halign: Gtk.Align.CENTER});
         this._container = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL});
         this._styleContext = this._innerContainer.get_style_context();
+        this._styleContext.add_class('file-item');
         this._eventBox.add(this._innerContainer);
-
 
         this._icon = new Gtk.Image();
         this._iconContainer = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL});
         this._innerContainer.pack_start(this._iconContainer, false, false, 0);
-        this._iconContainer.set_size_request(Prefs.get_desired_width(), Prefs.get_icon_size());
         this._iconContainer.pack_start(this._icon, true, true, 0);
         this._iconContainer.set_baseline_position(Gtk.BaselinePosition.CENTER);
 

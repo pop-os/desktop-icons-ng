@@ -8,6 +8,11 @@ label.file-label:backdrop {
     color: white;
 }
 
+.file-item {
+    padding: 4px;
+    border-radius: 10px;
+}
+
 .file-item-hover {
    background-color: rgba(238, 238, 238, 0.2);
 }
