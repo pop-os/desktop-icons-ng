@@ -164,7 +164,7 @@ var DesktopManager = class {
         for(let desktopIndex in this._desktopList) {
             let desktop = this._desktopList[desktopIndex];
             if (this._asDesktop) {
-                var desktopName = `@!${desktop.x},${desktop.y};BDH`;
+                var desktopName = `@!${desktop.x},${desktop.y};BDHF`;
             } else {
                 var desktopName = `DING ${desktopIndex}`;
             }
