@@ -1479,6 +1479,7 @@ var DesktopManager = class {
             dialog.set_action(Gtk.FileChooserAction.SELECT_FOLDER);
             dialog.add_button(_('Cancel'), Gtk.ResponseType.CANCEL);
             dialog.add_button(_('Select'), Gtk.ResponseType.ACCEPT);
+            DesktopIconsUtil.windowHidePagerTaskbarModal(dialog, true);
             let response = dialog.run();
             if (response === Gtk.ResponseType.ACCEPT) {
                 folder = dialog.get_uri();

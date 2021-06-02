@@ -19,6 +19,7 @@
 const Gtk = imports.gi.Gtk;
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
+const Gdk = imports.gi.Gdk;
 const Prefs = imports.preferences;
 const Enums = imports.enums;
 const Gettext = imports.gettext.domain('ding');
@@ -242,5 +243,30 @@ function writeTextFileToDesktop(text, filename, dropCoordinates) {
         try {
             file.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
         } catch(e) {}
+    }
+}
+
+function windowHidePagerTaskbarModal(window, modal) {
+    let using_X11 = Gdk.Display.get_default().constructor.$gtype.name === 'GdkX11Display';
+    if (using_X11) {
+        window.set_type_hint(Gdk.WindowTypeHint.NORMAL);
+        window.set_skip_taskbar_hint(true);
+        window.set_skip_pager_hint(true);
+    } else {
+        let title = window.get_title();
+        if (modal) {
+            title = title + '@!HTD';
+        } else {
+            title = title + '@!H';
+        }
+        window.set_title(title);
+    }
+    if (modal) {
+        window.connect('focus-out-event', () => {
+            window.set_keep_above(true);
+            window.stick();
+            window.grab_focus();
+        });
+        window.grab_focus();
     }
 }

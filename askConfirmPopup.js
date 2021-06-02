@@ -18,6 +18,7 @@
 
 const Gtk = imports.gi.Gtk;
 const Pango = imports.gi.Pango;
+const DesktopIconsUtil = imports.desktopIconsUtil;
 const Gettext = imports.gettext.domain('ding');
 
 const _ = Gettext.gettext;
@@ -35,6 +36,7 @@ var AskConfirmPopup = class {
         this._window.add_button(_("Cancel"), Gtk.ResponseType.CANCEL);
         let deleteButton = this._window.add_button(_("Delete"), Gtk.ResponseType.OK);
         deleteButton.get_style_context().add_class("destructive-action");
+        DesktopIconsUtil.windowHidePagerTaskbarModal(this._window, true);
     }
 
     run() {
