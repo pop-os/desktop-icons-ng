@@ -223,7 +223,11 @@ var DesktopGrid = class {
             let minY = Math.min(this._desktopManager.rubberBandInitY, this._desktopManager.mouseY);
             let maxY = Math.max(this._desktopManager.rubberBandInitY, this._desktopManager.mouseY);
 
-            if ((minX >= (this._x + this._width )) || (minY >= (this._y + this._height)) || (maxX < this._x) || (maxY < this._y)) {
+            const scale = this._window.get_scale_factor();
+            if ((minX >= (this._x + this._width * scale)) ||
+                (minY >= (this._y + this._height * scale)) ||
+                (maxX < this._x) ||
+                (maxY < this._y)) {
                 return;
             }
 
