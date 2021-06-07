@@ -493,6 +493,7 @@ var DesktopManager = class {
         let symbol = event.get_keyval()[1];
         let isCtrl = (event.get_state()[1] & Gdk.ModifierType.CONTROL_MASK) != 0;
         let isShift = (event.get_state()[1] & Gdk.ModifierType.SHIFT_MASK) != 0;
+        let isAlt = (event.get_state()[1] & Gdk.ModifierType.MOD1_MASK) != 0;
         if (isCtrl && isShift && ((symbol == Gdk.KEY_Z) || (symbol == Gdk.KEY_z))) {
             this._doRedo();
             return true;
@@ -507,6 +508,15 @@ var DesktopManager = class {
             return true;
         } else if (isCtrl && ((symbol == Gdk.KEY_V) || (symbol == Gdk.KEY_v))) {
             this._doPaste();
+            return true;
+        } else if (isAlt && (symbol == Gdk.KEY_Return)) {
+            let selection = this.getCurrentSelection(true);
+            DBusUtils.FreeDesktopFileManagerProxy.ShowItemPropertiesRemote(selection, '',
+                (result, error) => {
+                    if (error)
+                        log('Error showing properties: ' + error.message);
+                    }
+                );
             return true;
         } else if (symbol == Gdk.KEY_Return) {
             let selection = this.getCurrentSelection(false);
