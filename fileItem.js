@@ -18,6 +18,7 @@
  */
 
 const GObject = imports.gi.GObject;
+const Clutter = imports.gi.Clutter;
 const Gtk = imports.gi.Gtk;
 const Gdk = imports.gi.Gdk;
 const Gio = imports.gi.Gio;
@@ -50,6 +51,9 @@ var FileItem = class {
         this._queryFileInfoCancellable = null;
         this._isSpecial = this._fileExtra != Enums.FileType.NONE;
         this._grid = null;
+        this._lastClickTime = 0;
+        this._lastClickButton = 0;
+        this._clickCount = 0;
 
         this._file = file;
 
@@ -921,7 +925,25 @@ var FileItem = class {
         DesktopIconsUtil.launchTerminal(this.file.get_path(), null);
     }
 
+    _updateClickState(event) {
+        let settings = Clutter.Settings.get_default();
+
+        if ((event.get_button()[1] == this._lastClickButton) &&
+            ((event.get_time() - this._lastClickTime) < settings.double_click_time))
+            this._clickCount++;
+        else
+            this._clickCount = 1;
+
+        this._lastClickTime = event.get_time();
+        this._lastClickButton = event.get_button()[1];
+    }
+
+    _getClickCount() {
+        return this._clickCount;
+    }
+
     _onPressButton(actor, event) {
+        this._updateClickState(event);
         let button = event.get_button()[1];
         if (button == 3) {
             if (!this._isSelected) {
@@ -941,7 +963,7 @@ var FileItem = class {
             if (this._actionTrash)
                 this._actionTrash.set_sensitive(!allowCutCopyTrash);
         } else if (button == 1) {
-            if (event.get_event_type() == Gdk.EventType.BUTTON_PRESS) {
+            if (this._getClickCount() == 1) {
                 let [a, x, y] = event.get_coords();
                 let state = event.get_state()[1];
                 this._primaryButtonPressed = true;
@@ -955,7 +977,7 @@ var FileItem = class {
                     this._desktopManager.selected(this, Enums.Selection.ALONE);
                 }
             }
-            if ((event.get_event_type() == Gdk.EventType.DOUBLE_BUTTON_PRESS) && !Prefs.CLICK_POLICY_SINGLE) {
+            if (this._getClickCount() == 2 && !Prefs.CLICK_POLICY_SINGLE) {
                 this.doOpen();
             }
         }
