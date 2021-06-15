@@ -264,7 +264,7 @@ msgstr "Malé"
 
 #: preferences.js:94
 msgid "Standard"
-msgstr "Standartní"
+msgstr "Standardní"
 
 #: preferences.js:94
 msgid "Large"
@@ -472,7 +472,7 @@ msgstr ""
 #~ msgstr "Soubor nebo složka s tímto názvem již existuje."
 
 #~ msgid "Huge"
-#~ msgstr "obrovské"
+#~ msgstr "Obrovské"
 
 #~ msgid "Ok"
 #~ msgstr "Ok"
