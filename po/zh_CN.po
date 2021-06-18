@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-12 22:59+0200\n"
+"POT-Creation-Date: 2021-06-18 22:06+0200\n"
 "PO-Revision-Date: 2018-10-24 21:31+0800\n"
 "Last-Translator: Okeyja <bross049deng@gmail.com>\n"
 "Language: zh_CN\n"
@@ -16,15 +16,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.2\n"
 
-#: askConfirmPopup.js:35 askNamePopup.js:36 desktopIconsUtil.js:204
+#: askConfirmPopup.js:36 askNamePopup.js:37 desktopIconsUtil.js:211
+#: desktopManager.js:1481
 msgid "Cancel"
 msgstr "取消"
 
-#: askConfirmPopup.js:36
+#: askConfirmPopup.js:37
 msgid "Delete"
 msgstr "删除"
 
-#: askNamePopup.js:35
+#: askNamePopup.js:36
 msgid "OK"
 msgstr "确定"
 
@@ -40,332 +41,349 @@ msgstr "文件名称"
 msgid "Rename"
 msgstr "重命名"
 
-#: desktopIconsUtil.js:79
+#: desktopIconsUtil.js:80
 msgid "Command not found"
 msgstr "命令无法找到"
 
-#: desktopIconsUtil.js:195
+#: desktopIconsUtil.js:202
 msgid "Do you want to run “{0}”, or display its contents?"
 msgstr "您想要运行“{0}，或者显示其内容吗？”"
 
-#: desktopIconsUtil.js:196
+#: desktopIconsUtil.js:203
 msgid "“{0}” is an executable text file."
 msgstr "“{0}” 是一个可执行程序。"
 
-#: desktopIconsUtil.js:200
+#: desktopIconsUtil.js:207
 msgid "Execute in a terminal"
 msgstr "打开终端"
 
-#: desktopIconsUtil.js:202
+#: desktopIconsUtil.js:209
 msgid "Show"
 msgstr "显示"
 
-#: desktopIconsUtil.js:206
+#: desktopIconsUtil.js:213
 msgid "Execute"
 msgstr "运行"
 
-#: desktopManager.js:131
+#: desktopManager.js:135
 msgid "Nautilus File Manager not found"
 msgstr "Nautilus 文件管理器找不到"
 
-#: desktopManager.js:132
+#: desktopManager.js:136
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr "Nautilus 文件管理器强制与 Desktop Icons NG 运行。"
 
-#: desktopManager.js:543
+#: desktopManager.js:563
 msgid "New Folder"
 msgstr "新建文件夹"
 
-#: desktopManager.js:547
+#: desktopManager.js:567
 msgid "New Document"
 msgstr "新建文档"
 
-#: desktopManager.js:552
+#: desktopManager.js:572
 msgid "Paste"
 msgstr "粘贴"
 
-#: desktopManager.js:556
+#: desktopManager.js:576
 msgid "Undo"
 msgstr "复原"
 
-#: desktopManager.js:560
+#: desktopManager.js:580
 msgid "Redo"
 msgstr "重做"
 
-#: desktopManager.js:566
+#: desktopManager.js:586
 msgid "Select all"
 msgstr "全选"
 
-#: desktopManager.js:572
+#: desktopManager.js:592
 msgid "Show Desktop in Files"
 msgstr "在文件管理器中打开桌面"
 
-#: desktopManager.js:576 fileItem.js:891
+#: desktopManager.js:596 fileItem.js:913
 msgid "Open in Terminal"
 msgstr "打开终端"
 
-#: desktopManager.js:582
+#: desktopManager.js:602
 msgid "Change Background…"
 msgstr "更改壁纸……"
 
-#: desktopManager.js:591
+#: desktopManager.js:611
 msgid "Display Settings"
 msgstr "显示设置"
 
-#: desktopManager.js:598
+#: desktopManager.js:618
 msgid "Desktop Icons settings"
 msgstr ""
 
-#: desktopManager.js:609
+#: desktopManager.js:629
 msgid "Scripts"
 msgstr ""
 
-#: desktopManager.js:1127 desktopManager.js:1175
+#: desktopManager.js:1148 desktopManager.js:1196
 msgid "Error while deleting files"
 msgstr "删除文件发生错误"
 
-#: desktopManager.js:1201
+#: desktopManager.js:1222
 msgid "Are you sure you want to permanently delete these items?"
 msgstr "您确定要永久删除这些项目吗？"
 
-#: desktopManager.js:1202
+#: desktopManager.js:1223
 msgid "If you delete an item, it will be permanently lost."
 msgstr "删除一个项目，它将会永远消失"
 
-#: desktopManager.js:1310
+#: desktopManager.js:1339
 msgid "New folder"
 msgstr "新建文件夹"
 
-#: desktopManager.js:1385
+#: desktopManager.js:1414
 msgid "Can not email a Directory"
 msgstr ""
 
-#: desktopManager.js:1386
+#: desktopManager.js:1415
 msgid "Selection includes a Directory, compress the directory to a file first."
 msgstr ""
 
+#: desktopManager.js:1479
+msgid "Select Extract Destination"
+msgstr ""
+
+#: desktopManager.js:1482
+#, fuzzy
+msgid "Select"
+msgstr "全选"
+
 #. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
-#: fileItem.js:151
+#: fileItem.js:153
 msgid "Home"
 msgstr "Home"
 
-#: fileItem.js:794
+#: fileItem.js:809
 msgid "Open All..."
 msgstr ""
 
-#: fileItem.js:794
+#: fileItem.js:809
 msgid "Open"
 msgstr "打开"
 
-#: fileItem.js:801
+#: fileItem.js:816
 #, fuzzy
 msgid "Open All With Other Application..."
 msgstr "用其他方式打开"
 
-#: fileItem.js:801
+#: fileItem.js:816
 msgid "Open With Other Application"
 msgstr "用其他方式打开"
 
-#: fileItem.js:805
+#: fileItem.js:820
 msgid "Launch using Dedicated Graphics Card"
 msgstr ""
 
-#: fileItem.js:813
+#: fileItem.js:828
 msgid "Cut"
 msgstr "剪切"
 
-#: fileItem.js:816
+#: fileItem.js:831
 msgid "Copy"
 msgstr "复制"
 
-#: fileItem.js:820
+#: fileItem.js:835
 msgid "Rename…"
 msgstr "重命名……"
 
-#: fileItem.js:824
+#: fileItem.js:839
 msgid "Move to Trash"
 msgstr "放入回收站"
 
-#: fileItem.js:828
+#: fileItem.js:843
 msgid "Delete permanently"
 msgstr "永久删除"
 
-#: fileItem.js:834
+#: fileItem.js:849
 #, fuzzy
 msgid "Don't Allow Launching"
 msgstr "不允许运行"
 
-#: fileItem.js:834
+#: fileItem.js:849
 msgid "Allow Launching"
 msgstr "允许运行"
 
-#: fileItem.js:841
+#: fileItem.js:856
 msgid "Empty Trash"
 msgstr "清空回收站"
 
-#: fileItem.js:848
+#: fileItem.js:863
 msgid "Eject"
 msgstr "驱逐"
 
-#: fileItem.js:855
+#: fileItem.js:870
 msgid "Unmount"
 msgstr "弹出"
 
-#: fileItem.js:870
+#: fileItem.js:885
+msgid "Extract Here"
+msgstr ""
+
+#: fileItem.js:888
+msgid "Extract To..."
+msgstr ""
+
+#: fileItem.js:893
 msgid "Send to..."
 msgstr ""
 
-#: fileItem.js:874
+#: fileItem.js:897
 msgid "Compress {0} file"
 msgid_plural "Compress {0} files"
 msgstr[0] ""
 msgstr[1] ""
 
-#: fileItem.js:877
+#: fileItem.js:900
 msgid "New Folder with {0} item"
 msgid_plural "New Folder with {0} items"
 msgstr[0] ""
 msgstr[1] ""
 
-#: fileItem.js:883
+#: fileItem.js:905
 #, fuzzy
 msgid "Common Properties"
 msgstr "属性"
 
-#: fileItem.js:883
+#: fileItem.js:905
 msgid "Properties"
 msgstr "属性"
 
-#: fileItem.js:887
+#: fileItem.js:909
 #, fuzzy
 msgid "Show All in Files"
 msgstr "在“文件”中显示"
 
-#: fileItem.js:887
+#: fileItem.js:909
 msgid "Show in Files"
 msgstr "在“文件”中显示"
 
-#: preferences.js:88
+#: preferences.js:91
 msgid "Settings"
 msgstr "设置"
 
-#: preferences.js:94
+#: preferences.js:98
 msgid "Size for the desktop icons"
 msgstr "桌面图标大小"
 
-#: preferences.js:94
+#: preferences.js:98
 msgid "Tiny"
 msgstr "微"
 
-#: preferences.js:94
+#: preferences.js:98
 msgid "Small"
 msgstr "小"
 
-#: preferences.js:94
+#: preferences.js:98
 msgid "Standard"
 msgstr "中"
 
-#: preferences.js:94
+#: preferences.js:98
 msgid "Large"
 msgstr "大"
 
-#: preferences.js:95
+#: preferences.js:99
 msgid "Show the personal folder in the desktop"
 msgstr "在桌面显示个人文件夹"
 
-#: preferences.js:96
+#: preferences.js:100
 msgid "Show the trash icon in the desktop"
 msgstr "在桌面显示回收站图标"
 
-#: preferences.js:97 schemas/org.gnome.shell.extensions.ding.gschema.xml:38
+#: preferences.js:101 schemas/org.gnome.shell.extensions.ding.gschema.xml:38
 msgid "Show external drives in the desktop"
 msgstr "在桌面显示外置驱动器"
 
-#: preferences.js:98 schemas/org.gnome.shell.extensions.ding.gschema.xml:43
+#: preferences.js:102 schemas/org.gnome.shell.extensions.ding.gschema.xml:43
 msgid "Show network drives in the desktop"
 msgstr "在桌面显示个人文件夹"
 
-#: preferences.js:101
+#: preferences.js:105
 msgid "New icons alignment"
 msgstr "新图标排列"
 
-#: preferences.js:102
+#: preferences.js:106
 msgid "Top-left corner"
 msgstr "左上角"
 
-#: preferences.js:103
+#: preferences.js:107
 msgid "Top-right corner"
 msgstr "右上角"
 
-#: preferences.js:104
+#: preferences.js:108
 msgid "Bottom-left corner"
 msgstr "左下角"
 
-#: preferences.js:105
+#: preferences.js:109
 msgid "Bottom-right corner"
 msgstr "右下角"
 
-#: preferences.js:107 schemas/org.gnome.shell.extensions.ding.gschema.xml:48
+#: preferences.js:111 schemas/org.gnome.shell.extensions.ding.gschema.xml:48
 msgid "Add new drives to the opposite side of the screen"
 msgstr "在屏幕对面展示新驱动器"
 
-#: preferences.js:108
+#: preferences.js:112
 msgid "Highlight the drop place during Drag'n'Drop"
 msgstr "拖拽图标时高亮显示放置区域"
 
-#: preferences.js:112
+#: preferences.js:116
 msgid "Settings shared with Nautilus"
 msgstr "共享Nautilus的设置"
 
-#: preferences.js:118
+#: preferences.js:122
 msgid "Click type for open files"
 msgstr "打开文件的点击方式"
 
-#: preferences.js:118
+#: preferences.js:122
 msgid "Single click"
 msgstr "单击"
 
-#: preferences.js:118
+#: preferences.js:122
 msgid "Double click"
 msgstr "双击"
 
-#: preferences.js:119
+#: preferences.js:123
 msgid "Show hidden files"
 msgstr "显示隐藏文件"
 
-#: preferences.js:120
+#: preferences.js:124
 msgid "Show a context menu item to delete permanently"
 msgstr "永久删除时展示确认菜单项目"
 
-#: preferences.js:123
+#: preferences.js:129
 msgid "Action to do when launching a program from the desktop"
 msgstr "在桌面运行程序时执行的动作"
 
-#: preferences.js:124
+#: preferences.js:130
 msgid "Display the content of the file"
 msgstr "展示文件内容"
 
-#: preferences.js:125
+#: preferences.js:131
 msgid "Launch the file"
 msgstr "运行文件"
 
-#: preferences.js:126
+#: preferences.js:132
 msgid "Ask what to do"
 msgstr "询问如何做"
 
-#: preferences.js:130
+#: preferences.js:138
 msgid "Show image thumbnails"
 msgstr "显示图片缩略图"
 
-#: preferences.js:131
+#: preferences.js:139
 msgid "Never"
 msgstr "从不"
 
-#: preferences.js:132
+#: preferences.js:140
 msgid "Local files only"
 msgstr "仅本地文件"
 
-#: preferences.js:133
+#: preferences.js:141
 msgid "Always"
 msgstr "始终"
 
