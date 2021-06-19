@@ -2,14 +2,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the ding package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Tim Hofstede <timhofstede@mail.de>, 2020.
+# Tim Hofstede <timhofstede@mail.de>, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ding\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-18 22:06+0200\n"
-"PO-Revision-Date: 2021-04-18 11:43+0200\n"
+"PO-Revision-Date: 2021-06-19 14:29+0200\n"
 "Last-Translator: Tim Hofstede <phokas@mail.de>\n"
 "Language-Team: German <phokas@mail.de>\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.3\n"
 
 #: askConfirmPopup.js:36 askNamePopup.js:37 desktopIconsUtil.js:211
 #: desktopManager.js:1481
@@ -42,7 +42,7 @@ msgstr "Dateiname"
 
 #: askRenamePopup.js:47
 msgid "Rename"
-msgstr "Umbenennen"
+msgstr "Umbenennen ..."
 
 #: desktopIconsUtil.js:80
 msgid "Command not found"
@@ -110,7 +110,7 @@ msgstr "Im Terminal öffnen"
 
 #: desktopManager.js:602
 msgid "Change Background…"
-msgstr "Hintergrund ändern…"
+msgstr "Hintergrund ändern …"
 
 #: desktopManager.js:611
 msgid "Display Settings"
@@ -152,12 +152,11 @@ msgstr ""
 
 #: desktopManager.js:1479
 msgid "Select Extract Destination"
-msgstr ""
+msgstr "Ziel für die Entpackung auswählen"
 
 #: desktopManager.js:1482
-#, fuzzy
 msgid "Select"
-msgstr "Alles auswählen"
+msgstr "Auswählen"
 
 #. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
 #: fileItem.js:153
@@ -166,7 +165,7 @@ msgstr "Persönlicher Ordner"
 
 #: fileItem.js:809
 msgid "Open All..."
-msgstr "Alle öffnen…"
+msgstr "Alle öffnen ..."
 
 #: fileItem.js:809
 msgid "Open"
@@ -194,7 +193,7 @@ msgstr "Kopieren"
 
 #: fileItem.js:835
 msgid "Rename…"
-msgstr "Umbenennen…"
+msgstr "Umbenennen …"
 
 #: fileItem.js:839
 msgid "Move to Trash"
@@ -226,15 +225,15 @@ msgstr "Aushängen"
 
 #: fileItem.js:885
 msgid "Extract Here"
-msgstr ""
+msgstr "Hier entpacken"
 
 #: fileItem.js:888
 msgid "Extract To..."
-msgstr ""
+msgstr "Entpacken nach ..."
 
 #: fileItem.js:893
 msgid "Send to..."
-msgstr "Senden an…"
+msgstr "Senden an ..."
 
 #: fileItem.js:897
 msgid "Compress {0} file"
