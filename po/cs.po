@@ -224,11 +224,11 @@ msgstr "Odpojit"
 
 #: fileItem.js:885
 msgid "Extract Here"
-msgstr ""
+msgstr "Rozbalit sem"
 
 #: fileItem.js:888
 msgid "Extract To..."
-msgstr ""
+msgstr "Rozbalit do…"
 
 #: fileItem.js:893
 msgid "Send to..."

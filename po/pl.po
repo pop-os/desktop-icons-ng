@@ -51,11 +51,11 @@ msgstr "Nie odnaleziono polecenia"
 
 #: desktopIconsUtil.js:202
 msgid "Do you want to run “{0}”, or display its contents?"
-msgstr ""
+msgstr "Wykonać plik „{0}”, czy wyświetlić jego zawartość?"
 
 #: desktopIconsUtil.js:203
 msgid "“{0}” is an executable text file."
-msgstr ""
+msgstr "„{0}” jest wykonywalnym plikiem tekstowym."
 
 #: desktopIconsUtil.js:207
 msgid "Execute in a terminal"
@@ -123,7 +123,7 @@ msgstr ""
 
 #: desktopManager.js:629
 msgid "Scripts"
-msgstr ""
+msgstr "Skrypty"
 
 #: desktopManager.js:1148 desktopManager.js:1196
 msgid "Error while deleting files"
@@ -227,15 +227,15 @@ msgstr "Odmontuj"
 
 #: fileItem.js:885
 msgid "Extract Here"
-msgstr ""
+msgstr "Rozpakuj tutaj"
 
 #: fileItem.js:888
 msgid "Extract To..."
-msgstr ""
+msgstr "Rozpakuj do…"
 
 #: fileItem.js:893
 msgid "Send to..."
-msgstr ""
+msgstr "Wyślij do…"
 
 #: fileItem.js:897
 msgid "Compress {0} file"

@@ -222,11 +222,11 @@ msgstr "마운트 해제"
 
 #: fileItem.js:885
 msgid "Extract Here"
-msgstr ""
+msgstr "여기 풀기"
 
 #: fileItem.js:888
 msgid "Extract To..."
-msgstr ""
+msgstr "다른 위치에 풀기…"
 
 #: fileItem.js:893
 msgid "Send to..."

@@ -228,11 +228,11 @@ msgstr "Démonter"
 
 #: fileItem.js:885
 msgid "Extract Here"
-msgstr ""
+msgstr "Extraire ici"
 
 #: fileItem.js:888
 msgid "Extract To..."
-msgstr ""
+msgstr "Extraire vers…"
 
 #: fileItem.js:893
 msgid "Send to..."

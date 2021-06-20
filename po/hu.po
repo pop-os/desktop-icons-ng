@@ -224,11 +224,11 @@ msgstr "Leválasztás"
 
 #: fileItem.js:885
 msgid "Extract Here"
-msgstr ""
+msgstr "Kibontás ide"
 
 #: fileItem.js:888
 msgid "Extract To..."
-msgstr ""
+msgstr "Kibontás…"
 
 #: fileItem.js:893
 msgid "Send to..."

@@ -124,7 +124,7 @@ msgstr ""
 
 #: desktopManager.js:629
 msgid "Scripts"
-msgstr ""
+msgstr "Сценарии"
 
 #: desktopManager.js:1148 desktopManager.js:1196
 msgid "Error while deleting files"
@@ -220,23 +220,23 @@ msgstr "Очистить корзину"
 
 #: fileItem.js:863
 msgid "Eject"
-msgstr ""
+msgstr "Извлечь"
 
 #: fileItem.js:870
 msgid "Unmount"
-msgstr ""
+msgstr "Отсоединить том"
 
 #: fileItem.js:885
 msgid "Extract Here"
-msgstr ""
+msgstr "Распаковать здесь"
 
 #: fileItem.js:888
 msgid "Extract To..."
-msgstr ""
+msgstr "Распаковать в…"
 
 #: fileItem.js:893
 msgid "Send to..."
-msgstr ""
+msgstr "Отправить…"
 
 #: fileItem.js:897
 msgid "Compress {0} file"
