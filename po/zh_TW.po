@@ -20,27 +20,27 @@ msgstr ""
 #: askConfirmPopup.js:36 askNamePopup.js:37 desktopIconsUtil.js:211
 #: desktopManager.js:1481
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: askConfirmPopup.js:37
 msgid "Delete"
-msgstr ""
+msgstr "刪除"
 
 #: askNamePopup.js:36
 msgid "OK"
-msgstr ""
+msgstr "確定"
 
 #: askRenamePopup.js:40
 msgid "Folder name"
-msgstr ""
+msgstr "資料夾名稱"
 
 #: askRenamePopup.js:40
 msgid "File name"
-msgstr ""
+msgstr "檔案名稱"
 
 #: askRenamePopup.js:47
 msgid "Rename"
-msgstr ""
+msgstr "重新命名"
 
 #: desktopIconsUtil.js:80
 msgid "Command not found"
@@ -48,11 +48,11 @@ msgstr ""
 
 #: desktopIconsUtil.js:202
 msgid "Do you want to run “{0}”, or display its contents?"
-msgstr ""
+msgstr "要執行「{0}」，還是顯示它的內容？"
 
 #: desktopIconsUtil.js:203
 msgid "“{0}” is an executable text file."
-msgstr ""
+msgstr "「{0}」是可執行的文字檔。"
 
 #: desktopIconsUtil.js:207
 #, fuzzy
@@ -81,7 +81,7 @@ msgstr "新增資料夾"
 
 #: desktopManager.js:567
 msgid "New Document"
-msgstr ""
+msgstr "新增文件"
 
 #: desktopManager.js:572
 msgid "Paste"
@@ -97,7 +97,7 @@ msgstr "重做"
 
 #: desktopManager.js:586
 msgid "Select all"
-msgstr ""
+msgstr "全部選取"
 
 #: desktopManager.js:592
 #, fuzzy
@@ -123,7 +123,7 @@ msgstr ""
 
 #: desktopManager.js:629
 msgid "Scripts"
-msgstr ""
+msgstr "命令稿"
 
 #: desktopManager.js:1148 desktopManager.js:1196
 msgid "Error while deleting files"
@@ -135,7 +135,7 @@ msgstr ""
 
 #: desktopManager.js:1223
 msgid "If you delete an item, it will be permanently lost."
-msgstr ""
+msgstr "如果直接刪除本項目，它會無法還原。"
 
 #: desktopManager.js:1339
 #, fuzzy
@@ -156,12 +156,12 @@ msgstr ""
 
 #: desktopManager.js:1482
 msgid "Select"
-msgstr ""
+msgstr "選擇"
 
 #. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
 #: fileItem.js:153
 msgid "Home"
-msgstr ""
+msgstr "家目錄"
 
 #: fileItem.js:809
 msgid "Open All..."
@@ -193,7 +193,7 @@ msgstr "複製"
 
 #: fileItem.js:835
 msgid "Rename…"
-msgstr ""
+msgstr "重新命名…"
 
 #: fileItem.js:839
 msgid "Move to Trash"
@@ -201,7 +201,7 @@ msgstr "移動到垃圾桶"
 
 #: fileItem.js:843
 msgid "Delete permanently"
-msgstr ""
+msgstr "永久刪除"
 
 #: fileItem.js:849
 msgid "Don't Allow Launching"
@@ -218,23 +218,23 @@ msgstr "清空回收桶"
 
 #: fileItem.js:863
 msgid "Eject"
-msgstr ""
+msgstr "退出"
 
 #: fileItem.js:870
 msgid "Unmount"
-msgstr ""
+msgstr "卸載"
 
 #: fileItem.js:885
 msgid "Extract Here"
-msgstr ""
+msgstr "在這裡解開"
 
 #: fileItem.js:888
 msgid "Extract To..."
-msgstr ""
+msgstr "解開到…"
 
 #: fileItem.js:893
 msgid "Send to..."
-msgstr ""
+msgstr "傳送到…"
 
 #: fileItem.js:897
 msgid "Compress {0} file"

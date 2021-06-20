@@ -123,7 +123,7 @@ msgstr ""
 
 #: desktopManager.js:629
 msgid "Scripts"
-msgstr ""
+msgstr "Skripty"
 
 #: desktopManager.js:1148 desktopManager.js:1196
 msgid "Error while deleting files"
@@ -227,15 +227,15 @@ msgstr "Odpojiť"
 
 #: fileItem.js:885
 msgid "Extract Here"
-msgstr ""
+msgstr "Rozbaliť sem"
 
 #: fileItem.js:888
 msgid "Extract To..."
-msgstr ""
+msgstr "Rozbaliť do…"
 
 #: fileItem.js:893
 msgid "Send to..."
-msgstr ""
+msgstr "Odoslať do…"
 
 #: fileItem.js:897
 msgid "Compress {0} file"

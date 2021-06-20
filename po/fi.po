@@ -225,11 +225,11 @@ msgstr "Irrota osio"
 
 #: fileItem.js:885
 msgid "Extract Here"
-msgstr ""
+msgstr "Pura tänne"
 
 #: fileItem.js:888
 msgid "Extract To..."
-msgstr ""
+msgstr "Pura…"
 
 #: fileItem.js:893
 msgid "Send to..."

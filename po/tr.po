@@ -235,11 +235,11 @@ msgstr "Bağlı Değil"
 
 #: fileItem.js:885
 msgid "Extract Here"
-msgstr ""
+msgstr "Buraya Çıkar"
 
 #: fileItem.js:888
 msgid "Extract To..."
-msgstr ""
+msgstr "Şuraya Çıkar…"
 
 #: fileItem.js:893
 msgid "Send to..."

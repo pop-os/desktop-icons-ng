@@ -224,11 +224,11 @@ msgstr "アンマウント"
 
 #: fileItem.js:885
 msgid "Extract Here"
-msgstr ""
+msgstr "ここで展開"
 
 #: fileItem.js:888
 msgid "Extract To..."
-msgstr ""
+msgstr "展開先…"
 
 #: fileItem.js:893
 msgid "Send to..."

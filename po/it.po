@@ -233,11 +233,11 @@ msgstr "Smonta"
 
 #: fileItem.js:885
 msgid "Extract Here"
-msgstr ""
+msgstr "Estrai qui"
 
 #: fileItem.js:888
 msgid "Extract To..."
-msgstr ""
+msgstr "Estrai in…"
 
 #: fileItem.js:893
 msgid "Send to..."

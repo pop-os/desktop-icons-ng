@@ -225,11 +225,11 @@ msgstr "Avmontera"
 
 #: fileItem.js:885
 msgid "Extract Here"
-msgstr ""
+msgstr "Extrahera här"
 
 #: fileItem.js:888
 msgid "Extract To..."
-msgstr ""
+msgstr "Extrahera till…"
 
 #: fileItem.js:893
 msgid "Send to..."
