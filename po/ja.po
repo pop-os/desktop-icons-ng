@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-18 22:06+0200\n"
-"PO-Revision-Date: 2021-01-18 09:05+0900\n"
+"PO-Revision-Date: 2021-07-02 15:39+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 3.0\n"
 
 #: askConfirmPopup.js:36 askNamePopup.js:37 desktopIconsUtil.js:211
 #: desktopManager.js:1481
@@ -32,17 +32,16 @@ msgid "OK"
 msgstr "OK"
 
 #: askRenamePopup.js:40
-#, fuzzy
 msgid "Folder name"
-msgstr "新しいフォルダー名"
+msgstr "フォルダ名"
 
 #: askRenamePopup.js:40
 msgid "File name"
-msgstr "名前の変更…"
+msgstr "ファイル名"
 
 #: askRenamePopup.js:47
 msgid "Rename"
-msgstr "名前の変更…"
+msgstr "名前の変更"
 
 #: desktopIconsUtil.js:80
 msgid "Command not found"
@@ -118,7 +117,7 @@ msgstr "ディスプレイの設定"
 
 #: desktopManager.js:618
 msgid "Desktop Icons settings"
-msgstr ""
+msgstr "Desktop Iconsの設定"
 
 #: desktopManager.js:629
 msgid "Scripts"
@@ -146,16 +145,15 @@ msgstr ""
 
 #: desktopManager.js:1415
 msgid "Selection includes a Directory, compress the directory to a file first."
-msgstr ""
+msgstr "ディレクトリが選択されており、先にそれらが圧縮されます"
 
 #: desktopManager.js:1479
 msgid "Select Extract Destination"
-msgstr ""
+msgstr "展開先を選択"
 
 #: desktopManager.js:1482
-#, fuzzy
 msgid "Select"
-msgstr "全て選択"
+msgstr "選択"
 
 #. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
 #: fileItem.js:153
@@ -245,16 +243,14 @@ msgid_plural "New Folder with {0} items"
 msgstr[0] "{0}アイテムと新しいフォルダ"
 
 #: fileItem.js:905
-#, fuzzy
 msgid "Common Properties"
-msgstr "プロパティ"
+msgstr "共通のプロパティ"
 
 #: fileItem.js:905
 msgid "Properties"
 msgstr "プロパティ"
 
 #: fileItem.js:909
-#, fuzzy
 msgid "Show All in Files"
 msgstr "“ファイル”で表示する"
 
@@ -292,22 +288,19 @@ msgstr "デスクトップにホームフォルダーを表示する"
 
 #: preferences.js:100
 msgid "Show the trash icon in the desktop"
-msgstr "デスクトップにゴミ箱を表示する"
+msgstr "デスクトップにゴミ箱を表示"
 
 #: preferences.js:101 schemas/org.gnome.shell.extensions.ding.gschema.xml:38
-#, fuzzy
 msgid "Show external drives in the desktop"
-msgstr "デスクトップにホームフォルダーを表示する"
+msgstr "デスクトップに外部のドライブを表示"
 
 #: preferences.js:102 schemas/org.gnome.shell.extensions.ding.gschema.xml:43
-#, fuzzy
 msgid "Show network drives in the desktop"
-msgstr "デスクトップにホームフォルダーを表示します。"
+msgstr "デスクトップにネットワークドライブを表示"
 
 #: preferences.js:105
-#, fuzzy
 msgid "New icons alignment"
-msgstr "アイコンサイズ"
+msgstr ""
 
 #: preferences.js:106
 msgid "Top-left corner"
@@ -390,13 +383,10 @@ msgid "Always"
 msgstr "常に"
 
 #: prefs.js:37
-#, fuzzy
 msgid ""
 "To configure Desktop Icons NG, do right-click in the desktop and choose the "
 "last item: 'Desktop Icons settings'"
-msgstr ""
-"デスクトップアイコンNGを設定するには、デスクトップを右クリックして、最後の"
-"「設定」をクリックしてください。"
+msgstr "右クリックメニューの「設定」からデスクトップの設定を変更できます"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:18
 msgid "Icon size"
@@ -423,22 +413,20 @@ msgid "Show the trash icon in the desktop."
 msgstr "デスクトップにゴミ箱のアイコンを表示します。"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:33
-#, fuzzy
 msgid "New icons start corner"
-msgstr "アイコンサイズ"
+msgstr "新しいアイコンが追加される角"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:34
 msgid "Set the corner from where the icons will start to be placed."
-msgstr "アイコンの配置の基準になるコーナーを設定します。"
+msgstr "アイコンの配置の基準になるコーナーを設定します"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:39
 msgid "Show the disk drives connected to the computer."
 msgstr "コンピューターに接続されているディスクを表示します。"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:44
-#, fuzzy
 msgid "Show mounted network volumes in the desktop."
-msgstr "デスクトップにホームフォルダーを表示します。"
+msgstr "マウント済みのネットワークボリュームをデスクトップに表示します。"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:49
 msgid ""
