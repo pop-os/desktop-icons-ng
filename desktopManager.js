@@ -1169,8 +1169,10 @@ var DesktopManager = class {
     }
 
     doTrash() {
-        let selection = this.getCurrentSelection(true);
-        if (selection) {
+        const selection = this._fileList.filter(i => i.isSelected && !i.isSpecial).map(i =>
+            i.file.get_uri());
+
+        if (selection.length) {
             DBusUtils.NautilusFileOperations2Proxy.TrashURIsRemote(selection,
                 DBusUtils.NautilusFileOperations2Proxy.platformData(),
                 (source, error) => {
@@ -1182,8 +1184,11 @@ var DesktopManager = class {
     }
 
     doDeletePermanently() {
-        const toDelete = this._fileList.filter(i => i.isSelected).map(i =>
+        const toDelete = this._fileList.filter(i => i.isSelected && !i.isSpecial).map(i =>
             i.file.get_uri());
+
+        if (!toDelete.length)
+            return;
 
         DBusUtils.NautilusFileOperations2Proxy.DeleteURIsRemote(toDelete,
             DBusUtils.NautilusFileOperations2Proxy.platformData(),
