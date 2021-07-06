@@ -1107,6 +1107,11 @@ var FileItem = class {
     get isDrive() {
         return this._fileExtra == Enums.FileType.EXTERNAL_DRIVE;
     }
+
+    get isTrash() {
+        return this._fileExtra === Enums.FileType.USER_DIRECTORY_TRASH;
+    }
+
     _onReleaseButton(actor, event) {
         let button = event.get_button()[1];
         if (button == 1) {

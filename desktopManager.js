@@ -1187,8 +1187,11 @@ var DesktopManager = class {
         const toDelete = this._fileList.filter(i => i.isSelected && !i.isSpecial).map(i =>
             i.file.get_uri());
 
-        if (!toDelete.length)
+        if (!toDelete.length) {
+            if (this._fileList.some(i => i.isSelected && i.isTrash))
+                this.doEmptyTrash();
             return;
+        }
 
         DBusUtils.NautilusFileOperations2Proxy.DeleteURIsRemote(toDelete,
             DBusUtils.NautilusFileOperations2Proxy.platformData(),
