@@ -14,7 +14,6 @@ extensions_dir = join_paths(prefix, 'share', 'gnome-shell', 'extensions', 'ding@
 
 install_data([
 #    'createFolderDialog.js',
-    'askConfirmPopup.js',
     'askNamePopup.js',
     'askRenamePopup.js',
     'createThumbnail.js',
