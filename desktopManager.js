@@ -1497,7 +1497,7 @@ var DesktopManager = class {
         this._radioTimeName = new Gtk.RadioMenuItem({label: _("Sort by Modified Time")});
         this._radioTimeName.join_group(this._radioName);
         this._arrangeSubMenu.add (this._radioTimeName);
-        this._radioKindName = new Gtk.RadioMenuItem({label: _("Sort by Kind")});
+        this._radioKindName = new Gtk.RadioMenuItem({label: _("Sort by Type")});
         this._radioKindName.join_group(this._radioName);
         this._arrangeSubMenu.add (this._radioKindName);
         this._radioSizeName = new Gtk.RadioMenuItem({label: _("Sort by Size")});
