@@ -12,10 +12,6 @@ with these advantages:
 
 But it is still an alpha development, so it probably still have a lot of bugs. Use with care.
 
-## Current version
-
-Version 0.15.0
-
 ## Requirements
 
 * GNOME Shell >= 3.38
