@@ -480,6 +480,7 @@ var FileItem = class {
     }
 
     _updateIcon() {
+        this._icon.set_padding(0,0);
         try {
             let customIcon = this._fileInfo.get_attribute_as_string('metadata::custom-icon');
             if (customIcon && (customIcon != '')) {
@@ -582,8 +583,8 @@ var FileItem = class {
         let thumbnailPixbuf = GdkPixbuf.Pixbuf.new_from_stream(thumbnailStream, null);
 
         if (thumbnailPixbuf != null) {
-            let width = Prefs.get_desired_width();
-            let height = Prefs.get_icon_size();
+            let width = Prefs.get_desired_width() - 8;
+            let height = Prefs.get_icon_size() - 8;
             let aspectRatio = thumbnailPixbuf.width / thumbnailPixbuf.height;
             if ((width / height) > aspectRatio)
                 width = height * aspectRatio;
@@ -596,6 +597,7 @@ var FileItem = class {
             pixbuf = this._addEmblemsToPixbufIfNeeded(pixbuf);
             let surface = Gdk.cairo_surface_create_from_pixbuf(pixbuf, scale, null);
             this._icon.set_from_surface(surface);
+            this._icon.set_padding(4,4)
             return true;
         }
         return false;
