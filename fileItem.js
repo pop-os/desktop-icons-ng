@@ -1225,10 +1225,14 @@ var FileItem = class {
     }
 
     get displayName() {
-        if (this.trustedDesktopFile)
+        if (this.trustedDesktopFile) {
             return this._desktopFile.get_name();
-
+        }
         return this._displayName || null;
+    }
+
+    get fileSize() {
+        return this._fileInfo.get_size();
     }
 
 };

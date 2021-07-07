@@ -85,6 +85,11 @@ var DesktopManager = class {
                 this._removeAllFilesFromGrids();
                 this._createGrids();
             }
+            if (key == Enums.SortOrder.ORDER) {
+                this.doArrangeRadioButtons();
+                this.doSorts();
+                return;
+            }
             this.showDropPlace = Prefs.desktopSettings.get_boolean('show-drop-place');
             this._updateDesktop();
         });
@@ -217,6 +222,9 @@ var DesktopManager = class {
     }
 
     doMoveWithDragAndDrop(xOrigin, yOrigin, xDestination, yDestination) {
+        if ( this.sortSpecialFolders && this.keepArranged ) {
+            return;
+        }
         // Find the grid where the destination lies
         for(let desktop of this._desktops) {
             let grid = desktop.getGridAt(xDestination, yDestination, true);
@@ -231,14 +239,28 @@ var DesktopManager = class {
         let fileItems = [];
         for(let item of this._fileList) {
             if (item.isSelected) {
-                fileItems.push(item);
-                item.removeFromGrid();
-                let [x, y, a, b, c] = item.getCoordinates();
-                item.savedCoordinates = [x + deltaX, y + deltaY];
+                if (this.keepArranged) {
+                    if (item.isSpecial) {
+                        fileItems.push(item);
+                        item.removeFromGrid();
+                        let [x, y, a, b, c] = item.getCoordinates();
+                        item.savedCoordinates = [x + deltaX, y + deltaY];
+                    } else {
+                        continue;
+                    }
+                } else {
+                    fileItems.push(item);
+                    item.removeFromGrid();
+                    let [x, y, a, b, c] = item.getCoordinates();
+                    item.savedCoordinates = [x + deltaX, y + deltaY];
+                }
             }
         }
         // force to store the new coordinates
         this._addFilesToDesktop(fileItems, Enums.StoredCoordinates.OVERWRITE);
+        if (this.keepArranged) {
+            this._updateDesktop();
+        }
     }
 
     onDragBegin(item) {
@@ -586,6 +608,8 @@ var DesktopManager = class {
         let selectAll = new Gtk.MenuItem({label: _("Select all")});
         selectAll.connect("activate", () => this._selectAll());
         this._menu.add(selectAll);
+
+        this._addSortingMenu();
 
         this._menu.add(new Gtk.SeparatorMenuItem());
 
@@ -942,7 +966,13 @@ var DesktopManager = class {
                         }
                         this._removeAllFilesFromGrids();
                         this._fileList = fileList;
-                        this._addFilesToDesktop(this._fileList, Enums.StoredCoordinates.PRESERVE);
+                        this.keepArranged = Prefs.desktopSettings.get_boolean('keep-arranged');
+                        this.sortSpecialFolders = Prefs.desktopSettings.get_boolean('sort-special-folders');
+                        if (this.keepArranged) {
+                            this.doSorts();
+                        } else {
+                            this._addFilesToDesktop(this._fileList, Enums.StoredCoordinates.PRESERVE);
+                        }
                     } else {
                         // But if there was a file change, we must re-read it to be sure that the list is complete
                         this._readFileList();
@@ -1432,6 +1462,220 @@ var DesktopManager = class {
         DesktopIconsUtil.trySpawn(null, xdgEmailCommand);
     }
 
+    _addSortingMenu() {
+        this._menu.add(new Gtk.SeparatorMenuItem());
+
+        this._cleanUpMenuItem = new Gtk.MenuItem({label: _("Arrange Icons")});
+        this._cleanUpMenuItem.connect("activate", () => this._sortAllFilesFromGridsByPosition());
+        this._menu.add(this._cleanUpMenuItem);
+
+        this._ArrangeByMenuItem = new Gtk.MenuItem({label: _("Arrange By...")});
+        this._menu.add(this._ArrangeByMenuItem);
+        this._addSortingSubMenu();
+    }
+
+    _addSortingSubMenu() {
+        this._arrangeSubMenu = new Gtk.Menu();
+        this._ArrangeByMenuItem.set_submenu(this._arrangeSubMenu);
+
+        this._keepArrangedMenuItem = new Gtk.CheckMenuItem({label: _("Keep Arranged...")});
+        Prefs.desktopSettings.bind('keep-arranged', this._keepArrangedMenuItem, 'active', 3);
+        this._keepArrangedMenuItem.bind_property('active', this._cleanUpMenuItem, 'sensitive', 6);
+        this._arrangeSubMenu.add(this._keepArrangedMenuItem);
+
+        this._sortSpecialFilesMenuItem = new Gtk.CheckMenuItem({label: _("Sort Home/Drives/Trash...")});
+        Prefs.desktopSettings.bind('sort-special-folders', this._sortSpecialFilesMenuItem, 'active', 3);
+        this._arrangeSubMenu.add(this._sortSpecialFilesMenuItem);
+
+        this._arrangeSubMenu.add(new Gtk.SeparatorMenuItem());
+
+        this._radioName = new Gtk.RadioMenuItem({label: _("Sort by Name")});
+        this._arrangeSubMenu.add(this._radioName);
+        this._radioDescName = new Gtk.RadioMenuItem({label: _("Sort by Name Descending")});
+        this._radioDescName.join_group(this._radioName);
+        this._arrangeSubMenu.add (this._radioDescName);
+        this._radioTimeName = new Gtk.RadioMenuItem({label: _("Sort by Modified Time")});
+        this._radioTimeName.join_group(this._radioName);
+        this._arrangeSubMenu.add (this._radioTimeName);
+        this._radioKindName = new Gtk.RadioMenuItem({label: _("Sort by Kind")});
+        this._radioKindName.join_group(this._radioName);
+        this._arrangeSubMenu.add (this._radioKindName);
+        this._radioSizeName = new Gtk.RadioMenuItem({label: _("Sort by Size")});
+        this._radioSizeName.join_group(this._radioName);
+        this._arrangeSubMenu.add (this._radioSizeName);
+        this.doArrangeRadioButtons();
+        this._radioName.connect("activate", () => {this.setIfActive(this._radioName, Enums.SortOrder.NAME)});
+        this._radioDescName.connect("activate", () => {this.setIfActive(this._radioDescName, Enums.SortOrder.DESCENDINGNAME)});
+        this._radioTimeName.connect("activate", () => {this.setIfActive(this._radioTimeName, Enums.SortOrder.MODIFIEDTIME)});
+        this._radioKindName.connect("activate", () => {this.setIfActive(this._radioKindName, Enums.SortOrder.KIND)});
+        this._radioSizeName.connect("activate", () => {this.setIfActive(this._radioSizeName, Enums.SortOrder.SIZE)});
+        this._arrangeSubMenu.show_all();
+    }
+
+    setIfActive(buttonname, choice) {
+        if(buttonname.get_active()) {
+            Prefs.setSortOrder(choice);
+        }
+    }
+
+    _sortByName(fileList) {
+        function byName(a, b) {
+            //sort by label name instead of the the fileName or displayName so that the "Home" folder is sorted in the correct order
+            //alphabetical sort taking into account accent characters & locale, natural language sort for numbers, ie 10.etc before 2.etc
+            //other options for locale are best fit, or by specifying directly in function below for translators
+            return a._label.get_text().localeCompare(b._label.get_text(), { sensitivity: 'accent' , numeric: 'true', localeMatcher: 'lookup' } );
+        }
+        fileList.sort(byName);
+    }
+
+    _sortByKindByName(fileList) {
+        function byKindByName(a, b) {
+            return a._attributeContentType.localeCompare(b._attributeContentType) ||
+             a._label.get_text().localeCompare(b._label.get_text(), { sensitivity: 'accent' , numeric: 'true', localeMatcher: 'lookup' } );
+        }
+        fileList.sort(byKindByName);
+    }
+
+    _sortAllFilesFromGridsByName(order) {
+        this._sortByName(this._fileList)
+        if ( order == Enums.SortOrder.DESCENDINGNAME ) {
+            this._fileList.reverse();
+        }
+        this._reassignFilesToDesktop();
+    }
+
+    _sortAllFilesFromGridsByPosition() {
+        if (this.keepArranged) {
+            return;
+        }
+        let cornerInversion = Prefs.get_start_corner();
+        if (!cornerInversion[0] && !cornerInversion[1]) {
+            this._fileList.sort((a, b) =>   {   if (a._x1 < b._x1) return -1;
+                                                if (a._x1 > b._x1) return 1;
+                                                if (a._y1 < b._y1) return -1;
+                                                if (a._y1 > b._y1) return 1;
+                                                return 0;
+                                            });
+        }
+        if (cornerInversion[0] && cornerInversion[1]) {
+            this._fileList.sort((a, b) =>   {   if (a._x1 < b._x1) return 1;
+                                                if (a._x1 > b._x1) return -1;
+                                                if (a._y1 < b._y1) return 1;
+                                                if (a._y1 > b._y1) return -1;
+                                                return 0;
+                                            });
+        }
+        if (cornerInversion[0] && !cornerInversion[1]) {
+            this._fileList.sort((a, b) =>   {   if (a._x1 < b._x1) return 1;
+                                                if (a._x1 > b._x1) return -1;
+                                                if (a._y1 < b._y1) return -1;
+                                                if (a._y1 > b._y1) return 1;
+                                                return 0;
+                                            });
+        }
+        if (!cornerInversion[0] && cornerInversion[1]) {
+            this._fileList.sort((a, b) =>   {   if (a._x1 < b._x1) return -1;
+                                                if (a._x1 > b._x1) return 1;
+                                                if (a._y1 < b._y1) return 1;
+                                                if (a._y1 > b._y1) return -1;
+                                                return 0;
+                                            });
+        }
+        this._reassignFilesToDesktop();
+    }
+
+    _sortAllFilesFromGridsByModifiedTime() {
+        function byTime(a, b) {
+            return ( a._modifiedTime - b._modifiedTime )
+        }
+        this._fileList.sort(byTime);
+        this._reassignFilesToDesktop();
+    }
+
+    _sortAllFilesFromGridsBySize() {
+        function bySize(a, b) {
+            return ( a.fileSize - b.fileSize );
+        }
+        this._fileList.sort(bySize);
+        this._reassignFilesToDesktop();
+    }
+
+    _sortAllFilesFromGridsByKind() {
+        let specialFiles = [];
+        let directoryFiles = [];
+        let validDesktopFiles = [];
+        let otherFiles = [];
+        let newFileList = [];
+        for(let fileItem of this._fileList) {
+            if (fileItem._isSpecial) {
+                specialFiles.push(fileItem);
+                continue;
+            }
+            if (fileItem._isDirectory) {
+                directoryFiles.push(fileItem);
+                continue;
+            }
+            if (fileItem._isValidDesktopFile) {
+                validDesktopFiles.push(fileItem);
+                continue;
+            } else {
+                otherFiles.push(fileItem);
+                continue;
+            }
+        }
+        this._sortByName(specialFiles);
+        this._sortByName(directoryFiles);
+        this._sortByName(validDesktopFiles);
+        this._sortByKindByName(otherFiles);
+        newFileList.push(...specialFiles);
+        newFileList.push(...validDesktopFiles);
+        newFileList.push(...directoryFiles);
+        newFileList.push(...otherFiles)
+        if ( this._fileList.length == newFileList.length) {
+            this._fileList = newFileList ;
+        }
+        this._reassignFilesToDesktop();
+    }
+
+    _reassignFilesToDesktop() {
+        if ( ! this.sortSpecialFolders) {
+            this._reassignFilesToDesktopPreserveSpecialFiles();
+            return;
+        }
+        for(let fileItem of this._fileList){
+            fileItem.savedCoordinates = null;
+            fileItem.dropCoordinates = null;
+            fileItem.removeFromGrid();
+        }
+        this._addFilesToDesktop(this._fileList, Enums.StoredCoordinates.ASSIGN);
+    }
+
+    _reassignFilesToDesktopPreserveSpecialFiles() {
+        let specialFiles = [];
+        let otherFiles = [];
+        let newFileList = [];
+        for(let fileItem of this._fileList){
+            if ( fileItem._isSpecial) {
+                specialFiles.push(fileItem);
+                fileItem.removeFromGrid();
+                continue;
+            }
+            if (! fileItem._isSpecial) {
+                otherFiles.push(fileItem);
+                fileItem.savedCoordinates = null;
+                fileItem.dropCoordinates = null;
+                fileItem.removeFromGrid();
+                continue;
+            }
+        }
+        newFileList.push(...specialFiles);
+        newFileList.push(...otherFiles);
+        if ( this._fileList.length == newFileList.length) {
+            this._fileList = newFileList ;
+        }
+        this._addFilesToDesktop(this._fileList, Enums.StoredCoordinates.PRESERVE);
+    }
+
     doNewFolderFromSelection(position) {
         let newFolderFileItems = this.getCurrentSelection(true);
         for (let fileItem of this._fileList) {
@@ -1513,5 +1757,52 @@ var DesktopManager = class {
                 }
             }
         );
+    }
+    
+    doArrangeRadioButtons() {
+        switch(Prefs.getSortOrder()) {
+                case Enums.SortOrder.NAME:
+                    this._radioName.set_active(true);
+                    break;
+                case Enums.SortOrder.DESCENDINGNAME:
+                    this._radioDescName.set_active(true);
+                    break;
+                case Enums.SortOrder.MODIFIEDTIME:
+                    this._radioTimeName.set_active(true);
+                    break;
+                case Enums.SortOrder.KIND:
+                    this._radioKindName.set_active(true);
+                    break;
+                case Enums.SortOrder.SIZE:
+                    this._radioSizeName.set_active(true);
+                    break;
+                default:
+                    this._radioName.set_active(true);
+                    Prefs.setSortOrder(Enums.SortOrder.NAME);
+                    break;
+        }
+    }
+
+    doSorts() {
+        switch (Prefs.getSortOrder()) {
+            case Enums.SortOrder.NAME:
+                this._sortAllFilesFromGridsByName();
+                break;
+            case Enums.SortOrder.DESCENDINGNAME:
+                this._sortAllFilesFromGridsByName(Enums.SortOrder.DESCENDINGNAME);
+                break;
+            case Enums.SortOrder.MODIFIEDTIME:
+                this._sortAllFilesFromGridsByModifiedTime();
+                break;
+            case Enums.SortOrder.KIND:
+                this._sortAllFilesFromGridsByKind();
+                break;
+            case Enums.SortOrder.SIZE:
+                this._sortAllFilesFromGridsBySize();
+                break;
+            default:
+                this._addFilesToDesktop(this._fileList, Enums.StoredCoordinates.PRESERVE);
+                break;
+        }
     }
 }

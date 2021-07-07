@@ -197,3 +197,12 @@ function get_desired_height() {
 function get_start_corner() {
     return Enums.START_CORNER[desktopSettings.get_string('start-corner')].slice();
 }
+
+function getSortOrder() {
+    return Enums.SortOrder[desktopSettings.get_string(Enums.SortOrder.ORDER)];
+}
+
+function setSortOrder(order) {
+    let x = Object.values(Enums.SortOrder).indexOf(order);
+    desktopSettings.set_enum(Enums.SortOrder.ORDER, x);
+}
