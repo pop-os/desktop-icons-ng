@@ -156,8 +156,14 @@ var DesktopManager = class {
     }
 
     _metadataChanged(proxy, nameOwner, args) {
-        if (this._desktopDir.get_path() == GLib.build_filenamev([GLib.get_home_dir(), GLib.path_get_dirname(args[1])])) {
-            this._updateDesktop();
+        let filepath = GLib.build_filenamev([GLib.get_home_dir(), args[1]]);
+        if (this._desktopDir.get_path() == GLib.path_get_dirname(filepath)) {
+            for(let file of this._fileList) {
+                if (file.file.get_path() == filepath) {
+                    file.updatedMetadata();
+                    break;
+                }
+            }
         }
     }
 
