@@ -730,7 +730,9 @@ var DesktopManager = class {
                 grid.queue_draw();
             }
             for(let item of this._fileList) {
-                if (item.containerRectangle.intersect(this.selectionRectangle)[0]) {
+                let labelintersect = item.labelRectangle.intersect(this.selectionRectangle)[0];
+                let iconintersect = item.iconRectangle.intersect(this.selectionRectangle)[0];
+                if (labelintersect || iconintersect) {
                     item.setSelected();
                     item.touchedByRubberband = true;
                 } else {

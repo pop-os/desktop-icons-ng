@@ -303,7 +303,7 @@ var DesktopGrid = class {
 
         let localX = Math.floor(this._width * column / this._maxColumns);
         let localY = Math.floor(this._height * row / this._maxRows);
-        this._container.put(fileItem.actor, localX + elementSpacing, localY + elementSpacing);
+        this._container.put(fileItem.container, localX + elementSpacing, localY + elementSpacing);
         this._setGridUse(column, row, true);
         this._fileItems[fileItem.uri] = [column, row, fileItem];
         let [x, y] = this._coordinatesLocalToGlobal(localX + elementSpacing, localY + elementSpacing);
@@ -329,7 +329,7 @@ var DesktopGrid = class {
         if (fileItem.uri in this._fileItems) {
             let [column, row, tmp] = this._fileItems[fileItem.uri];
             this._setGridUse(column, row, false);
-            this._container.remove(fileItem.actor);
+            this._container.remove(fileItem.container);
             delete this._fileItems[fileItem.uri];
         }
     }
