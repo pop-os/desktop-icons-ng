@@ -427,6 +427,10 @@ var FileItem = class {
         );
     }
 
+    updatedMetadata() {
+        this._refreshMetadataAsync(true);
+    }
+
     _updateMetadataFromFileInfo(fileInfo) {
         this._fileInfo = fileInfo;
 
