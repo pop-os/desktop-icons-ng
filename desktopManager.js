@@ -778,6 +778,7 @@ var DesktopManager = class {
     onReleaseButton(grid) {
         if (this.rubberBand) {
             this.rubberBand = false;
+            this.selectionRectangle = null;
         }
         for(let grid of this._desktops) {
             grid.queue_draw();
