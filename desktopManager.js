@@ -30,7 +30,6 @@ const Enums = imports.enums;
 const DBusUtils = imports.dbusUtils;
 const AskNamePopup = imports.askNamePopup;
 const AskRenamePopup = imports.askRenamePopup;
-const AskConfirmPopup = imports.askConfirmPopup;
 const ShowErrorPopup = imports.showErrorPopup;
 const TemplateManager = imports.templateManager;
 
@@ -66,8 +65,6 @@ var DesktopManager = class {
         this._desktopFilesChanged = false;
         this._readingDesktopFiles = true;
         this._scriptFilesChanged = false;
-        this._toDelete = [];
-        this._deletingFilesRecursively = false;
         this._desktopDir = DesktopIconsUtil.getDesktopDir();
         this._scriptsDir = DesktopIconsUtil.getScriptsDir();
         this.desktopFsId = this._desktopDir.query_info('id::filesystem', Gio.FileQueryInfoFlags.NONE, null).get_attribute_string('id::filesystem');
@@ -122,7 +119,7 @@ var DesktopManager = class {
         this._createDesktopBackgroundMenu();
         this._createGrids();
 
-        DBusUtils.NautilusFileOperationsProxy.connect('g-properties-changed', this._undoStatusChanged.bind(this));
+        DBusUtils.NautilusFileOperations2Proxy.connect('g-properties-changed', this._undoStatusChanged.bind(this));
         DBusUtils.GtkVfsMetadataProxy.connectSignal('AttributeChanged', this._metadataChanged.bind(this));
         this._fileList = [];
         this._readFileList();
@@ -327,18 +324,20 @@ var DesktopManager = class {
                 let data = Gio.File.new_for_uri(fileList[0]).query_info('id::filesystem', Gio.FileQueryInfoFlags.NONE, null);
                 let id_fs = data.get_attribute_string('id::filesystem');
                 if (this.desktopFsId == id_fs) {
-                    DBusUtils.NautilusFileOperationsProxy.MoveURIsRemote(
+                    DBusUtils.NautilusFileOperations2Proxy.MoveURIsRemote(
                         fileList,
                         "file://" + GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DESKTOP),
+                        DBusUtils.NautilusFileOperations2Proxy.platformData(),
                         (result, error) => {
                             if (error)
                                 throw new Error('Error moving files: ' + error.message);
                             }
                     );
                 } else {
-                    DBusUtils.NautilusFileOperationsProxy.CopyURIsRemote(
+                    DBusUtils.NautilusFileOperations2Proxy.CopyURIsRemote(
                         fileList,
                         "file://" + GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DESKTOP),
+                        DBusUtils.NautilusFileOperations2Proxy.platformData(),
                         (result, error) => {
                             if (error)
                                 throw new Error('Error moving files: ' + error.message);
@@ -478,7 +477,7 @@ var DesktopManager = class {
     }
 
     _syncUndoRedo() {
-        switch (DBusUtils.NautilusFileOperationsProxy.UndoStatus) {
+        switch (DBusUtils.NautilusFileOperations2Proxy.UndoStatus) {
             case Enums.UndoStatus.UNDO:
                 this._undoMenuItem.show();
                 this._redoMenuItem.hide();
@@ -500,7 +499,8 @@ var DesktopManager = class {
     }
 
     _doUndo() {
-        DBusUtils.NautilusFileOperationsProxy.UndoRemote(
+        DBusUtils.NautilusFileOperations2Proxy.UndoRemote(
+            DBusUtils.NautilusFileOperations2Proxy.platformData(),
             (result, error) => {
                 if (error)
                     throw new Error('Error performing undo: ' + error.message);
@@ -509,7 +509,8 @@ var DesktopManager = class {
     }
 
     _doRedo() {
-        DBusUtils.NautilusFileOperationsProxy.RedoRemote(
+        DBusUtils.NautilusFileOperations2Proxy.RedoRemote(
+            DBusUtils.NautilusFileOperations2Proxy.platformData(),
             (result, error) => {
                 if (error)
                     throw new Error('Error performing redo: ' + error.message);
@@ -709,14 +710,16 @@ var DesktopManager = class {
 
             let desktopDir = this._desktopDir.get_uri();
             if (is_cut) {
-                DBusUtils.NautilusFileOperationsProxy.MoveURIsRemote(files, desktopDir,
+                DBusUtils.NautilusFileOperations2Proxy.MoveURIsRemote(files, desktopDir,
+                    DBusUtils.NautilusFileOperations2Proxy.platformData(),
                     (result, error) => {
                         if (error)
                             throw new Error('Error moving files: ' + error.message);
                     }
                 );
             } else {
-                DBusUtils.NautilusFileOperationsProxy.CopyURIsRemote(files, desktopDir,
+                DBusUtils.NautilusFileOperations2Proxy.CopyURIsRemote(files, desktopDir,
+                    DBusUtils.NautilusFileOperations2Proxy.platformData(),
                     (result, error) => {
                         if (error)
                             throw new Error('Error copying files: ' + error.message);
@@ -1166,9 +1169,12 @@ var DesktopManager = class {
     }
 
     doTrash() {
-        let selection = this.getCurrentSelection(true);
-        if (selection) {
-            DBusUtils.NautilusFileOperationsProxy.TrashFilesRemote(selection,
+        const selection = this._fileList.filter(i => i.isSelected && !i.isSpecial).map(i =>
+            i.file.get_uri());
+
+        if (selection.length) {
+            DBusUtils.NautilusFileOperations2Proxy.TrashURIsRemote(selection,
+                DBusUtils.NautilusFileOperations2Proxy.platformData(),
                 (source, error) => {
                     if (error)
                         throw new Error('Error trashing files on the desktop: ' + error.message);
@@ -1177,105 +1183,31 @@ var DesktopManager = class {
         }
     }
 
-    _deleteHelper(file) {
-        file.delete_async(GLib.PRIORITY_DEFAULT, null, (source, res) => {
-            this._deletingFilesRecursively = false;
-            try {
-                source.delete_finish(res);
-            } catch(e) {
-                let windowError = new ShowErrorPopup.ShowErrorPopup(
-                    _("Error while deleting files"),
-                    e.message,
-                    null,
-                    false);
-                windowError.run();
-                this._toDelete = [];
-                return;
-            }
-            // continue with the next file
-            this._deleteRecursively();
-        });
-    }
+    doDeletePermanently() {
+        const toDelete = this._fileList.filter(i => i.isSelected && !i.isSpecial).map(i =>
+            i.file.get_uri());
 
-    _deleteRecursively() {
-        if (this._deletingFilesRecursively || (this._toDelete.length == 0)) {
+        if (!toDelete.length) {
+            if (this._fileList.some(i => i.isSelected && i.isTrash))
+                this.doEmptyTrash();
             return;
         }
-        this._deletingFilesRecursively = true;
-        let nextFileToDelete = this._toDelete.shift();
-        if (nextFileToDelete.query_file_type(Gio.FileQueryInfoFlags.NOFOLLOW_SYMLINKS, null) == Gio.FileType.DIRECTORY) {
-            nextFileToDelete.enumerate_children_async(
-                Enums.DEFAULT_ATTRIBUTES,
-                Gio.FileQueryInfoFlags.NOFOLLOW_SYMLINKS,
-                GLib.PRIORITY_DEFAULT,
-                null,
-                (source, res) => {
-                    try {
-                        let fileEnum = source.enumerate_children_finish(res);
-                        // insert again the folder at the beginning
-                        this._toDelete.unshift(source);
-                        let info;
-                        let hasChilds = false;
-                        while ((info = fileEnum.next_file(null))) {
-                            let file = fileEnum.get_child(info);
-                            // insert the children to the beginning of the array, to be deleted first
-                            this._toDelete.unshift(file);
-                            hasChilds = true;
-                        }
-                        if (!hasChilds) {
-                            // the folder is empty, so it can be deleted
-                            this._deleteHelper(this._toDelete.shift());
-                        } else {
-                            // continue processing the list
-                            this._deletingFilesRecursively = false;
-                            this._deleteRecursively();
-                        }
-                    } catch(e) {
-                        let windowError = new ShowErrorPopup.ShowErrorPopup(
-                            _("Error while deleting files"),
-                            e.message,
-                            null,
-                            false);
-                        windowError.run();
-                        this._toDelete = [];
-                        this._deletingFilesRecursively = false;
-                        return;
-                    }
-                });
-        } else {
-            this._deleteHelper(nextFileToDelete);
-        }
+
+        DBusUtils.NautilusFileOperations2Proxy.DeleteURIsRemote(toDelete,
+            DBusUtils.NautilusFileOperations2Proxy.platformData(),
+            (_source, error) => {
+                if (error)
+                    throw new Error('Error deleting files on the desktop: ' + error.message);
+            });
     }
 
-    doDeletePermanently() {
-        let filelist = "";
-        for(let fileItem of this._fileList) {
-            if (fileItem.isSelected) {
-                if (filelist != "") {
-                    filelist += ", "
-                }
-                filelist += `"${fileItem.fileName}"`;
-            }
-        }
-        let renameWindow = new AskConfirmPopup.AskConfirmPopup(
-            _("Are you sure you want to permanently delete these items?"),
-            `${_("If you delete an item, it will be permanently lost.")}\n\n${filelist}`,
-            null);
-        if (renameWindow.run()) {
-            this._permanentDeleteError = false;
-            for(let fileItem of this._fileList) {
-                if (fileItem.isSelected) {
-                    this._toDelete.push(fileItem.file);
-                }
-            }
-            this._deleteRecursively();
-        }
-    }
-
-    doEmptyTrash() {
-        DBusUtils.NautilusFileOperationsProxy.EmptyTrashRemote( (source, error) => {
-            if (error)
-                throw new Error('Error trashing files on the desktop: ' + error.message);
+    doEmptyTrash(askConfirmation = true) {
+        DBusUtils.NautilusFileOperations2Proxy.EmptyTrashRemote(
+            askConfirmation,
+            DBusUtils.NautilusFileOperations2Proxy.platformData(),
+            (source, error) => {
+                if (error)
+                    throw new Error('Error trashing files on the desktop: ' + error.message);
         });
     }
 
@@ -1690,7 +1622,9 @@ var DesktopManager = class {
         }
         let newFolder = this._newFolder(position);
         if (newFolder) {
-            DBusUtils.NautilusFileOperationsProxy.MoveURIsRemote(newFolderFileItems, newFolder,
+            DBusUtils.NautilusFileOperations2Proxy.MoveURIsRemote(
+                newFolderFileItems, newFolder,
+                DBusUtils.NautilusFileOperations2Proxy.platformData(),
                 (result, error) => {
                     if (error) {
                         throw new Error('Error moving files: ' + error.message);
