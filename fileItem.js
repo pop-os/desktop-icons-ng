@@ -18,7 +18,6 @@
  */
 
 const GObject = imports.gi.GObject;
-const Clutter = imports.gi.Clutter;
 const Gtk = imports.gi.Gtk;
 const Gdk = imports.gi.Gdk;
 const Gio = imports.gi.Gio;
@@ -1011,10 +1010,10 @@ var FileItem = class {
     }
 
     _updateClickState(event) {
-        let settings = Clutter.Settings.get_default();
+        let settings = Gtk.Settings.get_default();
 
         if ((event.get_button()[1] == this._lastClickButton) &&
-            ((event.get_time() - this._lastClickTime) < settings.double_click_time))
+            ((event.get_time() - this._lastClickTime) < settings.gtk_double_click_time))
             this._clickCount++;
         else
             this._clickCount = 1;
