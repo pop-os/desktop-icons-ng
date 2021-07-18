@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-18 22:06+0200\n"
+"POT-Creation-Date: 2021-07-18 14:10+0200\n"
 "PO-Revision-Date: 2021-04-28 20:12+0200\n"
 "Last-Translator: Meskó Balázs <mesko.balazs@fsf.hu>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
@@ -19,18 +19,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.4.2\n"
 
-#: askConfirmPopup.js:36 askNamePopup.js:37 desktopIconsUtil.js:211
-#: desktopManager.js:1481
-msgid "Cancel"
-msgstr "Mégse"
-
-#: askConfirmPopup.js:37
-msgid "Delete"
-msgstr "Törlés"
-
 #: askNamePopup.js:36
 msgid "OK"
 msgstr "Rendben"
+
+#: askNamePopup.js:37 desktopIconsUtil.js:211 desktopManager.js:1668
+msgid "Cancel"
+msgstr "Mégse"
 
 #: askRenamePopup.js:40
 msgid "Folder name"
@@ -68,197 +63,221 @@ msgstr "Megjelenítés"
 msgid "Execute"
 msgstr "Végrehajtás"
 
-#: desktopManager.js:135
+#: desktopManager.js:137
 msgid "Nautilus File Manager not found"
 msgstr "A Nautilus fájlkezelő nem található"
 
-#: desktopManager.js:136
+#: desktopManager.js:138
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr "A Nautilus fájlkezelő szükséges a Desktop Icons NG működéséhez."
 
-#: desktopManager.js:563
+#: desktopManager.js:592
 msgid "New Folder"
 msgstr "Új mappa"
 
-#: desktopManager.js:567
+#: desktopManager.js:596
 msgid "New Document"
 msgstr "Új dokumentum"
 
-#: desktopManager.js:572
+#: desktopManager.js:601
 msgid "Paste"
 msgstr "Beillesztés"
 
-#: desktopManager.js:576
+#: desktopManager.js:605
 msgid "Undo"
 msgstr "Visszavonás"
 
-#: desktopManager.js:580
+#: desktopManager.js:609
 msgid "Redo"
 msgstr "Újra"
 
-#: desktopManager.js:586
+#: desktopManager.js:615
 msgid "Select all"
 msgstr "Összes kijelölése"
 
-#: desktopManager.js:592
+#: desktopManager.js:623
 msgid "Show Desktop in Files"
 msgstr "Asztal megjelenítése a Fájlokban"
 
-#: desktopManager.js:596 fileItem.js:913
+#: desktopManager.js:627 fileItem.js:1002
 msgid "Open in Terminal"
 msgstr "Megnyitás terminálban"
 
-#: desktopManager.js:602
+#: desktopManager.js:633
 msgid "Change Background…"
 msgstr "Háttér megváltoztatása…"
 
-#: desktopManager.js:611
+#: desktopManager.js:642
 msgid "Display Settings"
 msgstr "Megjelenítés beállításai"
 
-#: desktopManager.js:618
+#: desktopManager.js:649
 msgid "Desktop Icons settings"
 msgstr "Asztali ikonok beállítása"
 
-#: desktopManager.js:629
+#: desktopManager.js:660
 msgid "Scripts"
 msgstr "Parancsfájlok"
 
-#: desktopManager.js:1148 desktopManager.js:1196
-msgid "Error while deleting files"
-msgstr "Hiba történt a fájlok törlésekor"
-
-#: desktopManager.js:1222
-msgid "Are you sure you want to permanently delete these items?"
-msgstr "Biztos, hogy végleg törölni akarja ezeket elemet?"
-
-#: desktopManager.js:1223
-msgid "If you delete an item, it will be permanently lost."
-msgstr "Ha töröl egy elemet, akkor az véglegesen elvész."
-
-#: desktopManager.js:1339
+#: desktopManager.js:1310
 msgid "New folder"
 msgstr "Új mappa"
 
-#: desktopManager.js:1414
+#: desktopManager.js:1385
 msgid "Can not email a Directory"
 msgstr "Könyvtár nem küldhető el e-mailben"
 
-#: desktopManager.js:1415
+#: desktopManager.js:1386
 msgid "Selection includes a Directory, compress the directory to a file first."
 msgstr "A kijelölés könyvtárat tartalmaz, előbb tömörítse egy fájlba."
 
-#: desktopManager.js:1479
+#: desktopManager.js:1407
+msgid "Arrange Icons"
+msgstr ""
+
+#: desktopManager.js:1411
+msgid "Arrange By..."
+msgstr ""
+
+#: desktopManager.js:1420
+msgid "Keep Arranged..."
+msgstr ""
+
+#: desktopManager.js:1425
+msgid "Sort Home/Drives/Trash..."
+msgstr ""
+
+#: desktopManager.js:1431
+msgid "Sort by Name"
+msgstr ""
+
+#: desktopManager.js:1433
+msgid "Sort by Name Descending"
+msgstr ""
+
+#: desktopManager.js:1436
+msgid "Sort by Modified Time"
+msgstr ""
+
+#: desktopManager.js:1439
+msgid "Sort by Type"
+msgstr ""
+
+#: desktopManager.js:1442
+msgid "Sort by Size"
+msgstr ""
+
+#: desktopManager.js:1666
 msgid "Select Extract Destination"
 msgstr ""
 
-#: desktopManager.js:1482
+#: desktopManager.js:1669
 #, fuzzy
 msgid "Select"
 msgstr "Összes kijelölése"
 
 #. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
-#: fileItem.js:153
+#: fileItem.js:196
 msgid "Home"
 msgstr "Saját mappa"
 
-#: fileItem.js:809
+#: fileItem.js:898
 msgid "Open All..."
 msgstr "Összes megnyitása…"
 
-#: fileItem.js:809
+#: fileItem.js:898
 msgid "Open"
 msgstr "Megnyitás"
 
-#: fileItem.js:816
+#: fileItem.js:905
 msgid "Open All With Other Application..."
 msgstr "Összes megnyitása egyéb alkalmazással…"
 
-#: fileItem.js:816
+#: fileItem.js:905
 msgid "Open With Other Application"
 msgstr "Megnyitás egyéb alkalmazással"
 
-#: fileItem.js:820
+#: fileItem.js:909
 msgid "Launch using Dedicated Graphics Card"
 msgstr "Futtatás a dedikált videokártyával"
 
-#: fileItem.js:828
+#: fileItem.js:917
 msgid "Cut"
 msgstr "Kivágás"
 
-#: fileItem.js:831
+#: fileItem.js:920
 msgid "Copy"
 msgstr "Másolás"
 
-#: fileItem.js:835
+#: fileItem.js:924
 msgid "Rename…"
 msgstr "Átnevezés…"
 
-#: fileItem.js:839
+#: fileItem.js:928
 msgid "Move to Trash"
 msgstr "Áthelyezés a Kukába"
 
-#: fileItem.js:843
+#: fileItem.js:932
 msgid "Delete permanently"
 msgstr "Végleges törlés"
 
-#: fileItem.js:849
+#: fileItem.js:938
 msgid "Don't Allow Launching"
 msgstr "Ne engedélyezze az indítást"
 
-#: fileItem.js:849
+#: fileItem.js:938
 msgid "Allow Launching"
 msgstr "Indítás engedélyezése"
 
-#: fileItem.js:856
+#: fileItem.js:945
 msgid "Empty Trash"
 msgstr "Kuka ürítése"
 
-#: fileItem.js:863
+#: fileItem.js:952
 msgid "Eject"
 msgstr "Kiadás"
 
-#: fileItem.js:870
+#: fileItem.js:959
 msgid "Unmount"
 msgstr "Leválasztás"
 
-#: fileItem.js:885
+#: fileItem.js:974
 msgid "Extract Here"
 msgstr "Kibontás ide"
 
-#: fileItem.js:888
+#: fileItem.js:977
 msgid "Extract To..."
 msgstr "Kibontás…"
 
-#: fileItem.js:893
+#: fileItem.js:982
 msgid "Send to..."
 msgstr "Küldés…"
 
-#: fileItem.js:897
+#: fileItem.js:986
 msgid "Compress {0} file"
 msgid_plural "Compress {0} files"
 msgstr[0] "{0} fájl tömörítése"
 msgstr[1] "{0} fájl tömörítése"
 
-#: fileItem.js:900
+#: fileItem.js:989
 msgid "New Folder with {0} item"
 msgid_plural "New Folder with {0} items"
 msgstr[0] "Új mappa {0} elemmel"
 msgstr[1] "Új mappa {0} elemmel"
 
-#: fileItem.js:905
+#: fileItem.js:994
 msgid "Common Properties"
 msgstr "Gyakori tulajdonságok"
 
-#: fileItem.js:905
+#: fileItem.js:994
 msgid "Properties"
 msgstr "Tulajdonságok"
 
-#: fileItem.js:909
+#: fileItem.js:998
 msgid "Show All in Files"
 msgstr "Összes megjelenítése a Fájlokban"
 
-#: fileItem.js:909
+#: fileItem.js:998
 msgid "Show in Files"
 msgstr "Megjelenítés a Fájlokban"
 
@@ -294,11 +313,11 @@ msgstr "A személyes mappa megjelenítése az asztalon"
 msgid "Show the trash icon in the desktop"
 msgstr "A kuka ikon megjelenítése az asztalon"
 
-#: preferences.js:101 schemas/org.gnome.shell.extensions.ding.gschema.xml:38
+#: preferences.js:101 schemas/org.gnome.shell.extensions.ding.gschema.xml:45
 msgid "Show external drives in the desktop"
 msgstr "A külső meghajtók megjelenítése az asztalon"
 
-#: preferences.js:102 schemas/org.gnome.shell.extensions.ding.gschema.xml:43
+#: preferences.js:102 schemas/org.gnome.shell.extensions.ding.gschema.xml:50
 msgid "Show network drives in the desktop"
 msgstr "A hálózati meghajtók megjelenítése az asztalon."
 
@@ -322,7 +341,7 @@ msgstr "Bal alsó sarok"
 msgid "Bottom-right corner"
 msgstr "Jobb alsó sarok"
 
-#: preferences.js:111 schemas/org.gnome.shell.extensions.ding.gschema.xml:48
+#: preferences.js:111 schemas/org.gnome.shell.extensions.ding.gschema.xml:55
 msgid "Add new drives to the opposite side of the screen"
 msgstr "Új meghajtók hozzáadása a képernyő ellentétes oldalán"
 
@@ -394,47 +413,51 @@ msgstr ""
 "A Desktop Icons NG beállításához kattintson jobb gombbal az asztalon, és "
 "válassza az utolsó elemet: „Asztali ikonok beállítása”"
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:18
+#: showErrorPopup.js:37
+msgid "Close"
+msgstr ""
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:25
 msgid "Icon size"
 msgstr "Ikonméret"
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:19
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:26
 msgid "Set the size for the desktop icons."
 msgstr "Az asztali ikonok méretének beállítása."
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:23
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:30
 msgid "Show personal folder"
 msgstr "Személyes mappa megjelenítése"
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:24
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:31
 msgid "Show the personal folder in the desktop."
 msgstr "A személyes mappa megjelenítése az asztalon."
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:28
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:35
 msgid "Show trash icon"
 msgstr "Kuka ikon megjelenítése"
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:29
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:36
 msgid "Show the trash icon in the desktop."
 msgstr "A kuka ikon megjelenítése az asztalon."
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:33
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:40
 msgid "New icons start corner"
 msgstr "Új ikonok kezdősarka"
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:34
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:41
 msgid "Set the corner from where the icons will start to be placed."
 msgstr "Beállítja a sarkot, ahová az ikonok helyezve lesznek."
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:39
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:46
 msgid "Show the disk drives connected to the computer."
 msgstr "A számítógéphez csatlakoztatott lemezmeghajtók megjelenítése."
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:44
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:51
 msgid "Show mounted network volumes in the desktop."
 msgstr "Csatolt hálózati kötetek megjelenítése az asztalon."
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:49
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:56
 msgid ""
 "When adding drives and volumes to the desktop, add them to the opposite side "
 "of the screen."
@@ -442,14 +465,52 @@ msgstr ""
 "Ha lemezeket és köteteket ad az asztalhoz, akkor a képernyő ellentétes "
 "oldalán teszi."
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:53
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:60
 msgid "Shows a rectangle in the destination place during DnD"
 msgstr "Egy négyzetet jelenít meg a célhelyen fogd és vidd művelet esetén"
 
-#: schemas/org.gnome.shell.extensions.ding.gschema.xml:54
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:61
 msgid ""
 "When doing a Drag'n'Drop operation, marks the place in the grid where the "
 "icon will be put with a semitransparent rectangle."
 msgstr ""
 "Amikor fogd és vidd művelet végez, akkor a rácshelyen egy ikont fog "
 "megjeleníteni egy félig áttetsző négyzetben."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:65
+msgid "Sort Special Folders - Home/Trash Drives."
+msgstr ""
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:66
+msgid ""
+"When arranging Icons on desktop, to sort and change the position of the "
+"Home, Trash and mounted Network or External Drives"
+msgstr ""
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:70
+msgid "Keep Icons Arranged"
+msgstr ""
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:71
+msgid "Always keep Icons Arranged by the last arranged order"
+msgstr ""
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:75
+msgid "Arrange Order"
+msgstr ""
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:76
+msgid "Icons Arranged by this property"
+msgstr ""
+
+#~ msgid "Delete"
+#~ msgstr "Törlés"
+
+#~ msgid "Error while deleting files"
+#~ msgstr "Hiba történt a fájlok törlésekor"
+
+#~ msgid "Are you sure you want to permanently delete these items?"
+#~ msgstr "Biztos, hogy végleg törölni akarja ezeket elemet?"
+
+#~ msgid "If you delete an item, it will be permanently lost."
+#~ msgstr "Ha töröl egy elemet, akkor az véglegesen elvész."
