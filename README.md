@@ -5,10 +5,10 @@
 Desktop Icons NG for GNOME Shell. It is a fork/rewrite of the official 'Desktop Icons' extension,
 with these advantages:
 
- * Drag'n'Drop, both inside the desktop, between desktop and applications, and nautilus windows
- * Allows to use "Open with..." option with several files
- * When hovering or clicking on an icon with a name too large to fit, it shows the full name
- * Doesn't hang the compositor when there is too much activity in the desktop folder
+* Drag'n'Drop, both inside the desktop, between desktop and applications, and nautilus windows
+* Allows to use "Open with..." option with several files
+* When hovering or clicking on an icon with a name too large to fit, it shows the full name
+* Doesn't hang the compositor when there is too much activity in the desktop folder
 
 But it is still an alpha development, so it probably still have a lot of bugs. Use with care.
 
@@ -16,6 +16,9 @@ But it is still an alpha development, so it probably still have a lot of bugs. U
 
 * GNOME Shell >= 3.38
 * Nautilus >= 3.38
+* gir1.2-clutter
+* gir1.2-gtkclutter
+* gir1.2-clutter-gst
 
 ## TO-DO
 
@@ -29,8 +32,8 @@ The code is divided in two parts: a classic Gtk program that manages the whole d
 desktopIconsUtil.js, desktopManager.js, enums.js, fileItem.js and preferences.js), and a little
 extension (extension.js) that have these roles:
 
- * Launch the desktop program at startup and relaunch it if it dies
- * Identify the desktop windows and keep it at the bottom of the windows stack, in all desktops
+* Launch the desktop program at startup and relaunch it if it dies
+* Identify the desktop windows and keep it at the bottom of the windows stack, in all desktops
 
 This last part is paramount in Wayland systems, because there an application can't set its role
 as freely as in X11.
@@ -75,22 +78,20 @@ It accepts the following command line parameters:
 files must be in the current path.
 * -D: specifies a monitor. It is followed by another parameter in the form: X:Y:W:H:Z being each letter
       a number with, respectively:
-    * X: the X coordinate of this monitor
-    * Y: the Y coordinate of this monitor
-    * W: the width in pixels of this monitor
-    * H: the height in pixels of this monitor
-    * Z: the zoom value for this monitor
+  * X: the X coordinate of this monitor
+  * Y: the Y coordinate of this monitor
+  * W: the width in pixels of this monitor
+  * H: the height in pixels of this monitor
+  * Z: the zoom value for this monitor
   you can set several -D parameters in the same command line, one for each monitor. A single window
   will be created for each monitor. If no -D parameter is specified, it will create a single monitor
   with a size of 1280x720 pixels.
 * -M: specifies which monitor is the primary index, to add there any new file icon.
 
-
 ## Manual installation
 
 The easiest way of installing DING is to run the `local_install.sh` script. It performs the build steps
 specified in the next section.
-
 
 ## Build with Meson
 
@@ -106,6 +107,7 @@ project and install it:
 meson --prefix=$HOME/.local/ --localedir=share/gnome-shell/extensions/ding@rastersoft.com/locale .build
 ninja -C .build install
 ```
+
 It is strongly recommended to delete the destination folder
 ($HOME/.local/share/gnome-shell/extensions/ding@rastersoft.com) before doing this, to ensure that no old
 data is kept.
