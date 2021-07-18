@@ -612,7 +612,7 @@ var DesktopManager = class {
 
         this._menu.add(new Gtk.SeparatorMenuItem());
 
-        let selectAll = new Gtk.MenuItem({label: _("Select all")});
+        let selectAll = new Gtk.MenuItem({label: _("Select All")});
         selectAll.connect("activate", () => this._selectAll());
         this._menu.add(selectAll);
 
@@ -646,7 +646,7 @@ var DesktopManager = class {
         });
         this._menu.add(this._displaySettingsMenuItem);
 
-        this._settingsMenuItem = new Gtk.MenuItem({label: _("Desktop Icons settings")});
+        this._settingsMenuItem = new Gtk.MenuItem({label: _("Desktop Icons Settings")});
         this._settingsMenuItem.connect("activate", () => Prefs.showPreferences());
         this._menu.add(this._settingsMenuItem);
         this._menu.show_all();
