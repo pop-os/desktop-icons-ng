@@ -120,7 +120,10 @@ var FileItem = class {
         this._labelEventBox.connect('button-release-event', (actor, event) => this._onReleaseButton(actor, event));
         this._labelEventBox.connect('drag-motion', () => this._eventBox.drag_highlight());
         this._labelEventBox.connect('drag-leave', () => this._eventBox.drag_unhighlight());
-        this._labelEventBox.connect('size-allocate', () => this._calculateLabelRectangle());
+        this._labelEventBox.connect('size-allocate', () => {
+            this._calculateLabelRectangle();
+            this.checkForRename();
+        });
 
         /* Set the metadata and update relevant UI */
         this._updateMetadataFromFileInfo(fileInfo);
@@ -371,6 +374,20 @@ var FileItem = class {
         this._iconContainer.margin_top = margin;
         this._calculateIconRectangle();
         this._calculateLabelRectangle();
+    }
+
+    checkForRename() {
+        if (this._desktopManager.newFolderDoRename) {
+            if (this._desktopManager.newFolderDoRename == this.fileName) {
+                this._desktopManager.doRename(this);
+            }
+        }
+    }
+
+    closeRename() {
+            if (this._desktopManager.newFolderDoRename) {
+                this._desktopManager.newFolderDoRename = null;
+            }
     }
 
     getCoordinates() {
@@ -986,7 +1003,7 @@ var FileItem = class {
             compressFilesFromSelection.connect('activate', () => {this._desktopManager.doCompressFilesFromSelection();});
             this._menu.add(compressFilesFromSelection);
             let newFolderFromSelection = new Gtk.MenuItem({label:  Gettext.ngettext('New Folder with {0} item', 'New Folder with {0} items' , this._selectedItemsNum).replace('{0}', this._selectedItemsNum)});
-            newFolderFromSelection.connect('activate', () => {this._desktopManager.doNewFolderFromSelection(this._savedCoordinates);});
+            newFolderFromSelection.connect('activate', () => {this._desktopManager.doNewFolderFromSelection(this._savedCoordinates, this);});
             this._menu.add(newFolderFromSelection);
             this._menu.add(new Gtk.SeparatorMenuItem());
         }

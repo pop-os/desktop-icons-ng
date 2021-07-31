@@ -28,7 +28,6 @@ const DesktopIconsUtil = imports.desktopIconsUtil;
 const Prefs = imports.preferences;
 const Enums = imports.enums;
 const DBusUtils = imports.dbusUtils;
-const AskNamePopup = imports.askNamePopup;
 const AskRenamePopup = imports.askRenamePopup;
 const ShowErrorPopup = imports.showErrorPopup;
 const TemplateManager = imports.templateManager;
@@ -1307,8 +1306,13 @@ var DesktopManager = class {
         for(let fileItem of this._fileList) {
             fileItem.unsetSelected();
         }
-        let newFolderWindow = new AskNamePopup.AskNamePopup(null, _("New folder"), null);
-        let newName = newFolderWindow.run();
+        let i = 0;
+        let baseName = _("New Folder");
+        let newName = baseName;
+        while ( 0 != this._fileList.filter(file => file.fileName == newName).length) {
+            i += 1;
+            newName = baseName + " " + i;
+        }
         if (newName) {
             let dir = DesktopIconsUtil.getDesktopDir().get_child(newName);
             try {
@@ -1317,6 +1321,7 @@ var DesktopManager = class {
                 info.set_attribute_string('metadata::nautilus-drop-position', `${X},${Y}`);
                 info.set_attribute_string('metadata::nautilus-icon-position', '');
                 dir.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
+                this.newFolderDoRename = newName;
                 if (position) {
                     return dir.get_uri();
                 }
@@ -1615,11 +1620,12 @@ var DesktopManager = class {
         this._addFilesToDesktop(this._fileList, Enums.StoredCoordinates.PRESERVE);
     }
 
-    doNewFolderFromSelection(position) {
+    doNewFolderFromSelection(position, clickedItem) {
         let newFolderFileItems = this.getCurrentSelection(true);
         for (let fileItem of this._fileList) {
            fileItem.unsetSelected();
         }
+        clickedItem.removeFromGrid();
         let newFolder = this._newFolder(position);
         if (newFolder) {
             DBusUtils.NautilusFileOperations2Proxy.MoveURIsRemote(

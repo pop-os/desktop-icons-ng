@@ -57,10 +57,14 @@ var AskRenamePopup = class {
                 this._do_rename();
             }
         });
+        this._popover.connect('closed', () => {
+                    this._fileItem.closeRename();
+        });
         this._textArea.set_can_default(true);
         this._popover.set_default_widget(this._textArea);
         this._button.get_style_context().add_class("suggested-action");
         this._popover.show_all();
+        this._popover.set_relative_to(this._fileItem._iconContainer);
         this._validate();
         this._textArea.grab_focus_without_selecting();
         this._textArea.select_region(0, DesktopIconsUtil.getFileExtensionOffset(fileItem.fileName, fileItem.isDirectory));
@@ -78,6 +82,7 @@ var AskRenamePopup = class {
     }
 
     _do_rename() {
+        this._fileItem.closeRename();
         DBusUtils.NautilusFileOperations2Proxy.RenameURIRemote(
             this._fileItem.file.get_uri(), this._textArea.text,
             DBusUtils.NautilusFileOperations2Proxy.platformData(),
