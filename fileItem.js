@@ -128,8 +128,12 @@ var FileItem = class {
         /* Set the metadata and update relevant UI */
         this._updateMetadataFromFileInfo(fileInfo);
 
-        this._setDropDestination(this._eventBox);
-        this._setDropDestination(this._labelEventBox);
+        if (this._desktopManager.showDropPlace) {
+            this._setDropDestination(this.container);
+        } else {
+            this._setDropDestination(this._eventBox);
+            this._setDropDestination(this._labelEventBox);
+        }
         this._setDragSource(this._eventBox);
         this._setDragSource(this._labelEventBox);
         this._menu = null;
