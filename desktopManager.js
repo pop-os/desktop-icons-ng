@@ -563,7 +563,7 @@ var DesktopManager = class {
             let selection = this.getCurrentSelection(false);
             if (selection && (selection.length == 1)) {
                 // Support renaming other grids file items.
-                this.doRename(selection[0]);
+                this.doRename(selection[0], false);
                 return true;
             }
         } else if (symbol == Gdk.KEY_space) {
@@ -1264,11 +1264,18 @@ var DesktopManager = class {
         return count;
     }
 
-    doRename(fileItem) {
+    doRename(fileItem, allowReturnOnSameName) {
         for(let fileItem2 of this._fileList) {
             fileItem2.unsetSelected();
         }
-        this._renameWindow = new AskRenamePopup.AskRenamePopup(fileItem);
+        if (!this._renameWindow) {
+            this._renameWindow = new AskRenamePopup.AskRenamePopup(fileItem, allowReturnOnSameName);
+        }
+    }
+
+    closeRenameWindow() {
+        this._renameWindow = null;
+        this.newFolderDoRename = null;
     }
 
     doOpenWith() {

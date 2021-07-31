@@ -379,15 +379,13 @@ var FileItem = class {
     checkForRename() {
         if (this._desktopManager.newFolderDoRename) {
             if (this._desktopManager.newFolderDoRename == this.fileName) {
-                this._desktopManager.doRename(this);
+                this._desktopManager.doRename(this, true);
             }
         }
     }
 
     closeRename() {
-            if (this._desktopManager.newFolderDoRename) {
-                this._desktopManager.newFolderDoRename = null;
-            }
+        this._desktopManager.closeRenameWindow();
     }
 
     getCoordinates() {
@@ -743,8 +741,7 @@ var FileItem = class {
             log (`Error: ${this.file.get_uri()} cannot be renamed`);
             return;
         }
-
-        this._desktopManager.doRename(this);
+        this._desktopManager.doRename(this, false);
     }
 
     doOpen(fileList) {
