@@ -45,7 +45,7 @@ var AskRenamePopup = class {
         this._textArea = new Gtk.Entry();
         this._textArea.text = fileItem.fileName;
         contentBox.attach(this._textArea, 0, 1, 1, 1);
-        this._button = new Gtk.Button({label: _("Rename")});
+        this._button = new Gtk.Button({label: allowReturnOnSameName ? _("OK") : _("Rename")});
         contentBox.attach(this._button, 1, 1, 1, 1);
         this._button.connect('clicked', () => {
             this._do_rename();

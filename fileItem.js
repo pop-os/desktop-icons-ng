@@ -385,9 +385,7 @@ var FileItem = class {
     }
 
     closeRename() {
-            if (this._desktopManager.newFolderDoRename) {
-                this._desktopManager.newFolderDoRename = null;
-            }
+        this._desktopManager.closeRenameWindow();
     }
 
     getCoordinates() {

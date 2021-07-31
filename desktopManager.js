@@ -1268,7 +1268,14 @@ var DesktopManager = class {
         for(let fileItem2 of this._fileList) {
             fileItem2.unsetSelected();
         }
-        this._renameWindow = new AskRenamePopup.AskRenamePopup(fileItem, allowReturnOnSameName);
+        if (!this._renameWindow) {
+            this._renameWindow = new AskRenamePopup.AskRenamePopup(fileItem, allowReturnOnSameName);
+        }
+    }
+
+    closeRenameWindow() {
+        this._renameWindow = null;
+        this.newFolderDoRename = null;
     }
 
     doOpenWith() {
