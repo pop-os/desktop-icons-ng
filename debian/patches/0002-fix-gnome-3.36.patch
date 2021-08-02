@@ -1,0 +1,13 @@
+diff --git a/dbusUtils.js b/dbusUtils.js
+index 10eb22a..63d5ebe 100644
+--- a/dbusUtils.js
++++ b/dbusUtils.js
+@@ -280,7 +280,7 @@ function init() {
+       ...params,
+     };
+ 
+-    let { parentHandle } = params ?? { parentHandle: ''};
++    let { parentHandle } = params || { parentHandle: ''};
+     if (!parentHandle && parentWindow) {
+       try {
+         imports.gi.versions.GdkX11 = '3.0';
