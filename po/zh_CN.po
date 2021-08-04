@@ -8,13 +8,15 @@ msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-18 14:10+0200\n"
-"PO-Revision-Date: 2018-10-24 21:31+0800\n"
-"Last-Translator: Okeyja <bross049deng@gmail.com>\n"
+"PO-Revision-Date: 2021-08-05 01:21+0800\n"
+"Last-Translator: Okeyja <phpluo@gmail.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 3.0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Team: \n"
 
 #: askNamePopup.js:36
 msgid "OK"
@@ -42,7 +44,7 @@ msgstr "命令无法找到"
 
 #: desktopIconsUtil.js:202
 msgid "Do you want to run “{0}”, or display its contents?"
-msgstr "您想要运行“{0}，或者显示其内容吗？”"
+msgstr "您是想运行\"{0}\"，还是显示其内容？"
 
 #: desktopIconsUtil.js:203
 msgid "“{0}” is an executable text file."
@@ -98,11 +100,11 @@ msgstr "在文件管理器中打开桌面"
 
 #: desktopManager.js:627 fileItem.js:1002
 msgid "Open in Terminal"
-msgstr "打开终端"
+msgstr "在终端中打开"
 
 #: desktopManager.js:633
 msgid "Change Background…"
-msgstr "更改壁纸……"
+msgstr "更改背景..."
 
 #: desktopManager.js:642
 msgid "Display Settings"
@@ -110,7 +112,7 @@ msgstr "显示设置"
 
 #: desktopManager.js:649
 msgid "Desktop Icons settings"
-msgstr ""
+msgstr "设置"
 
 #: desktopManager.js:660
 msgid "Scripts"
@@ -122,74 +124,72 @@ msgstr "新建文件夹"
 
 #: desktopManager.js:1385
 msgid "Can not email a Directory"
-msgstr ""
+msgstr "文件夹不能邮件"
 
 #: desktopManager.js:1386
 msgid "Selection includes a Directory, compress the directory to a file first."
-msgstr ""
+msgstr "选择包括目录，首先将目录压缩到文件中。"
 
 #: desktopManager.js:1407
 msgid "Arrange Icons"
-msgstr ""
+msgstr "图标排序"
 
 #: desktopManager.js:1411
 msgid "Arrange By..."
-msgstr ""
+msgstr "排序方式..."
 
 #: desktopManager.js:1420
 msgid "Keep Arranged..."
-msgstr ""
+msgstr "保持安排..."
 
 #: desktopManager.js:1425
 msgid "Sort Home/Drives/Trash..."
-msgstr ""
+msgstr "排序主目录/驱动器/回收站..."
 
 #: desktopManager.js:1431
 msgid "Sort by Name"
-msgstr ""
+msgstr "按名称排序"
 
 #: desktopManager.js:1433
 msgid "Sort by Name Descending"
-msgstr ""
+msgstr "按描述排序"
 
 #: desktopManager.js:1436
 msgid "Sort by Modified Time"
-msgstr ""
+msgstr "按修改时间排序"
 
 #: desktopManager.js:1439
 msgid "Sort by Type"
-msgstr ""
+msgstr "按类型排序"
 
 #: desktopManager.js:1442
 msgid "Sort by Size"
-msgstr ""
+msgstr "按大小排序"
 
 #: desktopManager.js:1666
 msgid "Select Extract Destination"
-msgstr ""
+msgstr "选择提取目录"
 
 #: desktopManager.js:1669
-#, fuzzy
 msgid "Select"
-msgstr "全选"
+msgstr "选择"
 
 #. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
 #: fileItem.js:196
 msgid "Home"
-msgstr "Home"
+msgstr "主目录"
 
 #: fileItem.js:898
 msgid "Open All..."
-msgstr ""
+msgstr "全部打开..."
 
 #: fileItem.js:898
 msgid "Open"
 msgstr "打开"
 
 #: fileItem.js:905
-#, fuzzy
 msgid "Open All With Other Application..."
-msgstr "用其他方式打开"
+msgstr "用其他方式打开。"
 
 #: fileItem.js:905
 msgid "Open With Other Application"
@@ -197,7 +197,7 @@ msgstr "用其他方式打开"
 
 #: fileItem.js:909
 msgid "Launch using Dedicated Graphics Card"
-msgstr ""
+msgstr "使用独立显卡启动"
 
 #: fileItem.js:917
 msgid "Cut"
@@ -220,7 +220,6 @@ msgid "Delete permanently"
 msgstr "永久删除"
 
 #: fileItem.js:938
-#, fuzzy
 msgid "Don't Allow Launching"
 msgstr "不允许运行"
 
@@ -255,32 +254,28 @@ msgstr "发送到…"
 #: fileItem.js:986
 msgid "Compress {0} file"
 msgid_plural "Compress {0} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "压缩{0}文件"
 
 #: fileItem.js:989
 msgid "New Folder with {0} item"
 msgid_plural "New Folder with {0} items"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "带{0}项的新文件夹"
 
 #: fileItem.js:994
-#, fuzzy
 msgid "Common Properties"
-msgstr "属性"
+msgstr "通用属性"
 
 #: fileItem.js:994
 msgid "Properties"
 msgstr "属性"
 
 #: fileItem.js:998
-#, fuzzy
 msgid "Show All in Files"
-msgstr "在“文件”中显示"
+msgstr "全部在文件中展示"
 
 #: fileItem.js:998
 msgid "Show in Files"
-msgstr "在“文件”中显示"
+msgstr "在文件夹中显示"
 
 #: preferences.js:91
 msgid "Settings"
@@ -407,15 +402,14 @@ msgid "Always"
 msgstr "始终"
 
 #: prefs.js:37
-#, fuzzy
 msgid ""
 "To configure Desktop Icons NG, do right-click in the desktop and choose the "
 "last item: 'Desktop Icons settings'"
-msgstr "设置 Desktop Icons NG，在桌面点击右键并选择最后一个项目：“设置”"
+msgstr "设置 Desktop Icons NG，在桌面点击右键并选择最后一个项：设置"
 
 #: showErrorPopup.js:37
 msgid "Close"
-msgstr ""
+msgstr "关闭"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:25
 msgid "Icon size"
@@ -439,7 +433,7 @@ msgstr "显示回收站"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:36
 msgid "Show the trash icon in the desktop."
-msgstr "在桌面显示回收站图标"
+msgstr "在桌面中显示回收站图标。"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:40
 msgid "New icons start corner"
@@ -447,15 +441,15 @@ msgstr "新图标开始角"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:41
 msgid "Set the corner from where the icons will start to be placed."
-msgstr "设置开始放置图标的角点"
+msgstr "设置图标开始放置的角落。"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:46
 msgid "Show the disk drives connected to the computer."
-msgstr "显示链接到计算机的磁盘驱动器"
+msgstr "显示连接到计算机的磁盘驱动器。"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:51
 msgid "Show mounted network volumes in the desktop."
-msgstr "在桌面显示挂载的网络卷"
+msgstr "显示桌面中安装的网络卷。"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:56
 msgid ""
@@ -475,53 +469,52 @@ msgstr "当执行拖拽时，在网格中用半透明矩形标记图标将被放
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:65
 msgid "Sort Special Folders - Home/Trash Drives."
-msgstr ""
+msgstr "排序特殊文件夹 - 主目录/回收站驱动器。"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:66
 msgid ""
 "When arranging Icons on desktop, to sort and change the position of the "
 "Home, Trash and mounted Network or External Drives"
 msgstr ""
+"在桌面上排列图标时，要对主目录、回收站和安装的网络或外部驱动器的位置进行排序"
+"和更改"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:70
 msgid "Keep Icons Arranged"
-msgstr ""
+msgstr "保持图标排列"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:71
 msgid "Always keep Icons Arranged by the last arranged order"
-msgstr ""
+msgstr "始终保留由最后安排的订单安排的图标"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:75
 msgid "Arrange Order"
-msgstr ""
+msgstr "排列顺序"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:76
 msgid "Icons Arranged by this property"
-msgstr ""
+msgstr "按此属性排列图标"
 
-#~ msgid "Delete"
-#~ msgstr "删除"
+msgid "Delete"
+msgstr "删除"
 
-#~ msgid "Error while deleting files"
-#~ msgstr "删除文件发生错误"
+msgid "Error while deleting files"
+msgstr "删除文件发生错误"
 
-#~ msgid "Are you sure you want to permanently delete these items?"
-#~ msgstr "您确定要永久删除这些项目吗？"
+msgid "Are you sure you want to permanently delete these items?"
+msgstr "您确定要永久删除这些项目吗？"
 
-#~ msgid "If you delete an item, it will be permanently lost."
-#~ msgstr "删除一个项目，它将会永远消失"
+msgid "If you delete an item, it will be permanently lost."
+msgstr "删除一个项目，它将会永远消失."
 
-#, fuzzy
-#~ msgid "Show external disk drives in the desktop"
-#~ msgstr "在桌面顯示個人資料夾"
+msgid "Show external disk drives in the desktop"
+msgstr "在桌面中显示外部磁盘驱动器"
 
-#, fuzzy
-#~ msgid "Show the external drives"
-#~ msgstr "在桌面顯示個人資料夾"
+msgid "Show the external drives"
+msgstr "在桌面展示个人驱动器"
 
-#, fuzzy
-#~ msgid "Show network volumes"
-#~ msgstr "在《檔案》中顯示"
+msgid "Show network volumes"
+msgstr "展示网络卷"
 
-#~ msgid "Huge"
-#~ msgstr "巨大圖示"
+msgid "Huge"
+msgstr "巨大"
