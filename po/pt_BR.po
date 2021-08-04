@@ -163,7 +163,7 @@ msgstr "Ordenar por nome"
 
 #: desktopManager.js:1433
 msgid "Sort by Name Descending"
-msgstr "Ordenar por nome de forma decendente"
+msgstr "Ordenar por nome de forma descendente"
 
 #: desktopManager.js:1436
 msgid "Sort by Modified Time"
