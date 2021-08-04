@@ -143,43 +143,43 @@ msgstr ""
 
 #: desktopManager.js:1407
 msgid "Arrange Icons"
-msgstr ""
+msgstr "Ordenar ícones"
 
 #: desktopManager.js:1411
 msgid "Arrange By..."
-msgstr ""
+msgstr "Ordenar por..."
 
 #: desktopManager.js:1420
 msgid "Keep Arranged..."
-msgstr ""
+msgstr "Manter ordenado..."
 
 #: desktopManager.js:1425
 msgid "Sort Home/Drives/Trash..."
-msgstr ""
+msgstr "Ordenar Home/Drives/Lixeira..."
 
 #: desktopManager.js:1431
 msgid "Sort by Name"
-msgstr ""
+msgstr "Ordenar por nome"
 
 #: desktopManager.js:1433
 msgid "Sort by Name Descending"
-msgstr ""
+msgstr "Ordenar por nome de forma decendente"
 
 #: desktopManager.js:1436
 msgid "Sort by Modified Time"
-msgstr ""
+msgstr "Ordenar por data de modificação"
 
 #: desktopManager.js:1439
 msgid "Sort by Type"
-msgstr ""
+msgstr "Ordenar por tipo"
 
 #: desktopManager.js:1442
 msgid "Sort by Size"
-msgstr ""
+msgstr "Ordenar por tamanho"
 
 #: desktopManager.js:1666
 msgid "Select Extract Destination"
-msgstr ""
+msgstr "Selecionar destino da extração"
 
 #: desktopManager.js:1669
 #, fuzzy
