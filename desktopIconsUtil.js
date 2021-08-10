@@ -254,10 +254,13 @@ function windowHidePagerTaskbarModal(window, modal) {
         window.set_skip_pager_hint(true);
     } else {
         let title = window.get_title();
+        if (title == null) {
+            title = "";
+        }
         if (modal) {
-            title = title + '@!HTD';
+            title = title + '  ';
         } else {
-            title = title + '@!H';
+            title = title + ' ';
         }
         window.set_title(title);
     }

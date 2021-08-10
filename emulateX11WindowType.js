@@ -83,6 +83,13 @@ class ManageWindow {
         this._fixed = false;
         let title = this._window.get_title();
         if (title != null) {
+            if ((title.length > 0) && (title[title.length-1] == ' ')) {
+                if ((title.length > 1) && (title[title.length-2] == ' ')) {
+                    title = "@!HTD";
+                } else {
+                    title = "@!H";
+                }
+            }
             let pos = title.search("@!");
             if (pos != -1) {
                 let pos2 = title.search(";", pos)
