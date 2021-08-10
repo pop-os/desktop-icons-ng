@@ -582,8 +582,56 @@ var DesktopManager = class {
         } else if (isCtrl && ((symbol == Gdk.KEY_H) || (symbol == Gdk.KEY_h))) {
             Prefs.gtkSettings.set_boolean('show-hidden', !this._showHidden);
             return true;
+        } else if (isCtrl && ((symbol == Gdk.KEY_F) || (symbol == Gdk.KEY_f))) {
+            this.findFiles();
+            return true;
         }
         return false;
+    }
+
+    findFiles() {
+        this._findFileWindow = new Gtk.Dialog({use_header_bar: true,
+                                       window_position: Gtk.WindowPosition.CENTER_ON_PARENT,
+                                       resizable: false});
+        this._findFileButton = this._findFileWindow.add_button(_("OK"), Gtk.ResponseType.OK);
+        this._findFileWindow.add_button(_("Cancel"), Gtk.ResponseType.CANCEL);
+        this._findFileWindow.set_modal(true);
+        this._findFileWindow.set_title(_('Find Files on Desktop'));
+        DesktopIconsUtil.windowHidePagerTaskbarModal(this._findFileWindow, true);
+        let contentArea = this._findFileWindow.get_content_area();
+        this._findFileTextArea = new Gtk.Entry();
+        contentArea.pack_start(this._findFileTextArea, true, true, 5);
+        this._findFileTextArea.connect('activate', () => {
+            if (this._findFileButton.sensitive) {
+                this._findFileWindow.response(Gtk.ResponseType.OK);
+            }
+        });
+        this._findFileTextArea.connect('changed', () => {
+            this.scanForFiles();
+        });
+        this.scanForFiles();
+        this._findFileWindow.show_all();
+        this._findFileTextArea.grab_focus_without_selecting();
+        let retval = this._findFileWindow.run();
+        if (retval == Gtk.ResponseType.CANCEL) {
+            this._fileList.map(f => f.unsetSelected());
+        }
+        this._findFileWindow.destroy();
+    }
+
+    scanForFiles() {
+        let text = this._findFileTextArea.text;
+        let found = [];
+        this._fileList.map(f => f.unsetSelected());
+        if (text != '') {
+            found = this._fileList.filter(f => (f.fileName.toLowerCase().includes(text.toLowerCase())) || (f._label.get_text().toLowerCase().includes(text.toLowerCase())));
+            found.map(f => f.setSelected());
+        }
+        if (found.length != 0) {
+            this._findFileButton.sensitive = true;
+        } else {
+            this._findFileButton.sensitive = false;
+        }
     }
 
     _createDesktopBackgroundMenu() {
