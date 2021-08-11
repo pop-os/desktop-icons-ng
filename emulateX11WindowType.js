@@ -54,6 +54,11 @@ class ManageWindow {
         this._signalIDs.push(window.connect("notify::title", () => {
             this._parseTitle();
         }));
+        this._signalIDs.push(window.connect("notify::above", () => {
+            if (this._keepAtBottom && this._window.above) {
+                this._window.unmake_above();
+            }
+        }));
         this._parseTitle();
     }
 
