@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-18 14:10+0200\n"
-"PO-Revision-Date: 2021-07-02 15:39+0900\n"
+"PO-Revision-Date: 2021-08-17 12:14+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
@@ -124,47 +124,47 @@ msgstr "新しいフォルダー"
 
 #: desktopManager.js:1385
 msgid "Can not email a Directory"
-msgstr ""
+msgstr "ディレクトリをメールで送ることはできません"
 
 #: desktopManager.js:1386
 msgid "Selection includes a Directory, compress the directory to a file first."
-msgstr "ディレクトリが選択されており、先にそれらが圧縮されます"
+msgstr "ディレクトリが選択されており、先にそれらが圧縮されます。"
 
 #: desktopManager.js:1407
 msgid "Arrange Icons"
-msgstr ""
+msgstr "アイコンを変更"
 
 #: desktopManager.js:1411
 msgid "Arrange By..."
-msgstr ""
+msgstr "変更..."
 
 #: desktopManager.js:1420
 msgid "Keep Arranged..."
-msgstr ""
+msgstr "変更を維持..."
 
 #: desktopManager.js:1425
 msgid "Sort Home/Drives/Trash..."
-msgstr ""
+msgstr "ホーム/デバイス/ゴミ箱 の順で並び替え"
 
 #: desktopManager.js:1431
 msgid "Sort by Name"
-msgstr ""
+msgstr "名前で並び替え"
 
 #: desktopManager.js:1433
 msgid "Sort by Name Descending"
-msgstr ""
+msgstr "名前（降順）並べ替え"
 
 #: desktopManager.js:1436
 msgid "Sort by Modified Time"
-msgstr ""
+msgstr "変更された時間で並び替え"
 
 #: desktopManager.js:1439
 msgid "Sort by Type"
-msgstr ""
+msgstr "種類で並び替え"
 
 #: desktopManager.js:1442
 msgid "Sort by Size"
-msgstr ""
+msgstr "サイズで並び替え"
 
 #: desktopManager.js:1666
 msgid "Select Extract Destination"
@@ -441,7 +441,7 @@ msgstr "新しいアイコンが追加される角"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:41
 msgid "Set the corner from where the icons will start to be placed."
-msgstr "アイコンの配置の基準になるコーナーを設定します"
+msgstr "アイコンの配置の基準になるコーナーを設定します。"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:46
 msgid "Show the disk drives connected to the computer."
@@ -473,29 +473,31 @@ msgstr ""
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:65
 msgid "Sort Special Folders - Home/Trash Drives."
-msgstr ""
+msgstr "特別なフォルダで並び替え ホーム/ゴミ箱"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:66
 msgid ""
 "When arranging Icons on desktop, to sort and change the position of the "
 "Home, Trash and mounted Network or External Drives"
 msgstr ""
+"デスクトップにアイコンを配置するとき、ホーム、ゴミ箱、マウントされたネット"
+"ワークまたは外付けドライブの位置を並べ替える"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:70
 msgid "Keep Icons Arranged"
-msgstr ""
+msgstr "アイコンの変更を維持"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:71
 msgid "Always keep Icons Arranged by the last arranged order"
-msgstr ""
+msgstr "常に最後に変更された順番を維持する"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:75
 msgid "Arrange Order"
-msgstr ""
+msgstr "変更された順番"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:76
 msgid "Icons Arranged by this property"
-msgstr ""
+msgstr "アイコンは現在の値に変更されました"
 
 #~ msgid "Delete"
 #~ msgstr "削除"
