@@ -83,7 +83,7 @@ var DesktopManager = class {
             }
             if (key == Enums.SortOrder.ORDER) {
                 this.doArrangeRadioButtons();
-                this.doSorts();
+                this.doSorts(true);
                 return;
             }
             this.showDropPlace = Prefs.desktopSettings.get_boolean('show-drop-place');
@@ -1547,6 +1547,7 @@ var DesktopManager = class {
         if (this.keepArranged) {
             return;
         }
+        this._fileList.map(f => f.removeFromGrid());
         let cornerInversion = Prefs.get_start_corner();
         if (!cornerInversion[0] && !cornerInversion[1]) {
             this._fileList.sort((a, b) =>   {   if (a._x1 < b._x1) return -1;
@@ -1644,7 +1645,6 @@ var DesktopManager = class {
         for(let fileItem of this._fileList){
             fileItem.savedCoordinates = null;
             fileItem.dropCoordinates = null;
-            fileItem.removeFromGrid();
         }
         this._addFilesToDesktop(this._fileList, Enums.StoredCoordinates.ASSIGN);
     }
@@ -1656,14 +1656,12 @@ var DesktopManager = class {
         for(let fileItem of this._fileList){
             if ( fileItem._isSpecial) {
                 specialFiles.push(fileItem);
-                fileItem.removeFromGrid();
                 continue;
             }
             if (! fileItem._isSpecial) {
                 otherFiles.push(fileItem);
                 fileItem.savedCoordinates = null;
                 fileItem.dropCoordinates = null;
-                fileItem.removeFromGrid();
                 continue;
             }
         }
@@ -1785,7 +1783,10 @@ var DesktopManager = class {
         }
     }
 
-    doSorts() {
+    doSorts(cleargrids) {
+        if (cleargrids) {
+            this._fileList.map(f => f.removeFromGrid());
+        }
         switch (Prefs.getSortOrder()) {
             case Enums.SortOrder.NAME:
                 this._sortAllFilesFromGridsByName();
