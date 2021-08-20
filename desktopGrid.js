@@ -184,6 +184,35 @@ var DesktopGrid = class {
         });
     }
 
+    highLightGridAt(x,y) {
+        let selected = this.getGridAt(x, y, false);
+        this._selectedList = [selected];
+        this._window.queue_draw();
+    }
+
+    unHighLightGrids() {
+        this._selectedList = null;
+        this._window.queue_draw();
+    }
+
+    gridInUse(x, y, returnRowColumn) {
+        let placeX = Math.floor(x / this._elementWidth);
+        let placeY = Math.floor(y / this._elementHeight);
+        placeX = DesktopIconsUtil.clamp(placeX, 0, this._maxColumns - 1);
+        placeY = DesktopIconsUtil.clamp(placeY, 0, this._maxRows - 1);
+        if (returnRowColumn) {
+            return [placeX, placeY];
+        }
+        return ! this._isEmptyAt(placeX, placeY);
+    }
+
+    getGridLocalCoordinates(x, y) {
+        let [column, row] = this.gridInUse(x, y, true);
+        let localX = Math.floor(this._width * column / this._maxColumns);
+        let localY = Math.floor(this._height * row / this._maxRows);
+        return [localX, localY];
+    }
+
     refreshDrag(selectedList, ox, oy) {
         if (selectedList === null) {
             this._selectedList = null;
@@ -195,7 +224,7 @@ var DesktopGrid = class {
             x += ox;
             y += oy;
             let r = this.getGridAt(x, y, false);
-            if (r !== null) {
+            if (r !== null && ! this.gridInUse(r[0], r[1], false)) {
                 newSelectedList.push(r);
             }
         }
@@ -354,12 +383,14 @@ var DesktopGrid = class {
     getGridAt(x, y, globalCoordinates) {
         if (this._coordinatesBelongToThisGrid(x, y)) {
             [x, y] = this._coordinatesGlobalToLocal(x, y);
-            x = this._elementWidth * Math.floor((x / this._elementWidth) + 0.5);
-            y = this._elementHeight * Math.floor((y / this._elementHeight) + 0.5);
             if (globalCoordinates) {
+                x = this._elementWidth * Math.floor((x / this._elementWidth) + 0.5);
+                y = this._elementHeight * Math.floor((y / this._elementHeight) + 0.5);
                 [x, y] = this._coordinatesLocalToGlobal(x, y);
+                return [x, y];
+            } else {
+                return this.getGridLocalCoordinates(x, y);
             }
-            return [x, y];
         } else {
             return null;
         }
