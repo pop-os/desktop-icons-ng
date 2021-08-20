@@ -30,7 +30,7 @@ const Enums = imports.enums;
 const DBusUtils = imports.dbusUtils;
 const AskRenamePopup = imports.askRenamePopup;
 const ShowErrorPopup = imports.showErrorPopup;
-const TemplateManager = imports.templateManager;
+const TemplatesScriptsManager = imports.templatesScriptsManager;
 
 const Gettext = imports.gettext.domain('ding');
 
@@ -50,30 +50,36 @@ var DesktopManager = class {
             }
         } catch(e) {
         }
+
+        this.scriptsMonitor = new TemplatesScriptsManager.TemplatesScriptsManager(
+            DesktopIconsUtil.getScriptsDir(),
+            TemplatesScriptsManager.TemplatesScriptsManagerFlags.ONLY_EXECUTABLE,
+            this._onScriptClicked.bind(this));
+
+        this.templatesMonitor = new TemplatesScriptsManager.TemplatesScriptsManager(
+            DesktopIconsUtil.getTemplatesDir(),
+            TemplatesScriptsManager.TemplatesScriptsManagerFlags.NONE,
+            this._newDocument.bind(this));
+
         this._primaryIndex = primaryIndex;
         this._primaryScreen = desktopList[primaryIndex];
         this._clickX = 0;
         this._clickY = 0;
         this._dragList = null;
         this.dragItem = null;
-        this._templateManager = new TemplateManager.TemplateManager();
         this._codePath = codePath;
         this._asDesktop = asDesktop;
         this._desktopList = desktopList;
         this._desktops = [];
         this._desktopFilesChanged = false;
         this._readingDesktopFiles = true;
-        this._scriptFilesChanged = false;
         this._desktopDir = DesktopIconsUtil.getDesktopDir();
-        this._scriptsDir = DesktopIconsUtil.getScriptsDir();
         this.desktopFsId = this._desktopDir.query_info('id::filesystem', Gio.FileQueryInfoFlags.NONE, null).get_attribute_string('id::filesystem');
         this._updateWritableByOthers();
         this._monitorDesktopDir = this._desktopDir.monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, null);
         this._monitorDesktopDir.set_rate_limit(1000);
         this._monitorDesktopDir.connect('changed', (obj, file, otherFile, eventType) => this._updateDesktopIfChanged(file, otherFile, eventType));
-        this._monitorScriptDir = this._scriptsDir.monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, null);
-        this._monitorScriptDir.set_rate_limit(1000);
-        this._monitorScriptDir.connect('changed', (obj, file, otherFile, eventType) => this._updateScriptFileList());
+
         this._showHidden = Prefs.gtkSettings.get_boolean('show-hidden');
         this.showDropPlace = Prefs.desktopSettings.get_boolean('show-drop-place');
         this._settingsId = Prefs.desktopSettings.connect('changed', (obj, key) => {
@@ -124,7 +130,6 @@ var DesktopManager = class {
         this._readFileList();
 
         this._scriptsList = [];
-        this._readScriptFileList();
 
         this.decompressibleTypes = [];
         this.getExtractionSupportedTypes();
@@ -446,25 +451,11 @@ var DesktopManager = class {
             this._startRubberband(x, y);
         }
         if (button == 3) {
-            let templates = this._templateManager.getTemplates();
-            if (templates.length == 0) {
+            let templates = this.templatesMonitor.createMenu();
+            if (templates === null) {
                 this._newDocumentItem.hide();
             } else {
-                let templateMenu = new Gtk.Menu();
-                this._newDocumentItem.set_submenu(templateMenu);
-                for(let template of templates) {
-                    let box = new Gtk.Box({"orientation":Gtk.Orientation.HORIZONTAL, "spacing": 6});
-                    let icon = Gtk.Image.new_from_gicon(template["icon"], Gtk.IconSize.MENU);
-                    let text = new Gtk.Label({"label": template["name"]});
-                    box.add(icon);
-                    box.add(text);
-                    let entry = new Gtk.MenuItem({"label": template["name"]});
-                    //entry.add(box);
-                    templateMenu.add(entry);
-                    entry.connect("activate", ()=>{
-                        this._newDocument(template);
-                    });
-                }
+                this._newDocumentItem.set_submenu(templates);
                 this._newDocumentItem.show_all();
             }
             this._syncUndoRedo();
@@ -702,27 +693,6 @@ var DesktopManager = class {
         this._menu.show_all();
     }
 
-    _createScriptsMenu(Menu) {
-        if ( this._scriptsList.length == 0 ) {
-            return;
-        }
-        this._ScriptSubMenu = new Gtk.Menu();
-        this._ScriptMenuItem = new Gtk.MenuItem({label: _("Scripts")});
-        this._ScriptMenuItem.set_submenu(this._ScriptSubMenu);
-        Menu.add(this._ScriptMenuItem);
-        Menu.add(new Gtk.SeparatorMenuItem());
-        for ( let fileItem of this._scriptsList ) {
-            if ( fileItem[0].get_attribute_boolean('access::can-execute') ) {
-                let menuItemName = fileItem[0].get_name();
-                let menuItemPath = fileItem[1].get_path();
-                let menuItem = new Gtk.MenuItem({label: _(`${menuItemName}`)});
-                menuItem.connect("activate", () =>  this._onScriptClicked(menuItemPath));
-                this._ScriptSubMenu.add(menuItem);
-            }
-        }
-        this._ScriptSubMenu.show_all();
-    }
-
     _selectAll() {
         for(let fileItem of this._fileList) {
             if (fileItem.isAllSelectable) {
@@ -897,54 +867,6 @@ var DesktopManager = class {
             fileItem.removeFromGrid();
         }
         this._fileList = [];
-    }
-
-    _updateScriptFileList() {
-        if ( this._scriptsEnumerateCancellable ) {
-            this._scriptFilesChanged = true;
-            return;
-        }
-        this._readScriptFileList();
-    }
-
-    _readScriptFileList() {
-        if (!this._scriptsDir.query_exists(null)) {
-            this._scriptsList = [];
-            return;
-        }
-        this._scriptFilesChanged = false;
-        if (this._scriptsEnumerateCancellable) {
-            this._scriptsEnumerateCancellable.cancel();
-        }
-        this._scriptsEnumerateCancellable = new Gio.Cancellable();
-        this._scriptsDir.enumerate_children_async(
-            Enums.DEFAULT_ATTRIBUTES,
-            Gio.FileQueryInfoFlags.NONE,
-            GLib.PRIORITY_DEFAULT,
-            this._scriptsEnumerateCancellable,
-            (source, result) => {
-                this._scriptsEnumerateCancellable = null;
-                try {
-                    if ( ! this._scriptFilesChanged ) {
-                        let fileEnum = source.enumerate_children_finish(result);
-                        let scriptsList = [];
-                        let info;
-                        while ((info = fileEnum.next_file(null))) {
-                            scriptsList.push([info, fileEnum.get_child(info)]);
-                        }
-                        this._scriptsList = scriptsList.sort(
-                            (a,b) => {
-                                return a[0].get_name().localeCompare(b[0].get_name(),
-                                { sensitivity: 'accent' , numeric: 'true', localeMatcher: 'lookup' });
-                            }
-                        );
-                    } else {
-                        this._readScriptFileList();
-                    }
-                } catch(e) {
-                }
-            }
-        );
     }
 
     _readFileList() {
@@ -1390,16 +1312,21 @@ var DesktopManager = class {
     }
 
     _newDocument(template) {
-        let file = this._templateManager.getTemplateFile(template["file"]);
-        if (file == null) {
+        let file = Gio.File.new_for_path(template);
+        if ((file == null) || (!file.query_exists(null))) {
             return;
         }
         let counter = 0;
-        let finalName = `${template["name"]}${template["extension"]}`;
+        let fullName = file.get_basename();
+        let offset = DesktopIconsUtil.getFileExtensionOffset(fullName, false);
+        let name = fullName.substring(0, offset);
+        let extension = fullName.substring(offset);
+
+        let finalName = `${name}${extension}`;
         let destination;
         do {
             if (counter != 0) {
-                finalName = `${template["name"]} ${counter}${template["extension"]}`
+                finalName = `${name} ${counter}${extension}`
             }
             destination = Gio.File.new_for_path(GLib.build_filenamev([GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DESKTOP), finalName]));
             counter++;

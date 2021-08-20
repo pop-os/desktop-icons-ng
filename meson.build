@@ -13,7 +13,6 @@ schema_dir = join_paths(datadir, 'glib-2.0', 'schemas')
 extensions_dir = join_paths(prefix, 'share', 'gnome-shell', 'extensions', 'ding@rastersoft.com')
 
 install_data([
-#    'createFolderDialog.js',
     'askRenamePopup.js',
     'createThumbnail.js',
     'dbusUtils.js',
@@ -30,7 +29,7 @@ install_data([
     'preferences.js',
     'showErrorPopup.js',
     'stylesheet.css',
-    'templateManager.js'
+    'templatesScriptsManager.js'
   ],
   install_dir: extensions_dir
 )

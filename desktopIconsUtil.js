@@ -36,6 +36,14 @@ function getScriptsDir() {
     return Gio.File.new_for_commandline_arg(scriptsDir);
 }
 
+function getTemplatesDir() {
+    let templatesDir = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_TEMPLATES);
+    if (templatesDir == GLib.get_home_dir()) {
+        return null;
+    }
+    return Gio.File.new_for_commandline_arg(templatesDir)
+}
+
 function clamp(value, min, max) {
     return Math.max(Math.min(value, max), min);
 };
