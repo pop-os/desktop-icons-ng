@@ -111,18 +111,32 @@ var FileItem = class {
         this._eventBox.connect('enter-notify-event', (actor, event) => this._onEnter(actor, event));
         this._eventBox.connect('leave-notify-event', (actor, event) => this._onLeave(actor, event));
         this._eventBox.connect('button-release-event', (actor, event) => this._onReleaseButton(actor, event));
-        this._eventBox.connect('drag-motion', () => this._labelEventBox.drag_highlight());
-        this._eventBox.connect('drag-leave', () => this._labelEventBox.drag_unhighlight());
+        this._eventBox.connect('drag-motion', () => {
+            this.highLightDropTarget();
+        });
+        this._eventBox.connect('drag-leave', () => {
+            this.unHighLightDropTarget();
+        });
         this._eventBox.connect('size-allocate', () => this._calculateIconRectangle());
         this._labelEventBox.connect('button-press-event', (actor, event) => this._onPressButton(actor, event));
         this._labelEventBox.connect('enter-notify-event', (actor, event) => this._onEnter(actor, event));
         this._labelEventBox.connect('leave-notify-event', (actor, event) => this._onLeave(actor, event));
         this._labelEventBox.connect('button-release-event', (actor, event) => this._onReleaseButton(actor, event));
-        this._labelEventBox.connect('drag-motion', () => this._eventBox.drag_highlight());
-        this._labelEventBox.connect('drag-leave', () => this._eventBox.drag_unhighlight());
+        this._labelEventBox.connect('drag-motion', () => {
+            this.highLightDropTarget();
+        });
+        this._labelEventBox.connect('drag-leave', () => {
+            this.unHighLightDropTarget();
+        });
         this._labelEventBox.connect('size-allocate', () => {
             this._calculateLabelRectangle();
             this.checkForRename();
+        });
+        this.container.connect('drag-motion', () => {
+            this.highLightDropTarget();
+        });
+        this.container.connect('drag-leave', () => {
+            this.unHighLightDropTarget();
         });
 
         /* Set the metadata and update relevant UI */
@@ -292,7 +306,7 @@ var FileItem = class {
     }
 
     _setDropDestination(dropDestination) {
-        dropDestination.drag_dest_set(Gtk.DestDefaults.ALL, null, Gdk.DragAction.MOVE);
+        dropDestination.drag_dest_set(Gtk.DestDefaults.MOTION | Gtk.DestDefaults.DROP, null, Gdk.DragAction.MOVE);
         if ((this._fileExtra == Enums.FileType.USER_DIRECTORY_TRASH) ||
             (this._fileExtra == Enums.FileType.USER_DIRECTORY_HOME) ||
             (this._fileExtra != Enums.FileType.EXTERNAL_DRIVE) ||
@@ -1111,6 +1125,22 @@ var FileItem = class {
     toggleSelected() {
         this._isSelected = !this._isSelected;
         this._setSelectedStatus();
+    }
+
+    highLightDropTarget() {
+        if (! this._styleContext.has_class('desktop-icons-selected')) {
+            this._styleContext.add_class('desktop-icons-selected');
+            this._labelStyleContext.add_class('desktop-icons-selected');
+        }
+        this._grid.highLightGridAt(this._x1, this._y1);
+    }
+
+    unHighLightDropTarget() {
+        if (! this._isSelected && this._styleContext.has_class('desktop-icons-selected')) {
+            this._styleContext.remove_class('desktop-icons-selected');
+            this._labelStyleContext.remove_class('desktop-icons-selected');
+        }
+        this._grid.unHighLightGrids();
     }
 
     get isSelected() {
