@@ -306,9 +306,12 @@ var DesktopManager = class {
         this.dragItem = null;
     }
 
-    onDragDataReceived(xDestination, yDestination, selection, info) {
+    onDragDataReceived(xDestination, yDestination, selection, info, forceLocal) {
         this.onDragLeave();
         let fileList = DesktopIconsUtil.getFilesFromNautilusDnD(selection, info);
+        if (forceLocal) {
+            info = 0;
+        }
         switch(info) {
         case 0:
             if (fileList.length != 0) {

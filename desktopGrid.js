@@ -167,21 +167,33 @@ var DesktopGrid = class {
         targets.add(Gdk.atom_intern('text/plain', false), 0, 3);
         dropDestination.drag_dest_set_target_list(targets);
         dropDestination.connect('drag-motion', (widget, context, x, y, time) => {
-            x = this._elementWidth * Math.floor(x / this._elementWidth);
-            y = this._elementHeight * Math.floor(y / this._elementHeight);
-            [x, y] = this._coordinatesLocalToGlobal(x, y);
-            this._desktopManager.onDragMotion(x, y);
+            this.receiveMotion(x, y);
         });
         this._eventBox.connect('drag-leave', (widget, context, time) => {
-            this._desktopManager.onDragLeave();
+            this.receiveLeave();
         });
         dropDestination.connect('drag-data-received', (widget, context, x, y, selection, info, time) => {
-            x = this._elementWidth * Math.floor(x / this._elementWidth);
-            y = this._elementHeight * Math.floor(y / this._elementHeight);
-            [x, y] = this._coordinatesLocalToGlobal(x, y);
-            this._desktopManager.onDragDataReceived(x, y, selection, info);
-            this._window.queue_draw();
+            this.receiveDrop(x, y, selection, info, false);
         });
+    }
+
+    receiveLeave() {
+        this._desktopManager.onDragLeave();
+    }
+
+    receiveMotion(x, y) {
+        x = this._elementWidth * Math.floor(x / this._elementWidth);
+        y = this._elementHeight * Math.floor(y / this._elementHeight);
+        [x, y] = this._coordinatesLocalToGlobal(x, y);
+        this._desktopManager.onDragMotion(x, y);
+    }
+
+    receiveDrop(x, y, selection, info, forceLocal) {
+        x = this._elementWidth * Math.floor(x / this._elementWidth);
+        y = this._elementHeight * Math.floor(y / this._elementHeight);
+        [x, y] = this._coordinatesLocalToGlobal(x, y);
+        this._desktopManager.onDragDataReceived(x, y, selection, info, forceLocal);
+        this._window.queue_draw();
     }
 
     highLightGridAt(x,y) {
@@ -195,22 +207,29 @@ var DesktopGrid = class {
         this._window.queue_draw();
     }
 
-    gridInUse(x, y, returnRowColumn) {
+    _getGridCoordinates(x, y, clamp) {
         let placeX = Math.floor(x / this._elementWidth);
         let placeY = Math.floor(y / this._elementHeight);
         placeX = DesktopIconsUtil.clamp(placeX, 0, this._maxColumns - 1);
         placeY = DesktopIconsUtil.clamp(placeY, 0, this._maxRows - 1);
-        if (returnRowColumn) {
-            return [placeX, placeY];
-        }
-        return ! this._isEmptyAt(placeX, placeY);
+        return [placeX, placeY];
+    }
+
+    gridInUse(x, y) {
+        let [placeX, placeY] = this._getGridCoordinates(x, y);
+        return !this._isEmptyAt(placeX, placeY);
     }
 
     getGridLocalCoordinates(x, y) {
-        let [column, row] = this.gridInUse(x, y, true);
+        let [column, row] = this._getGridCoordinates(x, y);
         let localX = Math.floor(this._width * column / this._maxColumns);
         let localY = Math.floor(this._height * row / this._maxRows);
         return [localX, localY];
+    }
+
+    _fileAt(x,y) {
+        let [placeX, placeY] = this._getGridCoordinates(x, y);
+        return this._gridStatus[placeY * this._maxColumns + placeX];
     }
 
     refreshDrag(selectedList, ox, oy) {
@@ -223,8 +242,8 @@ var DesktopGrid = class {
         for (let [x, y] of selectedList) {
             x += ox;
             y += oy;
-            let r = this.getGridAt(x, y, false);
-            if (r !== null && ! this.gridInUse(r[0], r[1], false)) {
+            let r = this.getGridAt(x, y);
+            if ((r !== null) && ((!this.gridInUse(r[0], r[1])) || this._fileAt(r[0], r[1]).isSelected)) {
                 newSelectedList.push(r);
             }
         }
@@ -333,7 +352,7 @@ var DesktopGrid = class {
         let localX = Math.floor(this._width * column / this._maxColumns);
         let localY = Math.floor(this._height * row / this._maxRows);
         this._container.put(fileItem.container, localX + elementSpacing, localY + elementSpacing);
-        this._setGridUse(column, row, true);
+        this._setGridUse(column, row, fileItem);
         this._fileItems[fileItem.uri] = [column, row, fileItem];
         let [x, y] = this._coordinatesLocalToGlobal(localX + elementSpacing, localY + elementSpacing);
         fileItem.setCoordinates(x,
@@ -373,7 +392,7 @@ var DesktopGrid = class {
     }
 
     _isEmptyAt(x,y) {
-        return !this._gridStatus[y * this._maxColumns + x];
+        return (this._gridStatus[y * this._maxColumns + x] === false);
     }
 
     _setGridUse(x, y, inUse) {

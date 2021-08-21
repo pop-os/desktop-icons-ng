@@ -111,8 +111,8 @@ var FileItem = class {
         this._eventBox.connect('enter-notify-event', (actor, event) => this._onEnter(actor, event));
         this._eventBox.connect('leave-notify-event', (actor, event) => this._onLeave(actor, event));
         this._eventBox.connect('button-release-event', (actor, event) => this._onReleaseButton(actor, event));
-        this._eventBox.connect('drag-motion', () => {
-            this.highLightDropTarget();
+        this._eventBox.connect('drag-motion', (widget, context, x, y, time) => {
+            this.highLightDropTarget(x, y);
         });
         this._eventBox.connect('drag-leave', () => {
             this.unHighLightDropTarget();
@@ -122,8 +122,8 @@ var FileItem = class {
         this._labelEventBox.connect('enter-notify-event', (actor, event) => this._onEnter(actor, event));
         this._labelEventBox.connect('leave-notify-event', (actor, event) => this._onLeave(actor, event));
         this._labelEventBox.connect('button-release-event', (actor, event) => this._onReleaseButton(actor, event));
-        this._labelEventBox.connect('drag-motion', () => {
-            this.highLightDropTarget();
+        this._labelEventBox.connect('drag-motion', (widget, context, x, y, time) => {
+            this.highLightDropTarget(x, y);
         });
         this._labelEventBox.connect('drag-leave', () => {
             this.unHighLightDropTarget();
@@ -132,8 +132,8 @@ var FileItem = class {
             this._calculateLabelRectangle();
             this.checkForRename();
         });
-        this.container.connect('drag-motion', () => {
-            this.highLightDropTarget();
+        this.container.connect('drag-motion', (widget, context, x, y, time) => {
+            this.highLightDropTarget(x, y);
         });
         this.container.connect('drag-leave', () => {
             this.unHighLightDropTarget();
@@ -319,6 +319,10 @@ var FileItem = class {
                     if ((info == 1) || (info == 2)) {
                         let fileList = DesktopIconsUtil.getFilesFromNautilusDnD(selection, info);
                         if (fileList.length != 0) {
+                            if (this._hasToRouteDragToGrid()) {
+                                this._grid.receiveDrop(this._x1 + x, this._y1 + y, selection, info, true);
+                                return;
+                            }
                             if (this._desktopManager.dragItem && ((this._desktopManager.dragItem.uri == this._file.get_uri()) || !(this._isValidDesktopFile || this.isDirectory))) {
                                 // Dragging a file/folder over itself or over another file will do nothing, allow drag to directory or validdesktop file
                                 return;
@@ -1127,7 +1131,15 @@ var FileItem = class {
         this._setSelectedStatus();
     }
 
-    highLightDropTarget() {
+    _hasToRouteDragToGrid() {
+        return this._isSelected && (this._desktopManager.dragItem.uri !== this._file.get_uri());
+    }
+
+    highLightDropTarget(x, y) {
+        if (this._hasToRouteDragToGrid()) {
+            this._grid.receiveMotion(this._x1 + x, this._y1 + y);
+            return;
+        }
         if (! this._styleContext.has_class('desktop-icons-selected')) {
             this._styleContext.add_class('desktop-icons-selected');
             this._labelStyleContext.add_class('desktop-icons-selected');
@@ -1136,6 +1148,10 @@ var FileItem = class {
     }
 
     unHighLightDropTarget() {
+        if (this._hasToRouteDragToGrid()) {
+            this._grid.receiveLeave();
+            return;
+        }
         if (! this._isSelected && this._styleContext.has_class('desktop-icons-selected')) {
             this._styleContext.remove_class('desktop-icons-selected');
             this._labelStyleContext.remove_class('desktop-icons-selected');
