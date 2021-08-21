@@ -181,17 +181,21 @@ var DesktopGrid = class {
         this._desktopManager.onDragLeave();
     }
 
-    receiveMotion(x, y) {
-        x = this._elementWidth * Math.floor(x / this._elementWidth);
-        y = this._elementHeight * Math.floor(y / this._elementHeight);
-        [x, y] = this._coordinatesLocalToGlobal(x, y);
+    receiveMotion(x, y, global) {
+        if (! global) {
+            x = this._elementWidth * Math.floor(x / this._elementWidth);
+            y = this._elementHeight * Math.floor(y / this._elementHeight);
+            [x, y] = this._coordinatesLocalToGlobal(x, y);
+        }
         this._desktopManager.onDragMotion(x, y);
     }
 
     receiveDrop(x, y, selection, info, forceLocal) {
-        x = this._elementWidth * Math.floor(x / this._elementWidth);
-        y = this._elementHeight * Math.floor(y / this._elementHeight);
-        [x, y] = this._coordinatesLocalToGlobal(x, y);
+        if (! forceLocal) {
+            x = this._elementWidth * Math.floor(x / this._elementWidth);
+            y = this._elementHeight * Math.floor(y / this._elementHeight);
+            [x, y] = this._coordinatesLocalToGlobal(x, y);
+        }
         this._desktopManager.onDragDataReceived(x, y, selection, info, forceLocal);
         this._window.queue_draw();
     }
