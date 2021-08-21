@@ -1137,7 +1137,7 @@ var FileItem = class {
 
     highLightDropTarget(x, y) {
         if (this._hasToRouteDragToGrid()) {
-            this._grid.receiveMotion(this._x1 + x, this._y1 + y, true);
+            this._grid.receiveMotion(this._x1, this._y1, true);
             return;
         }
         if (! this._styleContext.has_class('desktop-icons-selected')) {
