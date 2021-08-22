@@ -933,7 +933,13 @@ var FileItem = class {
         let open = new Gtk.MenuItem({label: (this._selectedItemsNum > 1 ? _("Open All...") : _("Open"))});
         open.connect('activate', () => {this._desktopManager.doMultiOpen();});
         this._menu.add(open);
-        this._desktopManager._createScriptsMenu(this._menu);
+        let scripts = this._desktopManager.scriptsMonitor.createMenu();
+        if (scripts !== null) {
+            let scriptsEntry = new Gtk.MenuItem({label: _("Scripts")});
+            this._menu.add(scriptsEntry);
+            scriptsEntry.set_submenu(scripts);
+            this._menu.add(new Gtk.SeparatorMenuItem());
+        }
         switch (this._fileExtra) {
         case Enums.FileType.NONE:
             if (!this._isDirectory) {
