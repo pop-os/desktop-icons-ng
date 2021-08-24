@@ -31,6 +31,7 @@ const DBusUtils = imports.dbusUtils;
 const AskRenamePopup = imports.askRenamePopup;
 const ShowErrorPopup = imports.showErrorPopup;
 const TemplatesScriptsManager = imports.templatesScriptsManager;
+const Thumbnails = imports.thumbnails;
 
 const Gettext = imports.gettext.domain('ding');
 
@@ -40,6 +41,7 @@ var DesktopManager = class {
     constructor(desktopList, codePath, asDesktop, primaryIndex) {
 
         DBusUtils.init();
+
         this._premultiplied = false;
         try {
             for (let f of Prefs.mutterSettings.get_strv('experimental-features')) {
@@ -67,6 +69,7 @@ var DesktopManager = class {
         this._clickY = 0;
         this._dragList = null;
         this.dragItem = null;
+        this.thumbnailLoader = new Thumbnails.ThumbnailLoader(codePath);
         this._codePath = codePath;
         this._asDesktop = asDesktop;
         this._desktopList = desktopList;
@@ -895,7 +898,6 @@ var DesktopManager = class {
                                     newFolder,
                                     newFolder.query_info(Enums.DEFAULT_ATTRIBUTES, Gio.FileQueryInfoFlags.NONE, null),
                                     extras,
-                                    this._codePath,
                                     null
                                 )
                             );
@@ -907,7 +909,6 @@ var DesktopManager = class {
                                 fileEnum.get_child(info),
                                 info,
                                 Enums.FileType.NONE,
-                                this._codePath,
                                 null
                             );
                             if (fileItem.isHidden && !this._showHidden) {
@@ -938,7 +939,6 @@ var DesktopManager = class {
                                         newFolder,
                                         newFolder.query_info(Enums.DEFAULT_ATTRIBUTES, Gio.FileQueryInfoFlags.NONE, null),
                                         extras,
-                                        this._codePath,
                                         volume
                                     )
                                 );

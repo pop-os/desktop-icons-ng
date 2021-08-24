@@ -25,7 +25,6 @@ const GLib = imports.gi.GLib;
 const Pango = imports.gi.Pango;
 const GdkPixbuf = imports.gi.GdkPixbuf;
 const Cairo = imports.gi.cairo;
-const GnomeDesktop = imports.gi.GnomeDesktop;
 const DesktopIconsUtil = imports.desktopIconsUtil;
 
 const Prefs = imports.preferences;
@@ -41,13 +40,11 @@ const _ = Gettext.gettext;
 
 var FileItem = class {
 
-    constructor(desktopManager, file, fileInfo, fileExtra, codePath, custom) {
+    constructor(desktopManager, file, fileInfo, fileExtra, custom) {
         this._custom = custom;
-        this._codePath = codePath;
         this._desktopManager = desktopManager;
         this._fileExtra = fileExtra;
         this._loadThumbnailDataCancellable = null;
-        this._thumbnailScriptWatch = 0;
         this._queryFileInfoCancellable = null;
         this._isSpecial = this._fileExtra != Enums.FileType.NONE;
         this._grid = null;
@@ -421,9 +418,6 @@ var FileItem = class {
         }
 
         /* Thumbnailing */
-        if (this._thumbnailScriptWatch) {
-            GLib.source_remove(this._thumbnailScriptWatch);
-        }
         if (this._loadThumbnailDataCancellable) {
             this._loadThumbnailDataCancellable.cancel();
         }
@@ -525,14 +519,15 @@ var FileItem = class {
         this._refreshMetadataAsync(false);
     }
 
-    _updateIcon() {
+    async _updateIcon() {
         this._icon.set_padding(0,0);
         try {
             let customIcon = this._fileInfo.get_attribute_as_string('metadata::custom-icon');
             if (customIcon && (customIcon != '')) {
                 let customIconFile = Gio.File.new_for_uri(customIcon);
                 if (customIconFile.query_exists(null)) {
-                    if (this._loadImageAsIcon(customIconFile)) {
+                    let loadedImage = await this._loadImageAsIcon(customIconFile);
+                    if (loadedImage) {
                         return;
                     }
                 }
@@ -549,53 +544,13 @@ var FileItem = class {
             return;
         }
         let icon_set = false;
-
-        let thumbnailFactory = GnomeDesktop.DesktopThumbnailFactory.new(GnomeDesktop.DesktopThumbnailSize.LARGE);
         if ((Prefs.nautilusSettings.get_string('show-image-thumbnails') != 'never') &&
-            (thumbnailFactory.can_thumbnail(this._file.get_uri(),
-                                            this._attributeContentType,
-                                            this._modifiedTime))) {
-            let thumbnail = thumbnailFactory.lookup(this._file.get_uri(), this._modifiedTime);
-            if (thumbnail == null) {
-                if (!thumbnailFactory.has_valid_failed_thumbnail(this._file.get_uri(),
-                                                                 this._modifiedTime)) {
-                    let argv = [];
-                    argv.push(GLib.build_filenamev([this._codePath, 'createThumbnail.js']));
-                    argv.push(this._file.get_path());
-                    let [success, pid] = GLib.spawn_async(null, argv, null,
-                                                          GLib.SpawnFlags.SEARCH_PATH | GLib.SpawnFlags.DO_NOT_REAP_CHILD, null);
-                    if (this._thumbnailScriptWatch)
-                        GLib.source_remove(this._thumbnailScriptWatch);
-                    this._thumbnailScriptWatch = GLib.child_watch_add(GLib.PRIORITY_DEFAULT,
-                                                                      pid,
-                        (pid, exitCode) => {
-                            this._thumbnailScriptWatch = 0;
-                            if (exitCode == 0)
-                                this._updateIcon();
-                            else
-                                print('Failed to generate thumbnail for ' + this._filePath);
-                            GLib.spawn_close_pid(pid);
-                            return false;
-                        }
-                    );
+            (this._desktopManager.thumbnailLoader.canThumbnail(this))) {
+                let thumbnail = this._desktopManager.thumbnailLoader.getThumbnail(this, this._updateIcon.bind(this));
+                if (thumbnail != null) {
+                    let thumbnailFile = Gio.File.new_for_path(thumbnail);
+                    icon_set = await this._loadImageAsIcon(thumbnailFile);
                 }
-            } else {
-                if (this._loadThumbnailDataCancellable)
-                    this._loadThumbnailDataCancellable.cancel();
-                this._loadThumbnailDataCancellable = new Gio.Cancellable();
-                let thumbnailFile = Gio.File.new_for_path(thumbnail);
-                try {
-                    icon_set = this._loadImageAsIcon(thumbnailFile);
-                } catch (error) {
-                    if (!error.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED)) {
-                        print('Error while loading thumbnail: ' + error);
-                        let pixbuf = this._createEmblemedIcon(this._fileInfo.get_icon());
-                        const scale = this._icon.get_scale_factor();
-                        let surface = Gdk.cairo_surface_create_from_pixbuf(pixbuf, scale, null);
-                        this._icon.set_from_surface(surface);
-                    }
-                }
-            }
         }
 
         if (!icon_set) {
@@ -623,30 +578,47 @@ var FileItem = class {
     }
 
     _loadImageAsIcon(imageFile) {
-        let [thumbnailData, etag_out] = imageFile.load_bytes(this._loadThumbnailDataCancellable);
-        this._loadThumbnailDataCancellable = null;
-        let thumbnailStream = Gio.MemoryInputStream.new_from_bytes(thumbnailData);
-        let thumbnailPixbuf = GdkPixbuf.Pixbuf.new_from_stream(thumbnailStream, null);
 
-        if (thumbnailPixbuf != null) {
-            let width = Prefs.get_desired_width() - 8;
-            let height = Prefs.get_icon_size() - 8;
-            let aspectRatio = thumbnailPixbuf.width / thumbnailPixbuf.height;
-            if ((width / height) > aspectRatio)
-                width = height * aspectRatio;
-            else
-                height = width / aspectRatio;
-            const scale = this._icon.get_scale_factor();
-            width *= scale;
-            height *= scale;
-            let pixbuf = thumbnailPixbuf.scale_simple(Math.floor(width), Math.floor(height), GdkPixbuf.InterpType.BILINEAR);
-            pixbuf = this._addEmblemsToPixbufIfNeeded(pixbuf);
-            let surface = Gdk.cairo_surface_create_from_pixbuf(pixbuf, scale, null);
-            this._icon.set_from_surface(surface);
-            this._icon.set_padding(4,4)
-            return true;
-        }
-        return false;
+        if (this._loadThumbnailDataCancellable)
+            this._loadThumbnailDataCancellable.cancel();
+        this._loadThumbnailDataCancellable = new Gio.Cancellable();
+
+        return new Promise( (resolve, reject) => {
+            imageFile.load_bytes_async(this._loadThumbnailDataCancellable, (source, result) => {
+                if (this._loadThumbnailDataCancellable.is_cancelled()) {
+                    resolve(false);
+                    return;
+                }
+                this._loadThumbnailDataCancellable = null;
+                try {
+                    let [thumbnailData, etag_out] = source.load_bytes_finish(result);
+                    let thumbnailStream = Gio.MemoryInputStream.new_from_bytes(thumbnailData);
+                    let thumbnailPixbuf = GdkPixbuf.Pixbuf.new_from_stream(thumbnailStream, null);
+
+                    if (thumbnailPixbuf != null) {
+                        let width = Prefs.get_desired_width() - 8;
+                        let height = Prefs.get_icon_size() - 8;
+                        let aspectRatio = thumbnailPixbuf.width / thumbnailPixbuf.height;
+                        if ((width / height) > aspectRatio)
+                            width = height * aspectRatio;
+                        else
+                            height = width / aspectRatio;
+                        const scale = this._icon.get_scale_factor();
+                        width *= scale;
+                        height *= scale;
+                        let pixbuf = thumbnailPixbuf.scale_simple(Math.floor(width), Math.floor(height), GdkPixbuf.InterpType.BILINEAR);
+                        pixbuf = this._addEmblemsToPixbufIfNeeded(pixbuf);
+                        let surface = Gdk.cairo_surface_create_from_pixbuf(pixbuf, scale, null);
+                        this._icon.set_from_surface(surface);
+                        this._icon.set_padding(4,4)
+                        resolve(true);
+                    }
+                    resolve(false);
+                } catch(e) {
+                    resolve(false);
+                }
+            });
+        });
     }
 
     _copyAndResizeIfNeeded(pixbuf) {
@@ -724,14 +696,6 @@ var FileItem = class {
             });
         this._scheduleTrashRefreshId = 0;
         return false;
-    }
-
-    get file() {
-        return this._file;
-    }
-
-    get isHidden() {
-        return this._isHidden;
     }
 
     _createEmblemedIcon(icon, iconName) {
@@ -831,30 +795,6 @@ var FileItem = class {
                     log('Error showing properties: ' + error.message);
             }
         );
-    }
-
-    get metadataTrusted() {
-        return this._trusted;
-    }
-
-    set metadataTrusted(value) {
-        this._trusted = value;
-
-        let info = new Gio.FileInfo();
-        info.set_attribute_string('metadata::trusted',
-                                  value ? 'true' : 'false');
-        this._file.set_attributes_async(info,
-                                        Gio.FileQueryInfoFlags.NONE,
-                                        GLib.PRIORITY_LOW,
-                                        null,
-            (source, result) => {
-                try {
-                    source.set_attributes_finish(result);
-                    this._refreshMetadataAsync(true);
-                } catch(e) {
-                    log(`Failed to set metadata::trusted: ${e.message}`);
-                }
-        });
     }
 
     _updateName() {
@@ -1165,22 +1105,6 @@ var FileItem = class {
         this._grid.unHighLightGrids();
     }
 
-    get isSelected() {
-        return this._isSelected;
-    }
-
-    get isAllSelectable() {
-        return this._fileExtra == Enums.FileType.NONE;
-    }
-
-    get isDrive() {
-        return this._fileExtra == Enums.FileType.EXTERNAL_DRIVE;
-    }
-
-    get isTrash() {
-        return this._fileExtra === Enums.FileType.USER_DIRECTORY_TRASH;
-    }
-
     _onReleaseButton(actor, event) {
         let button = event.get_button()[1];
         if (button == 1) {
@@ -1230,10 +1154,6 @@ var FileItem = class {
         return false;
     }
 
-    get savedCoordinates() {
-        return this._savedCoordinates;
-    }
-
     _onSetMetadataFileFinished(source, result) {
         try {
             let [success, info] = source.set_attributes_finish(result);
@@ -1243,20 +1163,19 @@ var FileItem = class {
         }
     }
 
-    set savedCoordinates(pos) {
-        try {
-            let info = new Gio.FileInfo();
-            if (pos != null) {
-                this._savedCoordinates = [pos[0], pos[1]];
-                info.set_attribute_string('metadata::nautilus-icon-position', `${pos[0]},${pos[1]}`);
-            } else {
-                this._savedCoordinates = null;
-                info.set_attribute_string('metadata::nautilus-icon-position', '');
-            }
-            this.file.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
-        } catch(e) {
-            print(`Failed to store the desktop coordinates for ${this.uri}: ${e}`);
+    /***********************
+     * Getters and setters *
+     ***********************/
+
+    get attributeContentType() {
+        return this._attributeContentType;
+    }
+
+    get displayName() {
+        if (this.trustedDesktopFile) {
+            return this._desktopFile.get_name();
         }
+        return this._displayName || null;
     }
 
     get dropCoordinates() {
@@ -1275,8 +1194,96 @@ var FileItem = class {
         this.file.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
     }
 
+    get file() {
+        return this._file;
+    }
+
+    get fileName() {
+        return this._fileInfo.get_name();
+    }
+
+    get fileSize() {
+        return this._fileInfo.get_size();
+    }
+
+    get isAllSelectable() {
+        return this._fileExtra == Enums.FileType.NONE;
+    }
+
+    get isDirectory() {
+        return this._isDirectory;
+    }
+
+    get isDrive() {
+        return this._fileExtra == Enums.FileType.EXTERNAL_DRIVE;
+    }
+
+    get isHidden() {
+        return this._isHidden;
+    }
+
+    get isSelected() {
+        return this._isSelected;
+    }
+
     get isSpecial() {
         return this._isSpecial;
+    }
+
+    get isTrash() {
+        return this._fileExtra === Enums.FileType.USER_DIRECTORY_TRASH;
+    }
+
+    get metadataTrusted() {
+        return this._trusted;
+    }
+
+    set metadataTrusted(value) {
+        this._trusted = value;
+
+        let info = new Gio.FileInfo();
+        info.set_attribute_string('metadata::trusted',
+                                  value ? 'true' : 'false');
+        this._file.set_attributes_async(info,
+                                        Gio.FileQueryInfoFlags.NONE,
+                                        GLib.PRIORITY_LOW,
+                                        null,
+            (source, result) => {
+                try {
+                    source.set_attributes_finish(result);
+                    this._refreshMetadataAsync(true);
+                } catch(e) {
+                    log(`Failed to set metadata::trusted: ${e.message}`);
+                }
+        });
+    }
+
+    get modifiedTime() {
+        return this._modifiedTime;
+    }
+
+    get path() {
+        return this._file.get_path();
+    }
+
+    get savedCoordinates() {
+        return this._savedCoordinates;
+    }
+
+    set savedCoordinates(pos) {
+        try {
+            let info = new Gio.FileInfo();
+            if (pos != null) {
+                this._savedCoordinates = [pos[0], pos[1]];
+                info.set_attribute_string('metadata::nautilus-icon-position', `${pos[0]},${pos[1]}`);
+            } else {
+                this._savedCoordinates = null;
+                info.set_attribute_string('metadata::nautilus-icon-position', '');
+            }
+            this.file.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
+        } catch(e) {
+            print(`Failed to store the desktop coordinates for ${this.uri}: ${e}`);
+        }
     }
 
     get state() {
@@ -1290,10 +1297,6 @@ var FileItem = class {
         this._state = state;
     }
 
-    get isDirectory() {
-        return this._isDirectory;
-    }
-
     get trustedDesktopFile() {
         return this._isValidDesktopFile &&
                this._attributeCanExecute &&
@@ -1302,23 +1305,8 @@ var FileItem = class {
                !this._writableByOthers;
     }
 
-    get fileName() {
-        return this._fileInfo.get_name();
-    }
-
     get uri() {
         return this._file.get_uri();
-    }
-
-    get displayName() {
-        if (this.trustedDesktopFile) {
-            return this._desktopFile.get_name();
-        }
-        return this._displayName || null;
-    }
-
-    get fileSize() {
-        return this._fileInfo.get_size();
     }
 
 };
