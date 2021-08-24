@@ -29,7 +29,8 @@ install_data([
     'preferences.js',
     'showErrorPopup.js',
     'stylesheet.css',
-    'templatesScriptsManager.js'
+    'templatesScriptsManager.js',
+    'thumbnails.js'
   ],
   install_dir: extensions_dir
 )
