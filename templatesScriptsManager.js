@@ -58,14 +58,12 @@ var TemplatesScriptsManager = class {
             return;
         }
         this._readingEntries = true;
-        this._refreshEntries().then( () => {
-            this._readingEntries = false;
-        });
+        this._refreshEntries();
     }
 
     async _refreshEntries() {
         let entriesList = null;
-        while (true) {
+        do {
             this._entriesDirMonitors.map(f => {
                 f[0].disconnect(f[1]);
                 f[0].cancel();
@@ -75,12 +73,11 @@ var TemplatesScriptsManager = class {
             if (! this._entriesDir.query_exists(null)) {
                 break;
             }
-            entriesList = await this._processDirectory(this._entriesDir)
-            if (entriesList !== null) {
-                break;
-            }
-        }
+            entriesList = await this._processDirectory(this._entriesDir);
+        } while ((entriesList === null) || this._entriesFolderChanged);
+
         this._entries = entriesList;
+        this._readingEntries = false;
     }
 
     async _processDirectory(directory) {
