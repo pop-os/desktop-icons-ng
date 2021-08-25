@@ -45,11 +45,11 @@ var TemplatesScriptsManager = class {
             this._monitorDir = baseFolder.monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, null);
             this._monitorDir.set_rate_limit(1000);
             this._monitorDir.connect('changed', (obj, file, otherFile, eventType) => { this._updateEntries(); });
-            this._refreshEntries();
+            this._updateEntries();
         }
     }
 
-    _updateEntries() {
+    async _updateEntries() {
         if (this._readingEntries) {
             this._entriesFolderChanged = true;
             if (this._entriesEnumerateCancellable) {
@@ -57,12 +57,10 @@ var TemplatesScriptsManager = class {
             }
             return;
         }
-        this._readingEntries = true;
-        this._refreshEntries();
-    }
 
-    async _refreshEntries() {
+        this._readingEntries = true;
         let entriesList = null;
+
         do {
             this._entriesDirMonitors.map(f => {
                 f[0].disconnect(f[1]);
