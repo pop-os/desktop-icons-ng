@@ -69,6 +69,7 @@ var TemplatesScriptsManager = class {
             this._entriesDirMonitors = [];
             this._entriesFolderChanged = false;
             if (! this._entriesDir.query_exists(null)) {
+                entriesList = null;
                 break;
             }
             entriesList = await this._processDirectory(this._entriesDir);
