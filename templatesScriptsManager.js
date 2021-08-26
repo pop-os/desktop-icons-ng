@@ -44,8 +44,14 @@ var TemplatesScriptsManager = class {
         if (this._entriesDir !== null) {
             this._monitorDir = baseFolder.monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, null);
             this._monitorDir.set_rate_limit(1000);
-            this._monitorDir.connect('changed', (obj, file, otherFile, eventType) => { this._updateEntries(); });
-            this._updateEntries();
+            this._monitorDir.connect('changed', (obj, file, otherFile, eventType) => {
+                this._updateEntries().catch((e) => {
+                    print(`Exception while updating entries in monitor: ${e.stack}`);
+                });
+            });
+            this._updateEntries().catch((e) => {
+                print(`Exception while updating entries: ${e.stack}`);
+            });
         }
     }
 
