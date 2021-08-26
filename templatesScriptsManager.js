@@ -46,7 +46,7 @@ var TemplatesScriptsManager = class {
             this._monitorDir.set_rate_limit(1000);
             this._monitorDir.connect('changed', (obj, file, otherFile, eventType) => {
                 this._updateEntries().catch((e) => {
-                    print(`Exception while updating entries in monitor: ${e.stack}`);
+                    print(`Exception while updating entries in monitor: ${e.message}\n${e.stack}`);
                 });
             });
             this._updateEntries().catch((e) => {
