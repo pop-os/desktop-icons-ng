@@ -50,7 +50,7 @@ var TemplatesScriptsManager = class {
                 });
             });
             this._updateEntries().catch((e) => {
-                print(`Exception while updating entries: ${e.stack}`);
+                print(`Exception while updating entries: ${e.message}\n${e.stack}`);
             });
         }
     }
