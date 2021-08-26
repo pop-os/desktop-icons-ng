@@ -537,6 +537,7 @@ var DesktopManager = class {
         let isCtrl = (event.get_state()[1] & Gdk.ModifierType.CONTROL_MASK) != 0;
         let isShift = (event.get_state()[1] & Gdk.ModifierType.SHIFT_MASK) != 0;
         let isAlt = (event.get_state()[1] & Gdk.ModifierType.MOD1_MASK) != 0;
+        this.eventTime = GLib.get_monotonic_time();
         if (isCtrl && isShift && ((symbol == Gdk.KEY_Z) || (symbol == Gdk.KEY_z))) {
             this._doRedo();
             return true;
@@ -581,7 +582,7 @@ var DesktopManager = class {
                 this.doRename(selection[0], false);
                 return true;
             }
-        } else if (symbol == Gdk.KEY_space) {
+        } else if ((! this.keypressTimeoutID) && symbol == Gdk.KEY_space) {
             let selection = this.getCurrentSelection(false);
             if (selection) {
                 // Support renaming other grids file items.
@@ -602,6 +603,44 @@ var DesktopManager = class {
         } else if (isCtrl && ((symbol == Gdk.KEY_F) || (symbol == Gdk.KEY_f))) {
             this.findFiles();
             return true;
+        } else if (symbol == Gdk.KEY_Escape) {
+            if (this.getNumberOfSelectedItems() >= 1) {
+                this._fileList.map(f => f.unsetSelected());
+            }
+            if (this.searchString) {
+                this.searchString = null;
+            }
+            return true;
+        } else {
+            if ((this.getNumberOfSelectedItems() >= 1) && (! this.keypressTimeoutID)) {
+                return;
+            }
+            let ignoreKeys = [Gdk.KEY_Shift_L,Gdk.KEY_Shift_R,Gdk.KEY_Control_L,Gdk.KEY_Control_R,Gdk.KEY_Caps_Lock,Gdk.KEY_Shift_Lock,Gdk.KEY_Meta_L,Gdk.KEY_Meta_R,Gdk.KEY_Alt_L,Gdk.KEY_Alt_R,Gdk.KEY_Super_L,Gdk.KEY_Super_R,Gdk.KEY_ISO_Level3_Shift,Gdk.KEY_ISO_Level5_Shift];
+            if (ignoreKeys.includes(symbol)) {
+                return;
+            }
+            let key = String.fromCharCode(Gdk.keyval_to_unicode(symbol));
+            if (this.keypressTimeoutID && this.searchString) {
+                this.searchString = this.searchString.concat(key);
+            } else {
+                this.searchString = key;
+            }
+            if (this.searchString != '') {
+                let found = this.scanForFiles(this.searchString);
+                if (found) {
+                    if (! this.keypressTimeoutID) {
+                        this.keypressTimeoutID = GLib.timeout_add(1, 1000, () => {
+                            if (GLib.get_monotonic_time() - this.eventTime < 1500000) {
+                                return true;
+                            }
+                            this.searchString = null;
+                            this.keypressTimeoutID = null;
+                            return false;
+                        });
+                    }
+                }
+            }
+            return true;
         }
         return false;
     }
@@ -611,6 +650,7 @@ var DesktopManager = class {
                                        window_position: Gtk.WindowPosition.CENTER_ON_PARENT,
                                        resizable: false});
         this._findFileButton = this._findFileWindow.add_button(_("OK"), Gtk.ResponseType.OK);
+        this._findFileButton.sensitive = false;
         this._findFileWindow.add_button(_("Cancel"), Gtk.ResponseType.CANCEL);
         this._findFileWindow.set_modal(true);
         this._findFileWindow.set_title(_('Find Files on Desktop'));
@@ -624,9 +664,12 @@ var DesktopManager = class {
             }
         });
         this._findFileTextArea.connect('changed', () => {
-            this.scanForFiles();
+            if (this.scanForFiles(this._findFileTextArea.text)){
+                this._findFileButton.sensitive = true;
+            } else {
+                this._findFileButton.sensitive = false;
+            }
         });
-        this.scanForFiles();
         this._findFileWindow.show_all();
         this._findFileTextArea.grab_focus_without_selecting();
         let retval = this._findFileWindow.run();
@@ -636,18 +679,17 @@ var DesktopManager = class {
         this._findFileWindow.destroy();
     }
 
-    scanForFiles() {
-        let text = this._findFileTextArea.text;
+    scanForFiles(text) {
         let found = [];
         this._fileList.map(f => f.unsetSelected());
         if (text != '') {
             found = this._fileList.filter(f => (f.fileName.toLowerCase().includes(text.toLowerCase())) || (f._label.get_text().toLowerCase().includes(text.toLowerCase())));
-            found.map(f => f.setSelected());
         }
         if (found.length != 0) {
-            this._findFileButton.sensitive = true;
+            found.map(f => f.setSelected());
+            return true;
         } else {
-            this._findFileButton.sensitive = false;
+            return false;
         }
     }
 
