@@ -945,7 +945,6 @@ var DesktopManager = class {
                                                                 newFolder,
                                                                 newFolder.query_info(Enums.DEFAULT_ATTRIBUTES, Gio.FileQueryInfoFlags.NONE, null),
                                                                 extras,
-                                                                this._codePath,
                                                                 null));
                         }
                         let info;
@@ -954,7 +953,6 @@ var DesktopManager = class {
                                                                  fileEnum.get_child(info),
                                                                  info,
                                                                  Enums.FileType.NONE,
-                                                                 this._codePath,
                                                                  null);
                             if (fileItem.isHidden && !this._showHidden) {
                                 /* if there are hidden files in the desktop and the user doesn't want to
@@ -982,7 +980,6 @@ var DesktopManager = class {
                                                                     newFolder,
                                                                     newFolder.query_info(Enums.DEFAULT_ATTRIBUTES, Gio.FileQueryInfoFlags.NONE, null),
                                                                     extras,
-                                                                    this._codePath,
                                                                     volume));
                             } catch (e) {
                                 print(`Failed with ${e} while adding volume ${newFolder}`);

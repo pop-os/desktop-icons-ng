@@ -148,7 +148,9 @@ var FileItem = class {
         this._setDragSource(this._eventBox);
         this._setDragSource(this._labelEventBox);
         this._menu = null;
-        this._updateIcon();
+        this._updateIcon().catch((e) => {
+            print(`Exception while updating an icon: ${e.message}\n${e.stack}`);
+        });
         this._isSelected = false;
         this._primaryButtonPressed = false;
 
@@ -452,7 +454,9 @@ var FileItem = class {
                     this._queryFileInfoCancellable = null;
                     this._updateMetadataFromFileInfo(newFileInfo);
                     if (rebuild) {
-                        this._updateIcon();
+                        this._updateIcon().catch((e) => {
+                            print(`Exception while updating the icon after a metadata update: ${e.message}\n${e.stack}`);
+                        });
                     }
                     this._updateName();
                 } catch(error) {
@@ -688,7 +692,9 @@ var FileItem = class {
                 try {
                     this._fileInfo = source.query_info_finish(result);
                     this._queryTrashInfoCancellable = null;
-                    this._updateIcon();
+                    this._updateIcon().catch((e) => {
+                        print(`Exception while updating the trash icon: ${e.message}\n${e.stack}`);
+                    });
                 } catch(error) {
                     if (!error.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED))
                         print('Error getting the number of files in the trash: ' + error);
