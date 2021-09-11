@@ -488,12 +488,16 @@ var FileItem = class {
             log(`desktop-icons: File ${this._displayName} is writable by others - will not allow launching`);
 
         if (this._isDesktopFile) {
-            this._desktopFile = Gio.DesktopAppInfo.new_from_filename(this._file.get_path());
-            if (!this._desktopFile) {
-                log(`Couldn’t parse ${this._displayName} as a desktop file, will treat it as a regular file.`);
-                this._isValidDesktopFile = false;
-            } else {
-                this._isValidDesktopFile = true;
+            try {
+                this._desktopFile = Gio.DesktopAppInfo.new_from_filename(this._file.get_path());
+                if (!this._desktopFile) {
+                    log(`Couldn’t parse ${this._displayName} as a desktop file, will treat it as a regular file.`);
+                    this._isValidDesktopFile = false;
+                } else {
+                    this._isValidDesktopFile = true;
+                }
+            } catch(e) {
+            print(`Error reading Desktop file ${this.uri}: ${e}`);
             }
         } else {
             this._isValidDesktopFile = false;
@@ -682,6 +686,10 @@ var FileItem = class {
     _refreshTrashIcon() {
         if (this._queryTrashInfoCancellable)
             this._queryTrashInfoCancellable.cancel();
+        if (! this._file.query_exists(null)) {
+            this._scheduleTrashRefreshId = 0
+            return false;
+        }
         this._queryTrashInfoCancellable = new Gio.Cancellable();
 
         this._file.query_info_async(Enums.DEFAULT_ATTRIBUTES,
@@ -1189,15 +1197,19 @@ var FileItem = class {
     }
 
     set dropCoordinates(pos) {
-        let info = new Gio.FileInfo();
-        if (pos != null) {
-            this._dropCoordinates = [pos[0], pos[1]];
-            info.set_attribute_string('metadata::nautilus-drop-position', `${pos[0]},${pos[1]}`);
-        } else {
-            this._dropCoordinates = null;
-            info.set_attribute_string('metadata::nautilus-drop-position', '');
+        try {
+            let info = new Gio.FileInfo();
+            if (pos != null) {
+                this._dropCoordinates = [pos[0], pos[1]];
+                info.set_attribute_string('metadata::nautilus-drop-position', `${pos[0]},${pos[1]}`);
+            } else {
+                this._dropCoordinates = null;
+                info.set_attribute_string('metadata::nautilus-drop-position', '');
+            }
+            this.file.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
+        } catch(e) {
+            print(`Failed to store the desktop coordinates for ${this.uri}: ${e}`);
         }
-        this.file.set_attributes_from_info(info, Gio.FileQueryInfoFlags.NONE, null);
     }
 
     get file() {
