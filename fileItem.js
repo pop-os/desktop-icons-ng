@@ -170,8 +170,13 @@ var FileItem = class {
                     case Gio.FileMonitorEvent.CREATED:
                     case Gio.FileMonitorEvent.MOVED_IN:
                         if (this._queryTrashInfoCancellable || this._scheduleTrashRefreshId) {
-                            if (this._scheduleTrashRefreshId)
+                            if (this._scheduleTrashRefreshId) {
                                 GLib.source_remove(this._scheduleTrashRefreshId);
+                            }
+                            if (this._queryTrashInfoCancellable) {
+                                this._queryTrashInfoCancellable.cancel();
+                                this._queryTrashInfoCancellable = null;
+                            }
                             this._scheduleTrashRefreshId = Mainloop.timeout_add(200, () => this._refreshTrashIcon());
                         } else {
                             this._refreshTrashIcon();
@@ -450,8 +455,8 @@ var FileItem = class {
                                     this._queryFileInfoCancellable,
             (source, result) => {
                 try {
-                    let newFileInfo = source.query_info_finish(result);
                     this._queryFileInfoCancellable = null;
+                    let newFileInfo = source.query_info_finish(result);
                     this._updateMetadataFromFileInfo(newFileInfo);
                     if (rebuild) {
                         this._updateIcon().catch((e) => {
@@ -593,10 +598,6 @@ var FileItem = class {
 
         return new Promise( (resolve, reject) => {
             imageFile.load_bytes_async(this._loadThumbnailDataCancellable, (source, result) => {
-                if (this._loadThumbnailDataCancellable.is_cancelled()) {
-                    resolve(false);
-                    return;
-                }
                 this._loadThumbnailDataCancellable = null;
                 try {
                     let [thumbnailData, etag_out] = source.load_bytes_finish(result);
@@ -684,8 +685,10 @@ var FileItem = class {
     }
 
     _refreshTrashIcon() {
-        if (this._queryTrashInfoCancellable)
+        if (this._queryTrashInfoCancellable) {
             this._queryTrashInfoCancellable.cancel();
+            this._queryTrashInfoCancellable = null;
+        }
         if (! this._file.query_exists(null)) {
             this._scheduleTrashRefreshId = 0
             return false;
@@ -698,8 +701,8 @@ var FileItem = class {
                                     this._queryTrashInfoCancellable,
             (source, result) => {
                 try {
-                    this._fileInfo = source.query_info_finish(result);
                     this._queryTrashInfoCancellable = null;
+                    this._fileInfo = source.query_info_finish(result);
                     this._updateIcon().catch((e) => {
                         print(`Exception while updating the trash icon: ${e.message}\n${e.stack}`);
                     });
