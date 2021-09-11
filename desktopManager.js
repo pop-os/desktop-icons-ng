@@ -898,6 +898,7 @@ var DesktopManager = class {
             this._desktopFilesChanged = true;
             if (this._desktopEnumerateCancellable) {
                 this._desktopEnumerateCancellable.cancel();
+                this._desktopEnumerateCancellable = null;
             }
             return;
         }
