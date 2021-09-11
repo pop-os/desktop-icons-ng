@@ -161,14 +161,14 @@ class ManageWindow {
     }
 
     refreshState(checkWorkspace) {
-        if (this._keepAtBottom) {
-            this._window.lower();
-        }
         if (checkWorkspace && this._showInAllDesktops) {
             let currentWorkspace = global.workspace_manager.get_active_workspace();
             if (!this._window.located_on_workspace(currentWorkspace)) {
                 this._window.change_workspace(currentWorkspace);
             }
+        }
+        if (this._keepAtBottom) {
+            this._window.lower();
         }
     }
 
@@ -317,10 +317,20 @@ var EmulateX11WindowType = class {
                     if (checkWorkspace) {
                         // activate the top-most window
                         let windows = global.display.get_tab_list(Meta.TabList.NORMAL_ALL, global.workspace_manager.get_active_workspace());
+                        let anyActive = false;
                         for (let window of windows) {
                             if ((!window.customJS_ding || !window.customJS_ding._keepAtBottom) && !window.minimized) {
                                 Main.activateWindow(window);
+                                anyActive = true;
                                 break;
+                            }
+                        }
+                        if (!anyActive) {
+                            for (let window of this._windowList) {
+                                if (window.customJS_ding && window.customJS_ding._keepAtBottom && !window.minimized) {
+                                    Main.activateWindow(window);
+                                    break;
+                                }
                             }
                         }
                     }
