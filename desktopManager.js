@@ -152,6 +152,8 @@ var DesktopManager = class {
 
         this.decompressibleTypes = [];
         this.getExtractionSupportedTypes();
+        this.ignoreKeys = [Gdk.KEY_Shift_L,Gdk.KEY_Shift_R,Gdk.KEY_Control_L,Gdk.KEY_Control_R,Gdk.KEY_Caps_Lock,Gdk.KEY_Shift_Lock,Gdk.KEY_Meta_L,Gdk.KEY_Meta_R,Gdk.KEY_Alt_L,Gdk.KEY_Alt_R,Gdk.KEY_Super_L,Gdk.KEY_Super_R,Gdk.KEY_ISO_Level3_Shift,Gdk.KEY_ISO_Level5_Shift];
+
 
         // Check if Nautilus is available
         try {
@@ -615,8 +617,7 @@ var DesktopManager = class {
             if ((this.getNumberOfSelectedItems() >= 1) && (! this.keypressTimeoutID)) {
                 return;
             }
-            let ignoreKeys = [Gdk.KEY_Shift_L,Gdk.KEY_Shift_R,Gdk.KEY_Control_L,Gdk.KEY_Control_R,Gdk.KEY_Caps_Lock,Gdk.KEY_Shift_Lock,Gdk.KEY_Meta_L,Gdk.KEY_Meta_R,Gdk.KEY_Alt_L,Gdk.KEY_Alt_R,Gdk.KEY_Super_L,Gdk.KEY_Super_R,Gdk.KEY_ISO_Level3_Shift,Gdk.KEY_ISO_Level5_Shift];
-            if (ignoreKeys.includes(symbol)) {
+            if (this.ignoreKeys.includes(symbol)) {
                 return;
             }
             let key = String.fromCharCode(Gdk.keyval_to_unicode(symbol));
