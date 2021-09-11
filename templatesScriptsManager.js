@@ -60,6 +60,7 @@ var TemplatesScriptsManager = class {
             this._entriesFolderChanged = true;
             if (this._entriesEnumerateCancellable) {
                 this._entriesEnumerateCancellable.cancel();
+                this._entriesEnumerateCancellable = null;
             }
             return;
         }
@@ -133,13 +134,13 @@ var TemplatesScriptsManager = class {
                 this._entriesEnumerateCancellable,
                 (source, result) => {
                     this._entriesEnumerateCancellable = null;
-                    if (this._entriesFolderChanged) {
-                        resolve(null);
-                        return;
-                    }
                     let fileList = [];
                     try {
                         let fileEnum = source.enumerate_children_finish(result);
+                        if (this._entriesFolderChanged) {
+                            resolve(null);
+                            return;
+                        }
                         let info;
                         while (info = fileEnum.next_file(null)) {
                             let isDir = (info.get_file_type() == Gio.FileType.DIRECTORY);
@@ -151,7 +152,11 @@ var TemplatesScriptsManager = class {
                             fileList.push([info, fileEnum.get_child(info), isDir ? [] : null]);
                         }
                     } catch(e) {
-                        reject('file-read-error');
+                        if (e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED)) {
+                            resolve(null);
+                        } else {
+                            reject('file-read-error');
+                        }
                         return;
                     }
                     fileList.sort((a,b) => {
