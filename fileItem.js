@@ -41,6 +41,7 @@ const _ = Gettext.gettext;
 var FileItem = class {
 
     constructor(desktopManager, file, fileInfo, fileExtra, custom) {
+        this._destroyed = false;
         this._custom = custom;
         this._desktopManager = desktopManager;
         this._fileExtra = fileExtra;
@@ -58,7 +59,7 @@ var FileItem = class {
         this._dropCoordinates = this._readCoordinatesFromAttribute(fileInfo, 'metadata::nautilus-drop-position');
 
         this.container = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL, halign: Gtk.Align.CENTER});
-        this.container.connect('destroy', () => this._onDestroy());
+        this._containerId = this.container.connect('destroy', () => this._onDestroy());
         this._eventBox = new Gtk.EventBox({visible: true, halign: Gtk.Align.CENTER});
         this._sheildEventBox = new Gtk.EventBox({visible: true, halign: Gtk.Align.CENTER});
         this._labelEventBox = new Gtk.EventBox({visible: true, halign: Gtk.Align.CENTER});
@@ -184,6 +185,8 @@ var FileItem = class {
                     break;
                 }
             });
+        } else {
+            this._monitorTrashId = 0;
         }
         this.container.show_all();
         this._updateName();
@@ -240,13 +243,16 @@ var FileItem = class {
         return null;
     }
 
-    removeFromGrid() {
+    removeFromGrid(callOnDestroy) {
         if (this._grid) {
             this._grid.removeItem(this);
             this._grid = null;
         }
         if (this._menu) {
             this._menu.popdown();
+        }
+        if (callOnDestroy) {
+            this._onDestroy();
         }
     }
 
@@ -378,6 +384,9 @@ var FileItem = class {
     }
 
     onAttributeChanged() {
+        if (this._destroyed) {
+            return;
+        }
         if (this._isDesktopFile) {
             this._refreshMetadataAsync(true);
         }
@@ -430,25 +439,41 @@ var FileItem = class {
         }
 
         /* Trash */
-        if (this._monitorTrashDir) {
+        if (this._monitorTrashId) {
             this._monitorTrashDir.disconnect(this._monitorTrashId);
             this._monitorTrashDir.cancel();
+            this._monitorTrashId = 0;
         }
+
         if (this._queryTrashInfoCancellable) {
             this._queryTrashInfoCancellable.cancel();
         }
+
         if (this._scheduleTrashRefreshId) {
             GLib.source_remove(this._scheduleTrashRefreshId);
+            this._scheduleTrashRefreshId = 0;
         }
+
         if (this._menuId) {
             this._menu.disconnect(this._menuId);
+            this._menuId = 0;
+        }
+
+        if (this._containerId) {
+            this.container.disconnect(this._containerId);
+            this._containerId = 0;
         }
         if (this._setMetadataTrustedCancellable) {
             this._setMetadataTrustedCancellable.cancel();
         }
+        this._destroyed = true;
     }
 
     _refreshMetadataAsync(rebuild) {
+        if (this._destroyed) {
+            return;
+        }
+
         if (this._queryFileInfoCancellable)
             this._queryFileInfoCancellable.cancel();
         this._queryFileInfoCancellable = new Gio.Cancellable();
@@ -536,6 +561,10 @@ var FileItem = class {
     }
 
     async _updateIcon() {
+        if (this._destroyed) {
+            return;
+        }
+
         this._icon.set_padding(0,0);
         try {
             let customIcon = this._fileInfo.get_attribute_as_string('metadata::custom-icon');
@@ -543,7 +572,7 @@ var FileItem = class {
                 let customIconFile = Gio.File.new_for_uri(customIcon);
                 if (customIconFile.query_exists(null)) {
                     let loadedImage = await this._loadImageAsIcon(customIconFile);
-                    if (loadedImage) {
+                    if (loadedImage | this._destroyed) {
                         return;
                     }
                 }
@@ -566,6 +595,9 @@ var FileItem = class {
                 if (thumbnail != null) {
                     let thumbnailFile = Gio.File.new_for_path(thumbnail);
                     icon_set = await this._loadImageAsIcon(thumbnailFile);
+                    if (this._destroyed) {
+                        return;
+                    }
                 }
         }
 

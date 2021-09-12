@@ -268,7 +268,7 @@ var DesktopManager = class {
                 if (this.keepArranged) {
                     if (item.isSpecial) {
                         fileItems.push(item);
-                        item.removeFromGrid();
+                        item.removeFromGrid(false);
                         let [x, y, a, b, c] = item.getCoordinates();
                         item.savedCoordinates = [x + deltaX, y + deltaY];
                     } else {
@@ -276,7 +276,7 @@ var DesktopManager = class {
                     }
                 } else {
                     fileItems.push(item);
-                    item.removeFromGrid();
+                    item.removeFromGrid(false);
                     let [x, y, a, b, c] = item.getCoordinates();
                     item.savedCoordinates = [x + deltaX, y + deltaY];
                 }
@@ -887,7 +887,7 @@ var DesktopManager = class {
 
     _removeAllFilesFromGrids() {
         for(let fileItem of this._fileList) {
-            fileItem.removeFromGrid();
+            fileItem.removeFromGrid(true);
         }
         this._fileList = [];
     }
@@ -1507,7 +1507,7 @@ var DesktopManager = class {
         if (this.keepArranged) {
             return;
         }
-        this._fileList.map(f => f.removeFromGrid());
+        this._fileList.map(f => f.removeFromGrid(false));
         let cornerInversion = Prefs.get_start_corner();
         if (!cornerInversion[0] && !cornerInversion[1]) {
             this._fileList.sort((a, b) =>   {   if (a._x1 < b._x1) return -1;
@@ -1638,7 +1638,7 @@ var DesktopManager = class {
         for (let fileItem of this._fileList) {
            fileItem.unsetSelected();
         }
-        clickedItem.removeFromGrid();
+        clickedItem.removeFromGrid(true);
         let newFolder = this._newFolder(position);
         if (newFolder) {
             DBusUtils.NautilusFileOperations2Proxy.MoveURIsRemote(
