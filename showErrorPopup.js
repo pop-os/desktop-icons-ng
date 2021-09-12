@@ -57,6 +57,7 @@ var ShowErrorPopup = class {
         if (this._window) {
             this._window.hide();
             this._window.destroy();
+            this._window = null;
         }
     }
 };
