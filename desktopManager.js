@@ -539,7 +539,6 @@ var DesktopManager = class {
         let isCtrl = (event.get_state()[1] & Gdk.ModifierType.CONTROL_MASK) != 0;
         let isShift = (event.get_state()[1] & Gdk.ModifierType.SHIFT_MASK) != 0;
         let isAlt = (event.get_state()[1] & Gdk.ModifierType.MOD1_MASK) != 0;
-        this.eventTime = GLib.get_monotonic_time();
         if (isCtrl && isShift && ((symbol == Gdk.KEY_Z) || (symbol == Gdk.KEY_z))) {
             this._doRedo();
             return true;
@@ -629,16 +628,21 @@ var DesktopManager = class {
             if (this.searchString != '') {
                 let found = this.scanForFiles(this.searchString);
                 if (found) {
+                    this.searchEventTime = GLib.get_monotonic_time();
                     if (! this.keypressTimeoutID) {
                         this.keypressTimeoutID = GLib.timeout_add(1, 1000, () => {
-                            if (GLib.get_monotonic_time() - this.eventTime < 1500000) {
+                            if (GLib.get_monotonic_time() - this.searchEventTime < 1500000) {
                                 return true;
                             }
                             this.searchString = null;
                             this.keypressTimeoutID = null;
+                            if (this._findFileWindow) {
+                                this._findFileWindow.response(Gtk.ResponseType.OK);
+                            }
                             return false;
                         });
                     }
+                    this.findFiles(this.searchString)
                 }
             }
             return true;
@@ -646,7 +650,7 @@ var DesktopManager = class {
         return false;
     }
 
-    findFiles() {
+    findFiles(text) {
         this._findFileWindow = new Gtk.Dialog({use_header_bar: true,
                                        window_position: Gtk.WindowPosition.CENTER_ON_PARENT,
                                        resizable: false});
@@ -670,14 +674,20 @@ var DesktopManager = class {
             } else {
                 this._findFileButton.sensitive = false;
             }
+            this.searchEventTime = GLib.get_monotonic_time();
         });
-        this._findFileWindow.show_all();
         this._findFileTextArea.grab_focus_without_selecting();
+        if (text) {
+            this._findFileTextArea.set_text(text);
+            this._findFileTextArea.set_position(text.length);
+        }
+        this._findFileWindow.show_all();
         let retval = this._findFileWindow.run();
         if (retval == Gtk.ResponseType.CANCEL) {
             this._fileList.map(f => f.unsetSelected());
         }
         this._findFileWindow.destroy();
+        this._findFileWindow = null;
     }
 
     scanForFiles(text) {
