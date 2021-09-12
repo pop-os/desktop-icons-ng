@@ -443,6 +443,9 @@ var FileItem = class {
         if (this._menuId) {
             this._menu.disconnect(this._menuId);
         }
+        if (this._setMetadataTrustedCancellable) {
+            this._setMetadataTrustedCancellable.cancel();
+        }
     }
 
     _refreshMetadataAsync(rebuild) {
@@ -1171,15 +1174,6 @@ var FileItem = class {
         return false;
     }
 
-    _onSetMetadataFileFinished(source, result) {
-        try {
-            let [success, info] = source.set_attributes_finish(result);
-        } catch (error) {
-            if (!error.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED))
-                log('Error setting metadata to desktop files ', error);
-        }
-    }
-
     /***********************
      * Getters and setters *
      ***********************/
@@ -1262,19 +1256,26 @@ var FileItem = class {
     set metadataTrusted(value) {
         this._trusted = value;
 
+        if (this._setMetadataTrustedCancellable) {
+            this._setMetadataTrustedCancellable.cancel();
+        }
+        this._setMetadataTrustedCancellable = new Gio.Cancellable()
         let info = new Gio.FileInfo();
         info.set_attribute_string('metadata::trusted',
                                   value ? 'true' : 'false');
         this._file.set_attributes_async(info,
                                         Gio.FileQueryInfoFlags.NONE,
                                         GLib.PRIORITY_LOW,
-                                        null,
+                                        this._setMetadataTrustedCancellable,
             (source, result) => {
                 try {
+                    this._setMetadataTrustedCancellable = null;
                     source.set_attributes_finish(result);
                     this._refreshMetadataAsync(true);
-                } catch(e) {
-                    log(`Failed to set metadata::trusted: ${e.message}`);
+                } catch(error) {
+                    if (!error.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED)) {
+                        log(`Failed to set metadata::trusted: ${error.message}`);
+                    }
                 }
         });
     }
