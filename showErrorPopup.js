@@ -39,14 +39,24 @@ var ShowErrorPopup = class {
             deleteButton.connect('clicked', () => {
                 this._window.hide();
                 this._window.destroy();
+                this._window = null; 
             });
             this._window.show();
         }
     }
+
     run() {
         this._window.show();
         this._window.run();
         this._window.hide();
         this._window.destroy();
+    }
+
+    async timeoutClose(time) {
+        await DesktopIconsUtil.waitDelayMs(time);
+        if (this._window) {
+            this._window.hide();
+            this._window.destroy();
+        }
     }
 };

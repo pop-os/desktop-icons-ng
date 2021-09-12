@@ -622,10 +622,11 @@ var DesktopManager = class {
             if (this.searchString != '') {
                 if ((this.getNumberOfSelectedItems() >= 1) && (! this.keypressTimeoutID)) {
                     let windowError = new ShowErrorPopup.ShowErrorPopup(
-                        _("There is an active Selection"),
-                        _("Press Escape OR Click anywhere on the Desktop to reset Selection prior to initiating New Search"),
+                        _("Clear Prior Selection before New Search"),
+                        null,
                         null,
                         true);
+                    windowError.timeoutClose(2000);
                     return true;
                 }
                 let found = this.scanForFiles(this.searchString);
