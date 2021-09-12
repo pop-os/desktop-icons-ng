@@ -34,12 +34,16 @@ var ShowErrorPopup = class {
                                               text: text,
                                               secondary_text: secondaryText});
         DesktopIconsUtil.windowHidePagerTaskbarModal(this._window, true);
-        let deleteButton = this._window.add_button(_("Close"), Gtk.ResponseType.OK);
+        this.deleteButton = this._window.add_button(_("Close"), Gtk.ResponseType.OK);
         if (modal) {
-            deleteButton.connect('clicked', () => {
+            this.deleteButton.connect('clicked', () => {
                 this._window.hide();
                 this._window.destroy();
                 this._window = null; 
+            });
+            this._window.connect('delete-event', () => {
+                this._window.destroy();
+                this._window = null;
             });
             this._window.show();
         }
@@ -55,9 +59,7 @@ var ShowErrorPopup = class {
     async timeoutClose(time) {
         await DesktopIconsUtil.waitDelayMs(time);
         if (this._window) {
-            this._window.hide();
-            this._window.destroy();
-            this._window = null;
+            this.deleteButton.activate();
         }
     }
 };
