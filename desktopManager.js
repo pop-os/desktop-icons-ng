@@ -613,9 +613,6 @@ var DesktopManager = class {
             }
             return true;
         } else {
-            if ((this.getNumberOfSelectedItems() >= 1) && (! this.keypressTimeoutID)) {
-                return;
-            }
             if (this.ignoreKeys.includes(symbol)) {
                 return;
             }
@@ -626,6 +623,14 @@ var DesktopManager = class {
                 this.searchString = key;
             }
             if (this.searchString != '') {
+                if ((this.getNumberOfSelectedItems() >= 1) && (! this.keypressTimeoutID)) {
+                    let windowError = new ShowErrorPopup.ShowErrorPopup(
+                        _("There is an active Selection"),
+                        _("Press Escape OR Click anywhere on the Desktop to reset Selection prior to initiating New Search"),
+                        null,
+                        true);
+                    return true;
+                }
                 let found = this.scanForFiles(this.searchString);
                 if (found) {
                     this.searchEventTime = GLib.get_monotonic_time();
@@ -680,6 +685,8 @@ var DesktopManager = class {
         if (text) {
             this._findFileTextArea.set_text(text);
             this._findFileTextArea.set_position(text.length);
+        } else {
+            this.scanForFiles(null);
         }
         this._findFileWindow.show_all();
         let retval = this._findFileWindow.run();
@@ -693,7 +700,7 @@ var DesktopManager = class {
     scanForFiles(text) {
         let found = [];
         this._fileList.map(f => f.unsetSelected());
-        if (text != '') {
+        if (text && (text != '')) {
             found = this._fileList.filter(f => (f.fileName.toLowerCase().includes(text.toLowerCase())) || (f._label.get_text().toLowerCase().includes(text.toLowerCase())));
         }
         if (found.length != 0) {
