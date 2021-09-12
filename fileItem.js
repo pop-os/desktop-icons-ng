@@ -1171,15 +1171,6 @@ var FileItem = class {
         return false;
     }
 
-    _onSetMetadataFileFinished(source, result) {
-        try {
-            let [success, info] = source.set_attributes_finish(result);
-        } catch (error) {
-            if (!error.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED))
-                log('Error setting metadata to desktop files ', error);
-        }
-    }
-
     /***********************
      * Getters and setters *
      ***********************/
