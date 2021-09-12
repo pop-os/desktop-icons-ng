@@ -583,13 +583,10 @@ var DesktopManager = class {
                 this.doRename(selection[0], false);
                 return true;
             }
-        } else if ((! this.keypressTimeoutID) && symbol == Gdk.KEY_space) {
-            let selection = this.getCurrentSelection(false);
-            if (selection) {
-                // Support renaming other grids file items.
+        } else if ((this.getCurrentSelection(false)) && symbol == Gdk.KEY_space) {
+                // Support previewing other grids file items.
                 DBusUtils.GnomeNautilusPreviewProxy.ShowFileRemote(selection[0].uri, 0, true);
                 return true;
-            }
         } else if (isCtrl && ((symbol == Gdk.KEY_A) || (symbol == Gdk.KEY_a))) {
             this._selectAll();
             return true;
