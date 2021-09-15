@@ -54,6 +54,7 @@ var ShowErrorPopup = class {
         this._window.run();
         this._window.hide();
         this._window.destroy();
+        this._window = null;
     }
 
     async timeoutClose(time) {

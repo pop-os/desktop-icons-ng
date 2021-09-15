@@ -622,7 +622,7 @@ var DesktopManager = class {
             if (this.searchString != '') {
                 if ((this.getNumberOfSelectedItems() >= 1) && (! this.keypressTimeoutID)) {
                     let windowError = new ShowErrorPopup.ShowErrorPopup(
-                        _("Clear Prior Selection before New Search"),
+                        _("Clear Current Selection before New Search"),
                         null,
                         null,
                         true);
@@ -676,6 +676,10 @@ var DesktopManager = class {
                 this._findFileButton.sensitive = true;
             } else {
                 this._findFileButton.sensitive = false;
+                let stringLength = this._findFileTextArea.text.length - 1;
+                let string = this._findFileTextArea.text.substring(0, stringLength);
+                this._findFileTextArea.set_text(string);
+                this._findFileTextArea.set_position(stringLength);
             }
             this.searchEventTime = GLib.get_monotonic_time();
         });
