@@ -142,7 +142,7 @@ var TemplatesScriptsManager = class {
                             return;
                         }
                         let info;
-                        while (info = fileEnum.next_file(null)) {
+                        while ((info = fileEnum.next_file(null))) {
                             let isDir = (info.get_file_type() == Gio.FileType.DIRECTORY);
                             if ((this._flags & TemplatesScriptsManagerFlags.ONLY_EXECUTABLE) &&
                                 !isDir &&
