@@ -32,6 +32,7 @@ const AskRenamePopup = imports.askRenamePopup;
 const ShowErrorPopup = imports.showErrorPopup;
 const TemplatesScriptsManager = imports.templatesScriptsManager;
 const Thumbnails = imports.thumbnails;
+const GSound = imports.gi.GSound;
 
 const Gettext = imports.gettext.domain('ding');
 
@@ -676,6 +677,7 @@ var DesktopManager = class {
                 this._findFileButton.sensitive = true;
             } else {
                 this._findFileButton.sensitive = false;
+                this.playAlertSound();
                 let stringLength = this._findFileTextArea.text.length - 1;
                 let string = this._findFileTextArea.text.substring(0, stringLength);
                 this._findFileTextArea.set_text(string);
@@ -710,6 +712,16 @@ var DesktopManager = class {
             return true;
         } else {
             return false;
+        }
+    }
+
+    playAlertSound() {
+        let ctx = new GSound.Context();
+        try {
+            ctx.init(null);
+            ctx.play_simple({ "event.id" : "bell" }, null);
+        } catch (e) {
+            print(`Exception while alert Sound: ${e.message}\n${e.stack}`);
         }
     }
 
