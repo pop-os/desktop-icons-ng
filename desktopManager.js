@@ -673,15 +673,17 @@ var DesktopManager = class {
             }
         });
         this._findFileTextArea.connect('changed', () => {
+            let context = this._findFileTextArea.get_style_context();
             if (this.scanForFiles(this._findFileTextArea.text)){
                 this._findFileButton.sensitive = true;
+                if (context.has_class('not-found')) {
+                    context.remove_class('not-found');
+                }
             } else {
                 this._findFileButton.sensitive = false;
-                this.playAlertSound();
-                let stringLength = this._findFileTextArea.text.length - 1;
-                let string = this._findFileTextArea.text.substring(0, stringLength);
-                this._findFileTextArea.set_text(string);
-                this._findFileTextArea.set_position(stringLength);
+                if (!context.has_class('not-found')) {
+                    context.add_class('not-found');
+                }
             }
             this.searchEventTime = GLib.get_monotonic_time();
         });
