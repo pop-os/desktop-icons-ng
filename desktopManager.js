@@ -681,6 +681,7 @@ var DesktopManager = class {
                 }
             } else {
                 this._findFileButton.sensitive = false;
+                this.playAlertSound();
                 if (!context.has_class('not-found')) {
                     context.add_class('not-found');
                 }
@@ -718,10 +719,12 @@ var DesktopManager = class {
     }
 
     playAlertSound() {
-        let ctx = new GSound.Context();
+        if (! this.soundCtx) {
+            this.soundCtx = new GSound.Context();
+        }
         try {
-            ctx.init(null);
-            ctx.play_simple({ "event.id" : "bell" }, null);
+            this.soundCtx.init(null);
+            this.soundCtx.play_simple({ "event.id" : "dialog-error" }, null);
         } catch (e) {
             print(`Exception while alert Sound: ${e.message}\n${e.stack}`);
         }
