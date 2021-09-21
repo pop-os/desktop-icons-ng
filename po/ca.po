@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-18 14:10+0200\n"
+"POT-Creation-Date: 2021-09-21 20:21+0200\n"
 "PO-Revision-Date: 2019-07-22 10:24+0200\n"
 "Last-Translator: Jordi Mas <jmas@softcatala.org>\n"
 "Language-Team: Catalan <info@softcatala.org>\n"
@@ -16,268 +16,274 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: askNamePopup.js:36
-msgid "OK"
-msgstr "D'acord"
-
-#: askNamePopup.js:37 desktopIconsUtil.js:211 desktopManager.js:1668
-msgid "Cancel"
-msgstr "Cancel·la"
-
-#: askRenamePopup.js:40
+#: askRenamePopup.js:41
 msgid "Folder name"
 msgstr "Nom de la carpeta"
 
-#: askRenamePopup.js:40
+#: askRenamePopup.js:41
 msgid "File name"
 msgstr "Nom del fitxer"
 
-#: askRenamePopup.js:47
+#: askRenamePopup.js:48 desktopManager.js:661
+msgid "OK"
+msgstr "D'acord"
+
+#: askRenamePopup.js:48
 msgid "Rename"
 msgstr "Canvia el nom"
 
-#: desktopIconsUtil.js:80
+#: desktopIconsUtil.js:88
 msgid "Command not found"
 msgstr "No s'ha trobat l'ordre"
 
-#: desktopIconsUtil.js:202
+#: desktopIconsUtil.js:210
 msgid "Do you want to run “{0}”, or display its contents?"
 msgstr "Voleu executar «{0}» o mostrar el seu contingut?"
 
-#: desktopIconsUtil.js:203
+#: desktopIconsUtil.js:211
 msgid "“{0}” is an executable text file."
 msgstr "«{0}» és un fitxer de text executable."
 
-#: desktopIconsUtil.js:207
+#: desktopIconsUtil.js:215
 msgid "Execute in a terminal"
 msgstr "Obre al Terminal"
 
-#: desktopIconsUtil.js:209
+#: desktopIconsUtil.js:217
 msgid "Show"
 msgstr "Mostra"
 
-#: desktopIconsUtil.js:213
+#: desktopIconsUtil.js:219 desktopManager.js:663 desktopManager.js:1766
+msgid "Cancel"
+msgstr "Cancel·la"
+
+#: desktopIconsUtil.js:221
 msgid "Execute"
 msgstr "Executa"
 
-#: desktopManager.js:137
+#: desktopManager.js:163
 msgid "Nautilus File Manager not found"
 msgstr "No s'ha trobat el gestor de fitxers del Nautilus"
 
-#: desktopManager.js:138
+#: desktopManager.js:164
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr ""
 "El gestor de fitxers Nautilus és obligatori per a treballar amb les icones "
 "de l'escriptori NG."
 
-#: desktopManager.js:592
+#: desktopManager.js:626
+msgid "Clear Current Selection before New Search"
+msgstr ""
+
+#: desktopManager.js:665
+msgid "Find Files on Desktop"
+msgstr ""
+
+#: desktopManager.js:735 desktopManager.js:1399
 msgid "New Folder"
 msgstr "Carpeta nova"
 
-#: desktopManager.js:596
+#: desktopManager.js:739
 msgid "New Document"
 msgstr "Document nou"
 
-#: desktopManager.js:601
+#: desktopManager.js:744
 msgid "Paste"
 msgstr "Enganxa"
 
-#: desktopManager.js:605
+#: desktopManager.js:748
 msgid "Undo"
 msgstr "Desfés"
 
-#: desktopManager.js:609
+#: desktopManager.js:752
 msgid "Redo"
 msgstr "Refés"
 
-#: desktopManager.js:615
-msgid "Select all"
+#: desktopManager.js:758
+#, fuzzy
+msgid "Select All"
 msgstr "Selecciona-ho tot"
 
-#: desktopManager.js:623
+#: desktopManager.js:766
 msgid "Show Desktop in Files"
 msgstr "Mostra l'escriptori al Fitxers"
 
-#: desktopManager.js:627 fileItem.js:1002
+#: desktopManager.js:770 fileItem.js:1035
 msgid "Open in Terminal"
 msgstr "Obre al Terminal"
 
-#: desktopManager.js:633
+#: desktopManager.js:776
 msgid "Change Background…"
 msgstr "Canvia el fons de l'escriptori…"
 
-#: desktopManager.js:642
+#: desktopManager.js:785
 msgid "Display Settings"
 msgstr "Paràmetres de la pantalla"
 
-#: desktopManager.js:649
-msgid "Desktop Icons settings"
+#: desktopManager.js:792
+#, fuzzy
+msgid "Desktop Icons Settings"
 msgstr "Paràmetres de les icones de l'escriptori"
 
-#: desktopManager.js:660
-msgid "Scripts"
-msgstr "Scripts"
-
-#: desktopManager.js:1310
-msgid "New folder"
-msgstr "Carpeta nova"
-
-#: desktopManager.js:1385
+#: desktopManager.js:1484
 msgid "Can not email a Directory"
 msgstr "No es pot enviar un directori per correu electrònic"
 
-#: desktopManager.js:1386
+#: desktopManager.js:1485
 msgid "Selection includes a Directory, compress the directory to a file first."
 msgstr ""
 "La selecció inclou un directori, comprimeix-hi el directori en un fitxer."
 
-#: desktopManager.js:1407
+#: desktopManager.js:1506
 msgid "Arrange Icons"
 msgstr ""
 
-#: desktopManager.js:1411
+#: desktopManager.js:1510
 msgid "Arrange By..."
 msgstr ""
 
-#: desktopManager.js:1420
+#: desktopManager.js:1519
 msgid "Keep Arranged..."
 msgstr ""
 
-#: desktopManager.js:1425
+#: desktopManager.js:1524
 msgid "Sort Home/Drives/Trash..."
 msgstr ""
 
-#: desktopManager.js:1431
+#: desktopManager.js:1530
 msgid "Sort by Name"
 msgstr ""
 
-#: desktopManager.js:1433
+#: desktopManager.js:1532
 msgid "Sort by Name Descending"
 msgstr ""
 
-#: desktopManager.js:1436
+#: desktopManager.js:1535
 msgid "Sort by Modified Time"
 msgstr ""
 
-#: desktopManager.js:1439
+#: desktopManager.js:1538
 msgid "Sort by Type"
 msgstr ""
 
-#: desktopManager.js:1442
+#: desktopManager.js:1541
 msgid "Sort by Size"
 msgstr ""
 
-#: desktopManager.js:1666
+#: desktopManager.js:1764
 msgid "Select Extract Destination"
 msgstr ""
 
-#: desktopManager.js:1669
+#: desktopManager.js:1767
 #, fuzzy
 msgid "Select"
 msgstr "Selecciona-ho tot"
 
 #. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
-#: fileItem.js:196
+#: fileItem.js:223
 msgid "Home"
 msgstr "Inici"
 
-#: fileItem.js:898
+#: fileItem.js:925
 msgid "Open All..."
 msgstr "Obre-ho tot..."
 
-#: fileItem.js:898
+#: fileItem.js:925
 msgid "Open"
 msgstr "Obre"
 
-#: fileItem.js:905
+#: fileItem.js:930
+msgid "Scripts"
+msgstr "Scripts"
+
+#: fileItem.js:938
 msgid "Open All With Other Application..."
 msgstr "Obre amb una altra aplicació..."
 
-#: fileItem.js:905
+#: fileItem.js:938
 msgid "Open With Other Application"
 msgstr "Obre amb una altra aplicació..."
 
-#: fileItem.js:909
+#: fileItem.js:942
 msgid "Launch using Dedicated Graphics Card"
 msgstr "Llança usant targeta gràfica dedicada"
 
-#: fileItem.js:917
+#: fileItem.js:950
 msgid "Cut"
 msgstr "Retalla"
 
-#: fileItem.js:920
+#: fileItem.js:953
 msgid "Copy"
 msgstr "Copia"
 
-#: fileItem.js:924
+#: fileItem.js:957
 msgid "Rename…"
 msgstr "Canvia el nom…"
 
-#: fileItem.js:928
+#: fileItem.js:961
 msgid "Move to Trash"
 msgstr "Mou a la paperera"
 
-#: fileItem.js:932
+#: fileItem.js:965
 msgid "Delete permanently"
 msgstr "Suprimeix permanentment"
 
-#: fileItem.js:938
+#: fileItem.js:971
 msgid "Don't Allow Launching"
 msgstr "No permetis que s'iniciï"
 
-#: fileItem.js:938
+#: fileItem.js:971
 msgid "Allow Launching"
 msgstr "Permet que s'iniciï"
 
-#: fileItem.js:945
+#: fileItem.js:978
 msgid "Empty Trash"
 msgstr "Buida la paperera"
 
-#: fileItem.js:952
+#: fileItem.js:985
 msgid "Eject"
 msgstr "Expulsa"
 
-#: fileItem.js:959
+#: fileItem.js:992
 msgid "Unmount"
 msgstr "Desmunta"
 
-#: fileItem.js:974
+#: fileItem.js:1007
 msgid "Extract Here"
 msgstr "Extreu aquí"
 
-#: fileItem.js:977
+#: fileItem.js:1010
 msgid "Extract To..."
 msgstr "Extreu a..."
 
-#: fileItem.js:982
+#: fileItem.js:1015
 msgid "Send to..."
 msgstr "Envia a..."
 
-#: fileItem.js:986
+#: fileItem.js:1019
 msgid "Compress {0} file"
 msgid_plural "Compress {0} files"
 msgstr[0] "Comprimeix {0} fitxer"
 msgstr[1] "Comprimeix {0} fitxers"
 
-#: fileItem.js:989
+#: fileItem.js:1022
 msgid "New Folder with {0} item"
 msgid_plural "New Folder with {0} items"
 msgstr[0] "Carpeta nova amb {0} element"
 msgstr[1] "Carpeta nova amb {0} elements"
 
-#: fileItem.js:994
+#: fileItem.js:1027
 msgid "Common Properties"
 msgstr "Propietats comunes"
 
-#: fileItem.js:994
+#: fileItem.js:1027
 msgid "Properties"
 msgstr "Propietats"
 
-#: fileItem.js:998
+#: fileItem.js:1031
 msgid "Show All in Files"
 msgstr "Mostra al Fitxers"
 
-#: fileItem.js:998
+#: fileItem.js:1031
 msgid "Show in Files"
 msgstr "Mostra al Fitxers"
 
@@ -502,6 +508,9 @@ msgstr ""
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:76
 msgid "Icons Arranged by this property"
 msgstr ""
+
+#~ msgid "New folder"
+#~ msgstr "Carpeta nova"
 
 #~ msgid "Delete"
 #~ msgstr "Suprimeix"

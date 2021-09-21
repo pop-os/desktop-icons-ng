@@ -5,11 +5,12 @@ desktopGrid.js
 desktopIconsUtil.js
 desktopManager.js
 ding.js
+emulateX11WindowType.js
 enums.js
 extension.js
 fileItem.js
 preferences.js
 prefs.js
 showErrorPopup.js
-templateManager.js
+templatesScriptsManager.js
 schemas/org.gnome.shell.extensions.ding.gschema.xml
