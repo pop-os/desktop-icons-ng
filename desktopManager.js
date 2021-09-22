@@ -32,7 +32,13 @@ const AskRenamePopup = imports.askRenamePopup;
 const ShowErrorPopup = imports.showErrorPopup;
 const TemplatesScriptsManager = imports.templatesScriptsManager;
 const Thumbnails = imports.thumbnails;
-const GSound = imports.gi.GSound;
+
+var GSound;
+try {
+    GSound = imports.gi.GSound;
+} catch (e) {
+    GSound = null;
+}
 
 const Gettext = imports.gettext.domain('ding');
 
@@ -719,6 +725,9 @@ var DesktopManager = class {
     }
 
     playAlertSound() {
+        if (!GSound) {
+            return;
+        }
         if (! this.soundCtx) {
             this.soundCtx = new GSound.Context();
         }

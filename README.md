@@ -16,6 +16,7 @@ But it is still an alpha development, so it probably still have a lot of bugs. U
 
 * GNOME Shell >= 3.38
 * Nautilus >= 3.38
+* gir1.2-gsound
 
 ## TO-DO
 
