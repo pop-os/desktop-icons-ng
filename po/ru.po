@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-09-21 20:21+0200\n"
-"PO-Revision-Date: 2021-09-20 23:01+1000\n"
-"Last-Translator: Ser82-png\n"
+"PO-Revision-Date: 2021-09-22 19:24+1000\n"
+"Last-Translator: Ser82-png; Stas Solovey\n"
 "Language-Team: \n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -75,11 +75,11 @@ msgstr ""
 
 #: desktopManager.js:626
 msgid "Clear Current Selection before New Search"
-msgstr ""
+msgstr "Очистить текущую подборку перед новым поиском"
 
 #: desktopManager.js:665
 msgid "Find Files on Desktop"
-msgstr ""
+msgstr "Поиск файлов на рабочем столе"
 
 #: desktopManager.js:735 desktopManager.js:1399
 msgid "New Folder"
@@ -102,7 +102,6 @@ msgid "Redo"
 msgstr "Повторить"
 
 #: desktopManager.js:758
-#, fuzzy
 msgid "Select All"
 msgstr "Выделить всё"
 
@@ -123,7 +122,6 @@ msgid "Display Settings"
 msgstr "Настройки экрана"
 
 #: desktopManager.js:792
-#, fuzzy
 msgid "Desktop Icons Settings"
 msgstr "Параметры Desktop Icons"
 
