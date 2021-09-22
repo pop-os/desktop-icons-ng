@@ -33,13 +33,6 @@ const ShowErrorPopup = imports.showErrorPopup;
 const TemplatesScriptsManager = imports.templatesScriptsManager;
 const Thumbnails = imports.thumbnails;
 
-var GSound;
-try {
-    GSound = imports.gi.GSound;
-} catch (e) {
-    GSound = null;
-}
-
 const Gettext = imports.gettext.domain('ding');
 
 const _ = Gettext.gettext;
@@ -687,7 +680,7 @@ var DesktopManager = class {
                 }
             } else {
                 this._findFileButton.sensitive = false;
-                this.playAlertSound();
+                this._findFileTextArea.error_bell();
                 if (!context.has_class('not-found')) {
                     context.add_class('not-found');
                 }
@@ -721,21 +714,6 @@ var DesktopManager = class {
             return true;
         } else {
             return false;
-        }
-    }
-
-    playAlertSound() {
-        if (!GSound) {
-            return;
-        }
-        if (! this.soundCtx) {
-            this.soundCtx = new GSound.Context();
-        }
-        try {
-            this.soundCtx.init(null);
-            this.soundCtx.play_simple({ "event.id" : "dialog-error" }, null);
-        } catch (e) {
-            print(`Exception while alert Sound: ${e.message}\n${e.stack}`);
         }
     }
 
