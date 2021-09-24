@@ -62,7 +62,7 @@ var DesktopGrid = class {
         this._elementWidth = Math.floor(this._width / this._maxColumns);
         this._elementHeight = Math.floor(this._height / this._maxRows);
 
-        this._window = new Gtk.Window({"title": desktopName});
+        this._window = new Gtk.ApplicationWindow({application: desktopManager.mainApp, "title": desktopName});
         if (asDesktop) {
             this._window.set_decorated(false);
             this._window.set_deletable(false);
@@ -83,7 +83,7 @@ var DesktopGrid = class {
                 return true;
             } else {
                 // Exit if this instance is working as an stand-alone window
-                Gtk.main_quit();
+                return false;
             }
         });
 

@@ -38,9 +38,9 @@ const Gettext = imports.gettext.domain('ding');
 const _ = Gettext.gettext;
 
 var DesktopManager = class {
-    constructor(desktopList, codePath, asDesktop, primaryIndex) {
+    constructor(mainApp, desktopList, codePath, asDesktop, primaryIndex) {
 
-        DBusUtils.init();
+        this.mainApp = mainApp;
 
         this._premultiplied = false;
         try {
@@ -171,7 +171,6 @@ var DesktopManager = class {
                 for(let desktop of this._desktops) {
                     desktop.destroy();
                 }
-                Gtk.main_quit();
                 return false;
             });
         }
