@@ -37,10 +37,11 @@ class ManageWindow {
        without decorations.
     */
 
-    constructor(window, wayland_client) {
+    constructor(window, wayland_client, changedStatusCB) {
         this._wayland_client = wayland_client;
         this._window = window;
         this._signalIDs = [];
+        this._changedStatusCB = changedStatusCB;
         this._signalIDs.push(window.connect_after('raised', () => {
             if (this._keepAtBottom && !this._keepAtTop) {
                 this._window.lower();
@@ -108,7 +109,7 @@ class ManageWindow {
                     this._x = parseInt(coords[0]);
                     this._y = parseInt(coords[1]);
                 } catch(e) {
-                    print(`Exception ${e.message}`);
+                    global.log(`Exception ${e.message}.\n${e.stack}`);
                 }
                 try {
                     let extra_chars = title.substring(pos+2).trim().toUpperCase();
@@ -134,7 +135,7 @@ class ManageWindow {
                         }
                     }
                 } catch(e) {
-                    print(`Exception ${e.message}`);
+                    global.log(`Exception ${e.message}.\n${e.stack}`);
                 }
             }
             if (this._wayland_client) {
@@ -157,6 +158,7 @@ class ManageWindow {
             if (this._fixed && (this._x !== null) && (this._y !== null)) {
                 this._window.move_frame(false, this._x, this._y);
             }
+            this._changedStatusCB(this);
         }
     }
 
@@ -293,7 +295,9 @@ var EmulateX11WindowType = class {
         if (window.get_meta_window) { // it is a MetaWindowActor
             window = window.get_meta_window();
         }
-        window.customJS_ding = new ManageWindow(window, this._wayland_client);
+        window.customJS_ding = new ManageWindow(window, this._wayland_client, () => {
+            this._refreshWindows(true);
+        });
         this._windowList.push(window);
         window.customJS_ding.unmanagedID = window.connect("unmanaged", (window) => {
             this._clearWindow(window);
