@@ -24,6 +24,7 @@ install_data([
     'enums.js',
     'extension.js',
     'fileItem.js',
+    'fileItemMenu.js',
     'metadata.json',
     'prefs.js',
     'preferences.js',

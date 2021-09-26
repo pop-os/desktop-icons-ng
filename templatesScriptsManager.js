@@ -28,8 +28,8 @@ var TemplatesScriptsManagerFlags = {
 
 var TemplatesScriptsManager = class {
 
-    constructor(baseFolder, flags, callback) {
-        this._callback = callback;
+    constructor(baseFolder, flags, activatedCB) {
+        this._activatedCB = activatedCB;
         this._entries = [];
         this._entriesEnumerateCancellable = null;
         this._readingEntries = false;
@@ -149,7 +149,8 @@ var TemplatesScriptsManager = class {
                                 !info.get_attribute_boolean('access::can-execute')) {
                                     continue;
                             }
-                            fileList.push([info, fileEnum.get_child(info), isDir ? [] : null]);
+                            let child = fileEnum.get_child(info);
+                            fileList.push([info.get_name(), isDir ? child : child.get_path(), isDir ? [] : null]);
                         }
                     } catch(e) {
                         if (e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED)) {
@@ -160,7 +161,7 @@ var TemplatesScriptsManager = class {
                         return;
                     }
                     fileList.sort((a,b) => {
-                        return a[0].get_name().localeCompare(b[0].get_name(), {
+                        return a[0].localeCompare(b[0], {
                             sensitivity: 'accent' ,
                             numeric: 'true',
                             localeMatcher: 'lookup' });
@@ -182,14 +183,14 @@ var TemplatesScriptsManager = class {
         }
         let scriptSubMenu = new Gtk.Menu();
         for (let fileItem of scriptsList) {
-            let menuItemName = fileItem[0].get_name();
+            let menuItemName = fileItem[0];
             let offset = DesktopIconsUtil.getFileExtensionOffset(menuItemName, false);
             menuItemName = menuItemName.substring(0, offset);
-            let menuItemPath = fileItem[1].get_path();
+            let menuItemPath = fileItem[1];
             let subDirs = fileItem[2];
             if (subDirs === null) {
                 let menuItem = new Gtk.MenuItem({label: menuItemName});
-                menuItem.connect("activate", () => {this._callback(menuItemPath);});
+                menuItem.connect("activate", () => {this._activatedCB(menuItemPath);});
                 scriptSubMenu.add(menuItem);
             } else {
                 let subMenu = this._createTemplatesScriptsSubMenu(subDirs);
