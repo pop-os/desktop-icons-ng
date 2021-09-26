@@ -3,6 +3,7 @@
 * Version 22
   * GSound is now optional (Sergio Costas)
 
+
 * Version 21
   * New folders get a default name and, then, are renamed if the user wants (Sundeep Mediratta)
   * Several fixes for DnD (Sergio Costas and Sundeep Mediratta)
