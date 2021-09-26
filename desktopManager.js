@@ -32,6 +32,7 @@ const AskRenamePopup = imports.askRenamePopup;
 const ShowErrorPopup = imports.showErrorPopup;
 const TemplatesScriptsManager = imports.templatesScriptsManager;
 const Thumbnails = imports.thumbnails;
+const FileItemMenu = imports.fileItemMenu;
 
 const Gettext = imports.gettext.domain('ding');
 
@@ -52,11 +53,6 @@ var DesktopManager = class {
             }
         } catch(e) {
         }
-
-        this.scriptsMonitor = new TemplatesScriptsManager.TemplatesScriptsManager(
-            DesktopIconsUtil.getScriptsDir(),
-            TemplatesScriptsManager.TemplatesScriptsManagerFlags.ONLY_EXECUTABLE,
-            this._onScriptClicked.bind(this));
 
         this.templatesMonitor = new TemplatesScriptsManager.TemplatesScriptsManager(
             DesktopIconsUtil.getTemplatesDir(),
@@ -82,6 +78,8 @@ var DesktopManager = class {
         this._monitorDesktopDir = this._desktopDir.monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, null);
         this._monitorDesktopDir.set_rate_limit(1000);
         this._monitorDesktopDir.connect('changed', (obj, file, otherFile, eventType) => this._updateDesktopIfChanged(file, otherFile, eventType));
+
+        this.fileItemMenu = new FileItemMenu.FileItemMenu(this);
 
         this._showHidden = Prefs.gtkSettings.get_boolean('show-hidden');
         this.showDropPlace = Prefs.desktopSettings.get_boolean('show-drop-place');
@@ -150,8 +148,6 @@ var DesktopManager = class {
 
         this._scriptsList = [];
 
-        this.decompressibleTypes = [];
-        this.getExtractionSupportedTypes();
         this.ignoreKeys = [Gdk.KEY_Shift_L,Gdk.KEY_Shift_R,Gdk.KEY_Control_L,Gdk.KEY_Control_R,Gdk.KEY_Caps_Lock,Gdk.KEY_Shift_Lock,Gdk.KEY_Meta_L,Gdk.KEY_Meta_R,Gdk.KEY_Alt_L,Gdk.KEY_Alt_R,Gdk.KEY_Super_L,Gdk.KEY_Super_R,Gdk.KEY_ISO_Level3_Shift,Gdk.KEY_ISO_Level5_Shift];
 
 
@@ -466,9 +462,7 @@ var DesktopManager = class {
             let controlPressed = !!(state & Gdk.ModifierType.CONTROL_MASK);
             if (!shiftPressed && !controlPressed) {
                 // clear selection
-                for(let item of this._fileList) {
-                    item.unsetSelected();
-                }
+                this.unselectAll();
             }
             this._startRubberband(x, y);
         }
@@ -601,9 +595,7 @@ var DesktopManager = class {
             this.findFiles();
             return true;
         } else if (symbol == Gdk.KEY_Escape) {
-            if (this.getNumberOfSelectedItems() >= 1) {
-                this._fileList.map(f => f.unsetSelected());
-            }
+            this.unselectAll();
             if (this.searchString) {
                 this.searchString = null;
             }
@@ -652,6 +644,10 @@ var DesktopManager = class {
         return false;
     }
 
+    unselectAll() {
+        this._fileList.map(f => f.unsetSelected());
+    }
+
     findFiles(text) {
         this._findFileWindow = new Gtk.Dialog({use_header_bar: true,
                                        window_position: Gtk.WindowPosition.CENTER_ON_PARENT,
@@ -696,7 +692,7 @@ var DesktopManager = class {
         this._findFileWindow.show_all();
         let retval = this._findFileWindow.run();
         if (retval == Gtk.ResponseType.CANCEL) {
-            this._fileList.map(f => f.unsetSelected());
+            this.unselectAll();
         }
         this._findFileWindow.destroy();
         this._findFileWindow = null;
@@ -704,7 +700,7 @@ var DesktopManager = class {
 
     scanForFiles(text) {
         let found = [];
-        this._fileList.map(f => f.unsetSelected());
+        this.unselectAll();
         if (text && (text != '')) {
             found = this._fileList.filter(f => (f.fileName.toLowerCase().includes(text.toLowerCase())) || (f._label.get_text().toLowerCase().includes(text.toLowerCase())));
         }
@@ -719,7 +715,7 @@ var DesktopManager = class {
     _createDesktopBackgroundMenu() {
         this._menu = new Gtk.Menu();
         let newFolder = new Gtk.MenuItem({label: _("New Folder")});
-        newFolder.connect("activate", () => this._newFolder());
+        newFolder.connect("activate", () => this.doNewFolder());
         this._menu.add(newFolder);
 
         this._newDocumentItem = new Gtk.MenuItem({label: _("New Document")});
@@ -1314,14 +1310,6 @@ var DesktopManager = class {
         }
     }
 
-    getExtractable() {
-        for (let item of this._fileList) {
-            if (item.isSelected) {
-                return this.decompressibleTypes.includes(item._attributeContentType);
-            }
-        }
-    }
-
     getNumberOfSelectedItems() {
         let count = 0;
         for(let item of this._fileList) {
@@ -1333,9 +1321,10 @@ var DesktopManager = class {
     }
 
     doRename(fileItem, allowReturnOnSameName) {
-        for(let fileItem2 of this._fileList) {
-            fileItem2.unsetSelected();
+        if (!fileItem.canRename) {
+            return;
         }
+        this.unselectAll();
         if (!this._renameWindow) {
             this._renameWindow = new AskRenamePopup.AskRenamePopup(fileItem, allowReturnOnSameName);
         }
@@ -1346,31 +1335,7 @@ var DesktopManager = class {
         this.newFolderDoRename = null;
     }
 
-    doOpenWith() {
-        let fileItems = this.getCurrentSelection(false);
-        if (fileItems) {
-            let mimetype = Gio.content_type_guess(fileItems[0].fileName, null)[0];
-            let chooser = Gtk.AppChooserDialog.new_for_content_type(null,
-                                                                    Gtk.DialogFlags.MODAL + Gtk.DialogFlags.USE_HEADER_BAR,
-                                                                    mimetype);
-            chooser.show_all();
-            let retval = chooser.run();
-            chooser.hide();
-            if (retval == Gtk.ResponseType.OK) {
-                let appInfo = chooser.get_app_info();
-                if (appInfo) {
-                    let fileList = [];
-                    for (let item of fileItems) {
-                        fileList.push(item.file);
-                    }
-                    appInfo.launch(fileList, null);
-                }
-            }
-
-        }
-    }
-
-    _newFolder(position) {
+    doNewFolder(position) {
         let X;
         let Y;
         if (position) {
@@ -1378,9 +1343,7 @@ var DesktopManager = class {
         } else {
             [X, Y] = [this._clickX, this._clickY];
         }
-        for(let fileItem of this._fileList) {
-            fileItem.unsetSelected();
-        }
+        this.unselectAll();
         let i = 0;
         let baseName = _("New Folder");
         let newName = baseName;
@@ -1435,55 +1398,6 @@ var DesktopManager = class {
         } catch(e) {
             print(`Failed to create template ${e.message}`);
         }
-    }
-
-    _onScriptClicked(menuItemPath) {
-        let pathList = [];
-        let uriList = [];
-        for ( let item of this._fileList ) {
-            if ( item.isSelected &&  ! item.isSpecial ) {
-                pathList.push(`'` + item.file.get_path() + `\n'`);
-                uriList.push(`'` + item.file.get_uri() + `\n'`);
-            }
-        }
-        pathList = pathList.join("");
-        uriList = uriList.join("");
-        let deskTop = `'` + DesktopIconsUtil.getDesktopDir().get_uri() + `'`;
-        let execline = `/bin/bash -c "`;
-        execline += `NAUTILUS_SCRIPT_SELECTED_FILE_PATHS=${pathList} `;
-        execline += `NAUTILUS_SCRIPT_SELECTED_URIS=${uriList} `;
-        execline += `NAUTILUS_SCRIPT_CURRENT_URI=${deskTop} `;
-        execline += `'${menuItemPath}'"`;
-        DesktopIconsUtil.spawnCommandLine(execline);
-    }
-
-    doMultiOpen() {
-        let openFileListItems = this.getCurrentSelection();
-        for ( let fileItem of openFileListItems ) {
-            fileItem.unsetSelected();
-            fileItem.doOpen() ;
-        }
-    }
-
-    mailFilesFromSelection() {
-        if (this.checkIfDirectoryIsSelected()) {
-            let WindowError = new ShowErrorPopup.ShowErrorPopup(_("Can not email a Directory"),
-                                                                _("Selection includes a Directory, compress the directory to a file first."),
-                                                                null,
-                                                                false);
-            WindowError.run();
-            return;
-        }
-        let xdgEmailCommand = [];
-        xdgEmailCommand.push('xdg-email')
-        for (let fileItem of this._fileList) {
-            if (fileItem.isSelected) {
-                fileItem.unsetSelected;
-                xdgEmailCommand.push('--attach');
-                xdgEmailCommand.push(fileItem.file.get_path());
-            }
-        }
-        DesktopIconsUtil.trySpawn(null, xdgEmailCommand);
     }
 
     _addSortingMenu() {
@@ -1698,92 +1612,6 @@ var DesktopManager = class {
         this._addFilesToDesktop(this._fileList, Enums.StoredCoordinates.PRESERVE);
     }
 
-    doNewFolderFromSelection(position, clickedItem) {
-        let newFolderFileItems = this.getCurrentSelection(true);
-        for (let fileItem of this._fileList) {
-           fileItem.unsetSelected();
-        }
-        clickedItem.removeFromGrid(true);
-        let newFolder = this._newFolder(position);
-        if (newFolder) {
-            DBusUtils.NautilusFileOperations2Proxy.MoveURIsRemote(
-                newFolderFileItems, newFolder,
-                DBusUtils.NautilusFileOperations2Proxy.platformData(),
-                (result, error) => {
-                    if (error) {
-                        throw new Error('Error moving files: ' + error.message);
-                    }
-                }
-            );
-        }
-    }
-
-    doCompressFilesFromSelection() {
-        let compressFileItems = this.getCurrentSelection(true);
-        for (let fileItem of this._fileList) {
-            fileItem.unsetSelected();
-        }
-        let desktopFolder = this._desktopDir.get_uri();
-        if (desktopFolder) {
-            DBusUtils.GnomeArchiveManagerProxy.CompressRemote(compressFileItems, desktopFolder, true,
-                (result, error) => {
-                    if (error) {
-                        throw new Error('Error compressing files: ' + error.message);
-                    }
-                }
-            );
-        }
-    }
-
-    extractFileFromSelection(extracthere) {
-        let extractFileItem = '';
-        let folder = ''
-        for ( let fileItem of this._fileList) {
-            if (fileItem.isSelected) {
-                extractFileItem = fileItem.file.get_uri();
-                fileItem.unsetSelected();
-            }
-        }
-        if (extracthere) {
-            folder = this._desktopDir.get_uri();
-        } else {
-            let dialog = new Gtk.FileChooserDialog({title: _('Select Extract Destination')});
-            dialog.set_action(Gtk.FileChooserAction.SELECT_FOLDER);
-            dialog.add_button(_('Cancel'), Gtk.ResponseType.CANCEL);
-            dialog.add_button(_('Select'), Gtk.ResponseType.ACCEPT);
-            DesktopIconsUtil.windowHidePagerTaskbarModal(dialog, true);
-            let response = dialog.run();
-            if (response === Gtk.ResponseType.ACCEPT) {
-                folder = dialog.get_uri();
-            }
-            dialog.destroy();
-        }
-        if (folder) {
-            DBusUtils.GnomeArchiveManagerProxy.ExtractRemote(extractFileItem, folder, true,
-                (result, error) => {
-                    if (error) {
-                        throw new Error('Error extracting files: ' + error.message);
-                    }
-                }
-            );
-        }
-    }
-
-    getExtractionSupportedTypes() {
-        DBusUtils.GnomeArchiveManagerProxy.GetSupportedTypesRemote('extract',
-            (result, error) => {
-                if (error) {
-                    throw new Error('Error getting extractable Types' + error.message);
-                }
-                for ( let key of result.values()) {
-                    for (let type of key.values()) {
-                        this.decompressibleTypes.push(Object.values(type)[0]);
-                    }
-                }
-            }
-        );
-    }
-    
     doArrangeRadioButtons() {
         switch(Prefs.getSortOrder()) {
                 case Enums.SortOrder.NAME:
