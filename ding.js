@@ -82,7 +82,10 @@ const DBusUtils = imports.dbusUtils;
 const Prefs = imports.preferences;
 const Gettext = imports.gettext;
 
-Gettext.bindtextdomain("ding", GLib.build_filenamev([codePath, "locale"]));
+let localePath = GLib.build_filenamev([codePath, "locale"]);
+if (Gio.File.new_for_path(localePath).query_exists(null)) {
+    Gettext.bindtextdomain("ding", localePath);
+}
 
 const DesktopManager = imports.desktopManager;
 
