@@ -3,21 +3,22 @@
 # This file is distributed under the same license as the desktop-icons package.
 # Marek Černocký <marek@manet.cz>, 2018.
 # Milan Zink <zeten30@gmail.com>, 2018.
+# panmourovaty <dominikhejl@yahoo.com>, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-09-21 20:21+0200\n"
-"PO-Revision-Date: 2021-06-15 18:20+0200\n"
-"Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
+"PO-Revision-Date: 2021-09-24 12:49+0200\n"
+"Last-Translator: panmourovaty <dominikhejl@yahoo.com>\n"
 "Language-Team: Czech <zeten30@gmail.com>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.0\n"
 
 #: askRenamePopup.js:41
 msgid "Folder name"
@@ -73,11 +74,11 @@ msgstr "Správce Souborů Nautilus je nezbytný pro práci s Desktop Icons NG."
 
 #: desktopManager.js:626
 msgid "Clear Current Selection before New Search"
-msgstr ""
+msgstr "Vymazat aktuální výběr před novým hledáním"
 
 #: desktopManager.js:665
 msgid "Find Files on Desktop"
-msgstr ""
+msgstr "Najít soubory na Ploše"
 
 #: desktopManager.js:735 desktopManager.js:1399
 msgid "New Folder"
@@ -100,7 +101,6 @@ msgid "Redo"
 msgstr "Znovu"
 
 #: desktopManager.js:758
-#, fuzzy
 msgid "Select All"
 msgstr "Vybrat vše"
 
@@ -121,7 +121,6 @@ msgid "Display Settings"
 msgstr "Zobrazit nastavení"
 
 #: desktopManager.js:792
-#, fuzzy
 msgid "Desktop Icons Settings"
 msgstr "Nastavení ikon na ploše"
 
@@ -135,46 +134,45 @@ msgstr "Výběr obsahuje Složku, nejdříve musíte zkomprimovat složku do sou
 
 #: desktopManager.js:1506
 msgid "Arrange Icons"
-msgstr ""
+msgstr "Uspořádat Ikony"
 
 #: desktopManager.js:1510
 msgid "Arrange By..."
-msgstr ""
+msgstr "Uspořádat podle..."
 
 #: desktopManager.js:1519
 msgid "Keep Arranged..."
-msgstr ""
+msgstr "Nechat uspořádané..."
 
 #: desktopManager.js:1524
 msgid "Sort Home/Drives/Trash..."
-msgstr ""
+msgstr "Seřadit Domovská složka/Jednotky/Koš..."
 
 #: desktopManager.js:1530
 msgid "Sort by Name"
-msgstr ""
+msgstr "Seřadit podle Jména"
 
 #: desktopManager.js:1532
 msgid "Sort by Name Descending"
-msgstr ""
+msgstr "Seřadit podle Jména sestupně"
 
 #: desktopManager.js:1535
 msgid "Sort by Modified Time"
-msgstr ""
+msgstr "Seřadit podle Času úpravy"
 
 #: desktopManager.js:1538
 msgid "Sort by Type"
-msgstr ""
+msgstr "Seřadit podle Typu"
 
 #: desktopManager.js:1541
 msgid "Sort by Size"
-msgstr ""
+msgstr "Seřadit podle Velikosti"
 
 #: desktopManager.js:1764
 msgid "Select Extract Destination"
-msgstr ""
+msgstr "Vybrat místo k extrahování"
 
 #: desktopManager.js:1767
-#, fuzzy
 msgid "Select"
 msgstr "Vybrat vše"
 
@@ -423,7 +421,7 @@ msgstr ""
 
 #: showErrorPopup.js:37
 msgid "Close"
-msgstr ""
+msgstr "Zavřít"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:25
 msgid "Icon size"
@@ -487,29 +485,31 @@ msgstr ""
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:65
 msgid "Sort Special Folders - Home/Trash Drives."
-msgstr ""
+msgstr "Seřadit speciální složky - Domovská složka/Jednotky/Koš."
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:66
 msgid ""
 "When arranging Icons on desktop, to sort and change the position of the "
 "Home, Trash and mounted Network or External Drives"
 msgstr ""
+"Při uspořádání ikon na ploše můžete třídit a měnit polohu Domácí složky, "
+"koše a připojených síťových nebo externích jednotek"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:70
 msgid "Keep Icons Arranged"
-msgstr ""
+msgstr "Nechat Ikony uspořádané"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:71
 msgid "Always keep Icons Arranged by the last arranged order"
-msgstr ""
+msgstr "Vždy nechat Ikony seřazené podle posledního řazení"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:75
 msgid "Arrange Order"
-msgstr ""
+msgstr "Pořadí seřazené"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:76
 msgid "Icons Arranged by this property"
-msgstr ""
+msgstr "Ikony seřazené podle této vlastnosti"
 
 #~ msgid "New folder"
 #~ msgstr "Nová složka"
