@@ -1,5 +1,12 @@
 # History of versions #
 
+* In progress
+  * Use the system bell sound instead of GSound (Sergio Costas)
+  * Transformed DING into a Gtk.Application (Sergio Costas)
+  * Code cleaning (Sundeep Mediratta and Sergio Costas)
+  * Fixed loss of focus when an application goes full screen (Sergio Costas)
+  * Fixed translation problems when installed system-wide (Sergio Costas)
+
 * Version 22
   * GSound is now optional (Sergio Costas)
 
