@@ -22,6 +22,7 @@ const Gio = imports.gi.Gio;
 const TemplatesScriptsManager = imports.templatesScriptsManager;
 const DesktopIconsUtil = imports.desktopIconsUtil;
 const Prefs = imports.preferences;
+const ShowErrorPopup = imports.showErrorPopup;
 
 const Gettext = imports.gettext.domain('ding');
 
