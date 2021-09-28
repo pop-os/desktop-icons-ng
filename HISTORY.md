@@ -6,6 +6,7 @@
   * Code cleaning (Sundeep Mediratta and Sergio Costas)
   * Fixed loss of focus when an application goes full screen (Sergio Costas)
   * Fixed translation problems when installed system-wide (Sergio Costas)
+  * Fixed pictures preview (Sundeep Mediratta)
 
 * Version 22
   * GSound is now optional (Sergio Costas)
