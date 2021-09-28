@@ -532,6 +532,7 @@ var DesktopManager = class {
         let isCtrl = (event.get_state()[1] & Gdk.ModifierType.CONTROL_MASK) != 0;
         let isShift = (event.get_state()[1] & Gdk.ModifierType.SHIFT_MASK) != 0;
         let isAlt = (event.get_state()[1] & Gdk.ModifierType.MOD1_MASK) != 0;
+        let selection = this.getCurrentSelection(false);
         if (isCtrl && isShift && ((symbol == Gdk.KEY_Z) || (symbol == Gdk.KEY_z))) {
             this._doRedo();
             return true;
@@ -557,7 +558,6 @@ var DesktopManager = class {
                 );
             return true;
         } else if (symbol == Gdk.KEY_Return) {
-            let selection = this.getCurrentSelection(false);
             if (selection && (selection.length == 1)) {
                 selection[0].doOpen();
                 return true;
@@ -570,13 +570,12 @@ var DesktopManager = class {
             }
             return true;
         } else if (symbol == Gdk.KEY_F2) {
-            let selection = this.getCurrentSelection(false);
             if (selection && (selection.length == 1)) {
                 // Support renaming other grids file items.
                 this.doRename(selection[0], false);
                 return true;
             }
-        } else if ((this.getCurrentSelection(false)) && symbol == Gdk.KEY_space) {
+        } else if ((selection) && symbol == Gdk.KEY_space) {
                 // Support previewing other grids file items.
                 DBusUtils.GnomeNautilusPreviewProxy.ShowFileRemote(selection[0].uri, 0, true);
                 return true;
