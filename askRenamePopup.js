@@ -27,8 +27,9 @@ const _ = Gettext.gettext;
 
 var AskRenamePopup = class {
 
-    constructor(fileItem, allowReturnOnSameName) {
+    constructor(fileItem, allowReturnOnSameName, closeCB) {
 
+        this._closeCB = closeCB;
         this._allowReturnOnSameName = allowReturnOnSameName;
         this._desktopPath = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DESKTOP);
         this._fileItem = fileItem;
@@ -59,7 +60,7 @@ var AskRenamePopup = class {
             }
         });
         this._popover.connect('closed', () => {
-            this._fileItem.closeRename();
+            closeCB();
         });
         this._textArea.set_can_default(true);
         this._popover.set_default_widget(this._textArea);
@@ -87,7 +88,7 @@ var AskRenamePopup = class {
 
     _do_rename() {
         this._popover.popdown();
-        this._fileItem.closeRename();
+        this._closeCB();
         if (this._fileItem.fileName == this._textArea.text) {
             return;
         }
