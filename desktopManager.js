@@ -1325,13 +1325,11 @@ var DesktopManager = class {
         }
         this.unselectAll();
         if (!this._renameWindow) {
-            this._renameWindow = new AskRenamePopup.AskRenamePopup(fileItem, allowReturnOnSameName);
+            this._renameWindow = new AskRenamePopup.AskRenamePopup(fileItem, allowReturnOnSameName, () => {
+                this._renameWindow = null;
+                this.newFolderDoRename = null;
+            });
         }
-    }
-
-    closeRenameWindow() {
-        this._renameWindow = null;
-        this.newFolderDoRename = null;
     }
 
     doNewFolder(position) {

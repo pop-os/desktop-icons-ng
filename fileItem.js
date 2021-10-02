@@ -415,10 +415,6 @@ var FileItem = class {
         }
     }
 
-    closeRename() {
-        this._desktopManager.closeRenameWindow();
-    }
-
     getCoordinates() {
         return [this._x1, this._y1, this._x2, this._y2, this._grid];
     }
