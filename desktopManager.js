@@ -142,6 +142,7 @@ var DesktopManager = class {
         DBusUtils.NautilusFileOperations2Proxy.connect('g-properties-changed', this._undoStatusChanged.bind(this));
         DBusUtils.GtkVfsMetadataProxy.connectSignal('AttributeChanged', this._metadataChanged.bind(this));
         this._fileList = [];
+        this._forcedExit = false;
         this._updateDesktop().catch((e) => {
                     print(`Exception while Initiating Desktop: ${e.message}\n${e.stack}`);
         });
@@ -166,6 +167,11 @@ var DesktopManager = class {
                 GLib.source_remove(this._sigtermID);
                 for(let desktop of this._desktops) {
                     desktop.destroy();
+                }
+                this._desktops = [];
+                this._forcedExit = true;
+                if (this._desktopEnumerateCancellable) {
+                    this._desktopEnumerateCancellable.cancel();
                 }
                 return false;
             });
@@ -972,6 +978,9 @@ var DesktopManager = class {
                 break;
             }
             fileList = await this._doReadAsync();
+            if (this._forcedExit) {
+                return;
+            }
             if (!this._desktopFilesChanged && (fileList !== null)) {
                 break;
             }
