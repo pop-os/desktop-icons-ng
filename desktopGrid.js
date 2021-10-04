@@ -353,6 +353,9 @@ var DesktopGrid = class {
 
     _addFileItemTo(fileItem, column, row, coordinatesAction) {
 
+        if (this._destroying) {
+            return;
+        }
         let localX = Math.floor(this._width * column / this._maxColumns);
         let localY = Math.floor(this._height * row / this._maxRows);
         this._container.put(fileItem.container, localX + elementSpacing, localY + elementSpacing);
