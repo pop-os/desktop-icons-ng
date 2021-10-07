@@ -1011,11 +1011,15 @@ var DesktopManager = class {
                         }
                         let fileList = [];
                         for (let [newFolder, extras] of DesktopIconsUtil.getExtraFolders()) {
-                            fileList.push(new FileItem.FileItem(this,
-                                                                newFolder,
-                                                                newFolder.query_info(Enums.DEFAULT_ATTRIBUTES, Gio.FileQueryInfoFlags.NONE, null),
-                                                                extras,
-                                                                null));
+                            try {
+                                fileList.push(new FileItem.FileItem(this,
+                                                                    newFolder,
+                                                                    newFolder.query_info(Enums.DEFAULT_ATTRIBUTES, Gio.FileQueryInfoFlags.NONE, null),
+                                                                    extras,
+                                                                    null));
+                            } catch (e) {
+                                print(`Failed with ${e.message} while adding extra folder ${newFolder.get_uri()}\n${e.stack}`);
+                            }
                         }
                         let info;
                         while ((info = fileEnum.next_file(null))) {
