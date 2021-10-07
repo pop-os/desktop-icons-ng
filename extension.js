@@ -153,7 +153,12 @@ function reloadIfSizesChanged() {
         let ws = global.workspace_manager.get_workspace_by_index(0);
         let area = ws.get_work_area_for_monitor(monitorIndex);
         let area2 = data.desktopCoordinates[monitorIndex];
-        let scale = Main.layoutManager.monitors[monitorIndex].geometry_scale;
+        let monitor = Main.layoutManager.monitors[monitorIndex];
+        let scale = monitor.geometry_scale;
+
+        if (monitor.inFullscreen)
+            continue;
+
         if ((area.x != area2.x) ||
             (area.y != area2.y) ||
             (area.width != area2.width) ||
