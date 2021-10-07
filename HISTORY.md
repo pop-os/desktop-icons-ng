@@ -7,6 +7,8 @@
   * Fixed loss of focus when an application goes full screen (Sergio Costas)
   * Fixed translation problems when installed system-wide (Sergio Costas)
   * Fixed pictures preview (Sundeep Mediratta)
+  * Removed some warnings in the log (Sergio Costas)
+  * Don't reload the desktop when a window changes to FullScreen (Daniel van Vugt)
 
 * Version 22
   * GSound is now optional (Sergio Costas)
