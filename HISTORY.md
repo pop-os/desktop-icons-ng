@@ -1,6 +1,6 @@
 # History of versions #
 
-* In progress
+* Version 23
   * Use the system bell sound instead of GSound (Sergio Costas)
   * Transformed DING into a Gtk.Application (Sergio Costas)
   * Code cleaning (Sundeep Mediratta and Sergio Costas)
