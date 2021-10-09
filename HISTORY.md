@@ -9,6 +9,7 @@
   * Fixed pictures preview (Sundeep Mediratta)
   * Removed some warnings in the log (Sergio Costas)
   * Don't reload the desktop when a window changes to FullScreen (Daniel van Vugt)
+  * Catch Gio exceptions from extra folders (Daniel van Vugt)
 
 * Version 22
   * GSound is now optional (Sergio Costas)
