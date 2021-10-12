@@ -247,7 +247,7 @@ var FileItemMenu = class {
         if (fileItem.isDirectory && (fileItem.path != null) && (selectedItemsNum == 1)) {
             addElementToMenu(
                 _('Open in Terminal'),
-                () => {this._onOpenTerminalClicked();}
+                () => {DesktopIconsUtil.launchTerminal(fileItem.path, null);}
             );
         }
 
