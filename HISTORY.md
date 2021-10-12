@@ -1,5 +1,8 @@
 # History of versions #
 
+* In progress
+  * Fixed "Open in terminal" option in right-click menu (Sergio Costas)
+
 * Version 23
   * Use the system bell sound instead of GSound (Sergio Costas)
   * Transformed DING into a Gtk.Application (Sergio Costas)
