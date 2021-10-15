@@ -1,26 +1,27 @@
-# Japanese translation for desktop-icons.
-# Copyright (C) 2019 desktop-icons's COPYRIGHT HOLDER
-# This file is distributed under the same license as the desktop-icons package.
-# sicklylife <translation@sicklylife.jp>, 2019.
+# Japanese translation for desktop-icons-ng
+# Copyright (C) 2021 Desktop Icons NG's COPYRIGHT HOLDER
+# This file is distributed under the same license as the desktop-icons-ng package.
+# Hayao Yamada <hayao@fascode.net>, 2021.
+# Mitsuya Shibata <mty.shibata@gmail.com>, 2021.
+# sicklylife <translation@sicklylife.jp>, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-09-21 20:21+0200\n"
-"PO-Revision-Date: 2021-08-17 12:14+0900\n"
+"PO-Revision-Date: 2021-10-15 21:50+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
-"Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
+"Language-Team: Japanese\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.0\n"
 
 #: askRenamePopup.js:41
 msgid "Folder name"
-msgstr "フォルダ名"
+msgstr "フォルダー名"
 
 #: askRenamePopup.js:41
 msgid "File name"
@@ -40,15 +41,15 @@ msgstr "コマンドが見つかりません"
 
 #: desktopIconsUtil.js:210
 msgid "Do you want to run “{0}”, or display its contents?"
-msgstr "“{0}“を実行しますか？それともファイルの内容を表示しますか？"
+msgstr "“{0}”を実行しますか? それともファイルの内容を表示しますか?"
 
 #: desktopIconsUtil.js:211
 msgid "“{0}” is an executable text file."
-msgstr "“{0}“は実行可能なテキストファイルです。"
+msgstr "“{0}”は実行可能なテキストファイルです。"
 
 #: desktopIconsUtil.js:215
 msgid "Execute in a terminal"
-msgstr "端末を開く"
+msgstr "端末で実行"
 
 #: desktopIconsUtil.js:217
 msgid "Show"
@@ -60,23 +61,23 @@ msgstr "キャンセル"
 
 #: desktopIconsUtil.js:221
 msgid "Execute"
-msgstr "ファイルを実行"
+msgstr "実行"
 
 #: desktopManager.js:163
 msgid "Nautilus File Manager not found"
-msgstr "Nautilus File Managerが見つかりません"
+msgstr "Nautilus ファイルマネージャーが見つかりません"
 
 #: desktopManager.js:164
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
-msgstr "Nautilus File Managerは、Desktop Icons NGを操作するために必須です。"
+msgstr "Desktop Icons NG の動作には Nautilus ファイルマネージャーが必要です。"
 
 #: desktopManager.js:626
 msgid "Clear Current Selection before New Search"
-msgstr ""
+msgstr "新しく検索する前に現在の選択を解除してください"
 
 #: desktopManager.js:665
 msgid "Find Files on Desktop"
-msgstr ""
+msgstr "デスクトップ上のファイルを検索"
 
 #: desktopManager.js:735 desktopManager.js:1399
 msgid "New Folder"
@@ -99,9 +100,8 @@ msgid "Redo"
 msgstr "やり直す"
 
 #: desktopManager.js:758
-#, fuzzy
 msgid "Select All"
-msgstr "全て選択"
+msgstr "すべて選択"
 
 #: desktopManager.js:766
 msgid "Show Desktop in Files"
@@ -109,20 +109,19 @@ msgstr "“ファイル”でデスクトップを表示する"
 
 #: desktopManager.js:770 fileItem.js:1035
 msgid "Open in Terminal"
-msgstr "端末を開く"
+msgstr "端末で開く"
 
 #: desktopManager.js:776
 msgid "Change Background…"
-msgstr "背景を変更する…"
+msgstr "背景を変更…"
 
 #: desktopManager.js:785
 msgid "Display Settings"
 msgstr "ディスプレイの設定"
 
 #: desktopManager.js:792
-#, fuzzy
 msgid "Desktop Icons Settings"
-msgstr "Desktop Iconsの設定"
+msgstr "Desktop Icons の設定"
 
 #: desktopManager.js:1484
 msgid "Can not email a Directory"
@@ -130,47 +129,47 @@ msgstr "ディレクトリをメールで送ることはできません"
 
 #: desktopManager.js:1485
 msgid "Selection includes a Directory, compress the directory to a file first."
-msgstr "ディレクトリが選択されており、先にそれらが圧縮されます。"
+msgstr "ディレクトリが選択されています。ディレクトリはファイルに圧縮してください。"
 
 #: desktopManager.js:1506
 msgid "Arrange Icons"
-msgstr "アイコンを変更"
+msgstr "アイコンの整列"
 
 #: desktopManager.js:1510
 msgid "Arrange By..."
-msgstr "変更..."
+msgstr "指定して整列..."
 
 #: desktopManager.js:1519
 msgid "Keep Arranged..."
-msgstr "変更を維持..."
+msgstr "整列を維持..."
 
 #: desktopManager.js:1524
 msgid "Sort Home/Drives/Trash..."
-msgstr "ホーム/デバイス/ゴミ箱 の順で並び替え"
+msgstr "ホーム/ドライブ/ゴミ箱を並べ替え..."
 
 #: desktopManager.js:1530
 msgid "Sort by Name"
-msgstr "名前で並び替え"
+msgstr "名前で並べ替え"
 
 #: desktopManager.js:1532
 msgid "Sort by Name Descending"
-msgstr "名前（降順）並べ替え"
+msgstr "名前で並べ替え (降順)"
 
 #: desktopManager.js:1535
 msgid "Sort by Modified Time"
-msgstr "変更された時間で並び替え"
+msgstr "更新日で並べ替え"
 
 #: desktopManager.js:1538
 msgid "Sort by Type"
-msgstr "種類で並び替え"
+msgstr "種類で並べ替え"
 
 #: desktopManager.js:1541
 msgid "Sort by Size"
-msgstr "サイズで並び替え"
+msgstr "サイズで並べ替え"
 
 #: desktopManager.js:1764
 msgid "Select Extract Destination"
-msgstr "展開先を選択"
+msgstr "展開する宛先を選択"
 
 #: desktopManager.js:1767
 msgid "Select"
@@ -183,7 +182,7 @@ msgstr "ホーム"
 
 #: fileItem.js:925
 msgid "Open All..."
-msgstr "全て開く..."
+msgstr "すべて開く..."
 
 #: fileItem.js:925
 msgid "Open"
@@ -195,7 +194,7 @@ msgstr "スクリプト"
 
 #: fileItem.js:938
 msgid "Open All With Other Application..."
-msgstr "別のアプリケーションで開く..."
+msgstr "別のアプリケーションですべて開く..."
 
 #: fileItem.js:938
 msgid "Open With Other Application"
@@ -215,7 +214,7 @@ msgstr "コピー"
 
 #: fileItem.js:957
 msgid "Rename…"
-msgstr "名前の変更…"
+msgstr "名前を変更…"
 
 #: fileItem.js:961
 msgid "Move to Trash"
@@ -223,11 +222,11 @@ msgstr "ゴミ箱へ移動する"
 
 #: fileItem.js:965
 msgid "Delete permanently"
-msgstr "完全に削除する"
+msgstr "完全に削除"
 
 #: fileItem.js:971
 msgid "Don't Allow Launching"
-msgstr "ファイルの起動を許可しない"
+msgstr "起動を許可しない"
 
 #: fileItem.js:971
 msgid "Allow Launching"
@@ -251,7 +250,7 @@ msgstr "ここで展開"
 
 #: fileItem.js:1010
 msgid "Extract To..."
-msgstr "展開先…"
+msgstr "展開先..."
 
 #: fileItem.js:1015
 msgid "Send to..."
@@ -260,12 +259,12 @@ msgstr "送る..."
 #: fileItem.js:1019
 msgid "Compress {0} file"
 msgid_plural "Compress {0} files"
-msgstr[0] "{0}ファイルを圧縮"
+msgstr[0] "{0} 個のファイルを圧縮"
 
 #: fileItem.js:1022
 msgid "New Folder with {0} item"
 msgid_plural "New Folder with {0} items"
-msgstr[0] "{0}アイテムと新しいフォルダ"
+msgstr[0] "{0} 個のアイテムを新しいフォルダーへ移動する"
 
 #: fileItem.js:1027
 msgid "Common Properties"
@@ -277,7 +276,7 @@ msgstr "プロパティ"
 
 #: fileItem.js:1031
 msgid "Show All in Files"
-msgstr "“ファイル”で表示する"
+msgstr "“ファイル”ですべて表示する"
 
 #: fileItem.js:1031
 msgid "Show in Files"
@@ -313,19 +312,19 @@ msgstr "デスクトップにホームフォルダーを表示する"
 
 #: preferences.js:100
 msgid "Show the trash icon in the desktop"
-msgstr "デスクトップにゴミ箱を表示"
+msgstr "デスクトップにゴミ箱を表示する"
 
 #: preferences.js:101 schemas/org.gnome.shell.extensions.ding.gschema.xml:45
 msgid "Show external drives in the desktop"
-msgstr "デスクトップに外部のドライブを表示"
+msgstr "デスクトップに外付けドライブを表示する"
 
 #: preferences.js:102 schemas/org.gnome.shell.extensions.ding.gschema.xml:50
 msgid "Show network drives in the desktop"
-msgstr "デスクトップにネットワークドライブを表示"
+msgstr "デスクトップにネットワークドライブを表示する"
 
 #: preferences.js:105
 msgid "New icons alignment"
-msgstr ""
+msgstr "新しいアイコンの配置位置"
 
 #: preferences.js:106
 msgid "Top-left corner"
@@ -345,19 +344,19 @@ msgstr "右下"
 
 #: preferences.js:111 schemas/org.gnome.shell.extensions.ding.gschema.xml:55
 msgid "Add new drives to the opposite side of the screen"
-msgstr "画面の反対側に新しいドライブを追加"
+msgstr "新しいドライブのアイコンは反対側に配置する"
 
 #: preferences.js:112
 msgid "Highlight the drop place during Drag'n'Drop"
-msgstr "ドラッグアンドドロップ中にドロップ場所を強調表示"
+msgstr "ドラッグアンドドロップ中にドロップ先を強調表示する"
 
 #: preferences.js:116
 msgid "Settings shared with Nautilus"
-msgstr "Nautilusと共有される設定"
+msgstr "Nautilus と共有される設定"
 
 #: preferences.js:122
 msgid "Click type for open files"
-msgstr "ファイルを開くクリックの種類"
+msgstr "ファイルを開くときのクリック形式"
 
 #: preferences.js:122
 msgid "Single click"
@@ -373,7 +372,7 @@ msgstr "隠しファイルを表示する"
 
 #: preferences.js:124
 msgid "Show a context menu item to delete permanently"
-msgstr "メニューに「完全に削除する」を表示する"
+msgstr "コンテキストメニューに“完全に削除”を表示する"
 
 #: preferences.js:129
 msgid "Action to do when launching a program from the desktop"
@@ -389,11 +388,11 @@ msgstr "ファイルを実行"
 
 #: preferences.js:132
 msgid "Ask what to do"
-msgstr "何をすべきか尋ねる"
+msgstr "どうするか確認"
 
 #: preferences.js:138
 msgid "Show image thumbnails"
-msgstr "写真のサムネイルを表示"
+msgstr "画像のサムネイルの表示"
 
 #: preferences.js:139
 msgid "Never"
@@ -411,11 +410,13 @@ msgstr "常に"
 msgid ""
 "To configure Desktop Icons NG, do right-click in the desktop and choose the "
 "last item: 'Desktop Icons settings'"
-msgstr "右クリックメニューの「設定」からデスクトップの設定を変更できます"
+msgstr ""
+"Desktop Icons NG を設定するには、デスクトップを右クリックし、メニューの末尾に"
+"ある“Desktop Icons の設定”をクリックしてください"
 
 #: showErrorPopup.js:37
 msgid "Close"
-msgstr ""
+msgstr "閉じる"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:25
 msgid "Icon size"
@@ -443,7 +444,7 @@ msgstr "デスクトップにゴミ箱のアイコンを表示します。"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:40
 msgid "New icons start corner"
-msgstr "新しいアイコンが追加される角"
+msgstr "新しいアイコンの配置位置"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:41
 msgid "Set the corner from where the icons will start to be placed."
@@ -451,7 +452,7 @@ msgstr "アイコンの配置の基準になるコーナーを設定します。
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:46
 msgid "Show the disk drives connected to the computer."
-msgstr "コンピューターに接続されているディスクを表示します。"
+msgstr "コンピューターに接続されているディスクドライブを表示します。"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:51
 msgid "Show mounted network volumes in the desktop."
@@ -462,48 +463,48 @@ msgid ""
 "When adding drives and volumes to the desktop, add them to the opposite side "
 "of the screen."
 msgstr ""
-"ドライブとボリュームをデスクトップに追加するときは、画面の反対側に追加しま"
-"す。"
+"ドライブやボリュームのアイコンをデスクトップに追加する場合、通常の配置位置"
+"の反対側に追加します。"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:60
 msgid "Shows a rectangle in the destination place during DnD"
-msgstr "ドラッグアンドドロップに宛先に長方形を表示する"
+msgstr "ドラッグアンドドロップ中にドロップ先を枠で囲って強調する"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:61
 msgid ""
 "When doing a Drag'n'Drop operation, marks the place in the grid where the "
 "icon will be put with a semitransparent rectangle."
 msgstr ""
-"ドラッグアンドドロップをするには、アイコンが配置されているグリッド内を半透明"
-"の長方形でマークします。"
+"ドラッグアンドドロップするときに、アイコンが配置されるドロップ先の場所を半透"
+"明の四角形で強調表示します。"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:65
 msgid "Sort Special Folders - Home/Trash Drives."
-msgstr "特別なフォルダで並び替え ホーム/ゴミ箱"
+msgstr "ホームフォルダー/ゴミ箱/外付けドライブなどの特殊なフォルダーを並べ替え"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:66
 msgid ""
 "When arranging Icons on desktop, to sort and change the position of the "
 "Home, Trash and mounted Network or External Drives"
 msgstr ""
-"デスクトップにアイコンを配置するとき、ホーム、ゴミ箱、マウントされたネット"
-"ワークまたは外付けドライブの位置を並べ替える"
+"デスクトップ上のアイコンを整列するときに、ホームフォルダー、ゴミ箱、マウン"
+"トされたネットワーク/外付けドライブのアイコンも整列の対象にします。"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:70
 msgid "Keep Icons Arranged"
-msgstr "アイコンの変更を維持"
+msgstr "アイコンの整列を維持する"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:71
 msgid "Always keep Icons Arranged by the last arranged order"
-msgstr "常に最後に変更された順番を維持する"
+msgstr "常に最後に選択した並び順でアイコンが整列されるようにします"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:75
 msgid "Arrange Order"
-msgstr "変更された順番"
+msgstr "整列順"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:76
 msgid "Icons Arranged by this property"
-msgstr "アイコンは現在の値に変更されました"
+msgstr "このプロパティでアイコンを整列させます"
 
 #~ msgid "New folder"
 #~ msgstr "新しいフォルダー"
