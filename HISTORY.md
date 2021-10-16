@@ -1,6 +1,8 @@
 # History of versions #
 
 * In progress
+
+* Version 24
   * Fixed "Open in terminal" option in right-click menu (Sergio Costas)
 
 * Version 23
