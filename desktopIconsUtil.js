@@ -38,7 +38,7 @@ function getScriptsDir() {
 
 function getTemplatesDir() {
     let templatesDir = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_TEMPLATES);
-    if (templatesDir == GLib.get_home_dir()) {
+    if ((templatesDir == GLib.get_home_dir()) || (templatesDir == null)) {
         return null;
     }
     return Gio.File.new_for_commandline_arg(templatesDir)
