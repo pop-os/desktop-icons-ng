@@ -1,6 +1,7 @@
 # History of versions #
 
 * In progress
+  * Fixed failure when TEMPLATES folder is not configured
 
 * Version 24
   * Fixed "Open in terminal" option in right-click menu (Sergio Costas)
