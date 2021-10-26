@@ -1,22 +1,24 @@
 # Slovak translation for Desktop Icons NG
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Dušan Kazik <prescott66@gmail.com>, 2020.
+# Dušan Kazik <prescott66@gmail.com>, 2020-2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-09-21 20:21+0200\n"
-"PO-Revision-Date: 2020-05-08 10:59+0200\n"
+"PO-Revision-Date: 2021-10-25 07:57+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
+"X-Generator: Gtranslator 40.0\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
 
 #: askRenamePopup.js:41
 msgid "Folder name"
@@ -74,11 +76,11 @@ msgstr ""
 
 #: desktopManager.js:626
 msgid "Clear Current Selection before New Search"
-msgstr ""
+msgstr "Pred novým hľadaním vymažte aktuálny výber"
 
 #: desktopManager.js:665
 msgid "Find Files on Desktop"
-msgstr ""
+msgstr "Nájdenie súborov na pracovnej ploche"
 
 #: desktopManager.js:735 desktopManager.js:1399
 msgid "New Folder"
@@ -101,7 +103,6 @@ msgid "Redo"
 msgstr "Zopakovať"
 
 #: desktopManager.js:758
-#, fuzzy
 msgid "Select All"
 msgstr "Vybrať všetko"
 
@@ -122,62 +123,60 @@ msgid "Display Settings"
 msgstr "Nastavenia displejov"
 
 #: desktopManager.js:792
-#, fuzzy
 msgid "Desktop Icons Settings"
-msgstr "Nastavenia displejov"
+msgstr "Nastavenia ikon pracovnej plochy"
 
 #: desktopManager.js:1484
 msgid "Can not email a Directory"
-msgstr ""
+msgstr "Nedá sa odoslať adresár pomocou emailu"
 
 #: desktopManager.js:1485
 msgid "Selection includes a Directory, compress the directory to a file first."
-msgstr ""
+msgstr "Výber obsahuje adresár. Najskôr skomprimujte adresár do súboru."
 
 #: desktopManager.js:1506
 msgid "Arrange Icons"
-msgstr ""
+msgstr "Usporiadať ikony"
 
 #: desktopManager.js:1510
 msgid "Arrange By..."
-msgstr ""
+msgstr "Usporiadať podľa..."
 
 #: desktopManager.js:1519
 msgid "Keep Arranged..."
-msgstr ""
+msgstr "Udržiavať usporiadané..."
 
 #: desktopManager.js:1524
 msgid "Sort Home/Drives/Trash..."
-msgstr ""
+msgstr "Usporiadať Domov/jednotky/Kôš..."
 
 #: desktopManager.js:1530
 msgid "Sort by Name"
-msgstr ""
+msgstr "Usporiadať podľa názvu"
 
 #: desktopManager.js:1532
 msgid "Sort by Name Descending"
-msgstr ""
+msgstr "Usporiadať podľa názvu zostupne"
 
 #: desktopManager.js:1535
 msgid "Sort by Modified Time"
-msgstr ""
+msgstr "Usporiadať podľa času úpravy"
 
 #: desktopManager.js:1538
 msgid "Sort by Type"
-msgstr ""
+msgstr "Usporiadať podľa typu"
 
 #: desktopManager.js:1541
 msgid "Sort by Size"
-msgstr ""
+msgstr "Usporiadať podľa veľkosti"
 
 #: desktopManager.js:1764
 msgid "Select Extract Destination"
-msgstr ""
+msgstr "Výber cieľa rozbaľovania"
 
 #: desktopManager.js:1767
-#, fuzzy
 msgid "Select"
-msgstr "Vybrať všetko"
+msgstr "Vybrať"
 
 #. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
 #: fileItem.js:223
@@ -186,7 +185,7 @@ msgstr "Domov"
 
 #: fileItem.js:925
 msgid "Open All..."
-msgstr ""
+msgstr "Otvoriť všetko..."
 
 #: fileItem.js:925
 msgid "Open"
@@ -197,9 +196,8 @@ msgid "Scripts"
 msgstr "Skripty"
 
 #: fileItem.js:938
-#, fuzzy
 msgid "Open All With Other Application..."
-msgstr "Otvoriť inou aplikáciou"
+msgstr "Otvoriť všetko inou aplikáciou..."
 
 #: fileItem.js:938
 msgid "Open With Other Application"
@@ -207,7 +205,7 @@ msgstr "Otvoriť inou aplikáciou"
 
 #: fileItem.js:942
 msgid "Launch using Dedicated Graphics Card"
-msgstr ""
+msgstr "Spustiť pomocou vyhradenej grafickej karty"
 
 #: fileItem.js:950
 msgid "Cut"
@@ -230,9 +228,8 @@ msgid "Delete permanently"
 msgstr "Odstrániť natrvalo"
 
 #: fileItem.js:971
-#, fuzzy
 msgid "Don't Allow Launching"
-msgstr "Neumožniť spúšťanie"
+msgstr "Neumožniť spustenie"
 
 #: fileItem.js:971
 msgid "Allow Launching"
@@ -265,30 +262,28 @@ msgstr "Odoslať do…"
 #: fileItem.js:1019
 msgid "Compress {0} file"
 msgid_plural "Compress {0} files"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Skomprimovať {0} súborov"
+msgstr[1] "Skomprimovať {0} súbor"
+msgstr[2] "Skomprimovať {0} súbory"
 
 #: fileItem.js:1022
 msgid "New Folder with {0} item"
 msgid_plural "New Folder with {0} items"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Nový priečinok s {0} položkami"
+msgstr[1] "Nový priečinok s {0} položkou"
+msgstr[2] "Nový priečinok s {0} položkami"
 
 #: fileItem.js:1027
-#, fuzzy
 msgid "Common Properties"
-msgstr "Vlastnosti"
+msgstr "Spoločné vlastnosti"
 
 #: fileItem.js:1027
 msgid "Properties"
 msgstr "Vlastnosti"
 
 #: fileItem.js:1031
-#, fuzzy
 msgid "Show All in Files"
-msgstr "Zobraziť v aplikácii Súbory"
+msgstr "Zobraziť všetko v aplikácii Súbory"
 
 #: fileItem.js:1031
 msgid "Show in Files"
@@ -360,7 +355,7 @@ msgstr "Pridať nové jednotky na opačnú stranu obrazovky"
 
 #: preferences.js:112
 msgid "Highlight the drop place during Drag'n'Drop"
-msgstr ""
+msgstr "Zvýrazniť miesto pustenia počas operácie ťahania a pustenia"
 
 #: preferences.js:116
 msgid "Settings shared with Nautilus"
@@ -419,17 +414,16 @@ msgid "Always"
 msgstr "Vždy"
 
 #: prefs.js:37
-#, fuzzy
 msgid ""
 "To configure Desktop Icons NG, do right-click in the desktop and choose the "
 "last item: 'Desktop Icons settings'"
 msgstr ""
 "Na nastavenie rozšírenia Desktop Icons NG kliknite pravým tlačidlom na "
-"pracovnú plochu a zvoľte poslednú položku „Nastavenia“"
+"pracovnú plochu a zvoľte poslednú položku „Nastavenia ikon pracovnej plochy“"
 
 #: showErrorPopup.js:37
 msgid "Close"
-msgstr ""
+msgstr "Zavrieť"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:25
 msgid "Icon size"
@@ -481,51 +475,40 @@ msgstr ""
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:60
 msgid "Shows a rectangle in the destination place during DnD"
-msgstr ""
+msgstr "Zobrazí obdĺžnik v cieľovom umiestnení počas ťahania a pustenia"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:61
 msgid ""
 "When doing a Drag'n'Drop operation, marks the place in the grid where the "
 "icon will be put with a semitransparent rectangle."
 msgstr ""
+"Počas vykonávania operácie ťahania a pustenia sa označí miesto v mriežke, "
+"kde bude ikona umiestnená, polopriehladným obdĺžnikom."
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:65
 msgid "Sort Special Folders - Home/Trash Drives."
-msgstr ""
+msgstr "Usporiadať špeciálne priečinky - Domov/Kôš, jednotky."
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:66
 msgid ""
 "When arranging Icons on desktop, to sort and change the position of the "
 "Home, Trash and mounted Network or External Drives"
 msgstr ""
+"Pri usporiadaní ikon na ploche, usporiadať a zmeniť pozíciu ikon pre Domov, "
+"Kôš a pripojených sieťových alebo externých jednotiek"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:70
 msgid "Keep Icons Arranged"
-msgstr ""
+msgstr "Udržiavať ikony usporiadané"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:71
 msgid "Always keep Icons Arranged by the last arranged order"
-msgstr ""
+msgstr "Vždy zachovať ikony usporiadané podľa posledného poradia usporiadania"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:75
 msgid "Arrange Order"
-msgstr ""
+msgstr "Poradie usporiadania"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:76
 msgid "Icons Arranged by this property"
-msgstr ""
-
-#~ msgid "New folder"
-#~ msgstr "Nový priečinok"
-
-#~ msgid "Delete"
-#~ msgstr "Odstrániť"
-
-#~ msgid "Error while deleting files"
-#~ msgstr "Chyba počas odstraňovania súborov"
-
-#~ msgid "Are you sure you want to permanently delete these items?"
-#~ msgstr "Naozaj chcete natrvalo odstrániť tieto položky?"
-
-#~ msgid "If you delete an item, it will be permanently lost."
-#~ msgstr "Ak položku odstránite, bude natrvalo stratená."
+msgstr "Ikony budú zoradené podľa tejto vlastnosti"
