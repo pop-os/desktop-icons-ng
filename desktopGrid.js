@@ -55,8 +55,14 @@ var DesktopGrid = class {
                 }
             }
         }
-        this._width = Math.floor(desktopDescription.width / size_divisor);
-        this._height = Math.floor(desktopDescription.height / size_divisor);
+        this._windowWidth = Math.floor(desktopDescription.width / size_divisor);
+        this._windowHeight = Math.floor(desktopDescription.height / size_divisor);
+        this._width = Math.floor((desktopDescription.width - desktopDescription.marginRight - desktopDescription.marginLeft) / size_divisor);
+        this._height = Math.floor((desktopDescription.height - desktopDescription.marginTop - desktopDescription.marginBottom) / size_divisor);
+        this._marginTop = Math.floor(desktopDescription.marginTop / size_divisor);
+        this._marginBottom = Math.floor(desktopDescription.marginBottom / size_divisor);
+        this._marginLeft = Math.floor(desktopDescription.marginLeft / size_divisor);
+        this._marginRight = Math.floor(desktopDescription.marginRight / size_divisor);
         this._maxColumns = Math.floor(this._width / (Prefs.get_desired_width() + 4 * elementSpacing));
         this._maxRows =  Math.floor(this._height / (Prefs.get_desired_height() + 4 * elementSpacing));
         this._elementWidth = Math.floor(this._width / this._maxColumns);
@@ -88,9 +94,17 @@ var DesktopGrid = class {
         });
 
         const scale = this._window.get_scale_factor();
-        this.gridGlobalRectangle = new Gdk.Rectangle({'x':this._x, 'y':this._y, 'width':(this._width*scale), 'height':(this._height*scale)});
+        this.gridGlobalRectangle = new Gdk.Rectangle({
+            'x':this._x + this._marginTop,
+            'y':this._y + this._marginLeft,
+            'width':(this._width*scale) - this._marginLeft - this._marginRight,
+            'height':(this._height*scale) - this._marginTop - this._marginBottom});
 
         this._eventBox = new Gtk.EventBox({ visible: true });
+        this._eventBox.margin_top = this._marginTop;
+        this._eventBox.margin_bottom = this._marginBottom;
+        this._eventBox.margin_start = this._marginLeft;
+        this._eventBox.margin_end = this._marginRight;
         this._window.add(this._eventBox);
         this._container = new Gtk.Fixed();
         this._eventBox.add(this._container);
@@ -128,8 +142,8 @@ var DesktopGrid = class {
             }
         }
         this._window.show_all();
-        this._window.set_size_request(this._width, this._height);
-        this._window.resize(this._width, this._height);
+        this._window.set_size_request(this._windowWidth, this._windowHeight);
+        this._window.resize(this._windowWidth, this._windowHeight);
         this._eventBox.add_events(Gdk.EventMask.BUTTON_MOTION_MASK |
                                   Gdk.EventMask.BUTTON_PRESS_MASK |
                                   Gdk.EventMask.BUTTON_RELEASE_MASK |

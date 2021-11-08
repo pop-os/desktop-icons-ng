@@ -29,9 +29,12 @@ const Mainloop = imports.mainloop;
 
 const Me = ExtensionUtils.getCurrentExtension();
 const EmulateX11 = Me.imports.emulateX11WindowType;
+const VisibleArea = Me.imports.visibleArea;
 
 // This object will contain all the global variables
 let data = {};
+
+var DesktopIconsUsableArea = null;
 
 function init() {
     data.isEnabled = false;
@@ -46,6 +49,7 @@ function init() {
      * CREATION IN INIT UNDER NO CIRCUMSTANCES...
      */
     data.x11Manager = null;
+    data.visibleArea = null;
 
     /* Ensures that there aren't "rogue" processes.
      * This is a safeguard measure for the case of Gnome Shell being
@@ -64,6 +68,10 @@ function init() {
 function enable() {
     if (!data.x11Manager) {
         data.x11Manager = new EmulateX11.EmulateX11WindowType();
+    }
+    if (!DesktopIconsUsableArea) {
+        DesktopIconsUsableArea = new VisibleArea.VisibleArea();
+        data.visibleArea = DesktopIconsUsableArea;
     }
     // If the desktop is still starting up, we wait until it is ready
     if (Main.layoutManager._startingUp) {
@@ -107,9 +115,13 @@ function innerEnable(removeId) {
     data.desktopCoordinates = [];
 
     /*
-     * This callback allows to detect a change in the working area (like when changing the Zoom value)
+     * This callback allows to detect a change in the working area (like when changing the Scale value)
      */
     data.sizeChangedId = global.window_manager.connect('size-changed', () => {
+        reloadIfSizesChanged();
+    });
+
+    data.visibleAreaId = data.visibleArea.connect('updated-usable-area', () => {
         reloadIfSizesChanged();
     });
 
@@ -125,11 +137,17 @@ function innerEnable(removeId) {
  */
 function disable() {
 
+    DesktopIconsUsableArea = null;
     data.isEnabled = false;
     killCurrentProcess();
     data.x11Manager.disable();
+    data.visibleArea.disable();
 
     // disconnect signals only if connected
+    if (data.visibleAreaId) {
+        data.visibleArea.disconnect(data.visibleAreaId);
+        data.visibleAreaId = 0;
+    }
     if (data.startupPreparedId) {
         Main.layoutManager.disconnect(data.startupPreparedId);
     }
@@ -149,21 +167,26 @@ function reloadIfSizesChanged() {
         killCurrentProcess();
         return;
     }
+    let ws = global.workspace_manager.get_workspace_by_index(0);
     for(let monitorIndex = 0; monitorIndex < Main.layoutManager.monitors.length; monitorIndex++) {
-        let ws = global.workspace_manager.get_workspace_by_index(0);
-        let area = ws.get_work_area_for_monitor(monitorIndex);
-        let area2 = data.desktopCoordinates[monitorIndex];
         let monitor = Main.layoutManager.monitors[monitorIndex];
-        let scale = monitor.geometry_scale;
-
-        if (monitor.inFullscreen)
+        if (monitor.inFullscreen) {
             continue;
+        }
 
+        let area = data.visibleArea.getWorkspaceGeometry(ws, monitorIndex);
+        let area2 = data.desktopCoordinates[monitorIndex];
+
+        //global.log(`Monitor ${monitorIndex}; ${area.x};${area.y};${area.width};${area.height};${area.scale} ${area2.x};${area2.y};${area2.width};${area2.height};${area2.scale}`)
         if ((area.x != area2.x) ||
             (area.y != area2.y) ||
             (area.width != area2.width) ||
             (area.height != area2.height) ||
-            (scale != area2.zoom)) {
+            (area.scale != area2.scale) ||
+            (area.marginTop != area2.marginTop) ||
+            (area.marginBottom != area2.marginBottom) ||
+            (area.marginLeft != area2.marginLeft) ||
+            (area.marginRight != area2.marginRight)) {
             killCurrentProcess();
             return;
         }
@@ -262,14 +285,13 @@ function launchDesktop() {
     argv.push('-M');
     argv.push(`${Main.layoutManager.primaryIndex}`);
 
+    let ws = global.workspace_manager.get_workspace_by_index(0);
     for(let monitorIndex = 0; monitorIndex < Main.layoutManager.monitors.length; monitorIndex++) {
-        let ws = global.workspace_manager.get_workspace_by_index(0);
-        let area = ws.get_work_area_for_monitor(monitorIndex);
+        let area = data.visibleArea.getWorkspaceGeometry(ws, monitorIndex);
         // send the working area of each monitor in the desktop
         argv.push('-D');
-        let scale = Main.layoutManager.monitors[monitorIndex].geometry_scale;
-        argv.push(`${area.x}:${area.y}:${area.width}:${area.height}:${scale}`);
-        data.desktopCoordinates.push({x: area.x, y: area.y, width: area.width, height: area.height, zoom: scale})
+        argv.push(`${area.x}:${area.y}:${area.width}:${area.height}:${area.scale}:${area.marginTop}:${area.marginBottom}:${area.marginLeft}:${area.marginRight}`);
+        data.desktopCoordinates.push(area);
         if (first || (area.x < data.minx)) {
             data.minx = area.x;
         }
@@ -332,7 +354,7 @@ function launchDesktop() {
  * @param {int} flags Flags for the SubprocessLauncher class
  * @param {string} process_id An string id for the debug output
  * @param {string} cmd_parameter A command line parameter to pass when running. It will be passed only under Wayland,
- *                          so, if this parameter isn't passed, the app can assume that it is running under X11.
+ *                               so, if this parameter isn't passed, the app can assume that it is running under X11.
  */
 var LaunchSubprocess = class {
 

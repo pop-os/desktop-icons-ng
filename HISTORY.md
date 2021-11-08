@@ -2,6 +2,7 @@
 
 * In progress
   * Fixed failure when TEMPLATES folder is not configured
+  * Other extensions can notify the usable work area (Sergio Costas)
 
 * Version 24
   * Fixed "Open in terminal" option in right-click menu (Sergio Costas)
@@ -36,7 +37,7 @@
 
 * Version 19
   * Alt+Enter shows properties like Nautilus (Sundeep Mediratta)
-  * Hide error windows, new folder window, dialog window and prefrences from taskbar and pager (Sundeep Mediratta)
+  * Hide error windows, new folder window, dialog window and preferences from taskbar and pager (Sundeep Mediratta)
   * "Extract" menu item (Sundeep Mediratta)
   * Ignore distance in double-clicks, needed for touch screens (Kai-Heng Feng)
   * Dont draw green highlight around desktop when dragging and dropping files on it (Sundeep Mediratta)
