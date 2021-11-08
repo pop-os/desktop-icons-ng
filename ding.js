@@ -58,7 +58,17 @@ for(let arg of ARGV) {
         break;
     case '-D':
         let data = arg.split(":");
-        desktops.push({x:parseInt(data[0]), y:parseInt(data[1]), width:parseInt(data[2]), height:parseInt(data[3]), zoom:parseFloat(data[4])});
+        desktops.push({
+            x:parseInt(data[0]),
+            y:parseInt(data[1]),
+            width:parseInt(data[2]),
+            height:parseInt(data[3]),
+            zoom:parseFloat(data[4]),
+            marginTop:parseInt(data[5]),
+            marginBottom:parseInt(data[6]),
+            marginLeft:parseInt(data[7]),
+            marginRight:parseInt(data[8])
+        });
         break;
     case '-M':
         primaryIndex = parseInt(arg);
@@ -71,7 +81,7 @@ if (desktops.length == 0) {
     /* if no desktop list is provided, like when launching the program in stand-alone mode,
      * configure a 1280x720 desktop
      */
-    desktops.push({x:0, y:0, width: 1280, height: 720, zoom: 1});
+    desktops.push({x:0, y:0, width: 1280, height: 720, zoom: 1, marginTop: 0, marginBottom: 0, marginLeft: 0, marginRight: 0});
 }
 
 // this allows to import files from the current folder

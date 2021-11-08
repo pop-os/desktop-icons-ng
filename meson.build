@@ -31,7 +31,8 @@ install_data([
     'showErrorPopup.js',
     'stylesheet.css',
     'templatesScriptsManager.js',
-    'thumbnails.js'
+    'thumbnails.js',
+    'visibleArea.js'
   ],
   install_dir: extensions_dir
 )
