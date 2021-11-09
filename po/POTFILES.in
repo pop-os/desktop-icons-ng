@@ -9,6 +9,7 @@ emulateX11WindowType.js
 enums.js
 extension.js
 fileItem.js
+fileItemMenu.js
 preferences.js
 prefs.js
 showErrorPopup.js
