@@ -3,6 +3,7 @@
 * In progress
   * Fixed failure when TEMPLATES folder is not configured
   * Other extensions can notify the usable work area (Sergio Costas)
+  * Fix exception if File-Roller is not installed
 
 * Version 24
   * Fixed "Open in terminal" option in right-click menu (Sergio Costas)

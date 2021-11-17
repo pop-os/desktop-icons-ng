@@ -31,7 +31,6 @@ const _ = Gettext.gettext;
 var FileItemMenu = class {
     constructor(desktopManager) {
         this._desktopManager = desktopManager;
-        this._decompressibleTypes = [];
         this._getExtractionSupportedTypes();
         this._scriptsMonitor = new TemplatesScriptsManager.TemplatesScriptsManager(
             DesktopIconsUtil.getScriptsDir(),
@@ -41,10 +40,12 @@ var FileItemMenu = class {
     }
 
     _getExtractionSupportedTypes() {
+        this._decompressibleTypes = [];
         DBusUtils.GnomeArchiveManagerProxy.GetSupportedTypesRemote('extract',
             (result, error) => {
                 if (error) {
-                    throw new Error('Error getting extractable Types' + error.message);
+                    print(`Can't get the extractable types: ${error.message}. Ensure that File-Roller is installed.`);
+                    return;
                 }
                 for (let key of result.values()) {
                     for (let type of key.values()) {
