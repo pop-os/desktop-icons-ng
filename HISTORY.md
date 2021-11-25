@@ -1,9 +1,10 @@
 # History of versions #
 
-* In progress
-  * Fixed failure when TEMPLATES folder is not configured
+* Version 33
+  * Synchronized version number with the one in Gnome Extensions
+  * Fixed failure when TEMPLATES folder is not configured (Sergio Costas)
   * Other extensions can notify the usable work area (Sergio Costas)
-  * Fix exception if File-Roller is not installed
+  * Fix exception if File-Roller is not installed (Sergio Costas)
 
 * Version 24
   * Fixed "Open in terminal" option in right-click menu (Sergio Costas)
