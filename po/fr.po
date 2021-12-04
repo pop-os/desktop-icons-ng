@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-09-21 20:21+0200\n"
-"PO-Revision-Date: 2020-11-04 15:48+0100\n"
+"PO-Revision-Date: 2021-12-02 16:26+0100\n"
 "Last-Translator: Davy Defaud <davy.defaud@free.fr>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n >= 2);\n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #: askRenamePopup.js:41
 msgid "Folder name"
@@ -37,11 +37,11 @@ msgstr "Renommer"
 
 #: desktopIconsUtil.js:88
 msgid "Command not found"
-msgstr "Commande non trouvée"
+msgstr "Commande introuvable"
 
 #: desktopIconsUtil.js:210
 msgid "Do you want to run “{0}”, or display its contents?"
-msgstr "Voulez‑vous exécuter « {0} » ou afficher son contenu ?"
+msgstr "Voulez‐vous exécuter « {0} » ou afficher son contenu ?"
 
 #: desktopIconsUtil.js:211
 msgid "“{0}” is an executable text file."
@@ -70,16 +70,16 @@ msgstr "Gestionnaire de fichiers Nautilus introuvable"
 #: desktopManager.js:164
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr ""
-"Le gestionnaire de fichiers Nautilus est nécessaire au fonctionnement de "
+"Le gestionnaire de fichiers Nautilus est indispensable au fonctionnement de "
 "Desktop Icons NG."
 
 #: desktopManager.js:626
 msgid "Clear Current Selection before New Search"
-msgstr ""
+msgstr "Supprimer la sélection courante avant une nouvelle recherche"
 
 #: desktopManager.js:665
 msgid "Find Files on Desktop"
-msgstr ""
+msgstr "Rechercher des fichiers sur le bureau"
 
 #: desktopManager.js:735 desktopManager.js:1399
 msgid "New Folder"
@@ -102,7 +102,6 @@ msgid "Redo"
 msgstr "Refaire"
 
 #: desktopManager.js:758
-#, fuzzy
 msgid "Select All"
 msgstr "Tout sélectionner"
 
@@ -123,62 +122,60 @@ msgid "Display Settings"
 msgstr "Paramètres d’affichage"
 
 #: desktopManager.js:792
-#, fuzzy
 msgid "Desktop Icons Settings"
-msgstr "Paramètres des icônes du bureau"
+msgstr "Préférences des icônes du bureau"
 
 #: desktopManager.js:1484
 msgid "Can not email a Directory"
-msgstr ""
+msgstr "Impossible d’envoyer un dossier par courriel"
 
 #: desktopManager.js:1485
 msgid "Selection includes a Directory, compress the directory to a file first."
-msgstr ""
+msgstr "La sélection contient un dossier, créez d’abord une archive du dossier"
 
 #: desktopManager.js:1506
 msgid "Arrange Icons"
-msgstr ""
+msgstr "Ordonner les icônes"
 
 #: desktopManager.js:1510
 msgid "Arrange By..."
-msgstr ""
+msgstr "Ordonner par…"
 
 #: desktopManager.js:1519
 msgid "Keep Arranged..."
-msgstr ""
+msgstr "Conserver l’ordre…"
 
 #: desktopManager.js:1524
 msgid "Sort Home/Drives/Trash..."
-msgstr ""
+msgstr "Trier Dossier personnel, Corbeille et volumes…"
 
 #: desktopManager.js:1530
 msgid "Sort by Name"
-msgstr ""
+msgstr "Tri par nom"
 
 #: desktopManager.js:1532
 msgid "Sort by Name Descending"
-msgstr ""
+msgstr "Tri par nom décroissant"
 
 #: desktopManager.js:1535
 msgid "Sort by Modified Time"
-msgstr ""
+msgstr "Tri par date de modification"
 
 #: desktopManager.js:1538
 msgid "Sort by Type"
-msgstr ""
+msgstr "Tri par type"
 
 #: desktopManager.js:1541
 msgid "Sort by Size"
-msgstr ""
+msgstr "Tri par taille"
 
 #: desktopManager.js:1764
 msgid "Select Extract Destination"
-msgstr ""
+msgstr "Sélectionnez le dossier d’extraction"
 
 #: desktopManager.js:1767
-#, fuzzy
 msgid "Select"
-msgstr "Tout sélectionner"
+msgstr "Sélectionner"
 
 #. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
 #: fileItem.js:223
@@ -187,7 +184,7 @@ msgstr "Dossier personnel"
 
 #: fileItem.js:925
 msgid "Open All..."
-msgstr ""
+msgstr "Ouvrir tout…"
 
 #: fileItem.js:925
 msgid "Open"
@@ -198,9 +195,8 @@ msgid "Scripts"
 msgstr "Scripts"
 
 #: fileItem.js:938
-#, fuzzy
 msgid "Open All With Other Application..."
-msgstr "Ouvrir avec une autre application"
+msgstr "Tout ouvrir avec une autre application…"
 
 #: fileItem.js:938
 msgid "Open With Other Application"
@@ -231,13 +227,12 @@ msgid "Delete permanently"
 msgstr "Supprimer définitivement"
 
 #: fileItem.js:971
-#, fuzzy
 msgid "Don't Allow Launching"
-msgstr "Ne pas autoriser le lancement"
+msgstr "Interdire l’exécution"
 
 #: fileItem.js:971
 msgid "Allow Launching"
-msgstr "Autoriser le lancement"
+msgstr "Autoriser l’exécution"
 
 #: fileItem.js:978
 msgid "Empty Trash"
@@ -261,13 +256,13 @@ msgstr "Extraire vers…"
 
 #: fileItem.js:1015
 msgid "Send to..."
-msgstr "Envoyer vers..."
+msgstr "Envoyer vers…"
 
 #: fileItem.js:1019
 msgid "Compress {0} file"
 msgid_plural "Compress {0} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Compresser {0} fichier"
+msgstr[1] "Compresser {0} fichiers"
 
 #: fileItem.js:1022
 msgid "New Folder with {0} item"
@@ -276,18 +271,16 @@ msgstr[0] "Nouveau dossier avec {0} élément"
 msgstr[1] "Nouveau dossier avec {0} éléments"
 
 #: fileItem.js:1027
-#, fuzzy
 msgid "Common Properties"
-msgstr "Propriétés"
+msgstr "Préférences"
 
 #: fileItem.js:1027
 msgid "Properties"
 msgstr "Propriétés"
 
 #: fileItem.js:1031
-#, fuzzy
 msgid "Show All in Files"
-msgstr "Montrer dans Fichiers"
+msgstr "Afficher dans Fichiers"
 
 #: fileItem.js:1031
 msgid "Show in Files"
@@ -396,7 +389,7 @@ msgstr "Afficher le contenu du fichier"
 
 #: preferences.js:131
 msgid "Launch the file"
-msgstr "Lancer le fichier"
+msgstr "Exécuter le fichier"
 
 #: preferences.js:132
 msgid "Ask what to do"
@@ -419,17 +412,16 @@ msgid "Always"
 msgstr "Toujours"
 
 #: prefs.js:37
-#, fuzzy
 msgid ""
 "To configure Desktop Icons NG, do right-click in the desktop and choose the "
 "last item: 'Desktop Icons settings'"
 msgstr ""
 "Pour configurer Desktop Icons NG, faites un clic droit sur le bureau et "
-"choisissez le dernier élément : « Paramètres »"
+"choisissez le dernier élément : « Préférences »"
 
 #: showErrorPopup.js:37
 msgid "Close"
-msgstr ""
+msgstr "Fermer"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:25
 msgid "Icon size"
@@ -477,8 +469,8 @@ msgid ""
 "When adding drives and volumes to the desktop, add them to the opposite side "
 "of the screen."
 msgstr ""
-"Lorsque des volumes de stockage locaux ou réseau sont ajoutés sur le bureau, "
-"les afficher sur le côté opposé de l’écran."
+"Lorsque des volumes de stockage sont ajoutés sur le bureau, les afficher sur "
+"le côté opposé de l’écran."
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:60
 msgid "Shows a rectangle in the destination place during DnD"
@@ -496,29 +488,31 @@ msgstr ""
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:65
 msgid "Sort Special Folders - Home/Trash Drives."
-msgstr ""
+msgstr "Trier les dossiers spéciaux — Dossier personnel, Corbeille et médias"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:66
 msgid ""
 "When arranging Icons on desktop, to sort and change the position of the "
 "Home, Trash and mounted Network or External Drives"
 msgstr ""
+"Lorsque les icônes sont réorganisées sur le bureau, trie et réorganise le "
+"dossier personnel, la corbeille et les médias amovibles de manière spécifique"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:70
 msgid "Keep Icons Arranged"
-msgstr ""
+msgstr "Conserver les icônes ordonnées"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:71
 msgid "Always keep Icons Arranged by the last arranged order"
-msgstr ""
+msgstr "Conserver le dernier ordre de tri des icônes"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:75
 msgid "Arrange Order"
-msgstr ""
+msgstr "Ordre de tri"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:76
 msgid "Icons Arranged by this property"
-msgstr ""
+msgstr "Icônes triées avec cette propriété"
 
 #~ msgid "New folder"
 #~ msgstr "Nouveau dossier"
