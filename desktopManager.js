@@ -616,17 +616,17 @@ var DesktopManager = class {
                 this.searchString = key;
             }
             if (this.searchString != '') {
-                if ((this.getNumberOfSelectedItems() >= 1) && (! this.keypressTimeoutID)) {
-                    let windowError = new ShowErrorPopup.ShowErrorPopup(
-                        _("Clear Current Selection before New Search"),
-                        null,
-                        null,
-                        true);
-                    windowError.timeoutClose(2000);
-                    return true;
-                }
-                let found = this.scanForFiles(this.searchString);
+                let found = this.scanForFiles(this.searchString, false);
                 if (found) {
+                    if ((this.getNumberOfSelectedItems() >= 1) && (! this.keypressTimeoutID)) {
+                        let windowError = new ShowErrorPopup.ShowErrorPopup(
+                            _("Clear Current Selection before New Search"),
+                            null,
+                            null,
+                            true);
+                        windowError.timeoutClose(2000);
+                        return true;
+                    }
                     this.searchEventTime = GLib.get_monotonic_time();
                     if (! this.keypressTimeoutID) {
                         this.keypressTimeoutID = GLib.timeout_add(1, 1000, () => {
@@ -673,7 +673,7 @@ var DesktopManager = class {
         });
         this._findFileTextArea.connect('changed', () => {
             let context = this._findFileTextArea.get_style_context();
-            if (this.scanForFiles(this._findFileTextArea.text)){
+            if (this.scanForFiles(this._findFileTextArea.text, true)){
                 this._findFileButton.sensitive = true;
                 if (context.has_class('not-found')) {
                     context.remove_class('not-found');
@@ -703,14 +703,16 @@ var DesktopManager = class {
         this._findFileWindow = null;
     }
 
-    scanForFiles(text) {
+    scanForFiles(text, setselected) {
         let found = [];
-        this.unselectAll();
         if (text && (text != '')) {
             found = this._fileList.filter(f => (f.fileName.toLowerCase().includes(text.toLowerCase())) || (f._label.get_text().toLowerCase().includes(text.toLowerCase())));
         }
         if (found.length != 0) {
-            found.map(f => f.setSelected());
+            if (setselected) {
+                this.unselectAll();
+                found.map(f => f.setSelected());
+            }
             return true;
         } else {
             return false;
