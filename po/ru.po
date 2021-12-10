@@ -212,7 +212,7 @@ msgstr "Вырезать"
 
 #: fileItem.js:953
 msgid "Copy"
-msgstr "Вставить"
+msgstr "Копировать"
 
 #: fileItem.js:957
 msgid "Rename…"
