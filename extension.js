@@ -30,6 +30,7 @@ const Mainloop = imports.mainloop;
 const Me = ExtensionUtils.getCurrentExtension();
 const EmulateX11 = Me.imports.emulateX11WindowType;
 const VisibleArea = Me.imports.visibleArea;
+const GnomeShellOverride = Me.imports.gnomeShellOverride;
 
 // This object will contain all the global variables
 let data = {};
@@ -41,6 +42,8 @@ function init() {
     data.launchDesktopId = 0;
     data.currentProcess = null;
     data.reloadTime = 100;
+
+    data.GnomeShellOverride = null;
 
     /* The constructor of the EmulateX11 class only initializes some
      * internal properties, but nothing else. In fact, it has its own
@@ -66,6 +69,10 @@ function init() {
  * Enables the extension
  */
 function enable() {
+    if (!data.GnomeShellOverride) {
+        data.GnomeShellOverride = new GnomeShellOverride.GnomeShellOverride();
+    }
+
     if (!data.x11Manager) {
         data.x11Manager = new EmulateX11.EmulateX11WindowType();
     }
@@ -90,6 +97,8 @@ function innerEnable(removeId) {
         Main.layoutManager.disconnect(data.startupPreparedId);
         data.startupPreparedId = null;
     }
+
+    data.GnomeShellOverride.enable();
 
     // under X11 we don't need to cheat, so only do all this under wayland
     if (Meta.is_wayland_compositor()) {
@@ -140,6 +149,7 @@ function disable() {
     DesktopIconsUsableArea = null;
     data.isEnabled = false;
     killCurrentProcess();
+    data.GnomeShellOverride.disable();
     data.x11Manager.disable();
     data.visibleArea.disable();
 
