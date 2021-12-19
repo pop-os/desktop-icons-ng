@@ -25,6 +25,7 @@ install_data([
     'extension.js',
     'fileItem.js',
     'fileItemMenu.js',
+    'gnomeShellOverride.js',
     'metadata.json',
     'prefs.js',
     'preferences.js',
