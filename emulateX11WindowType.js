@@ -210,7 +210,6 @@ var EmulateX11WindowType = class {
         if (this._isX11) {
             return;
         }
-        replaceMethod(Shell.Global, 'get_window_actors', newGetWindowActors);
         this._idMap = global.window_manager.connect_after('map', (obj, windowActor) => {
             let window = windowActor.get_meta_window();
             if (this._wayland_client && this._wayland_client.query_window_belongs_to(window)) {
@@ -240,7 +239,7 @@ var EmulateX11WindowType = class {
             this._enableRefresh = false;
         });
 
-		this._hidingId = Main.overview.connect('hiding', () => {
+        this._hidingId = Main.overview.connect('hiding', () => {
             this._enableRefresh = true;
             this._refreshWindows(true);
         });
@@ -258,12 +257,6 @@ var EmulateX11WindowType = class {
             this._clearWindow(window);
         }
         this._windowList = [];
-
-        // restore external methods only if have been intercepted
-        if (replaceData.old_get_window_actors) {
-            Shell.Global.prototype['get_window_actors'] = replaceData.old_get_window_actors;
-        }
-        replaceData = {};
 
         // disconnect signals
         if (this._idMap) {
@@ -344,64 +337,4 @@ var EmulateX11WindowType = class {
             });
         }
     }
-}
-
-/**
- * Functions used to remove a window from the window list
- */
-
-let replaceData = {};
-
-/**
- * Replaces a method in a class with our own method, and stores the original
- * one in 'replaceData' using 'old_XXXX' (being XXXX the name of the original method),
- * or 'old_classId_XXXX' if 'classId' is defined. This is done this way for the
- * case that two methods with the same name must be replaced in two different
- * classes
- *
- * @param {class} className The class where to replace the method
- * @param {string} methodName The method to replace
- * @param {function} functionToCall The function to call as the replaced method
- * @param {string} [classId] an extra ID to identify the stored method when two
- *                           methods with the same name are replaced in
- *                           two different classes
- */
-function replaceMethod(className, methodName, functionToCall, classId) {
-    if (classId) {
-        replaceData['old_' + classId + '_' + methodName] = className.prototype[methodName];
-    } else {
-        replaceData['old_' + methodName] = className.prototype[methodName];
-    }
-    className.prototype[methodName] = functionToCall;
-}
-
-/**
- * Receives a list of metaWindow or metaWindowActor objects, and remove from it
- * our desktop window
- *
- * @param {GList} windowList A list of metaWindow or metaWindowActor objects
- * @returns {GList} The same list, but with the desktop window removed
- */
-function removeDesktopWindowFromList(windowList) {
-
-    let returnVal = [];
-    for (let element of windowList) {
-        let window = element;
-        if (window.get_meta_window) { // it is a MetaWindowActor
-            window = window.get_meta_window();
-        }
-        if (!window.customJS_ding || !window.customJS_ding.hideFromWindowList) {
-            returnVal.push(element);
-        }
-    }
-    return returnVal;
-}
-
-/**
- * Method replacement for Shell.Global.get_window_actors
- * It removes the desktop window from the list of windows in the Activities mode
- */
-function newGetWindowActors() {
-    let windowList = replaceData.old_get_window_actors.apply(this, []);
-    return removeDesktopWindowFromList(windowList);
 }
