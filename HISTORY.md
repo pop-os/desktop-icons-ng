@@ -1,5 +1,36 @@
 # History of versions #
 
+* inprogress
+  * Fixed "Allow launching" when the file doesn't have executable flag (Sergio Costas)
+  * Ignore SPACE key to start a search (Laurentiu-Andrei Postole)
+  * Use CSS to make the window transparent (Sundeep Mediratta)
+  * Removed "ask to execute" dialog; now shows "Run as a program" (Sergio Costas)
+  * Removed "run" mode for dialogs (Sundeep Mediratta)
+  * Fix volume names (Sergio Costas)
+
+* Version 38
+  * Fixed Paste in Gnome Shell 3.38 (Sergio Costas)
+
+* Version 37
+  * Fixed DnD into folders of the desktop (Sergio Costas)
+
+* Version 36
+  * Fixed 'icon resize' when using stacked icons (Sundeep Mediratta)
+  * Fixed typo (Davy Defaud)
+
+* Version 35
+  * Now Ctrl+Shift+N creates a folder, like in Nautilus (Sergio Costas)
+  * Fixed bug when the extension was disabled (Sergio Costas)
+
+* Version 34
+  * Fix error popup when pressing arrow keys (Sundeep Mediratta)
+  * Fix icons appearing during desktop change animation (Sundeep Mediratta)
+  * Avoid relaunching DING when updating the window size (Sundeep Mediratta)
+  * Fix scripts by passing file list as parameters (Sergio Costas)
+  * Show extensions in Nautilus scripts (Sergio Costas)
+  * Added support for "stacking" files, grouping files of the same type (Sundeep Mediratta)
+  * Fix clipboard support for last version of Nautilus (Sergio Costas)
+
 * Version 33
   * Synchronized version number with the one in Gnome Extensions
   * Fixed failure when TEMPLATES folder is not configured (Sergio Costas)

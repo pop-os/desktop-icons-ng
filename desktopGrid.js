@@ -36,49 +36,31 @@ var elementSpacing = 2;
 var DesktopGrid = class {
 
     constructor(desktopManager, desktopName, desktopDescription, asDesktop, premultiplied) {
-
         this._destroying = false;
         this._desktopManager = desktopManager;
+        this._desktopName = desktopName;
         this._asDesktop = asDesktop;
         this._premultiplied = premultiplied;
-        this._zoom = desktopDescription.zoom;
-        this._x = desktopDescription.x;
-        this._y = desktopDescription.y;
-        let size_divisor = this._zoom;
-        let using_X11 = Gdk.Display.get_default().constructor.$gtype.name === 'GdkX11Display';
-        if (asDesktop) {
-            if (using_X11) {
-                size_divisor = Math.ceil(this._zoom);
-            } else {
-                if (premultiplied) {
-                    size_divisor = 1;
-                }
-            }
-        }
-        this._windowWidth = Math.floor(desktopDescription.width / size_divisor);
-        this._windowHeight = Math.floor(desktopDescription.height / size_divisor);
-        this._width = Math.floor((desktopDescription.width - desktopDescription.marginRight - desktopDescription.marginLeft) / size_divisor);
-        this._height = Math.floor((desktopDescription.height - desktopDescription.marginTop - desktopDescription.marginBottom) / size_divisor);
-        this._marginTop = Math.floor(desktopDescription.marginTop / size_divisor);
-        this._marginBottom = Math.floor(desktopDescription.marginBottom / size_divisor);
-        this._marginLeft = Math.floor(desktopDescription.marginLeft / size_divisor);
-        this._marginRight = Math.floor(desktopDescription.marginRight / size_divisor);
-        this._maxColumns = Math.floor(this._width / (Prefs.get_desired_width() + 4 * elementSpacing));
-        this._maxRows =  Math.floor(this._height / (Prefs.get_desired_height() + 4 * elementSpacing));
-        this._elementWidth = Math.floor(this._width / this._maxColumns);
-        this._elementHeight = Math.floor(this._height / this._maxRows);
+        this._asDesktop = asDesktop;
+        this._desktopDescription = desktopDescription;
+        this._using_X11 = Gdk.Display.get_default().constructor.$gtype.name === 'GdkX11Display';
+        this.updateWindowGeometry();
+        this.updateUnscaledHeightWidthMargins();
+        this.createGrids();
 
         this._window = new Gtk.ApplicationWindow({application: desktopManager.mainApp, "title": desktopName});
         if (asDesktop) {
             this._window.set_decorated(false);
             this._window.set_deletable(false);
             // If we are under X11, manage everything from here
-            if (using_X11) {
+            if (this._using_X11) {
                 this._window.set_type_hint(Gdk.WindowTypeHint.DESKTOP);
                 this._window.stick();
-                this._window.move(this._x / this._zoom, this._y / this._zoom);
+                this._window.move(this._x / this._size_divisor, this._y / this._size_divisor);
             }
         }
+        this._windowContext = this._window.get_style_context();
+        this._windowContext.add_class("desktopwindow");
         this._window.set_resizable(false);
         this._window.connect('delete-event', () => {
             if (this._destroying) {
@@ -93,18 +75,16 @@ var DesktopGrid = class {
             }
         });
 
-        const scale = this._window.get_scale_factor();
+        this.scale = this._window.get_scale_factor();
         this.gridGlobalRectangle = new Gdk.Rectangle({
-            'x':this._x + this._marginTop,
-            'y':this._y + this._marginLeft,
-            'width':(this._width*scale) - this._marginLeft - this._marginRight,
-            'height':(this._height*scale) - this._marginTop - this._marginBottom});
+            'x':this._x + this._marginLeft,
+            'y':this._y + this._marginTop,
+            'width':(this._width*this.scale) - this._marginLeft - this._marginRight,
+            'height':(this._height*this.scale) - this._marginTop - this._marginBottom
+        });
 
         this._eventBox = new Gtk.EventBox({ visible: true });
-        this._eventBox.margin_top = this._marginTop;
-        this._eventBox.margin_bottom = this._marginBottom;
-        this._eventBox.margin_start = this._marginLeft;
-        this._eventBox.margin_end = this._marginRight;
+        this.sizeEventBox();
         this._window.add(this._eventBox);
         this._container = new Gtk.Fixed();
         this._eventBox.add(this._container);
@@ -112,18 +92,12 @@ var DesktopGrid = class {
         this.setDropDestination(this._eventBox);
 
         // Transparent background, but only if this instance is working as desktop
-        this._window.set_app_paintable(true);
-        if (asDesktop) {
+
+        if (this._asDesktop) {
             let screen = this._window.get_screen();
             let visual = screen.get_rgba_visual();
-            if (visual && screen.is_composited() && this._asDesktop) {
-                this._window.set_visual(visual);
-                this._window.connect('draw', (widget, cr) => {
-                    Gdk.cairo_set_source_rgba(cr, new Gdk.RGBA({red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0}));
-                    cr.paint();
-                    cr.$dispose();
-                    return false;
-                });
+            if (visual && screen.is_composited()) {
+                this._window.set_visual(visual)
             }
         }
 
@@ -133,14 +107,8 @@ var DesktopGrid = class {
             cr.$dispose();
         });
 
-        this._fileItems = {};
+        this.setGridStatus();
 
-        this._gridStatus = {};
-        for (let y=0; y<this._maxRows; y++) {
-            for (let x=0; x<this._maxColumns; x++) {
-                this._setGridUse(x, y, false);
-            }
-        }
         this._window.show_all();
         this._window.set_size_request(this._windowWidth, this._windowHeight);
         this._window.resize(this._windowWidth, this._windowHeight);
@@ -165,6 +133,95 @@ var DesktopGrid = class {
         this._window.connect('key-press-event', (actor, event) => {
             this._desktopManager.onKeyPress(event, this);
         });
+    }
+
+    updateGridDescription(desktopDescription) {
+        this._desktopDescription = desktopDescription;
+    }
+
+    updateWindowGeometry() {
+        this._zoom = this._desktopDescription.zoom;
+        this._x = this._desktopDescription.x;
+        this._y = this._desktopDescription.y;
+        this._monitor = this._desktopDescription.monitorIndex;
+        this._size_divisor = this._zoom;
+        if (this._asDesktop) {
+            if (this._using_X11) {
+                this._size_divisor = Math.ceil(this._zoom);
+            } else {
+                if (this._premultiplied) {
+                    this._size_divisor = 1;
+                }
+            }
+        }
+        this._windowWidth = Math.floor(this._desktopDescription.width / this._size_divisor);
+        this._windowHeight = Math.floor(this._desktopDescription.height / this._size_divisor);
+    }
+
+    resizeWindow() {
+        this.updateWindowGeometry();
+        this._desktopName = `@!${this._x},${this._y};BDHF`;
+        if (this._using_X11){
+            this._window.move(this._x / this._size_divisor, this._y / this._size_divisor);
+        }
+        this._window.set_title(this._desktopName);
+        this._window.set_size_request(this._windowWidth, this._windowHeight);
+        this._window.resize(this._windowWidth, this._windowHeight);
+        this.scale = this._window.get_scale_factor();
+    }
+
+    updateUnscaledHeightWidthMargins() {
+        this._marginTop = this._desktopDescription.marginTop;
+        this._marginBottom = this._desktopDescription.marginBottom;
+        this._marginLeft = this._desktopDescription.marginLeft;
+        this._marginRight = this._desktopDescription.marginRight;
+        this._width = this._desktopDescription.width - this._marginLeft - this._marginRight;
+        this._height = this._desktopDescription.height - this._marginTop - this._marginBottom;
+    }
+
+    createGrids() {
+        this._width = Math.floor( this._width / this._size_divisor);
+        this._height = Math.floor(this._height / this._size_divisor);
+        this._marginTop = Math.floor(this._marginTop / this._size_divisor);
+        this._marginBottom = Math.floor(this._marginBottom / this._size_divisor);
+        this._marginLeft = Math.floor(this._marginLeft / this._size_divisor);
+        this._marginRight = Math.floor(this._marginRight / this._size_divisor);
+        this._maxColumns = Math.floor(this._width / (Prefs.get_desired_width() + 4 * elementSpacing));
+        this._maxRows =  Math.floor(this._height / (Prefs.get_desired_height() + 4 * elementSpacing));
+        this._elementWidth = Math.floor(this._width / this._maxColumns);
+        this._elementHeight = Math.floor(this._height / this._maxRows);
+    }
+
+    updateGridRectangle() {
+        this.gridGlobalRectangle.x = this._x + this._marginLeft;
+        this.gridGlobalRectangle.y = this._y + this._marginTop;
+        this.gridGlobalRectangle.width = (this._width*this.scale) - this._marginLeft - this._marginRight;
+        this.gridGlobalRectangle.height = (this._height*this.scale) - this._marginTop - this._marginBottom;
+    }
+
+    sizeEventBox() {
+        this._eventBox.margin_top = this._marginTop;
+        this._eventBox.margin_bottom = this._marginBottom;
+        this._eventBox.margin_start = this._marginLeft;
+        this._eventBox.margin_end = this._marginRight;
+    }
+
+    setGridStatus() {
+        this._fileItems = {};
+        this._gridStatus = {};
+        for (let y=0; y<this._maxRows; y++) {
+            for (let x=0; x<this._maxColumns; x++) {
+                this._setGridUse(x, y, false);
+            }
+        }
+    }
+
+    resizeGrid() {
+        this.updateUnscaledHeightWidthMargins();
+        this.createGrids();
+        this.updateGridRectangle();
+        this.sizeEventBox();
+        this.setGridStatus();
     }
 
     destroy() {

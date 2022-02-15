@@ -1,5 +1,5 @@
 # Swedish translation for ding.
-# Copyright © 2018-2021 ding's COPYRIGHT HOLDER
+# Copyright © 2018-2022 ding's COPYRIGHT HOLDER
 # This file is distributed under the same license as the ding package.
 # Anders Jonsson <anders.jonsson@norsjovallen.se>, 2018-2021.
 # Josef Andersson <l10nl18nsweja@gmail.com>, 2019.
@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ding\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-09 22:01+0100\n"
-"PO-Revision-Date: 2021-11-09 22:49+0100\n"
-"Last-Translator: Luna Jernberg <Unknown>\n"
+"POT-Creation-Date: 2022-01-21 15:41+0100\n"
+"PO-Revision-Date: 2022-01-11 10:17+0100\n"
+"Last-Translator: Gunnar Hjalmarsson <Unknown>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr "Mappnamn"
 msgid "File name"
 msgstr "Filnamn"
 
-#: askRenamePopup.js:49 desktopManager.js:660
+#: askRenamePopup.js:49 desktopManager.js:816
 msgid "OK"
 msgstr "OK"
 
@@ -39,253 +39,247 @@ msgstr "Byt namn"
 msgid "Command not found"
 msgstr "Kommandot hittades inte"
 
-#: desktopIconsUtil.js:210
-msgid "Do you want to run “{0}”, or display its contents?"
-msgstr "Vill du köra ”{0}”, eller visa dess innehåll?"
-
-#: desktopIconsUtil.js:211
-msgid "“{0}” is an executable text file."
-msgstr "”{0}” är en körbar textfil."
-
-#: desktopIconsUtil.js:215
-msgid "Execute in a terminal"
-msgstr "Kör i en terminal"
-
-#: desktopIconsUtil.js:217
-msgid "Show"
-msgstr "Visa"
-
-#: desktopIconsUtil.js:219 desktopManager.js:662 fileItemMenu.js:320
-msgid "Cancel"
-msgstr "Avbryt"
-
-#: desktopIconsUtil.js:221
-msgid "Execute"
-msgstr "Kör"
-
-#: desktopManager.js:159
+#: desktopManager.js:204
 msgid "Nautilus File Manager not found"
 msgstr "Nautilus filhanterare hittades inte"
 
-#: desktopManager.js:160
+#: desktopManager.js:205
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr ""
 "Filhanteraren Nautilus är obligatorisk för att arbeta med Desktop Icons NG."
 
-#: desktopManager.js:621
+#: desktopManager.js:779
 msgid "Clear Current Selection before New Search"
 msgstr "Rensa aktuellt val innan ny sökning"
 
-#: desktopManager.js:664
+#: desktopManager.js:818 fileItemMenu.js:367
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: desktopManager.js:820
 msgid "Find Files on Desktop"
 msgstr "Hitta filer på skrivbordet"
 
-#: desktopManager.js:722 desktopManager.js:1358
+#: desktopManager.js:884 desktopManager.js:1529
 msgid "New Folder"
 msgstr "Ny mapp"
 
-#: desktopManager.js:726
+#: desktopManager.js:888
 msgid "New Document"
 msgstr "Nytt dokument"
 
-#: desktopManager.js:731
+#: desktopManager.js:893
 msgid "Paste"
 msgstr "Klistra in"
 
-#: desktopManager.js:735
+#: desktopManager.js:897
 msgid "Undo"
 msgstr "Ångra"
 
-#: desktopManager.js:739
+#: desktopManager.js:901
 msgid "Redo"
 msgstr "Gör om"
 
-#: desktopManager.js:745
+#: desktopManager.js:907
 msgid "Select All"
 msgstr "Markera alla"
 
-#: desktopManager.js:753
+#: desktopManager.js:915
 msgid "Show Desktop in Files"
 msgstr "Visa skrivbord i Filer"
 
-#: desktopManager.js:757 fileItemMenu.js:249
+#: desktopManager.js:919 fileItemMenu.js:274
 msgid "Open in Terminal"
 msgstr "Öppna i terminal"
 
-#: desktopManager.js:763
+#: desktopManager.js:925
 msgid "Change Background…"
 msgstr "Ändra bakgrund…"
 
-#: desktopManager.js:772
+#: desktopManager.js:934
 msgid "Display Settings"
 msgstr "Visningsinställningar"
 
-#: desktopManager.js:779
+#: desktopManager.js:941
 msgid "Desktop Icons Settings"
 msgstr "Inställningar för Desktop Icons"
 
-#: desktopManager.js:1416
+#: desktopManager.js:1587
 msgid "Arrange Icons"
 msgstr "Arrangera ikonerna"
 
-#: desktopManager.js:1420
+#: desktopManager.js:1591
 msgid "Arrange By..."
 msgstr "Arrangera efter..."
 
-#: desktopManager.js:1429
+#: desktopManager.js:1600
 msgid "Keep Arranged..."
 msgstr "Behåll arrangerade..."
 
-#: desktopManager.js:1434
+#: desktopManager.js:1604
+msgid "Keep Stacked by type..."
+msgstr "Behåll arrangerade efter typ..."
+
+#: desktopManager.js:1609
 msgid "Sort Home/Drives/Trash..."
 msgstr "Sortera Hem/Diskar/Papperskorg..."
 
-#: desktopManager.js:1440
+#: desktopManager.js:1615
 msgid "Sort by Name"
 msgstr "Sortera efter namn"
 
-#: desktopManager.js:1442
+#: desktopManager.js:1617
 msgid "Sort by Name Descending"
 msgstr "Sortera efter namn (nedåtgående)"
 
-#: desktopManager.js:1445
+#: desktopManager.js:1620
 msgid "Sort by Modified Time"
 msgstr "Sortera efter senaste ändring"
 
-#: desktopManager.js:1448
+#: desktopManager.js:1623
 msgid "Sort by Type"
 msgstr "Sortera efter typ"
 
-#: desktopManager.js:1451
+#: desktopManager.js:1626
 msgid "Sort by Size"
 msgstr "Sortera efter storlek"
 
 #. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
-#: fileItem.js:222
+#: fileItem.js:147
 msgid "Home"
 msgstr "Hem"
 
-#: fileItemMenu.js:102
+#: fileItemMenu.js:105
 msgid "Open All..."
 msgstr "Öppna alla…"
 
-#: fileItemMenu.js:102
+#: fileItemMenu.js:105
 msgid "Open"
 msgstr "Öppna"
 
-#: fileItemMenu.js:112
+#: fileItemMenu.js:116
+msgid "Stack This Type"
+msgstr "Arrangera denna typ"
+
+#: fileItemMenu.js:116
+msgid "Unstack This Type"
+msgstr "Sluta arrangera denna typ"
+
+#: fileItemMenu.js:128
 msgid "Scripts"
 msgstr "Skript"
 
-#: fileItemMenu.js:118
+#: fileItemMenu.js:134
 msgid "Open All With Other Application..."
 msgstr "Öppna alla med annat program…"
 
-#: fileItemMenu.js:118
+#: fileItemMenu.js:134
 msgid "Open With Other Application"
 msgstr "Öppna med annat program"
 
-#: fileItemMenu.js:124
+#: fileItemMenu.js:140
 msgid "Launch using Dedicated Graphics Card"
 msgstr "Starta med dedikerat grafikkort"
 
-#: fileItemMenu.js:134
+#: fileItemMenu.js:149
+msgid "Run as a program"
+msgstr ""
+
+#: fileItemMenu.js:157
 msgid "Cut"
 msgstr "Klipp ut"
 
-#: fileItemMenu.js:139
+#: fileItemMenu.js:162
 msgid "Copy"
 msgstr "Kopiera"
 
-#: fileItemMenu.js:145
+#: fileItemMenu.js:168
 msgid "Rename…"
 msgstr "Byt namn…"
 
-#: fileItemMenu.js:151
+#: fileItemMenu.js:176
 msgid "Move to Trash"
 msgstr "Flytta till papperskorgen"
 
-#: fileItemMenu.js:157
+#: fileItemMenu.js:182
 msgid "Delete permanently"
 msgstr "Ta bort permanent"
 
-#: fileItemMenu.js:165
+#: fileItemMenu.js:190
 msgid "Don't Allow Launching"
 msgstr "Tillåt ej programstart"
 
-#: fileItemMenu.js:165
+#: fileItemMenu.js:190
 msgid "Allow Launching"
 msgstr "Tillåt programstart"
 
-#: fileItemMenu.js:176
+#: fileItemMenu.js:201
 msgid "Empty Trash"
 msgstr "Töm papperskorgen"
 
-#: fileItemMenu.js:187
+#: fileItemMenu.js:212
 msgid "Eject"
 msgstr "Mata ut"
 
-#: fileItemMenu.js:193
+#: fileItemMenu.js:218
 msgid "Unmount"
 msgstr "Avmontera"
 
-#: fileItemMenu.js:204
+#: fileItemMenu.js:228
 msgid "Extract Here"
 msgstr "Extrahera här"
 
-#: fileItemMenu.js:208
+#: fileItemMenu.js:232
 msgid "Extract To..."
 msgstr "Extrahera till…"
 
-#: fileItemMenu.js:215
+#: fileItemMenu.js:239
 msgid "Send to..."
 msgstr "Skicka till…"
 
-#: fileItemMenu.js:221
+#: fileItemMenu.js:245
 msgid "Compress {0} file"
 msgid_plural "Compress {0} files"
 msgstr[0] "Komprimera {0} fil"
 msgstr[1] "Komprimera {0} filer"
 
-#: fileItemMenu.js:227
+#: fileItemMenu.js:251
 msgid "New Folder with {0} item"
 msgid_plural "New Folder with {0} items"
 msgstr[0] "Ny mapp med {0} objekt"
 msgstr[1] "Ny mapp med {0} objekt"
 
-#: fileItemMenu.js:235
+#: fileItemMenu.js:260
 msgid "Common Properties"
 msgstr "Gemensamma egenskaper"
 
-#: fileItemMenu.js:235
+#: fileItemMenu.js:260
 msgid "Properties"
 msgstr "Egenskaper"
 
-#: fileItemMenu.js:242
+#: fileItemMenu.js:267
 msgid "Show All in Files"
 msgstr "Visa alla i Filer"
 
-#: fileItemMenu.js:242
+#: fileItemMenu.js:267
 msgid "Show in Files"
 msgstr "Visa i Filer"
 
-#: fileItemMenu.js:318
+#: fileItemMenu.js:363
 msgid "Select Extract Destination"
 msgstr "Välj målplats för extrahering"
 
-#: fileItemMenu.js:321
+#: fileItemMenu.js:368
 msgid "Select"
 msgstr "Välj"
 
-#: fileItemMenu.js:348
+#: fileItemMenu.js:399
 msgid "Can not email a Directory"
 msgstr "Kan inte maila en katalog"
 
-#: fileItemMenu.js:349
-msgid ""
-"Selection includes a Directory, compress the directory to a file first."
-msgstr ""
-"Valet innehåller en katalog,  komprimera katalogen till en fil först."
+#: fileItemMenu.js:400
+msgid "Selection includes a Directory, compress the directory to a file first."
+msgstr "Valet innehåller en katalog,  komprimera katalogen till en fil först."
 
 #: preferences.js:91
 msgid "Settings"
@@ -357,59 +351,63 @@ msgstr "Lägg till nya enheter på motsatt sida av skärmen"
 msgid "Highlight the drop place during Drag'n'Drop"
 msgstr "Markera släpplatsen under dra-och-släpp"
 
-#: preferences.js:116
+#: preferences.js:113 schemas/org.gnome.shell.extensions.ding.gschema.xml:90
+msgid "Use Nemo to open folders"
+msgstr ""
+
+#: preferences.js:117
 msgid "Settings shared with Nautilus"
 msgstr "Inställningar delade med Nautilus"
 
-#: preferences.js:122
+#: preferences.js:123
 msgid "Click type for open files"
 msgstr "Klicktyp för filöppning"
 
-#: preferences.js:122
+#: preferences.js:123
 msgid "Single click"
 msgstr "Enkelklick"
 
-#: preferences.js:122
+#: preferences.js:123
 msgid "Double click"
 msgstr "Dubbelklick"
 
-#: preferences.js:123
+#: preferences.js:124
 msgid "Show hidden files"
 msgstr "Visa dolda filer"
 
-#: preferences.js:124
+#: preferences.js:125
 msgid "Show a context menu item to delete permanently"
 msgstr "Visa ett snabbvalsmenyobjekt för att ta bort permanent"
 
-#: preferences.js:129
+#: preferences.js:130
 msgid "Action to do when launching a program from the desktop"
 msgstr "Åtgärd att utföra när ett program startas från skrivbordet"
 
-#: preferences.js:130
+#: preferences.js:131
 msgid "Display the content of the file"
 msgstr "Visa innehållet i filen"
 
-#: preferences.js:131
+#: preferences.js:132
 msgid "Launch the file"
 msgstr "Kör filen"
 
-#: preferences.js:132
+#: preferences.js:133
 msgid "Ask what to do"
 msgstr "Fråga vad som ska göras"
 
-#: preferences.js:138
+#: preferences.js:139
 msgid "Show image thumbnails"
 msgstr "Visa miniatyrbilder"
 
-#: preferences.js:139
+#: preferences.js:140
 msgid "Never"
 msgstr "Aldrig"
 
-#: preferences.js:140
+#: preferences.js:141
 msgid "Local files only"
 msgstr "Endast lokala filer"
 
-#: preferences.js:141
+#: preferences.js:142
 msgid "Always"
 msgstr "Alltid"
 
@@ -516,3 +514,38 @@ msgstr "Arrangera ordningen"
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:76
 msgid "Icons Arranged by this property"
 msgstr "Ikonerna arrangerade efter denna egenskap"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:80
+msgid "Keep Icons Stacked"
+msgstr "Behåll ikonerna arrangerade"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:81
+msgid "Always keep Icons Stacked, Similar types are grouped"
+msgstr "Behåll alltid ikonerna arrangerade, grupperade efter typ"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:85
+msgid "Type of Files to not Stack"
+msgstr "Filtyper som inte arrangeras"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:86
+msgid "An Array of strings types, Don't Stack these types of files"
+msgstr "En lista över typer, arrangera inte dessa filtyper"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:91
+msgid "Use Nemo instead of Nautilus to open folders."
+msgstr ""
+
+#~ msgid "Do you want to run “{0}”, or display its contents?"
+#~ msgstr "Vill du köra ”{0}”, eller visa dess innehåll?"
+
+#~ msgid "“{0}” is an executable text file."
+#~ msgstr "”{0}” är en körbar textfil."
+
+#~ msgid "Execute in a terminal"
+#~ msgstr "Kör i en terminal"
+
+#~ msgid "Show"
+#~ msgstr "Visa"
+
+#~ msgid "Execute"
+#~ msgstr "Kör"

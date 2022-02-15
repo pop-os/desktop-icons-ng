@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the desktop-icons package.
 # Massimo Branchini <max.bra.gtalk@gmail.com>, 2019.
 # Milo Casagrande <milo@milo.name>, 2019.
+# Albano Battistella <albano_battistella@hotmail.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: desktop-icons master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-21 20:21+0200\n"
-"PO-Revision-Date: 2019-03-12 09:51+0100\n"
+"POT-Creation-Date: 2022-01-21 15:41+0100\n"
+"PO-Revision-Date: 2022-01-10 18:51+0100\n"
 "Last-Translator: Milo Casagrande <milo@milo.name>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "Language: it\n"
@@ -19,272 +20,268 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: askRenamePopup.js:41
+#: askRenamePopup.js:42
 msgid "Folder name"
 msgstr "Nome della cartella"
 
-#: askRenamePopup.js:41
+#: askRenamePopup.js:42
 msgid "File name"
 msgstr "Nome del file"
 
-#: askRenamePopup.js:48 desktopManager.js:661
+#: askRenamePopup.js:49 desktopManager.js:816
 msgid "OK"
 msgstr "Ok"
 
-#: askRenamePopup.js:48
+#: askRenamePopup.js:49
 msgid "Rename"
-msgstr "Rinomina..."
+msgstr "Rinomina"
 
 #: desktopIconsUtil.js:88
 msgid "Command not found"
 msgstr "Comando non trovato"
 
-#: desktopIconsUtil.js:210
-msgid "Do you want to run “{0}”, or display its contents?"
-msgstr "Vuoi eseguire “{0}”, o visualizzare il suo contenuto?"
-
-#: desktopIconsUtil.js:211
-msgid "“{0}” is an executable text file."
-msgstr "“{0}” è un file di testo eseguibile."
-
-#: desktopIconsUtil.js:215
-msgid "Execute in a terminal"
-msgstr "Esegui nel Terminale"
-
-#: desktopIconsUtil.js:217
-msgid "Show"
-msgstr "Mostra"
-
-#: desktopIconsUtil.js:219 desktopManager.js:663 desktopManager.js:1766
-msgid "Cancel"
-msgstr "Annulla"
-
-#: desktopIconsUtil.js:221
-msgid "Execute"
-msgstr "Esegui"
-
-#: desktopManager.js:163
+#: desktopManager.js:204
 msgid "Nautilus File Manager not found"
 msgstr "File Manager Nautilus non trovato"
 
-#: desktopManager.js:164
+#: desktopManager.js:205
 msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
 msgstr ""
 "Il File Manager Nautilus è necessario per funzionare con Desktop Icons NG."
 
-#: desktopManager.js:626
+#: desktopManager.js:779
 msgid "Clear Current Selection before New Search"
 msgstr "Cancella la selezione corrente prima di una nuova ricerca"
 
-#: desktopManager.js:665
+#: desktopManager.js:818 fileItemMenu.js:367
+msgid "Cancel"
+msgstr "Annulla"
+
+#: desktopManager.js:820
 msgid "Find Files on Desktop"
 msgstr "Trova i file sul desktop"
 
-#: desktopManager.js:735 desktopManager.js:1399
+#: desktopManager.js:884 desktopManager.js:1529
 msgid "New Folder"
 msgstr "Nuova cartella"
 
-#: desktopManager.js:739
+#: desktopManager.js:888
 msgid "New Document"
 msgstr "Nuovo documento"
 
-#: desktopManager.js:744
+#: desktopManager.js:893
 msgid "Paste"
 msgstr "Incolla"
 
-#: desktopManager.js:748
+#: desktopManager.js:897
 msgid "Undo"
 msgstr "Annulla"
 
-#: desktopManager.js:752
+#: desktopManager.js:901
 msgid "Redo"
 msgstr "Ripeti"
 
-#: desktopManager.js:758
+#: desktopManager.js:907
 msgid "Select All"
 msgstr "Seleziona tutto"
 
-#: desktopManager.js:766
+#: desktopManager.js:915
 msgid "Show Desktop in Files"
 msgstr "Mostra la scrivania in File"
 
-#: desktopManager.js:770 fileItem.js:1035
+#: desktopManager.js:919 fileItemMenu.js:274
 msgid "Open in Terminal"
 msgstr "Apri in Terminale"
 
-#: desktopManager.js:776
+#: desktopManager.js:925
 msgid "Change Background…"
 msgstr "Cambia lo sfondo…"
 
-#: desktopManager.js:785
+#: desktopManager.js:934
 msgid "Display Settings"
 msgstr "Impostazioni dello schermo"
 
-#: desktopManager.js:792
+#: desktopManager.js:941
 msgid "Desktop Icons Settings"
 msgstr "Impostazioni di Desktop Icons"
 
-#: desktopManager.js:1484
-msgid "Can not email a Directory"
-msgstr "Non è possibile spedire per email una cartella"
-
-#: desktopManager.js:1485
-msgid "Selection includes a Directory, compress the directory to a file first."
-msgstr ""
-"La selezione include una cartella, comprimere prima la cartella in un file."
-
-#: desktopManager.js:1506
+#: desktopManager.js:1587
 msgid "Arrange Icons"
 msgstr "Disponi icone"
 
-#: desktopManager.js:1510
+#: desktopManager.js:1591
 msgid "Arrange By..."
 msgstr "Disponi per..."
 
-#: desktopManager.js:1519
+#: desktopManager.js:1600
 msgid "Keep Arranged..."
 msgstr "Disposizione automatica..."
 
-#: desktopManager.js:1524
+#: desktopManager.js:1604
+msgid "Keep Stacked by type..."
+msgstr "Mantieni inpilato per tipo..."
+
+#: desktopManager.js:1609
 msgid "Sort Home/Drives/Trash..."
 msgstr "Ordina Home/Drives/Cestino..."
 
-#: desktopManager.js:1530
+#: desktopManager.js:1615
 msgid "Sort by Name"
 msgstr "Ordina per Nome"
 
-#: desktopManager.js:1532
+#: desktopManager.js:1617
 msgid "Sort by Name Descending"
 msgstr "Ordina per Nome discendente"
 
-#: desktopManager.js:1535
+#: desktopManager.js:1620
 msgid "Sort by Modified Time"
 msgstr "Ordina per ora di modifica"
 
-#: desktopManager.js:1538
+#: desktopManager.js:1623
 msgid "Sort by Type"
 msgstr "Dordina per tipo"
 
-#: desktopManager.js:1541
+#: desktopManager.js:1626
 msgid "Sort by Size"
 msgstr "Ordina per dimensione"
 
-#: desktopManager.js:1764
-msgid "Select Extract Destination"
-msgstr "Seleziona la destinazione per l'estrazione"
-
-#: desktopManager.js:1767
-msgid "Select"
-msgstr "Seleziona"
-
 #. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
-#: fileItem.js:223
+#: fileItem.js:147
 msgid "Home"
 msgstr "Home"
 
-#: fileItem.js:925
+#: fileItemMenu.js:105
 msgid "Open All..."
 msgstr "Apri tutto..."
 
-#: fileItem.js:925
+#: fileItemMenu.js:105
 msgid "Open"
 msgstr "Apri"
 
-#: fileItem.js:930
+#: fileItemMenu.js:116
+msgid "Stack This Type"
+msgstr "Impila questo tipo"
+
+#: fileItemMenu.js:116
+msgid "Unstack This Type"
+msgstr "Disimpila questo tipo"
+
+#: fileItemMenu.js:128
 msgid "Scripts"
 msgstr "Script"
 
-#: fileItem.js:938
+#: fileItemMenu.js:134
 msgid "Open All With Other Application..."
 msgstr "Apri tutto con un'altra applicazione"
 
-#: fileItem.js:938
+#: fileItemMenu.js:134
 msgid "Open With Other Application"
 msgstr "Apri con un'altra applicazione"
 
-#: fileItem.js:942
+#: fileItemMenu.js:140
 msgid "Launch using Dedicated Graphics Card"
 msgstr "Esegui con la scheda grafica dedicata"
 
-#: fileItem.js:950
+#: fileItemMenu.js:149
+msgid "Run as a program"
+msgstr ""
+
+#: fileItemMenu.js:157
 msgid "Cut"
 msgstr "Taglia"
 
-#: fileItem.js:953
+#: fileItemMenu.js:162
 msgid "Copy"
 msgstr "Copia"
 
-#: fileItem.js:957
+#: fileItemMenu.js:168
 msgid "Rename…"
 msgstr "Rinomina…"
 
-#: fileItem.js:961
+#: fileItemMenu.js:176
 msgid "Move to Trash"
 msgstr "Sposta nel cestino"
 
-#: fileItem.js:965
+#: fileItemMenu.js:182
 msgid "Delete permanently"
 msgstr "Elimina definitivamente"
 
-#: fileItem.js:971
+#: fileItemMenu.js:190
 msgid "Don't Allow Launching"
 msgstr "Non permettere l'esecuzione"
 
-#: fileItem.js:971
+#: fileItemMenu.js:190
 msgid "Allow Launching"
 msgstr "Permetti l'esecuzione"
 
-#: fileItem.js:978
+#: fileItemMenu.js:201
 msgid "Empty Trash"
 msgstr "Svuota il cestino"
 
-#: fileItem.js:985
+#: fileItemMenu.js:212
 msgid "Eject"
 msgstr "Espelli"
 
-#: fileItem.js:992
+#: fileItemMenu.js:218
 msgid "Unmount"
 msgstr "Smonta"
 
-#: fileItem.js:1007
+#: fileItemMenu.js:228
 msgid "Extract Here"
 msgstr "Estrai qui"
 
-#: fileItem.js:1010
+#: fileItemMenu.js:232
 msgid "Extract To..."
 msgstr "Estrai in..."
 
-#: fileItem.js:1015
+#: fileItemMenu.js:239
 msgid "Send to..."
 msgstr "Invia a..."
 
-#: fileItem.js:1019
+#: fileItemMenu.js:245
 msgid "Compress {0} file"
 msgid_plural "Compress {0} files"
 msgstr[0] "Comprimi {0} file"
 msgstr[1] "Comprimi {0} files"
 
-#: fileItem.js:1022
+#: fileItemMenu.js:251
 msgid "New Folder with {0} item"
 msgid_plural "New Folder with {0} items"
 msgstr[0] "Nuova cartella con {0} elemento"
 msgstr[1] "Nuova cartella con {0} elementi"
 
-#: fileItem.js:1027
+#: fileItemMenu.js:260
 msgid "Common Properties"
 msgstr "Proprietà generali"
 
-#: fileItem.js:1027
+#: fileItemMenu.js:260
 msgid "Properties"
 msgstr "Proprietà"
 
-#: fileItem.js:1031
+#: fileItemMenu.js:267
 msgid "Show All in Files"
 msgstr "Mostra tutto in File"
 
-#: fileItem.js:1031
+#: fileItemMenu.js:267
 msgid "Show in Files"
 msgstr "Mostra in File"
+
+#: fileItemMenu.js:363
+msgid "Select Extract Destination"
+msgstr "Seleziona la destinazione per l'estrazione"
+
+#: fileItemMenu.js:368
+msgid "Select"
+msgstr "Seleziona"
+
+#: fileItemMenu.js:399
+msgid "Can not email a Directory"
+msgstr "Non è possibile spedire per email una cartella"
+
+#: fileItemMenu.js:400
+msgid "Selection includes a Directory, compress the directory to a file first."
+msgstr ""
+"La selezione include una cartella, comprimere prima la cartella in un file."
 
 #: preferences.js:91
 msgid "Settings"
@@ -354,59 +351,63 @@ msgstr "Aggiungi le nuove periferiche sul lato opposto dello schermo"
 msgid "Highlight the drop place during Drag'n'Drop"
 msgstr "Evidenzia il punto di rilascio durante il trascinamento"
 
-#: preferences.js:116
+#: preferences.js:113 schemas/org.gnome.shell.extensions.ding.gschema.xml:90
+msgid "Use Nemo to open folders"
+msgstr ""
+
+#: preferences.js:117
 msgid "Settings shared with Nautilus"
 msgstr "Impostazioni condivise con Nautilus"
 
-#: preferences.js:122
+#: preferences.js:123
 msgid "Click type for open files"
 msgstr "Tipo di click per aprire i file"
 
-#: preferences.js:122
+#: preferences.js:123
 msgid "Single click"
 msgstr "Click singolo"
 
-#: preferences.js:122
+#: preferences.js:123
 msgid "Double click"
 msgstr "Doppio click"
 
-#: preferences.js:123
+#: preferences.js:124
 msgid "Show hidden files"
 msgstr "Mostra i file nascosti"
 
-#: preferences.js:124
+#: preferences.js:125
 msgid "Show a context menu item to delete permanently"
 msgstr "Mostra un elemento del menù contestuale per eliminare definitivamente"
 
-#: preferences.js:129
+#: preferences.js:130
 msgid "Action to do when launching a program from the desktop"
 msgstr "Azione da eseguire avviando un programma dalla scrivania"
 
-#: preferences.js:130
+#: preferences.js:131
 msgid "Display the content of the file"
 msgstr "Mostra il contenuto del file"
 
-#: preferences.js:131
+#: preferences.js:132
 msgid "Launch the file"
 msgstr "Esegui il file"
 
-#: preferences.js:132
+#: preferences.js:133
 msgid "Ask what to do"
 msgstr "Chiedi cosa fare"
 
-#: preferences.js:138
+#: preferences.js:139
 msgid "Show image thumbnails"
 msgstr "Mostra le anteprime delle immagini"
 
-#: preferences.js:139
+#: preferences.js:140
 msgid "Never"
 msgstr "Mai"
 
-#: preferences.js:140
+#: preferences.js:141
 msgid "Local files only"
 msgstr "Solo i file locali"
 
-#: preferences.js:141
+#: preferences.js:142
 msgid "Always"
 msgstr "Sempre"
 
@@ -492,8 +493,8 @@ msgid ""
 "When arranging Icons on desktop, to sort and change the position of the "
 "Home, Trash and mounted Network or External Drives"
 msgstr ""
-"Quando si sistemano le icone sul desktop, ordina e cambia la posizione delle cartelle "
-"Home, cestino e unità esterne o di rete montate"
+"Quando si sistemano le icone sul desktop, ordina e cambia la posizione delle "
+"cartelle Home, cestino e unità esterne o di rete montate"
 
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:70
 msgid "Keep Icons Arranged"
@@ -510,6 +511,42 @@ msgstr "Disponi ordinamento"
 #: schemas/org.gnome.shell.extensions.ding.gschema.xml:76
 msgid "Icons Arranged by this property"
 msgstr "Icone ordinate per questa proprietà"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:80
+#, fuzzy
+msgid "Keep Icons Stacked"
+msgstr "Mantieni le icone disposte"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:81
+msgid "Always keep Icons Stacked, Similar types are grouped"
+msgstr "Mantieni sempre le icone impilate, i tipi simili sono raggruppati"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:85
+msgid "Type of Files to not Stack"
+msgstr "Tipo di file da non impilare"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:86
+msgid "An Array of strings types, Don't Stack these types of files"
+msgstr "Un array di tipi di stringhe, non impilare questi tipi di file"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:91
+msgid "Use Nemo instead of Nautilus to open folders."
+msgstr ""
+
+#~ msgid "Do you want to run “{0}”, or display its contents?"
+#~ msgstr "Vuoi eseguire “{0}”, o visualizzare il suo contenuto?"
+
+#~ msgid "“{0}” is an executable text file."
+#~ msgstr "“{0}” è un file di testo eseguibile."
+
+#~ msgid "Execute in a terminal"
+#~ msgstr "Esegui nel Terminale"
+
+#~ msgid "Show"
+#~ msgstr "Mostra"
+
+#~ msgid "Execute"
+#~ msgstr "Esegui"
 
 #~ msgid "New folder"
 #~ msgstr "Nuova cartella"

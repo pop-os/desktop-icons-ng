@@ -1,5 +1,5 @@
 project('ding',
-  version: '33.0',
+  version: '39.0',
   license: 'GPL3'
 )
 
@@ -17,6 +17,7 @@ install_data([
     'createThumbnail.js',
     'dbusUtils.js',
     'desktopGrid.js',
+    'desktopIconItem.js',
     'desktopIconsUtil.js',
     'desktopManager.js',
     'ding.js',
@@ -29,6 +30,7 @@ install_data([
     'metadata.json',
     'prefs.js',
     'preferences.js',
+    'stackItem.js',
     'showErrorPopup.js',
     'stylesheet.css',
     'templatesScriptsManager.js',

@@ -18,7 +18,6 @@
 const GnomeDesktop = imports.gi.GnomeDesktop;
 const GLib = imports.gi.GLib;
 const Gio = imports.gi.Gio;
-const Mainloop = imports.mainloop;
 
 var ThumbnailLoader = class {
 
@@ -77,7 +76,7 @@ var ThumbnailLoader = class {
             }
             this._launchNewBuild();
         });
-        this._timeoutID = Mainloop.timeout_add(this._timeoutValue, () => {
+        this._timeoutID = GLib.timeout_add(GLib.PRIORITY_DEFAULT, this._timeoutValue, () => {
             print(`Timeout while generating thumbnail for ${file.displayName}`);
             this._timeoutID = 0;
             this._proc.force_exit();

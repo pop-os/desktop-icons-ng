@@ -23,7 +23,8 @@ const DesktopIconsUtil = imports.desktopIconsUtil;
 
 var TemplatesScriptsManagerFlags = {
     'NONE': 0,
-    'ONLY_EXECUTABLE': 1
+    'ONLY_EXECUTABLE': 1,
+    'HIDE_EXTENSIONS': 2
 };
 
 var TemplatesScriptsManager = class {
@@ -184,8 +185,10 @@ var TemplatesScriptsManager = class {
         let scriptSubMenu = new Gtk.Menu();
         for (let fileItem of scriptsList) {
             let menuItemName = fileItem[0];
-            let offset = DesktopIconsUtil.getFileExtensionOffset(menuItemName, false);
-            menuItemName = menuItemName.substring(0, offset);
+            if (this._flags & TemplatesScriptsManagerFlags.HIDE_EXTENSIONS) {
+                let offset = DesktopIconsUtil.getFileExtensionOffset(menuItemName, false);
+                menuItemName = menuItemName.substring(0, offset);
+            }
             let menuItemPath = fileItem[1];
             let subDirs = fileItem[2];
             if (subDirs === null) {

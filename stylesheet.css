@@ -15,3 +15,7 @@
 .not-found {
     color: rgb(255, 0, 0);
 }
+
+window.desktopwindow {
+    background-color: rgba(0, 0, 0, 0);
+}
