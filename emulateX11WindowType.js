@@ -49,7 +49,7 @@ class ManageWindow {
         }));
         this._signalIDs.push(window.connect('position-changed', () => {
             if (this._fixed && (this._x !== null) && (this._y !== null)) {
-                this._window.move_frame(false, this._x, this._y);
+                this._window.move_frame(true, this._x, this._y);
             }
         }));
         this._signalIDs.push(window.connect("notify::title", () => {
@@ -156,7 +156,7 @@ class ManageWindow {
                 this._window.lower();
             }
             if (this._fixed && (this._x !== null) && (this._y !== null)) {
-                this._window.move_frame(false, this._x, this._y);
+                this._window.move_frame(true, this._x, this._y);
             }
             this._changedStatusCB(this);
         }

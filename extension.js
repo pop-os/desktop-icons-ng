@@ -25,12 +25,15 @@ const Main = imports.ui.main;
 
 const ExtensionUtils = imports.misc.extensionUtils;
 const Config = imports.misc.config;
-const Mainloop = imports.mainloop;
+const ByteArray = imports.byteArray;
 
 const Me = ExtensionUtils.getCurrentExtension();
 const EmulateX11 = Me.imports.emulateX11WindowType;
 const VisibleArea = Me.imports.visibleArea;
 const GnomeShellOverride = Me.imports.gnomeShellOverride;
+
+const Clipboard = St.Clipboard.get_default();
+const CLIPBOARD_TYPE = St.ClipboardType.CLIPBOARD;
 
 // This object will contain all the global variables
 let data = {};
@@ -44,6 +47,7 @@ function init() {
     data.reloadTime = 100;
 
     data.GnomeShellOverride = null;
+    data.GnomeShellVersion = parseInt(Config.PACKAGE_VERSION.split(".")[0]);
 
     /* The constructor of the EmulateX11 class only initializes some
      * internal properties, but nothing else. In fact, it has its own
@@ -121,8 +125,6 @@ function innerEnable(removeId) {
         reloadIfSizesChanged();
     });
 
-    data.desktopCoordinates = [];
-
     /*
      * This callback allows to detect a change in the working area (like when changing the Scale value)
      */
@@ -139,6 +141,92 @@ function innerEnable(removeId) {
         GLib.source_remove(data.launchDesktopId);
     }
     launchDesktop();
+    data.remoteDingUpdate = Gio.DBusActionGroup.get(
+        Gio.DBus.session,
+        'com.rastersoft.ding',
+        '/com/rastersoft/ding/updateGridWindows'
+    );
+
+    /*
+     * Due to a problem in the Clipboard API in Gtk3, it is not possible to do the CUT/COPY operation from
+     * dynamic languages like Javascript, because one of the methods needed is marked as NOT INTROSPECTABLE
+     *
+     * https://discourse.gnome.org/t/missing-gtk-clipboard-set-with-data-in-gtk-3/6920
+     *
+     * The right solution is to migrate DING to Gtk4, where the whole API is available, but that is a very
+     * big task, so in the meantime, we take advantage of the fact that the St API, in Gnome Shell, can put
+     * binary contents in the clipboard, so we use DBus to notify that we want to do a CUT or a COPY operation,
+     * passing the URIs as parameters, and delegate that to the DING Gnome Shell extension. This is easily done
+     * with a GLib.SimpleAction.
+     */
+    data.dbusConnectionId = Gio.bus_own_name(Gio.BusType.SESSION, "com.rastersoft.dingextension", Gio.BusNameOwnerFlags.NONE, null, (connection, name) => {
+        data.dbusConnection = connection;
+
+        let doCopy = new Gio.SimpleAction({
+            name: 'doCopy',
+            parameter_type: new GLib.VariantType('as')
+        });
+        let doCut = new Gio.SimpleAction({
+            name: 'doCut',
+            parameter_type: new GLib.VariantType('as')
+        });
+        doCopy.connect('activate', manageCutCopy);
+        doCut.connect('activate', manageCutCopy);
+        let actionGroup = new Gio.SimpleActionGroup();
+        actionGroup.add_action(doCopy);
+        actionGroup.add_action(doCut);
+
+        this._dbusConnectionGroupId = data.dbusConnection.export_action_group(
+            '/com/rastersoft/dingextension/control',
+            actionGroup
+        );
+    }, null);
+}
+
+/*
+ * Before Gnome Shell 40, St API couldn't access binary data in the clipboard, only text data. Also, the
+ * original Desktop Icons was a pure extension, so it was limited to what Clutter and St offered. That was
+ * the reason why Nautilus accepted a text format for CUT and COPY operations in the form
+ *
+ *     x-special/nautilus-clipboard
+ *     OPERATION
+ *     FILE_URI
+ *     [FILE_URI]
+ *     [...]
+ *
+ * In Gnome Shell 40, St was enhanced and now it supports binary data; that's why Nautilus migrated to a
+ * binary format identified by the atom 'x-special/gnome-copied-files', where the CUT or COPY operation is
+ * shared.
+ *
+ * To maintain compatibility, we check the current Gnome Shell version and, based on that, we use the
+ * binary or the text clipboards.
+ */
+function manageCutCopy(action, parameters) {
+
+    let content = "";
+    if (data.GnomeShellVersion < 40) {
+        content = 'x-special/nautilus-clipboard\n';
+    }
+    if (action.name == 'doCut') {
+        content += 'cut\n';
+    } else {
+        content += 'copy\n';
+    }
+
+    let first = true;
+    for (let file of parameters.recursiveUnpack()) {
+        if (!first) {
+            content += '\n';
+        }
+        first = false;
+        content += file;
+    }
+
+    if (data.GnomeShellVersion < 40) {
+        Clipboard.set_text(CLIPBOARD_TYPE, content + "\n");
+    } else {
+        Clipboard.set_content(CLIPBOARD_TYPE, 'x-special/gnome-copied-files', ByteArray.toGBytes(ByteArray.fromString(content)));
+    }
 }
 
 /**
@@ -154,53 +242,58 @@ function disable() {
     data.visibleArea.disable();
 
     // disconnect signals only if connected
+    if (this._dbusConnectionGroupId) {
+        data.dbusConnection.unexport_action_group(this._dbusConnectionGroupId);
+        this._dbusConnectionGroupId = 0;
+    }
+
+    if (data.dbusConnectionId) {
+        Gio.bus_unown_name(data.dbusConnectionId);
+        data.dbusConnectionId = 0;
+    }
     if (data.visibleAreaId) {
         data.visibleArea.disconnect(data.visibleAreaId);
         data.visibleAreaId = 0;
     }
     if (data.startupPreparedId) {
         Main.layoutManager.disconnect(data.startupPreparedId);
+        data.startupPreparedId = 0;
     }
     if (data.monitorsChangedId) {
         Main.layoutManager.disconnect(data.monitorsChangedId);
+        data.monitorsChangedId = 0;
     }
     if (data.workareasChangedId) {
         global.display.disconnect(data.workareasChangedId);
+        data.workareasChangedId = 0;
     }
     if (data.sizeChangedId) {
         global.window_manager.disconnect(data.sizeChangedId);
+        data.sizeChangedId = 0;
     }
 }
 
 function reloadIfSizesChanged() {
-    if (data.desktopCoordinates.length != Main.layoutManager.monitors.length) {
-        killCurrentProcess();
-        return;
-    }
+    let desktopList = [];
     let ws = global.workspace_manager.get_workspace_by_index(0);
     for(let monitorIndex = 0; monitorIndex < Main.layoutManager.monitors.length; monitorIndex++) {
-        let monitor = Main.layoutManager.monitors[monitorIndex];
-        if (monitor.inFullscreen) {
-            continue;
-        }
-
-        let area = data.visibleArea.getWorkspaceGeometry(ws, monitorIndex);
-        let area2 = data.desktopCoordinates[monitorIndex];
-
-        //global.log(`Monitor ${monitorIndex}; ${area.x};${area.y};${area.width};${area.height};${area.scale} ${area2.x};${area2.y};${area2.width};${area2.height};${area2.scale}`)
-        if ((area.x != area2.x) ||
-            (area.y != area2.y) ||
-            (area.width != area2.width) ||
-            (area.height != area2.height) ||
-            (area.scale != area2.scale) ||
-            (area.marginTop != area2.marginTop) ||
-            (area.marginBottom != area2.marginBottom) ||
-            (area.marginLeft != area2.marginLeft) ||
-            (area.marginRight != area2.marginRight)) {
-            killCurrentProcess();
-            return;
-        }
+        let area = data.visibleArea.getMonitorGeometry(ws, monitorIndex);
+        let desktopListElement = new GLib.Variant('a{sd}', {
+            'x' : area.x,
+            'y': area.y,
+            'width' : area.width,
+            'height' : area.height,
+            'zoom' : area.scale,
+            'marginTop' : area.marginTop,
+            'marginBottom' : area.marginBottom,
+            'marginLeft' : area.marginLeft,
+            'marginRight' : area.marginRight,
+            'monitorIndex' : monitorIndex
+        });
+        desktopList.push(desktopListElement);
     }
+    let desktopListVariant = new GLib.Variant('av', desktopList);
+    data.remoteDingUpdate.activate_action('updateGridWindows', desktopListVariant);
 }
 
 /**
@@ -212,7 +305,7 @@ function killCurrentProcess() {
         GLib.source_remove(data.launchDesktopId);
         data.launchDesktopId = 0;
         if (data.isEnabled) {
-            data.launchDesktopId = Mainloop.timeout_add(data.reloadTime, () => {
+            data.launchDesktopId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, data.reloadTime, () => {
                 data.launchDesktopId = 0;
                 launchDesktop();
                 return false;
@@ -253,14 +346,14 @@ function doKillAllOldDesktopProcesses() {
         if (!processUser.query_exists(null)) {
             continue;
         }
-        let [data, etag] = processUser.load_bytes(null);
+        let [binaryData, etag] = processUser.load_bytes(null);
         let contents = '';
-        data = data.get_data();
-        for (let i = 0; i < data.length; i++) {
-            if (data[i] < 32) {
+        let readData = binaryData.get_data();
+        for (let i = 0; i < readData.length; i++) {
+            if (readData[i] < 32) {
                 contents += ' ';
             } else {
-                contents += String.fromCharCode(data[i]);
+                contents += String.fromCharCode(readData[i]);
             }
         }
         let path = 'gjs ' + GLib.build_filenamev([ExtensionUtils.getCurrentExtension().path, 'ding.js']);
@@ -291,17 +384,15 @@ function launchDesktop() {
 
     let first = true;
 
-    data.desktopCoordinates = [];
     argv.push('-M');
     argv.push(`${Main.layoutManager.primaryIndex}`);
 
     let ws = global.workspace_manager.get_workspace_by_index(0);
     for(let monitorIndex = 0; monitorIndex < Main.layoutManager.monitors.length; monitorIndex++) {
-        let area = data.visibleArea.getWorkspaceGeometry(ws, monitorIndex);
+        let area = data.visibleArea.getMonitorGeometry(ws, monitorIndex);
         // send the working area of each monitor in the desktop
         argv.push('-D');
-        argv.push(`${area.x}:${area.y}:${area.width}:${area.height}:${area.scale}:${area.marginTop}:${area.marginBottom}:${area.marginLeft}:${area.marginRight}`);
-        data.desktopCoordinates.push(area);
+        argv.push(`${area.x}:${area.y}:${area.width}:${area.height}:${area.scale}:${area.marginTop}:${area.marginBottom}:${area.marginLeft}:${area.marginRight}:${monitorIndex}`);
         if (first || (area.x < data.minx)) {
             data.minx = area.x;
         }
@@ -346,7 +437,7 @@ function launchDesktop() {
             if (data.launchDesktopId) {
                 GLib.source_remove(data.launchDesktopId);
             }
-            data.launchDesktopId = Mainloop.timeout_add(data.reloadTime, () => {
+            data.launchDesktopId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, data.reloadTime, () => {
                 data.launchDesktopId = 0;
                 launchDesktop();
                 return false;

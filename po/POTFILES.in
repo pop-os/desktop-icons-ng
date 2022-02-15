@@ -2,6 +2,8 @@ askRenamePopup.js
 createThumbnail.js
 dbusUtils.js
 desktopGrid.js
+desktopIconItem.js
+desktopIconsIntegration.js
 desktopIconsUtil.js
 desktopManager.js
 ding.js
@@ -13,5 +15,8 @@ fileItemMenu.js
 preferences.js
 prefs.js
 showErrorPopup.js
+stackItem.js
 templatesScriptsManager.js
+thumbnails.js
+visibleArea.js
 schemas/org.gnome.shell.extensions.ding.gschema.xml

@@ -16,6 +16,7 @@
  */
 
 const DBusUtils = imports.dbusUtils;
+const GLib = imports.gi.GLib;
 const Gtk = imports.gi.Gtk;
 const Gio = imports.gi.Gio;
 
@@ -57,23 +58,23 @@ var FileItemMenu = class {
     }
 
     _onScriptClicked(menuItemPath) {
-        let pathList = [];
-        let uriList = [];
+        let pathList = "NAUTILUS_SCRIPT_SELECTED_FILE_PATHS=";
+        let uriList = "NAUTILUS_SCRIPT_SELECTED_URIS=";
+        let currentUri = `NAUTILUS_SCRIPT_CURRENT_URI=${DesktopIconsUtil.getDesktopDir().get_uri()}`;
+        let params = [menuItemPath];
         for (let item of this._desktopManager.getCurrentSelection(false) ) {
             if (!item.isSpecial) {
-                pathList.push("'" + item.file.get_path() + "\n'");
-                uriList.push("'" + item.file.get_uri() + "\n'");
+                pathList +=(`${item.file.get_path()}\n`);
+                uriList +=(`${item.file.get_uri()}\n`);
+                params.push(item.file.get_path());
             }
         }
-        pathList = pathList.join("");
-        uriList = uriList.join("");
-        let deskTop = "'" + DesktopIconsUtil.getDesktopDir().get_uri() + "'";
-        let execline = `/bin/bash -c "`;
-        execline += `NAUTILUS_SCRIPT_SELECTED_FILE_PATHS=${pathList} `;
-        execline += `NAUTILUS_SCRIPT_SELECTED_URIS=${uriList} `;
-        execline += `NAUTILUS_SCRIPT_CURRENT_URI=${deskTop} `;
-        execline += `'${menuItemPath}'"`;
-        DesktopIconsUtil.spawnCommandLine(execline);
+
+        let environ = DesktopIconsUtil.getFilteredEnviron();
+        environ.push(pathList);
+        environ.push(uriList);
+        environ.push(currentUri);
+        DesktopIconsUtil.trySpawn(null, params, environ);
     }
 
     showMenu(fileItem, event) {
@@ -99,14 +100,28 @@ var FileItemMenu = class {
             this._menu = null;
         });
 
-        addElementToMenu(
-            selectedItemsNum > 1 ? _("Open All...") : _("Open"),
-            this._doMultiOpen.bind(this)
-        );
+        if (! fileItem.isStackMarker) {
+            addElementToMenu(
+                selectedItemsNum > 1 ? _("Open All...") : _("Open"),
+                this._doMultiOpen.bind(this)
+            );
+        }
+
+        let keepStacked = Prefs.desktopSettings.get_boolean('keep-stacked');
+        if (keepStacked && ! fileItem.stackUnique) {
+            if (! fileItem.isSpecial && ! fileItem.isDirectory && ! fileItem.isValidDesktopFile) {
+                let unstackList = Prefs.getUnstackList();
+                let typeInList = unstackList.includes(fileItem.attributeContentType);
+                addElementToMenu(
+                    (typeInList) ? _("Stack This Type") : _("Unstack This Type"),
+                    () => {this._desktopManager.onToggleStackUnstackThisTypeClicked(fileItem.attributeContentType, typeInList, unstackList);}
+                );
+            }
+        }
 
         // fileExtra == NONE
 
-        if (fileItem.isAllSelectable) {
+        if (fileItem.isAllSelectable &&  ! fileItem.isStackMarker) {
 
             let submenu = this._scriptsMonitor.createMenu();
             if (submenu !== null) {
@@ -130,6 +145,13 @@ var FileItemMenu = class {
 
             addSeparator();
 
+            if (fileItem.attributeCanExecute && !fileItem.isDirectory && !fileItem.isValidDesktopFile && fileItem.execLine && Gio.content_type_can_be_executable(fileItem.attributeContentType)) {
+                addElementToMenu(_("Run as a program"), () => {
+                    DesktopIconsUtil.spawnCommandLine(`"${fileItem.execLine}"`);
+                });
+                addSeparator();
+            }
+
             let allowCutCopyTrash = this._desktopManager.checkIfSpecialFilesAreSelected();
             addElementToMenu(
                 _('Cut'),
@@ -147,6 +169,8 @@ var FileItemMenu = class {
                     () => {this._desktopManager.doRename(fileItem, false);}
                 );
             }
+
+            addSeparator();
 
             addElementToMenu(
                 _('Move to Trash'),
@@ -197,9 +221,8 @@ var FileItemMenu = class {
             }
         }
 
-        addSeparator();
-
         if (fileItem.isAllSelectable && (!this._desktopManager.checkIfSpecialFilesAreSelected()) && (selectedItemsNum >= 1 )) {
+            addSeparator();
             if (selectedItemsNum == 1 && this._getExtractable()) {
                 addElementToMenu(
                     _("Extract Here"),
@@ -232,18 +255,19 @@ var FileItemMenu = class {
             addSeparator();
         }
 
-        addElementToMenu(
-            selectedItemsNum > 1 ? _('Common Properties') : _('Properties'),
-            this._onPropertiesClicked.bind(this)
-        );
+        if (! fileItem.isStackMarker) {
+            addElementToMenu(
+                selectedItemsNum > 1 ? _('Common Properties') : _('Properties'),
+                this._onPropertiesClicked.bind(this)
+            );
 
-        addSeparator();
+            addSeparator();
 
-        addElementToMenu(
-            selectedItemsNum > 1 ? _('Show All in Files') : _('Show in Files'),
-            this._onShowInFilesClicked.bind(this)
-        );
-
+            addElementToMenu(
+                selectedItemsNum > 1 ? _('Show All in Files') : _('Show in Files'),
+                this._onShowInFilesClicked.bind(this)
+            );
+        }
 
         if (fileItem.isDirectory && (fileItem.path != null) && (selectedItemsNum == 1)) {
             addElementToMenu(
@@ -268,6 +292,16 @@ var FileItemMenu = class {
 
     _onShowInFilesClicked() {
         let showInFilesList = this._desktopManager.getCurrentSelection(true);
+        if (this._desktopManager.useNemo) {
+            try {
+                for (let element of showInFilesList) {
+                    DesktopIconsUtil.trySpawn(GLib.get_home_dir(), ['nemo', element],DesktopIconsUtil.getFilteredEnviron());
+                }
+                return;
+            } catch(err) {
+                log(`Error trying to launch Nemo: ${err.message}\n${err}`);
+            }
+        }
         DBusUtils.FreeDesktopFileManagerProxy.ShowItemsRemote(showInFilesList, '',
             (result, error) => {
                 if (error)
@@ -291,18 +325,22 @@ var FileItemMenu = class {
                                                                     Gtk.DialogFlags.MODAL + Gtk.DialogFlags.USE_HEADER_BAR,
                                                                     mimetype);
             chooser.show_all();
-            let retval = chooser.run();
-            chooser.hide();
-            if (retval == Gtk.ResponseType.OK) {
-                let appInfo = chooser.get_app_info();
-                if (appInfo) {
-                    let fileList = [];
-                    for (let item of fileItems) {
-                        fileList.push(item.file);
+            chooser.connect('close', () => {
+                chooser.response(Gtk.ResponseType.CANCEL);
+            });
+            chooser.connect('response', (actor, retval) => {
+                if (retval == Gtk.ResponseType.OK) {
+                    let appInfo = chooser.get_app_info();
+                    if (appInfo) {
+                        let fileList = [];
+                        for (let item of fileItems) {
+                            fileList.push(item.file);
+                        }
+                        appInfo.launch(fileList, null);
                     }
-                    appInfo.launch(fileList, null);
                 }
-            }
+                chooser.hide();
+            });
         }
     }
 
@@ -315,26 +353,38 @@ var FileItemMenu = class {
         }
         if (extractHere) {
             folder = DesktopIconsUtil.getDesktopDir().get_uri();
-        } else {
-            let dialog = new Gtk.FileChooserDialog({title: _('Select Extract Destination')});
-            dialog.set_action(Gtk.FileChooserAction.SELECT_FOLDER);
-            dialog.add_button(_('Cancel'), Gtk.ResponseType.CANCEL);
-            dialog.add_button(_('Select'), Gtk.ResponseType.ACCEPT);
-            DesktopIconsUtil.windowHidePagerTaskbarModal(dialog, true);
-            let response = dialog.run();
-            if (response === Gtk.ResponseType.ACCEPT) {
-                folder = dialog.get_uri();
-            }
-            dialog.destroy();
-        }
-        if (folder) {
             DBusUtils.GnomeArchiveManagerProxy.ExtractRemote(extractFileItem, folder, true,
                 (result, error) => {
                     if (error) {
                         throw new Error('Error extracting files: ' + error.message);
                     }
+            });
+        } else {
+            let dialog = new Gtk.FileChooserDialog({title: _('Select Extract Destination')});
+            dialog.set_action(Gtk.FileChooserAction.SELECT_FOLDER);
+            dialog.set_create_folders(true);
+            dialog.set_current_folder_uri(DesktopIconsUtil.getDesktopDir().get_uri());
+            dialog.add_button(_('Cancel'), Gtk.ResponseType.CANCEL);
+            dialog.add_button(_('Select'), Gtk.ResponseType.ACCEPT);
+            DesktopIconsUtil.windowHidePagerTaskbarModal(dialog, true);
+            dialog.show_all();
+            dialog.connect('close', () => {
+                dialog.response(Gtk.ResponseType.CANCEL);
+            });
+            dialog.connect('response', (actor, response) => {
+                if (response === Gtk.ResponseType.ACCEPT) {
+                    folder = dialog.get_uri();
+                    if (folder) {
+                        DBusUtils.GnomeArchiveManagerProxy.ExtractRemote(extractFileItem, folder, true,
+                            (result, error) => {
+                                if (error) {
+                                    throw new Error('Error extracting files: ' + error.message);
+                                }
+                        });
+                    }
                 }
-            );
+                dialog.destroy();
+            });
         }
     }
 
